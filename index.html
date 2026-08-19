@@ -3,62 +3,107 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="theme-color" content="#0b0d10" />
-  <title>VOIDFRAME — Gaming Splash Art Gallery</title>
-  <meta name="description" content="A massive, searchable digital gaming splash-art catalogue." />
+  <meta name="theme-color" content="#080908" />
+  <title>VOIDFRAME — The Art of the Game</title>
+  <meta name="description" content="A searchable editorial archive of gaming splash art and skin rankings." />
   <style>
-    :root{--bg:#0b0d10;--panel:#11151a;--panel2:#171c22;--text:#f1f4f7;--muted:#89939f;--line:#242b33;--accent:#2dc8ff;--s:#ffbf47;--a:#9f7cff;--b:#4fcf8d;--c:#7b8794}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,select{font:inherit}button{cursor:pointer}a{color:inherit}
-    .shell{width:min(1800px,100%);margin:auto;padding:0 18px 80px}
-    .topbar{position:sticky;top:0;z-index:20;background:linear-gradient(180deg,rgba(11,13,16,.98),rgba(11,13,16,.92));backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
-    .topbar-inner{width:min(1800px,100%);margin:auto;padding:14px 18px 12px}
-    .brandrow{display:flex;align-items:end;gap:18px;margin-bottom:13px}.brand{font-weight:900;letter-spacing:.18em;font-size:18px}.brand em{font-style:normal;color:var(--accent)}.subtitle{color:var(--muted);font-size:12px}.count{margin-left:auto;color:var(--muted);white-space:nowrap}
-    .controls{display:grid;grid-template-columns:minmax(220px,1.4fr) minmax(150px,.6fr) minmax(150px,.55fr) minmax(150px,.55fr);gap:9px}
-    .field,.select{width:100%;height:42px;border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:7px;outline:none;padding:0 12px}.field:focus,.select:focus{border-color:#3f7890;box-shadow:0 0 0 3px rgba(45,200,255,.08)}
-    .chips{display:flex;gap:7px;overflow:auto;padding:10px 0 1px;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}.chip{border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:999px;padding:7px 11px;white-space:nowrap}.chip:hover{color:var(--text);border-color:#3a444f}.chip.active{background:var(--text);border-color:var(--text);color:#0a0c0e}
-    main{padding-top:16px}.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:11px;align-items:start}
-    .card{position:relative;overflow:hidden;background:var(--panel);border:1px solid #1f252c;border-radius:8px;min-width:0;transition:border-color .16s ease,transform .16s ease;background-clip:padding-box}.card:hover{border-color:#39434d;transform:translateY(-1px)}.card.expanded{grid-column:1/-1;transform:none;border-color:#3b4c58}.card.expanded .art{height:min(72vh,900px);object-fit:contain;background:#070809}.card.expanded .meta{padding:13px 15px 15px}.card.expanded .tags{display:flex}.card.expanded .description{display:block}
-    .imagewrap{position:relative;background:#080a0c;overflow:hidden}.art{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;transition:filter .2s ease}.card:nth-child(5n+2) .art{aspect-ratio:4/5}.card:nth-child(7n+3) .art{aspect-ratio:3/4}.card:nth-child(6n+4) .art{aspect-ratio:16/11}.card:hover .art{filter:saturate(1.05) contrast(1.03)}
-    .rank{position:absolute;top:10px;right:10px;display:grid;place-items:center;width:30px;height:30px;border-radius:7px;background:rgba(7,9,11,.78);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.12);font-weight:900}.rank-S{color:var(--s)}.rank-A{color:var(--a)}.rank-B{color:var(--b)}.rank-C{color:var(--c)}
-    .zoomhint{position:absolute;left:10px;bottom:10px;padding:5px 8px;border-radius:5px;background:rgba(7,9,11,.78);backdrop-filter:blur(8px);color:#d5dae0;font-size:11px;opacity:0;transform:translateY(3px);transition:.16s}.card:hover .zoomhint,.card.expanded .zoomhint{opacity:1;transform:none}
-    .meta{padding:10px 11px 12px}.name{font-size:14px;font-weight:750;letter-spacing:.01em;margin:0 0 4px}.sub{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:12px}.dot{width:3px;height:3px;border-radius:50%;background:#55606b}.description{display:none;max-width:980px;margin:10px 0 0;color:#b8c0c8;font-size:13px;line-height:1.6;white-space:pre-wrap}.tags{display:none;flex-wrap:wrap;gap:6px;margin-top:10px}.tag{color:#aeb6bf;background:#1c2229;border:1px solid #29313a;padding:4px 7px;border-radius:5px;font-size:11px}
-    .empty{display:none;text-align:center;padding:90px 20px;color:var(--muted);border:1px dashed var(--line);border-radius:10px}.empty.show{display:block}.skeleton{background:linear-gradient(90deg,#11151a,#1a2027,#11151a);background-size:220% 100%;animation:shimmer 1.15s infinite;aspect-ratio:16/10;border-radius:8px}@keyframes shimmer{to{background-position:-220% 0}}
-    .footer{padding:40px 2px 0;color:#5e6873;font-size:12px;display:flex;justify-content:space-between;gap:20px}
-    @media(max-width:800px){.shell{padding-inline:10px}.topbar-inner{padding-inline:10px}.brandrow{align-items:start;flex-wrap:wrap}.count{width:100%;margin-left:0}.controls{grid-template-columns:1fr 1fr}.controls .search{grid-column:1/-1}.gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.card{border-radius:6px}.meta{padding:8px 9px 10px}.subtitle{display:none}}
-    @media(max-width:520px){.controls{grid-template-columns:1fr 1fr}.controls .sort{grid-column:1/-1}.gallery{grid-template-columns:1fr 1fr}.name{font-size:13px}.sub{font-size:11px}.rank{width:27px;height:27px}.card.expanded .art{height:auto;max-height:72vh}.footer{display:block}.footer span{display:block;margin-top:5px}}
+    :root{
+      --ink:#080908;
+      --paper:#f1f1ea;
+      --lime:#c8ff1a;
+      --muted:#92968e;
+      --line:rgba(241,241,234,.14);
+      --panel:#121412;
+      --s:#c8ff1a;
+      --a:#efe9df;
+      --b:#aaa89f;
+      --c:#72756e;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;background:var(--ink)}
+    body{margin:0;background:var(--ink);color:var(--paper);font:14px/1.45 Arial,Helvetica,sans-serif}
+    button,input,select{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}
+    ::selection{background:var(--lime);color:var(--ink)}
+
+    .site-header{height:74px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 3vw;position:relative;z-index:30;background:var(--ink)}
+    .wordmark{font-size:1.05rem;font-weight:900;letter-spacing:-.05em;width:max-content}.wordmark span{color:var(--lime)}
+    .site-header nav{display:flex;gap:2rem;color:var(--muted);font-size:.7rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+    .site-header nav a{transition:color .18s ease}.site-header nav a:hover{color:var(--lime)}
+    .edition{justify-self:end;color:var(--lime);font-size:.62rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase}
+
+    .hero{height:calc(86vh - 74px);min-height:600px;padding:clamp(2rem,5vw,5rem) 3vw 2.5rem;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;background:linear-gradient(90deg,rgba(200,255,26,.045) 1px,transparent 1px) 0 0/8.333vw 100%,radial-gradient(circle at 78% 22%,rgba(200,255,26,.11),transparent 28%),var(--ink)}
+    .hero:after{content:"";position:absolute;right:-6vw;top:8%;width:42vw;aspect-ratio:1;border:1px solid rgba(200,255,26,.18);border-radius:50%;box-shadow:0 0 0 7vw rgba(200,255,26,.025),0 0 0 14vw rgba(200,255,26,.012)}
+    .hero-kicker{display:flex;align-items:center;gap:.7rem;color:var(--muted);font-size:.62rem;font-weight:900;letter-spacing:.17em;text-transform:uppercase;z-index:1}.hero-kicker i{width:7px;height:7px;border-radius:50%;background:var(--lime);box-shadow:0 0 14px var(--lime)}
+    .hero h1{margin:auto 0;position:relative;z-index:1;font-size:clamp(5rem,12.8vw,12.8rem);font-weight:900;line-height:.73;letter-spacing:-.09em;text-transform:uppercase}.hero h1 em{font-family:Georgia,"Times New Roman",serif;font-weight:400;font-style:italic;color:var(--lime);text-transform:none}
+    .hero-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;position:relative;z-index:1}.hero-foot p{max-width:360px;margin:0;color:var(--muted);font-size:1rem;line-height:1.45}.hero-foot span{color:var(--lime);font-size:.58rem;font-weight:900;letter-spacing:.18em;text-transform:uppercase}
+
+    .catalog{border-top:1px solid var(--line)}
+    .filter-deck{position:sticky;top:0;z-index:25;background:rgba(8,9,8,.94);backdrop-filter:blur(18px);border-bottom:1px solid var(--line);display:grid;grid-template-columns:minmax(250px,1.2fr) minmax(360px,1.8fr) auto;gap:1.5rem;align-items:center;padding:1.25rem 3vw}
+    .search-wrap{height:44px;border-bottom:1px solid #555950;display:flex;align-items:center;transition:border-color .18s}.search-wrap:focus-within{border-color:var(--lime)}.search-wrap>span{color:var(--lime);font-size:1.4rem;margin-right:.55rem;transform:rotate(-18deg)}.search-wrap input{flex:1;min-width:0;background:transparent;border:0;outline:0;color:var(--paper);font-size:.82rem}.search-wrap input::placeholder{color:#73766f}
+    .category-row{display:flex;gap:.22rem;align-items:center;justify-content:center;overflow:auto;scrollbar-width:none}.category-row::-webkit-scrollbar{display:none}.category-row button{flex:none;border:1px solid transparent;background:transparent;color:var(--muted);padding:.62rem .72rem;font-size:.61rem;font-weight:900;letter-spacing:.09em;text-transform:uppercase}.category-row button:hover{color:var(--paper)}.category-row button.active{background:var(--lime);color:var(--ink)}
+    .select-row{display:flex;gap:1.25rem}.select-row label{display:flex;flex-direction:column;gap:.25rem}.select-row label>span{color:#767970;font-size:.48rem;font-weight:900;letter-spacing:.16em;text-transform:uppercase}.select-row select{appearance:none;background:transparent;border:0;border-bottom:1px solid #555950;border-radius:0;outline:0;color:var(--paper);padding:.2rem 1.1rem .32rem 0;font-size:.68rem}.select-row option{background:#151715}
+
+    .results-line{height:82px;padding:0 3vw;display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:.56rem;font-weight:900;letter-spacing:.16em;text-transform:uppercase}.results-line strong{color:var(--lime);font-family:Georgia,serif;font-size:1.05rem;font-weight:400;margin-right:.35rem}.results-line p{margin:0}
+
+    .gallery-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px;background:var(--ink)}
+    .art-card{position:relative;aspect-ratio:16/9;overflow:hidden;border:0;background:var(--panel);color:var(--paper);text-align:left;padding:0;cursor:zoom-in;isolation:isolate;min-width:0}
+    .art-card.expanded{grid-column:1/-1;aspect-ratio:16/9;cursor:zoom-out}
+    .art-card img{display:block;width:100%;height:100%;object-fit:cover;filter:saturate(.84) contrast(1.06);transform:scale(1.002);transition:transform .65s cubic-bezier(.2,.75,.2,1),filter .35s ease}
+    .art-card:hover img,.art-card:focus-visible img{transform:scale(1.035);filter:saturate(1.04) contrast(1.04)}
+    .art-card.expanded img{transform:none;filter:saturate(1) contrast(1.03)}
+    .art-card:focus-visible{outline:2px solid var(--lime);outline-offset:-2px}
+    .shade{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(0,0,0,.04) 25%,rgba(0,0,0,.84) 100%);transition:background .25s}.art-card:hover .shade{background:linear-gradient(180deg,rgba(0,0,0,.01) 18%,rgba(0,0,0,.72) 100%)}
+    .card-number,.tier,.expand-mark,.card-copy{position:absolute;z-index:2}.card-number{top:1rem;left:1rem;font:italic .66rem Georgia,serif;opacity:.75}.tier{top:.9rem;right:1rem;width:31px;height:31px;border-radius:50%;display:grid;place-items:center;color:var(--ink);font-size:.68rem;font-weight:900}.tier-S{background:var(--s)}.tier-A{background:var(--a)}.tier-B{background:var(--b)}.tier-C{background:var(--c);color:var(--paper)}
+    .expand-mark{right:1rem;bottom:1rem;width:25px;height:25px;border-radius:50%;border:1px solid rgba(255,255,255,.58);display:grid;place-items:center;font-size:1rem;font-weight:300}
+    .card-copy{left:1rem;right:3.6rem;bottom:1rem;display:flex;flex-direction:column}.card-meta{color:var(--lime);font-size:.5rem;font-weight:900;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.32rem}.card-copy strong{font-size:clamp(1.15rem,1.65vw,2rem);line-height:.95;letter-spacing:-.045em;text-transform:uppercase}.card-bottom{display:flex;align-items:center;gap:.7rem;margin-top:.62rem;color:#c6c8c2;font-size:.49rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase}.card-bottom .tags-preview{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.card-bottom .rank-label{border-left:1px solid rgba(255,255,255,.4);padding-left:.7rem;color:var(--paper)}
+    .card-description{display:none;max-width:850px;margin-top:.8rem;color:#d4d6cf;font-size:.72rem;line-height:1.55;text-transform:none;letter-spacing:0}.art-card.expanded .card-description{display:block}.art-card.expanded .card-copy{left:2.2rem;bottom:2.1rem;right:7rem}.art-card.expanded .card-copy strong{font-size:clamp(2.7rem,5.2vw,6.4rem)}.art-card.expanded .card-meta{font-size:.62rem}.art-card.expanded .card-bottom{font-size:.58rem}
+
+    .empty-state{display:none;min-height:430px;border-top:1px solid var(--line);place-items:center;text-align:center;padding:50px}.empty-state.show{display:grid}.empty-state span{color:var(--lime);font-size:.58rem;font-weight:900;letter-spacing:.2em;text-transform:uppercase}.empty-state h2{font-size:clamp(2.2rem,5vw,5.5rem);letter-spacing:-.06em;margin:.8rem 0;text-transform:uppercase}
+
+    .manifesto{min-height:520px;background:var(--paper);color:var(--ink);display:grid;grid-template-columns:1fr 2.4fr 1fr;gap:3vw;padding:6rem 3vw;align-items:start}.eyebrow{color:#6c6f67;font-size:.58rem;font-weight:900;letter-spacing:.18em;text-transform:uppercase;padding-top:.8rem}.manifesto h2{margin:0;font-size:clamp(3.6rem,7.2vw,7.5rem);line-height:.84;letter-spacing:-.075em;text-transform:uppercase}.manifesto h2 em{font-family:Georgia,"Times New Roman",serif;font-weight:400;font-style:italic;color:#5f7800;text-transform:none}.manifesto-copy{align-self:end;font-size:.84rem;line-height:1.55}.manifesto-copy p:first-child{font-size:1.06rem}
+    footer{min-height:140px;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:2rem 3vw;color:var(--muted)}footer p,footer>a:last-child{font-size:.52rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase}footer>a:last-child{justify-self:end}footer a:hover{color:var(--lime)}
+
+    @media(max-width:1180px){.filter-deck{grid-template-columns:1fr 1.7fr}.select-row{grid-column:1/-1;justify-content:flex-end}.gallery-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.manifesto{grid-template-columns:1fr 3fr}.manifesto-copy{grid-column:2;max-width:520px}}
+    @media(max-width:760px){.site-header{height:62px;grid-template-columns:1fr auto;padding:0 4vw}.site-header nav{display:none}.edition{font-size:.52rem}.hero{height:72vh;min-height:520px;padding:2rem 4vw}.hero h1{font-size:clamp(4.2rem,22vw,7.8rem)}.hero-foot p{max-width:230px;font-size:.78rem}.hero-foot span{display:none}.filter-deck{position:relative;grid-template-columns:1fr;gap:1rem;padding:1.1rem 4vw}.category-row{justify-content:flex-start}.select-row{grid-column:auto;justify-content:space-between}.results-line{height:68px;padding:0 4vw}.results-line p{display:none}.gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.art-card.expanded{grid-column:1/-1}.card-copy strong{font-size:1rem}.card-bottom{display:none}.tier{width:28px;height:28px}.art-card.expanded .card-copy{left:1.2rem;bottom:1.2rem;right:4rem}.art-card.expanded .card-copy strong{font-size:clamp(1.8rem,8vw,3.8rem)}.manifesto{display:block;min-height:560px;padding:4.5rem 4vw}.manifesto h2{font-size:17vw;margin:2.5rem 0}.manifesto-copy{margin-left:20%}footer{grid-template-columns:1fr auto}footer p{display:none}}
+    @media(max-width:520px){.gallery-grid{grid-template-columns:1fr}.art-card,.art-card.expanded{grid-column:1;aspect-ratio:16/9}.hero{min-height:500px}.hero h1{font-size:21vw}.results-line{height:62px}.card-copy strong{font-size:1.28rem}.art-card.expanded .card-copy strong{font-size:1.8rem}.card-description{font-size:.64rem;max-width:80%}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition-duration:.01ms!important}}
   </style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="topbar-inner">
-      <div class="brandrow">
-        <div class="brand">VOID<em>FRAME</em></div>
-        <div class="subtitle">DIGITAL SPLASH ART / SKIN ARCHIVE</div>
-        <div class="count" id="count">Loading catalogue…</div>
-      </div>
-      <div class="controls">
-        <input class="field search" id="search" type="search" autocomplete="off" placeholder="Search by name, letters, description, tag…" aria-label="Search artwork" />
-        <select class="select" id="category" aria-label="Category"><option value="all">All categories</option></select>
-        <select class="select" id="rank" aria-label="Skin rank">
-          <option value="all">All ranks</option><option value="S">S rank</option><option value="A">A rank</option><option value="B">B rank</option><option value="C">C rank</option>
-        </select>
-        <select class="select sort" id="sort" aria-label="Sort order">
-          <option value="rank">Rank: highest first</option><option value="name">Name: A–Z</option><option value="category">Category</option>
-        </select>
-      </div>
-      <div class="chips" id="chips" aria-label="Quick category filters"></div>
-    </div>
+  <header class="site-header">
+    <a class="wordmark" href="#top" aria-label="VOIDFRAME home">VOID<span>//</span>FRAME</a>
+    <nav aria-label="Main navigation"><a href="#catalog">Browse</a><a href="#ranking">Ranking</a><a href="#about">About</a></nav>
+    <div class="edition">Digital splash archive · 2026</div>
   </header>
 
-  <div class="shell">
-    <main>
-      <section class="gallery" id="gallery" aria-live="polite">
-        <div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div>
-      </section>
-      <div class="empty" id="empty">No artwork matches this filter.</div>
-    </main>
-    <div class="footer"><strong>VOIDFRAME ARCHIVE</strong><span>Click artwork to expand in place · click again to collapse</span></div>
-  </div>
+  <section class="hero" id="top">
+    <div class="hero-kicker"><i></i> Owner-curated game art index</div>
+    <h1>The art<br>of the <em>game.</em></h1>
+    <div class="hero-foot"><p>A living archive of worlds, warriors, skins, and impossible light — built for the artwork to take the entire stage.</p><span>Scroll to explore ↓</span></div>
+  </section>
+
+  <section class="catalog" id="catalog">
+    <div class="filter-deck">
+      <label class="search-wrap"><span>⌕</span><input id="search" type="search" autocomplete="off" placeholder="Search artwork, description or tag…" aria-label="Search the gallery" /></label>
+      <div class="category-row" id="chips" aria-label="Filter by category"></div>
+      <div class="select-row" id="ranking">
+        <label><span>Skin rank</span><select id="rank"><option value="all">All tiers</option><option value="S">S tier only</option><option value="A">A tier only</option><option value="B">B tier only</option><option value="C">C tier only</option></select></label>
+        <label><span>Sort by</span><select id="sort"><option value="rank">Highest rank</option><option value="name">Title A—Z</option><option value="category">Category</option></select></label>
+      </div>
+    </div>
+
+    <div class="results-line"><div><strong id="countNumber">00</strong><span id="countText">artworks in view</span></div><p>Every thumbnail is 16:9 · click any frame to expand</p></div>
+    <div class="gallery-grid" id="gallery" aria-live="polite"></div>
+    <div class="empty-state" id="empty"><div><span>No matching frames</span><h2>Nothing in view.</h2></div></div>
+  </section>
+
+  <section class="manifesto" id="about">
+    <p class="eyebrow">VOIDFRAME / ARCHIVE</p>
+    <h2>Every frame is<br>a world <em>waiting.</em></h2>
+    <div class="manifesto-copy"><p>An owner-managed splash-art archive designed around a strict 16:9 presentation.</p><p>Search, filter, rank, expand, and manage the catalogue through the owner dashboard while the public gallery stays focused on the art.</p></div>
+  </section>
+
+  <footer><a class="wordmark" href="#top">VOID<span>//</span>FRAME</a><p>Owner-curated digital splash archive</p><a href="#top">Back to top ↑</a></footer>
 
   <script>
     const state={items:[],query:'',category:'all',rank:'all',sort:'rank',expanded:null};
@@ -69,11 +114,12 @@
 
     function fuzzyScore(item,q){
       if(!q)return 1;
-      const needle=norm(q);const hay=norm([item.name,item.description,item.category,item.rank,...(item.tags||[])].join(' '));
+      const needle=norm(q);
+      const hay=norm([item.name,item.description,item.category,item.rank,...(item.tags||[])].join(' '));
       if(hay.includes(needle))return 1000-hay.indexOf(needle);
       let p=0,gaps=0,last=-1;
       for(const ch of needle.replace(/\s/g,'')){
-        const idx=hay.indexOf(ch,p);if(idx<0)return -1;
+        const idx=hay.indexOf(ch,p);if(idx<0)return-1;
         if(last>=0)gaps+=idx-last-1;last=idx;p=idx+1;
       }
       return 400-gaps;
@@ -91,46 +137,55 @@
     }
 
     function render(){
-      const list=filtered();const g=$('#gallery');
-      g.innerHTML=list.map(item=>{
+      const list=filtered();
+      $('#countNumber').textContent=String(list.length).padStart(2,'0');
+      $('#countText').textContent=`${list.length===1?'artwork':'artworks'} in view`;
+      $('#empty').classList.toggle('show',!list.length);
+      $('#gallery').innerHTML=list.map((item,index)=>{
         const expanded=state.expanded===item.id;
-        return `<article class="card${expanded?' expanded':''}" data-id="${esc(item.id)}" tabindex="0" role="button" aria-expanded="${expanded}">
-          <div class="imagewrap">
-            <img class="art" src="${esc(item.image)}" alt="${esc(item.name)}" loading="lazy" decoding="async" />
-            <span class="rank rank-${esc(item.rank)}">${esc(item.rank)}</span>
-            <span class="zoomhint">${expanded?'Collapse':'Expand artwork'}</span>
-          </div>
-          <div class="meta"><h2 class="name">${esc(item.name)}</h2><div class="sub"><span>${esc(item.category)}</span><i class="dot"></i><span>${esc(item.rank)} rank skin</span></div>
-          ${item.description?`<div class="description">${esc(item.description)}</div>`:''}
-          <div class="tags">${(item.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div></div>
-        </article>`;
+        const tags=(item.tags||[]).slice(0,3).join(' · ');
+        return `<button class="art-card${expanded?' expanded':''}" data-id="${esc(item.id)}" aria-expanded="${expanded}" aria-label="${expanded?'Collapse':'Expand'} ${esc(item.name)}">
+          <img src="${esc(item.image)}" alt="${esc(item.name)}" loading="lazy" decoding="async" />
+          <span class="shade"></span>
+          <span class="card-number">${String(index+1).padStart(2,'0')}</span>
+          <span class="tier tier-${esc(item.rank)}">${esc(item.rank)}</span>
+          <span class="expand-mark">${expanded?'−':'+'}</span>
+          <span class="card-copy">
+            <span class="card-meta">${esc(item.category)} · ${esc(item.rank)} tier</span>
+            <strong>${esc(item.name)}</strong>
+            ${item.description?`<span class="card-description">${esc(item.description)}</span>`:''}
+            <span class="card-bottom"><span class="tags-preview">${esc(tags||'Curated splash art')}</span><span class="rank-label">${esc(item.rank)} rank</span></span>
+          </span>
+        </button>`;
       }).join('');
-      $('#empty').classList.toggle('show',!list.length);$('#count').textContent=`${list.length} / ${state.items.length} artworks`;
-      g.querySelectorAll('.card').forEach(card=>{
-        const toggle=()=>{
-          const id=card.dataset.id;state.expanded=state.expanded===id?null:id;render();
-          if(state.expanded)requestAnimationFrame(()=>document.querySelector(`[data-id="${CSS.escape(id)}"]`)?.scrollIntoView({behavior:'smooth',block:'center'}));
-        };
-        card.addEventListener('click',toggle);card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();}});
-      });
+
+      document.querySelectorAll('.art-card').forEach(card=>card.addEventListener('click',()=>{
+        const id=card.dataset.id;
+        state.expanded=state.expanded===id?null:id;
+        render();
+        if(state.expanded)requestAnimationFrame(()=>document.querySelector(`[data-id="${CSS.escape(id)}"]`)?.scrollIntoView({behavior:'smooth',block:'center'}));
+      }));
     }
 
     function setupFilters(){
-      const cats=[...new Set(state.items.map(x=>x.category))].sort();
-      $('#category').innerHTML='<option value="all">All categories</option>'+cats.map(c=>`<option>${esc(c)}</option>`).join('');
-      $('#chips').innerHTML=['all',...cats].map(c=>`<button class="chip${c==='all'?' active':''}" data-cat="${esc(c)}">${c==='all'?'All':esc(c)}</button>`).join('');
-      $('#chips').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;state.category=b.dataset.cat;$('#category').value=state.category;syncChips();render();});
+      const cats=[...new Set(state.items.map(x=>x.category).filter(Boolean))].sort();
+      $('#chips').innerHTML=['all',...cats].map(c=>`<button class="${c==='all'?'active':''}" data-cat="${esc(c)}">${c==='all'?'All':esc(c)}</button>`).join('');
+      $('#chips').addEventListener('click',e=>{
+        const b=e.target.closest('button[data-cat]');if(!b)return;
+        state.category=b.dataset.cat;state.expanded=null;
+        document.querySelectorAll('#chips button').forEach(x=>x.classList.toggle('active',x.dataset.cat===state.category));
+        render();
+      });
     }
-    function syncChips(){document.querySelectorAll('.chip').forEach(x=>x.classList.toggle('active',x.dataset.cat===state.category));}
 
     $('#search').addEventListener('input',e=>{state.query=e.target.value;state.expanded=null;render();});
-    $('#category').addEventListener('change',e=>{state.category=e.target.value;state.expanded=null;syncChips();render();});
     $('#rank').addEventListener('change',e=>{state.rank=e.target.value;state.expanded=null;render();});
     $('#sort').addEventListener('change',e=>{state.sort=e.target.value;render();});
 
-    fetch('./data/artworks.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error(`HTTP ${r.status}`);return r.json();}).then(items=>{state.items=items;setupFilters();render();}).catch(err=>{
-      $('#gallery').innerHTML='';$('#empty').classList.add('show');$('#empty').textContent='Could not load the artwork catalogue.';$('#count').textContent='Catalogue unavailable';console.error(err);
-    });
+    fetch('./data/artworks.json',{cache:'no-store'})
+      .then(r=>{if(!r.ok)throw new Error(`HTTP ${r.status}`);return r.json();})
+      .then(items=>{state.items=items;setupFilters();render();})
+      .catch(err=>{console.error(err);$('#empty').classList.add('show');$('#countNumber').textContent='00';$('#countText').textContent='catalogue unavailable';});
   </script>
 </body>
 </html>
