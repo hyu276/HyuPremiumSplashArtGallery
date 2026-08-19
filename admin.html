@@ -4,34 +4,37 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="robots" content="noindex,nofollow,noarchive" />
+  <meta name="theme-color" content="#0b0d10" />
   <title>VOIDFRAME Owner Dashboard</title>
   <style>
-    :root{--bg:#0b0d10;--panel:#11151a;--panel2:#171c22;--text:#eef2f6;--muted:#8f9aa6;--line:#28303a;--accent:#2dc8ff;--danger:#ff5d6c;--ok:#58d68d}
-    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,select{font:inherit}button{cursor:pointer}.wrap{width:min(1500px,100%);margin:auto;padding:22px}.top{display:flex;gap:16px;align-items:start;justify-content:space-between;margin-bottom:18px}.brand{font-weight:900;letter-spacing:.14em;font-size:18px}.brand b{color:var(--accent)}.muted{color:var(--muted)}
-    .security{max-width:680px;background:#12181d;border:1px solid #2b3740;padding:10px 12px;border-radius:7px;color:#b2bec8;font-size:12px}.security strong{color:#fff}.grid{display:grid;grid-template-columns:minmax(330px,430px) 1fr;gap:14px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:15px}.panel h2{font-size:13px;text-transform:uppercase;letter-spacing:.1em;margin:0 0 13px;color:#c9d1d9}.row{display:grid;grid-template-columns:1fr 1fr;gap:9px}.field{margin-bottom:9px}.field label{display:block;color:var(--muted);font-size:11px;margin:0 0 5px}.input,.select{width:100%;height:40px;border:1px solid var(--line);border-radius:6px;background:#0d1115;color:var(--text);padding:0 10px;outline:none}.input:focus,.select:focus{border-color:#426a7a}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.btn{border:1px solid var(--line);border-radius:6px;background:#1a2027;color:var(--text);padding:9px 12px}.btn:hover{border-color:#46525e}.btn.primary{background:var(--accent);color:#061016;border-color:var(--accent);font-weight:800}.btn.danger{color:#ffc4ca;border-color:#56323a;background:#231518}.btn.ghost{background:transparent}.btn:disabled{opacity:.45;cursor:not-allowed}.status{margin-top:10px;min-height:20px;color:var(--muted);font-size:12px}.status.ok{color:var(--ok)}.status.err{color:var(--danger)}
-    .toolbar{display:flex;align-items:center;gap:9px;margin-bottom:10px}.toolbar .input{flex:1;margin:0}.badge{font-size:11px;color:var(--muted);white-space:nowrap}.list{display:grid;gap:6px;max-height:70vh;overflow:auto;padding-right:3px}.item{display:grid;grid-template-columns:76px minmax(130px,1fr) 95px 45px auto;gap:9px;align-items:center;border:1px solid #212832;background:#0e1216;border-radius:7px;padding:7px}.thumb{width:76px;height:48px;border-radius:5px;object-fit:cover;background:#07090b}.title{font-weight:750;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.meta{font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.rank{text-align:center;font-weight:900}.small{padding:6px 8px;font-size:11px}.empty{padding:50px 20px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:7px}.preview{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:6px;background:#080a0c;margin:4px 0 10px;border:1px solid var(--line)}
-    code{background:#0a0d10;border:1px solid #202832;border-radius:4px;padding:2px 5px;color:#b8d9e5}.split{height:1px;background:var(--line);margin:15px 0}
-    @media(max-width:900px){.wrap{padding:12px}.top{display:block}.security{margin-top:10px}.grid{grid-template-columns:1fr}.list{max-height:none}.row{grid-template-columns:1fr}.item{grid-template-columns:62px 1fr 42px auto}.thumb{width:62px}.item .category{display:none}}
+    :root{--bg:#0b0d10;--panel:#11151a;--panel2:#171c22;--text:#eef2f6;--muted:#8f9aa6;--line:#28303a;--accent:#2dc8ff;--danger:#ff5d6c;--ok:#58d68d;--warn:#f5c451}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}.wrap{width:min(1560px,100%);margin:auto;padding:22px}.top{display:flex;gap:16px;align-items:start;justify-content:space-between;margin-bottom:18px}.brand{font-weight:900;letter-spacing:.14em;font-size:18px}.brand b{color:var(--accent)}.muted{color:var(--muted)}
+    .top-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}.owner-pill{border:1px solid var(--line);background:#0e1216;color:var(--muted);border-radius:999px;padding:7px 10px;font-size:12px}.owner-pill.ok{border-color:#27543c;color:#9be5b9;background:#0c1711}.security{max-width:760px;background:#12181d;border:1px solid #2b3740;padding:10px 12px;border-radius:7px;color:#b2bec8;font-size:12px;margin-bottom:14px}.security strong{color:#fff}.grid{display:grid;grid-template-columns:minmax(350px,470px) 1fr;gap:14px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:15px}.panel h2{font-size:13px;text-transform:uppercase;letter-spacing:.1em;margin:0 0 13px;color:#c9d1d9}.row{display:grid;grid-template-columns:1fr 1fr;gap:9px}.field{margin-bottom:9px}.field label{display:flex;justify-content:space-between;gap:10px;color:var(--muted);font-size:11px;margin:0 0 5px}.input,.select,.textarea{width:100%;border:1px solid var(--line);border-radius:6px;background:#0d1115;color:var(--text);padding:0 10px;outline:none}.input,.select{height:40px}.textarea{min-height:92px;padding:9px 10px;resize:vertical;line-height:1.45}.input:focus,.select:focus,.textarea:focus{border-color:#426a7a;box-shadow:0 0 0 3px rgba(45,200,255,.06)}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.btn{border:1px solid var(--line);border-radius:6px;background:#1a2027;color:var(--text);padding:9px 12px}.btn:hover{border-color:#46525e}.btn.primary{background:var(--accent);color:#061016;border-color:var(--accent);font-weight:800}.btn.danger{color:#ffc4ca;border-color:#56323a;background:#231518}.btn.ghost{background:transparent}.btn:disabled{opacity:.45;cursor:not-allowed}.status{margin-top:10px;min-height:20px;color:var(--muted);font-size:12px}.status.ok{color:var(--ok)}.status.err{color:var(--danger)}.status.warn{color:var(--warn)}
+    .toolbar{display:flex;align-items:center;gap:9px;margin-bottom:10px}.toolbar .input{flex:1;margin:0}.badge{font-size:11px;color:var(--muted);white-space:nowrap}.list{display:grid;gap:6px;max-height:76vh;overflow:auto;padding-right:3px}.item{display:grid;grid-template-columns:86px minmax(150px,1fr) 100px 45px auto;gap:9px;align-items:center;border:1px solid #212832;background:#0e1216;border-radius:7px;padding:7px}.thumb{width:86px;height:56px;border-radius:5px;object-fit:cover;background:#07090b}.title{font-weight:750;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.meta{font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.rank{text-align:center;font-weight:900}.small{padding:6px 8px;font-size:11px}.empty{padding:50px 20px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:7px}.preview{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:6px;background:#080a0c;margin:4px 0 10px;border:1px solid var(--line)}
+    code{background:#0a0d10;border:1px solid #202832;border-radius:4px;padding:2px 5px;color:#b8d9e5}.split{height:1px;background:var(--line);margin:15px 0}.filebox{position:relative;border:1px dashed #35414c;border-radius:7px;background:#0d1115;padding:11px}.filebox input{width:100%;color:var(--muted);font-size:12px}.file-note{margin-top:6px;color:var(--muted);font-size:11px}.changebar{display:flex;justify-content:space-between;align-items:center;gap:12px;border:1px solid #2b3740;background:#0e1318;border-radius:7px;padding:9px 11px;margin-bottom:10px;font-size:12px}.changebar strong{color:#d8e2e9}.changebar.clean{border-color:#24302a}.changebar.dirty{border-color:#5a4725;background:#17130c}.changebar.dirty strong{color:#f5d98a}
+    @media(max-width:940px){.wrap{padding:12px}.top{display:block}.top-actions{justify-content:flex-start;margin-top:10px}.grid{grid-template-columns:1fr}.list{max-height:none}.row{grid-template-columns:1fr}.item{grid-template-columns:68px 1fr 42px auto}.thumb{width:68px}.item .category{display:none}}
   </style>
 </head>
 <body>
   <div class="wrap">
     <div class="top">
-      <div><div class="brand">VOID<b>FRAME</b> / OWNER</div><div class="muted">Private editing controls for the public static catalogue.</div></div>
-      <div class="security"><strong>Credential rule:</strong> use a fine-grained GitHub token limited to this repository with <code>Contents: Read and write</code>. The dashboard stores it only in <code>sessionStorage</code>; it is never added to gallery data or committed.</div>
+      <div><div class="brand">VOID<b>FRAME</b> / OWNER</div><div class="muted">Manage artwork, metadata and repository-hosted images.</div></div>
+      <div class="top-actions"><span class="owner-pill" id="ownerPill">Owner not verified</span><a class="btn ghost" href="./index.html" target="_blank" rel="noopener">Open gallery ↗</a></div>
     </div>
+
+    <div class="security"><strong>Owner security:</strong> this is a static GitHub Pages dashboard, so there is no hidden server-side password. Saving is allowed only after GitHub verifies that the supplied fine-grained token belongs to the repository owner. Use a token limited to this repository with <code>Contents: Read and write</code>. It is stored only in <code>sessionStorage</code>.</div>
 
     <div class="grid">
       <aside>
         <section class="panel">
-          <h2>GitHub connection</h2>
-          <div class="field"><label>Fine-grained personal access token</label><input class="input" id="token" type="password" autocomplete="off" placeholder="github_pat_…" /></div>
+          <h2>GitHub owner connection</h2>
+          <div class="field"><label>Fine-grained personal access token <span>required only for writes</span></label><input class="input" id="token" type="password" autocomplete="off" placeholder="github_pat_…" /></div>
           <div class="row">
             <div class="field"><label>Repository</label><input class="input" id="repo" value="hyu276/blackboxai-1756383347614" /></div>
             <div class="field"><label>Branch</label><input class="input" id="branch" value="main" /></div>
           </div>
-          <div class="actions"><button class="btn" id="load">Load from GitHub</button><button class="btn primary" id="save">Save to GitHub</button></div>
-          <div class="status" id="status">You can edit locally first, then connect only when saving.</div>
+          <div class="actions"><button class="btn" id="verify">Verify owner</button><button class="btn" id="load">Reload from GitHub</button><button class="btn primary" id="save">Publish changes</button></div>
+          <div class="status" id="status">The deployed catalogue is loading. You can edit locally before connecting GitHub.</div>
         </section>
 
         <section class="panel" style="margin-top:14px">
@@ -39,18 +42,24 @@
           <input id="editingId" type="hidden" />
           <img id="preview" class="preview" alt="Artwork preview" />
           <div class="field"><label>Name</label><input class="input" id="name" placeholder="e.g. Astral Warden" /></div>
+          <div class="field"><label>Description <span>shown when expanded</span></label><textarea class="textarea" id="description" placeholder="Short description, lore, skin notes, artist credit, season, etc."></textarea></div>
           <div class="row">
             <div class="field"><label>Category</label><input class="input" id="cat" placeholder="Cosmic" /></div>
             <div class="field"><label>Skin rank</label><select class="select" id="rank"><option>S</option><option>A</option><option>B</option><option>C</option></select></div>
           </div>
-          <div class="field"><label>Image URL</label><input class="input" id="image" placeholder="https://…" /></div>
-          <div class="field"><label>Search tags, comma separated</label><input class="input" id="tags" placeholder="mage, cosmic, purple, legendary" /></div>
+          <div class="field"><label>Image URL <span>optional if uploading a file</span></label><input class="input" id="image" placeholder="https://… or assets/artworks/…" /></div>
+          <div class="filebox">
+            <input id="imageFile" type="file" accept="image/jpeg,image/png,image/webp,image/gif" />
+            <div class="file-note" id="fileNote">Upload JPG, PNG, WebP or GIF (max 10 MB). New files are committed to <code>assets/artworks/</code> when you publish.</div>
+          </div>
+          <div class="field" style="margin-top:9px"><label>Search tags, comma separated</label><input class="input" id="tags" placeholder="mage, cosmic, purple, legendary" /></div>
           <div class="actions"><button class="btn primary" id="apply">Add artwork</button><button class="btn ghost" id="clear">Clear</button></div>
         </section>
       </aside>
 
       <section class="panel">
-        <div class="toolbar"><input class="input" id="listSearch" type="search" placeholder="Filter editor list…" /><span class="badge" id="total">0 artworks</span></div>
+        <div class="changebar clean" id="changebar"><strong>No unpublished changes</strong><span id="changeDetail">Catalogue is in sync locally.</span></div>
+        <div class="toolbar"><input class="input" id="listSearch" type="search" placeholder="Filter by name, description, category, rank or tag…" /><span class="badge" id="total">0 artworks</span></div>
         <div class="list" id="list"></div>
       </section>
     </div>
@@ -58,7 +67,11 @@
 
   <script>
     const DATA_PATH='data/artworks.json';
-    let items=[],fileSha=null;
+    const IMAGE_ROOT='assets/artworks/';
+    const MAX_IMAGE_BYTES=10*1024*1024;
+    let items=[],fileSha=null,ownerVerified=false,verifiedLogin='',dirty=false,selectedFile=null,selectedPreviewUrl=null;
+    const pendingUploads=new Map();
+    const pendingDeletes=new Set();
     const $=s=>document.querySelector(s);
     const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
     const slug=s=>String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
@@ -66,70 +79,166 @@
     const token=()=>$('#token').value.trim();
     const repo=()=>$('#repo').value.trim();
     const branch=()=>$('#branch').value.trim()||'main';
+    const expectedOwner=()=>repo().split('/')[0]||'';
     const headers=()=>({Accept:'application/vnd.github+json',Authorization:`Bearer ${token()}`,'X-GitHub-Api-Version':'2022-11-28'});
+    const isHostedImage=path=>String(path||'').startsWith(IMAGE_ROOT);
+
+    function markDirty(){dirty=true;syncChangebar();}
+    function markClean(){dirty=false;syncChangebar();}
+    function syncChangebar(){
+      const bar=$('#changebar');bar.classList.toggle('dirty',dirty);bar.classList.toggle('clean',!dirty);
+      bar.querySelector('strong').textContent=dirty?'Unpublished changes':'No unpublished changes';
+      const parts=[];if(pendingUploads.size)parts.push(`${pendingUploads.size} image upload${pendingUploads.size===1?'':'s'}`);if(pendingDeletes.size)parts.push(`${pendingDeletes.size} hosted image deletion${pendingDeletes.size===1?'':'s'}`);
+      $('#changeDetail').textContent=dirty?(parts.join(' · ')||'Artwork metadata changed locally.'):'Catalogue is in sync locally.';
+    }
+    function setOwnerState(ok,login=''){
+      ownerVerified=ok;verifiedLogin=ok?login:'';const pill=$('#ownerPill');pill.classList.toggle('ok',ok);pill.textContent=ok?`Verified owner: @${login}`:'Owner not verified';
+    }
+    function revokeSelectedPreview(){if(selectedPreviewUrl){URL.revokeObjectURL(selectedPreviewUrl);selectedPreviewUrl=null;}}
+    function clearPendingUpload(id){const p=pendingUploads.get(id);if(p?.previewUrl)URL.revokeObjectURL(p.previewUrl);pendingUploads.delete(id);}
 
     function utf8ToBase64(text){const bytes=new TextEncoder().encode(text);let binary='';const step=0x8000;for(let i=0;i<bytes.length;i+=step)binary+=String.fromCharCode(...bytes.subarray(i,i+step));return btoa(binary);}
     function base64ToUtf8(text){const bin=atob(text.replace(/\s/g,''));const bytes=Uint8Array.from(bin,c=>c.charCodeAt(0));return new TextDecoder().decode(bytes);}
+    async function fileToBase64(file){const bytes=new Uint8Array(await file.arrayBuffer());let binary='';const step=0x8000;for(let i=0;i<bytes.length;i+=step)binary+=String.fromCharCode(...bytes.subarray(i,i+step));return btoa(binary);}
 
-    async function getRemote(){
+    async function verifyOwner(){
+      if(!token())throw new Error('Enter a fine-grained GitHub token first.');
+      if(!repo().includes('/'))throw new Error('Repository must use owner/name format.');
+      setOwnerState(false);
+      const userRes=await fetch('https://api.github.com/user',{headers:headers()});
+      if(!userRes.ok)throw new Error(`GitHub authentication failed (${userRes.status}).`);
+      const user=await userRes.json();
+      if(String(user.login).toLowerCase()!==expectedOwner().toLowerCase())throw new Error(`This token belongs to @${user.login}, not repository owner @${expectedOwner()}.`);
+      const repoRes=await fetch(`https://api.github.com/repos/${repo()}`,{headers:headers()});
+      if(!repoRes.ok)throw new Error(`Cannot access repository with this token (${repoRes.status}).`);
+      const meta=await repoRes.json();
+      if(meta.permissions && !meta.permissions.push && !meta.permissions.admin)throw new Error('This token/account does not have repository write permission.');
+      setOwnerState(true,user.login);setStatus(`Owner verified as @${user.login}. Publishing is enabled.`,'ok');return true;
+    }
+
+    async function fetchRemoteFile(replaceItems=true){
       const auth=token()?headers():{Accept:'application/vnd.github+json'};
       const url=`https://api.github.com/repos/${repo()}/contents/${DATA_PATH}?ref=${encodeURIComponent(branch())}`;
-      const r=await fetch(url,{headers:auth}); if(!r.ok)throw new Error(`GitHub load failed (${r.status})`);
-      const data=await r.json(); fileSha=data.sha; items=JSON.parse(base64ToUtf8(data.content)); render();
-      return items;
+      const r=await fetch(url,{headers:auth});if(!r.ok)throw new Error(`GitHub catalogue load failed (${r.status}).`);
+      const data=await r.json();fileSha=data.sha;
+      if(replaceItems){items=JSON.parse(base64ToUtf8(data.content));clearAllPending();render();resetForm();markClean();}
+      return data;
+    }
+
+    function clearAllPending(){
+      for(const p of pendingUploads.values())if(p.previewUrl)URL.revokeObjectURL(p.previewUrl);pendingUploads.clear();pendingDeletes.clear();
+    }
+
+    async function uploadImage(path,file){
+      const body={message:`content: upload artwork image ${path.split('/').pop()}`,content:await fileToBase64(file),branch:branch()};
+      const r=await fetch(`https://api.github.com/repos/${repo()}/contents/${path}`,{method:'PUT',headers:{...headers(),'Content-Type':'application/json'},body:JSON.stringify(body)});
+      if(!r.ok){const e=await r.json().catch(()=>({}));throw new Error(e.message||`Image upload failed (${r.status})`);}
+    }
+
+    async function deleteHostedImage(path){
+      const get=await fetch(`https://api.github.com/repos/${repo()}/contents/${path}?ref=${encodeURIComponent(branch())}`,{headers:headers()});
+      if(get.status===404)return;
+      if(!get.ok)throw new Error(`Could not inspect ${path} before deletion (${get.status}).`);
+      const meta=await get.json();
+      const body={message:`content: remove artwork image ${path.split('/').pop()}`,sha:meta.sha,branch:branch()};
+      const del=await fetch(`https://api.github.com/repos/${repo()}/contents/${path}`,{method:'DELETE',headers:{...headers(),'Content-Type':'application/json'},body:JSON.stringify(body)});
+      if(!del.ok){const e=await del.json().catch(()=>({}));throw new Error(e.message||`Could not delete ${path} (${del.status}).`);}
     }
 
     async function saveRemote(){
-      if(!token())throw new Error('A GitHub token is required to save.');
-      if(!repo().includes('/'))throw new Error('Repository must be owner/name.');
-      if(!fileSha)await getRemote();
-      const body={message:'content: update gallery catalogue',content:utf8ToBase64(JSON.stringify(items,null,2)+'\n'),sha:fileSha,branch:branch()};
+      if(!ownerVerified)await verifyOwner();
+      if(verifiedLogin.toLowerCase()!==expectedOwner().toLowerCase())throw new Error('Owner verification no longer matches the repository owner.');
+      if(!fileSha)await fetchRemoteFile(false);
+      setStatus('Uploading new artwork images…');
+      for(const p of pendingUploads.values())await uploadImage(p.path,p.file);
+      const cleanItems=items.map(x=>({id:x.id,name:x.name,description:x.description||'',category:x.category,rank:x.rank,image:x.image,tags:Array.isArray(x.tags)?x.tags:[]}));
+      setStatus('Publishing catalogue metadata…');
+      const body={message:'content: update gallery catalogue from owner dashboard',content:utf8ToBase64(JSON.stringify(cleanItems,null,2)+'\n'),sha:fileSha,branch:branch()};
       const r=await fetch(`https://api.github.com/repos/${repo()}/contents/${DATA_PATH}`,{method:'PUT',headers:{...headers(),'Content-Type':'application/json'},body:JSON.stringify(body)});
-      if(!r.ok){const e=await r.json().catch(()=>({}));throw new Error(e.message||`GitHub save failed (${r.status})`);}
+      if(!r.ok){const e=await r.json().catch(()=>({}));throw new Error(e.message||`GitHub catalogue save failed (${r.status}). Reload from GitHub before retrying if the file changed elsewhere.`);}
       const data=await r.json();fileSha=data.content?.sha||null;
+      const deleteErrors=[];
+      setStatus('Cleaning up replaced or deleted hosted images…');
+      for(const path of pendingDeletes){try{await deleteHostedImage(path);}catch(e){deleteErrors.push(e.message);}}
+      clearAllPending();items=cleanItems;markClean();render();
+      if(deleteErrors.length)setStatus(`Catalogue published, but ${deleteErrors.length} old image file(s) could not be removed. ${deleteErrors[0]}`,'warn');
+      else setStatus(`Published ${items.length} artworks to ${repo()} @ ${branch()}. GitHub Pages will redeploy automatically.`,'ok');
     }
 
+    function displayImage(x){return pendingUploads.get(x.id)?.previewUrl||x.image||'';}
     function render(){
       const q=$('#listSearch').value.trim().toLowerCase();
-      const shown=items.filter(x=>!q||[x.name,x.category,x.rank,...(x.tags||[])].join(' ').toLowerCase().includes(q));
+      const shown=items.filter(x=>!q||[x.name,x.description,x.category,x.rank,...(x.tags||[])].join(' ').toLowerCase().includes(q));
       $('#total').textContent=`${shown.length} / ${items.length} artworks`;
       $('#list').innerHTML=shown.length?shown.map(x=>`<div class="item">
-        <img class="thumb" src="${esc(x.image)}" alt="" loading="lazy" />
-        <div><div class="title">${esc(x.name)}</div><div class="meta">${esc((x.tags||[]).join(' · '))}</div></div>
+        <img class="thumb" src="${esc(displayImage(x))}" alt="" loading="lazy" />
+        <div><div class="title">${esc(x.name)}</div><div class="meta">${esc(x.description||((x.tags||[]).join(' · ')))}</div></div>
         <div class="category meta">${esc(x.category)}</div><div class="rank">${esc(x.rank)}</div>
         <div><button class="btn small" data-edit="${esc(x.id)}">Edit</button> <button class="btn small danger" data-del="${esc(x.id)}">Delete</button></div>
       </div>`).join(''):'<div class="empty">No matching artworks.</div>';
+      syncChangebar();
     }
 
     function resetForm(){
-      $('#editingId').value='';$('#name').value='';$('#cat').value='';$('#rank').value='S';$('#image').value='';$('#tags').value='';$('#preview').removeAttribute('src');$('#formTitle').textContent='Add artwork';$('#apply').textContent='Add artwork';
+      revokeSelectedPreview();selectedFile=null;$('#imageFile').value='';$('#fileNote').innerHTML='Upload JPG, PNG, WebP or GIF (max 10 MB). New files are committed to <code>assets/artworks/</code> when you publish.';
+      $('#editingId').value='';$('#name').value='';$('#description').value='';$('#cat').value='';$('#rank').value='S';$('#image').value='';$('#tags').value='';$('#preview').removeAttribute('src');$('#formTitle').textContent='Add artwork';$('#apply').textContent='Add artwork';
     }
     function editItem(id){
-      const x=items.find(v=>v.id===id);if(!x)return;$('#editingId').value=x.id;$('#name').value=x.name;$('#cat').value=x.category;$('#rank').value=x.rank;$('#image').value=x.image;$('#tags').value=(x.tags||[]).join(', ');$('#preview').src=x.image;$('#formTitle').textContent='Edit artwork';$('#apply').textContent='Update artwork';window.scrollTo({top:0,behavior:'smooth'});
+      const x=items.find(v=>v.id===id);if(!x)return;resetForm();$('#editingId').value=x.id;$('#name').value=x.name;$('#description').value=x.description||'';$('#cat').value=x.category;$('#rank').value=x.rank;$('#image').value=x.image;$('#tags').value=(x.tags||[]).join(', ');$('#preview').src=displayImage(x);$('#formTitle').textContent='Edit artwork';$('#apply').textContent='Update artwork';window.scrollTo({top:0,behavior:'smooth'});
+    }
+    function chooseUploadPath(id,file){
+      const mimeExt={'image/jpeg':'jpg','image/png':'png','image/webp':'webp','image/gif':'gif'}[file.type];
+      const ext=mimeExt||String(file.name).split('.').pop().toLowerCase().replace(/[^a-z0-9]/g,'')||'jpg';
+      return `${IMAGE_ROOT}${slug(id)||'art'}-${Date.now()}.${ext}`;
     }
     function applyForm(){
-      const name=$('#name').value.trim(),category=$('#cat').value.trim(),rank=$('#rank').value,image=$('#image').value.trim();
-      if(!name||!category||!image){setStatus('Name, category, and image URL are required.','err');return;}
+      const name=$('#name').value.trim(),description=$('#description').value.trim(),category=$('#cat').value.trim(),rank=$('#rank').value,imageInput=$('#image').value.trim();
+      if(!name||!category||(!imageInput&&!selectedFile)){setStatus('Name, category, and either an image URL or uploaded image are required.','err');return;}
       const editing=$('#editingId').value;let id=editing||slug(name)||`art-${Date.now()}`;
       if(!editing){let base=id,n=2;while(items.some(x=>x.id===id))id=`${base}-${n++}`;}
-      const record={id,name,category,rank,image,tags:$('#tags').value.split(',').map(x=>x.trim()).filter(Boolean)};
+      const old=editing?items.find(x=>x.id===editing):null;
+      let image=imageInput;
+      if(selectedFile){
+        const path=chooseUploadPath(id,selectedFile);
+        if(old&&isHostedImage(old.image)&&old.image!==path)pendingDeletes.add(old.image);
+        clearPendingUpload(id);
+        pendingUploads.set(id,{file:selectedFile,path,previewUrl:selectedPreviewUrl});selectedPreviewUrl=null;image=path;
+      }else{
+        const pending=pendingUploads.get(id);if(pending)clearPendingUpload(id);
+        if(old&&old.image!==image&&isHostedImage(old.image))pendingDeletes.add(old.image);
+      }
+      const record={id,name,description,category,rank,image,tags:$('#tags').value.split(',').map(x=>x.trim()).filter(Boolean)};
       if(editing){const i=items.findIndex(x=>x.id===editing);if(i>=0)items[i]=record;}else items.unshift(record);
-      render();resetForm();setStatus('Local catalogue updated. Click Save to GitHub when ready.','ok');
+      markDirty();render();resetForm();setStatus('Artwork updated locally. Click Publish changes when ready.','ok');
+    }
+    function deleteItem(id){
+      const x=items.find(v=>v.id===id);if(!x)return;
+      if(!confirm(`Delete “${x.name}” from the catalogue?${isHostedImage(x.image)?' Its repository-hosted image will also be removed when you publish.':''}`))return;
+      if(pendingUploads.has(id))clearPendingUpload(id);else if(isHostedImage(x.image))pendingDeletes.add(x.image);
+      items=items.filter(v=>v.id!==id);if($('#editingId').value===id)resetForm();markDirty();render();setStatus('Artwork removed locally. Publish changes to apply the deletion.','ok');
     }
 
     $('#token').value=sessionStorage.getItem('voidframe_token')||'';
     $('#repo').value=sessionStorage.getItem('voidframe_repo')||$('#repo').value;
     $('#branch').value=sessionStorage.getItem('voidframe_branch')||$('#branch').value;
-    $('#token').addEventListener('input',()=>sessionStorage.setItem('voidframe_token',$('#token').value));
-    $('#repo').addEventListener('change',()=>{sessionStorage.setItem('voidframe_repo',repo());fileSha=null;});
-    $('#branch').addEventListener('change',()=>{sessionStorage.setItem('voidframe_branch',branch());fileSha=null;});
-    $('#image').addEventListener('input',e=>{if(e.target.value.trim())$('#preview').src=e.target.value.trim();else $('#preview').removeAttribute('src');});
+    $('#token').addEventListener('input',()=>{sessionStorage.setItem('voidframe_token',$('#token').value);setOwnerState(false);});
+    $('#repo').addEventListener('change',()=>{sessionStorage.setItem('voidframe_repo',repo());fileSha=null;setOwnerState(false);});
+    $('#branch').addEventListener('change',()=>{sessionStorage.setItem('voidframe_branch',branch());fileSha=null;setOwnerState(false);});
+    $('#image').addEventListener('input',e=>{if(selectedFile)return;if(e.target.value.trim())$('#preview').src=e.target.value.trim();else $('#preview').removeAttribute('src');});
+    $('#imageFile').addEventListener('change',e=>{
+      revokeSelectedPreview();selectedFile=e.target.files?.[0]||null;if(!selectedFile)return;
+      if(selectedFile.size>MAX_IMAGE_BYTES){setStatus('Selected image exceeds the 10 MB dashboard limit.','err');selectedFile=null;e.target.value='';return;}
+      if(!['image/jpeg','image/png','image/webp','image/gif'].includes(selectedFile.type)){setStatus('Use JPG, PNG, WebP or GIF.','err');selectedFile=null;e.target.value='';return;}
+      selectedPreviewUrl=URL.createObjectURL(selectedFile);$('#preview').src=selectedPreviewUrl;$('#fileNote').textContent=`Selected: ${selectedFile.name} · ${(selectedFile.size/1024/1024).toFixed(2)} MB`;
+    });
     $('#listSearch').addEventListener('input',render);$('#apply').addEventListener('click',applyForm);$('#clear').addEventListener('click',resetForm);
-    $('#list').addEventListener('click',e=>{const edit=e.target.dataset.edit,del=e.target.dataset.del;if(edit)editItem(edit);if(del&&confirm('Delete this artwork from the local catalogue?')){items=items.filter(x=>x.id!==del);render();if($('#editingId').value===del)resetForm();setStatus('Artwork removed locally. Save to GitHub to publish the deletion.','ok');}});
-    $('#load').addEventListener('click',async()=>{try{setStatus('Loading catalogue…');await getRemote();setStatus(`Loaded ${items.length} artworks from ${repo()} @ ${branch()}.`,'ok');}catch(e){setStatus(e.message,'err');}});
-    $('#save').addEventListener('click',async()=>{try{$('#save').disabled=true;setStatus('Saving catalogue to GitHub…');await saveRemote();setStatus(`Saved ${items.length} artworks to ${repo()} @ ${branch()}.`,'ok');}catch(e){setStatus(e.message,'err');}finally{$('#save').disabled=false;}});
+    $('#list').addEventListener('click',e=>{const edit=e.target.dataset.edit,del=e.target.dataset.del;if(edit)editItem(edit);if(del)deleteItem(del);});
+    $('#verify').addEventListener('click',async()=>{try{$('#verify').disabled=true;setStatus('Verifying repository owner…');await verifyOwner();}catch(e){setOwnerState(false);setStatus(e.message,'err');}finally{$('#verify').disabled=false;}});
+    $('#load').addEventListener('click',async()=>{try{if(dirty&&!confirm('Discard unpublished local changes and reload from GitHub?'))return;setStatus('Loading catalogue from GitHub…');await fetchRemoteFile(true);setStatus(`Loaded ${items.length} artworks from ${repo()} @ ${branch()}.`,'ok');}catch(e){setStatus(e.message,'err');}});
+    $('#save').addEventListener('click',async()=>{try{$('#save').disabled=true;setStatus('Preparing publication…');await saveRemote();}catch(e){setStatus(e.message,'err');}finally{$('#save').disabled=false;}});
+    window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue='';}});
 
-    fetch('./data/artworks.json',{cache:'no-store'}).then(r=>r.json()).then(data=>{items=data;render();setStatus(`Loaded ${items.length} artworks from the deployed site. Connect GitHub only when you need to save.`);}).catch(()=>{render();setStatus('Could not load deployed catalogue. Use Load from GitHub.','err');});
+    fetch('./data/artworks.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error(`HTTP ${r.status}`);return r.json();}).then(data=>{items=data;render();markClean();setStatus(`Loaded ${items.length} artworks from the deployed site. Verify owner only when you are ready to publish.`);}).catch(()=>{render();setStatus('Could not load deployed catalogue. Use Reload from GitHub.','err');});
   </script>
 </body>
 </html>

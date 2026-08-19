@@ -17,11 +17,11 @@
     .field,.select{width:100%;height:42px;border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:7px;outline:none;padding:0 12px}.field:focus,.select:focus{border-color:#3f7890;box-shadow:0 0 0 3px rgba(45,200,255,.08)}
     .chips{display:flex;gap:7px;overflow:auto;padding:10px 0 1px;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}.chip{border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:999px;padding:7px 11px;white-space:nowrap}.chip:hover{color:var(--text);border-color:#3a444f}.chip.active{background:var(--text);border-color:var(--text);color:#0a0c0e}
     main{padding-top:16px}.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:11px;align-items:start}
-    .card{position:relative;overflow:hidden;background:var(--panel);border:1px solid #1f252c;border-radius:8px;min-width:0;transition:border-color .16s ease,transform .16s ease;background-clip:padding-box}.card:hover{border-color:#39434d;transform:translateY(-1px)}.card.expanded{grid-column:1/-1;transform:none;border-color:#3b4c58}.card.expanded .art{height:min(72vh,900px);object-fit:contain;background:#070809}.card.expanded .meta{padding:13px 15px 15px}.card.expanded .tags{display:flex}
+    .card{position:relative;overflow:hidden;background:var(--panel);border:1px solid #1f252c;border-radius:8px;min-width:0;transition:border-color .16s ease,transform .16s ease;background-clip:padding-box}.card:hover{border-color:#39434d;transform:translateY(-1px)}.card.expanded{grid-column:1/-1;transform:none;border-color:#3b4c58}.card.expanded .art{height:min(72vh,900px);object-fit:contain;background:#070809}.card.expanded .meta{padding:13px 15px 15px}.card.expanded .tags{display:flex}.card.expanded .description{display:block}
     .imagewrap{position:relative;background:#080a0c;overflow:hidden}.art{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;transition:filter .2s ease}.card:nth-child(5n+2) .art{aspect-ratio:4/5}.card:nth-child(7n+3) .art{aspect-ratio:3/4}.card:nth-child(6n+4) .art{aspect-ratio:16/11}.card:hover .art{filter:saturate(1.05) contrast(1.03)}
     .rank{position:absolute;top:10px;right:10px;display:grid;place-items:center;width:30px;height:30px;border-radius:7px;background:rgba(7,9,11,.78);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.12);font-weight:900}.rank-S{color:var(--s)}.rank-A{color:var(--a)}.rank-B{color:var(--b)}.rank-C{color:var(--c)}
     .zoomhint{position:absolute;left:10px;bottom:10px;padding:5px 8px;border-radius:5px;background:rgba(7,9,11,.78);backdrop-filter:blur(8px);color:#d5dae0;font-size:11px;opacity:0;transform:translateY(3px);transition:.16s}.card:hover .zoomhint,.card.expanded .zoomhint{opacity:1;transform:none}
-    .meta{padding:10px 11px 12px}.name{font-size:14px;font-weight:750;letter-spacing:.01em;margin:0 0 4px}.sub{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:12px}.dot{width:3px;height:3px;border-radius:50%;background:#55606b}.tags{display:none;flex-wrap:wrap;gap:6px;margin-top:10px}.tag{color:#aeb6bf;background:#1c2229;border:1px solid #29313a;padding:4px 7px;border-radius:5px;font-size:11px}
+    .meta{padding:10px 11px 12px}.name{font-size:14px;font-weight:750;letter-spacing:.01em;margin:0 0 4px}.sub{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:12px}.dot{width:3px;height:3px;border-radius:50%;background:#55606b}.description{display:none;max-width:980px;margin:10px 0 0;color:#b8c0c8;font-size:13px;line-height:1.6;white-space:pre-wrap}.tags{display:none;flex-wrap:wrap;gap:6px;margin-top:10px}.tag{color:#aeb6bf;background:#1c2229;border:1px solid #29313a;padding:4px 7px;border-radius:5px;font-size:11px}
     .empty{display:none;text-align:center;padding:90px 20px;color:var(--muted);border:1px dashed var(--line);border-radius:10px}.empty.show{display:block}.skeleton{background:linear-gradient(90deg,#11151a,#1a2027,#11151a);background-size:220% 100%;animation:shimmer 1.15s infinite;aspect-ratio:16/10;border-radius:8px}@keyframes shimmer{to{background-position:-220% 0}}
     .footer{padding:40px 2px 0;color:#5e6873;font-size:12px;display:flex;justify-content:space-between;gap:20px}
     @media(max-width:800px){.shell{padding-inline:10px}.topbar-inner{padding-inline:10px}.brandrow{align-items:start;flex-wrap:wrap}.count{width:100%;margin-left:0}.controls{grid-template-columns:1fr 1fr}.controls .search{grid-column:1/-1}.gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.card{border-radius:6px}.meta{padding:8px 9px 10px}.subtitle{display:none}}
@@ -37,7 +37,7 @@
         <div class="count" id="count">Loading catalogue…</div>
       </div>
       <div class="controls">
-        <input class="field search" id="search" type="search" autocomplete="off" placeholder="Search by name, letters, tag…" aria-label="Search artwork" />
+        <input class="field search" id="search" type="search" autocomplete="off" placeholder="Search by name, letters, description, tag…" aria-label="Search artwork" />
         <select class="select" id="category" aria-label="Category"><option value="all">All categories</option></select>
         <select class="select" id="rank" aria-label="Skin rank">
           <option value="all">All ranks</option><option value="S">S rank</option><option value="A">A rank</option><option value="B">B rank</option><option value="C">C rank</option>
@@ -69,29 +69,29 @@
 
     function fuzzyScore(item,q){
       if(!q)return 1;
-      const needle=norm(q); const hay=norm([item.name,item.category,item.rank,...(item.tags||[])].join(' '));
-      if(hay.includes(needle)) return 1000- hay.indexOf(needle);
+      const needle=norm(q);const hay=norm([item.name,item.description,item.category,item.rank,...(item.tags||[])].join(' '));
+      if(hay.includes(needle))return 1000-hay.indexOf(needle);
       let p=0,gaps=0,last=-1;
       for(const ch of needle.replace(/\s/g,'')){
-        const idx=hay.indexOf(ch,p); if(idx<0)return -1;
-        if(last>=0)gaps+=idx-last-1; last=idx; p=idx+1;
+        const idx=hay.indexOf(ch,p);if(idx<0)return -1;
+        if(last>=0)gaps+=idx-last-1;last=idx;p=idx+1;
       }
       return 400-gaps;
     }
 
     function filtered(){
       return state.items.map(item=>({item,score:fuzzyScore(item,state.query)}))
-        .filter(x=>x.score>=0 && (state.category==='all'||x.item.category===state.category) && (state.rank==='all'||x.item.rank===state.rank))
+        .filter(x=>x.score>=0&&(state.category==='all'||x.item.category===state.category)&&(state.rank==='all'||x.item.rank===state.rank))
         .sort((a,b)=>{
-          if(state.query && b.score!==a.score)return b.score-a.score;
+          if(state.query&&b.score!==a.score)return b.score-a.score;
           if(state.sort==='name')return a.item.name.localeCompare(b.item.name);
-          if(state.sort==='category')return a.item.category.localeCompare(b.item.category)||b.item.name.localeCompare(a.item.name);
+          if(state.sort==='category')return a.item.category.localeCompare(b.item.category)||a.item.name.localeCompare(b.item.name);
           return (rankWeight[b.item.rank]||0)-(rankWeight[a.item.rank]||0)||a.item.name.localeCompare(b.item.name);
         }).map(x=>x.item);
     }
 
     function render(){
-      const list=filtered(); const g=$('#gallery');
+      const list=filtered();const g=$('#gallery');
       g.innerHTML=list.map(item=>{
         const expanded=state.expanded===item.id;
         return `<article class="card${expanded?' expanded':''}" data-id="${esc(item.id)}" tabindex="0" role="button" aria-expanded="${expanded}">
@@ -101,16 +101,17 @@
             <span class="zoomhint">${expanded?'Collapse':'Expand artwork'}</span>
           </div>
           <div class="meta"><h2 class="name">${esc(item.name)}</h2><div class="sub"><span>${esc(item.category)}</span><i class="dot"></i><span>${esc(item.rank)} rank skin</span></div>
+          ${item.description?`<div class="description">${esc(item.description)}</div>`:''}
           <div class="tags">${(item.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div></div>
         </article>`;
       }).join('');
-      $('#empty').classList.toggle('show',!list.length); $('#count').textContent=`${list.length} / ${state.items.length} artworks`;
+      $('#empty').classList.toggle('show',!list.length);$('#count').textContent=`${list.length} / ${state.items.length} artworks`;
       g.querySelectorAll('.card').forEach(card=>{
         const toggle=()=>{
-          const id=card.dataset.id; state.expanded=state.expanded===id?null:id; render();
+          const id=card.dataset.id;state.expanded=state.expanded===id?null:id;render();
           if(state.expanded)requestAnimationFrame(()=>document.querySelector(`[data-id="${CSS.escape(id)}"]`)?.scrollIntoView({behavior:'smooth',block:'center'}));
         };
-        card.addEventListener('click',toggle); card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();}});
+        card.addEventListener('click',toggle);card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();}});
       });
     }
 
