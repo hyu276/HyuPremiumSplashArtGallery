@@ -1,5 +1,16 @@
 [
   {
+    "id": "hoa-si-mong-mi",
+    "name": "Họa sĩ mộng mị",
+    "description": "",
+    "category": "Aya",
+    "rank": "S",
+    "credit": "Raphenalamskinlqai",
+    "image": "assets/artworks/hoa-si-mong-mi-1787231891847.jpg",
+    "tags": [],
+    "hidden": false
+  },
+  {
     "id": "aya",
     "name": "Tiểu miêu yêu giới",
     "description": "",
