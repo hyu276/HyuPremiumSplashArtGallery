@@ -99,7 +99,7 @@
       "mythic",
       "magic"
     ],
-    "hidden": false
+    "hidden": true
   },
   {
     "id": "frost-wyrm",
@@ -116,7 +116,7 @@
       "ice",
       "monster"
     ],
-    "hidden": false
+    "hidden": true
   },
   {
     "id": "sakura-duelist",
@@ -133,7 +133,7 @@
       "pink",
       "samurai"
     ],
-    "hidden": false
+    "hidden": true
   },
   {
     "id": "infernal-crown",
@@ -150,7 +150,7 @@
       "fire",
       "boss"
     ],
-    "hidden": false
+    "hidden": true
   },
   {
     "id": "silent-orbit",
