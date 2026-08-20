@@ -1,5 +1,16 @@
 [
   {
+    "id": "aya",
+    "name": "Aya",
+    "description": "",
+    "category": "Cosmic",
+    "rank": "S+",
+    "credit": "Hika",
+    "image": "assets/artworks/aya-1787206597131.jpg",
+    "tags": [],
+    "hidden": false
+  },
+  {
     "id": "silent-orbit",
     "name": "Silent Orbit",
     "description": "",
