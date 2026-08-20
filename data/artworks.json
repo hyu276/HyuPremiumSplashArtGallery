@@ -1,5 +1,38 @@
 [
   {
+    "id": "than-nuong-mong-gioi",
+    "name": "Thần nương mộng giới",
+    "description": "",
+    "category": "Aya",
+    "rank": "SSS",
+    "credit": "Hyu Premium",
+    "image": "assets/artworks/than-nuong-mong-gioi-1787233013194.jpg",
+    "tags": [],
+    "hidden": false
+  },
+  {
+    "id": "vu-ieu-samba",
+    "name": "Vũ điệu Samba",
+    "description": "",
+    "category": "Aya",
+    "rank": "S+",
+    "credit": "Hyu Premium",
+    "image": "assets/artworks/vu-ieu-samba-1787232985989.jpg",
+    "tags": [],
+    "hidden": false
+  },
+  {
+    "id": "vuon-toan-tuat",
+    "name": "Vườn toàn tuất",
+    "description": "",
+    "category": "Aya",
+    "rank": "S+",
+    "credit": "Hyu Premium",
+    "image": "assets/artworks/vuon-toan-tuat-1787232965760.jpg",
+    "tags": [],
+    "hidden": false
+  },
+  {
     "id": "vui-cung-bay-tuat",
     "name": "Vui cùng bầy tuất",
     "description": "",
