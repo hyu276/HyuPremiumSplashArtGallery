@@ -1,9 +1,20 @@
 [
   {
+    "id": "wave",
+    "name": "WAVE",
+    "description": "",
+    "category": "Dolia",
+    "rank": "SS",
+    "credit": "Hyu",
+    "image": "assets/artworks/wave-1787244906275.jpg",
+    "tags": [],
+    "hidden": false
+  },
+  {
     "id": "fmvp-nailiu-apl-2025-fake",
     "name": "FMVP NaiLiu APL 2025 (Fake)",
     "description": "",
-    "category": "Aya",
+    "category": "Florentino",
     "rank": "S+",
     "credit": "Hyu",
     "image": "assets/artworks/fmvp-nailiu-apl-2025-fake-1787244802412.jpg",
