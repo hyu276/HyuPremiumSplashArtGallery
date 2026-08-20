@@ -3,18 +3,22 @@
     "Uncredited"
   ],
   "ranks": [
-    "S",
     "A",
-    "B",
-    "C"
+    "S",
+    "S+",
+    "SS",
+    "SS+",
+    "SSS",
+    "SSS+",
+    "SSS+ Tối thượng"
   ],
   "categories": [
     "Cosmic",
-    "Warrior",
     "Cyberpunk",
-    "Nature",
     "Monster",
+    "Mystic",
+    "Nature",
     "Nomad",
-    "Mystic"
+    "Warrior"
   ]
 }
