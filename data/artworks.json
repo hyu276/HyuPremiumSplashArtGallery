@@ -1,5 +1,16 @@
 [
   {
+    "id": "tiec-bai-bien",
+    "name": "Tiệc Bãi Biển",
+    "description": "",
+    "category": "Aya",
+    "rank": "S+",
+    "credit": "ngi0529",
+    "image": "assets/artworks/tiec-bai-bien-1787206511248.jpg",
+    "tags": [],
+    "hidden": false
+  },
+  {
     "id": "silent-orbit",
     "name": "Silent Orbit",
     "description": "",
