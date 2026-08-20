@@ -1,5 +1,27 @@
 [
   {
+    "id": "lang-van-khai-tue-quan",
+    "name": "Lăng vân khải tuế quân",
+    "description": "",
+    "category": "Tulen",
+    "rank": "SSS+ Ultimate",
+    "credit": "Hyu",
+    "image": "assets/artworks/lang-van-khai-tue-quan-1787245054715.jpg",
+    "tags": [],
+    "hidden": false
+  },
+  {
+    "id": "tan-than-thien-ha-hang-hieu",
+    "name": "Tân thần thiên hà: Hàng hiệu",
+    "description": "",
+    "category": "Tulen",
+    "rank": "SS+",
+    "credit": "Hyu",
+    "image": "assets/artworks/tan-than-thien-ha-hang-hieu-1787245005675.jpg",
+    "tags": [],
+    "hidden": false
+  },
+  {
     "id": "wave",
     "name": "WAVE",
     "description": "",
