@@ -1,5 +1,49 @@
 [
   {
+    "id": "wave-2",
+    "name": "WAVE",
+    "description": "",
+    "category": "Florentino",
+    "rank": "SS+",
+    "credit": "Hyu",
+    "image": "assets/artworks/wave-2-1787245765906.jpg",
+    "tags": [],
+    "hidden": false
+  },
+  {
+    "id": "en-tho-bang-gia",
+    "name": "Đền thờ băng giá",
+    "description": "",
+    "category": "Aya",
+    "rank": "S+",
+    "credit": "Hyu",
+    "image": "assets/artworks/en-tho-bang-gia-1787245727082.png",
+    "tags": [],
+    "hidden": false
+  },
+  {
+    "id": "xich-diem-han-trieu",
+    "name": "Xích Diễm Hàn Triều",
+    "description": "",
+    "category": "Dolia",
+    "rank": "SSS+",
+    "credit": "Hyu",
+    "image": "assets/artworks/xich-diem-han-trieu-1787245697619.jpg",
+    "tags": [],
+    "hidden": false
+  },
+  {
+    "id": "nhung-ngoi-sao-xa-xoi",
+    "name": "Những ngôi sao xa xôi",
+    "description": "",
+    "category": "Sinestrea",
+    "rank": "SS+",
+    "credit": "Hyu",
+    "image": "assets/artworks/nhung-ngoi-sao-xa-xoi-1787245582595.png",
+    "tags": [],
+    "hidden": false
+  },
+  {
     "id": "lang-van-khai-tue-quan",
     "name": "Lăng vân khải tuế quân",
     "description": "",
