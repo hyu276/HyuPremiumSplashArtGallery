@@ -1,11 +1,22 @@
 [
   {
+    "id": "phuong-tinh-uyen-ton",
+    "name": "Phương Tĩnh Uyên Tôn",
+    "description": "",
+    "category": "Billow",
+    "rank": "SSS+ Tối thượng",
+    "credit": "Hyu",
+    "image": "assets/artworks/phuong-tinh-uyen-ton-1787244190418.jpg",
+    "tags": [],
+    "hidden": false
+  },
+  {
     "id": "than-nuong-mong-gioi",
     "name": "Thần nương mộng giới",
     "description": "",
     "category": "Aya",
     "rank": "SSS",
-    "credit": "Hyu Premium",
+    "credit": "Hyu",
     "image": "assets/artworks/than-nuong-mong-gioi-1787233013194.jpg",
     "tags": [],
     "hidden": false
@@ -16,7 +27,7 @@
     "description": "",
     "category": "Aya",
     "rank": "S+",
-    "credit": "Hyu Premium",
+    "credit": "Hyu",
     "image": "assets/artworks/vu-ieu-samba-1787232985989.jpg",
     "tags": [],
     "hidden": false
@@ -27,7 +38,7 @@
     "description": "",
     "category": "Aya",
     "rank": "S+",
-    "credit": "Hyu Premium",
+    "credit": "Hyu",
     "image": "assets/artworks/vuon-toan-tuat-1787232965760.jpg",
     "tags": [],
     "hidden": false
@@ -38,7 +49,7 @@
     "description": "",
     "category": "Aya",
     "rank": "S+",
-    "credit": "Hyu Premium",
+    "credit": "Hyu",
     "image": "assets/artworks/vui-cung-bay-tuat-1787232833296.png",
     "tags": [],
     "hidden": false
@@ -49,7 +60,7 @@
     "description": "",
     "category": "Aya",
     "rank": "SS+",
-    "credit": "Hyu Premium",
+    "credit": "Hyu",
     "image": "assets/artworks/man-hoa-lu-hanh-1787232807607.jpg",
     "tags": [],
     "hidden": false
@@ -60,7 +71,7 @@
     "description": "",
     "category": "Aya",
     "rank": "SS",
-    "credit": "Hyu Premium",
+    "credit": "Hyu",
     "image": "assets/artworks/gia-lap-1787232877311.jpg",
     "tags": [],
     "hidden": false
