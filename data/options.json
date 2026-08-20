@@ -7,5 +7,14 @@
     "A",
     "B",
     "C"
+  ],
+  "categories": [
+    "Cosmic",
+    "Warrior",
+    "Cyberpunk",
+    "Nature",
+    "Monster",
+    "Nomad",
+    "Mystic"
   ]
 }
