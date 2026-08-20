@@ -337,7 +337,7 @@
       "cyberpunk",
       "industrial"
     ],
-    "hidden": false
+    "hidden": true
   },
   {
     "id": "grave-tide",
@@ -354,7 +354,7 @@
       "monster",
       "ocean"
     ],
-    "hidden": false
+    "hidden": true
   },
   {
     "id": "jade-tempest",
@@ -371,7 +371,7 @@
       "wind",
       "green"
     ],
-    "hidden": false
+    "hidden": true
   },
   {
     "id": "last-starfarer",
@@ -388,7 +388,7 @@
       "legendary",
       "horizon"
     ],
-    "hidden": false
+    "hidden": true
   },
   {
     "id": "rustborn-raider",
@@ -405,6 +405,6 @@
       "wasteland",
       "scrap"
     ],
-    "hidden": false
+    "hidden": true
   }
 ]
