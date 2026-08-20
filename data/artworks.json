@@ -2,193 +2,409 @@
   {
     "id": "void-archon",
     "name": "Void Archon",
+    "description": "",
     "category": "Cosmic",
     "rank": "S",
+    "credit": "Uncredited",
     "image": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=1800&q=88",
-    "tags": ["void", "cosmic", "mage", "purple", "legendary"]
+    "tags": [
+      "void",
+      "cosmic",
+      "mage",
+      "purple",
+      "legendary"
+    ],
+    "hidden": true
   },
   {
     "id": "ashen-vanguard",
     "name": "Ashen Vanguard",
+    "description": "",
     "category": "Warrior",
     "rank": "S",
+    "credit": "Uncredited",
     "image": "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1800&q=88",
-    "tags": ["warrior", "ash", "mountain", "epic", "armor"]
+    "tags": [
+      "warrior",
+      "ash",
+      "mountain",
+      "epic",
+      "armor"
+    ],
+    "hidden": true
   },
   {
     "id": "neon-revenant",
     "name": "Neon Revenant",
+    "description": "",
     "category": "Cyberpunk",
     "rank": "S",
+    "credit": "Uncredited",
     "image": "https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1800&q=88",
-    "tags": ["neon", "cyberpunk", "assassin", "night", "premium"]
+    "tags": [
+      "neon",
+      "cyberpunk",
+      "assassin",
+      "night",
+      "premium"
+    ],
+    "hidden": true
   },
   {
     "id": "emerald-sentinel",
     "name": "Emerald Sentinel",
+    "description": "",
     "category": "Nature",
     "rank": "A",
+    "credit": "Uncredited",
     "image": "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1800&q=88",
-    "tags": ["forest", "guardian", "emerald", "ancient", "nature"]
+    "tags": [
+      "forest",
+      "guardian",
+      "emerald",
+      "ancient",
+      "nature"
+    ],
+    "hidden": true
   },
   {
     "id": "stormbreaker",
     "name": "Stormbreaker",
+    "description": "",
     "category": "Warrior",
     "rank": "A",
+    "credit": "Uncredited",
     "image": "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1800&q=88",
-    "tags": ["storm", "warrior", "desert", "lightning", "battle"]
+    "tags": [
+      "storm",
+      "warrior",
+      "desert",
+      "lightning",
+      "battle"
+    ],
+    "hidden": true
   },
   {
     "id": "celestial-bloom",
     "name": "Celestial Bloom",
+    "description": "",
     "category": "Cosmic",
     "rank": "S",
+    "credit": "Uncredited",
     "image": "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=1800&q=88",
-    "tags": ["space", "celestial", "star", "mythic", "magic"]
+    "tags": [
+      "space",
+      "celestial",
+      "star",
+      "mythic",
+      "magic"
+    ],
+    "hidden": true
   },
   {
     "id": "frost-wyrm",
     "name": "Frost Wyrm",
+    "description": "",
     "category": "Monster",
     "rank": "A",
+    "credit": "Uncredited",
     "image": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1800&q=88",
-    "tags": ["frost", "dragon", "wyrm", "ice", "monster"]
+    "tags": [
+      "frost",
+      "dragon",
+      "wyrm",
+      "ice",
+      "monster"
+    ],
+    "hidden": false
   },
   {
     "id": "sakura-duelist",
     "name": "Sakura Duelist",
+    "description": "",
     "category": "Warrior",
     "rank": "A",
+    "credit": "Uncredited",
     "image": "https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=1800&q=88",
-    "tags": ["sakura", "duelist", "blade", "pink", "samurai"]
+    "tags": [
+      "sakura",
+      "duelist",
+      "blade",
+      "pink",
+      "samurai"
+    ],
+    "hidden": false
   },
   {
     "id": "infernal-crown",
     "name": "Infernal Crown",
+    "description": "",
     "category": "Monster",
     "rank": "S",
+    "credit": "Uncredited",
     "image": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1800&q=88",
-    "tags": ["infernal", "demon", "crown", "fire", "boss"]
+    "tags": [
+      "infernal",
+      "demon",
+      "crown",
+      "fire",
+      "boss"
+    ],
+    "hidden": false
   },
   {
     "id": "silent-orbit",
     "name": "Silent Orbit",
+    "description": "",
     "category": "Cosmic",
     "rank": "B",
+    "credit": "Uncredited",
     "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1800&q=88",
-    "tags": ["orbit", "space", "planet", "silent", "blue"]
+    "tags": [
+      "orbit",
+      "space",
+      "planet",
+      "silent",
+      "blue"
+    ],
+    "hidden": false
   },
   {
     "id": "chrome-valkyrie",
     "name": "Chrome Valkyrie",
+    "description": "",
     "category": "Cyberpunk",
     "rank": "A",
+    "credit": "Uncredited",
     "image": "https://images.unsplash.com/photo-1518709594023-6eab9bab7b23?auto=format&fit=crop&w=1800&q=88",
-    "tags": ["chrome", "valkyrie", "future", "cyber", "silver"]
+    "tags": [
+      "chrome",
+      "valkyrie",
+      "future",
+      "cyber",
+      "silver"
+    ],
+    "hidden": false
   },
   {
     "id": "verdant-king",
     "name": "Verdant King",
+    "description": "",
     "category": "Nature",
     "rank": "S",
+    "credit": "Uncredited",
     "image": "https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1800&q=88",
-    "tags": ["forest", "king", "verdant", "ancient", "mythic"]
+    "tags": [
+      "forest",
+      "king",
+      "verdant",
+      "ancient",
+      "mythic"
+    ],
+    "hidden": false
   },
   {
     "id": "dune-exile",
     "name": "Dune Exile",
+    "description": "",
     "category": "Nomad",
     "rank": "B",
+    "credit": "Uncredited",
     "image": "https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&w=1800&q=88",
-    "tags": ["dune", "desert", "nomad", "sand", "wanderer"]
+    "tags": [
+      "dune",
+      "desert",
+      "nomad",
+      "sand",
+      "wanderer"
+    ],
+    "hidden": false
   },
   {
     "id": "moonlit-huntress",
     "name": "Moonlit Huntress",
+    "description": "",
     "category": "Nature",
     "rank": "A",
+    "credit": "Uncredited",
     "image": "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=1800&q=88",
-    "tags": ["moon", "huntress", "forest", "night", "bow"]
+    "tags": [
+      "moon",
+      "huntress",
+      "forest",
+      "night",
+      "bow"
+    ],
+    "hidden": false
   },
   {
     "id": "black-ice-protocol",
     "name": "Black Ice Protocol",
+    "description": "",
     "category": "Cyberpunk",
     "rank": "S",
+    "credit": "Uncredited",
     "image": "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=1800&q=88",
-    "tags": ["black ice", "protocol", "hacker", "cyberpunk", "elite"]
+    "tags": [
+      "black ice",
+      "protocol",
+      "hacker",
+      "cyberpunk",
+      "elite"
+    ],
+    "hidden": false
   },
   {
     "id": "sunforge-titan",
     "name": "Sunforge Titan",
+    "description": "",
     "category": "Monster",
     "rank": "A",
+    "credit": "Uncredited",
     "image": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=88",
-    "tags": ["sun", "titan", "forge", "gold", "giant"]
+    "tags": [
+      "sun",
+      "titan",
+      "forge",
+      "gold",
+      "giant"
+    ],
+    "hidden": false
   },
   {
     "id": "crimson-kitsune",
     "name": "Crimson Kitsune",
+    "description": "",
     "category": "Mystic",
     "rank": "S",
+    "credit": "Uncredited",
     "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1800&q=88",
-    "tags": ["kitsune", "crimson", "spirit", "mystic", "fox"]
+    "tags": [
+      "kitsune",
+      "crimson",
+      "spirit",
+      "mystic",
+      "fox"
+    ],
+    "hidden": false
   },
   {
     "id": "obsidian-pilgrim",
     "name": "Obsidian Pilgrim",
+    "description": "",
     "category": "Nomad",
     "rank": "B",
+    "credit": "Uncredited",
     "image": "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1800&q=88",
-    "tags": ["obsidian", "pilgrim", "mountain", "nomad", "dark"]
+    "tags": [
+      "obsidian",
+      "pilgrim",
+      "mountain",
+      "nomad",
+      "dark"
+    ],
+    "hidden": false
   },
   {
     "id": "aurora-seer",
     "name": "Aurora Seer",
+    "description": "",
     "category": "Mystic",
     "rank": "A",
+    "credit": "Uncredited",
     "image": "https://images.unsplash.com/photo-1483347756197-71ef80e95f73?auto=format&fit=crop&w=1800&q=88",
-    "tags": ["aurora", "seer", "mystic", "vision", "sky"]
+    "tags": [
+      "aurora",
+      "seer",
+      "mystic",
+      "vision",
+      "sky"
+    ],
+    "hidden": false
   },
   {
     "id": "iron-choir",
     "name": "Iron Choir",
+    "description": "",
     "category": "Cyberpunk",
     "rank": "B",
+    "credit": "Uncredited",
     "image": "https://images.unsplash.com/photo-1484417894907-623942c8ee29?auto=format&fit=crop&w=1800&q=88",
-    "tags": ["iron", "choir", "machine", "cyberpunk", "industrial"]
+    "tags": [
+      "iron",
+      "choir",
+      "machine",
+      "cyberpunk",
+      "industrial"
+    ],
+    "hidden": false
   },
   {
     "id": "grave-tide",
     "name": "Grave Tide",
+    "description": "",
     "category": "Monster",
     "rank": "B",
+    "credit": "Uncredited",
     "image": "https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=1800&q=88",
-    "tags": ["grave", "tide", "abyss", "monster", "ocean"]
+    "tags": [
+      "grave",
+      "tide",
+      "abyss",
+      "monster",
+      "ocean"
+    ],
+    "hidden": false
   },
   {
     "id": "jade-tempest",
     "name": "Jade Tempest",
+    "description": "",
     "category": "Mystic",
     "rank": "A",
+    "credit": "Uncredited",
     "image": "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1800&q=88",
-    "tags": ["jade", "tempest", "mystic", "wind", "green"]
+    "tags": [
+      "jade",
+      "tempest",
+      "mystic",
+      "wind",
+      "green"
+    ],
+    "hidden": false
   },
   {
     "id": "last-starfarer",
     "name": "Last Starfarer",
+    "description": "",
     "category": "Cosmic",
     "rank": "S",
+    "credit": "Uncredited",
     "image": "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1800&q=88",
-    "tags": ["starfarer", "cosmic", "traveler", "legendary", "horizon"]
+    "tags": [
+      "starfarer",
+      "cosmic",
+      "traveler",
+      "legendary",
+      "horizon"
+    ],
+    "hidden": false
   },
   {
     "id": "rustborn-raider",
     "name": "Rustborn Raider",
+    "description": "",
     "category": "Nomad",
     "rank": "C",
+    "credit": "Uncredited",
     "image": "https://images.unsplash.com/photo-1489493585363-d69421e0edd3?auto=format&fit=crop&w=1800&q=88",
-    "tags": ["rust", "raider", "nomad", "wasteland", "scrap"]
+    "tags": [
+      "rust",
+      "raider",
+      "nomad",
+      "wasteland",
+      "scrap"
+    ],
+    "hidden": false
   }
 ]
