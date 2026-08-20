@@ -99,7 +99,7 @@
       "mythic",
       "magic"
     ],
-    "hidden": true
+    "hidden": false
   },
   {
     "id": "frost-wyrm",
