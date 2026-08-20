@@ -167,7 +167,7 @@
       "silent",
       "blue"
     ],
-    "hidden": false
+    "hidden": true
   },
   {
     "id": "chrome-valkyrie",
@@ -184,7 +184,7 @@
       "cyber",
       "silver"
     ],
-    "hidden": false
+    "hidden": true
   },
   {
     "id": "verdant-king",
@@ -201,7 +201,7 @@
       "ancient",
       "mythic"
     ],
-    "hidden": false
+    "hidden": true
   },
   {
     "id": "dune-exile",
@@ -218,7 +218,7 @@
       "sand",
       "wanderer"
     ],
-    "hidden": false
+    "hidden": true
   },
   {
     "id": "moonlit-huntress",
@@ -235,7 +235,7 @@
       "night",
       "bow"
     ],
-    "hidden": false
+    "hidden": true
   },
   {
     "id": "black-ice-protocol",
