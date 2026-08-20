@@ -252,7 +252,7 @@
       "cyberpunk",
       "elite"
     ],
-    "hidden": false
+    "hidden": true
   },
   {
     "id": "sunforge-titan",
@@ -269,7 +269,7 @@
       "gold",
       "giant"
     ],
-    "hidden": false
+    "hidden": true
   },
   {
     "id": "crimson-kitsune",
@@ -286,7 +286,7 @@
       "mystic",
       "fox"
     ],
-    "hidden": false
+    "hidden": true
   },
   {
     "id": "obsidian-pilgrim",
@@ -303,7 +303,7 @@
       "nomad",
       "dark"
     ],
-    "hidden": false
+    "hidden": true
   },
   {
     "id": "aurora-seer",
@@ -320,7 +320,7 @@
       "vision",
       "sky"
     ],
-    "hidden": false
+    "hidden": true
   },
   {
     "id": "iron-choir",
