@@ -1,5 +1,27 @@
 [
   {
+    "id": "en-tho-bang-gia-2",
+    "name": "Đền thờ băng giá",
+    "description": "",
+    "category": "Alice",
+    "rank": "S+",
+    "credit": "Hyu",
+    "image": "assets/artworks/en-tho-bang-gia-2-1787245979723.png",
+    "tags": [],
+    "hidden": false
+  },
+  {
+    "id": "nang-tien-dua-hau",
+    "name": "Nàng tiên dưa hấu",
+    "description": "",
+    "category": "Alice",
+    "rank": "S+",
+    "credit": "Triều",
+    "image": "assets/artworks/nang-tien-dua-hau-1787245950320.jpg",
+    "tags": [],
+    "hidden": false
+  },
+  {
     "id": "wave-2",
     "name": "WAVE",
     "description": "",
