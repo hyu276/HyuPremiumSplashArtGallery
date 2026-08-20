@@ -1,5 +1,38 @@
 [
   {
+    "id": "vui-cung-bay-tuat",
+    "name": "Vui cùng bầy tuất",
+    "description": "",
+    "category": "Aya",
+    "rank": "S+",
+    "credit": "Hyu Premium",
+    "image": "assets/artworks/vui-cung-bay-tuat-1787232833296.png",
+    "tags": [],
+    "hidden": false
+  },
+  {
+    "id": "man-hoa-lu-hanh",
+    "name": "Mạn họa lữ hành",
+    "description": "",
+    "category": "Aya",
+    "rank": "SS+",
+    "credit": "Hyu Premium",
+    "image": "assets/artworks/man-hoa-lu-hanh-1787232807607.jpg",
+    "tags": [],
+    "hidden": false
+  },
+  {
+    "id": "gia-lap",
+    "name": "Giả lập",
+    "description": "",
+    "category": "Aya",
+    "rank": "SS",
+    "credit": "Hyu Premium",
+    "image": "assets/artworks/gia-lap-1787232734924.jpg",
+    "tags": [],
+    "hidden": false
+  },
+  {
     "id": "tiec-be-boi",
     "name": "Tiệc bể bơi",
     "description": "",
