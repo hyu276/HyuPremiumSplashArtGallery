@@ -25,7 +25,7 @@
   <header class="site-header">
     <a class="wordmark" href="#top" aria-label="HYU PREMIUM home">HYU <span>PREMIUM</span></a>
     <nav aria-label="Main navigation"><a href="#catalog">Browse</a><a href="#ranking">Ranking</a><a href="#about">About</a></nav>
-    <div class="header-actions"><span class="edition">Digital splash archive · live from GitHub</span></div>
+    <div class="header-actions"><span class="edition">Digital splash archive · live from Supabase</span></div>
   </header>
 
   <section class="hero" id="top">
@@ -38,9 +38,7 @@
     <div class="filter-deck">
       <label class="search-wrap"><span>⌕</span><input id="search" type="search" autocomplete="off" placeholder="Search artwork, description or credit…" aria-label="Search the gallery" /></label>
       <div class="category-row" id="chips" aria-label="Filter by category"></div>
-      <div class="select-row" id="ranking">
-        <label><span>Skin rank</span><select id="rank"><option value="all">All ranks</option></select></label>
-      </div>
+      <div class="select-row" id="ranking"><label><span>Skin rank</span><select id="rank"><option value="all">All ranks</option></select></label></div>
     </div>
     <div class="results-line"><div><strong id="countNumber">00</strong><span id="countText">artworks in view</span></div></div>
     <div class="gallery-grid" id="gallery" aria-live="polite"></div>
@@ -50,11 +48,14 @@
   <section class="manifesto" id="about">
     <p class="eyebrow">HYU PREMIUM / ARCHIVE</p>
     <h2>Every frame is<br>a world <em>waiting.</em></h2>
-    <div class="manifesto-copy"><p>An owner-managed splash-art archive designed around a strict 16:9 presentation and a deterministic category/rank order.</p><p>The gallery reads the current repository catalogue directly, so owner-published data is not blocked by a delayed Pages rebuild.</p></div>
+    <div class="manifesto-copy"><p>An owner-managed splash-art archive designed around a strict 16:9 presentation and a deterministic category/rank order.</p><p>The live catalogue is backed by Supabase, with the deployed GitHub catalogue retained as a read-only fallback.</p></div>
   </section>
 
   <footer><a class="wordmark" href="#top">HYU <span>PREMIUM</span></a><p>Owner-curated digital splash archive</p><div class="footer-links"><a href="#top">Back to top ↑</a></div></footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./assets/js/supabase-config.js"></script>
+  <script src="./assets/js/supabase-data.js"></script>
   <script>
     const REPO='hyu276/HyuPremiumSplashArtGallery',BRANCH='main';
     const DEFAULT_RANKS=['A','S','S+','SS','SS+','SSS','SSS+','SSS+ Tối thượng'];
@@ -70,7 +71,7 @@
     const rankIndex=r=>{const i=state.options.ranks.indexOf(r);return i<0?Number.MAX_SAFE_INTEGER:i};
     const canonicalCompare=(a,b)=>alpha(a.category||'Uncategorized',b.category||'Uncategorized')||rankIndex(a.rank)-rankIndex(b.rank)||alpha(a.name,b.name);
     const rawBase=revision=>`https://raw.githubusercontent.com/${REPO}/${revision}/`;
-    const imageSrc=src=>{const s=String(src||'');if(/^(https?:|data:|blob:)/i.test(s))return s;if(s.startsWith('assets/'))return state.revision?`${rawBase(state.revision)}${s}`:`./${s}?_=${Date.now()}`;return s};
+    const imageSrc=src=>{const s=String(src||'');if(/^(https?:|data:|blob:)/i.test(s))return s;if(s.startsWith('assets/'))return state.revision?`${rawBase(state.revision)}${s}`:`./${s}`;return s};
     async function latestMainSha(){const r=await fetch(`https://api.github.com/repos/${REPO}/commits/${BRANCH}?_=${Date.now()}`,{cache:'no-store',headers:{Accept:'application/vnd.github+json'}});if(!r.ok)throw new Error(`GitHub revision ${r.status}`);const commit=await r.json();if(!commit.sha)throw new Error('GitHub revision missing SHA');return commit.sha}
     async function localJson(path,fallback){const r=await fetch(`./${path}?_=${Date.now()}`,{cache:'no-store'});if(!r.ok){if(fallback!==undefined)return fallback;throw new Error(`Pages catalogue ${r.status}`)}return r.json()}
     async function jsonAtRevision(path,revision,fallback){const r=await fetch(`${rawBase(revision)}${path}?_=${Date.now()}`,{cache:'no-store'});if(!r.ok){if(fallback!==undefined)return fallback;throw new Error(`GitHub raw ${r.status}`)}return r.json()}
@@ -82,12 +83,14 @@
     $('#chips').addEventListener('click',e=>{const b=e.target.closest('button[data-cat]');if(!b)return;state.category=b.dataset.cat;state.expanded=null;document.querySelectorAll('#chips button').forEach(x=>x.classList.toggle('active',x.dataset.cat===state.category));render()});
     $('#search').addEventListener('input',e=>{state.query=e.target.value;state.expanded=null;render()});
     $('#rank').addEventListener('change',e=>{state.rank=e.target.value;state.expanded=null;render()});
+    async function loadSupabaseCatalogue(){if(!window.HYU_SUPABASE?.enabled)return false;const data=await window.HYU_SUPABASE.loadPublicCatalogue();applyCatalogue(data.items,data.options,null);return true}
     async function loadDeployedCatalogue(){const [items,options]=await Promise.all([localJson('data/artworks.json'),localJson('data/options.json',DEFAULT_OPTIONS)]);applyCatalogue(items,options,null);return true}
-    async function syncLatest(force=false){const now=Date.now();if(!force&&now-lastRevisionCheck<REVISION_CHECK_INTERVAL)return false;lastRevisionCheck=now;try{const revision=await latestMainSha();if(!force&&revision===state.revision)return false;const [items,options]=await Promise.all([jsonAtRevision('data/artworks.json',revision),jsonAtRevision('data/options.json',revision,DEFAULT_OPTIONS)]);applyCatalogue(items,options,revision);return true}catch(err){console.warn('Live GitHub sync unavailable; keeping deployed catalogue.',err);return false}}
-    async function bootstrap(){try{await loadDeployedCatalogue()}catch(localErr){console.warn('Deployed catalogue unavailable; trying GitHub live data.',localErr);const live=await syncLatest(true);if(!live&&state.items.length===0){$('#empty').classList.add('show');$('#countNumber').textContent='00';$('#countText').textContent='catalogue unavailable';return}}syncLatest(true)}
+    async function syncLatest(force=false){const now=Date.now();if(!force&&now-lastRevisionCheck<REVISION_CHECK_INTERVAL)return false;lastRevisionCheck=now;try{const revision=await latestMainSha();if(!force&&revision===state.revision)return false;const [items,options]=await Promise.all([jsonAtRevision('data/artworks.json',revision),jsonAtRevision('data/options.json',revision,DEFAULT_OPTIONS)]);applyCatalogue(items,options,revision);return true}catch(err){console.warn('GitHub fallback sync unavailable.',err);return false}}
+    async function refreshPrimary(){try{if(await loadSupabaseCatalogue())return true}catch(err){console.warn('Supabase catalogue unavailable; keeping/falling back to GitHub catalogue.',err)}return syncLatest()}
+    async function bootstrap(){try{if(await loadSupabaseCatalogue())return}catch(supabaseErr){console.warn('Supabase catalogue unavailable; trying deployed fallback.',supabaseErr)}try{await loadDeployedCatalogue()}catch(localErr){console.warn('Deployed catalogue unavailable; trying GitHub live data.',localErr);const live=await syncLatest(true);if(!live&&state.items.length===0){$('#empty').classList.add('show');$('#countNumber').textContent='00';$('#countText').textContent='catalogue unavailable';return}}syncLatest(true)}
     bootstrap();
-    window.addEventListener('focus',()=>syncLatest());
-    document.addEventListener('visibilitychange',()=>{if(!document.hidden)syncLatest()});
+    window.addEventListener('focus',()=>refreshPrimary());
+    document.addEventListener('visibilitychange',()=>{if(!document.hidden)refreshPrimary()});
   </script>
 </body>
 </html>
