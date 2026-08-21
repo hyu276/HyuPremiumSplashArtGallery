@@ -4,6 +4,7 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>HYU Portfolio Admin</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./app-v2.css">
+<link rel="stylesheet" href="./live-preview.css">
 </head>
 <body>
 <section class="login" id="login"><div class="login-card"><h1>HYU Portfolio Admin</h1><p class="muted">Sign in with your Supabase administrator account. Dynamic sections created here are rendered on the live Vercel portfolio with the same timeline format as Experience.</p><form id="login-form"><div class="field"><label>Email</label><input id="login-email" type="email" required autocomplete="email"></div><div class="field"><label>Password</label><input id="login-password" type="password" required autocomplete="current-password"></div><button class="btn" type="submit">Sign in</button><div class="login-error" id="login-error"></div></form></div></section>
@@ -20,4 +21,5 @@
 <div class="menu" id="section-menu"><button data-menu-action="rename">Rename section</button><button data-menu-action="clone">Clone section</button></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.4/dist/umd/supabase.min.js"></script>
 <script src="./app-v2.js"></script>
+<script src="./live-preview.js"></script>
 </body></html>
