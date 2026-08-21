@@ -60,7 +60,10 @@ textarea{
   font-weight:800;
   font-synthesis:none;
   font-kerning:normal;
-  text-rendering:geometricPrecision;
+  text-rendering:optimizeLegibility;
+  line-height:1.14!important;
+  letter-spacing:-.025em!important;
+  padding-block:.08em .06em;
 }
 
 .wordmark,
