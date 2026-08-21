@@ -66,6 +66,11 @@ function saveMain(kind){put(mainKey(kind),document.querySelector(`#${kind}-form`
 function restoreMain(kind){restore(mainKey(kind),document.querySelector(`#${kind}-form`),{announce:false})}
 function clearCurrentModal(){drop(modalKey())}
 function clearMain(kind){drop(mainKey(kind))}
+function markForClear(key){
+  if(!key)return;
+  pendingClear.add(key);
+  setTimeout(()=>pendingClear.delete(key),6000);
+}
 
 // Re-opened editors recover their latest local draft, including after an accidental backdrop click.
 if(typeof openModal==='function'){
@@ -77,14 +82,13 @@ if(typeof openSectionModal==='function'){
   openSectionModal=function(...args){const r=base(...args);queueMicrotask(restoreModalDraft);return r};
 }
 
-// Profile / Settings drafts survive navigation and reload until a successful Save.
+// Profile / Settings drafts survive tab navigation and page reload until a successful Save.
 if(typeof render==='function'){
   const base=render;
   render=function(...args){const r=base(...args);queueMicrotask(()=>{restoreMain('profile');restoreMain('settings')});return r};
 }
 
-// A successful database write in the existing app is followed by loadAll().
-// Mark the current draft before submit; clear it immediately before that successful reload.
+// Existing successful database writes call loadAll(); failed writes do not.
 if(typeof loadAll==='function'){
   const base=loadAll;
   loadAll=async function(...args){
@@ -107,12 +111,12 @@ document.addEventListener('change',e=>{
 // Capture runs before the app's async save handlers.
 document.addEventListener('submit',e=>{
   if(e.target?.id==='modal-form'){
-    saveModalDraft();const k=modalKey();if(k)pendingClear.add(k);
+    saveModalDraft();markForClear(modalKey());
   }
 },true);
 document.addEventListener('click',e=>{
-  if(e.target.closest('#save-profile')){saveMain('profile');pendingClear.add(mainKey('profile'));}
-  if(e.target.closest('#save-settings')){saveMain('settings');pendingClear.add(mainKey('settings'));}
+  if(e.target.closest('#save-profile')){saveMain('profile');markForClear(mainKey('profile'));}
+  if(e.target.closest('#save-settings')){saveMain('settings');markForClear(mainKey('settings'));}
   // Cancel is an explicit discard. X and backdrop exits keep the autosaved draft.
   if(e.target.closest('#cancel-modal')){const k=modalKey();drop(k);pendingClear.delete(k);}
 },true);
@@ -120,11 +124,8 @@ document.addEventListener('click',e=>{
 // Save the latest keystrokes just before an accidental outside click closes the modal.
 const modal=document.querySelector('#modal');
 if(modal)modal.addEventListener('pointerdown',e=>{if(e.target===modal)saveModalDraft()},true);
-window.addEventListener('beforeunload',()=>{
-  if(document.querySelector('#modal.open'))saveModalDraft();
-  const pf=document.querySelector('#profile-form');if(pf)put(mainKey('profile'),pf);
-  const sf=document.querySelector('#settings-form');if(sf)put(mainKey('settings'),sf);
-});
+// Inputs already autosave on every edit; this is only a last guard for an open modal.
+window.addEventListener('beforeunload',()=>{if(document.querySelector('#modal.open'))saveModalDraft()});
 
 // Initial restoration in case render already completed before this script loaded.
 queueMicrotask(()=>{restoreMain('profile');restoreMain('settings');if(document.querySelector('#modal.open'))restoreModalDraft()});
