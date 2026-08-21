@@ -7,6 +7,39 @@
     document.head.appendChild(layout);
   }
 
+  const BRAND_MARK='./assets/brand/hyu-premium-mark.svg';
+  if(!document.querySelector('link[data-hyu-favicon]')){
+    const favicon=document.createElement('link');
+    favicon.rel='icon';
+    favicon.type='image/svg+xml';
+    favicon.href=BRAND_MARK;
+    favicon.dataset.hyuFavicon='true';
+    document.head.appendChild(favicon);
+
+    const shortcut=document.createElement('link');
+    shortcut.rel='shortcut icon';
+    shortcut.href=BRAND_MARK;
+    shortcut.dataset.hyuFavicon='true';
+    document.head.appendChild(shortcut);
+  }
+
+  if(!document.querySelector('style[data-hyu-brand-mark]')){
+    const style=document.createElement('style');
+    style.dataset.hyuBrandMark='true';
+    style.textContent='.site-header .wordmark{display:inline-flex;align-items:center;gap:.55rem}.site-header .wordmark .brand-mark{display:block;width:24px;height:24px;flex:0 0 24px;border-radius:6px;filter:drop-shadow(0 0 9px rgba(67,220,255,.18))}@media(max-width:760px){.site-header .wordmark .brand-mark{width:21px;height:21px;flex-basis:21px}.site-header .wordmark{gap:.45rem}}';
+    document.head.appendChild(style);
+  }
+
+  const headerWordmark=document.querySelector('.site-header .wordmark');
+  if(headerWordmark&&!headerWordmark.querySelector('.brand-mark')){
+    const mark=document.createElement('img');
+    mark.className='brand-mark';
+    mark.src=BRAND_MARK;
+    mark.alt='';
+    mark.setAttribute('aria-hidden','true');
+    headerWordmark.prepend(mark);
+  }
+
   const cfg=window.HYU_SUPABASE_CONFIG||{};
   const sdk=window.supabase;
   const ready=Boolean(cfg.enabled&&cfg.url&&cfg.publishableKey&&sdk?.createClient);
