@@ -64,11 +64,24 @@ window.HYU_SUPABASE_CONFIG = {
       document.body.appendChild(stability);
     }
 
-    if(!document.querySelector('script[data-hyu-main-credit-filter]')){
+    const loadMainCreditFilter=()=>{
+      if(document.querySelector('script[data-hyu-main-credit-filter]'))return;
       const script=document.createElement('script');
       script.src='./assets/js/main-credit-filter.js';
       script.dataset.hyuMainCreditFilter='true';
       document.body.appendChild(script);
+    };
+
+    if(window.__HYU_MULTI_PROPERTY_SEARCH_READY__){
+      loadMainCreditFilter();
+    }else{
+      window.addEventListener('hyu:multi-property-search-ready',loadMainCreditFilter,{once:true});
+      if(!document.querySelector('script[data-hyu-multi-property-search]')){
+        const search=document.createElement('script');
+        search.src='./assets/js/multi-property-search.js';
+        search.dataset.hyuMultiPropertySearch='true';
+        document.body.appendChild(search);
+      }
     }
   };
 
