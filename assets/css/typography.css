@@ -1,7 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
 :root{
-  --hyu-font:'Be Vietnam Pro','Noto Sans','Segoe UI',Arial,sans-serif;
+  --hyu-font:Arial,Helvetica,sans-serif;
+  --hyu-serif:Georgia,"Times New Roman",serif;
 }
 
 html,
@@ -29,7 +28,6 @@ textarea{
 .card-meta,
 .card-bottom,
 .tier,
-.results-line,
 .search-wrap,
 .category-row,
 .select-row{
@@ -43,22 +41,19 @@ textarea{
 .empty-board strong{
   font-family:var(--hyu-font)!important;
   font-weight:900;
-  font-synthesis:none;
 }
 
 .hero h1 em,
 .page-hero h1 em,
 .manifesto h2 em{
-  font-family:var(--hyu-font)!important;
-  font-weight:600;
+  font-family:var(--hyu-serif)!important;
+  font-weight:400;
   font-style:italic;
-  font-synthesis:none;
 }
 
 .card-copy strong{
   font-family:var(--hyu-font)!important;
-  font-weight:800;
-  font-synthesis:none;
+  font-weight:700;
   font-kerning:normal;
   text-rendering:optimizeLegibility;
   line-height:1.14!important;
@@ -66,21 +61,7 @@ textarea{
   padding-block:.08em .06em;
 }
 
-.wordmark,
-.site-header nav,
-.card-meta,
-.card-bottom,
-.tier,
-.kicker,
-.hero-kicker,
-.section-label,
-.results-line,
-.empty-board span,
-.footer small{
-  font-synthesis:none;
-}
-
 .card-number,
 .results-line strong{
-  font-family:var(--hyu-font)!important;
+  font-family:var(--hyu-serif)!important;
 }
