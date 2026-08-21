@@ -88,13 +88,72 @@
     });
   }
 
-  function observeRankBadges(){
-    const gallery=document.querySelector('#gallery');
-    if(!gallery){requestAnimationFrame(observeRankBadges);return;}
-    styleRankBadges(gallery);
-    new MutationObserver(()=>styleRankBadges(gallery)).observe(gallery,{childList:true,subtree:true});
+  function fitArtworkTitle(title){
+    const card=title.closest('.art-card');
+    const copy=title.closest('.card-copy');
+    if(!card||!copy)return;
+
+    title.style.removeProperty('font-size');
+    title.style.removeProperty('letter-spacing');
+
+    if(window.innerWidth<=760)return;
+
+    title.style.display='block';
+    title.style.width='100%';
+    title.style.maxWidth='100%';
+    title.style.whiteSpace='nowrap';
+    title.style.overflow='hidden';
+    title.style.textOverflow='clip';
+
+    const available=Math.floor(copy.clientWidth);
+    if(available<=0)return;
+
+    const maxSize=parseFloat(getComputedStyle(title).fontSize)||24;
+    const minSize=Math.min(maxSize,card.classList.contains('expanded')?24:11);
+
+    title.style.fontSize=`${maxSize}px`;
+    if(title.scrollWidth<=available+1)return;
+
+    title.style.fontSize=`${minSize}px`;
+    if(title.scrollWidth>available+1){
+      const ratio=available/title.scrollWidth;
+      title.style.fontSize=`${Math.max(7,minSize*ratio*.985)}px`;
+      return;
+    }
+
+    let low=minSize;
+    let high=maxSize;
+    for(let i=0;i<9;i++){
+      const mid=(low+high)/2;
+      title.style.fontSize=`${mid}px`;
+      if(title.scrollWidth<=available+1)low=mid;
+      else high=mid;
+    }
+    title.style.fontSize=`${Math.max(7,low-.15)}px`;
   }
-  observeRankBadges();
+
+  function fitArtworkTitles(root=document){
+    if(!root?.querySelectorAll)return;
+    root.querySelectorAll('.card-copy strong').forEach(fitArtworkTitle);
+  }
+
+  let galleryPolishFrame=0;
+  function scheduleGalleryPolish(root=document){
+    cancelAnimationFrame(galleryPolishFrame);
+    galleryPolishFrame=requestAnimationFrame(()=>{
+      styleRankBadges(root);
+      fitArtworkTitles(root);
+    });
+  }
+
+  function observeGalleryPolish(){
+    const gallery=document.querySelector('#gallery');
+    if(!gallery){requestAnimationFrame(observeGalleryPolish);return;}
+    scheduleGalleryPolish(gallery);
+    new MutationObserver(()=>scheduleGalleryPolish(gallery)).observe(gallery,{childList:true,subtree:true});
+    window.addEventListener('resize',()=>scheduleGalleryPolish(gallery),{passive:true});
+  }
+  observeGalleryPolish();
 
   const cfg=window.HYU_SUPABASE_CONFIG||{};
   const sdk=window.supabase;
