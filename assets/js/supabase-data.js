@@ -1,4 +1,12 @@
 (function(){
+  if(!document.querySelector('link[data-hyu-typography]')){
+    const typography=document.createElement('link');
+    typography.rel='stylesheet';
+    typography.href='./assets/css/typography.css';
+    typography.dataset.hyuTypography='true';
+    document.head.appendChild(typography);
+  }
+
   if(!document.querySelector('link[data-hyu-desktop-gallery]')){
     const layout=document.createElement('link');
     layout.rel='stylesheet';
@@ -152,6 +160,10 @@
     scheduleGalleryPolish(gallery);
     new MutationObserver(()=>scheduleGalleryPolish(gallery)).observe(gallery,{childList:true,subtree:true});
     window.addEventListener('resize',()=>scheduleGalleryPolish(gallery),{passive:true});
+    if(document.fonts?.ready){
+      document.fonts.ready.then(()=>scheduleGalleryPolish(gallery));
+      document.fonts.addEventListener?.('loadingdone',()=>scheduleGalleryPolish(gallery));
+    }
   }
   observeGalleryPolish();
 
