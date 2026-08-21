@@ -14,8 +14,8 @@
   let gallery=null;
   let observer=null;
   let mutationObserver=null;
-  let activeLoads=0;
   let queue=[];
+  const loadingImages=new Set();
   const unloadTimers=new WeakMap();
 
   function isManaged(img){return img?.dataset?.hyuManaged==='1'}
@@ -34,6 +34,12 @@
     const rect=img.getBoundingClientRect();
     const margin=window.innerHeight*1.2;
     return rect.bottom>=-margin&&rect.top<=window.innerHeight+margin;
+  }
+
+  function pruneLoadingSet(){
+    for(const img of loadingImages){
+      if(!img.isConnected||!isManaged(img))loadingImages.delete(img);
+    }
   }
 
   function clearUnload(img){
@@ -72,7 +78,7 @@
   }
 
   function finishLoad(img,ok){
-    activeLoads=Math.max(0,activeLoads-1);
+    loadingImages.delete(img);
     img.onload=null;
     img.onerror=null;
     if(!img.isConnected){pump();return}
@@ -106,7 +112,7 @@
     img.loading='eager';
     img.decoding='auto';
     img.setAttribute('fetchpriority',priorityFor(img)<window.innerHeight?'high':'low');
-    activeLoads+=1;
+    loadingImages.add(img);
 
     img.onload=()=>finishLoad(img,true);
     img.onerror=()=>finishLoad(img,false);
@@ -115,9 +121,10 @@
   }
 
   function pump(){
+    pruneLoadingSet();
     queue=queue.filter(img=>img.isConnected&&isManaged(img)&&img.dataset.hyuState==='queued'&&isNearViewport(img));
     queue.sort((a,b)=>priorityFor(a)-priorityFor(b));
-    while(activeLoads<MAX_CONCURRENT&&queue.length){
+    while(loadingImages.size<MAX_CONCURRENT&&queue.length){
       const img=queue.shift();
       if(!img||!img.isConnected)continue;
       img.dataset.hyuState='idle';
@@ -156,7 +163,9 @@
 
   function prepareGallery(){
     if(!gallery||!mobileQuery.matches)return;
+    pruneLoadingSet();
     gallery.querySelectorAll('.art-card img').forEach(prepareImage);
+    pump();
   }
 
   function installObserver(){
@@ -181,7 +190,7 @@
   function resetDesktop(){
     observer?.disconnect();
     queue=[];
-    activeLoads=0;
+    loadingImages.clear();
     if(!gallery)return;
     gallery.querySelectorAll('.art-card img[data-hyu-managed="1"]').forEach(img=>{
       clearUnload(img);
