@@ -7,26 +7,34 @@
     document.head.appendChild(layout);
   }
 
-  const BRAND_MARK='./assets/brand/hyu-premium-mark.svg';
+  const BRAND_MARK='./assets/brand/hyu-industries-logo.png';
   if(!document.querySelector('link[data-hyu-favicon]')){
     const favicon=document.createElement('link');
     favicon.rel='icon';
-    favicon.type='image/svg+xml';
+    favicon.type='image/png';
+    favicon.sizes='64x64';
     favicon.href=BRAND_MARK;
     favicon.dataset.hyuFavicon='true';
     document.head.appendChild(favicon);
 
     const shortcut=document.createElement('link');
     shortcut.rel='shortcut icon';
+    shortcut.type='image/png';
     shortcut.href=BRAND_MARK;
     shortcut.dataset.hyuFavicon='true';
     document.head.appendChild(shortcut);
+
+    const apple=document.createElement('link');
+    apple.rel='apple-touch-icon';
+    apple.href=BRAND_MARK;
+    apple.dataset.hyuFavicon='true';
+    document.head.appendChild(apple);
   }
 
   if(!document.querySelector('style[data-hyu-brand-mark]')){
     const style=document.createElement('style');
     style.dataset.hyuBrandMark='true';
-    style.textContent='.site-header .wordmark{display:inline-flex;align-items:center;gap:.55rem}.site-header .wordmark .brand-mark{display:block;width:24px;height:24px;flex:0 0 24px;border-radius:6px;filter:drop-shadow(0 0 9px rgba(67,220,255,.18))}@media(max-width:760px){.site-header .wordmark .brand-mark{width:21px;height:21px;flex-basis:21px}.site-header .wordmark{gap:.45rem}}';
+    style.textContent='.site-header .wordmark{display:inline-flex;align-items:center;gap:.6rem}.site-header .wordmark .brand-mark{display:block;width:32px;height:32px;flex:0 0 32px;border-radius:50%;object-fit:cover;background:#eef3f5;box-shadow:0 0 0 1px rgba(67,220,255,.2),0 0 12px rgba(67,220,255,.12)}@media(max-width:760px){.site-header .wordmark .brand-mark{width:28px;height:28px;flex-basis:28px}.site-header .wordmark{gap:.48rem}}';
     document.head.appendChild(style);
   }
 
