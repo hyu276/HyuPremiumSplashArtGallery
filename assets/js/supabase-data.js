@@ -1,4 +1,12 @@
 (function(){
+  if(!document.querySelector('link[data-hyu-desktop-gallery]')){
+    const layout=document.createElement('link');
+    layout.rel='stylesheet';
+    layout.href='./assets/css/desktop-gallery.css';
+    layout.dataset.hyuDesktopGallery='true';
+    document.head.appendChild(layout);
+  }
+
   const cfg=window.HYU_SUPABASE_CONFIG||{};
   const sdk=window.supabase;
   const ready=Boolean(cfg.enabled&&cfg.url&&cfg.publishableKey&&sdk?.createClient);
