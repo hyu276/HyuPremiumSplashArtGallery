@@ -245,6 +245,10 @@
       return list.filter(item=>(item.credit||'Uncredited')===galleryState.credit);
     }
 
+    function isDefaultBrowseContext(){
+      return !(galleryState.query||'').trim()&&(galleryState.category||'all')==='all'&&(galleryState.rank||'all')==='all'&&(galleryState.credit||'all')==='all';
+    }
+
     function contextSignature(list){
       return [galleryState.query||'',galleryState.category||'all',galleryState.rank||'all',galleryState.credit||'all',...list.map(item=>item.id)].join('\u001f');
     }
@@ -254,7 +258,8 @@
       if(signature===progressive.signature)return;
       progressive.signature=signature;
       progressive.stage=0;
-      progressive.sampleIds=cryptographicShuffle(list).slice(0,Math.min(INITIAL_RANDOM_COUNT,list.length)).map(item=>String(item.id));
+      const source=isDefaultBrowseContext()?cryptographicShuffle(list):list;
+      progressive.sampleIds=source.slice(0,Math.min(INITIAL_RANDOM_COUNT,list.length)).map(item=>String(item.id));
     }
 
     function progressiveList(list){
@@ -326,7 +331,6 @@
       }
       galleryState.expanded=null;
       render();
-      requestAnimationFrame(()=>progressiveControls.scrollIntoView({behavior:'smooth',block:'nearest'}));
     });
 
     syncCreditOptions();
