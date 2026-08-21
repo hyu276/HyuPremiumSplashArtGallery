@@ -2,7 +2,9 @@
   'use strict';
 
   const KEEP_NAME_KEY='hyu_admin_keep_name';
+  const IDLE_TIMEOUT_MS=15*60*1000;
   let cloneSourceId=null;
+  let idleTimer=0;
 
   function ready(fn){
     if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fn,{once:true});
@@ -20,7 +22,76 @@
     const fileNote=document.querySelector('#fileNote');
     const formTitle=document.querySelector('#formTitle');
     const list=document.querySelector('#list');
+    const emailInput=document.querySelector('#email');
+    const passwordInput=document.querySelector('#password');
+    const loginButton=document.querySelector('#login');
+    const logoutButton=document.querySelector('#logout');
+    const ownerPill=document.querySelector('#ownerPill');
+    const openGallery=document.querySelector('.top-actions a[target="_blank"]');
     if(!nameInput||!applyButton||!editingInput||!list)return;
+
+    // Remove any auth-looking query/hash fragment from browser history. The admin flow does not
+    // use URL session detection, so there is no reason to leave such material in the address bar.
+    if(location.search||location.hash){
+      try{history.replaceState(null,'',location.pathname)}catch{}
+    }
+
+    // Best-effort browser credential minimization. Password managers/browsers may choose to
+    // ignore autocomplete=off, but the page itself never writes credentials to web storage.
+    if(emailInput){
+      emailInput.autocomplete='off';
+      emailInput.autocapitalize='none';
+      emailInput.spellcheck=false;
+    }
+    if(passwordInput)passwordInput.autocomplete='off';
+    if(openGallery)openGallery.rel='noopener noreferrer';
+
+    loginButton?.addEventListener('click',()=>{
+      // signInWithPassword reads the value synchronously before its first await; clear the
+      // visible password field immediately afterwards whether authentication succeeds or fails.
+      setTimeout(()=>{if(passwordInput)passwordInput.value=''},0);
+    },true);
+
+    logoutButton?.addEventListener('click',()=>{
+      if(emailInput)emailInput.value='';
+      if(passwordInput)passwordInput.value='';
+      try{window.HYU_CLEAR_LEGACY_SUPABASE_AUTH?.()}catch{}
+      clearTimeout(idleTimer);
+    },true);
+
+    const syncOwnerPrivacy=()=>{
+      if(!ownerPill)return;
+      if(ownerPill.classList.contains('ok')){
+        if(emailInput)emailInput.value='';
+        if(ownerPill.textContent!=='Signed in: owner')ownerPill.textContent='Signed in: owner';
+        armIdleLogout();
+      }
+    };
+    if(ownerPill){
+      new MutationObserver(syncOwnerPrivacy).observe(ownerPill,{attributes:true,childList:true,subtree:true,characterData:true});
+      syncOwnerPrivacy();
+    }
+
+    function armIdleLogout(){
+      clearTimeout(idleTimer);
+      if(!ownerPill?.classList.contains('ok'))return;
+      idleTimer=setTimeout(()=>{
+        if(!ownerPill?.classList.contains('ok'))return;
+        logoutButton?.click();
+        setTimeout(()=>{
+          try{setStatus('Signed out automatically after 15 minutes of inactivity.','warn')}catch{}
+        },50);
+      },IDLE_TIMEOUT_MS);
+    }
+    for(const eventName of ['pointerdown','keydown','touchstart','scroll']){
+      window.addEventListener(eventName,armIdleLogout,{passive:true});
+    }
+    window.addEventListener('pagehide',()=>{
+      clearTimeout(idleTimer);
+      if(emailInput)emailInput.value='';
+      if(passwordInput)passwordInput.value='';
+      try{window.HYU_CLEAR_LEGACY_SUPABASE_AUTH?.()}catch{}
+    });
 
     const style=document.createElement('style');
     style.textContent=`
