@@ -6,6 +6,7 @@
   let installed=false;
   let metadataRequested=false;
   const metadataById=new Map();
+  const mobileQuery=window.matchMedia('(max-width: 760px)');
 
   function hydrateItem(item){
     if(!item)return;
@@ -80,6 +81,17 @@
             img.dataset.hyuOriginalSrc=original;
             if(thumb)img.dataset.hyuThumbnailSrc=thumb;
             else delete img.dataset.hyuThumbnailSrc;
+
+            // Desktop uses the optimized thumbnail directly. If that derivative is ever missing
+            // or corrupt, fall back to the original source rather than leaving a blank card.
+            if(!mobileQuery.matches&&thumb&&original&&!img.dataset.hyuDesktopFallbackBound){
+              img.dataset.hyuDesktopFallbackBound='1';
+              img.addEventListener('error',()=>{
+                if(img.dataset.hyuDesktopFallbackUsed==='1')return;
+                img.dataset.hyuDesktopFallbackUsed='1';
+                img.src=original;
+              });
+            }
           });
         });
       }
