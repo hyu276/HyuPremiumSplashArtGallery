@@ -48,6 +48,36 @@
     headerWordmark.prepend(mark);
   }
 
+  const RANK_BADGE_GRADIENTS={
+    'A':'linear-gradient(180deg, #035365 0%, #045C6C 48%, #08929C 100%)',
+    'S':'linear-gradient(180deg, #60179E 0%, #4D128A 48%, #9244C0 100%)',
+    'S+':'linear-gradient(180deg, #E07A38 0%, #D06331 45%, #C15429 100%)',
+    'SS':'linear-gradient(180deg, #D88D31 0%, #9E5F0F 48%, #EED76A 100%)',
+    'SS+':'linear-gradient(180deg, #E6AF38 0%, #C48211 46%, #A86518 72%, #E06A27 100%)',
+    'SSS':'linear-gradient(180deg, #D82B22 0%, #941004 30%, #7E1008 62%, #F16132 100%)'
+  };
+
+  function styleRankBadges(root=document){
+    if(!root?.querySelectorAll)return;
+    root.querySelectorAll('.tier').forEach(badge=>{
+      const rank=(badge.textContent||'').trim();
+      badge.style.color='#fff';
+      badge.style.textShadow='0 1px 2px rgba(0,0,0,.45)';
+      badge.style.background=RANK_BADGE_GRADIENTS[rank]||'var(--brand)';
+      badge.style.boxShadow=RANK_BADGE_GRADIENTS[rank]
+        ? '0 0 0 1px rgba(255,255,255,.12),0 3px 14px rgba(0,0,0,.28)'
+        : '0 0 18px rgba(67,220,255,.24)';
+    });
+  }
+
+  function observeRankBadges(){
+    const gallery=document.querySelector('#gallery');
+    if(!gallery){requestAnimationFrame(observeRankBadges);return;}
+    styleRankBadges(gallery);
+    new MutationObserver(()=>styleRankBadges(gallery)).observe(gallery,{childList:true,subtree:true});
+  }
+  observeRankBadges();
+
   const cfg=window.HYU_SUPABASE_CONFIG||{};
   const sdk=window.supabase;
   const ready=Boolean(cfg.enabled&&cfg.url&&cfg.publishableKey&&sdk?.createClient);
