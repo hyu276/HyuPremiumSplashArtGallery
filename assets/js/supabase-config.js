@@ -16,7 +16,10 @@ window.HYU_SUPABASE_CONFIG = {
 
   const clearLegacyAuthStorage=()=>{
     if(!authStorageKey)return;
-    for(const storage of [window.localStorage,window.sessionStorage]){
+    let stores=[];
+    try{stores.push(window.localStorage)}catch{}
+    try{stores.push(window.sessionStorage)}catch{}
+    for(const storage of stores){
       try{
         for(let i=storage.length-1;i>=0;i--){
           const key=storage.key(i)||'';
@@ -44,7 +47,7 @@ window.HYU_SUPABASE_CONFIG = {
         detectSessionInUrl:false
       }
     });
-    Object.defineProperty(window.supabase,'__hyuAuthHardened',{value:true,configurable:false});
+    try{Object.defineProperty(window.supabase,'__hyuAuthHardened',{value:true,configurable:false})}catch{}
   }
 
   if(!isAdmin)return;
