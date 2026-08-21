@@ -49,6 +49,14 @@ window.HYU_SUPABASE_CONFIG = {
   const loadPublicGalleryEnhancements=()=>{
     if(isAdmin||!document.querySelector('#catalog'))return;
 
+    if(!document.querySelector('link[data-hyu-mobile-gallery-stability]')){
+      const stabilityCss=document.createElement('link');
+      stabilityCss.rel='stylesheet';
+      stabilityCss.href='./assets/css/mobile-gallery-stability.css';
+      stabilityCss.dataset.hyuMobileGalleryStability='true';
+      document.head.appendChild(stabilityCss);
+    }
+
     if(!document.querySelector('script[data-hyu-mobile-image-stability]')){
       const stability=document.createElement('script');
       stability.src='./assets/js/mobile-image-stability.js';
