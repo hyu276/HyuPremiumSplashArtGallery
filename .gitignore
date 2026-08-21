@@ -1,0 +1,28 @@
+# Local environment / deployment secrets
+.env
+.env.*
+!.env.example
+
+# Credentials and private key material
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.crt
+*.cer
+
+# Local auth/token dumps
+*token*.txt
+*token*.json
+*credential*.json
+*credentials*.json
+*secret*.txt
+*secret*.json
+
+# Local tooling / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
