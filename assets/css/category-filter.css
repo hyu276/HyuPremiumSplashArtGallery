@@ -113,6 +113,18 @@
 }
 
 @media(max-width:760px){
+  .filter-deck{
+    position:-webkit-sticky!important;
+    position:sticky!important;
+    top:0!important;
+    z-index:80!important;
+    overflow:visible!important;
+    background:rgba(8,9,8,.96)!important;
+    -webkit-backdrop-filter:blur(18px);
+    backdrop-filter:blur(18px);
+    box-shadow:0 10px 24px rgba(0,0,0,.2);
+  }
+
   .category-filter-shell{
     gap:.32rem;
   }
