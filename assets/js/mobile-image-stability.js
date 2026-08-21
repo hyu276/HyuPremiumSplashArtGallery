@@ -77,6 +77,18 @@
     }
   }
 
+  function fallbackToOriginal(img){
+    const original=img.dataset.hyuOriginalSrc||'';
+    const current=realSource(img);
+    if(!original||original===current)return false;
+    img.dataset.hyuRealSrc=original;
+    img.dataset.hyuRetry='0';
+    img.dataset.hyuState='idle';
+    img.dataset.hyuUsingOriginalFallback='1';
+    setTimeout(()=>enqueue(img),80);
+    return true;
+  }
+
   function finishLoad(img,ok){
     loadingImages.delete(img);
     img.onload=null;
@@ -95,7 +107,7 @@
       if(retry<=MAX_RETRIES&&isNearViewport(img)){
         setTimeout(()=>enqueue(img),450*retry);
       }else if(retry>MAX_RETRIES){
-        img.dataset.hyuState='error';
+        if(!fallbackToOriginal(img))img.dataset.hyuState='error';
       }
     }
     pump();
@@ -199,6 +211,7 @@
       img.removeAttribute('data-hyu-real-src');
       img.removeAttribute('data-hyu-state');
       img.removeAttribute('data-hyu-retry');
+      img.removeAttribute('data-hyu-using-original-fallback');
       img.removeAttribute('fetchpriority');
       img.classList.remove('hyu-img-ready');
       img.loading='lazy';

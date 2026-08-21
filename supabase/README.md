@@ -49,6 +49,24 @@ It adds only:
 
 After the SQL succeeds, reload the Admin Dashboard. The **About Us / Our Team** panel will become active immediately.
 
+## Existing project: optimized artwork thumbnails
+
+Run this migration once when upgrading an older database:
+
+`supabase/artwork-thumbnails.sql`
+
+It adds the nullable `artworks.thumbnail` field. The production project migration can be applied without rewriting existing artwork rows.
+
+The Admin Dashboard then provides **Artwork image optimization**:
+
+- newly uploaded or replaced artwork images automatically receive an optimized gallery thumbnail when Publish succeeds;
+- thumbnails are generated in-browser at up to 1600×900 and encoded as WebP (JPEG fallback) with high-quality resampling;
+- thumbnails are uploaded under `artworks/thumbnails/` with long-lived browser caching;
+- **Optimize missing thumbnails** backfills older artwork rows one at a time so large source images do not all occupy browser memory simultaneously;
+- the original `artworks.image` URL is never replaced, preserving the full-quality source for expanded view.
+
+On the public Gallery, collapsed cards prefer `thumbnail`; expanding an artwork uses the original `image`. If a thumbnail is absent or cannot be loaded, the original remains the fallback.
+
 ## Owner Auth user
 
 Create the owner in Supabase Dashboard → Authentication → Users, then authorize that UUID once:

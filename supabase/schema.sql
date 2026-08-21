@@ -29,6 +29,7 @@ create table if not exists public.artworks (
   rank_id bigint not null references public.ranks(id) on delete restrict,
   credit_id bigint not null references public.image_credits(id) on delete restrict,
   image text not null,
+  thumbnail text,
   tags text[] not null default '{}',
   hidden boolean not null default false,
   created_at timestamptz not null default now(),

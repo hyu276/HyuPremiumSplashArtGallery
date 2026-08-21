@@ -99,13 +99,15 @@
     function buildNavigation(){
       if(document.querySelector('.admin-jump-nav'))return true;
       const addArtwork=document.querySelector('#formTitle')?.closest('.panel');
+      const optimizer=document.querySelector('#imageOptimizerPanel');
       const artworkChoices=document.querySelector('#rankChoices')?.closest('.panel');
       const team=document.querySelector('#teamAdminPanel');
       const artworkList=document.querySelector('#list')?.closest('.panel');
-      if(!addArtwork||!artworkChoices||!team||!artworkList)return false;
+      if(!addArtwork||!optimizer||!artworkChoices||!team||!artworkList)return false;
 
       const targets=[
         ['admin-add-artwork','Add artwork',addArtwork],
+        ['admin-image-optimizer','Image optimizer',optimizer],
         ['admin-artwork-choices','Artwork choices',artworkChoices],
         ['admin-about-team','About Us / Team',team],
         ['admin-artwork-list','Artwork list',artworkList]
