@@ -29,13 +29,9 @@ window.HYU_SUPABASE_CONFIG = {
     }
   };
 
-  // Remove tokens left behind by the old persistSession:true implementation.
-  // From this revision onward, admin sessions exist only in JS memory and disappear on reload/tab close.
   clearLegacyAuthStorage();
   window.HYU_CLEAR_LEGACY_SUPABASE_AUTH=clearLegacyAuthStorage;
 
-  // Harden all clients created by this site before the page-specific code instantiates them.
-  // Public pages never need an authenticated session. Admin keeps refresh only while the tab is open.
   if(window.supabase?.createClient&&!window.supabase.__hyuAuthHardened){
     const originalCreateClient=window.supabase.createClient.bind(window.supabase);
     window.supabase.createClient=(url,key,options={})=>originalCreateClient(url,key,{
@@ -52,7 +48,6 @@ window.HYU_SUPABASE_CONFIG = {
 
   if(!isAdmin)return;
 
-  // Static-page hardening that can be applied from the repository itself.
   const addMeta=(attrs)=>{
     const meta=document.createElement('meta');
     for(const [key,value] of Object.entries(attrs))meta.setAttribute(key,value);
@@ -81,19 +76,32 @@ window.HYU_SUPABASE_CONFIG = {
     });
   }
 
-  // Best-effort clickjacking protection for the static GitHub Pages dashboard.
-  // A real X-Frame-Options/CSP frame-ancestors response header still requires a server/CDN layer.
   if(window.top!==window.self){
     try{window.top.location.replace(window.self.location.href)}catch{document.documentElement.style.display='none'}
   }
 
-  // Admin-only enhancements are loaded after the dashboard document is ready so they can
-  // safely extend the existing inline admin logic without affecting the public gallery.
+  const loadAdminUi=()=>{
+    if(document.querySelector('script[data-hyu-admin-ui]'))return;
+    const ui=document.createElement('script');
+    ui.src='./assets/js/admin-ui.js';
+    ui.dataset.hyuAdminUi='true';
+    document.body.appendChild(ui);
+  };
+
   const loadAdminEnhancements=()=>{
-    if(document.querySelector('script[data-hyu-admin-enhancements]'))return;
+    const existing=document.querySelector('script[data-hyu-admin-enhancements]');
+    if(existing){
+      if(existing.dataset.loaded==='true')loadAdminUi();
+      else existing.addEventListener('load',loadAdminUi,{once:true});
+      return;
+    }
     const script=document.createElement('script');
     script.src='./assets/js/admin-enhancements.js';
     script.dataset.hyuAdminEnhancements='true';
+    script.addEventListener('load',()=>{
+      script.dataset.loaded='true';
+      loadAdminUi();
+    },{once:true});
     document.body.appendChild(script);
   };
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',loadAdminEnhancements,{once:true});
