@@ -1,0 +1,20 @@
+@media(max-width:760px){
+  .art-card img[data-hyu-managed="1"],
+  .art-card:hover img[data-hyu-managed="1"],
+  .art-card:focus-visible img[data-hyu-managed="1"],
+  .art-card.expanded img[data-hyu-managed="1"]{
+    transform:none!important;
+    filter:none!important;
+    transition:none!important;
+    will-change:auto!important;
+    backface-visibility:visible;
+  }
+
+  .art-card img[data-hyu-managed="1"]{
+    background:#0b0d0c;
+  }
+
+  .art-card img[data-hyu-managed="1"].hyu-img-ready{
+    background:transparent;
+  }
+}
