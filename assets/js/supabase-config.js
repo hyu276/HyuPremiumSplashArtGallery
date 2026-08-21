@@ -57,13 +57,6 @@ window.HYU_SUPABASE_CONFIG = {
       document.head.appendChild(stabilityCss);
     }
 
-    if(!document.querySelector('script[data-hyu-mobile-image-stability]')){
-      const stability=document.createElement('script');
-      stability.src='./assets/js/mobile-image-stability.js';
-      stability.dataset.hyuMobileImageStability='true';
-      document.body.appendChild(stability);
-    }
-
     const loadMainCreditFilter=()=>{
       if(document.querySelector('script[data-hyu-main-credit-filter]'))return;
       const script=document.createElement('script');
@@ -72,15 +65,39 @@ window.HYU_SUPABASE_CONFIG = {
       document.body.appendChild(script);
     };
 
-    if(window.__HYU_MULTI_PROPERTY_SEARCH_READY__){
-      loadMainCreditFilter();
-    }else{
+    const loadSearchLayer=()=>{
+      if(window.__HYU_MULTI_PROPERTY_SEARCH_READY__){
+        loadMainCreditFilter();
+        return;
+      }
       window.addEventListener('hyu:multi-property-search-ready',loadMainCreditFilter,{once:true});
       if(!document.querySelector('script[data-hyu-multi-property-search]')){
         const search=document.createElement('script');
         search.src='./assets/js/multi-property-search.js';
         search.dataset.hyuMultiPropertySearch='true';
         document.body.appendChild(search);
+      }
+    };
+
+    const loadAfterResponsiveImages=()=>{
+      if(!document.querySelector('script[data-hyu-mobile-image-stability]')){
+        const stability=document.createElement('script');
+        stability.src='./assets/js/mobile-image-stability.js';
+        stability.dataset.hyuMobileImageStability='true';
+        document.body.appendChild(stability);
+      }
+      loadSearchLayer();
+    };
+
+    if(window.__HYU_RESPONSIVE_ARTWORK_IMAGES__){
+      loadAfterResponsiveImages();
+    }else{
+      window.addEventListener('hyu:responsive-artwork-images-ready',loadAfterResponsiveImages,{once:true});
+      if(!document.querySelector('script[data-hyu-responsive-artwork-images]')){
+        const responsive=document.createElement('script');
+        responsive.src='./assets/js/responsive-artwork-images.js';
+        responsive.dataset.hyuResponsiveArtworkImages='true';
+        document.body.appendChild(responsive);
       }
     }
   };
@@ -131,11 +148,28 @@ window.HYU_SUPABASE_CONFIG = {
     document.body.appendChild(ui);
   };
 
-  const loadAdminEnhancements=()=>{
-    const existing=document.querySelector('script[data-hyu-admin-enhancements]');
+  const loadArtworkThumbnailAdmin=()=>{
+    const existing=document.querySelector('script[data-hyu-admin-artwork-thumbnails]');
     if(existing){
       if(existing.dataset.loaded==='true')loadAdminUi();
       else existing.addEventListener('load',loadAdminUi,{once:true});
+      return;
+    }
+    const script=document.createElement('script');
+    script.src='./assets/js/admin-artwork-thumbnails.js';
+    script.dataset.hyuAdminArtworkThumbnails='true';
+    script.addEventListener('load',()=>{
+      script.dataset.loaded='true';
+      loadAdminUi();
+    },{once:true});
+    document.body.appendChild(script);
+  };
+
+  const loadAdminEnhancements=()=>{
+    const existing=document.querySelector('script[data-hyu-admin-enhancements]');
+    if(existing){
+      if(existing.dataset.loaded==='true')loadArtworkThumbnailAdmin();
+      else existing.addEventListener('load',loadArtworkThumbnailAdmin,{once:true});
       return;
     }
     const script=document.createElement('script');
@@ -143,7 +177,7 @@ window.HYU_SUPABASE_CONFIG = {
     script.dataset.hyuAdminEnhancements='true';
     script.addEventListener('load',()=>{
       script.dataset.loaded='true';
-      loadAdminUi();
+      loadArtworkThumbnailAdmin();
     },{once:true});
     document.body.appendChild(script);
   };
