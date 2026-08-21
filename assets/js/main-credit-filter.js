@@ -273,11 +273,7 @@
         return progressive.sampleIds.map(id=>byId.get(id)).filter(Boolean);
       }
       if(progressive.stage===1){
-        const sampled=new Set(progressive.sampleIds);
-        const byId=new Map(list.map(item=>[String(item.id),item]));
-        const first=progressive.sampleIds.map(id=>byId.get(id)).filter(Boolean);
-        const orderedNext=list.filter(item=>!sampled.has(String(item.id))).slice(0,SECOND_BATCH_COUNT);
-        return [...first,...orderedNext];
+        return list.slice(0,Math.min(SECOND_BATCH_COUNT,list.length));
       }
       return list;
     }
@@ -290,13 +286,13 @@
         return;
       }
       if(progressive.stage===0){
-        const remaining=Math.min(SECOND_BATCH_COUNT,Math.max(0,full.length-INITIAL_RANDOM_COUNT));
+        const nextCount=Math.min(SECOND_BATCH_COUNT,full.length);
         progressiveControls.hidden=false;
         viewAllButton.textContent='View all';
-        progressiveNote.textContent=`Show next ${remaining} artwork${remaining===1?'':'s'} in catalogue order`;
+        progressiveNote.textContent=`Show ${nextCount} artwork${nextCount===1?'':'s'} in catalogue order`;
         return;
       }
-      const shown=Math.min(full.length,INITIAL_RANDOM_COUNT+SECOND_BATCH_COUNT);
+      const shown=Math.min(full.length,SECOND_BATCH_COUNT);
       if(shown>=full.length){
         progressiveControls.hidden=true;
         return;
@@ -324,13 +320,16 @@
     viewAllButton.addEventListener('click',()=>{
       const full=fullFilteredList();
       ensureProgressiveContext(full);
+      const scrollX=window.scrollX;
+      const scrollY=window.scrollY;
       if(progressive.stage===0){
-        progressive.stage=full.length>INITIAL_RANDOM_COUNT+SECOND_BATCH_COUNT?1:2;
+        progressive.stage=full.length>SECOND_BATCH_COUNT?1:2;
       }else{
         progressive.stage=2;
       }
       galleryState.expanded=null;
       render();
+      requestAnimationFrame(()=>window.scrollTo({left:scrollX,top:scrollY,behavior:'auto'}));
     });
 
     syncCreditOptions();
