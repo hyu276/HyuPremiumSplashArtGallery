@@ -46,7 +46,19 @@ window.HYU_SUPABASE_CONFIG = {
     try{Object.defineProperty(window.supabase,'__hyuAuthHardened',{value:true,configurable:false})}catch{}
   }
 
-  if(!isAdmin)return;
+  const loadMainCreditFilter=()=>{
+    if(isAdmin||!document.querySelector('#catalog')||document.querySelector('script[data-hyu-main-credit-filter]'))return;
+    const script=document.createElement('script');
+    script.src='./assets/js/main-credit-filter.js';
+    script.dataset.hyuMainCreditFilter='true';
+    document.body.appendChild(script);
+  };
+
+  if(!isAdmin){
+    if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',loadMainCreditFilter,{once:true});
+    else loadMainCreditFilter();
+    return;
+  }
 
   const addMeta=(attrs)=>{
     const meta=document.createElement('meta');
