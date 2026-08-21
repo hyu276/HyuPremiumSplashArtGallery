@@ -50,6 +50,23 @@
     installed=true;
     window.__HYU_RESPONSIVE_ARTWORK_IMAGES__=true;
 
+    const gallery=document.querySelector('#gallery');
+    gallery?.addEventListener('error',event=>{
+      if(mobileQuery.matches)return;
+      const img=event.target;
+      if(!(img instanceof HTMLImageElement))return;
+      const card=img.closest('.art-card');
+      if(!card||img.dataset.hyuDesktopFallbackUsed==='1')return;
+      const item=(galleryState.items||[]).find(x=>String(x.id)===String(card.dataset.id));
+      if(!item)return;
+      hydrateItem(item);
+      const original=item.originalImage||item.image||'';
+      const thumb=item.thumbnail||'';
+      if(!original||!thumb||img.currentSrc===original||img.src===original)return;
+      img.dataset.hyuDesktopFallbackUsed='1';
+      img.src=original;
+    },true);
+
     function sourceFor(item){
       hydrateItem(item);
       const original=item.originalImage||item.image||'';
@@ -81,17 +98,6 @@
             img.dataset.hyuOriginalSrc=original;
             if(thumb)img.dataset.hyuThumbnailSrc=thumb;
             else delete img.dataset.hyuThumbnailSrc;
-
-            // Desktop uses the optimized thumbnail directly. If that derivative is ever missing
-            // or corrupt, fall back to the original source rather than leaving a blank card.
-            if(!mobileQuery.matches&&thumb&&original&&!img.dataset.hyuDesktopFallbackBound){
-              img.dataset.hyuDesktopFallbackBound='1';
-              img.addEventListener('error',()=>{
-                if(img.dataset.hyuDesktopFallbackUsed==='1')return;
-                img.dataset.hyuDesktopFallbackUsed='1';
-                img.src=original;
-              });
-            }
           });
         });
       }
