@@ -111,6 +111,16 @@
 
     toggle.addEventListener('click',()=>setExpanded(!shell.classList.contains('is-expanded')));
 
+    row.addEventListener('click',(event)=>{
+      const button=event.target.closest('button[data-cat]');
+      if(!button||!button.classList.contains('active')||button.dataset.cat==='all')return;
+      const allButton=row.querySelector('button[data-cat="all"]');
+      if(!allButton)return;
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      allButton.click();
+    },true);
+
     row.addEventListener('wheel',(event)=>{
       if(shell.classList.contains('is-expanded'))return;
       if(Math.abs(event.deltaY)<=Math.abs(event.deltaX))return;
