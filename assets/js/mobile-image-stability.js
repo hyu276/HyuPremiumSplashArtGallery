@@ -30,6 +30,12 @@
     return Math.abs(center-(window.innerHeight/2));
   }
 
+  function isNearViewport(img){
+    const rect=img.getBoundingClientRect();
+    const margin=window.innerHeight*1.2;
+    return rect.bottom>=-margin&&rect.top<=window.innerHeight+margin;
+  }
+
   function clearUnload(img){
     const timer=unloadTimers.get(img);
     if(timer){clearTimeout(timer);unloadTimers.delete(img)}
@@ -40,6 +46,7 @@
     if(img.dataset.hyuState!=='loaded')return;
     img.dataset.hyuState='idle';
     img.removeAttribute('fetchpriority');
+    img.classList.remove('hyu-img-ready');
     img.src=PLACEHOLDER;
   }
 
@@ -48,7 +55,7 @@
     if(img.dataset.hyuState!=='loaded')return;
     const timer=setTimeout(()=>{
       unloadTimers.delete(img);
-      unload(img);
+      if(!isNearViewport(img))unload(img);
     },UNLOAD_DELAY);
     unloadTimers.set(img,timer);
   }
@@ -74,13 +81,14 @@
       img.dataset.hyuState='loaded';
       img.dataset.hyuRetry='0';
       img.classList.add('hyu-img-ready');
+      if(!isNearViewport(img))scheduleUnload(img);
     }else{
       const retry=(Number(img.dataset.hyuRetry)||0)+1;
       img.dataset.hyuRetry=String(retry);
       img.dataset.hyuState='idle';
-      if(retry<=MAX_RETRIES){
+      if(retry<=MAX_RETRIES&&isNearViewport(img)){
         setTimeout(()=>enqueue(img),450*retry);
-      }else{
+      }else if(retry>MAX_RETRIES){
         img.dataset.hyuState='error';
       }
     }
@@ -89,6 +97,7 @@
 
   function startLoad(img){
     if(!img.isConnected||!isManaged(img)||img.dataset.hyuState==='loaded'||img.dataset.hyuState==='loading')return;
+    if(!isNearViewport(img))return;
     const source=realSource(img);
     if(!source)return;
 
@@ -106,7 +115,7 @@
   }
 
   function pump(){
-    queue=queue.filter(img=>img.isConnected&&isManaged(img)&&img.dataset.hyuState==='queued');
+    queue=queue.filter(img=>img.isConnected&&isManaged(img)&&img.dataset.hyuState==='queued'&&isNearViewport(img));
     queue.sort((a,b)=>priorityFor(a)-priorityFor(b));
     while(activeLoads<MAX_CONCURRENT&&queue.length){
       const img=queue.shift();
@@ -117,7 +126,7 @@
   }
 
   function enqueue(img){
-    if(!img?.isConnected||!isManaged(img))return;
+    if(!img?.isConnected||!isManaged(img)||!isNearViewport(img))return;
     const state=img.dataset.hyuState;
     if(state==='loaded'||state==='loading'||state==='queued'||state==='error')return;
     clearUnload(img);
@@ -220,6 +229,9 @@
     document.addEventListener('visibilitychange',()=>{
       if(document.visibilityState==='visible'&&mobileQuery.matches){
         prepareGallery();
+        gallery.querySelectorAll('.art-card img[data-hyu-managed="1"]').forEach(img=>{
+          if(isNearViewport(img)&&img.dataset.hyuState==='idle')enqueue(img);
+        });
         pump();
       }
     });
