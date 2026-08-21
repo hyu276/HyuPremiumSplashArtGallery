@@ -3,7 +3,7 @@
 
   if(window.__HYU_MAIN_CREDIT_FILTER__)return;
 
-  const INITIAL_RANDOM_COUNT=12;
+  const INITIAL_RANDOM_COUNT=6;
   const SECOND_BATCH_COUNT=50;
 
   function install(){
