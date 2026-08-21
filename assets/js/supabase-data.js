@@ -156,6 +156,16 @@
     });
   }
 
+  function stripInlineRankLabels(root=document){
+    if(!root?.querySelectorAll)return;
+    root.querySelectorAll('.card-meta').forEach(meta=>{
+      const text=(meta.textContent||'').trim();
+      const divider=' · ';
+      const index=text.lastIndexOf(divider);
+      if(index>0)meta.textContent=text.slice(0,index);
+    });
+  }
+
   function setTitleSize(title,px){
     const rounded=Math.max(7,Math.round(px*10)/10);
     title.style.fontSize=`${rounded}px`;
@@ -217,6 +227,7 @@
   function scheduleGalleryPolish(root=document){
     cancelAnimationFrame(galleryPolishFrame);
     galleryPolishFrame=requestAnimationFrame(()=>{
+      stripInlineRankLabels(root);
       styleRankBadges(root);
       fitArtworkTitles(root);
     });
