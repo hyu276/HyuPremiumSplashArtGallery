@@ -4,24 +4,35 @@
   if(window.__HYU_RESPONSIVE_ARTWORK_IMAGES__)return;
 
   let installed=false;
-  let thumbnailsLoaded=false;
+  let metadataRequested=false;
+  const metadataById=new Map();
 
-  async function attachThumbnailMetadata(galleryState){
-    if(thumbnailsLoaded)return;
-    thumbnailsLoaded=true;
+  function hydrateItem(item){
+    if(!item)return;
+    const row=metadataById.get(String(item.id));
+    if(row){
+      item.originalImage=row.image||item.originalImage||item.image||'';
+      item.thumbnail=row.thumbnail||item.thumbnail||'';
+      return;
+    }
+    if(!item.originalImage)item.originalImage=item.image||'';
+    if(!item.thumbnail)item.thumbnail='';
+  }
+
+  async function loadThumbnailMetadata(){
+    if(metadataRequested)return;
+    metadataRequested=true;
     const client=window.HYU_SUPABASE?.client;
     if(!client)return;
     try{
       const {data,error}=await client.from('artworks').select('id,image,thumbnail').eq('hidden',false);
       if(error)throw error;
-      const byId=new Map((data||[]).map(row=>[String(row.id),row]));
-      for(const item of galleryState.items||[]){
-        const row=byId.get(String(item.id));
-        if(!row)continue;
-        item.originalImage=row.image||item.originalImage||item.image||'';
-        item.thumbnail=row.thumbnail||'';
-      }
-      if(typeof render==='function')render();
+      metadataById.clear();
+      for(const row of data||[])metadataById.set(String(row.id),row);
+      try{
+        if(typeof state!=='undefined')for(const item of state.items||[])hydrateItem(item);
+        if(typeof render==='function')render();
+      }catch{}
     }catch(error){
       console.warn('Optimized artwork thumbnails unavailable; falling back to originals.',error);
     }
@@ -38,12 +49,8 @@
     installed=true;
     window.__HYU_RESPONSIVE_ARTWORK_IMAGES__=true;
 
-    for(const item of galleryState.items||[]){
-      if(!item.originalImage)item.originalImage=item.image||'';
-      if(!item.thumbnail)item.thumbnail='';
-    }
-
     function sourceFor(item){
+      hydrateItem(item);
       const original=item.originalImage||item.image||'';
       const expanded=String(galleryState.expanded||'')===String(item.id);
       return expanded?original:(item.thumbnail||original);
@@ -52,7 +59,7 @@
     render=function(){
       const swaps=[];
       for(const item of galleryState.items||[]){
-        if(!item.originalImage)item.originalImage=item.image||'';
+        hydrateItem(item);
         swaps.push([item,item.image]);
         item.image=sourceFor(item);
       }
@@ -61,9 +68,11 @@
       }finally{
         for(const [item,previous] of swaps)item.image=previous;
         requestAnimationFrame(()=>{
+          const byId=new Map((galleryState.items||[]).map(item=>[String(item.id),item]));
           document.querySelectorAll('#gallery .art-card').forEach(card=>{
-            const item=(galleryState.items||[]).find(x=>String(x.id)===String(card.dataset.id));
+            const item=byId.get(String(card.dataset.id));
             if(!item)return;
+            hydrateItem(item);
             const img=card.querySelector('img');
             if(!img)return;
             const original=item.originalImage||item.image||'';
@@ -76,7 +85,7 @@
       }
     };
 
-    attachThumbnailMetadata(galleryState);
+    loadThumbnailMetadata();
     window.dispatchEvent(new CustomEvent('hyu:responsive-artwork-images-ready'));
     return true;
   }
