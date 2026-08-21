@@ -47,6 +47,21 @@
     mark.setAttribute('aria-hidden','true');
     headerWordmark.prepend(mark);
   }
+  if(headerWordmark)headerWordmark.href='./';
+
+  if(!document.querySelector('style[data-hyu-site-nav]')){
+    const navStyle=document.createElement('style');
+    navStyle.dataset.hyuSiteNav='true';
+    navStyle.textContent='.site-header nav a{position:relative}.site-header nav a.active{color:var(--brand)}.site-header nav a.active:after{content:"";position:absolute;left:.1rem;right:.1rem;bottom:-.62rem;height:2px;background:var(--brand);box-shadow:0 0 10px rgba(67,220,255,.45)}@media(max-width:760px){.site-header{height:auto!important;min-height:62px!important;grid-template-columns:1fr!important;padding:10px 4vw 0!important}.site-header nav{display:flex!important;width:100%;justify-content:flex-start;gap:.32rem;overflow-x:auto;padding:9px 0 10px;margin-top:9px;border-top:1px solid rgba(241,241,234,.14);scrollbar-width:none}.site-header nav::-webkit-scrollbar{display:none}.site-header nav a{flex:none;padding:.4rem .55rem;font-size:.58rem!important;white-space:nowrap}.site-header nav a.active:after{bottom:-.48rem}}';
+    document.head.appendChild(navStyle);
+  }
+
+  const mainNav=document.querySelector('.site-header nav');
+  if(mainNav){
+    mainNav.innerHTML='<a class="active" href="./">Gallery</a><a href="./about.html">About us</a><a href="./news.html">News</a><a href="./blog.html">Blog</a>';
+  }
+  document.querySelector('.header-actions')?.remove();
+  document.querySelector('.edition')?.remove();
 
   const RANK_BADGE_GRADIENTS={
     'A':'linear-gradient(180deg, #035365 0%, #045C6C 48%, #08929C 100%)',
