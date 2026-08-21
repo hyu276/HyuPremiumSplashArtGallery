@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root{
+  --hyu-font:'Be Vietnam Pro','Noto Sans','Segoe UI',Arial,sans-serif;
+}
+
+html,
+body,
+button,
+input,
+select,
+textarea{
+  font-family:var(--hyu-font)!important;
+  font-synthesis:none;
+  text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+.site-header,
+.wordmark,
+.site-header nav,
+.hero,
+.page-hero,
+.manifesto,
+.content-wrap,
+.footer,
+.card-copy,
+.card-meta,
+.card-bottom,
+.tier,
+.results-line,
+.search-wrap,
+.category-row,
+.select-row{
+  font-family:var(--hyu-font)!important;
+}
+
+.hero h1,
+.page-hero h1,
+.manifesto h2,
+.section-copy h2,
+.empty-board strong{
+  font-family:var(--hyu-font)!important;
+  font-weight:900;
+  font-synthesis:none;
+}
+
+.hero h1 em,
+.page-hero h1 em,
+.manifesto h2 em{
+  font-family:var(--hyu-font)!important;
+  font-weight:600;
+  font-style:italic;
+  font-synthesis:none;
+}
+
+.card-copy strong{
+  font-family:var(--hyu-font)!important;
+  font-weight:800;
+  font-synthesis:none;
+  font-kerning:normal;
+  text-rendering:geometricPrecision;
+}
+
+.wordmark,
+.site-header nav,
+.card-meta,
+.card-bottom,
+.tier,
+.kicker,
+.hero-kicker,
+.section-label,
+.results-line,
+.empty-board span,
+.footer small{
+  font-synthesis:none;
+}
+
+.card-number,
+.results-line strong{
+  font-family:var(--hyu-font)!important;
+}
