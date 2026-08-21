@@ -1,35 +1,23 @@
-# HYU PREMIUM Supabase migration
+# HYU PREMIUM Supabase
 
-This repository is being migrated from GitHub JSON-as-a-database to Supabase while keeping Vercel as the public frontend host and GitHub as source control.
+HYU PREMIUM uses Supabase as the live data/auth/storage layer while GitHub remains source control and Vercel serves the public frontend.
 
-## Target architecture
+## Current architecture
 
-- **Vercel**: public `index.html` and static assets.
-- **Supabase Database**: artworks, categories, image credits, ranks, visibility.
+- **Vercel**: public Gallery, About Us, News and Blog pages.
+- **GitHub Pages**: owner Admin Dashboard.
+- **Supabase Database**: artworks, categories, image credits, ranks, team members and visibility.
 - **Supabase Auth**: owner/admin login.
-- **Supabase Storage**: future repository-independent artwork uploads.
-- **GitHub**: source code and deployment history, not catalogue state.
+- **Supabase Storage**: `artworks` bucket for gallery uploads and `team` bucket for About Us portraits.
+- **GitHub**: frontend/source history, not mutable catalogue state.
 
-## Safety rule during migration
+The browser Project URL and publishable/anon key are not secrets. Never put a `service_role` key, secret key, database password or admin password in this repository or browser code. RLS is the security boundary.
 
-Do not enable Supabase on the public site until the Admin Dashboard has also been switched to Supabase. Otherwise the public site and GitHub dashboard would write/read different sources of truth.
+## Fresh project setup
 
-`assets/js/supabase-config.js` therefore starts with `enabled: false`.
+Open Supabase Dashboard → **SQL Editor** and run the full contents of:
 
-## Step 1 — Create a Supabase project
-
-Create a new Supabase project. Keep the database password private.
-
-From **Project Settings / API**, copy only:
-
-- Project URL
-- Publishable key (or legacy anon key)
-
-These browser keys are intended for client applications when RLS is enabled. Never put a `service_role` key in this repository or browser code.
-
-## Step 2 — Create schema and RLS
-
-Open **SQL Editor** and run the full contents of `supabase/schema.sql`.
+`supabase/schema.sql`
 
 This creates:
 
@@ -37,17 +25,33 @@ This creates:
 - `image_credits`
 - `ranks`
 - `artworks`
+- `team_members`
 - `admins`
 - RLS policies
 - `artworks` Storage bucket
+- `team` Storage bucket
 
-Public visitors can read only visible artworks. Authenticated users can write only when their Auth UUID exists in `public.admins`.
+Public visitors can read only visible artworks and visible team members. Authenticated writes are allowed only when the Auth UUID exists in `public.admins`.
 
-## Step 3 — Create the owner Auth user
+## Existing project: add the Our Team feature
 
-In Supabase Dashboard → Authentication → Users, create the owner user with email/password.
+If the project already has the original HYU PREMIUM schema, do **not** recreate the project. Run this migration once instead:
 
-Copy that user's UUID and run in SQL Editor:
+`supabase/team-section.sql`
+
+It adds only:
+
+- `public.team_members`
+- team-member RLS/grants
+- updated-at trigger
+- public `team` Storage bucket
+- admin-only team image write policies
+
+After the SQL succeeds, reload the Admin Dashboard. The **About Us / Our Team** panel will become active immediately.
+
+## Owner Auth user
+
+Create the owner in Supabase Dashboard → Authentication → Users, then authorize that UUID once:
 
 ```sql
 insert into public.admins (user_id)
@@ -55,38 +59,22 @@ values ('YOUR_AUTH_USER_UUID')
 on conflict do nothing;
 ```
 
-## Step 4 — Configure this repository
+## Team member model
 
-Edit `assets/js/supabase-config.js`:
+Each team member stores:
 
-```js
-window.HYU_SUPABASE_CONFIG = {
-  enabled: false,
-  url: 'https://YOUR_PROJECT.supabase.co',
-  publishableKey: 'YOUR_PUBLISHABLE_OR_ANON_KEY'
-};
-```
+- Name
+- 1:1 portrait image URL
+- Display order
+- Member hidden/visible state
+- Facebook URL + icon hidden state
+- TikTok URL + icon hidden state
+- Instagram URL + icon hidden state
+- X URL + icon hidden state
+- LinkedIn URL + icon hidden state
 
-Keep `enabled: false` until the Admin Dashboard migration is complete.
+The public About Us page reads only rows where `hidden = false`. A social icon is rendered only when its URL exists and that platform's `*_hidden` field is false.
 
-## Step 5 — Import the current GitHub catalogue
+## Image behavior
 
-After configuring the URL/key, temporarily set `enabled: true`, open the unlinked migration page on GitHub Pages:
-
-`/supabase/migrate.html`
-
-Sign in using the Supabase owner account, then click **Import current catalogue**.
-
-The importer reads the current `data/artworks.json` and `data/options.json`, preserves hidden entries, creates normalized choices, and upserts all artwork records into Supabase.
-
-After the import, set `enabled: false` again until the Admin Dashboard has been converted.
-
-## Step 6 — Next implementation phase
-
-The next code change will convert `admin.html` from GitHub PAT writes to Supabase Auth + database/storage writes. After that is verified, switch `enabled: true` permanently and make the public gallery read Supabase first.
-
-## Current image strategy
-
-Phase 1 keeps the existing `image` value exactly as-is, including repository-relative `assets/artworks/...` paths and external URLs. This makes the database migration low-risk.
-
-A later phase can move uploaded images into Supabase Storage without changing the metadata model.
+Admin uploads artwork files to the `artworks` bucket and team portraits to the `team` bucket. Both buckets are public-read because their URLs are displayed on public pages; write/delete operations remain restricted to authenticated admins through Storage RLS policies.
