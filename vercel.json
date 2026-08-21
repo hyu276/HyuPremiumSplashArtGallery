@@ -1,0 +1,12 @@
+{
+  "redirects": [
+    { "source": "/about.html", "destination": "/about", "permanent": true },
+    { "source": "/news.html", "destination": "/news", "permanent": true },
+    { "source": "/blog.html", "destination": "/blog", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/about", "destination": "/about/index.html" },
+    { "source": "/news", "destination": "/news/index.html" },
+    { "source": "/blog", "destination": "/blog/index.html" }
+  ]
+}
