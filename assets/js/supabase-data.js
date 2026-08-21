@@ -15,6 +15,14 @@
     document.head.appendChild(layout);
   }
 
+  if(!document.querySelector('link[data-hyu-category-filter]')){
+    const categoryFilter=document.createElement('link');
+    categoryFilter.rel='stylesheet';
+    categoryFilter.href='./assets/css/category-filter.css';
+    categoryFilter.dataset.hyuCategoryFilter='true';
+    document.head.appendChild(categoryFilter);
+  }
+
   const BRAND_MARK='./assets/brand/hyu-industries-logo.png';
   if(!document.querySelector('link[data-hyu-favicon]')){
     const favicon=document.createElement('link');
@@ -70,6 +78,48 @@
   }
   document.querySelector('.header-actions')?.remove();
   document.querySelector('.edition')?.remove();
+
+  function initCategoryFilterUi(){
+    const row=document.querySelector('.category-row');
+    if(!row){requestAnimationFrame(initCategoryFilterUi);return;}
+    if(row.closest('.category-filter-shell'))return;
+
+    const shell=document.createElement('div');
+    shell.className='category-filter-shell';
+    row.parentNode.insertBefore(shell,row);
+    shell.appendChild(row);
+
+    const toggle=document.createElement('button');
+    toggle.type='button';
+    toggle.className='category-filter-toggle';
+    toggle.setAttribute('aria-expanded','false');
+    toggle.setAttribute('aria-label','Show all categories');
+    toggle.innerHTML='<span class="category-filter-label">Expand</span><span class="category-filter-icon" aria-hidden="true">⌄</span>';
+    shell.appendChild(toggle);
+
+    const label=toggle.querySelector('.category-filter-label');
+    const setExpanded=(expanded)=>{
+      shell.classList.toggle('is-expanded',expanded);
+      toggle.setAttribute('aria-expanded',String(expanded));
+      toggle.setAttribute('aria-label',expanded?'Collapse category list':'Show all categories');
+      if(label)label.textContent=expanded?'Collapse':'Expand';
+      if(!expanded){
+        const active=row.querySelector('button.active');
+        active?.scrollIntoView({behavior:'smooth',block:'nearest',inline:'nearest'});
+      }
+    };
+
+    toggle.addEventListener('click',()=>setExpanded(!shell.classList.contains('is-expanded')));
+
+    row.addEventListener('wheel',(event)=>{
+      if(shell.classList.contains('is-expanded'))return;
+      if(Math.abs(event.deltaY)<=Math.abs(event.deltaX))return;
+      if(row.scrollWidth<=row.clientWidth)return;
+      row.scrollLeft+=event.deltaY;
+      event.preventDefault();
+    },{passive:false});
+  }
+  initCategoryFilterUi();
 
   const RANK_BADGE_GRADIENTS={
     'A':'linear-gradient(180deg, #035365 0%, #045C6C 48%, #08929C 100%)',
