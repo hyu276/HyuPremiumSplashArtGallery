@@ -1,0 +1,11 @@
+{
+  "name": "hyu-premium-splash-art-gallery",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "node scripts/build-seo.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
