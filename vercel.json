@@ -1,4 +1,6 @@
 {
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
   "redirects": [
     { "source": "/about.html", "destination": "/about", "permanent": true },
     { "source": "/news.html", "destination": "/news", "permanent": true },
@@ -8,5 +10,19 @@
     { "source": "/about", "destination": "/about/index.html" },
     { "source": "/news", "destination": "/news/index.html" },
     { "source": "/blog", "destination": "/blog/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/robots.txt",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, s-maxage=3600" }]
+    },
+    {
+      "source": "/sitemap.xml",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, s-maxage=3600" }]
+    },
+    {
+      "source": "/image-sitemap.xml",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, s-maxage=3600" }]
+    }
   ]
 }
