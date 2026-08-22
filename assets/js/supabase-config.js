@@ -49,6 +49,13 @@ window.HYU_SUPABASE_CONFIG = {
   const loadPublicGalleryEnhancements=()=>{
     if(isAdmin||!document.querySelector('#catalog'))return;
 
+    if(!document.querySelector('script[data-hyu-seo-runtime]')){
+      const seo=document.createElement('script');
+      seo.src='./assets/js/seo-runtime.js?v=1';
+      seo.dataset.hyuSeoRuntime='true';
+      document.body.appendChild(seo);
+    }
+
     if(!document.querySelector('link[data-hyu-mobile-compact-ui]')){
       const compactCss=document.createElement('link');
       compactCss.rel='stylesheet';
