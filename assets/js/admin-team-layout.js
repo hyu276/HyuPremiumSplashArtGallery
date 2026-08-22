@@ -10,14 +10,14 @@
   }
 
   ready(()=>{
-    const panel=document.querySelector('#teamAdminPanel');
+    const panel=document.querySelector('#teamAdminPanel,#admin-about-team');
     const list=document.querySelector('#teamAdminList');
     const grid=document.querySelector('.grid');
     if(!panel||!list||!grid)return;
 
     const css=document.createElement('style');
     css.textContent=`
-      #teamAdminPanel.team-manager-wide{grid-column:1/-1;margin-top:0!important;min-width:0}
+      .team-manager-wide{grid-column:1/-1;margin-top:0!important;min-width:0}
       .team-admin-split{display:grid;grid-template-columns:minmax(420px,.95fr) minmax(460px,1.05fr);gap:18px;align-items:start}
       .team-admin-editor-pane,.team-admin-list-pane{min-width:0}
       .team-admin-editor-pane{padding-right:2px}
@@ -36,7 +36,7 @@
       .team-drag-handle{width:26px;height:42px;border:0;border-radius:5px;background:transparent;color:#697783;display:grid;place-items:center;padding:0;cursor:grab;touch-action:none;user-select:none;font-size:16px;line-height:1;letter-spacing:-3px}
       .team-drag-handle:hover,.team-drag-handle:focus-visible{background:#172129;color:#43dcff;outline:none}
       .team-drag-handle:active{cursor:grabbing}
-      #teamAdminPanel.team-reorder-saving .team-drag-handle{pointer-events:none;opacity:.35}
+      .team-manager-wide.team-reorder-saving .team-drag-handle{pointer-events:none;opacity:.35}
       @media(max-width:980px){
         .team-admin-split{grid-template-columns:1fr}
         .team-admin-list-pane{border-left:0;border-top:1px solid var(--line);padding-left:0;padding-top:16px}
