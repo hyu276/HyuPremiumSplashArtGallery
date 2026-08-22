@@ -66,11 +66,18 @@ window.HYU_SUPABASE_CONFIG = {
     }
 
     const loadMainCreditFilter=()=>{
-      if(document.querySelector('script[data-hyu-main-credit-filter]'))return;
-      const script=document.createElement('script');
-      script.src='./assets/js/main-credit-filter.js';
-      script.dataset.hyuMainCreditFilter='true';
-      document.body.appendChild(script);
+      if(!document.querySelector('script[data-hyu-main-credit-filter]')){
+        const script=document.createElement('script');
+        script.src='./assets/js/main-credit-filter.js';
+        script.dataset.hyuMainCreditFilter='true';
+        document.body.appendChild(script);
+      }
+      if(!document.querySelector('script[data-hyu-progressive-gallery-ux]')){
+        const progressiveUx=document.createElement('script');
+        progressiveUx.src='./assets/js/progressive-gallery-ux.js?v=1';
+        progressiveUx.dataset.hyuProgressiveGalleryUx='true';
+        document.body.appendChild(progressiveUx);
+      }
     };
 
     const loadSearchLayer=()=>{
