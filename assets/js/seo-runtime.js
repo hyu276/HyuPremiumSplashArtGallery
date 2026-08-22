@@ -7,7 +7,19 @@
   const safeSegment=value=>String(value??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9._-]+/g,'-').replace(/^-+|-+$/g,'')||'artwork';
   const clean=value=>String(value??'').replace(/\s+/g,' ').trim();
 
+  function ensureArtworkIndexLink(){
+    const links=document.querySelector('.footer-links');
+    if(!links||links.querySelector('[data-seo-artwork-index]'))return;
+    const anchor=document.createElement('a');
+    anchor.href='/artworks/';
+    anchor.textContent='Artwork index';
+    anchor.dataset.seoArtworkIndex='true';
+    anchor.title='Browse the crawlable HYU PREMIUM artwork index';
+    links.prepend(anchor);
+  }
+
   function enhance(){
+    ensureArtworkIndexLink();
     let items=[];
     try{items=Array.isArray(state?.items)?state.items:[]}catch{}
     if(!items.length)return false;
@@ -35,6 +47,7 @@
     return true;
   }
 
+  ensureArtworkIndexLink();
   const gallery=document.querySelector('#gallery');
   if(gallery){
     new MutationObserver(()=>requestAnimationFrame(enhance)).observe(gallery,{childList:true,subtree:true});
