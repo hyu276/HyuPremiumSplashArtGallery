@@ -153,5 +153,12 @@
       observer.observe(document.body,{childList:true,subtree:true});
       setTimeout(()=>observer.disconnect(),10000);
     }
+
+    if(!document.querySelector('script[data-hyu-admin-team-layout]')){
+      const teamLayout=document.createElement('script');
+      teamLayout.src='./assets/js/admin-team-layout.js';
+      teamLayout.dataset.hyuAdminTeamLayout='true';
+      document.body.appendChild(teamLayout);
+    }
   });
 })();
