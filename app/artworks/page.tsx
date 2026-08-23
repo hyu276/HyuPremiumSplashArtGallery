@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
 import { SiteHeader, SiteFooter } from '@/components/SiteChrome';
 import { artworkPath, getCatalogue } from '@/lib/catalogue';
+import { metadataForPath } from '@/lib/seo';
 
 export const revalidate=300;
-export const metadata:Metadata={title:'Gaming Splash Art Archive — Artwork Index',description:'Browse the HYU PREMIUM gaming splash art archive by character/category, skin rank and image credit.',alternates:{canonical:'https://hyupremium.vercel.app/artworks/'}};
+export async function generateMetadata():Promise<Metadata>{return metadataForPath('/artworks/',{title:'Gaming Splash Art Archive — Artwork Index',description:'Browse the HYU PREMIUM gaming splash art archive by character/category, skin rank and image credit.',alternates:{canonical:'https://hyupremium.vercel.app/artworks/'}})}
 
 export default async function ArtworkIndex(){
   const {items}=await getCatalogue();
