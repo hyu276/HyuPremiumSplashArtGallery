@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "build": "node scripts/build-seo.mjs && node scripts/enhance-internal-links.mjs && node scripts/inject-google-verification.mjs && node scripts/enable-character-routing.mjs && node scripts/canonicalize-name-slugs.mjs"
+    "build": "node scripts/build-seo.mjs && node scripts/enhance-internal-links.mjs && node scripts/inject-google-verification.mjs && node scripts/enable-character-routing.mjs && node scripts/canonicalize-name-slugs.mjs && node scripts/enhance-artwork-onpage-seo.mjs"
   },
   "engines": {
     "node": ">=20"
