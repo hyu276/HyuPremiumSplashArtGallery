@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
 import { SiteFooter, SiteHeader } from '@/components/SiteChrome';
 import { getTeamMembers, safeSocialUrl } from '@/lib/team';
+import { metadataForPath } from '@/lib/seo';
 import './about.css';
 
 export const revalidate=300;
-export const metadata:Metadata={title:'About us',description:'About HYU PREMIUM and its owner-curated digital splash-art archive.',alternates:{canonical:'https://hyupremium.vercel.app/about/'}};
+export async function generateMetadata():Promise<Metadata>{return metadataForPath('/about/',{title:'About us',description:'About HYU PREMIUM and its owner-curated digital splash-art archive.',alternates:{canonical:'https://hyupremium.vercel.app/about/'}})}
 
 const SOCIALS=[['facebook','Facebook'],['tiktok','TikTok'],['instagram','Instagram'],['x','X'],['linkedin','LinkedIn']] as const;
 
