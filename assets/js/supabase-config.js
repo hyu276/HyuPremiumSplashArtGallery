@@ -96,7 +96,7 @@ window.HYU_SUPABASE_CONFIG = {
       window.addEventListener('hyu:multi-property-search-ready',loadMainCreditFilter,{once:true});
       if(!document.querySelector('script[data-hyu-multi-property-search]')){
         const search=document.createElement('script');
-        search.src='./assets/js/multi-property-search.js';
+        search.src='./assets/js/multi-property-search.js?v=20260823-vn-switch-layout-1';
         search.dataset.hyuMultiPropertySearch='true';
         document.body.appendChild(search);
       }
