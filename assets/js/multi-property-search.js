@@ -82,19 +82,27 @@
     if(!selectRow)return;
     if(!Object.prototype.hasOwnProperty.call(galleryState,'vietnameseOnly'))galleryState.vietnameseOnly=false;
 
+    if(!document.querySelector('link[data-hyu-lora-font]')){
+      const font=document.createElement('link');
+      font.rel='stylesheet';
+      font.href='https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap';
+      font.dataset.hyuLoraFont='true';
+      document.head.appendChild(font);
+    }
+
     if(!document.querySelector('style[data-hyu-vietnamese-skin-filter]')){
       const style=document.createElement('style');
       style.dataset.hyuVietnameseSkinFilter='true';
       style.textContent=`
         .vietnamese-skin-filter{display:flex;align-items:flex-end;min-height:28px}
-        .vietnamese-skin-switch{height:28px;border:0;background:transparent;color:#cdd3d0;display:inline-flex;align-items:center;gap:8px;padding:0;font-size:.62rem;font-weight:800;white-space:nowrap;outline:none}
+        .vietnamese-skin-switch{height:28px;border:0;background:transparent;color:#cdd3d0;display:inline-flex;align-items:center;gap:8px;padding:0;font-family:'Lora',Georgia,serif;font-size:.68rem;font-weight:600;letter-spacing:0;white-space:nowrap;outline:none}
         .vietnamese-skin-switch:hover,.vietnamese-skin-switch:focus-visible{color:#fff}
         .vietnamese-skin-track{position:relative;width:30px;height:16px;border:1px solid #59615d;border-radius:999px;background:#151815;flex:none;transition:background .16s ease,border-color .16s ease,box-shadow .16s ease}
         .vietnamese-skin-knob{position:absolute;top:2px;left:2px;width:10px;height:10px;border-radius:50%;background:#8b938f;transition:transform .16s ease,background .16s ease}
         .vietnamese-skin-switch[aria-checked="true"]{color:var(--brand)}
         .vietnamese-skin-switch[aria-checked="true"] .vietnamese-skin-track{background:rgba(67,220,255,.16);border-color:var(--brand);box-shadow:0 0 12px rgba(67,220,255,.12)}
         .vietnamese-skin-switch[aria-checked="true"] .vietnamese-skin-knob{transform:translateX(14px);background:var(--brand)}
-        @media(max-width:760px){.vietnamese-skin-switch{font-size:.56rem;gap:7px}.vietnamese-skin-track{width:28px;height:15px}.vietnamese-skin-knob{width:9px;height:9px}.vietnamese-skin-switch[aria-checked="true"] .vietnamese-skin-knob{transform:translateX(13px)}}
+        @media(max-width:760px){.vietnamese-skin-switch{font-size:.6rem;gap:7px}.vietnamese-skin-track{width:28px;height:15px}.vietnamese-skin-knob{width:9px;height:9px}.vietnamese-skin-switch[aria-checked="true"] .vietnamese-skin-knob{transform:translateX(13px)}}
       `;
       document.head.appendChild(style);
     }
@@ -105,7 +113,13 @@
       field.className='vietnamese-skin-filter';
       field.dataset.vietnameseSkinFilter='true';
       field.innerHTML='<button type="button" class="vietnamese-skin-switch" role="switch" aria-checked="false" aria-label="Chỉ xem skin Việt Nam?"><span class="vietnamese-skin-track" aria-hidden="true"><span class="vietnamese-skin-knob"></span></span><span>Chỉ xem skin Việt Nam?</span></button>';
-      selectRow.appendChild(field);
+    }
+
+    const rankField=document.querySelector('#rank')?.closest('label');
+    if(rankField&&rankField.parentElement===selectRow){
+      if(field.parentElement!==selectRow||field.nextElementSibling!==rankField)selectRow.insertBefore(field,rankField);
+    }else if(field.parentElement!==selectRow){
+      selectRow.prepend(field);
     }
 
     const button=field.querySelector('.vietnamese-skin-switch');
