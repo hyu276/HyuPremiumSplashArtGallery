@@ -70,17 +70,62 @@
       ].join(' ').toLowerCase().includes(q));
       const rows=[...list.querySelectorAll('.item')];
       rows.forEach((row,index)=>{
-        row.querySelectorAll('.admin-vietnamese-skin-badge').forEach(el=>el.remove());
         const item=shown[index];
-        if(!item||!flagFor(item))return;
+        const shouldShow=Boolean(item&&flagFor(item));
         const title=row.querySelector('.title');
-        if(!title)return;
+        const existing=row.querySelector('.admin-vietnamese-skin-badge');
+        if(!shouldShow){
+          existing?.remove();
+          return;
+        }
+        if(!title||existing)return;
         const badge=document.createElement('span');
         badge.className='admin-vietnamese-skin-badge';
         badge.textContent='Việt Nam';
         title.appendChild(badge);
       });
     }
+
+    function setFlag(target,value,options={}){
+      const item=typeof target==='object'&&target?target:items.find(entry=>String(entry.id)===String(target));
+      const id=String(item?.id??target??'');
+      if(!id)return false;
+      const normalized=Boolean(value);
+      if(item)item.isVietnameseSkin=normalized;
+      pendingFlags.set(id,normalized);
+      if(!options.silent){
+        markDirty();
+        decorateList();
+      }
+      return true;
+    }
+
+    function setMany(targets,value){
+      const ids=[...new Set((targets||[]).map(target=>String(typeof target==='object'&&target?target.id:target)).filter(Boolean))];
+      if(!ids.length)return 0;
+      for(const id of ids)setFlag(id,value,{silent:true});
+      markDirty();
+      decorateList();
+      return ids.length;
+    }
+
+    function forget(target){
+      const id=String(typeof target==='object'&&target?target.id:target??'');
+      if(!id)return;
+      pendingFlags.delete(id);
+      savedFlags.delete(id);
+    }
+
+    window.HYU_ADMIN_VIETNAMESE_SKIN={
+      getFlag(target){
+        const item=typeof target==='object'&&target?target:items.find(entry=>String(entry.id)===String(target));
+        return flagFor(item);
+      },
+      setFlag,
+      setMany,
+      forget,
+      refresh:decorateList
+    };
 
     async function hydrateFlags(){
       if(hydrating||!client)return;
@@ -129,12 +174,8 @@
         if(editing)target=items.find(item=>String(item.id)===editing)||null;
         else target=items.find(item=>!beforeIds.has(String(item.id)))||null;
         if(!target)return;
-        const id=String(target.id);
-        target.isVietnameseSkin=desired;
-        pendingFlags.set(id,desired);
-        markDirty();
+        setFlag(target,desired);
         checkbox.checked=false;
-        decorateList();
       });
     },true);
 
@@ -166,6 +207,13 @@
         saveButton.disabled=!signedIn;
       }
     },true);
+
+    if(!document.querySelector('script[data-hyu-admin-batch-actions]')){
+      const batchScript=document.createElement('script');
+      batchScript.src='./assets/js/admin-batch-actions.js?v=1';
+      batchScript.dataset.hyuAdminBatchActions='true';
+      document.body.appendChild(batchScript);
+    }
 
     setTimeout(hydrateFlags,0);
     return true;
