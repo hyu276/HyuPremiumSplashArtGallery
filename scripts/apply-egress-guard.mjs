@@ -1,4 +1,4 @@
-import { readFile, writeFile } from 'node:fs/promises';
+import { readFile, writeFile, readdir } from 'node:fs/promises';
 import { join } from 'node:path';
 
 const ROOT = process.cwd();
@@ -29,35 +29,44 @@ async function patchSupabaseRuntime() {
   await writeFile(file, source);
 }
 
-async function patchGalleryRender() {
-  const file = join(DIST, 'index.html');
-  let html = await readFile(file, 'utf8');
-
-  const oldPrelude = "const expanded=state.expanded===item.id;return `<button class=\"art-card${expanded?' expanded':''}\"";
-  const newPrelude = "const expanded=state.expanded===item.id;const displayImage=expanded?(item.originalImage||item.image):(item.thumbnail||item.image);return `<button class=\"art-card${expanded?' expanded':''}\"";
-
-  if (html.includes(oldPrelude)) {
-    html = html.replace(oldPrelude, newPrelude);
-  } else if (!html.includes("const displayImage=expanded?(item.originalImage||item.image):(item.thumbnail||item.image)")) {
-    throw new Error('Egress guard could not patch gallery display image selection.');
+async function listHtmlFiles(root) {
+  const files = [];
+  async function walk(dir) {
+    for (const entry of await readdir(dir, { withFileTypes: true })) {
+      const path = join(dir, entry.name);
+      if (entry.isDirectory()) await walk(path);
+      else if (entry.name.endsWith('.html')) files.push(path);
+    }
   }
+  await walk(root);
+  return files;
+}
 
+async function patchGalleryRenders() {
   const oldImage = '<img src="${esc(imageSrc(item.image))}" alt="${esc(item.name)}" loading="lazy" decoding="async">';
-  const newImage = '<img src="${esc(imageSrc(displayImage))}" alt="${esc(item.name)}" loading="lazy" decoding="async" fetchpriority="low">';
+  const newImage = '<img src="${esc(imageSrc(expanded?(item.originalImage||item.image):(item.thumbnail||item.image)))}" alt="${esc(item.name)}" loading="lazy" decoding="async">';
+  let patchedFiles = 0;
 
-  if (html.includes(oldImage)) {
-    html = html.replace(oldImage, newImage);
-  } else if (!html.includes('imageSrc(displayImage)')) {
-    throw new Error('Egress guard could not patch gallery image source.');
+  for (const file of await listHtmlFiles(DIST)) {
+    let html = await readFile(file, 'utf8');
+    if (!html.includes('function render(){') || !html.includes('imageSrc(item.image)')) continue;
+
+    const next = html.split(oldImage).join(newImage);
+    if (next === html) continue;
+    await writeFile(file, next);
+    patchedFiles += 1;
   }
 
-  await writeFile(file, html);
+  if (!patchedFiles) {
+    throw new Error('Egress guard found no routed gallery HTML to patch.');
+  }
+  return patchedFiles;
 }
 
 async function main() {
   await patchSupabaseRuntime();
-  await patchGalleryRender();
-  console.log('Egress guard applied: gallery uses thumbnails by default and originals only for expanded artwork.');
+  const patchedFiles = await patchGalleryRenders();
+  console.log(`Egress guard applied to ${patchedFiles} routed gallery pages: thumbnails by default, originals only when expanded.`);
 }
 
 main().catch(error => {
