@@ -88,6 +88,12 @@ function injectMeta(html, property, value) {
   return pattern.test(html) ? html.replace(pattern, tag) : html.replace('</head>', `  ${tag}\n</head>`);
 }
 
+function replaceExactAttributeUrl(html, raw, absolute) {
+  const escaped = raw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const pattern = new RegExp(`((?:src|href|content)=["'])${escaped}(["'])`, 'g');
+  return html.replace(pattern, `$1${absolute}$2`);
+}
+
 function patchJsonLd(html, absolute, dimensions, contentType) {
   return html.replace(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/i, (full, raw) => {
     try {
@@ -141,7 +147,10 @@ async function patchCanonicalPages() {
     let dimensions = null;
     try { dimensions = parseImageDimensions(await readFile(localFile)); } catch {}
 
-    html = html.split(rawImage).join(absolute);
+    // Replace only attributes whose complete value is the relative URL. This avoids
+    // corrupting already-absolute semantic image URLs that merely contain rawImage
+    // as a substring (for example SITE_URL + '/' + rawImage).
+    html = replaceExactAttributeUrl(html, rawImage, absolute);
     html = injectMeta(html, 'og:image', absolute);
     html = injectMeta(html, 'og:image:secure_url', absolute);
     html = injectMeta(html, 'og:image:type', mediaTypeFromUrl(absolute));
