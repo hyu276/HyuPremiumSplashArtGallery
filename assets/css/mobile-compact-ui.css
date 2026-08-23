@@ -1,5 +1,5 @@
 @media(max-width:760px){
-  /* Compact mobile header + hero: roughly half the previous vertical footprint. */
+  /* Compact mobile header + hero. */
   .site-header{
     min-height:0!important;
     padding:6px 4vw 0!important;
@@ -56,48 +56,63 @@
     right:-18vw!important;
   }
 
-  /* Compact sticky filter deck: keeps all controls while using about half the height. */
+  /* Two-row mobile sticky deck: search + categories, then VN/rank/credit. */
   .filter-deck{
     position:-webkit-sticky!important;
     position:sticky!important;
     top:0!important;
     z-index:80!important;
-    grid-template-columns:1fr!important;
-    gap:.42rem!important;
-    padding:.48rem 4vw .52rem!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr)!important;
+    grid-template-areas:
+      "search categories"
+      "filters filters"!important;
+    gap:.24rem .48rem!important;
+    padding:.26rem 4vw .30rem!important;
     overflow:visible!important;
     background:rgba(8,9,8,.97)!important;
     -webkit-backdrop-filter:blur(14px)!important;
     backdrop-filter:blur(14px)!important;
-    box-shadow:0 7px 18px rgba(0,0,0,.22)!important;
+    box-shadow:0 6px 15px rgba(0,0,0,.20)!important;
   }
   .search-wrap{
-    height:30px!important;
+    grid-area:search!important;
+    min-width:0!important;
+    height:24px!important;
   }
   .search-wrap>span{
-    margin-right:.38rem!important;
-    font-size:1rem!important;
+    margin-right:.28rem!important;
+    font-size:.82rem!important;
   }
   .search-wrap input{
-    font-size:.70rem!important;
+    min-width:0!important;
+    font-size:.60rem!important;
   }
 
   .category-filter-shell{
-    gap:.20rem!important;
-    min-height:26px!important;
+    grid-area:categories!important;
+    grid-column:auto!important;
+    min-width:0!important;
+    width:100%!important;
+    gap:.14rem!important;
+    min-height:22px!important;
   }
   .category-filter-shell .category-row{
-    padding:.05rem .03rem .15rem!important;
+    width:auto!important;
+    max-width:none!important;
+    flex:1 1 auto!important;
+    min-width:0!important;
+    padding:0 .02rem .10rem!important;
   }
   .category-filter-shell .category-row button{
-    padding:.32rem .40rem!important;
-    font-size:.47rem!important;
-    letter-spacing:.06em!important;
+    padding:.25rem .31rem!important;
+    font-size:.40rem!important;
+    letter-spacing:.045em!important;
   }
   .category-filter-toggle{
-    width:20px!important;
-    min-width:20px!important;
-    height:20px!important;
+    width:18px!important;
+    min-width:18px!important;
+    height:18px!important;
   }
   .category-filter-toggle .category-filter-icon{
     border-left-width:3px!important;
@@ -106,46 +121,103 @@
   }
 
   .select-row{
+    grid-area:filters!important;
+    grid-column:1/-1!important;
     display:grid!important;
-    grid-template-columns:repeat(2,minmax(0,1fr))!important;
-    gap:.60rem!important;
+    grid-template-columns:minmax(128px,1.25fr) minmax(0,.92fr) minmax(0,.92fr)!important;
+    gap:.38rem!important;
     justify-content:stretch!important;
     align-items:end!important;
+    min-width:0!important;
   }
   .select-row label,
   .gallery-filter-field{
     min-width:0!important;
-    gap:.08rem!important;
+    gap:.03rem!important;
   }
   .select-row label>span,
   .gallery-filter-field>span{
-    margin-bottom:.08rem!important;
-    font-size:.40rem!important;
-    letter-spacing:.13em!important;
+    margin-bottom:0!important;
+    font-size:.34rem!important;
+    line-height:1!important;
+    letter-spacing:.10em!important;
   }
   .gallery-filter-control{
     width:100%!important;
+    min-width:0!important;
   }
   .gallery-filter-trigger{
-    height:23px!important;
-    padding:0 1px 2px 0!important;
-    font-size:.59rem!important;
+    height:19px!important;
+    min-height:19px!important;
+    padding:0 1px 1px 0!important;
+    font-size:.52rem!important;
   }
   .gallery-filter-chevron{
-    font-size:.54rem!important;
+    font-size:.48rem!important;
   }
   .gallery-filter-menu{
-    width:min(165px,44vw)!important;
-    max-height:170px!important;
+    width:min(154px,43vw)!important;
+    max-height:150px!important;
   }
   .gallery-filter-option{
-    padding:6px 7px!important;
-    font-size:.61rem!important;
+    padding:5px 6px!important;
+    font-size:.56rem!important;
   }
 
-  /* Expanded category mode may grow intentionally, collapsed/frozen mode stays compact. */
+  .vietnamese-skin-filter{
+    min-width:0!important;
+    min-height:19px!important;
+    align-items:flex-end!important;
+  }
+  .vietnamese-skin-switch{
+    width:100%!important;
+    min-width:0!important;
+    height:19px!important;
+    gap:5px!important;
+    font-size:.51rem!important;
+    line-height:1!important;
+    overflow:hidden!important;
+  }
+  .vietnamese-skin-switch>span:last-child{
+    min-width:0!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+    white-space:nowrap!important;
+  }
+  .vietnamese-skin-track{
+    width:24px!important;
+    height:13px!important;
+  }
+  .vietnamese-skin-knob{
+    top:2px!important;
+    left:2px!important;
+    width:7px!important;
+    height:7px!important;
+  }
+  .vietnamese-skin-switch[aria-checked="true"] .vietnamese-skin-knob{
+    transform:translateX(11px)!important;
+  }
+
+  /* Expanded titles stay on one line; JS auto-sizes them to the available width. */
+  .art-card.expanded .card-copy strong{
+    display:block!important;
+    width:100%!important;
+    max-width:100%!important;
+    white-space:nowrap!important;
+    overflow:visible!important;
+    text-overflow:clip!important;
+    line-height:1!important;
+  }
+
+  /* Expanded category mode may grow intentionally. */
+  .category-filter-shell.is-expanded{
+    grid-column:1/-1!important;
+  }
   .category-filter-shell.is-expanded .category-row{
-    max-height:150px!important;
+    width:auto!important;
+    max-width:none!important;
+    flex:1 1 auto!important;
+    max-height:130px!important;
   }
 }
 
@@ -158,7 +230,15 @@
     font-size:15vw!important;
   }
   .filter-deck{
+    grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr)!important;
     padding-left:3.5vw!important;
     padding-right:3.5vw!important;
+  }
+  .select-row{
+    grid-template-columns:minmax(118px,1.22fr) minmax(0,.9fr) minmax(0,.9fr)!important;
+    gap:.30rem!important;
+  }
+  .vietnamese-skin-switch{
+    font-size:.48rem!important;
   }
 }

@@ -60,9 +60,16 @@ window.HYU_SUPABASE_CONFIG = {
     if(!document.querySelector('link[data-hyu-mobile-compact-ui]')){
       const compactCss=document.createElement('link');
       compactCss.rel='stylesheet';
-      compactCss.href='./assets/css/mobile-compact-ui.css?v=1';
+      compactCss.href='./assets/css/mobile-compact-ui.css?v=2';
       compactCss.dataset.hyuMobileCompactUi='true';
       document.head.appendChild(compactCss);
+    }
+
+    if(!document.querySelector('script[data-hyu-mobile-expanded-title-fit]')){
+      const titleFit=document.createElement('script');
+      titleFit.src='./assets/js/mobile-expanded-title-fit.js?v=1';
+      titleFit.dataset.hyuMobileExpandedTitleFit='true';
+      document.body.appendChild(titleFit);
     }
 
     if(!document.querySelector('link[data-hyu-mobile-gallery-stability]')){
