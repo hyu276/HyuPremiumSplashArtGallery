@@ -2,6 +2,8 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "redirects": [
+    { "source": "/", "destination": "/character/", "permanent": true },
+    { "source": "/characters/", "destination": "/character/", "permanent": true },
     { "source": "/about.html", "destination": "/about", "permanent": true },
     { "source": "/news.html", "destination": "/news", "permanent": true },
     { "source": "/blog.html", "destination": "/blog", "permanent": true }
