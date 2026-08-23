@@ -70,11 +70,15 @@
       ].join(' ').toLowerCase().includes(q));
       const rows=[...list.querySelectorAll('.item')];
       rows.forEach((row,index)=>{
-        row.querySelectorAll('.admin-vietnamese-skin-badge').forEach(el=>el.remove());
         const item=shown[index];
-        if(!item||!flagFor(item))return;
+        const shouldShow=Boolean(item&&flagFor(item));
         const title=row.querySelector('.title');
-        if(!title)return;
+        const existing=row.querySelector('.admin-vietnamese-skin-badge');
+        if(!shouldShow){
+          existing?.remove();
+          return;
+        }
+        if(!title||existing)return;
         const badge=document.createElement('span');
         badge.className='admin-vietnamese-skin-badge';
         badge.textContent='Việt Nam';
