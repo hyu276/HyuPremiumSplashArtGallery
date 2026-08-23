@@ -77,6 +77,14 @@ function replaceRouteReferences(html, routes) {
   return out;
 }
 
+function normalizeCharacterNavigation(html) {
+  return html
+    .replaceAll(`${SITE_URL}/characters/`, `${SITE_URL}/character/`)
+    .replaceAll('href="/characters/"', 'href="/character/"')
+    .replaceAll('>Characters</a>', '>Character</a>')
+    .replaceAll('>Gallery</a>', '>Character</a>');
+}
+
 function routeLayerScript(selectedCategory = '') {
   return `
 <script id="hyuCharacterRouteLayer">
@@ -174,10 +182,7 @@ function makeCharacterAppHtml(source, routes, selectedCategory = '') {
   if (!/<base\s/i.test(html)) html = html.replace('<head>', '<head>\n  <base href="/">');
 
   html = replaceRouteReferences(html, routes);
-  html = html.replaceAll(`${SITE_URL}/characters/`, `${SITE_URL}/character/`);
-  html = html.replaceAll('href="/characters/"', 'href="/character/"');
-  html = html.replaceAll('>Characters</a>', '>Character</a>');
-  html = html.replaceAll('>Gallery</a>', '>Character</a>');
+  html = normalizeCharacterNavigation(html);
 
   html = replaceMeta(html, /<link rel="canonical" href="[^"]+">/i, `<link rel="canonical" href="${canonical}">`);
   html = replaceMeta(html, /<meta property="og:url" content="[^"]+">/i, `<meta property="og:url" content="${canonical}">`);
@@ -225,10 +230,7 @@ async function createCharacterAppPages(rootHtml, routes) {
 async function createNestedArtworkPages(routes) {
   for (const route of routes) {
     let html = replaceRouteReferences(route.sourceHtml, routes);
-    html = html.replaceAll(`${SITE_URL}/characters/`, `${SITE_URL}/character/`);
-    html = html.replaceAll('href="/characters/"', 'href="/character/"');
-    html = html.replaceAll('>Characters</a>', '>Character</a>');
-    html = html.replaceAll('>Gallery</a>', '>Character</a>');
+    html = normalizeCharacterNavigation(html);
 
     const categoryPath = `/character/${route.characterSlug}/`;
     html = html.replace(/<a class="back" href="[^"]+">[^<]*→<\/a>/i, `<a class="back" href="${categoryPath}">${escHtml(route.category)} →</a>`);
@@ -236,6 +238,31 @@ async function createNestedArtworkPages(routes) {
     const targetDir = join(DIST, 'character', route.characterSlug, route.artworkSlug);
     await mkdir(targetDir, { recursive: true });
     await writeFile(join(targetDir, 'index.html'), html);
+  }
+}
+
+async function migrateLegacyInternalLinks(routes) {
+  const artworksIndex = join(DIST, 'artworks', 'index.html');
+  try {
+    let indexHtml = await readFile(artworksIndex, 'utf8');
+    indexHtml = normalizeCharacterNavigation(replaceRouteReferences(indexHtml, routes));
+    await writeFile(artworksIndex, indexHtml);
+  } catch {}
+
+  for (const route of routes) {
+    let legacy = replaceRouteReferences(route.sourceHtml, routes);
+    legacy = normalizeCharacterNavigation(legacy);
+    legacy = replaceMeta(
+      legacy,
+      /<meta name="robots" content="[^"]+">/i,
+      '<meta name="robots" content="noindex,follow,max-image-preview:large">'
+    );
+    legacy = replaceMeta(
+      legacy,
+      /<meta name="googlebot" content="[^"]+">/i,
+      '<meta name="googlebot" content="noindex,follow,max-image-preview:large">'
+    );
+    await writeFile(route.sourceFile, legacy);
   }
 }
 
@@ -259,6 +286,7 @@ const routes = await collectRoutes();
 const rootHtml = await readFile(join(DIST, 'index.html'), 'utf8');
 const characterCount = await createCharacterAppPages(rootHtml, routes);
 await createNestedArtworkPages(routes);
+await migrateLegacyInternalLinks(routes);
 await updateSitemaps(routes);
 
 console.log(`Character routing enabled safely: ${routes.length} artworks across ${characterCount} character URLs; existing Supabase/gallery runtime preserved.`);
