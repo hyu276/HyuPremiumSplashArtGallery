@@ -1,20 +1,21 @@
 import type { Metadata } from 'next';
+import { getSeoGlobalSettings } from '@/lib/seo';
 import './globals.css';
 
-export const metadata: Metadata = {
-  metadataBase: new URL('https://hyupremium.vercel.app'),
-  title: {
-    default: 'HYU PREMIUM — Gaming Splash Art Archive',
-    template: '%s | HYU PREMIUM'
-  },
-  description: 'A curated searchable archive of gaming splash art organized by character/category, skin rank and image credit.',
-  robots: { index: true, follow: true },
-  verification: { google: 'KMBRePIo30hKHau-mQc3tM_H0bELdtJRxXfo8I1PDGE' },
-  openGraph: { siteName: 'HYU PREMIUM', type: 'website' },
-  twitter: { card: 'summary_large_image' },
-  icons: { icon: '/assets/brand/hyu-industries-logo.png', apple: '/assets/brand/hyu-industries-logo.png' }
-};
+export async function generateMetadata():Promise<Metadata>{
+  const seo=await getSeoGlobalSettings();
+  return {
+    metadataBase:new URL(seo.site_url),
+    title:{default:seo.default_title,template:seo.title_template},
+    description:seo.default_description,
+    robots:{index:true,follow:true},
+    verification:{google:seo.google_site_verification||undefined},
+    openGraph:{siteName:seo.site_name,type:'website',locale:seo.default_locale,...(seo.default_og_image?{images:[seo.default_og_image]}:{})},
+    twitter:{card:'summary_large_image',...(seo.default_og_image?{images:[seo.default_og_image]}:{})},
+    icons:{icon:'/assets/brand/hyu-industries-logo.png',apple:'/assets/brand/hyu-industries-logo.png'}
+  };
+}
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({children}:{children:React.ReactNode}){
   return <html lang="vi"><body>{children}</body></html>;
 }
