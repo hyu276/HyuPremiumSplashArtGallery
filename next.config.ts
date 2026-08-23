@@ -15,7 +15,8 @@ const nextConfig: NextConfig = {
       { source: '/characters/', destination: '/character/', permanent: true },
       { source: '/about.html', destination: '/about/', permanent: true },
       { source: '/news.html', destination: '/news/', permanent: true },
-      { source: '/blog.html', destination: '/blog/', permanent: true }
+      { source: '/blog.html', destination: '/blog/', permanent: true },
+      { source: '/admin.html', destination: '/admin/', permanent: false }
     ];
   },
   async rewrites() {
