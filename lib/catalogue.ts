@@ -1,3 +1,5 @@
+import { egressSafeMode, publicMediaUrl, supabaseUrl, toAbsoluteSiteUrl } from '@/lib/media';
+
 export type Artwork = {
   id: string;
   name: string;
@@ -21,7 +23,6 @@ export type Catalogue = {
 };
 
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://hyupremium.vercel.app').replace(/\/$/, '');
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://zkrhwqgmynbbmoktokdq.supabase.co';
 const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || 'sb_publishable_Fqcxk9-U1qalClQZjKcrhA_U822LTIq';
 
 export const siteUrl = SITE_URL;
@@ -38,16 +39,13 @@ export function slug(value: string) {
 }
 
 export function absoluteImageUrl(value: string) {
-  const raw = String(value || '').trim();
-  if (!raw) return '';
-  if (/^https?:\/\//i.test(raw)) return raw;
-  return new URL(raw.replace(/^\.\//, ''), `${SITE_URL}/`).href;
+  return toAbsoluteSiteUrl(value);
 }
 
 const alpha = (a: string, b: string) => a.localeCompare(b, undefined, { sensitivity: 'base', numeric: true });
 
 async function rest<T>(path: string): Promise<T> {
-  const response = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, {
+  const response = await fetch(`${supabaseUrl}/rest/v1/${path}`, {
     headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` },
     next: { revalidate: 300, tags: ['catalogue'] }
   });
@@ -64,20 +62,24 @@ export async function getCatalogue(): Promise<Catalogue> {
     rest<any[]>('image_credits?select=name&order=name.asc')
   ]);
 
-  const items: Artwork[] = rows.map(row => ({
-    id: String(row.id),
-    name: String(row.name || 'Untitled artwork').trim(),
-    description: String(row.description || '').trim(),
-    image: absoluteImageUrl(row.image),
-    thumbnail: absoluteImageUrl(row.thumbnail || row.image),
-    tags: Array.isArray(row.tags) ? row.tags.map(String) : [],
-    category: String(row.category?.name || 'Uncategorized'),
-    rank: String(row.rank?.name || 'Unranked'),
-    rankOrder: Number(row.rank?.sort_order) || 0,
-    credit: String(row.credit?.name || 'Uncredited'),
-    isVietnameseSkin: Boolean(row.is_vietnamese_skin),
-    updatedAt: row.updated_at || undefined
-  })).sort((a, b) => alpha(a.category, b.category) || a.rankOrder - b.rankOrder || alpha(a.name, b.name));
+  const items: Artwork[] = rows.map(row => {
+    const original=publicMediaUrl(row.image);
+    const thumbnail=publicMediaUrl(row.thumbnail || row.image);
+    return {
+      id: String(row.id),
+      name: String(row.name || 'Untitled artwork').trim(),
+      description: String(row.description || '').trim(),
+      image: egressSafeMode ? thumbnail : original,
+      thumbnail,
+      tags: Array.isArray(row.tags) ? row.tags.map(String) : [],
+      category: String(row.category?.name || 'Uncategorized'),
+      rank: String(row.rank?.name || 'Unranked'),
+      rankOrder: Number(row.rank?.sort_order) || 0,
+      credit: String(row.credit?.name || 'Uncredited'),
+      isVietnameseSkin: Boolean(row.is_vietnamese_skin),
+      updatedAt: row.updated_at || undefined
+    };
+  }).sort((a, b) => alpha(a.category, b.category) || a.rankOrder - b.rankOrder || alpha(a.name, b.name));
 
   return {
     items,
