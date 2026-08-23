@@ -10,6 +10,7 @@ window.HYU_SUPABASE_CONFIG = {
 (function hardenSupabaseBrowserAuth(){
   const cfg=window.HYU_SUPABASE_CONFIG||{};
   const isAdmin=/\/admin\.html$/i.test(window.location.pathname);
+  const ADMIN_ASSET_VERSION='20260823-batch-fix-1';
   let projectRef='';
   try{projectRef=new URL(cfg.url).hostname.split('.')[0]||''}catch{}
   const authStorageKey=projectRef?`sb-${projectRef}-auth-token`:'';
@@ -165,7 +166,7 @@ window.HYU_SUPABASE_CONFIG = {
   const loadAdminUi=()=>{
     if(document.querySelector('script[data-hyu-admin-ui]'))return;
     const ui=document.createElement('script');
-    ui.src='./assets/js/admin-ui.js';
+    ui.src=`./assets/js/admin-ui.js?v=${ADMIN_ASSET_VERSION}`;
     ui.dataset.hyuAdminUi='true';
     document.body.appendChild(ui);
   };
@@ -178,7 +179,7 @@ window.HYU_SUPABASE_CONFIG = {
       return;
     }
     const script=document.createElement('script');
-    script.src='./assets/js/admin-artwork-thumbnails.js';
+    script.src=`./assets/js/admin-artwork-thumbnails.js?v=${ADMIN_ASSET_VERSION}`;
     script.dataset.hyuAdminArtworkThumbnails='true';
     script.addEventListener('load',()=>{
       script.dataset.loaded='true';
@@ -195,7 +196,7 @@ window.HYU_SUPABASE_CONFIG = {
       return;
     }
     const script=document.createElement('script');
-    script.src='./assets/js/admin-enhancements.js';
+    script.src=`./assets/js/admin-enhancements.js?v=${ADMIN_ASSET_VERSION}`;
     script.dataset.hyuAdminEnhancements='true';
     script.addEventListener('load',()=>{
       script.dataset.loaded='true';
