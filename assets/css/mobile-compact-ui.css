@@ -209,9 +209,22 @@
     line-height:1!important;
   }
 
-  /* Expanded category mode may grow intentionally. */
+  /* Expanded categories receive a dedicated row and never overlap Search. */
+  .filter-deck:has(.category-filter-shell.is-expanded){
+    grid-template-columns:1fr!important;
+    grid-template-areas:
+      "search"
+      "categories"
+      "filters"!important;
+  }
+  .filter-deck:has(.category-filter-shell.is-expanded) .search-wrap{
+    width:100%!important;
+  }
   .category-filter-shell.is-expanded{
+    grid-area:categories!important;
     grid-column:1/-1!important;
+    width:100%!important;
+    align-items:flex-start!important;
   }
   .category-filter-shell.is-expanded .category-row{
     width:auto!important;
@@ -233,6 +246,9 @@
     grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr)!important;
     padding-left:3.5vw!important;
     padding-right:3.5vw!important;
+  }
+  .filter-deck:has(.category-filter-shell.is-expanded){
+    grid-template-columns:1fr!important;
   }
   .select-row{
     grid-template-columns:minmax(118px,1.22fr) minmax(0,.9fr) minmax(0,.9fr)!important;
