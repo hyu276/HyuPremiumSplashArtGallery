@@ -60,7 +60,7 @@ window.HYU_SUPABASE_CONFIG = {
     if(!document.querySelector('link[data-hyu-mobile-compact-ui]')){
       const compactCss=document.createElement('link');
       compactCss.rel='stylesheet';
-      compactCss.href='./assets/css/mobile-compact-ui.css?v=2';
+      compactCss.href='./assets/css/mobile-compact-ui.css?v=3';
       compactCss.dataset.hyuMobileCompactUi='true';
       document.head.appendChild(compactCss);
     }
