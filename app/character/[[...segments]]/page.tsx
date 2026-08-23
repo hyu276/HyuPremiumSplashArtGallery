@@ -7,6 +7,10 @@ import { artworkPath, factualDescription, findArtwork, getCatalogue, siteUrl, sl
 export const revalidate = 300;
 type PageProps = { params: Promise<{ segments?: string[] }> };
 
+function localizedAlternates(url:string){
+  return {canonical:url,languages:{vi:url,'x-default':url}};
+}
+
 function seoForArtwork(item:Artwork){
   const vietnamese=item.isVietnameseSkin;
   const title=vietnamese?`${item.category} ${item.name} – Skin Việt Nam Liên Quân`:`${item.category} ${item.name} – Fanart Liên Quân`;
@@ -27,9 +31,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     const seo=seoForArtwork(artwork);
     return {
       title:{absolute:seo.title},description:seo.description,keywords:seo.keywords,
-      alternates:{canonical:url},
+      alternates:localizedAlternates(url),
       robots:{index:true,follow:true,googleBot:{index:true,follow:true,'max-image-preview':'large','max-snippet':-1,'max-video-preview':-1}},
-      openGraph:{title:seo.title,description:seo.description,url,type:'article',images:[{url:artwork.image,alt:seo.alt}]},
+      openGraph:{title:seo.title,description:seo.description,url,type:'article',locale:'vi_VN',images:[{url:artwork.image,alt:seo.alt}]},
       twitter:{card:'summary_large_image',title:seo.title,description:seo.description,images:[{url:artwork.image,alt:seo.alt}]}
     };
   }
@@ -37,9 +41,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     const url = `${siteUrl}/character/${segments[0]}/`;
     const title = `${category} Splash Art Archive`;
     const description = `Browse ${category} gaming splash art in the HYU PREMIUM archive.`;
-    return { title, description, alternates: { canonical: url }, openGraph: { title, description, url, type: 'website' } };
+    return { title, description, alternates:localizedAlternates(url), openGraph: { title, description, url, type: 'website', locale:'vi_VN' } };
   }
-  return {title:{absolute:'HYU PREMIUM — Gaming Splash Art Archive'},description:'A curated searchable archive of gaming splash art organized by character/category, skin rank and image credit.',alternates:{canonical:`${siteUrl}/character/`}};
+  const rootUrl=`${siteUrl}/character/`;
+  return {title:{absolute:'HYU PREMIUM — Gaming Splash Art Archive'},description:'A curated searchable archive of gaming splash art organized by character/category, skin rank and image credit.',alternates:localizedAlternates(rootUrl),openGraph:{url:rootUrl,type:'website',locale:'vi_VN'}};
 }
 
 export default async function CharacterGalleryPage({ params }: PageProps) {
