@@ -160,5 +160,12 @@
       teamLayout.dataset.hyuAdminTeamLayout='true';
       document.body.appendChild(teamLayout);
     }
+
+    if(!document.querySelector('script[data-hyu-admin-vietnamese-skin]')){
+      const vietnameseSkin=document.createElement('script');
+      vietnameseSkin.src='./assets/js/admin-vietnamese-skin.js?v=1';
+      vietnameseSkin.dataset.hyuAdminVietnameseSkin='true';
+      document.body.appendChild(vietnameseSkin);
+    }
   });
 })();
