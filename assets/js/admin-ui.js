@@ -2,6 +2,7 @@
   'use strict';
 
   const COLLAPSE_KEY='hyu_admin_choice_collapse_v1';
+  const ADMIN_FEATURE_VERSION='20260823-batch-fix-1';
 
   function whenReady(fn){
     if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fn,{once:true});
@@ -156,16 +157,30 @@
 
     if(!document.querySelector('script[data-hyu-admin-team-layout]')){
       const teamLayout=document.createElement('script');
-      teamLayout.src='./assets/js/admin-team-layout.js';
+      teamLayout.src=`./assets/js/admin-team-layout.js?v=${ADMIN_FEATURE_VERSION}`;
       teamLayout.dataset.hyuAdminTeamLayout='true';
       document.body.appendChild(teamLayout);
     }
 
-    if(!document.querySelector('script[data-hyu-admin-vietnamese-skin]')){
+    const loadBatchActions=()=>{
+      if(window.__HYU_ADMIN_BATCH_ACTIONS__||document.querySelector('script[data-hyu-admin-batch-actions]'))return;
+      const batch=document.createElement('script');
+      batch.src=`./assets/js/admin-batch-actions.js?v=${ADMIN_FEATURE_VERSION}`;
+      batch.dataset.hyuAdminBatchActions='true';
+      document.body.appendChild(batch);
+    };
+
+    const existingVietnamese=document.querySelector('script[data-hyu-admin-vietnamese-skin]');
+    if(existingVietnamese){
+      loadBatchActions();
+    }else{
       const vietnameseSkin=document.createElement('script');
-      vietnameseSkin.src='./assets/js/admin-vietnamese-skin.js?v=1';
+      vietnameseSkin.src=`./assets/js/admin-vietnamese-skin.js?v=${ADMIN_FEATURE_VERSION}`;
       vietnameseSkin.dataset.hyuAdminVietnameseSkin='true';
+      vietnameseSkin.addEventListener('load',loadBatchActions,{once:true});
+      vietnameseSkin.addEventListener('error',loadBatchActions,{once:true});
       document.body.appendChild(vietnameseSkin);
+      setTimeout(loadBatchActions,1200);
     }
   });
 })();
