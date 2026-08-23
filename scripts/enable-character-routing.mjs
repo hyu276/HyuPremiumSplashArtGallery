@@ -97,6 +97,24 @@ function routeLayerScript(selectedCategory = '') {
     .replace(/[^a-z0-9._-]+/g, '-')
     .replace(/^-+|-+$/g, '') || 'item';
 
+  const normalizeRuntimeNav = () => {
+    const wordmark = document.querySelector('.site-header .wordmark');
+    if (wordmark) wordmark.setAttribute('href', '/character/');
+
+    const nav = document.querySelector('.site-header nav');
+    if (!nav) return false;
+    const first = nav.querySelector('a');
+    if (!first) return false;
+    first.textContent = 'Character';
+    first.setAttribute('href', '/character/');
+    first.classList.add('active');
+    return true;
+  };
+
+  normalizeRuntimeNav();
+  queueMicrotask(normalizeRuntimeNav);
+  setTimeout(normalizeRuntimeNav, 0);
+
   const applyCategoryFromUrl = () => {
     if (!selectedCategory) return true;
     try {
