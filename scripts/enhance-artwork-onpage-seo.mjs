@@ -41,7 +41,7 @@ function replaceOrInjectMeta(html, selectorPattern, tag) {
 function priorityDescription(item) {
   const key = `${item.category}::${item.name}`;
   const descriptions = new Map([
-    ['Marja::Cô nàng Thanh Hóa', 'Cô nàng Thanh Hóa — splash art skin Marja trong HYU PREMIUM. Hạng SS, image credit Hyu; artwork được đánh dấu là skin Việt Nam. Xem ảnh gốc và các artwork Marja liên quan.'],
+    ['Marja::Cô nàng Thanh Hóa', 'Cô nàng Thanh Hóa — splash art skin Marja trong HYU PREMIUM. Hạng SS, image credit Hyu. Xem ảnh gốc và các artwork Marja liên quan trong gallery.'],
     ['Marja::WAVE', 'WAVE — splash art skin Marja trong HYU PREMIUM. Hạng SS, image credit Hyu. Xem ảnh gốc và các artwork Marja liên quan trong gallery.'],
     ['Enzo::Ma thuật đen', 'Ma thuật đen — splash art skin Enzo trong HYU PREMIUM. Hạng S+, image credit Hyu. Xem ảnh gốc và các artwork Enzo liên quan trong gallery.']
   ]);
