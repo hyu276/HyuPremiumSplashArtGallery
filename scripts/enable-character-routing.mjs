@@ -44,6 +44,9 @@ async function collectRoutes() {
     const category = categoryRaw || 'Uncategorized';
     const name = matchText(html, /<h1 class="title">([\s\S]*?)<\/h1>/i, dir.name);
     const image = matchText(html, /<figure><img src="([^"]+)"/i);
+    const title = matchText(html, /<title>([\s\S]*?)<\/title>/i, `${name} — ${category} Splash Art | HYU PREMIUM`);
+    const description = matchText(html, /<meta name="description" content="([^"]*)"/i, `${name} — ${category} gaming splash artwork.`);
+    const jsonLd = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/i)?.[1] || '';
     const characterSlug = safeSegment(category);
     const artworkSlug = safeSegment(dir.name);
     const oldPath = `/artwork/${dir.name}/`;
@@ -54,6 +57,9 @@ async function collectRoutes() {
       category,
       name,
       image,
+      title,
+      description,
+      jsonLd,
       characterSlug,
       artworkSlug,
       sourceFile,
@@ -85,11 +91,10 @@ function normalizeCharacterNavigation(html) {
     .replaceAll('>Gallery</a>', '>Character</a>');
 }
 
-function routeLayerScript(selectedCategory = '') {
+function routeLayerScript() {
   return `
 <script id="hyuCharacterRouteLayer">
 (() => {
-  const selectedCategory = ${JSON.stringify(selectedCategory)};
   const slug = value => String(value ?? '')
     .normalize('NFD')
     .replace(/[\\u0300-\\u036f]/g, '')
@@ -111,32 +116,86 @@ function routeLayerScript(selectedCategory = '') {
     return true;
   };
 
-  normalizeRuntimeNav();
-  queueMicrotask(normalizeRuntimeNav);
-  setTimeout(normalizeRuntimeNav, 0);
+  const routeFromLocation = () => {
+    const parts = window.location.pathname.split('/').filter(Boolean);
+    if (parts[0] !== 'character' || !parts[1]) return { category: 'all', artwork: null };
 
-  const applyCategoryFromUrl = () => {
-    if (!selectedCategory) return true;
+    let category = null;
+    try {
+      const match = state.items.find(item => slug(item.category || 'Uncategorized') === parts[1]);
+      category = match?.category || null;
+    } catch {}
+    if (!category) return { category: 'all', artwork: null };
+
+    let artwork = null;
+    if (parts[2]) {
+      try {
+        const match = state.items.find(item =>
+          String(item.category || 'Uncategorized') === category && slug(item.id) === parts[2]
+        );
+        artwork = match?.id || null;
+      } catch {}
+    }
+    return { category, artwork };
+  };
+
+  const syncClientMeta = () => {
+    const canonical = window.location.origin + window.location.pathname;
+    document.querySelector('link[rel="canonical"]')?.setAttribute('href', canonical);
+    document.querySelector('meta[property="og:url"]')?.setAttribute('content', canonical);
+
+    try {
+      const route = routeFromLocation();
+      if (route.artwork) {
+        const item = state.items.find(entry => String(entry.id) === String(route.artwork));
+        if (item) document.title = (item.name || route.artwork) + ' — ' + (item.category || 'Character') + ' Splash Art | HYU PREMIUM';
+      } else if (route.category !== 'all') {
+        document.title = route.category + ' Splash Art Archive | HYU PREMIUM';
+      } else {
+        document.title = 'HYU PREMIUM — Gaming Splash Art Archive';
+      }
+    } catch {}
+  };
+
+  const applyRouteFromLocation = () => {
     try {
       if (typeof state === 'undefined' || !Array.isArray(state.items) || !state.items.length) return false;
       if (typeof setupFilters !== 'function' || typeof render !== 'function') return false;
-      const exact = state.items.find(item => String(item.category || 'Uncategorized') === selectedCategory);
-      if (!exact) return false;
-      state.category = selectedCategory;
-      state.expanded = null;
+
+      const route = routeFromLocation();
+      state.category = route.category;
+      state.expanded = route.artwork;
       setupFilters();
       render();
+      normalizeRuntimeNav();
+      syncClientMeta();
+
+      if (route.artwork) {
+        requestAnimationFrame(() => {
+          const card = document.querySelector('[data-id="' + CSS.escape(String(route.artwork)) + '"]');
+          card?.scrollIntoView({ behavior: 'auto', block: 'center' });
+        });
+      }
       return true;
     } catch {
       return false;
     }
   };
 
-  if (!applyCategoryFromUrl()) {
+  const setPath = path => {
+    if (window.location.pathname === path) return;
+    window.history.pushState({}, '', path);
+  };
+
+  normalizeRuntimeNav();
+  queueMicrotask(normalizeRuntimeNav);
+  setTimeout(normalizeRuntimeNav, 0);
+
+  if (!applyRouteFromLocation()) {
     let attempts = 0;
     const timer = setInterval(() => {
       attempts += 1;
-      if (applyCategoryFromUrl() || attempts >= 400) clearInterval(timer);
+      if (applyRouteFromLocation() || attempts >= 400) clearInterval(timer);
     }, 25);
   }
 
@@ -144,9 +203,12 @@ function routeLayerScript(selectedCategory = '') {
     const chip = event.target.closest('#chips button[data-cat]');
     if (chip) {
       const category = chip.dataset.cat || 'all';
-      event.preventDefault();
-      event.stopImmediatePropagation();
-      window.location.assign(category === 'all' ? '/character/' : '/character/' + slug(category) + '/');
+      const resetsActiveCategory = category !== 'all' && chip.classList.contains('active');
+      const path = category === 'all' || resetsActiveCategory
+        ? '/character/'
+        : '/character/' + slug(category) + '/';
+      setPath(path);
+      setTimeout(syncClientMeta, 0);
       return;
     }
 
@@ -161,22 +223,34 @@ function routeLayerScript(selectedCategory = '') {
     } catch {}
     if (!item) return;
 
-    event.preventDefault();
-    event.stopImmediatePropagation();
-    window.location.assign('/character/' + slug(item.category) + '/' + slug(item.id) + '/');
+    const collapsing = card.classList.contains('expanded');
+    let path;
+    if (collapsing) {
+      const currentCategory = typeof state !== 'undefined' ? state.category : 'all';
+      path = currentCategory && currentCategory !== 'all'
+        ? '/character/' + slug(currentCategory) + '/'
+        : '/character/';
+    } else {
+      path = '/character/' + slug(item.category) + '/' + slug(item.id) + '/';
+    }
+    setPath(path);
+    setTimeout(syncClientMeta, 0);
   }, true);
+
+  window.addEventListener('popstate', () => {
+    applyRouteFromLocation();
+  });
 })();
 </script>`;
 }
 
-function characterJsonLd(category, routes) {
-  const canonical = `${SITE_URL}/character/${safeSegment(category)}/`;
+function collectionJsonLd(name, description, canonical, routes) {
   return {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: `${category} Splash Art Archive`,
+    name,
     url: canonical,
-    description: `Browse ${routes.length} ${category} gaming splash artworks in the HYU PREMIUM archive.`,
+    description,
     mainEntity: {
       '@type': 'ItemList',
       numberOfItems: routes.length,
@@ -191,43 +265,75 @@ function characterJsonLd(category, routes) {
   };
 }
 
-function makeCharacterAppHtml(source, routes, selectedCategory = '') {
+function migratedArtworkJsonLd(route, routes) {
+  let json = route.jsonLd || '';
+  if (!json) return '';
+  json = replaceRouteReferences(json, routes);
+  json = json.replaceAll(`${SITE_URL}/characters/`, `${SITE_URL}/character/`);
+  return json;
+}
+
+function makeCharacterAppHtml(source, routes, selectedCategory = '', artworkRoute = null) {
   let html = source;
-  const canonical = selectedCategory
-    ? `${SITE_URL}/character/${safeSegment(selectedCategory)}/`
-    : `${SITE_URL}/character/`;
+  const canonical = artworkRoute
+    ? artworkRoute.newUrl
+    : selectedCategory
+      ? `${SITE_URL}/character/${safeSegment(selectedCategory)}/`
+      : `${SITE_URL}/character/`;
 
   if (!/<base\s/i.test(html)) html = html.replace('<head>', '<head>\n  <base href="/">');
 
   html = replaceRouteReferences(html, routes);
   html = normalizeCharacterNavigation(html);
-
   html = replaceMeta(html, /<link rel="canonical" href="[^"]+">/i, `<link rel="canonical" href="${canonical}">`);
   html = replaceMeta(html, /<meta property="og:url" content="[^"]+">/i, `<meta property="og:url" content="${canonical}">`);
 
+  let title = 'HYU PREMIUM — Gaming Splash Art Archive';
+  let description = 'A curated searchable archive of gaming splash art organized by character/category, skin rank and image credit.';
+  let image = routes.find(route => route.image)?.image || '';
+  let jsonLd = JSON.stringify(collectionJsonLd(
+    'HYU PREMIUM Gaming Splash Art Archive',
+    description,
+    canonical,
+    routes
+  )).replace(/</g, '\\u003c');
+
   if (selectedCategory) {
     const group = routes.filter(route => route.category === selectedCategory);
-    const title = `${selectedCategory} Splash Art Archive | HYU PREMIUM`;
-    const description = `Browse ${group.length} ${selectedCategory} gaming splash artworks with the existing HYU PREMIUM search, rank and credit filters.`;
-    const firstImage = group.find(route => route.image)?.image || '';
-
-    html = replaceMeta(html, /<title>[\s\S]*?<\/title>/i, `<title>${escHtml(title)}</title>`);
-    html = replaceMeta(html, /<meta name="description" content="[^"]*"\s*\/?\s*>/i, `<meta name="description" content="${escHtml(description)}">`);
-    html = replaceMeta(html, /<meta property="og:title" content="[^"]*">/i, `<meta property="og:title" content="${escHtml(title)}">`);
-    html = replaceMeta(html, /<meta property="og:description" content="[^"]*">/i, `<meta property="og:description" content="${escHtml(description)}">`);
-    html = replaceMeta(html, /<meta name="twitter:title" content="[^"]*">/i, `<meta name="twitter:title" content="${escHtml(title)}">`);
-    html = replaceMeta(html, /<meta name="twitter:description" content="[^"]*">/i, `<meta name="twitter:description" content="${escHtml(description)}">`);
-    if (firstImage) {
-      html = replaceMeta(html, /<meta property="og:image" content="[^"]*">/i, `<meta property="og:image" content="${escHtml(firstImage)}">`);
-      html = replaceMeta(html, /<meta name="twitter:image" content="[^"]*">/i, `<meta name="twitter:image" content="${escHtml(firstImage)}">`);
-    }
-    html = html.replace(
-      /<script type="application\/ld\+json">[\s\S]*?<\/script>/i,
-      `<script type="application/ld+json">${JSON.stringify(characterJsonLd(selectedCategory, group)).replace(/</g, '\\u003c')}</script>`
-    );
+    title = `${selectedCategory} Splash Art Archive | HYU PREMIUM`;
+    description = `Browse ${group.length} ${selectedCategory} gaming splash artworks with the existing HYU PREMIUM search, rank and credit filters.`;
+    image = group.find(route => route.image)?.image || image;
+    jsonLd = JSON.stringify(collectionJsonLd(
+      `${selectedCategory} Splash Art Archive`,
+      `Browse ${group.length} ${selectedCategory} gaming splash artworks in the HYU PREMIUM archive.`,
+      canonical,
+      group
+    )).replace(/</g, '\\u003c');
   }
 
-  return html.replace('</body>', `${routeLayerScript(selectedCategory)}\n</body>`);
+  if (artworkRoute) {
+    title = artworkRoute.title || `${artworkRoute.name} — ${artworkRoute.category} Splash Art | HYU PREMIUM`;
+    description = artworkRoute.description;
+    image = artworkRoute.image || image;
+    jsonLd = migratedArtworkJsonLd(artworkRoute, routes) || jsonLd;
+  }
+
+  html = replaceMeta(html, /<title>[\s\S]*?<\/title>/i, `<title>${escHtml(title)}</title>`);
+  html = replaceMeta(html, /<meta name="description" content="[^"]*"\s*\/?\s*>/i, `<meta name="description" content="${escHtml(description)}">`);
+  html = replaceMeta(html, /<meta property="og:title" content="[^"]*">/i, `<meta property="og:title" content="${escHtml(title)}">`);
+  html = replaceMeta(html, /<meta property="og:description" content="[^"]*">/i, `<meta property="og:description" content="${escHtml(description)}">`);
+  html = replaceMeta(html, /<meta name="twitter:title" content="[^"]*">/i, `<meta name="twitter:title" content="${escHtml(title)}">`);
+  html = replaceMeta(html, /<meta name="twitter:description" content="[^"]*">/i, `<meta name="twitter:description" content="${escHtml(description)}">`);
+  if (image) {
+    html = replaceMeta(html, /<meta property="og:image" content="[^"]*">/i, `<meta property="og:image" content="${escHtml(image)}">`);
+    html = replaceMeta(html, /<meta name="twitter:image" content="[^"]*">/i, `<meta name="twitter:image" content="${escHtml(image)}">`);
+  }
+  html = html.replace(
+    /<script type="application\/ld\+json">[\s\S]*?<\/script>/i,
+    `<script type="application/ld+json">${jsonLd}</script>`
+  );
+
+  return html.replace('</body>', `${routeLayerScript()}\n</body>`);
 }
 
 async function createCharacterAppPages(rootHtml, routes) {
@@ -245,17 +351,11 @@ async function createCharacterAppPages(rootHtml, routes) {
   return categories.length;
 }
 
-async function createNestedArtworkPages(routes) {
+async function createNestedArtworkPages(rootHtml, routes) {
   for (const route of routes) {
-    let html = replaceRouteReferences(route.sourceHtml, routes);
-    html = normalizeCharacterNavigation(html);
-
-    const categoryPath = `/character/${route.characterSlug}/`;
-    html = html.replace(/<a class="back" href="[^"]+">[^<]*→<\/a>/i, `<a class="back" href="${categoryPath}">${escHtml(route.category)} →</a>`);
-
     const targetDir = join(DIST, 'character', route.characterSlug, route.artworkSlug);
     await mkdir(targetDir, { recursive: true });
-    await writeFile(join(targetDir, 'index.html'), html);
+    await writeFile(join(targetDir, 'index.html'), makeCharacterAppHtml(rootHtml, routes, route.category, route));
   }
 }
 
@@ -303,8 +403,8 @@ async function updateSitemaps(routes) {
 const routes = await collectRoutes();
 const rootHtml = await readFile(join(DIST, 'index.html'), 'utf8');
 const characterCount = await createCharacterAppPages(rootHtml, routes);
-await createNestedArtworkPages(routes);
+await createNestedArtworkPages(rootHtml, routes);
 await migrateLegacyInternalLinks(routes);
 await updateSitemaps(routes);
 
-console.log(`Character routing enabled safely: ${routes.length} artworks across ${characterCount} character URLs; existing Supabase/gallery runtime preserved.`);
+console.log(`Character routing enabled safely: ${routes.length} artworks across ${characterCount} character URLs; existing Supabase/gallery runtime and in-place artwork expansion preserved.`);
