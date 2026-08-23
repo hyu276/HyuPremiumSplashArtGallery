@@ -1,6 +1,7 @@
 {
   "framework": "nextjs",
   "buildCommand": "npm run build",
+  "outputDirectory": ".next",
   "headers": [
     {"source":"/robots.txt","headers":[{"key":"Cache-Control","value":"public, max-age=0, s-maxage=3600"}]},
     {"source":"/sitemap.xml","headers":[{"key":"Cache-Control","value":"public, max-age=0, s-maxage=3600"}]},
