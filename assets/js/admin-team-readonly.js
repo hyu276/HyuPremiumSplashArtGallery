@@ -3,6 +3,7 @@
 
   const TEAM_OWNER_EMAIL='csquocnguyen@gmail.com';
   const DENIED_MESSAGE='VAN XIN QUỲ LẠY BỐ HUY ĐỂ ĐƯỢC CHỈNH SỬA';
+  const FEATURE_VERSION='20260824-shared-team-read-1';
   let canEditTeam=false;
   let resolving=false;
   let lastNoticeAt=0;
@@ -46,7 +47,6 @@
 
     const editableFields=panel.querySelectorAll('input:not([type="hidden"]),textarea,select');
     editableFields.forEach(field=>{
-      if(field.id==='teamReload')return;
       if(field instanceof HTMLInputElement&&['checkbox','file','radio'].includes(field.type)){
         field.disabled=!canEditTeam;
       }else if('readOnly' in field){
@@ -129,11 +129,11 @@
   style.dataset.hyuTeamReadonly='true';
   style.textContent=`
     .team-manager-readonly input[readonly],
-    .team-manager-readonly textarea[readonly],
+    .team-manager-readonly textarea[readonly]{cursor:text;opacity:.78}
     .team-manager-readonly select:disabled,
-    .team-manager-readonly input:disabled{cursor:not-allowed;opacity:.68}
-    .team-manager-readonly .team-readonly-action{opacity:.68;cursor:not-allowed}
-    .team-manager-readonly .team-drag-handle{cursor:not-allowed!important}
+    .team-manager-readonly input:disabled{cursor:default;opacity:.78}
+    .team-manager-readonly .team-readonly-action{opacity:1;cursor:pointer}
+    .team-manager-readonly .team-drag-handle{cursor:grab!important;opacity:1}
   `;
   document.head.appendChild(style);
 
@@ -152,6 +152,13 @@
     applyPermissionState();
   });
   domObserver.observe(document.body,{childList:true,subtree:true});
+
+  if(!document.querySelector('script[data-hyu-admin-team-shared-read]')){
+    const shared=document.createElement('script');
+    shared.src=`./assets/js/admin-team-shared-read.js?v=${FEATURE_VERSION}`;
+    shared.dataset.hyuAdminTeamSharedRead='true';
+    document.body.appendChild(shared);
+  }
 
   resolvePermission();
 })();
