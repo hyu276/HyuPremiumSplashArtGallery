@@ -2,7 +2,7 @@
   'use strict';
 
   const COLLAPSE_KEY='hyu_admin_choice_collapse_v1';
-  const ADMIN_FEATURE_VERSION='20260823-batch-fix-1';
+  const ADMIN_FEATURE_VERSION='20260824-team-readonly-1';
 
   function whenReady(fn){
     if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fn,{once:true});
@@ -160,6 +160,13 @@
       teamLayout.src=`./assets/js/admin-team-layout.js?v=${ADMIN_FEATURE_VERSION}`;
       teamLayout.dataset.hyuAdminTeamLayout='true';
       document.body.appendChild(teamLayout);
+    }
+
+    if(!document.querySelector('script[data-hyu-admin-team-readonly]')){
+      const teamReadonly=document.createElement('script');
+      teamReadonly.src=`./assets/js/admin-team-readonly.js?v=${ADMIN_FEATURE_VERSION}`;
+      teamReadonly.dataset.hyuAdminTeamReadonly='true';
+      document.body.appendChild(teamReadonly);
     }
 
     const loadBatchActions=()=>{
