@@ -5,6 +5,7 @@
   const EDGE_URL='https://zkrhwqgmynbbmoktokdq.supabase.co/functions/v1/shared-team-admin-read';
   let loading=false;
   let lastSignature='';
+  let retryTimer=0;
 
   function esc(value){
     return String(value??'').replace(/[&<>"']/g,ch=>({
@@ -24,23 +25,50 @@
     el.className='status '+type;
   }
 
-  async function currentUser(){
+  function activeClient(){
     try{
-      const c=typeof window.HYU_GET_ACTIVE_ADMIN_CLIENT==='function'?window.HYU_GET_ACTIVE_ADMIN_CLIENT():null;
-      if(c?.auth?.getUser){
-        const {data}=await c.auth.getUser();
-        return data?.user||null;
+      if(typeof window.HYU_GET_ACTIVE_ADMIN_CLIENT==='function'){
+        const c=window.HYU_GET_ACTIVE_ADMIN_CLIENT();
+        if(c)return c;
       }
+    }catch{}
+    try{
+      if(typeof client!=='undefined'&&client)return client;
     }catch{}
     return null;
   }
 
-  async function currentAccessToken(){
+  function signedInEmailFromUi(){
+    const pill=document.getElementById('ownerPill');
+    if(!pill?.classList.contains('ok'))return '';
+    const match=String(pill.textContent||'').match(/signed\s+in:\s*(.+)$/i);
+    return String(match?.[1]||'').trim().toLowerCase();
+  }
+
+  async function currentUser(){
+    const c=activeClient();
     try{
-      const c=typeof window.HYU_GET_ACTIVE_ADMIN_CLIENT==='function'?window.HYU_GET_ACTIVE_ADMIN_CLIENT():null;
+      if(c?.auth?.getUser){
+        const {data}=await c.auth.getUser();
+        if(data?.user)return data.user;
+      }
+    }catch{}
+    const email=signedInEmailFromUi();
+    return email?{email}:null;
+  }
+
+  async function currentAccessToken(){
+    const c=activeClient();
+    try{
       if(c?.auth?.getSession){
         const {data}=await c.auth.getSession();
-        return data?.session?.access_token||'';
+        if(data?.session?.access_token)return data.session.access_token;
+      }
+    }catch{}
+    try{
+      if(c?.auth?.refreshSession){
+        const {data}=await c.auth.refreshSession();
+        if(data?.session?.access_token)return data.session.access_token;
       }
     }catch{}
     return '';
@@ -61,6 +89,11 @@
     if(count())count().textContent=`${rows.length} member${rows.length===1?'':'s'} · read only`;
   }
 
+  function scheduleRetry(){
+    clearTimeout(retryTimer);
+    retryTimer=setTimeout(()=>loadSharedTeam(false),450);
+  }
+
   async function loadSharedTeam(force=false){
     if(loading)return;
     const p=panel();
@@ -68,11 +101,15 @@
     if(!p||!l)return;
 
     const user=await currentUser();
-    const email=String(user?.email||'').trim().toLowerCase();
+    const email=String(user?.email||signedInEmailFromUi()).trim().toLowerCase();
     if(!email||email===TEAM_OWNER_EMAIL)return;
 
     const token=await currentAccessToken();
-    if(!token)return;
+    if(!token){
+      setStatus('Waiting for the signed-in admin session before loading the shared team...','warn');
+      scheduleRetry();
+      return;
+    }
 
     loading=true;
     setStatus('Loading shared team list from owner database...');
@@ -106,20 +143,18 @@
   document.addEventListener('click',event=>{
     const reload=event.target.closest?.('#teamReload');
     if(!reload)return;
-    Promise.resolve(currentUser()).then(user=>{
-      const email=String(user?.email||'').trim().toLowerCase();
-      if(email&&email!==TEAM_OWNER_EMAIL){
-        event.preventDefault();
-        event.stopPropagation();
-        event.stopImmediatePropagation();
-        loadSharedTeam(true);
-      }
-    });
+    const email=signedInEmailFromUi();
+    if(email&&email!==TEAM_OWNER_EMAIL){
+      event.preventDefault();
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+      loadSharedTeam(true);
+    }
   },true);
 
   const ownerPill=document.getElementById('ownerPill');
   if(ownerPill){
-    new MutationObserver(()=>setTimeout(()=>loadSharedTeam(true),40)).observe(ownerPill,{attributes:true,childList:true,subtree:true});
+    new MutationObserver(()=>setTimeout(()=>loadSharedTeam(true),60)).observe(ownerPill,{attributes:true,childList:true,subtree:true});
   }
 
   const observer=new MutationObserver(()=>{
@@ -127,9 +162,9 @@
     const l=list();
     if(!p||!l)return;
     const emptyText=l.textContent||'';
-    if(/No team members loaded|0 members/i.test(emptyText))setTimeout(()=>loadSharedTeam(false),30);
+    if(/No team members loaded|0 members/i.test(emptyText))scheduleRetry();
   });
   observer.observe(document.body,{childList:true,subtree:true});
 
-  setTimeout(()=>loadSharedTeam(true),120);
+  setTimeout(()=>loadSharedTeam(true),180);
 })();
