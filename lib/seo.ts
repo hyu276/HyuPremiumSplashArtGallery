@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { publicMediaUrl } from '@/lib/media';
 
 const SUPABASE_URL=process.env.NEXT_PUBLIC_SUPABASE_URL||'https://zkrhwqgmynbbmoktokdq.supabase.co';
 const SUPABASE_KEY=process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY||'sb_publishable_Fqcxk9-U1qalClQZjKcrhA_U822LTIq';
@@ -41,7 +42,7 @@ export function applySeoOverride(base:Metadata,override:SeoPageOverride|null,glo
   const description=override.meta_description||undefined;
   const ogTitle=override.og_title||override.title||undefined;
   const ogDescription=override.og_description||override.meta_description||undefined;
-  const ogImage=override.og_image||undefined;
+  const ogImage=override.og_image?publicMediaUrl(override.og_image):undefined;
   return {
     ...base,
     ...(title?{title:{absolute:title}}:{}),
