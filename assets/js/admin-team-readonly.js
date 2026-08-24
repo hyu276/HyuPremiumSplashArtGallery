@@ -3,7 +3,7 @@
 
   const TEAM_OWNER_EMAIL='csquocnguyen@gmail.com';
   const DENIED_MESSAGE='VAN XIN QUỲ LẠY BỐ HUY ĐỂ ĐƯỢC CHỈNH SỬA';
-  const FEATURE_VERSION='20260824-shared-team-read-1';
+  const FEATURE_VERSION='20260824-shared-team-read-2';
   let canEditTeam=false;
   let resolving=false;
   let lastNoticeAt=0;
