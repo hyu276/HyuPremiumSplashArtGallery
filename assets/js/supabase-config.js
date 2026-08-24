@@ -1,11 +1,29 @@
 // HYU PREMIUM Supabase browser configuration.
 // The project URL and publishable/anon key are intentionally public browser values when RLS is enabled.
 // NEVER put a service_role key, secret key, database password, admin password, or long-lived private token here.
-window.HYU_SUPABASE_CONFIG = {
-  enabled: true,
-  url: 'https://zkrhwqgmynbbmoktokdq.supabase.co',
-  publishableKey: 'sb_publishable_Fqcxk9-U1qalClQZjKcrhA_U822LTIq'
-};
+// Public pages and the default admin URL always use the owner's database. The collaborator profile
+// can only be selected explicitly on /admin.html with ?db=huy9vnd.
+(function configureHyuSupabase(){
+  const profiles=Object.freeze({
+    owner:Object.freeze({
+      enabled:true,
+      label:'Owner',
+      url:'https://zkrhwqgmynbbmoktokdq.supabase.co',
+      publishableKey:'sb_publishable_Fqcxk9-U1qalClQZjKcrhA_U822LTIq'
+    }),
+    huy9vnd:Object.freeze({
+      enabled:true,
+      label:'huy9vnd',
+      url:'https://unggkruzjmsjscdiukfr.supabase.co',
+      publishableKey:'sb_publishable_UQXSQcKH_81clodAPnceYg_1UUYz7bc'
+    })
+  });
+  const isAdmin=/\/admin\.html$/i.test(window.location.pathname);
+  const requested=isAdmin?new URLSearchParams(window.location.search).get('db'):'owner';
+  const profileKey=requested&&Object.prototype.hasOwnProperty.call(profiles,requested)?requested:'owner';
+  window.HYU_SUPABASE_PROFILE=profileKey;
+  window.HYU_SUPABASE_CONFIG={...profiles[profileKey]};
+})();
 
 (function hardenSupabaseBrowserAuth(){
   const cfg=window.HYU_SUPABASE_CONFIG||{};
@@ -148,13 +166,20 @@ window.HYU_SUPABASE_CONFIG = {
   addMeta({'http-equiv':'Pragma',content:'no-cache'});
   addMeta({'http-equiv':'Expires',content:'0'});
   if(!document.querySelector('meta[http-equiv="Content-Security-Policy"]')){
+    let apiOrigin='',wsOrigin='';
+    try{
+      const endpoint=new URL(cfg.url);
+      apiOrigin=endpoint.origin;
+      endpoint.protocol=endpoint.protocol==='https:'?'wss:':'ws:';
+      wsOrigin=endpoint.origin;
+    }catch{}
     addMeta({
       'http-equiv':'Content-Security-Policy',
       content:[
         "default-src 'self'",
         "script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net",
         "style-src 'self' 'unsafe-inline'",
-        "connect-src 'self' https://zkrhwqgmynbbmoktokdq.supabase.co wss://zkrhwqgmynbbmoktokdq.supabase.co",
+        `connect-src 'self' ${apiOrigin} ${wsOrigin}`.trim(),
         "img-src 'self' data: blob: https:",
         "font-src 'self' data:",
         "object-src 'none'",
