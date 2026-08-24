@@ -2,7 +2,7 @@
   'use strict';
 
   const COLLAPSE_KEY='hyu_admin_choice_collapse_v1';
-  const ADMIN_FEATURE_VERSION='20260824-publish-hook-fix-1';
+  const ADMIN_FEATURE_VERSION='20260824-credit-picker-2';
 
   function whenReady(fn){
     if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fn,{once:true});
@@ -188,17 +188,6 @@
       teamSharedRead.src=`./assets/js/admin-team-shared-read.js?v=${ADMIN_FEATURE_VERSION}`;
       teamSharedRead.dataset.hyuAdminTeamSharedRead='true';
       document.body.appendChild(teamSharedRead);
-    }
-
-    // This hook must load after admin-login-gate has routed the facade to the
-    // authenticated Supabase profile. It repairs the race where the older
-    // moderation module was loaded from admin.html before auth routing and its
-    // client.from/storage.from wrappers were subsequently overwritten.
-    if(!document.querySelector('script[data-hyu-admin-publish-request-hook]')){
-      const publishHook=document.createElement('script');
-      publishHook.src=`./assets/js/admin-publish-request-hook.js?v=${ADMIN_FEATURE_VERSION}`;
-      publishHook.dataset.hyuAdminPublishRequestHook='true';
-      document.body.appendChild(publishHook);
     }
 
     if(!document.querySelector('script[data-hyu-admin-publish-moderation]')){

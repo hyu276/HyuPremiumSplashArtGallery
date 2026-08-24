@@ -30,7 +30,7 @@
   const cfg=window.HYU_SUPABASE_CONFIG||{};
   const profiles=window.HYU_SUPABASE_PROFILES||{};
   const isAdmin=/\/admin\.html$/i.test(window.location.pathname);
-  const ADMIN_ASSET_VERSION='20260824-mobile-auth-default-lockless-1';
+  const ADMIN_ASSET_VERSION='20260824-credit-picker-2';
 
   const authStorageKeys=[];
   for(const profile of Object.values(profiles)){
@@ -71,7 +71,7 @@
       auth:{
         ...(options.auth||{}),
         persistSession:false,
-        autoRefreshToken:false,
+        autoRefreshToken:isAdmin,
         detectSessionInUrl:false
       }
     });
