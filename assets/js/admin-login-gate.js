@@ -27,6 +27,112 @@
       return;
     }
 
+    function installMultiProjectAdminClient(){
+      let facade;
+      try{
+        if(typeof client==='undefined'||!window.supabase?.createClient)return;
+        facade=client;
+      }catch{return}
+
+      const profiles=window.HYU_SUPABASE_PROFILES||{};
+      const entries=Object.entries(profiles).filter(([,profile])=>profile?.enabled&&profile?.url&&profile?.publishableKey);
+      if(!entries.length)return;
+
+      const preferred=window.HYU_SUPABASE_PROFILE||entries[0][0];
+      const profileClients=new Map(entries.map(([key,profile])=>[
+        key,
+        window.supabase.createClient(profile.url,profile.publishableKey,{
+          auth:{persistSession:false,autoRefreshToken:true,detectSessionInUrl:false}
+        })
+      ]));
+      let activeKey=profileClients.has(preferred)?preferred:entries[0][0];
+      let activeClient=profileClients.get(activeKey);
+
+      function activate(key,candidate){
+        activeKey=key;
+        activeClient=candidate;
+        window.HYU_SUPABASE_PROFILE=key;
+        window.HYU_ACTIVE_ADMIN_PROFILE=key;
+        window.HYU_SUPABASE_CONFIG={...(profiles[key]||{})};
+        try{
+          const url=new URL(window.location.href);
+          if(key==='owner')url.searchParams.delete('db');
+          else url.searchParams.set('db',key);
+          history.replaceState(null,'',url.pathname+(url.searchParams.toString()?`?${url.searchParams.toString()}`:''));
+        }catch{}
+      }
+
+      function orderedProfiles(){
+        const ordered=[];
+        if(profileClients.has(activeKey))ordered.push(activeKey);
+        if(profileClients.has(preferred)&&!ordered.includes(preferred))ordered.push(preferred);
+        if(profileClients.has('owner')&&!ordered.includes('owner'))ordered.push('owner');
+        for(const [key] of entries)if(!ordered.includes(key))ordered.push(key);
+        return ordered;
+      }
+
+      const authFacade=facade.auth;
+      const storageFacade=facade.storage;
+      if(!authFacade)return;
+
+      authFacade.signInWithPassword=async credentials=>{
+        let lastAuthError=null;
+        let validButUnauthorized=false;
+
+        for(const key of orderedProfiles()){
+          const candidate=profileClients.get(key);
+          if(!candidate)continue;
+
+          const {data,error}=await candidate.auth.signInWithPassword(credentials);
+          if(error){
+            lastAuthError=error;
+            continue;
+          }
+
+          const user=data?.user;
+          if(!user){
+            lastAuthError=new Error('Supabase did not return an authenticated user.');
+            continue;
+          }
+
+          const {data:adminRow,error:adminError}=await candidate
+            .from('admins')
+            .select('user_id')
+            .eq('user_id',user.id)
+            .maybeSingle();
+
+          if(!adminError&&adminRow){
+            activate(key,candidate);
+            return {data,error:null};
+          }
+
+          validButUnauthorized=true;
+          lastAuthError=adminError||new Error('This account is not listed in public.admins for this project.');
+          try{await candidate.auth.signOut()}catch{}
+        }
+
+        return {
+          data:{user:null,session:null},
+          error:validButUnauthorized
+            ? new Error('This account is not authorized for any configured admin database.')
+            : (lastAuthError||new Error('Invalid login credentials'))
+        };
+      };
+
+      authFacade.getUser=(...args)=>activeClient.auth.getUser(...args);
+      authFacade.getSession=(...args)=>activeClient.auth.getSession(...args);
+      authFacade.refreshSession=(...args)=>activeClient.auth.refreshSession(...args);
+      authFacade.signOut=(...args)=>activeClient.auth.signOut(...args);
+      facade.from=(...args)=>activeClient.from(...args);
+      facade.rpc=(...args)=>activeClient.rpc(...args);
+      if(storageFacade?.from)storageFacade.from=(...args)=>activeClient.storage.from(...args);
+
+      window.HYU_GET_ACTIVE_ADMIN_PROFILE=()=>activeKey;
+      window.HYU_GET_ACTIVE_ADMIN_CLIENT=()=>activeClient;
+    }
+
+    installMultiProjectAdminClient();
+
     const style=document.createElement('style');
     style.dataset.hyuAdminLoginGate='true';
     style.textContent=`
