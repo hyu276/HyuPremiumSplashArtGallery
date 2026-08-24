@@ -60,14 +60,14 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.112.3"></script>
-<script src="./assets/js/supabase-config.js?v=20260824-mobile-auth-lockless-1"></script>
+<script src="./assets/js/supabase-config.js?v=20260824-mobile-auth-default-lockless-1"></script>
 <script>
 const MAX_IMAGE_BYTES=10*1024*1024,LAST_CHOICES_KEY='hyu_admin_last_artwork_choices';
 const cfg=window.HYU_SUPABASE_CONFIG||{};
 const client=(cfg.enabled&&cfg.url&&cfg.publishableKey&&window.supabase?.createClient)?window.supabase.createClient(cfg.url,cfg.publishableKey,{auth:{persistSession:false,autoRefreshToken:false,detectSessionInUrl:false}}):null;
 let items=[],categories=[],credits=[],ranks=[],dirty=false,adminUser=null,selectedFile=null,selectedPreviewUrl=null;
 const pendingUploads=new Map(),deletedArtworkIds=new Set(),storageDeletes=new Set(),removedChoiceIds={category:new Set(),credit:new Set(),rank:new Set()},$=s=>document.querySelector(s);
-const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#039;'}[c]));
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
 const slug=s=>String(s??'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
 const setStatus=(m,t='')=>{$('#status').textContent=m;$('#status').className='status '+t};
 function readLastChoices(){try{return JSON.parse(sessionStorage.getItem(LAST_CHOICES_KEY)||'{}')}catch{return{}}}
