@@ -33,16 +33,29 @@ type SourceCatalogue = {
   credits: string[];
 };
 
+type PublishGate = {
+  source_profile: string;
+  artwork_id: string;
+  status: 'pending' | 'approved' | 'declined';
+  candidate_image: string;
+  approved_image: string;
+};
+
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://hyupremium.vercel.app').replace(/\/$/, '');
 const OWNER_SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://zkrhwqgmynbbmoktokdq.supabase.co';
 const OWNER_SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || 'sb_publishable_Fqcxk9-U1qalClQZjKcrhA_U822LTIq';
 const HUY_SUPABASE_URL = process.env.NEXT_PUBLIC_HUY9VND_SUPABASE_URL || 'https://unggkruzjmsjscdiukfr.supabase.co';
 const HUY_SUPABASE_KEY = process.env.NEXT_PUBLIC_HUY9VND_SUPABASE_PUBLISHABLE_KEY || 'sb_publishable_UQXSQcKH_81clodAPnceYg_1UUYz7bc';
 
+// Original artwork uploads created by admin.html use uploads/<artwork>-<Date.now()>.<ext>.
+// Uploads created after the moderation feature went live must have an explicit publish gate.
+const MODERATION_ENFORCEMENT_MS = 1787542800000;
+
 const CATALOGUE_SOURCES: CatalogueSource[] = [
   { id: 'owner', url: OWNER_SUPABASE_URL, key: OWNER_SUPABASE_KEY },
   { id: 'huy9vnd', url: HUY_SUPABASE_URL, key: HUY_SUPABASE_KEY }
 ];
+const OWNER_SOURCE = CATALOGUE_SOURCES[0];
 
 export const siteUrl = SITE_URL;
 
@@ -76,17 +89,60 @@ async function rest<T>(source: CatalogueSource, path: string): Promise<T> {
   return response.json() as Promise<T>;
 }
 
+async function moderationRest<T>(path: string): Promise<T> {
+  const response = await fetch(`${OWNER_SOURCE.url}/rest/v1/${path}`, {
+    headers: { apikey: OWNER_SOURCE.key },
+    next: { revalidate: 15, tags: ['catalogue', 'publish-moderation'] }
+  });
+  if (!response.ok) throw new Error(`Moderation gate REST ${response.status}: ${await response.text()}`);
+  return response.json() as Promise<T>;
+}
+
+function normalizedImage(value: string) {
+  const raw = absoluteImageUrl(value);
+  try { return decodeURIComponent(raw); } catch { return raw; }
+}
+
+function uploadTimestamp(value: string) {
+  const raw = normalizedImage(value);
+  const match = raw.match(/\/uploads\/[^/?#]*-(\d{13})\.[a-z0-9]+(?:[?#].*)?$/i);
+  return match ? Number(match[1]) : 0;
+}
+
+function allowedByModeration(source: CatalogueSource, row: any, gate?: PublishGate) {
+  if (source.id === 'owner') return true;
+
+  if (gate) {
+    if (gate.status !== 'approved') return false;
+    const approved = normalizedImage(gate.approved_image || '');
+    const current = normalizedImage(row.image || '');
+    return Boolean(approved) && approved === current;
+  }
+
+  // Grandfather pre-moderation artwork. New dashboard uploads are blocked until a gate exists.
+  const timestamp = uploadTimestamp(String(row.image || ''));
+  return !timestamp || timestamp < MODERATION_ENFORCEMENT_MS;
+}
+
 async function loadSource(source: CatalogueSource): Promise<SourceCatalogue> {
   const select = 'id,name,description,image,thumbnail,tags,hidden,updated_at,is_vietnamese_skin,category:categories(name),rank:ranks(name,sort_order),credit:image_credits(name)';
-  const [rows, categories, ranks, credits] = await Promise.all([
+  const gatesPromise = source.id === 'owner'
+    ? Promise.resolve([] as PublishGate[])
+    : moderationRest<PublishGate[]>(`publish_gates?select=source_profile,artwork_id,status,candidate_image,approved_image&source_profile=eq.${encodeURIComponent(source.id)}`);
+
+  const [rows, categories, ranks, credits, gates] = await Promise.all([
     rest<any[]>(source, `artworks?select=${encodeURIComponent(select)}&hidden=eq.false`),
     rest<any[]>(source, 'categories?select=name&order=name.asc'),
     rest<any[]>(source, 'ranks?select=name,sort_order&order=sort_order.asc'),
-    rest<any[]>(source, 'image_credits?select=name&order=name.asc')
+    rest<any[]>(source, 'image_credits?select=name&order=name.asc'),
+    gatesPromise
   ]);
 
+  const gateByArtwork = new Map(gates.map(gate => [String(gate.artwork_id), gate]));
+  const moderatedRows = rows.filter(row => allowedByModeration(source, row, gateByArtwork.get(String(row.id))));
+
   return {
-    items: rows.map(row => ({
+    items: moderatedRows.map(row => ({
       id: source.id === 'owner' ? String(row.id) : `${source.id}:${String(row.id)}`,
       name: String(row.name || 'Untitled artwork').trim(),
       description: String(row.description || '').trim(),
