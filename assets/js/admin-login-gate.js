@@ -1,6 +1,8 @@
 (function(){
   'use strict';
 
+  const MODERATION_ASSET_VERSION='20260824-publish-moderation-2';
+
   function whenReady(fn){
     if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fn,{once:true});
     else fn();
@@ -192,6 +194,20 @@
 
     loginPanel.remove();
 
+    const ensureModerationModule=()=>{
+      if(window.__HYU_PUBLISH_MODERATION_MODULE__==='v2')return;
+      const existing=document.querySelector('script[data-hyu-admin-publish-moderation]');
+      if(existing){
+        if(existing.dataset.version===MODERATION_ASSET_VERSION)return;
+        existing.remove();
+      }
+      const script=document.createElement('script');
+      script.src=`./assets/js/admin-publish-moderation.js?v=${MODERATION_ASSET_VERSION}`;
+      script.dataset.hyuAdminPublishModeration='true';
+      script.dataset.version=MODERATION_ASSET_VERSION;
+      document.body.appendChild(script);
+    };
+
     const syncAuthView=()=>{
       const signedIn=ownerPill.classList.contains('ok');
       document.body.classList.toggle('admin-auth-locked',!signedIn);
@@ -201,6 +217,7 @@
       if(signedIn){
         if(status.parentElement!==dashboardStatus)dashboardStatus.appendChild(status);
         dashboardStatus.hidden=false;
+        ensureModerationModule();
       }else{
         if(status.parentElement!==authCard)authCard.appendChild(status);
         dashboardStatus.hidden=true;
