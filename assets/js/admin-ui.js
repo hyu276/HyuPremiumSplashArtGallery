@@ -2,7 +2,7 @@
   'use strict';
 
   const COLLAPSE_KEY='hyu_admin_choice_collapse_v1';
-  const ADMIN_FEATURE_VERSION='20260824-shared-team-read-2';
+  const ADMIN_FEATURE_VERSION='20260824-publish-moderation-1';
 
   function whenReady(fn){
     if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fn,{once:true});
@@ -174,6 +174,13 @@
       teamSharedRead.src=`./assets/js/admin-team-shared-read.js?v=${ADMIN_FEATURE_VERSION}`;
       teamSharedRead.dataset.hyuAdminTeamSharedRead='true';
       document.body.appendChild(teamSharedRead);
+    }
+
+    if(!document.querySelector('script[data-hyu-admin-publish-moderation]')){
+      const moderation=document.createElement('script');
+      moderation.src=`./assets/js/admin-publish-moderation.js?v=${ADMIN_FEATURE_VERSION}`;
+      moderation.dataset.hyuAdminPublishModeration='true';
+      document.body.appendChild(moderation);
     }
 
     const loadBatchActions=()=>{
