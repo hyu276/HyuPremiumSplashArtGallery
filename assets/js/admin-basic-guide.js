@@ -2,6 +2,10 @@
   'use strict';
 
   const OWNER_EMAIL='csquocnguyen@gmail.com';
+  const LAST_CHOICES_KEY='hyu_admin_last_artwork_choices';
+  let creditFixInstalled=false;
+  let clearedForCurrentLogin=false;
+  let clearedAfterLoad=false;
 
   function signedInEmail(){
     try{
@@ -16,6 +20,187 @@
   function isCollaborator(){
     const email=signedInEmail();
     return Boolean(email&&email!==OWNER_EMAIL);
+  }
+
+  function normalize(value){
+    return String(value||'')
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g,'')
+      .toLowerCase()
+      .replace(/đ/g,'d')
+      .replace(/\s+/g,' ')
+      .trim();
+  }
+
+  function subsequence(haystack,needle){
+    if(!needle)return true;
+    let cursor=0;
+    for(const ch of haystack){
+      if(ch===needle[cursor])cursor+=1;
+      if(cursor===needle.length)return true;
+    }
+    return false;
+  }
+
+  function allCreditNames(){
+    let values=[];
+
+    try{
+      if(typeof credits!=='undefined'&&Array.isArray(credits)){
+        values=credits.map(item=>String(item?.name??item??'').trim()).filter(Boolean);
+      }
+    }catch{}
+
+    if(!values.length){
+      values=[...document.querySelectorAll('#creditChoices .choice')].map(chip=>{
+        const clone=chip.cloneNode(true);
+        clone.querySelectorAll('button').forEach(button=>button.remove());
+        return String(clone.textContent||'').trim();
+      }).filter(Boolean);
+    }
+
+    if(!values.length){
+      values=[...document.querySelectorAll('#creditOptions option')]
+        .map(option=>String(option.value||option.textContent||'').trim())
+        .filter(Boolean);
+    }
+
+    const seen=new Set();
+    return values.filter(value=>{
+      const key=normalize(value);
+      if(!key||seen.has(key))return false;
+      seen.add(key);
+      return true;
+    });
+  }
+
+  function scoreCredit(value,query){
+    const candidate=normalize(value);
+    const q=normalize(query);
+    if(!q)return 0;
+    if(candidate===q)return 1000;
+    if(candidate.startsWith(q))return 800-(candidate.length-q.length);
+    const words=candidate.split(' ');
+    const wordIndex=words.findIndex(word=>word.startsWith(q));
+    if(wordIndex>=0)return 650-wordIndex*5;
+    const index=candidate.indexOf(q);
+    if(index>=0)return 500-index;
+    if(subsequence(candidate,q))return 250;
+    return -1;
+  }
+
+  function renderCreditMenu(mode='all'){
+    const input=document.getElementById('credit');
+    const menu=document.querySelector('.admin-credit-menu');
+    if(!input||!menu)return false;
+
+    let values=allCreditNames();
+    const query=input.value.trim();
+    if(mode==='filter'&&query){
+      values=values
+        .map(value=>({value,score:scoreCredit(value,query)}))
+        .filter(item=>item.score>=0)
+        .sort((a,b)=>b.score-a.score||a.value.localeCompare(b.value,undefined,{sensitivity:'base'}))
+        .map(item=>item.value);
+    }
+
+    menu.innerHTML='';
+    if(!values.length){
+      const empty=document.createElement('div');
+      empty.className='admin-credit-empty';
+      empty.textContent=mode==='all'?'No Image Credit available.':'No matching Image Credit.';
+      menu.appendChild(empty);
+    }else{
+      values.forEach((value,index)=>{
+        const button=document.createElement('button');
+        button.type='button';
+        button.id=`admin-credit-full-option-${index}`;
+        button.className='admin-credit-option';
+        button.setAttribute('role','option');
+        button.textContent=value;
+        button.addEventListener('mousedown',event=>event.preventDefault());
+        button.addEventListener('click',()=>{
+          input.value=value;
+          input.dispatchEvent(new Event('input',{bubbles:true}));
+          input.dispatchEvent(new Event('change',{bubbles:true}));
+          menu.hidden=true;
+          input.setAttribute('aria-expanded','false');
+          input.focus({preventScroll:true});
+        });
+        menu.appendChild(button);
+      });
+    }
+
+    menu.hidden=false;
+    input.setAttribute('aria-expanded','true');
+    return true;
+  }
+
+  function installCreditPickerFix(){
+    if(creditFixInstalled)return true;
+    const input=document.getElementById('credit');
+    const toggle=document.querySelector('.admin-credit-toggle');
+    const menu=document.querySelector('.admin-credit-menu');
+    if(!input||!toggle||!menu)return false;
+
+    creditFixInstalled=true;
+    toggle.dataset.fullCreditSource='true';
+
+    toggle.addEventListener('click',event=>{
+      event.preventDefault();
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+      renderCreditMenu('all');
+      input.focus({preventScroll:true});
+    },true);
+
+    input.addEventListener('input',()=>{
+      setTimeout(()=>{
+        if(document.activeElement===input)renderCreditMenu('filter');
+      },0);
+    });
+
+    return true;
+  }
+
+  function clearRememberedCredit(){
+    try{
+      const value=JSON.parse(sessionStorage.getItem(LAST_CHOICES_KEY)||'{}');
+      if(!value||typeof value!=='object')return;
+      delete value.credit;
+      delete value.creditName;
+      delete value.imageCredit;
+      delete value.image_credit;
+      delete value.credit_id;
+      sessionStorage.setItem(LAST_CHOICES_KEY,JSON.stringify(value));
+    }catch{}
+  }
+
+  function clearCreditField(){
+    const editing=document.getElementById('editingId');
+    if(editing?.value)return;
+    const input=document.getElementById('credit');
+    if(!input)return;
+    input.value='';
+    input.dispatchEvent(new Event('change',{bubbles:true}));
+    const menu=document.querySelector('.admin-credit-menu');
+    if(menu)menu.hidden=true;
+    input.setAttribute('aria-expanded','false');
+  }
+
+  function syncLoginCreditState(){
+    const signedIn=Boolean(signedInEmail());
+    if(!signedIn){
+      clearedForCurrentLogin=false;
+      clearedAfterLoad=false;
+      return;
+    }
+
+    if(!clearedForCurrentLogin){
+      clearRememberedCredit();
+      clearCreditField();
+      clearedForCurrentLogin=true;
+    }
   }
 
   function setChoiceLabel(listId,text){
@@ -88,6 +273,8 @@
     setChoiceLabel('creditChoices','Tác giả');
     rewriteGuide();
     lockRankChoices();
+    syncLoginCreditState();
+    installCreditPickerFix();
   }
 
   function ready(){
@@ -123,6 +310,18 @@
     const pill=document.getElementById('ownerPill');
     if(pill){
       new MutationObserver(()=>setTimeout(sync,30)).observe(pill,{attributes:true,childList:true,subtree:true,characterData:true});
+    }
+
+    const status=document.getElementById('status');
+    if(status){
+      new MutationObserver(()=>{
+        syncLoginCreditState();
+        if(!clearedAfterLoad&&signedInEmail()&&/^loaded\s+\d+\s+artwork/i.test(String(status.textContent||'').trim())){
+          clearRememberedCredit();
+          clearCreditField();
+          clearedAfterLoad=true;
+        }
+      }).observe(status,{childList:true,subtree:true,characterData:true});
     }
 
     const observer=new MutationObserver(mutations=>{
