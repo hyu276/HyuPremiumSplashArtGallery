@@ -69,7 +69,7 @@ const uniqueSorted = (values: string[]) => [...new Set(values.filter(Boolean))].
 
 async function rest<T>(source: CatalogueSource, path: string): Promise<T> {
   const response = await fetch(`${source.url}/rest/v1/${path}`, {
-    headers: { apikey: source.key, Authorization: `Bearer ${source.key}` },
+    headers: { apikey: source.key },
     next: { revalidate: 300, tags: ['catalogue'] }
   });
   if (!response.ok) throw new Error(`${source.id} Supabase REST ${response.status}: ${await response.text()}`);
