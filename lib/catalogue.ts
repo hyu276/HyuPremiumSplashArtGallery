@@ -1,3 +1,5 @@
+import { publicMediaUrl, toAbsoluteSiteUrl } from '@/lib/media';
+
 export type Artwork = {
   id: string;
   name: string;
@@ -71,10 +73,7 @@ export function slug(value: string) {
 }
 
 export function absoluteImageUrl(value: string) {
-  const raw = String(value || '').trim();
-  if (!raw) return '';
-  if (/^https?:\/\//i.test(raw)) return raw;
-  return new URL(raw.replace(/^\.\//, ''), `${SITE_URL}/`).href;
+  return toAbsoluteSiteUrl(value);
 }
 
 const alpha = (a: string, b: string) => a.localeCompare(b, undefined, { sensitivity: 'base', numeric: true });
@@ -155,8 +154,8 @@ async function loadSource(source: CatalogueSource): Promise<SourceCatalogue> {
       id: source.id === 'owner' ? String(row.id) : `${source.id}:${String(row.id)}`,
       name: String(row.name || 'Untitled artwork').trim(),
       description: String(row.description || '').trim(),
-      image: absoluteImageUrl(row.__moderatedImage),
-      thumbnail: absoluteImageUrl(row.__moderatedThumbnail || row.__moderatedImage),
+      image: publicMediaUrl(row.__moderatedImage),
+      thumbnail: publicMediaUrl(row.__moderatedThumbnail || row.__moderatedImage),
       tags: Array.isArray(row.tags) ? row.tags.map(String) : [],
       category: String(row.category?.name || 'Uncategorized'),
       rank: String(row.rank?.name || 'Unranked'),
