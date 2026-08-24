@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { getSeoGlobalSettings } from '@/lib/seo';
 import './globals.css';
+import './mobile-artwork-type.css';
 
 export async function generateMetadata():Promise<Metadata>{
   const seo=await getSeoGlobalSettings();
