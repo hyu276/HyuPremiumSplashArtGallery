@@ -6,6 +6,7 @@ import { artworkPath, slug } from '@/lib/catalogue';
 
 const INITIAL_RANDOM_COUNT=6;
 const SECOND_BATCH_COUNT=50;
+const EGRESS_SAFE_MODE=(process.env.NEXT_PUBLIC_HYU_EGRESS_SAFE_MODE??'true').toLowerCase()!=='false';
 
 const RANK_GRADIENTS: Record<string,string> = {
   A:'linear-gradient(180deg,#035365 0%,#045C6C 48%,#08929C 100%)',
@@ -98,11 +99,31 @@ function GalleryFilterControl({label,value,options,onChange,ariaLabel}:{label:st
   </div>;
 }
 
-const ArtworkCard = memo(function ArtworkCard({item,index,expanded,onToggle}:{item:Artwork;index:number;expanded:boolean;onToggle:(item:Artwork)=>void}){
-  const [fullReady,setFullReady]=useState(item.image===item.thumbnail);
+const ViewportPreview=memo(function ViewportPreview({src,alt,eager}:{src:string;alt:string;eager:boolean}){
+  const node=useRef<HTMLImageElement>(null);
+  const [armed,setArmed]=useState(eager);
 
   useEffect(()=>{
-    if(!expanded||fullReady||item.image===item.thumbnail)return;
+    if(armed)return;
+    const image=node.current;if(!image)return;
+    if(typeof IntersectionObserver==='undefined'){setArmed(true);return;}
+    const observer=new IntersectionObserver(entries=>{
+      if(entries.some(entry=>entry.isIntersecting)){setArmed(true);observer.disconnect();}
+    },{rootMargin:'640px 0px'});
+    observer.observe(image);
+    return()=>observer.disconnect();
+  },[armed]);
+
+  useEffect(()=>{if(eager&&!armed)setArmed(true)},[eager,armed]);
+
+  return <img ref={node} className="preview" src={armed?src:undefined} data-src={armed?undefined:src} alt={alt} loading={eager?'eager':'lazy'} decoding="async" fetchPriority={eager?'high':'low'} />;
+});
+
+const ArtworkCard = memo(function ArtworkCard({item,index,expanded,onToggle}:{item:Artwork;index:number;expanded:boolean;onToggle:(item:Artwork)=>void}){
+  const [fullReady,setFullReady]=useState(EGRESS_SAFE_MODE||item.image===item.thumbnail);
+
+  useEffect(()=>{
+    if(EGRESS_SAFE_MODE||!expanded||fullReady||item.image===item.thumbnail)return;
     let cancelled=false;
     const loader=new Image();
     loader.decoding='async';loader.src=item.image;
@@ -112,12 +133,11 @@ const ArtworkCard = memo(function ArtworkCard({item,index,expanded,onToggle}:{it
     return()=>{cancelled=true;loader.onload=null;loader.onerror=null};
   },[expanded,fullReady,item.image,item.thumbnail]);
 
-  const prewarm=()=>{if(fullReady||item.image===item.thumbnail)return;const loader=new Image();loader.decoding='async';loader.src=item.image};
   const imageAlt=`${item.name} — ${item.category} gaming splash art, skin rank ${item.rank}`;
-  return <button className={`art-card${expanded?' expanded':''}`} data-id={item.id} aria-expanded={expanded} aria-label={`${expanded?'Collapse':'Expand'} ${item.name}`} onPointerDown={prewarm} onClick={()=>onToggle(item)}>
+  return <button className={`art-card${expanded?' expanded':''}`} data-id={item.id} aria-expanded={expanded} aria-label={`${expanded?'Collapse':'Expand'} ${item.name}`} onClick={()=>onToggle(item)}>
     <span className="art-image-layer">
-      <img className="preview" src={item.thumbnail||item.image} alt={imageAlt} loading={index<8?'eager':'lazy'} decoding="async" fetchPriority={index<4?'high':'auto'} />
-      {expanded&&item.image!==item.thumbnail&&fullReady?<img className="full ready" src={item.image} alt="" aria-hidden="true" decoding="async"/>:null}
+      <ViewportPreview src={item.thumbnail||item.image} alt={imageAlt} eager={index<INITIAL_RANDOM_COUNT||expanded}/>
+      {!EGRESS_SAFE_MODE&&expanded&&item.image!==item.thumbnail&&fullReady?<img className="full ready" src={item.image} alt="" aria-hidden="true" decoding="async" fetchPriority="high"/>:null}
     </span>
     <span className="shade" aria-hidden="true"></span>
     <span className="card-number">{String(index+1).padStart(2,'0')}</span>
