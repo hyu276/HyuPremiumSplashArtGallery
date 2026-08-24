@@ -2,7 +2,7 @@
   'use strict';
 
   const COLLAPSE_KEY='hyu_admin_choice_collapse_v1';
-  const ADMIN_FEATURE_VERSION='20260824-basic-guide-1';
+  const ADMIN_FEATURE_VERSION='20260824-rank-readonly-1';
 
   function whenReady(fn){
     if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fn,{once:true});
