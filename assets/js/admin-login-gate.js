@@ -2,10 +2,51 @@
   'use strict';
 
   const MODERATION_ASSET_VERSION='20260824-publish-moderation-2';
+  const AUTH_REQUEST_TIMEOUT_MS=12000;
+  const SIGNOUT_TIMEOUT_MS=2500;
 
   function whenReady(fn){
     if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fn,{once:true});
     else fn();
+  }
+
+  function timeoutError(label,ms){
+    const error=new Error(`${label} timed out after ${Math.ceil(ms/1000)} seconds. Please check your connection and try again.`);
+    error.name='TimeoutError';
+    return error;
+  }
+
+  function withTimeout(promise,ms,label){
+    let timer;
+    const timeout=new Promise((_,reject)=>{
+      timer=setTimeout(()=>reject(timeoutError(label,ms)),ms);
+    });
+    return Promise.race([Promise.resolve(promise),timeout]).finally(()=>clearTimeout(timer));
+  }
+
+  function createTimedFetch(timeoutMs=AUTH_REQUEST_TIMEOUT_MS){
+    return async function timedFetch(input,init={}){
+      const controller=new AbortController();
+      let externalAbortHandler=null;
+      const externalSignal=init?.signal;
+      if(externalSignal){
+        if(externalSignal.aborted)controller.abort();
+        else{
+          externalAbortHandler=()=>controller.abort();
+          externalSignal.addEventListener('abort',externalAbortHandler,{once:true});
+        }
+      }
+      const timer=setTimeout(()=>controller.abort(),timeoutMs);
+      try{
+        return await fetch(input,{...init,signal:controller.signal});
+      }catch(error){
+        if(controller.signal.aborted&&!externalSignal?.aborted)throw timeoutError('Supabase request',timeoutMs);
+        throw error;
+      }finally{
+        clearTimeout(timer);
+        if(externalSignal&&externalAbortHandler)externalSignal.removeEventListener('abort',externalAbortHandler);
+      }
+    };
   }
 
   whenReady(()=>{
@@ -44,7 +85,8 @@
       const profileClients=new Map(entries.map(([key,profile])=>[
         key,
         window.supabase.createClient(profile.url,profile.publishableKey,{
-          auth:{persistSession:false,autoRefreshToken:true,detectSessionInUrl:false}
+          auth:{persistSession:false,autoRefreshToken:false,detectSessionInUrl:false},
+          global:{fetch:createTimedFetch()}
         })
       ]));
       let activeKey=profileClients.has(preferred)?preferred:entries[0][0];
@@ -73,52 +115,98 @@
         return ordered;
       }
 
+      async function safeSignOut(candidate){
+        try{await withTimeout(candidate.auth.signOut(),SIGNOUT_TIMEOUT_MS,'Supabase sign-out')}catch{}
+      }
+
+      async function testProfile(key,credentials){
+        const candidate=profileClients.get(key);
+        if(!candidate)return {ok:false,key,error:new Error('Supabase profile is unavailable.'),validCredentials:false};
+        try{
+          const {data,error}=await withTimeout(
+            candidate.auth.signInWithPassword(credentials),
+            AUTH_REQUEST_TIMEOUT_MS+1500,
+            `${profiles[key]?.label||key} authentication`
+          );
+          if(error)return {ok:false,key,candidate,error,validCredentials:false};
+
+          const user=data?.user;
+          if(!user){
+            await safeSignOut(candidate);
+            return {ok:false,key,candidate,error:new Error('Supabase did not return an authenticated user.'),validCredentials:false};
+          }
+
+          const {data:adminRow,error:adminError}=await withTimeout(
+            candidate.from('admins').select('user_id').eq('user_id',user.id).maybeSingle(),
+            AUTH_REQUEST_TIMEOUT_MS+1500,
+            `${profiles[key]?.label||key} admin authorization`
+          );
+
+          if(!adminError&&adminRow)return {ok:true,key,candidate,data,user};
+
+          await safeSignOut(candidate);
+          return {
+            ok:false,
+            key,
+            candidate,
+            error:adminError||new Error('This account is not listed in public.admins for this project.'),
+            validCredentials:true
+          };
+        }catch(error){
+          await safeSignOut(candidate);
+          return {ok:false,key,candidate,error,validCredentials:false};
+        }
+      }
+
       const authFacade=facade.auth;
       const storageFacade=facade.storage;
       if(!authFacade)return;
 
       authFacade.signInWithPassword=async credentials=>{
-        let lastAuthError=null;
+        const keys=orderedProfiles();
+        let remaining=keys.length;
+        let finished=false;
         let validButUnauthorized=false;
+        let lastAuthError=null;
 
-        for(const key of orderedProfiles()){
-          const candidate=profileClients.get(key);
-          if(!candidate)continue;
+        return await new Promise(resolve=>{
+          const finishFailure=()=>{
+            if(finished||remaining>0)return;
+            finished=true;
+            resolve({
+              data:{user:null,session:null},
+              error:validButUnauthorized
+                ? new Error('This account is not authorized for any configured admin database.')
+                : (lastAuthError||new Error('Invalid login credentials'))
+            });
+          };
 
-          const {data,error}=await candidate.auth.signInWithPassword(credentials);
-          if(error){
-            lastAuthError=error;
-            continue;
+          for(const key of keys){
+            testProfile(key,credentials).then(result=>{
+              remaining-=1;
+
+              if(finished){
+                if(result.ok&&result.candidate!==activeClient)safeSignOut(result.candidate);
+                return;
+              }
+
+              if(result.ok){
+                finished=true;
+                activate(result.key,result.candidate);
+                resolve({data:result.data,error:null});
+                return;
+              }
+
+              if(result.validCredentials)validButUnauthorized=true;
+              if(result.error)lastAuthError=result.error;
+              finishFailure();
+            }).catch(error=>{
+              remaining-=1;
+              lastAuthError=error;
+              finishFailure();
+            });
           }
-
-          const user=data?.user;
-          if(!user){
-            lastAuthError=new Error('Supabase did not return an authenticated user.');
-            continue;
-          }
-
-          const {data:adminRow,error:adminError}=await candidate
-            .from('admins')
-            .select('user_id')
-            .eq('user_id',user.id)
-            .maybeSingle();
-
-          if(!adminError&&adminRow){
-            activate(key,candidate);
-            return {data,error:null};
-          }
-
-          validButUnauthorized=true;
-          lastAuthError=adminError||new Error('This account is not listed in public.admins for this project.');
-          try{await candidate.auth.signOut()}catch{}
-        }
-
-        return {
-          data:{user:null,session:null},
-          error:validButUnauthorized
-            ? new Error('This account is not authorized for any configured admin database.')
-            : (lastAuthError||new Error('Invalid login credentials'))
-        };
+        });
       };
 
       authFacade.getUser=(...args)=>activeClient.auth.getUser(...args);
@@ -151,6 +239,7 @@
       .admin-auth-card .field{margin-bottom:12px}
       .admin-auth-card .actions{margin-top:4px}
       .admin-auth-card #login{width:100%;background:#43dcff;color:#061016;border-color:#43dcff;font-weight:800}
+      .admin-auth-card #login:disabled{opacity:.62;cursor:wait}
       .admin-auth-card #status{margin-top:12px}
       .admin-dashboard-status{max-width:980px;margin:-4px 0 14px}
       .admin-dashboard-status[hidden]{display:none!important}
@@ -158,7 +247,7 @@
       .admin-dashboard-status #status.ok{border-color:#27543c;background:#0c1711}
       .admin-dashboard-status #status.err{border-color:#56323a;background:#231518}
       .admin-dashboard-status #status.warn{border-color:#5a4725;background:#211a0d}
-      @media(max-width:600px){.admin-auth-shell{padding:16px}.admin-auth-card{padding:20px;border-radius:10px}}
+      @media(max-width:600px){.admin-auth-shell{padding:16px;min-height:100dvh}.admin-auth-card{padding:20px;border-radius:10px}}
     `;
     document.head.appendChild(style);
 
