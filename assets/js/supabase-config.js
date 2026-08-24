@@ -30,7 +30,7 @@
   const cfg=window.HYU_SUPABASE_CONFIG||{};
   const profiles=window.HYU_SUPABASE_PROFILES||{};
   const isAdmin=/\/admin\.html$/i.test(window.location.pathname);
-  const ADMIN_ASSET_VERSION='20260824-publish-moderation-2';
+  const ADMIN_ASSET_VERSION='20260824-shared-properties-1';
 
   const authStorageKeys=[];
   for(const profile of Object.values(profiles)){
@@ -218,7 +218,16 @@
     try{window.top.location.replace(window.self.location.href)}catch{document.documentElement.style.display='none'}
   }
 
+  const loadSharedProperties=()=>{
+    if(document.querySelector('script[data-hyu-admin-shared-properties]'))return;
+    const sync=document.createElement('script');
+    sync.src=`./assets/js/admin-shared-properties.js?v=${ADMIN_ASSET_VERSION}`;
+    sync.dataset.hyuAdminSharedProperties='true';
+    document.body.appendChild(sync);
+  };
+
   const loadAdminUi=()=>{
+    loadSharedProperties();
     if(document.querySelector('script[data-hyu-admin-ui]'))return;
     const ui=document.createElement('script');
     ui.src=`./assets/js/admin-ui.js?v=${ADMIN_ASSET_VERSION}`;
