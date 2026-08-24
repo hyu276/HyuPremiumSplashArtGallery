@@ -1,16 +1,22 @@
 /* Mobile artwork-title typography fix.
-   iOS Safari can clip Vietnamese combining marks when a tight line box is
-   combined with overflow:hidden for the ellipsis treatment. Keep the
-   single-line ellipsis, but give glyph ascenders/descenders breathing room
-   without materially changing the card-copy layout. */
+   On iOS Safari / in-app browsers, Vietnamese uppercase glyphs can lose
+   combining marks when the title element itself uses overflow:hidden.
+   The parent artwork card already clips to its own bounds, so the title
+   no longer needs vertical clipping. This preserves a single-line title
+   while allowing full ascenders/descenders and diacritics to render. */
 @media (max-width:760px){
   .art-card:not(.expanded) .card-copy strong{
     display:block;
-    line-height:1.16;
-    padding-block:.10em .14em;
-    margin-block:-.10em -.14em;
+    width:max-content;
+    max-width:calc(100% - .1rem);
+    line-height:1.22;
+    padding-block:.12em .16em;
+    margin-block:-.12em -.16em;
     white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
+    overflow:visible;
+    text-overflow:clip;
+    font-family:Arial,Helvetica,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:geometricPrecision;
   }
 }
