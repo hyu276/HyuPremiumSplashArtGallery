@@ -28,7 +28,7 @@
 (function hardenSupabaseBrowserAuth(){
   const cfg=window.HYU_SUPABASE_CONFIG||{};
   const isAdmin=/\/admin\.html$/i.test(window.location.pathname);
-  const ADMIN_ASSET_VERSION='20260823-batch-fix-1';
+  const ADMIN_ASSET_VERSION='20260824-admin-login-gate-1';
   let projectRef='';
   try{projectRef=new URL(cfg.url).hostname.split('.')[0]||''}catch{}
   const authStorageKey=projectRef?`sb-${projectRef}-auth-token`:'';
@@ -156,6 +156,14 @@
     return;
   }
 
+  document.documentElement.classList.add('hyu-admin-auth-pending');
+  if(!document.querySelector('style[data-hyu-admin-auth-pending]')){
+    const pendingStyle=document.createElement('style');
+    pendingStyle.dataset.hyuAdminAuthPending='true';
+    pendingStyle.textContent='html.hyu-admin-auth-pending body{visibility:hidden}';
+    document.head.appendChild(pendingStyle);
+  }
+
   const addMeta=(attrs)=>{
     const meta=document.createElement('meta');
     for(const [key,value] of Object.entries(attrs))meta.setAttribute(key,value);
@@ -236,6 +244,28 @@
     },{once:true});
     document.body.appendChild(script);
   };
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',loadAdminEnhancements,{once:true});
-  else loadAdminEnhancements();
+
+  const loadAdminLoginGate=()=>{
+    const existing=document.querySelector('script[data-hyu-admin-login-gate]');
+    if(existing){
+      if(existing.dataset.loaded==='true')loadAdminEnhancements();
+      else existing.addEventListener('load',loadAdminEnhancements,{once:true});
+      return;
+    }
+    const script=document.createElement('script');
+    script.src=`./assets/js/admin-login-gate.js?v=${ADMIN_ASSET_VERSION}`;
+    script.dataset.hyuAdminLoginGate='true';
+    script.addEventListener('load',()=>{
+      script.dataset.loaded='true';
+      loadAdminEnhancements();
+    },{once:true});
+    script.addEventListener('error',()=>{
+      document.documentElement.classList.remove('hyu-admin-auth-pending');
+      loadAdminEnhancements();
+    },{once:true});
+    document.body.appendChild(script);
+  };
+
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',loadAdminLoginGate,{once:true});
+  else loadAdminLoginGate();
 })();
