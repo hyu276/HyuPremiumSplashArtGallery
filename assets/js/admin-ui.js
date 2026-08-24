@@ -2,7 +2,7 @@
   'use strict';
 
   const COLLAPSE_KEY='hyu_admin_choice_collapse_v1';
-  const ADMIN_FEATURE_VERSION='20260824-collaborator-ux-1';
+  const ADMIN_FEATURE_VERSION='20260824-basic-guide-1';
 
   function whenReady(fn){
     if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fn,{once:true});
@@ -160,6 +160,13 @@
       collaboratorUx.src=`./assets/js/admin-collaborator-ux.js?v=${ADMIN_FEATURE_VERSION}`;
       collaboratorUx.dataset.hyuAdminCollaboratorUx='true';
       document.body.appendChild(collaboratorUx);
+    }
+
+    if(!document.querySelector('script[data-hyu-admin-basic-guide]')){
+      const basicGuide=document.createElement('script');
+      basicGuide.src=`./assets/js/admin-basic-guide.js?v=${ADMIN_FEATURE_VERSION}`;
+      basicGuide.dataset.hyuAdminBasicGuide='true';
+      document.body.appendChild(basicGuide);
     }
 
     if(!document.querySelector('script[data-hyu-admin-team-layout]')){
