@@ -8,12 +8,29 @@ const ALLOWED_ORIGINS=new Set(['https://hyu276.github.io','https://hyupremium.ve
 function cors(request:Request){const origin=request.headers.get('origin')||'';return {'Access-Control-Allow-Origin':ALLOWED_ORIGINS.has(origin)?origin:'https://hyu276.github.io','Access-Control-Allow-Methods':'GET,POST,PUT,DELETE,OPTIONS','Access-Control-Allow-Headers':'authorization,content-type','Access-Control-Max-Age':'86400','Vary':'Origin'} as Record<string,string>}
 function json(request:Request,data:unknown,status=200){return Response.json(data,{status,headers:cors(request)})}
 function tokenFrom(request:Request){const value=request.headers.get('authorization')||'';return value.toLowerCase().startsWith('bearer ')?value.slice(7).trim():''}
+function bareClient(){return createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{persistSession:false,autoRefreshToken:false,detectSessionInUrl:false}})}
 function client(token:string){return createClient(SUPABASE_URL,SUPABASE_KEY,{global:{headers:{Authorization:`Bearer ${token}`}},auth:{persistSession:false,autoRefreshToken:false,detectSessionInUrl:false}})}
-async function adminClient(request:Request){
-  const token=tokenFrom(request);if(!token)throw new Error('Authentication required.');
+async function ensureAdminToken(token:string){
+  if(!token)throw new Error('Authentication required.');
   const sb=client(token);const {data:{user},error:userError}=await sb.auth.getUser(token);if(userError||!user)throw new Error('Invalid or expired session.');
   const {data:admin,error}=await sb.from('admins').select('user_id').eq('user_id',user.id).maybeSingle();if(error||!admin)throw new Error('Admin permission required.');
   return {sb,user};
+}
+async function adminClient(request:Request){return ensureAdminToken(tokenFrom(request))}
+function sessionPayload(session:any,user:any){return {access_token:session.access_token,refresh_token:session.refresh_token,expires_at:session.expires_at,expires_in:session.expires_in,token_type:session.token_type,user:{id:user.id,email:user.email||''}}}
+async function login(request:Request,email:string,password:string){
+  if(!email||!password)return json(request,{error:'Email and password are required.'},400);
+  const auth=bareClient();const {data,error}=await auth.auth.signInWithPassword({email,password});
+  if(error||!data.session||!data.user)return json(request,{error:error?.message||'Unable to sign in.'},401);
+  try{await ensureAdminToken(data.session.access_token)}catch(error:any){return json(request,{error:error?.message||'Admin permission required.'},403)}
+  return json(request,{ok:true,session:sessionPayload(data.session,data.user)});
+}
+async function refreshSession(request:Request,refreshToken:string){
+  if(!refreshToken)return json(request,{error:'Refresh token is required.'},401);
+  const auth=bareClient();const {data,error}=await auth.auth.refreshSession({refresh_token:refreshToken});
+  if(error||!data.session||!data.user)return json(request,{error:error?.message||'Session refresh failed.'},401);
+  try{await ensureAdminToken(data.session.access_token)}catch(error:any){return json(request,{error:error?.message||'Admin permission required.'},403)}
+  return json(request,{ok:true,session:sessionPayload(data.session,data.user)});
 }
 function refresh(){revalidateTag('seo-manager');revalidateTag('catalogue');for(const path of ['/','/character/','/artworks/','/about/','/news/','/blog/','/sitemap.xml','/image-sitemap.xml','/robots.txt','/llms.txt'])revalidatePath(path)}
 
@@ -37,8 +54,13 @@ export async function GET(request:Request){
 }
 
 export async function POST(request:Request){
+  let body:any={};
+  try{body=await request.json()}catch{return json(request,{error:'Invalid JSON request.'},400)}
+  const action=String(body.action||'');
+  if(action==='login')return login(request,String(body.email||'').trim(),String(body.password||''));
+  if(action==='refresh-session')return refreshSession(request,String(body.refresh_token||''));
   try{
-    const {sb}=await adminClient(request);const body=await request.json();const action=String(body.action||'');let result:any=null;
+    const {sb}=await adminClient(request);let result:any=null;
     if(action==='save-global'){
       const allowed=['site_name','site_url','default_title','title_template','default_description','default_og_image','default_locale','google_site_verification','llms_summary','llms_key_pages','ai_crawlers'];const payload:Object=Object.fromEntries(allowed.filter(k=>k in body.data).map(k=>[k,body.data[k]]));
       const response=await sb.from('seo_global_settings').update(payload).eq('id',true).select().single();if(response.error)throw response.error;result=response.data;
