@@ -30,8 +30,7 @@
   const cfg=window.HYU_SUPABASE_CONFIG||{};
   const profiles=window.HYU_SUPABASE_PROFILES||{};
   const isAdmin=/\/admin\.html$/i.test(window.location.pathname);
-  const ADMIN_ASSET_VERSION='20260824-mobile-auth-lockless-1';
-  const adminLockNoop=async(_name,_acquireTimeout,fn)=>await fn();
+  const ADMIN_ASSET_VERSION='20260824-mobile-auth-default-lockless-1';
 
   const authStorageKeys=[];
   for(const profile of Object.values(profiles)){
@@ -67,19 +66,15 @@
 
   if(window.supabase?.createClient&&!window.supabase.__hyuAuthHardened){
     const originalCreateClient=window.supabase.createClient.bind(window.supabase);
-    window.supabase.createClient=(url,key,options={})=>{
-      const auth={
+    window.supabase.createClient=(url,key,options={})=>originalCreateClient(url,key,{
+      ...options,
+      auth:{
         ...(options.auth||{}),
         persistSession:false,
         autoRefreshToken:false,
         detectSessionInUrl:false
-      };
-      if(isAdmin){
-        auth.lock=adminLockNoop;
-        auth.lockAcquireTimeout=4000;
       }
-      return originalCreateClient(url,key,{...options,auth});
-    };
+    });
     try{Object.defineProperty(window.supabase,'__hyuAuthHardened',{value:true,configurable:false})}catch{}
   }
 
