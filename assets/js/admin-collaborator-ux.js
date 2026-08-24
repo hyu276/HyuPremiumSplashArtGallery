@@ -3,6 +3,7 @@
 
   const OWNER_EMAIL='csquocnguyen@gmail.com';
   const state={creditReady:false,activeIndex:-1,visibleOptions:[],menuMode:''};
+  let publishScrollRaf=0;
 
   function ready(fn){
     if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fn,{once:true});
@@ -267,6 +268,41 @@
     enforceRankAddPermission();
   }
 
+  function syncPublishRequestScroll(){
+    cancelAnimationFrame(publishScrollRaf);
+    publishScrollRaf=requestAnimationFrame(()=>{
+      document.querySelectorAll('.publish-request-list').forEach(list=>{
+        const cards=[...list.children].filter(child=>child.classList?.contains('publish-request-card'));
+        if(cards.length<=4){
+          list.classList.remove('publish-request-list-scrollable');
+          list.style.removeProperty('max-height');
+          list.style.removeProperty('overflow-y');
+          return;
+        }
+
+        const computed=getComputedStyle(list);
+        const gap=Number.parseFloat(computed.rowGap||computed.gap)||8;
+        const firstFour=cards.slice(0,4);
+        const height=firstFour.reduce((total,card)=>total+card.getBoundingClientRect().height,0)+gap*(firstFour.length-1);
+        list.classList.add('publish-request-list-scrollable');
+        list.style.maxHeight=`${Math.ceil(height)}px`;
+        list.style.overflowY='auto';
+      });
+    });
+  }
+
+  function watchPublishRequestLists(){
+    const observer=new MutationObserver(mutations=>{
+      if(mutations.some(mutation=>{
+        const target=mutation.target;
+        return target?.classList?.contains('publish-request-list')||target?.closest?.('.publish-request-list');
+      }))syncPublishRequestScroll();
+    });
+    observer.observe(document.body,{childList:true,subtree:true});
+    window.addEventListener('resize',syncPublishRequestScroll,{passive:true});
+    setTimeout(syncPublishRequestScroll,180);
+  }
+
   function injectStyle(){
     if(document.querySelector('style[data-hyu-collaborator-ux]'))return;
     const style=document.createElement('style');
@@ -283,6 +319,11 @@
       .admin-credit-option{display:block;width:100%;border:0;border-radius:5px;background:transparent;color:#cbd4dc;text-align:left;padding:8px 9px;cursor:pointer;font-size:12px}
       .admin-credit-option:hover,.admin-credit-option.active{background:#102731;color:#43dcff}
       .admin-credit-empty{padding:12px 9px;color:var(--muted);font-size:11px;text-align:center}
+      .publish-request-list-scrollable{padding-right:6px;overscroll-behavior:contain;scrollbar-gutter:stable;scrollbar-width:thin;scrollbar-color:#43515d #0d1115}
+      .publish-request-list-scrollable::-webkit-scrollbar{width:8px}
+      .publish-request-list-scrollable::-webkit-scrollbar-track{background:#0d1115;border-radius:999px}
+      .publish-request-list-scrollable::-webkit-scrollbar-thumb{background:#43515d;border-radius:999px;border:2px solid #0d1115}
+      .publish-request-list-scrollable::-webkit-scrollbar-thumb:hover{background:#586875}
       .admin-collaborator-guide{margin:0 0 14px!important;border-color:#30515f;background:linear-gradient(180deg,#111a20 0%,#10161b 100%)}
       .admin-collab-guide-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:12px}
       .admin-collab-guide-head h2{margin:0 0 4px!important;color:#d8f6ff!important}
@@ -300,6 +341,7 @@
 
   ready(()=>{
     injectStyle();
+    watchPublishRequestLists();
     if(!enhanceCreditPicker()){
       const observer=new MutationObserver(()=>{
         if(enhanceCreditPicker())observer.disconnect();
