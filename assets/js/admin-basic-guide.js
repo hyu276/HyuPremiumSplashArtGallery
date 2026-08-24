@@ -55,13 +55,69 @@
     return true;
   }
 
+  function lockRankChoices(){
+    const list=document.getElementById('rankChoices');
+    if(!list)return false;
+
+    const collaborator=isCollaborator();
+    list.classList.toggle('collaborator-ranks-readonly',collaborator);
+
+    for(const button of list.querySelectorAll('button')){
+      button.hidden=collaborator;
+      button.disabled=collaborator;
+      button.tabIndex=collaborator?-1:0;
+      button.setAttribute('aria-hidden',String(collaborator));
+    }
+
+    const field=list.closest('.field');
+    const help=field?.nextElementSibling?.classList?.contains('choice-help')?field.nextElementSibling:null;
+    if(help){
+      if(collaborator){
+        if(!help.dataset.ownerRankHelp)help.dataset.ownerRankHelp=help.innerHTML;
+        help.textContent='Skin rank do Owner quản lý. Bạn chỉ có thể chọn các rank hiện có.';
+      }else if(help.dataset.ownerRankHelp){
+        help.innerHTML=help.dataset.ownerRankHelp;
+        delete help.dataset.ownerRankHelp;
+      }
+    }
+    return true;
+  }
+
   function sync(){
     setChoiceLabel('categoryChoices','Tướng');
     setChoiceLabel('creditChoices','Tác giả');
     rewriteGuide();
+    lockRankChoices();
   }
 
   function ready(){
+    if(!document.querySelector('style[data-hyu-rank-readonly]')){
+      const style=document.createElement('style');
+      style.dataset.hyuRankReadonly='true';
+      style.textContent=`
+        #rankChoices.collaborator-ranks-readonly .choice{gap:0;padding-right:9px}
+        #rankChoices.collaborator-ranks-readonly .choice button{display:none!important}
+      `;
+      document.head.appendChild(style);
+    }
+
+    document.addEventListener('click',event=>{
+      if(!isCollaborator())return;
+      const button=event.target.closest?.('#rankChoices button');
+      if(!button)return;
+      event.preventDefault();
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+    },true);
+
+    document.addEventListener('keydown',event=>{
+      if(!isCollaborator())return;
+      if(!event.target?.closest?.('#rankChoices button'))return;
+      event.preventDefault();
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+    },true);
+
     sync();
 
     const pill=document.getElementById('ownerPill');
