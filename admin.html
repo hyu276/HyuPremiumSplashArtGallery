@@ -60,7 +60,7 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="./assets/js/supabase-config.js?v=20260824-publish-moderation-2"></script>
+<script src="./assets/js/supabase-config.js?v=20260824-mobile-auth-routing-2"></script>
 <script>
 const MAX_IMAGE_BYTES=10*1024*1024,LAST_CHOICES_KEY='hyu_admin_last_artwork_choices';
 const cfg=window.HYU_SUPABASE_CONFIG||{};
@@ -84,7 +84,7 @@ function table(kind){return kind==='category'?'categories':kind==='credit'?'imag
 function findChoice(kind,name){return arr(kind).find(x=>x.name.toLowerCase()===String(name||'').trim().toLowerCase())||null}
 function choiceName(kind,name,fallback=''){return findChoice(kind,name)?.name||fallback}
 function storagePathFromUrl(url){const m=String(url||'').match(/\/storage\/v1\/object\/public\/artworks\/(.+)$/);return m?decodeURIComponent(m[1]):''}
-async function ensureAdmin(){if(!client)throw new Error('Supabase configuration is unavailable.');const {data:{user},error}=await client.auth.getUser();if(error||!user)throw new Error('Sign in first.');const {data,error:adminErr}=await client.from('admins').select('user_id').eq('user_id',user.id).maybeSingle();if(adminErr)throw adminErr;if(!data)throw new Error('This account is not listed in public.admins.');setOwner(user);return user}
+async function ensureAdmin(){if(!client)throw new Error('Supabase configuration is unavailable.');let verified=null;try{verified=typeof window.HYU_GET_ACTIVE_ADMIN_VERIFIED_USER==='function'?window.HYU_GET_ACTIVE_ADMIN_VERIFIED_USER():window.HYU_ACTIVE_ADMIN_VERIFIED_USER}catch{}if(verified?.id){setOwner(verified);return verified}const {data:{user},error}=await client.auth.getUser();if(error||!user)throw new Error('Sign in first.');const {data,error:adminErr}=await client.from('admins').select('user_id').eq('user_id',user.id).maybeSingle();if(adminErr)throw adminErr;if(!data)throw new Error('This account is not listed in public.admins.');setOwner(user);return user}
 function syncSelect(el,values,current){const all=[...new Set([...(values||[]),current].filter(Boolean))];el.innerHTML=all.map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join('');el.value=all.includes(current)?current:(all[0]||'')}
 function syncSearchChoice(input,list,values,current){const all=[...new Set([...(values||[]),current].filter(Boolean))];list.innerHTML=all.map(v=>`<option value="${esc(v)}"></option>`).join('');input.value=all.includes(current)?current:(values[0]||'')}
 function choiceMarkup(kind,rows){return rows.map(v=>`<span class="choice">${esc(v.name)}<button type="button" data-edit-kind="${kind}" data-edit-name="${esc(v.name)}" title="Rename">✎</button><button type="button" data-remove-kind="${kind}" data-remove-name="${esc(v.name)}" title="Remove">×</button></span>`).join('')}
@@ -107,14 +107,13 @@ $('#imageFile').addEventListener('change',e=>{revokePreview();selectedFile=e.tar
 $('#listSearch').addEventListener('input',render);$('#apply').addEventListener('click',applyForm);$('#clear').addEventListener('click',resetForm);$('#addCategory').addEventListener('click',()=>{addChoice('category',$('#newCategory').value);$('#newCategory').value=''});$('#addCredit').addEventListener('click',()=>{addChoice('credit',$('#newCredit').value);$('#newCredit').value=''});$('#addRank').addEventListener('click',()=>{addChoice('rank',$('#newRank').value);$('#newRank').value=''});['newCategory','newCredit','newRank'].forEach(id=>$('#'+id).addEventListener('keydown',e=>{if(e.key==='Enter')$('#'+(id==='newCategory'?'addCategory':id==='newCredit'?'addCredit':'addRank')).click()}));
 $('#categoryChoices').addEventListener('click',choiceClick);$('#creditChoices').addEventListener('click',choiceClick);$('#rankChoices').addEventListener('click',choiceClick);function choiceClick(e){if(e.target.dataset.editKind)renameChoice(e.target.dataset.editKind,e.target.dataset.editName);else if(e.target.dataset.removeKind)removeChoice(e.target.dataset.removeKind,e.target.dataset.removeName)}
 $('#list').addEventListener('click',e=>{if(e.target.dataset.edit)editItem(e.target.dataset.edit);else if(e.target.dataset.toggle)toggleVisibility(e.target.dataset.toggle);else if(e.target.dataset.del)deleteItem(e.target.dataset.del)});
-$('#login').addEventListener('click',async()=>{try{if(!client)throw new Error('Supabase configuration is unavailable.');setStatus('Signing in...');const {error}=await client.auth.signInWithPassword({email:$('#email').value.trim(),password:$('#password').value});if(error)throw error;$('#password').value='';await loadAll()}catch(e){setOwner(null);setStatus(e.message,'err')}});
-$('#logout').addEventListener('click',async()=>{if(client)await client.auth.signOut();setOwner(null);items=[];categories=[];credits=[];ranks=[];render();resetForm();markClean();setStatus('Signed out.','ok')});
+$('#login').addEventListener('click',async()=>{if($('#login').disabled)return;$('#login').disabled=true;try{if(!client)throw new Error('Supabase configuration is unavailable.');setStatus('Signing in...');const {data,error}=await client.auth.signInWithPassword({email:$('#email').value.trim(),password:$('#password').value});if(error)throw error;let verified=null;try{verified=typeof window.HYU_GET_ACTIVE_ADMIN_VERIFIED_USER==='function'?window.HYU_GET_ACTIVE_ADMIN_VERIFIED_USER():window.HYU_ACTIVE_ADMIN_VERIFIED_USER}catch{}if(verified||data?.user)setOwner(verified||data.user);$('#password').value='';await loadAll()}catch(e){setOwner(null);setStatus(e.message,'err')}finally{$('#login').disabled=false}});
+$('#logout').addEventListener('click',async()=>{if(client)await client.auth.signOut();window.HYU_ACTIVE_ADMIN_VERIFIED_USER=null;setOwner(null);items=[];categories=[];credits=[];ranks=[];render();resetForm();markClean();setStatus('Signed out.','ok')});
 $('#load').addEventListener('click',async()=>{try{if(dirty&&!confirm('Discard unpublished local changes and reload Supabase?'))return;await loadAll()}catch(e){setStatus(e.message,'err')}});
 $('#save').addEventListener('click',async()=>{try{$('#save').disabled=true;await publish()}catch(e){setStatus(e.message,'err')}finally{$('#save').disabled=!adminUser}});
 window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue=''}});
 async function bootstrap(){setOwner(null);render();resetForm();if(!client)return setStatus('Supabase configuration is unavailable.','err');try{const {data:{session}}=await client.auth.getSession();if(session?.user){$('#email').value=session.user.email||'';await loadAll()}else setStatus('Sign in with your Supabase owner account.')}catch(e){setStatus(e.message,'err')}}
 bootstrap();
 </script>
-<script src="./assets/js/admin-publish-moderation.js?v=20260824-publish-moderation-2" data-hyu-admin-publish-moderation="true" data-version="20260824-publish-moderation-2"></script>
 </body>
 </html>
