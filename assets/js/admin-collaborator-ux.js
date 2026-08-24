@@ -2,7 +2,7 @@
   'use strict';
 
   const OWNER_EMAIL='csquocnguyen@gmail.com';
-  const state={creditReady:false,activeIndex:-1,visibleOptions:[]};
+  const state={creditReady:false,activeIndex:-1,visibleOptions:[],menuMode:''};
 
   function ready(fn){
     if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fn,{once:true});
@@ -112,6 +112,7 @@
 
     function closeMenu(){
       menu.hidden=true;
+      state.menuMode='';
       input.setAttribute('aria-expanded','false');
       state.activeIndex=-1;
       input.removeAttribute('aria-activedescendant');
@@ -148,6 +149,7 @@
           .sort((a,b)=>b.score-a.score||a.value.localeCompare(b.value,undefined,{sensitivity:'base'}))
           .map(item=>item.value);
       }
+      state.menuMode=mode;
       state.visibleOptions=values;
       state.activeIndex=-1;
       menu.innerHTML=values.length
@@ -167,12 +169,12 @@
     toggle.addEventListener('mousedown',event=>event.preventDefault());
     toggle.addEventListener('click',event=>{
       event.preventDefault();
-      if(!menu.hidden){
+      if(!menu.hidden&&state.menuMode==='all'){
         closeMenu();
-        return;
+      }else{
+        openMenu('all');
+        input.focus({preventScroll:true});
       }
-      openMenu('all');
-      input.focus({preventScroll:true});
     });
 
     input.addEventListener('input',()=>openMenu('filter'));
@@ -202,7 +204,7 @@
     });
 
     new MutationObserver(()=>{
-      if(!menu.hidden)openMenu(input.value.trim()?'filter':'all');
+      if(!menu.hidden)openMenu(state.menuMode==='all'?'all':'filter');
     }).observe(datalist,{childList:true,subtree:true,attributes:true});
 
     return true;
