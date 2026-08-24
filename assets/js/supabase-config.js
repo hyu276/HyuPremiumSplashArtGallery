@@ -1,8 +1,8 @@
 // HYU PREMIUM Supabase browser configuration.
 // The project URL and publishable/anon key are intentionally public browser values when RLS is enabled.
 // NEVER put a service_role key, secret key, database password, admin password, or long-lived private token here.
-// Public pages and the default admin URL always use the owner's database. The collaborator profile
-// can only be selected explicitly on /admin.html with ?db=huy9vnd.
+// Public pages use the owner's database. Admin login can resolve any configured profile automatically,
+// while ?db=<profile> remains a preferred-profile hint for direct admin links.
 (function configureHyuSupabase(){
   const profiles=Object.freeze({
     owner:Object.freeze({
@@ -21,20 +21,33 @@
   const isAdmin=/\/admin\.html$/i.test(window.location.pathname);
   const requested=isAdmin?new URLSearchParams(window.location.search).get('db'):'owner';
   const profileKey=requested&&Object.prototype.hasOwnProperty.call(profiles,requested)?requested:'owner';
+  window.HYU_SUPABASE_PROFILES=profiles;
   window.HYU_SUPABASE_PROFILE=profileKey;
   window.HYU_SUPABASE_CONFIG={...profiles[profileKey]};
 })();
 
 (function hardenSupabaseBrowserAuth(){
   const cfg=window.HYU_SUPABASE_CONFIG||{};
+  const profiles=window.HYU_SUPABASE_PROFILES||{};
   const isAdmin=/\/admin\.html$/i.test(window.location.pathname);
-  const ADMIN_ASSET_VERSION='20260824-admin-login-gate-1';
-  let projectRef='';
-  try{projectRef=new URL(cfg.url).hostname.split('.')[0]||''}catch{}
-  const authStorageKey=projectRef?`sb-${projectRef}-auth-token`:'';
+  const ADMIN_ASSET_VERSION='20260824-admin-multiproject-login-1';
+
+  const authStorageKeys=[];
+  for(const profile of Object.values(profiles)){
+    try{
+      const projectRef=new URL(profile.url).hostname.split('.')[0]||'';
+      if(projectRef)authStorageKeys.push(`sb-${projectRef}-auth-token`);
+    }catch{}
+  }
+  if(!authStorageKeys.length){
+    try{
+      const projectRef=new URL(cfg.url).hostname.split('.')[0]||'';
+      if(projectRef)authStorageKeys.push(`sb-${projectRef}-auth-token`);
+    }catch{}
+  }
 
   const clearLegacyAuthStorage=()=>{
-    if(!authStorageKey)return;
+    if(!authStorageKeys.length)return;
     let stores=[];
     try{stores.push(window.localStorage)}catch{}
     try{stores.push(window.sessionStorage)}catch{}
@@ -42,7 +55,7 @@
       try{
         for(let i=storage.length-1;i>=0;i--){
           const key=storage.key(i)||'';
-          if(key===authStorageKey||key.startsWith(`${authStorageKey}-`))storage.removeItem(key);
+          if(authStorageKeys.some(authKey=>key===authKey||key.startsWith(`${authKey}-`)))storage.removeItem(key);
         }
       }catch{}
     }
@@ -174,20 +187,22 @@
   addMeta({'http-equiv':'Pragma',content:'no-cache'});
   addMeta({'http-equiv':'Expires',content:'0'});
   if(!document.querySelector('meta[http-equiv="Content-Security-Policy"]')){
-    let apiOrigin='',wsOrigin='';
-    try{
-      const endpoint=new URL(cfg.url);
-      apiOrigin=endpoint.origin;
-      endpoint.protocol=endpoint.protocol==='https:'?'wss:':'ws:';
-      wsOrigin=endpoint.origin;
-    }catch{}
+    const connectSources=["'self'"];
+    for(const profile of Object.values(profiles)){
+      try{
+        const endpoint=new URL(profile.url);
+        connectSources.push(endpoint.origin);
+        endpoint.protocol=endpoint.protocol==='https:'?'wss:':'ws:';
+        connectSources.push(endpoint.origin);
+      }catch{}
+    }
     addMeta({
       'http-equiv':'Content-Security-Policy',
       content:[
         "default-src 'self'",
         "script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net",
         "style-src 'self' 'unsafe-inline'",
-        `connect-src 'self' ${apiOrigin} ${wsOrigin}`.trim(),
+        `connect-src ${[...new Set(connectSources)].join(' ')}`,
         "img-src 'self' data: blob: https:",
         "font-src 'self' data:",
         "object-src 'none'",
