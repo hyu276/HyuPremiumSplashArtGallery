@@ -1,12 +1,15 @@
 (function(){
   'use strict';
 
-  if(window.__HYU_PUBLISH_REQUEST_HOOK__==='v1')return;
-  window.__HYU_PUBLISH_REQUEST_HOOK__='v1';
+  if(window.__HYU_PUBLISH_REQUEST_HOOK__==='v2')return;
+  window.__HYU_PUBLISH_REQUEST_HOOK__='v2';
 
   const OWNER_EMAIL='csquocnguyen@gmail.com';
   const MODERATION_URL='https://zkrhwqgmynbbmoktokdq.supabase.co/functions/v1/publish-moderation';
+  const MODERATION_LAUNCH_MS=Date.parse('2026-08-24T03:45:00Z');
   const trackedUploads=new Map();
+  let reconciling=false;
+  let reconcileTimer=0;
 
   function facade(){
     try{return typeof client!=='undefined'?client:null}catch{return null}
@@ -53,13 +56,16 @@
     }catch{return ''}
   }
 
-  async function moderationPost(body){
+  async function moderationFetch(options={}){
     const token=await accessToken();
     if(!token)throw new Error('Admin session is unavailable. Please sign in again.');
     const response=await fetch(MODERATION_URL,{
-      method:'POST',
-      headers:{Authorization:`Bearer ${token}`,'Content-Type':'application/json'},
-      body:JSON.stringify(body),
+      ...options,
+      headers:{
+        ...(options.headers||{}),
+        Authorization:`Bearer ${token}`,
+        'Content-Type':'application/json'
+      },
       cache:'no-store',
       credentials:'omit'
     });
@@ -67,6 +73,26 @@
     try{payload=await response.json()}catch{}
     if(!response.ok)throw new Error(payload?.error||`Moderation request failed (${response.status}).`);
     return payload;
+  }
+
+  function moderationPost(body){
+    return moderationFetch({method:'POST',body:JSON.stringify(body)});
+  }
+
+  function moderationGet(){
+    return moderationFetch({method:'GET'});
+  }
+
+  function uploadPathFromUrl(image){
+    const raw=String(image||'');
+    const match=raw.match(/\/storage\/v1\/object\/public\/artworks\/(.+)$/);
+    if(!match)return '';
+    try{return decodeURIComponent(match[1])}catch{return match[1]}
+  }
+
+  function uploadTimeFromPath(path){
+    const match=String(path||'').match(/-(\d{13})(?:\.[a-z0-9]+)?$/i);
+    return match?Number(match[1]):0;
   }
 
   function imageMatchesPath(image,path){
@@ -123,14 +149,75 @@
     }catch{return false}
   }
 
+  async function reconcileMissingRequests(){
+    if(reconciling)return;
+    const user=await currentUser();
+    const email=String(user?.email||'').trim().toLowerCase();
+    if(!user||!email||email===OWNER_EMAIL)return;
+
+    const c=activeClient();
+    if(!c?.from)return;
+    reconciling=true;
+    try{
+      const [artworkResult,requestPayload]=await Promise.all([
+        c.from('artworks')
+          .select('id,name,description,category_id,rank_id,credit_id,image,tags,hidden,created_at,updated_at')
+          .order('updated_at',{ascending:false}),
+        moderationGet()
+      ]);
+      if(artworkResult?.error)throw artworkResult.error;
+
+      const requests=Array.isArray(requestPayload?.requests)?requestPayload.requests:[];
+      const known=new Set(requests.map(row=>`${String(row.artwork_id||'')}\n${String(row.candidate_image||'')}`));
+      const missing=(artworkResult?.data||[]).filter(row=>{
+        const path=uploadPathFromUrl(row?.image);
+        if(!path.startsWith('uploads/'))return false;
+        const uploadedAt=uploadTimeFromPath(path);
+        if(!uploadedAt||uploadedAt<MODERATION_LAUNCH_MS)return false;
+        return !known.has(`${String(row.id||'')}\n${String(row.image||'')}`);
+      }).slice(0,25);
+
+      let created=0;
+      for(const row of missing){
+        const path=uploadPathFromUrl(row.image);
+        try{
+          const request=await createRequest(row,path,user);
+          if(request?.id){created+=1;known.add(`${String(row.id||'')}\n${String(row.image||'')}`)}
+        }catch(error){
+          console.error('[publish-request-hook] reconciliation failed for',row?.id,error);
+        }
+      }
+
+      if(created){
+        console.info(`[publish-request-hook] reconciled ${created} missing publish request(s)`);
+        window.dispatchEvent(new CustomEvent('hyu:publish-request-created',{detail:{count:created,reconciled:true}}));
+      }
+    }catch(error){
+      console.warn('[publish-request-hook] reconciliation skipped',error);
+    }finally{
+      reconciling=false;
+    }
+  }
+
+  function scheduleReconcile(delay=1200){
+    clearTimeout(reconcileTimer);
+    reconcileTimer=setTimeout(()=>reconcileMissingRequests(),delay);
+  }
+
   function install(){
     const c=facade();
     if(!c?.from||!c?.storage?.from)return false;
-    if(c.from?.__hyuPublishRequestHookV1&&c.storage.from?.__hyuPublishRequestHookV1)return true;
+    if(c.from?.__hyuPublishRequestHookV2&&c.storage.from?.__hyuPublishRequestHookV2){
+      scheduleReconcile();
+      return true;
+    }
 
     // If the original moderation module is already wrapped around the CURRENT routed
     // client, do not double-wrap and create duplicate requests.
-    if(looksLikeExistingModerationWrapper(c.from))return true;
+    if(looksLikeExistingModerationWrapper(c.from)){
+      scheduleReconcile();
+      return true;
+    }
 
     const originalFrom=c.from.bind(c);
     const originalStorageFrom=c.storage.from.bind(c.storage);
@@ -158,7 +245,7 @@
         }
       });
     };
-    routedStorageFrom.__hyuPublishRequestHookV1=true;
+    routedStorageFrom.__hyuPublishRequestHookV2=true;
     c.storage.from=routedStorageFrom;
 
     const routedFrom=function(table){
@@ -206,6 +293,7 @@
 
               affected.forEach(({path})=>trackedUploads.delete(path));
               window.dispatchEvent(new CustomEvent('hyu:publish-request-created',{detail:{count:created.length}}));
+              scheduleReconcile(2500);
               return result;
             };
           }
@@ -214,10 +302,11 @@
         }
       });
     };
-    routedFrom.__hyuPublishRequestHookV1=true;
+    routedFrom.__hyuPublishRequestHookV2=true;
     c.from=routedFrom;
 
     console.info('[publish-request-hook] installed for routed admin client',activeProfile());
+    scheduleReconcile();
     return true;
   }
 
@@ -237,7 +326,9 @@
   // Re-check whenever login routing changes the active Supabase project.
   const pill=document.getElementById('ownerPill');
   if(pill){
-    new MutationObserver(()=>setTimeout(()=>installWhenReady(),0))
-      .observe(pill,{attributes:true,childList:true,subtree:true});
+    new MutationObserver(()=>{
+      setTimeout(()=>installWhenReady(),0);
+      scheduleReconcile(1400);
+    }).observe(pill,{attributes:true,childList:true,subtree:true});
   }
 })();
