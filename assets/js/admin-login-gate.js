@@ -1,1 +1,118 @@
-placeholder
+(function(){
+  'use strict';
+
+  function whenReady(fn){
+    if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fn,{once:true});
+    else fn();
+  }
+
+  whenReady(()=>{
+    const wrap=document.querySelector('.wrap');
+    const topActions=wrap?.querySelector('.top-actions');
+    const security=wrap?.querySelector('.security');
+    const ownerPill=document.getElementById('ownerPill');
+    const email=document.getElementById('email');
+    const password=document.getElementById('password');
+    const login=document.getElementById('login');
+    const logout=document.getElementById('logout');
+    const load=document.getElementById('load');
+    const save=document.getElementById('save');
+    const status=document.getElementById('status');
+    const loginPanel=login?.closest('.panel');
+    const emailField=email?.closest('.field');
+    const passwordField=password?.closest('.field');
+
+    if(!wrap||!topActions||!ownerPill||!email||!password||!login||!logout||!load||!save||!status||!loginPanel||!emailField||!passwordField){
+      document.documentElement.classList.remove('hyu-admin-auth-pending');
+      return;
+    }
+
+    const style=document.createElement('style');
+    style.dataset.hyuAdminLoginGate='true';
+    style.textContent=`
+      .admin-auth-shell{display:none;min-height:100vh;width:100%;padding:24px;place-items:center;background:
+        radial-gradient(circle at 50% 18%,rgba(67,220,255,.09),transparent 34%),
+        linear-gradient(180deg,#0b0d10 0%,#090b0e 100%)}
+      body.admin-auth-locked{min-height:100vh;overflow:hidden}
+      body.admin-auth-locked .admin-auth-shell{display:grid}
+      body.admin-auth-locked>.wrap,body.admin-auth-locked>.admin-jump-nav{display:none!important}
+      .admin-auth-card{width:min(430px,100%);border:1px solid #28303a;border-radius:12px;background:#11151a;padding:24px;box-shadow:0 22px 60px rgba(0,0,0,.34)}
+      .admin-auth-brand{font-size:18px;font-weight:900;letter-spacing:.08em;margin-bottom:22px}
+      .admin-auth-brand b{color:#43dcff}
+      .admin-auth-card h1{margin:0 0 18px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#c9d1d9}
+      .admin-auth-card .field{margin-bottom:12px}
+      .admin-auth-card .actions{margin-top:4px}
+      .admin-auth-card #login{width:100%;background:#43dcff;color:#061016;border-color:#43dcff;font-weight:800}
+      .admin-auth-card #status{margin-top:12px}
+      .admin-dashboard-status{max-width:980px;margin:-4px 0 14px}
+      .admin-dashboard-status[hidden]{display:none!important}
+      .admin-dashboard-status #status{margin:0;padding:8px 10px;border:1px solid #28303a;border-radius:7px;background:#0e1216}
+      .admin-dashboard-status #status.ok{border-color:#27543c;background:#0c1711}
+      .admin-dashboard-status #status.err{border-color:#56323a;background:#231518}
+      .admin-dashboard-status #status.warn{border-color:#5a4725;background:#211a0d}
+      @media(max-width:600px){.admin-auth-shell{padding:16px}.admin-auth-card{padding:20px;border-radius:10px}}
+    `;
+    document.head.appendChild(style);
+
+    const authShell=document.createElement('div');
+    authShell.className='admin-auth-shell';
+    authShell.setAttribute('aria-label','Admin sign in');
+
+    const authCard=document.createElement('section');
+    authCard.className='admin-auth-card';
+    authCard.innerHTML='<div class="admin-auth-brand">HYU <b>PREMIUM</b></div><h1>Admin sign in</h1>';
+    authCard.append(emailField,passwordField);
+
+    const authActions=document.createElement('div');
+    authActions.className='actions';
+    authActions.appendChild(login);
+    authCard.appendChild(authActions);
+    authCard.appendChild(status);
+    authShell.appendChild(authCard);
+    document.body.insertBefore(authShell,document.body.firstChild);
+
+    const galleryLink=topActions.querySelector('a');
+    for(const button of [load,save,logout]){
+      button.classList.add('admin-session-action');
+      if(galleryLink)topActions.insertBefore(button,galleryLink);
+      else topActions.appendChild(button);
+    }
+
+    const dashboardStatus=document.createElement('div');
+    dashboardStatus.className='admin-dashboard-status';
+    dashboardStatus.hidden=true;
+    if(security)security.insertAdjacentElement('afterend',dashboardStatus);
+    else wrap.querySelector('.grid')?.insertAdjacentElement('beforebegin',dashboardStatus);
+
+    loginPanel.remove();
+
+    const syncAuthView=()=>{
+      const signedIn=ownerPill.classList.contains('ok');
+      document.body.classList.toggle('admin-auth-locked',!signedIn);
+      document.body.classList.toggle('admin-authenticated',signedIn);
+      for(const button of [load,save,logout])button.hidden=!signedIn;
+
+      if(signedIn){
+        if(status.parentElement!==dashboardStatus)dashboardStatus.appendChild(status);
+        dashboardStatus.hidden=false;
+      }else{
+        if(status.parentElement!==authCard)authCard.appendChild(status);
+        dashboardStatus.hidden=true;
+        window.setTimeout(()=>email.focus({preventScroll:true}),0);
+      }
+    };
+
+    new MutationObserver(syncAuthView).observe(ownerPill,{attributes:true,attributeFilter:['class'],childList:true,subtree:true});
+
+    const submitOnEnter=e=>{
+      if(e.key!=='Enter'||login.disabled)return;
+      e.preventDefault();
+      login.click();
+    };
+    email.addEventListener('keydown',submitOnEnter);
+    password.addEventListener('keydown',submitOnEnter);
+
+    syncAuthView();
+    document.documentElement.classList.remove('hyu-admin-auth-pending');
+  });
+})();
