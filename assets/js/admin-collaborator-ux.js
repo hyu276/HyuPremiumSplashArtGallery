@@ -251,7 +251,11 @@
     if(!input||!button)return;
     const row=input.closest('.choice-row');
     const collaborator=isCollaborator();
-    if(row)row.hidden=collaborator;
+    if(row){
+      row.hidden=collaborator;
+      row.style.display=collaborator?'none':'';
+      row.setAttribute('aria-hidden',String(collaborator));
+    }
     input.disabled=collaborator;
     button.disabled=collaborator;
     input.dataset.ownerOnly=collaborator?'true':'false';
