@@ -109,19 +109,23 @@ function uploadTimestamp(value: string) {
   return match ? Number(match[1]) : 0;
 }
 
-function allowedByModeration(source: CatalogueSource, row: any, gate?: PublishGate) {
-  if (source.id === 'owner') return true;
+function moderatedImage(source: CatalogueSource, row: any, gate?: PublishGate) {
+  const current = String(row.image || '');
+  if (source.id === 'owner') return current;
 
   if (gate) {
-    if (gate.status !== 'approved') return false;
-    const approved = normalizedImage(gate.approved_image || '');
-    const current = normalizedImage(row.image || '');
-    return Boolean(approved) && approved === current;
+    const approved = String(gate.approved_image || '');
+    if (gate.status === 'approved' && approved && normalizedImage(approved) === normalizedImage(current)) {
+      return current;
+    }
+    // Keep the last approved asset visible while a replacement is pending or declined.
+    if (approved) return approved;
+    return '';
   }
 
   // Grandfather pre-moderation artwork. New dashboard uploads are blocked until a gate exists.
-  const timestamp = uploadTimestamp(String(row.image || ''));
-  return !timestamp || timestamp < MODERATION_ENFORCEMENT_MS;
+  const timestamp = uploadTimestamp(current);
+  return !timestamp || timestamp < MODERATION_ENFORCEMENT_MS ? current : '';
 }
 
 async function loadSource(source: CatalogueSource): Promise<SourceCatalogue> {
@@ -139,15 +143,20 @@ async function loadSource(source: CatalogueSource): Promise<SourceCatalogue> {
   ]);
 
   const gateByArtwork = new Map(gates.map(gate => [String(gate.artwork_id), gate]));
-  const moderatedRows = rows.filter(row => allowedByModeration(source, row, gateByArtwork.get(String(row.id))));
+  const moderatedRows = rows.flatMap(row => {
+    const image = moderatedImage(source, row, gateByArtwork.get(String(row.id)));
+    if (!image) return [];
+    const usesCurrentImage = normalizedImage(image) === normalizedImage(String(row.image || ''));
+    return [{ ...row, __moderatedImage: image, __moderatedThumbnail: usesCurrentImage ? (row.thumbnail || row.image) : image }];
+  });
 
   return {
     items: moderatedRows.map(row => ({
       id: source.id === 'owner' ? String(row.id) : `${source.id}:${String(row.id)}`,
       name: String(row.name || 'Untitled artwork').trim(),
       description: String(row.description || '').trim(),
-      image: absoluteImageUrl(row.image),
-      thumbnail: absoluteImageUrl(row.thumbnail || row.image),
+      image: absoluteImageUrl(row.__moderatedImage),
+      thumbnail: absoluteImageUrl(row.__moderatedThumbnail || row.__moderatedImage),
       tags: Array.isArray(row.tags) ? row.tags.map(String) : [],
       category: String(row.category?.name || 'Uncategorized'),
       rank: String(row.rank?.name || 'Unranked'),
