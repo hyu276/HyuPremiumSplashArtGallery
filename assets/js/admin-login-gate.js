@@ -2,8 +2,9 @@
   'use strict';
 
   const OWNER_EMAIL='csquocnguyen@gmail.com';
-  const MODERATION_ASSET_VERSION='20260824-email-role-routing-1';
+  const MODERATION_ASSET_VERSION='20260824-mobile-auth-lockless-1';
   const AUTH_REQUEST_TIMEOUT_MS=12000;
+  const AUTH_FLOW_TIMEOUT_MS=18000;
   const SIGNOUT_TIMEOUT_MS=2500;
 
   function whenReady(fn){
@@ -71,7 +72,12 @@
       return;
     }
 
-    function installMultiProjectAdminClient(){
+    function setAuthStage(message){
+      status.textContent=message;
+      status.className='status';
+    }
+
+    function installDeterministicAdminClient(){
       let facade;
       try{
         if(typeof client==='undefined'||!window.supabase?.createClient)return;
@@ -82,31 +88,86 @@
       const entries=Object.entries(profiles).filter(([,profile])=>profile?.enabled&&profile?.url&&profile?.publishableKey);
       if(!entries.length)return;
 
-      const preferred=window.HYU_SUPABASE_PROFILE||entries[0][0];
-      const profileClients=new Map(entries.map(([key,profile])=>[
-        key,
-        window.supabase.createClient(profile.url,profile.publishableKey,{
-          auth:{persistSession:false,autoRefreshToken:false,detectSessionInUrl:false},
-          global:{fetch:createTimedFetch()}
-        })
-      ]));
-      let activeKey=profileClients.has(preferred)?preferred:entries[0][0];
-      let activeClient=profileClients.get(activeKey);
+      const initialKey=window.HYU_SUPABASE_PROFILE&&profiles[window.HYU_SUPABASE_PROFILE]
+        ?window.HYU_SUPABASE_PROFILE
+        :(profiles.owner?'owner':entries[0][0]);
+
+      const originalAuth={
+        signInWithPassword:facade.auth?.signInWithPassword?.bind(facade.auth),
+        getUser:facade.auth?.getUser?.bind(facade.auth),
+        getSession:facade.auth?.getSession?.bind(facade.auth),
+        refreshSession:facade.auth?.refreshSession?.bind(facade.auth),
+        signOut:facade.auth?.signOut?.bind(facade.auth)
+      };
+      const originalFrom=facade.from?.bind(facade);
+      const originalRpc=facade.rpc?.bind(facade);
+      const originalStorageFrom=facade.storage?.from?.bind(facade.storage);
+      if(!facade.auth||!originalAuth.signInWithPassword||!originalFrom||!originalStorageFrom)return;
+
+      let activeKey=initialKey;
+      let activeClient=facade;
       let verifiedUser=null;
+      const lazyClients=new Map();
 
       function publishVerifiedUser(user){
         verifiedUser=user||null;
         window.HYU_ACTIVE_ADMIN_VERIFIED_USER=verifiedUser;
       }
 
+      function targetProfileForEmail(value){
+        const requestedEmail=String(value||'').trim().toLowerCase();
+        if(requestedEmail===OWNER_EMAIL)return profiles.owner?'owner':'';
+        if(profiles.huy9vnd?.enabled)return 'huy9vnd';
+        return entries.find(([key])=>key!=='owner')?.[0]||'';
+      }
+
+      function clientForProfile(key){
+        if(key===initialKey)return facade;
+        if(lazyClients.has(key))return lazyClients.get(key);
+        const profile=profiles[key];
+        if(!profile?.url||!profile?.publishableKey)return null;
+        const candidate=window.supabase.createClient(profile.url,profile.publishableKey,{
+          auth:{persistSession:false,autoRefreshToken:false,detectSessionInUrl:false},
+          global:{fetch:createTimedFetch()}
+        });
+        lazyClients.set(key,candidate);
+        return candidate;
+      }
+
+      function authCall(candidate,method,...args){
+        if(candidate===facade){
+          const fn=originalAuth[method];
+          if(!fn)throw new Error(`Supabase auth method ${method} is unavailable.`);
+          return fn(...args);
+        }
+        return candidate.auth[method](...args);
+      }
+
+      function fromCall(...args){
+        return activeClient===facade?originalFrom(...args):activeClient.from(...args);
+      }
+
+      function rpcCall(...args){
+        if(activeClient===facade){
+          if(!originalRpc)throw new Error('Supabase RPC is unavailable.');
+          return originalRpc(...args);
+        }
+        return activeClient.rpc(...args);
+      }
+
+      function storageFromCall(...args){
+        return activeClient===facade?originalStorageFrom(...args):activeClient.storage.from(...args);
+      }
+
       function activate(key,candidate,user){
         activeKey=key;
         activeClient=candidate;
         publishVerifiedUser(user);
+        const effectiveRole=String(user?.email||'').trim().toLowerCase()===OWNER_EMAIL?'owner':'collaborator';
         window.HYU_SUPABASE_PROFILE=key;
         window.HYU_ACTIVE_ADMIN_PROFILE=key;
         window.HYU_SUPABASE_CONFIG={...(profiles[key]||{})};
-        window.HYU_EFFECTIVE_ADMIN_ROLE=String(user?.email||'').trim().toLowerCase()===OWNER_EMAIL?'owner':'collaborator';
+        window.HYU_EFFECTIVE_ADMIN_ROLE=effectiveRole;
         try{
           const url=new URL(window.location.href);
           if(key==='owner')url.searchParams.delete('db');
@@ -115,149 +176,84 @@
         }catch{}
       }
 
-      function profileKeysForCredentials(credentials){
-        const requestedEmail=String(credentials?.email||'').trim().toLowerCase();
-        if(requestedEmail===OWNER_EMAIL){
-          return profileClients.has('owner')?['owner']:[];
-        }
-
-        const nonOwner=entries.map(([key])=>key).filter(key=>key!=='owner'&&profileClients.has(key));
-        if(preferred!=='owner'&&nonOwner.includes(preferred)){
-          return [preferred,...nonOwner.filter(key=>key!==preferred)];
-        }
-        return nonOwner;
-      }
-
       async function safeSignOut(candidate){
-        try{await withTimeout(candidate.auth.signOut(),SIGNOUT_TIMEOUT_MS,'Supabase sign-out')}catch{}
+        if(!candidate)return;
+        try{await withTimeout(authCall(candidate,'signOut'),SIGNOUT_TIMEOUT_MS,'Supabase sign-out')}catch{}
       }
 
-      async function testProfile(key,credentials){
-        const candidate=profileClients.get(key);
-        if(!candidate)return {ok:false,key,error:new Error('Supabase profile is unavailable.'),validCredentials:false};
-        try{
-          const {data,error}=await withTimeout(
-            candidate.auth.signInWithPassword(credentials),
-            AUTH_REQUEST_TIMEOUT_MS+1500,
-            `${profiles[key]?.label||key} authentication`
-          );
-          if(error)return {ok:false,key,candidate,error,validCredentials:false};
-
-          const user=data?.user;
-          if(!user){
-            await safeSignOut(candidate);
-            return {ok:false,key,candidate,error:new Error('Supabase did not return an authenticated user.'),validCredentials:false};
-          }
-
-          const actualEmail=String(user.email||'').trim().toLowerCase();
-          const shouldBeOwner=actualEmail===OWNER_EMAIL;
-          if((shouldBeOwner&&key!=='owner')||(!shouldBeOwner&&key==='owner')){
-            await safeSignOut(candidate);
-            return {ok:false,key,candidate,error:new Error('This account is not allowed to use this admin role.'),validCredentials:true};
-          }
-
-          const {data:adminRow,error:adminError}=await withTimeout(
-            candidate.from('admins').select('user_id').eq('user_id',user.id).maybeSingle(),
-            AUTH_REQUEST_TIMEOUT_MS+1500,
-            `${profiles[key]?.label||key} admin authorization`
-          );
-
-          if(!adminError&&adminRow)return {ok:true,key,candidate,data,user};
-
-          await safeSignOut(candidate);
-          return {
-            ok:false,
-            key,
-            candidate,
-            error:adminError||new Error('This account is not listed in public.admins for this project.'),
-            validCredentials:true
-          };
-        }catch(error){
-          await safeSignOut(candidate);
-          return {ok:false,key,candidate,error,validCredentials:false};
+      async function authenticate(credentials){
+        const requestedEmail=String(credentials?.email||'').trim().toLowerCase();
+        const targetKey=targetProfileForEmail(requestedEmail);
+        if(!targetKey){
+          return {data:{user:null,session:null},error:new Error(requestedEmail===OWNER_EMAIL?'Owner database is unavailable.':'No non-owner admin database is configured.')};
         }
-      }
 
-      const authFacade=facade.auth;
-      const storageFacade=facade.storage;
-      if(!authFacade)return;
+        const candidate=clientForProfile(targetKey);
+        if(!candidate)return {data:{user:null,session:null},error:new Error('Selected Supabase profile is unavailable.')};
 
-      authFacade.signInWithPassword=async credentials=>{
         publishVerifiedUser(null);
         window.HYU_EFFECTIVE_ADMIN_ROLE=null;
-        const keys=profileKeysForCredentials(credentials);
-        if(!keys.length){
-          return {
-            data:{user:null,session:null},
-            error:new Error(String(credentials?.email||'').trim().toLowerCase()===OWNER_EMAIL
-              ?'Owner database is unavailable.'
-              :'No non-owner admin database is configured.')
-          };
-        }
+        setAuthStage(requestedEmail===OWNER_EMAIL?'Authenticating owner account...':'Authenticating non-owner account...');
 
-        let remaining=keys.length;
-        let finished=false;
-        let validButUnauthorized=false;
-        let lastAuthError=null;
+        let signedInData=null;
+        try{
+          const result=await withTimeout(
+            authCall(candidate,'signInWithPassword',credentials),
+            AUTH_REQUEST_TIMEOUT_MS+1500,
+            `${profiles[targetKey]?.label||targetKey} authentication`
+          );
+          if(result?.error)throw result.error;
+          signedInData=result?.data||null;
+          const user=signedInData?.user;
+          if(!user)throw new Error('Supabase did not return an authenticated user.');
 
-        return await new Promise(resolve=>{
-          const finishFailure=()=>{
-            if(finished||remaining>0)return;
-            finished=true;
-            publishVerifiedUser(null);
-            window.HYU_EFFECTIVE_ADMIN_ROLE=null;
-            resolve({
-              data:{user:null,session:null},
-              error:validButUnauthorized
-                ? new Error('This account is not authorized for the selected admin role.')
-                : (lastAuthError||new Error('Invalid login credentials'))
-            });
-          };
-
-          for(const key of keys){
-            testProfile(key,credentials).then(result=>{
-              remaining-=1;
-
-              if(finished){
-                if(result.ok&&result.candidate!==activeClient)safeSignOut(result.candidate);
-                return;
-              }
-
-              if(result.ok){
-                finished=true;
-                activate(result.key,result.candidate,result.user);
-                resolve({data:result.data,error:null});
-                return;
-              }
-
-              if(result.validCredentials)validButUnauthorized=true;
-              if(result.error)lastAuthError=result.error;
-              finishFailure();
-            }).catch(error=>{
-              remaining-=1;
-              lastAuthError=error;
-              finishFailure();
-            });
+          const actualEmail=String(user.email||'').trim().toLowerCase();
+          if(actualEmail!==requestedEmail)throw new Error('Authenticated account does not match the requested email.');
+          if((requestedEmail===OWNER_EMAIL&&targetKey!=='owner')||(requestedEmail!==OWNER_EMAIL&&targetKey==='owner')){
+            throw new Error('This account is not allowed to use this admin role.');
           }
-        });
-      };
 
-      authFacade.getUser=(...args)=>{
+          setAuthStage(requestedEmail===OWNER_EMAIL?'Checking owner dashboard access...':'Checking non-owner dashboard access...');
+          const adminResult=await withTimeout(
+            candidate.rpc('is_admin'),
+            AUTH_REQUEST_TIMEOUT_MS+1500,
+            `${profiles[targetKey]?.label||targetKey} admin authorization`
+          );
+          if(adminResult?.error)throw adminResult.error;
+          if(adminResult?.data!==true)throw new Error('This account is not listed as an admin in the selected Supabase project.');
+
+          activate(targetKey,candidate,user);
+          return {data:signedInData,error:null};
+        }catch(error){
+          await safeSignOut(candidate);
+          publishVerifiedUser(null);
+          window.HYU_EFFECTIVE_ADMIN_ROLE=null;
+          return {data:{user:null,session:null},error:error instanceof Error?error:new Error(String(error))};
+        }
+      }
+
+      facade.auth.signInWithPassword=credentials=>withTimeout(
+        authenticate(credentials),
+        AUTH_FLOW_TIMEOUT_MS,
+        'Admin sign-in flow'
+      ).catch(error=>({data:{user:null,session:null},error}));
+
+      facade.auth.getUser=(...args)=>{
         if(!args.length&&verifiedUser)return Promise.resolve({data:{user:verifiedUser},error:null});
-        return activeClient.auth.getUser(...args);
+        return activeClient===facade?originalAuth.getUser(...args):activeClient.auth.getUser(...args);
       };
-      authFacade.getSession=(...args)=>activeClient.auth.getSession(...args);
-      authFacade.refreshSession=(...args)=>activeClient.auth.refreshSession(...args);
-      authFacade.signOut=async(...args)=>{
-        try{return await activeClient.auth.signOut(...args)}
+      facade.auth.getSession=(...args)=>activeClient===facade?originalAuth.getSession(...args):activeClient.auth.getSession(...args);
+      facade.auth.refreshSession=(...args)=>activeClient===facade?originalAuth.refreshSession(...args):activeClient.auth.refreshSession(...args);
+      facade.auth.signOut=async(...args)=>{
+        try{return activeClient===facade?await originalAuth.signOut(...args):await activeClient.auth.signOut(...args)}
         finally{
           publishVerifiedUser(null);
           window.HYU_EFFECTIVE_ADMIN_ROLE=null;
         }
       };
-      facade.from=(...args)=>activeClient.from(...args);
-      facade.rpc=(...args)=>activeClient.rpc(...args);
-      if(storageFacade?.from)storageFacade.from=(...args)=>activeClient.storage.from(...args);
+      facade.from=(...args)=>fromCall(...args);
+      facade.rpc=(...args)=>rpcCall(...args);
+      facade.storage.from=(...args)=>storageFromCall(...args);
 
       window.HYU_GET_ACTIVE_ADMIN_PROFILE=()=>activeKey;
       window.HYU_GET_ACTIVE_ADMIN_CLIENT=()=>activeClient;
@@ -265,7 +261,7 @@
       window.HYU_GET_EFFECTIVE_ADMIN_ROLE=()=>window.HYU_EFFECTIVE_ADMIN_ROLE||null;
     }
 
-    installMultiProjectAdminClient();
+    installDeterministicAdminClient();
 
     const style=document.createElement('style');
     style.dataset.hyuAdminLoginGate='true';
