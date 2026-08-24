@@ -1,22 +1,38 @@
-/* Mobile artwork-title typography fix.
-   On iOS Safari / in-app browsers, Vietnamese uppercase glyphs can lose
-   combining marks when the title element itself uses overflow:hidden.
-   The parent artwork card already clips to its own bounds, so the title
-   no longer needs vertical clipping. This preserves a single-line title
-   while allowing full ascenders/descenders and diacritics to render. */
+/* Mobile artwork title rendering.
+   Keep the title in a real, generously-sized line box and never clip the
+   title element itself. The artwork card is already the visual clipping
+   boundary, so vertical Vietnamese diacritics remain intact on iOS Safari,
+   Chrome iOS and in-app WebKit browsers. */
 @media (max-width:760px){
+  .art-card:not(.expanded) .card-copy{
+    overflow:visible!important;
+  }
+
   .art-card:not(.expanded) .card-copy strong{
-    display:block;
-    width:max-content;
-    max-width:calc(100% - .1rem);
-    line-height:1.22;
-    padding-block:.12em .16em;
-    margin-block:-.12em -.16em;
-    white-space:nowrap;
-    overflow:visible;
-    text-overflow:clip;
-    font-family:Arial,Helvetica,sans-serif;
+    display:block!important;
+    box-sizing:content-box!important;
+    width:100%!important;
+    max-width:none!important;
+    min-height:1.36em!important;
+    margin:0!important;
+    padding:.16em 0 .20em!important;
+    overflow:visible!important;
+    clip:auto!important;
+    white-space:nowrap!important;
+    text-overflow:clip!important;
+    line-height:1.30!important;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,Helvetica,sans-serif!important;
+    font-kerning:normal;
     -webkit-font-smoothing:antialiased;
-    text-rendering:geometricPrecision;
+    text-rendering:optimizeLegibility;
+  }
+
+  /* Give the title's larger glyph box actual room instead of compensating
+     with negative margins. This keeps category/title/credit spacing stable. */
+  .art-card:not(.expanded) .card-meta{
+    margin-bottom:.08rem!important;
+  }
+  .art-card:not(.expanded) .card-bottom{
+    margin-top:.12rem!important;
   }
 }
