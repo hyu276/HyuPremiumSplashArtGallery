@@ -1,7 +1,7 @@
 (function(){
   'use strict';
 
-  const MODERATION_ASSET_VERSION='20260824-publish-moderation-2';
+  const MODERATION_ASSET_VERSION='20260824-mobile-auth-routing-2';
   const AUTH_REQUEST_TIMEOUT_MS=12000;
   const SIGNOUT_TIMEOUT_MS=2500;
 
@@ -91,10 +91,17 @@
       ]));
       let activeKey=profileClients.has(preferred)?preferred:entries[0][0];
       let activeClient=profileClients.get(activeKey);
+      let verifiedUser=null;
 
-      function activate(key,candidate){
+      function publishVerifiedUser(user){
+        verifiedUser=user||null;
+        window.HYU_ACTIVE_ADMIN_VERIFIED_USER=verifiedUser;
+      }
+
+      function activate(key,candidate,user){
         activeKey=key;
         activeClient=candidate;
+        publishVerifiedUser(user);
         window.HYU_SUPABASE_PROFILE=key;
         window.HYU_ACTIVE_ADMIN_PROFILE=key;
         window.HYU_SUPABASE_CONFIG={...(profiles[key]||{})};
@@ -163,6 +170,7 @@
       if(!authFacade)return;
 
       authFacade.signInWithPassword=async credentials=>{
+        publishVerifiedUser(null);
         const keys=orderedProfiles();
         let remaining=keys.length;
         let finished=false;
@@ -173,6 +181,7 @@
           const finishFailure=()=>{
             if(finished||remaining>0)return;
             finished=true;
+            publishVerifiedUser(null);
             resolve({
               data:{user:null,session:null},
               error:validButUnauthorized
@@ -192,7 +201,7 @@
 
               if(result.ok){
                 finished=true;
-                activate(result.key,result.candidate);
+                activate(result.key,result.candidate,result.user);
                 resolve({data:result.data,error:null});
                 return;
               }
@@ -209,16 +218,23 @@
         });
       };
 
-      authFacade.getUser=(...args)=>activeClient.auth.getUser(...args);
+      authFacade.getUser=(...args)=>{
+        if(!args.length&&verifiedUser)return Promise.resolve({data:{user:verifiedUser},error:null});
+        return activeClient.auth.getUser(...args);
+      };
       authFacade.getSession=(...args)=>activeClient.auth.getSession(...args);
       authFacade.refreshSession=(...args)=>activeClient.auth.refreshSession(...args);
-      authFacade.signOut=(...args)=>activeClient.auth.signOut(...args);
+      authFacade.signOut=async(...args)=>{
+        try{return await activeClient.auth.signOut(...args)}
+        finally{publishVerifiedUser(null)}
+      };
       facade.from=(...args)=>activeClient.from(...args);
       facade.rpc=(...args)=>activeClient.rpc(...args);
       if(storageFacade?.from)storageFacade.from=(...args)=>activeClient.storage.from(...args);
 
       window.HYU_GET_ACTIVE_ADMIN_PROFILE=()=>activeKey;
       window.HYU_GET_ACTIVE_ADMIN_CLIENT=()=>activeClient;
+      window.HYU_GET_ACTIVE_ADMIN_VERIFIED_USER=()=>verifiedUser;
     }
 
     installMultiProjectAdminClient();
