@@ -43,6 +43,10 @@ function json(req: Request, status: number, body: unknown) {
   });
 }
 
+function cleanText(value: unknown, max = 500) {
+  return String(value ?? "").normalize("NFC").trim().replace(/\s+/g, " ").slice(0, max);
+}
+
 async function authenticate(token: string) {
   for (const profile of PROFILES) {
     try {
@@ -68,9 +72,9 @@ async function authenticate(token: string) {
       );
       if (!adminRes.ok) continue;
       const rows = await adminRes.json();
-      if (Array.isArray(rows) && rows.length) return { profile, user };
+      if (Array.isArray(rows) && rows.length) return { profile, user, token };
     } catch {
-      // Continue checking the remaining configured profiles.
+      // Continue checking configured profiles.
     }
   }
   return null;
@@ -89,8 +93,45 @@ async function serviceRest(path: string, init: RequestInit = {}) {
   return fetch(`${SERVICE_URL}/rest/v1/${path}`, { ...init, headers });
 }
 
-function cleanText(value: unknown, max = 500) {
-  return String(value ?? "").trim().slice(0, max);
+async function profileRest(auth: any, path: string) {
+  const response = await fetch(`${auth.profile.url}/rest/v1/${path}`, {
+    headers: {
+      apikey: auth.profile.publishableKey,
+      Authorization: `Bearer ${auth.token}`,
+      Accept: "application/json",
+    },
+  });
+  if (!response.ok) throw new Error(`Unable to resolve submitted artwork properties (${response.status}).`);
+  return response.json();
+}
+
+async function propertyById(auth: any, table: string, id: unknown, includeOrder = false) {
+  const raw = cleanText(id, 120);
+  if (!raw) return null;
+  const select = includeOrder ? "id,name,sort_order" : "id,name";
+  const rows = await profileRest(auth, `${table}?select=${select}&id=eq.${encodeURIComponent(raw)}&limit=1`);
+  return Array.isArray(rows) ? rows[0] || null : null;
+}
+
+async function enrichMetadata(auth: any, input: any) {
+  const metadata = input && typeof input === "object" ? { ...input } : {};
+  const [category, credit, rank] = await Promise.all([
+    propertyById(auth, "categories", metadata.category_id),
+    propertyById(auth, "image_credits", metadata.credit_id),
+    propertyById(auth, "ranks", metadata.rank_id, true),
+  ]);
+
+  if (metadata.category_id && !category) throw new Error("Submitted Category no longer exists in the source database.");
+  if (metadata.credit_id && !credit) throw new Error("Submitted Image Credit no longer exists in the source database.");
+  if (metadata.rank_id && !rank) throw new Error("Submitted Skin Rank no longer exists in the source database.");
+
+  return {
+    ...metadata,
+    category_name: cleanText(category?.name, 300),
+    credit_name: cleanText(credit?.name, 300),
+    rank_name: cleanText(rank?.name, 300),
+    rank_sort_order: rank?.sort_order ?? null,
+  };
 }
 
 async function getRequest(id: string) {
@@ -128,7 +169,6 @@ async function createRequest(req: Request, auth: any, body: any) {
   const artworkName = cleanText(body?.artworkName, 300);
   const candidateImage = cleanText(body?.candidateImage, 2000);
   const uploadPath = cleanText(body?.uploadPath, 1000);
-  const metadata = body?.metadata && typeof body.metadata === "object" ? body.metadata : {};
 
   if (sourceProfile !== auth.profile.key) return json(req, 403, { error: "Source profile does not match the authenticated admin." });
   if (!artworkId || !candidateImage || !uploadPath.startsWith("uploads/")) {
@@ -139,6 +179,7 @@ async function createRequest(req: Request, auth: any, body: any) {
     return json(req, 400, { error: "Candidate image must belong to the authenticated profile artwork bucket." });
   }
 
+  const metadata = await enrichMetadata(auth, body?.metadata);
   const oldGate = await getGate(sourceProfile, artworkId);
   const previousApprovedImage = cleanText(oldGate?.approved_image, 2000);
 
@@ -237,29 +278,17 @@ async function decideRequest(req: Request, auth: any, body: any) {
   const decision = cleanText(body?.decision, 30).toLowerCase();
   if (!["approved", "declined"].includes(decision)) return json(req, 400, { error: "Decision must be approved or declined." });
 
-  const row = await getRequest(requestId);
-  if (!row) return json(req, 404, { error: "Publish request not found." });
-  if (row.status !== "pending") return json(req, 409, { error: `Request is already ${row.status}.` });
-
-  const now = new Date().toISOString();
-  const update = await serviceRest(`publish_requests?id=eq.${encodeURIComponent(requestId)}`, {
-    method: "PATCH",
-    headers: { Prefer: "return=minimal" },
-    body: JSON.stringify({ status: decision, decided_at: now, decided_by: email }),
+  const response = await serviceRest("rpc/moderation_decide_publish_request", {
+    method: "POST",
+    body: JSON.stringify({
+      p_request_id: requestId,
+      p_decision: decision,
+      p_decided_by: email,
+    }),
   });
-  if (!update.ok) throw new Error(`Unable to save decision (${update.status}).`);
-
-  await upsertGate({
-    source_profile: row.source_profile,
-    artwork_id: row.artwork_id,
-    status: decision,
-    request_id: row.id,
-    candidate_image: row.candidate_image,
-    approved_image: decision === "approved" ? row.candidate_image : (row.previous_approved_image || ""),
-    updated_at: now,
-  });
-
-  return json(req, 200, { ok: true, status: decision, requestId });
+  if (!response.ok) throw new Error(`Unable to save moderation decision (${response.status}): ${await response.text()}`);
+  const result = await response.json();
+  return json(req, 200, result || { ok: true, status: decision, requestId });
 }
 
 async function listRequests(req: Request, auth: any) {
