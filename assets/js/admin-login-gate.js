@@ -1,7 +1,8 @@
 (function(){
   'use strict';
 
-  const MODERATION_ASSET_VERSION='20260824-mobile-auth-routing-2';
+  const OWNER_EMAIL='csquocnguyen@gmail.com';
+  const MODERATION_ASSET_VERSION='20260824-email-role-routing-1';
   const AUTH_REQUEST_TIMEOUT_MS=12000;
   const SIGNOUT_TIMEOUT_MS=2500;
 
@@ -105,6 +106,7 @@
         window.HYU_SUPABASE_PROFILE=key;
         window.HYU_ACTIVE_ADMIN_PROFILE=key;
         window.HYU_SUPABASE_CONFIG={...(profiles[key]||{})};
+        window.HYU_EFFECTIVE_ADMIN_ROLE=String(user?.email||'').trim().toLowerCase()===OWNER_EMAIL?'owner':'collaborator';
         try{
           const url=new URL(window.location.href);
           if(key==='owner')url.searchParams.delete('db');
@@ -113,13 +115,17 @@
         }catch{}
       }
 
-      function orderedProfiles(){
-        const ordered=[];
-        if(profileClients.has(activeKey))ordered.push(activeKey);
-        if(profileClients.has(preferred)&&!ordered.includes(preferred))ordered.push(preferred);
-        if(profileClients.has('owner')&&!ordered.includes('owner'))ordered.push('owner');
-        for(const [key] of entries)if(!ordered.includes(key))ordered.push(key);
-        return ordered;
+      function profileKeysForCredentials(credentials){
+        const requestedEmail=String(credentials?.email||'').trim().toLowerCase();
+        if(requestedEmail===OWNER_EMAIL){
+          return profileClients.has('owner')?['owner']:[];
+        }
+
+        const nonOwner=entries.map(([key])=>key).filter(key=>key!=='owner'&&profileClients.has(key));
+        if(preferred!=='owner'&&nonOwner.includes(preferred)){
+          return [preferred,...nonOwner.filter(key=>key!==preferred)];
+        }
+        return nonOwner;
       }
 
       async function safeSignOut(candidate){
@@ -141,6 +147,13 @@
           if(!user){
             await safeSignOut(candidate);
             return {ok:false,key,candidate,error:new Error('Supabase did not return an authenticated user.'),validCredentials:false};
+          }
+
+          const actualEmail=String(user.email||'').trim().toLowerCase();
+          const shouldBeOwner=actualEmail===OWNER_EMAIL;
+          if((shouldBeOwner&&key!=='owner')||(!shouldBeOwner&&key==='owner')){
+            await safeSignOut(candidate);
+            return {ok:false,key,candidate,error:new Error('This account is not allowed to use this admin role.'),validCredentials:true};
           }
 
           const {data:adminRow,error:adminError}=await withTimeout(
@@ -171,7 +184,17 @@
 
       authFacade.signInWithPassword=async credentials=>{
         publishVerifiedUser(null);
-        const keys=orderedProfiles();
+        window.HYU_EFFECTIVE_ADMIN_ROLE=null;
+        const keys=profileKeysForCredentials(credentials);
+        if(!keys.length){
+          return {
+            data:{user:null,session:null},
+            error:new Error(String(credentials?.email||'').trim().toLowerCase()===OWNER_EMAIL
+              ?'Owner database is unavailable.'
+              :'No non-owner admin database is configured.')
+          };
+        }
+
         let remaining=keys.length;
         let finished=false;
         let validButUnauthorized=false;
@@ -182,10 +205,11 @@
             if(finished||remaining>0)return;
             finished=true;
             publishVerifiedUser(null);
+            window.HYU_EFFECTIVE_ADMIN_ROLE=null;
             resolve({
               data:{user:null,session:null},
               error:validButUnauthorized
-                ? new Error('This account is not authorized for any configured admin database.')
+                ? new Error('This account is not authorized for the selected admin role.')
                 : (lastAuthError||new Error('Invalid login credentials'))
             });
           };
@@ -226,7 +250,10 @@
       authFacade.refreshSession=(...args)=>activeClient.auth.refreshSession(...args);
       authFacade.signOut=async(...args)=>{
         try{return await activeClient.auth.signOut(...args)}
-        finally{publishVerifiedUser(null)}
+        finally{
+          publishVerifiedUser(null);
+          window.HYU_EFFECTIVE_ADMIN_ROLE=null;
+        }
       };
       facade.from=(...args)=>activeClient.from(...args);
       facade.rpc=(...args)=>activeClient.rpc(...args);
@@ -235,6 +262,7 @@
       window.HYU_GET_ACTIVE_ADMIN_PROFILE=()=>activeKey;
       window.HYU_GET_ACTIVE_ADMIN_CLIENT=()=>activeClient;
       window.HYU_GET_ACTIVE_ADMIN_VERIFIED_USER=()=>verifiedUser;
+      window.HYU_GET_EFFECTIVE_ADMIN_ROLE=()=>window.HYU_EFFECTIVE_ADMIN_ROLE||null;
     }
 
     installMultiProjectAdminClient();
