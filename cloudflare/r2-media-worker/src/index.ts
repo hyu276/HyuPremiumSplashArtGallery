@@ -2,7 +2,6 @@ interface Env {
   MEDIA: R2Bucket;
   REPO_FULL_NAME: string;
   REPO_OWNER: string;
-  MIGRATION_KEY?: string;
 }
 
 type GitHubRepo = { permissions?: { push?: boolean; admin?: boolean } };
@@ -24,7 +23,7 @@ function cors(request: Request) {
   return {
     'Access-Control-Allow-Origin': origin || 'https://hyupremium.vercel.app',
     'Access-Control-Allow-Methods': 'GET,HEAD,PUT,DELETE,OPTIONS',
-    'Access-Control-Allow-Headers': 'authorization,content-type,x-hyu-migration-key',
+    'Access-Control-Allow-Headers': 'authorization,content-type',
     'Access-Control-Max-Age': '86400',
     'Vary': 'Origin'
   };
@@ -47,9 +46,6 @@ function adminKey(url: URL) {
 }
 
 async function githubAdmin(request: Request, env: Env) {
-  const migrationKey = request.headers.get('x-hyu-migration-key') || '';
-  if (env.MIGRATION_KEY && migrationKey && migrationKey === env.MIGRATION_KEY) return { login: 'migration' };
-
   const authorization = request.headers.get('authorization') || '';
   if (!authorization.toLowerCase().startsWith('bearer ')) throw new Error('GitHub token required.');
   const token = authorization.slice(7).trim();
