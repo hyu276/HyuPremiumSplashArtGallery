@@ -2,6 +2,12 @@ name: Normalize HYU catalogue to owner-only
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - migrate/github-metadata-cloudflare-r2
+    paths:
+      - 'scripts/normalize-owner-catalogue.mjs'
+      - '.github/workflows/normalize-owner-catalogue.yml'
 
 permissions:
   contents: write
