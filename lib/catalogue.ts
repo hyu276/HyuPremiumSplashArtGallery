@@ -1,12 +1,22 @@
 import { publicMediaUrl, toAbsoluteSiteUrl } from '@/lib/media';
 import backendCatalogue from '@/data/backend/catalogue.json';
 
+export type MediaVariant = {
+  url: string;
+  width: number;
+  height: number;
+  bytes?: number;
+  mimeType?: string;
+};
+
 export type Artwork = {
   id: string;
   name: string;
   description: string;
   image: string;
   thumbnail: string;
+  variants?: Record<string, MediaVariant>;
+  media?: { original?: MediaVariant };
   tags: string[];
   category: string;
   rank: string;
@@ -50,6 +60,18 @@ const alpha = (a: string, b: string) => a.localeCompare(b, undefined, { sensitiv
 const uniqueSorted = (values: string[]) => [...new Set(values.filter(Boolean))].sort(alpha);
 const localizeCredit = (value: string) => value.trim().toLowerCase() === 'uncredited' ? 'Chưa có credit' : value;
 
+function normalizedVariant(value:any):MediaVariant|undefined{
+  if(!value?.url)return undefined;
+  return {url:publicMediaUrl(String(value.url)),width:Number(value.width)||0,height:Number(value.height)||0,bytes:Number(value.bytes)||undefined,mimeType:value.mimeType?String(value.mimeType):undefined};
+}
+
+function normalizedVariants(value:any){
+  const result:Record<string,MediaVariant>={};
+  if(!value||typeof value!=='object')return result;
+  for(const [key,variant] of Object.entries(value)){const normalized=normalizedVariant(variant);if(normalized)result[String(key)]=normalized;}
+  return result;
+}
+
 function authoritativeCatalogue(): Catalogue {
   const source = backendCatalogue as BackendCatalogue;
   if (source.ready !== true || !Array.isArray(source.items)) {
@@ -57,20 +79,26 @@ function authoritativeCatalogue(): Catalogue {
   }
   const items: Artwork[] = source.items
     .filter(row => !row?.hidden)
-    .map(row => ({
-      id: String(row.id),
-      name: String(row.name || 'Tác phẩm chưa đặt tên').trim(),
-      description: String(row.description || '').trim(),
-      image: publicMediaUrl(String(row.image || '')),
-      thumbnail: publicMediaUrl(String(row.thumbnail || row.image || '')),
-      tags: Array.isArray(row.tags) ? row.tags.map(String) : [],
-      category: String(row.category || 'Chưa phân loại'),
-      rank: String(row.rank || 'Chưa xếp hạng'),
-      rankOrder: Number(row.rankOrder) || 0,
-      credit: localizeCredit(String(row.credit || 'Chưa có credit')),
-      isVietnameseSkin: Boolean(row.isVietnameseSkin),
-      updatedAt: row.updatedAt || undefined
-    }))
+    .map(row => {
+      const variants=normalizedVariants(row.variants);
+      const original=normalizedVariant(row.media?.original);
+      return {
+        id: String(row.id),
+        name: String(row.name || 'Tác phẩm chưa đặt tên').trim(),
+        description: String(row.description || '').trim(),
+        image: publicMediaUrl(String(row.image || '')),
+        thumbnail: publicMediaUrl(String(row.thumbnail || variants['1600']?.url || row.image || '')),
+        variants,
+        media: original?{original}:undefined,
+        tags: Array.isArray(row.tags) ? row.tags.map(String) : [],
+        category: String(row.category || 'Chưa phân loại'),
+        rank: String(row.rank || 'Chưa xếp hạng'),
+        rankOrder: Number(row.rankOrder) || 0,
+        credit: localizeCredit(String(row.credit || 'Chưa có credit')),
+        isVietnameseSkin: Boolean(row.isVietnameseSkin),
+        updatedAt: row.updatedAt || undefined
+      };
+    })
     .sort((a,b)=>alpha(a.category,b.category)||a.rankOrder-b.rankOrder||alpha(a.name,b.name));
 
   return {
@@ -81,9 +109,12 @@ function authoritativeCatalogue(): Catalogue {
   };
 }
 
-export async function getCatalogue(): Promise<Catalogue> {
-  return authoritativeCatalogue();
-}
+export async function getCatalogue(): Promise<Catalogue> { return authoritativeCatalogue(); }
+
+export function artworkVariant(item:Artwork,width:640|960|1600){return item.variants?.[String(width)];}
+export function artworkPreview(item:Artwork,width:640|960|1600=1600){return artworkVariant(item,width)?.url||item.thumbnail||item.image;}
+export function artworkSrcSet(item:Artwork){return ([640,960,1600] as const).map(width=>artworkVariant(item,width)).filter((variant):variant is MediaVariant=>Boolean(variant?.url&&variant.width)).map(variant=>`${variant.url} ${variant.width}w`).join(', ');}
+export function artworkSocialImage(item:Artwork){return artworkPreview(item,1600);}
 
 export function findArtwork(items: Artwork[], categorySlug?: string, artworkSlug?: string) {
   if (!categorySlug) return { category: null as string | null, artwork: null as Artwork | null };
