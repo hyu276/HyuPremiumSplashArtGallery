@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - hardening/egress-zero
       - migrate/github-metadata-cloudflare-r2
     paths:
       - 'cloudflare/r2-media-worker/**'
@@ -38,7 +39,7 @@ jobs:
       - name: Deploy worker
         shell: bash
         run: npx --yes wrangler@latest deploy --config "$WRANGLER_CONFIG"
-      - name: Verify worker health
+      - name: Verify worker health and cache headers
         shell: bash
         run: |
           set -euo pipefail
@@ -46,8 +47,9 @@ jobs:
           subdomain=$(printf '%s' "$json" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{const j=JSON.parse(s);if(!j.success||!j.result?.subdomain)process.exit(2);process.stdout.write(j.result.subdomain)})")
           base="https://hyu-premium-media.${subdomain}.workers.dev"
           for attempt in $(seq 1 12); do
-            if curl -fsS "$base/health"; then
-              echo
+            if health=$(curl -fsS "$base/health"); then
+              echo "$health" | grep -q '"edgeCache":true'
+              echo "$health" | grep -q '"range":true'
               echo "Worker healthy: $base"
               exit 0
             fi
