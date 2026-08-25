@@ -1,0 +1,8 @@
+{
+  "provider": "cloudflare-r2",
+  "ready": false,
+  "publicBaseUrl": "",
+  "bucket": "hyu-premium-media",
+  "migratedAt": null,
+  "migratedObjects": 0
+}
