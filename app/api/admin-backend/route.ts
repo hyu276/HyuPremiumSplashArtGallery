@@ -9,7 +9,7 @@ type GitHubUser={login?:string};
 type GitHubRepo={permissions?:{push?:boolean;admin?:boolean}};
 type GitHubContent={content?:string;encoding?:string};
 type OwnerOptions={categories?:string[];ranks?:string[];credits?:string[]};
-type Catalogue={schemaVersion?:number;generatedAt?:string;items:any[];categories:string[];ranks:string[];credits:string[];ownerOptions?:OwnerOptions;sourceOptions?:Record<string,OwnerOptions>};
+type Catalogue={schemaVersion?:number;generatedAt?:string;items:any[];categories:string[];ranks:string[];credits:string[];ownerOptions?:OwnerOptions};
 type AdminPayload={ownerItems?:any[];categories?:string[];ranks?:string[];credits?:string[];team?:any[];seo?:any};
 
 function tokenFrom(request:Request){const value=request.headers.get('authorization')||'';return value.toLowerCase().startsWith('bearer ')?value.slice(7).trim():''}
@@ -42,7 +42,7 @@ export async function GET(request:Request){
     const token=tokenFrom(request);const admin=await verify(token);const branch=dataBranch();
     const [catalogue,team,seo,storage]=await Promise.all([readJson<Catalogue>(token,`${DATA_ROOT}/catalogue.json`,branch),readJson<any[]>(token,`${DATA_ROOT}/team.json`,branch),readJson<any>(token,`${DATA_ROOT}/seo.json`,branch),readJson<any>(token,`${DATA_ROOT}/storage.json`,branch)]);
     const items=(catalogue.items||[]).map(canonicalItem);const options=optionsFor(catalogue);
-    return Response.json({ok:true,user:admin,branch,catalogue:{...catalogue,sourceOptions:undefined,items,categories:options.categories||[],ranks:options.ranks||[],credits:options.credits||[]},team,seo,storage},{headers:{'Cache-Control':'no-store'}});
+    return Response.json({ok:true,user:admin,branch,catalogue:{...catalogue,items,categories:options.categories||[],ranks:options.ranks||[],credits:options.credits||[]},team,seo,storage},{headers:{'Cache-Control':'no-store'}});
   }catch(error:any){const message=error?.message||'Không thể xác thực GitHub hoặc đọc backend metadata.';const status=/github_pat_|Token|GitHub 401|GitHub 403|quyền|chủ repository/.test(message)?401:/404/.test(message)?409:500;return Response.json({error:message},{status,headers:{'Cache-Control':'no-store'}})}
 }
 
@@ -59,8 +59,7 @@ export async function POST(request:Request){
     const credits=unique([...preferredCredits.map(String),...items.map(x=>String(x?.credit||''))]);
     const ranks=orderedRanks(items,preferredRanks.map(String));
     const ownerOptions={categories,ranks,credits};
-    const catalogue:any={...current,schemaVersion:1,generatedAt:new Date().toISOString(),items,categories,ranks,credits,ownerOptions};
-    delete catalogue.sourceOptions;
+    const catalogue:Catalogue={...current,schemaVersion:1,generatedAt:new Date().toISOString(),items,categories,ranks,credits,ownerOptions};
     const files:Record<string,unknown>={[`${DATA_ROOT}/catalogue.json`]:catalogue,[`${DATA_ROOT}/team.json`]:Array.isArray(payload.team)?payload.team:currentTeam,[`${DATA_ROOT}/seo.json`]:payload.seo!==undefined?payload.seo:currentSeo};
     const sha=await atomicCommit(token,branch,files);revalidateTag('catalogue');for(const path of ['/','/character/','/artworks/','/about/','/sitemap.xml','/image-sitemap.xml'])revalidatePath(path);
     return Response.json({ok:true,commit:sha,branch,by:admin.login,deployedByGit:true},{headers:{'Cache-Control':'no-store'}});
