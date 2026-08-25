@@ -1,11 +1,9 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-25T17:43:54.724Z",
+  "generatedAt": "2026-08-25T18:07:22.779Z",
   "items": [
     {
       "id": "en-tho-bang-gia-2",
-      "source": "owner",
-      "sourceId": "en-tho-bang-gia-2",
       "name": "Đền thờ băng giá",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/repo/assets/artworks/en-tho-bang-gia-2-1787245979723.png",
@@ -21,8 +19,6 @@
     },
     {
       "id": "nang-tien-dua-hau",
-      "source": "owner",
-      "sourceId": "nang-tien-dua-hau",
       "name": "Nàng tiên dưa hấu",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/repo/assets/artworks/nang-tien-dua-hau-1787245950320.jpg",
@@ -38,8 +34,6 @@
     },
     {
       "id": "huyen-quang-luan-mau",
-      "source": "owner",
-      "sourceId": "huyen-quang-luan-mau",
       "name": "Huyền Quang Luân Mẫu",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/huyen-quang-luan-mau-1787487882141.jpg",
@@ -55,8 +49,6 @@
     },
     {
       "id": "chien-binh-xu-nghe",
-      "source": "owner",
-      "sourceId": "chien-binh-xu-nghe",
       "name": "Chiến binh xứ Nghệ",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/chien-binh-xu-nghe-1787460056547.jpg",
@@ -72,8 +64,6 @@
     },
     {
       "id": "mieu-tac-duoi-trang",
-      "source": "owner",
-      "sourceId": "mieu-tac-duoi-trang",
       "name": "Miêu tặc dưới trăng",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/mieu-tac-duoi-trang-1787656806208.jpg",
@@ -89,8 +79,6 @@
     },
     {
       "id": "kungfu-cau-may",
-      "source": "owner",
-      "sourceId": "kungfu-cau-may",
       "name": "Kungfu Cầu Mây",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/kungfu-cau-may-1787459721423.jpg",
@@ -106,8 +94,6 @@
     },
     {
       "id": "thien-su-giang-tran",
-      "source": "owner",
-      "sourceId": "thien-su-giang-tran",
       "name": "Thiên sứ giáng trần",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/thien-su-giang-tran-1787457816447.jpg",
@@ -123,8 +109,6 @@
     },
     {
       "id": "wave-8",
-      "source": "owner",
-      "sourceId": "wave-8",
       "name": "WAVE",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/wave-8-1787378467142.jpg",
@@ -140,8 +124,6 @@
     },
     {
       "id": "vu-ieu-to",
-      "source": "owner",
-      "sourceId": "vu-ieu-to",
       "name": "Vũ điệu tơ",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/vu-ieu-to-1787322067074.jpg",
@@ -157,8 +139,6 @@
     },
     {
       "id": "co-be-ca-chua",
-      "source": "owner",
-      "sourceId": "co-be-ca-chua",
       "name": "cÔ BÉ CÀ CHUA",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/co-be-ca-chua-1787320264899.jpg",
@@ -174,8 +154,6 @@
     },
     {
       "id": "en-tho-bang-gia",
-      "source": "owner",
-      "sourceId": "en-tho-bang-gia",
       "name": "Đền thờ băng giá",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/repo/assets/artworks/en-tho-bang-gia-1787245727082.png",
@@ -191,8 +169,6 @@
     },
     {
       "id": "en-tho-than-tuat",
-      "source": "owner",
-      "sourceId": "en-tho-than-tuat",
       "name": "Đền thờ thần Tuất",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/en-tho-than-tuat-1787488480911.jpg",
@@ -208,8 +184,6 @@
     },
     {
       "id": "hoa-si-mong-mi",
-      "source": "owner",
-      "sourceId": "hoa-si-mong-mi",
       "name": "Họa sĩ mộng mị",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/repo/assets/artworks/hoa-si-mong-mi-1787231891847.jpg",
@@ -225,8 +199,6 @@
     },
     {
       "id": "tiec-bai-bien",
-      "source": "owner",
-      "sourceId": "tiec-bai-bien",
       "name": "Tiệc bãi biển",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/tiec-bai-bien-1787326759634.jpg",
@@ -242,8 +214,6 @@
     },
     {
       "id": "tiec-be-boi",
-      "source": "owner",
-      "sourceId": "tiec-be-boi",
       "name": "Tiệc bể bơi",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/repo/assets/artworks/tiec-be-boi-1787232033199.jpg",
@@ -259,8 +229,6 @@
     },
     {
       "id": "aya",
-      "source": "owner",
-      "sourceId": "aya",
       "name": "Tiểu miêu yêu giới",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/repo/assets/artworks/aya-1787206597131.jpg",
@@ -276,8 +244,6 @@
     },
     {
       "id": "vu-ieu-samba",
-      "source": "owner",
-      "sourceId": "vu-ieu-samba",
       "name": "Vũ điệu Samba",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/repo/assets/artworks/vu-ieu-samba-1787232985989.jpg",
@@ -293,8 +259,6 @@
     },
     {
       "id": "vui-cung-bay-tuat",
-      "source": "owner",
-      "sourceId": "vui-cung-bay-tuat",
       "name": "Vui cùng bầy tuất",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/repo/assets/artworks/vui-cung-bay-tuat-1787232833296.png",
@@ -310,8 +274,6 @@
     },
     {
       "id": "vuon-toan-tuat",
-      "source": "owner",
-      "sourceId": "vuon-toan-tuat",
       "name": "Vườn toàn tuất",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/repo/assets/artworks/vuon-toan-tuat-1787232965760.jpg",
@@ -337,14 +299,10 @@
       "rankOrder": 2,
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/thumbnails/vuon-toan-tuat-2-1787488053736.jpg",
       "description": "",
-      "isVietnameseSkin": false,
-      "source": "owner",
-      "sourceId": "vuon-toan-tuat-2"
+      "isVietnameseSkin": false
     },
     {
       "id": "gia-lap",
-      "source": "owner",
-      "sourceId": "gia-lap",
       "name": "Giả lập",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/repo/assets/artworks/gia-lap-1787232877311.jpg",
@@ -360,8 +318,6 @@
     },
     {
       "id": "man-hoa-lu-hanh",
-      "source": "owner",
-      "sourceId": "man-hoa-lu-hanh",
       "name": "Mạn họa lữ hành",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/repo/assets/artworks/man-hoa-lu-hanh-1787232807607.jpg",
@@ -377,8 +333,6 @@
     },
     {
       "id": "iep-vu-thanh-xuan",
-      "source": "owner",
-      "sourceId": "iep-vu-thanh-xuan",
       "name": "Điệp vũ thanh xuân",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/repo/assets/artworks/iep-vu-thanh-xuan-1787231956023.jpg",
@@ -394,8 +348,6 @@
     },
     {
       "id": "than-nuong-mong-gioi",
-      "source": "owner",
-      "sourceId": "than-nuong-mong-gioi",
       "name": "Thần nương mộng giới",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/repo/assets/artworks/than-nuong-mong-gioi-1787233013194.jpg",
@@ -411,8 +363,6 @@
     },
     {
       "id": "thu-nguyen-ve-than-3",
-      "source": "owner",
-      "sourceId": "thu-nguyen-ve-than-3",
       "name": "Thứ Nguyên vệ thần",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/thu-nguyen-ve-than-3-1787497740074.jpg",
@@ -428,8 +378,6 @@
     },
     {
       "id": "boy-pho-3",
-      "source": "owner",
-      "sourceId": "boy-pho-3",
       "name": "Boy phố",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/boy-pho-3-1787673000284.jpg",
@@ -445,8 +393,6 @@
     },
     {
       "id": "sieu-pham-boy-pho-2",
-      "source": "owner",
-      "sourceId": "sieu-pham-boy-pho-2",
       "name": "Siêu phẩm boy phố",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/sieu-pham-boy-pho-2-1787672489370.jpg",
@@ -462,8 +408,6 @@
     },
     {
       "id": "sat-thu-huyet-toc",
-      "source": "owner",
-      "sourceId": "sat-thu-huyet-toc",
       "name": "Sát thủ huyết tộc",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/sat-thu-huyet-toc-1787371419380.jpg",
@@ -479,8 +423,6 @@
     },
     {
       "id": "sat-thu-vung-nuoc-o",
-      "source": "owner",
-      "sourceId": "sat-thu-vung-nuoc-o",
       "name": "Sát thủ vùng nước đỏ",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/sat-thu-vung-nuoc-o-1787280991427.jpg",
@@ -496,8 +438,6 @@
     },
     {
       "id": "ac-vu-sieu-linh",
-      "source": "owner",
-      "sourceId": "ac-vu-sieu-linh",
       "name": "Đặc vụ siêu linh",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/ac-vu-sieu-linh-1787371285799.jpg",
@@ -513,8 +453,6 @@
     },
     {
       "id": "hon-sa-mac",
-      "source": "owner",
-      "sourceId": "hon-sa-mac",
       "name": "Hồn sa mạc",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/hon-sa-mac-1787371312397.jpg",
@@ -530,8 +468,6 @@
     },
     {
       "id": "thien-su-huyet-ngai",
-      "source": "owner",
-      "sourceId": "thien-su-huyet-ngai",
       "name": "Thiên sứ huyết ngải",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/thien-su-huyet-ngai-1787371491882.jpg",
@@ -547,8 +483,6 @@
     },
     {
       "id": "hiep-si-tro-tan",
-      "source": "owner",
-      "sourceId": "hiep-si-tro-tan",
       "name": "Hiệp sĩ tro tàn",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/hiep-si-tro-tan-1787371462517.jpg",
@@ -564,8 +498,6 @@
     },
     {
       "id": "sieu-viet",
-      "source": "owner",
-      "sourceId": "sieu-viet",
       "name": "Siêu Việt",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/sieu-viet-1787280906008.jpg",
@@ -581,8 +513,6 @@
     },
     {
       "id": "sieu-viet-2-0",
-      "source": "owner",
-      "sourceId": "sieu-viet-2-0",
       "name": "Siêu Việt 2.0",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/sieu-viet-2-0-1787280919675.jpg",
@@ -598,8 +528,6 @@
     },
     {
       "id": "sushi-ca-map",
-      "source": "owner",
-      "sourceId": "sushi-ca-map",
       "name": "Sushi cá mập",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/sushi-ca-map-1787280955552.png",
@@ -615,8 +543,6 @@
     },
     {
       "id": "bong-ma-hoa-anh",
-      "source": "owner",
-      "sourceId": "bong-ma-hoa-anh",
       "name": "Bóng ma hỏa ảnh",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/bong-ma-hoa-anh-1787371386506.jpg",
@@ -632,8 +558,6 @@
     },
     {
       "id": "yet-kieu",
-      "source": "owner",
-      "sourceId": "yet-kieu",
       "name": "Yết Kiêu",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/repo/assets/artworks/yet-kieu-1787244660272.jpg",
@@ -649,8 +573,6 @@
     },
     {
       "id": "cs-jake-walker",
-      "source": "owner",
-      "sourceId": "cs-jake-walker",
       "name": "CS: JAKE WALKER",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/cs-jake-walker-1787280721415.jpg",
@@ -666,8 +588,6 @@
     },
     {
       "id": "sat-lang-bach-ho",
-      "source": "owner",
-      "sourceId": "sat-lang-bach-ho",
       "name": "Sát lang bạch hổ",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/sat-lang-bach-ho-1787280649281.jpg",
@@ -683,8 +603,6 @@
     },
     {
       "id": "phuong-tinh-uyen-ton",
-      "source": "owner",
-      "sourceId": "phuong-tinh-uyen-ton",
       "name": "Phương Tĩnh Uyên Tôn",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/repo/assets/artworks/phuong-tinh-uyen-ton-1787244190418.jpg",
@@ -716,9 +634,7 @@
       "rankOrder": 0,
       "thumbnail": "https://images.unsplash.com/photo-1518709594023-6eab9bab7b23?auto=format&fit=crop&w=1800&q=88",
       "description": "",
-      "isVietnameseSkin": false,
-      "source": "owner",
-      "sourceId": "chrome-valkyrie"
+      "isVietnameseSkin": false
     },
     {
       "id": "iron-choir",
@@ -738,9 +654,7 @@
       "rankOrder": 0,
       "thumbnail": "https://images.unsplash.com/photo-1484417894907-623942c8ee29?auto=format&fit=crop&w=1800&q=88",
       "description": "",
-      "isVietnameseSkin": false,
-      "source": "owner",
-      "sourceId": "iron-choir"
+      "isVietnameseSkin": false
     },
     {
       "id": "black-ice-protocol",
@@ -760,9 +674,7 @@
       "rankOrder": 1,
       "thumbnail": "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=1800&q=88",
       "description": "",
-      "isVietnameseSkin": false,
-      "source": "owner",
-      "sourceId": "black-ice-protocol"
+      "isVietnameseSkin": false
     },
     {
       "id": "neon-revenant",
@@ -782,9 +694,7 @@
       "rankOrder": 1,
       "thumbnail": "https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1800&q=88",
       "description": "",
-      "isVietnameseSkin": false,
-      "source": "owner",
-      "sourceId": "neon-revenant"
+      "isVietnameseSkin": false
     },
     {
       "id": "silent-orbit",
@@ -804,9 +714,7 @@
       "rankOrder": 0,
       "thumbnail": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1800&q=88",
       "description": "",
-      "isVietnameseSkin": false,
-      "source": "owner",
-      "sourceId": "silent-orbit"
+      "isVietnameseSkin": false
     },
     {
       "id": "celestial-bloom",
@@ -826,9 +734,7 @@
       "rankOrder": 1,
       "thumbnail": "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=1800&q=88",
       "description": "",
-      "isVietnameseSkin": false,
-      "source": "owner",
-      "sourceId": "celestial-bloom"
+      "isVietnameseSkin": false
     },
     {
       "id": "last-starfarer",
@@ -848,9 +754,7 @@
       "rankOrder": 1,
       "thumbnail": "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1800&q=88",
       "description": "",
-      "isVietnameseSkin": false,
-      "source": "owner",
-      "sourceId": "last-starfarer"
+      "isVietnameseSkin": false
     },
     {
       "id": "void-archon",
@@ -870,14 +774,10 @@
       "rankOrder": 1,
       "thumbnail": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=1800&q=88",
       "description": "",
-      "isVietnameseSkin": false,
-      "source": "owner",
-      "sourceId": "void-archon"
+      "isVietnameseSkin": false
     },
     {
       "id": "thien-ha-than-tuong",
-      "source": "owner",
-      "sourceId": "thien-ha-than-tuong",
       "name": "Thiên hà thần tướng",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/thien-ha-than-tuong-1787491086019.jpg",
@@ -893,8 +793,6 @@
     },
     {
       "id": "thanh-moc-linh-su",
-      "source": "owner",
-      "sourceId": "thanh-moc-linh-su",
       "name": "Thanh Mộc Linh Sư",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/thanh-moc-linh-su-1787457647963.jpg",
@@ -910,8 +808,6 @@
     },
     {
       "id": "wave",
-      "source": "owner",
-      "sourceId": "wave",
       "name": "WAVE",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/repo/assets/artworks/wave-1787244906275.jpg",
@@ -927,8 +823,6 @@
     },
     {
       "id": "quan-ho-bac-ninh",
-      "source": "owner",
-      "sourceId": "quan-ho-bac-ninh",
       "name": "Quan Họ Bắc Ninh",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/quan-ho-bac-ninh-1787458678658.jpg",
@@ -944,8 +838,6 @@
     },
     {
       "id": "khuc-ca-giao-hai",
-      "source": "owner",
-      "sourceId": "khuc-ca-giao-hai",
       "name": "Khúc ca giao hải",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/khuc-ca-giao-hai-1787458539182.jpg",
@@ -961,8 +853,6 @@
     },
     {
       "id": "xich-diem-han-trieu",
-      "source": "owner",
-      "sourceId": "xich-diem-han-trieu",
       "name": "Xích Diễm Hàn Triều",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/repo/assets/artworks/xich-diem-han-trieu-1787245697619.jpg",
@@ -978,8 +868,6 @@
     },
     {
       "id": "giang-sinh-an-lanh-2",
-      "source": "owner",
-      "sourceId": "giang-sinh-an-lanh-2",
       "name": "Giáng sinh an lành",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/giang-sinh-an-lanh-2-1787488572143.png",
@@ -995,8 +883,6 @@
     },
     {
       "id": "loi-he-thong",
-      "source": "owner",
-      "sourceId": "loi-he-thong",
       "name": "Lỗi hệ thống",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/loi-he-thong-1787320575265.jpg",
@@ -1022,14 +908,10 @@
       "rankOrder": 3,
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/thumbnails/nu-he-ma-mi-1787371630555.webp",
       "description": "",
-      "isVietnameseSkin": false,
-      "source": "owner",
-      "sourceId": "nu-he-ma-mi"
+      "isVietnameseSkin": false
     },
     {
       "id": "da-hoi-khieu-vu",
-      "source": "owner",
-      "sourceId": "da-hoi-khieu-vu",
       "name": "Dạ hội khiêu vũ",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/da-hoi-khieu-vu-1787492655534.jpg",
@@ -1045,8 +927,6 @@
     },
     {
       "id": "that-tinh",
-      "source": "owner",
-      "sourceId": "that-tinh",
       "name": "Thất tình",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/that-tinh-1787288553321.jpg",
@@ -1062,8 +942,6 @@
     },
     {
       "id": "hoi-ngo-thanh-xuan",
-      "source": "owner",
-      "sourceId": "hoi-ngo-thanh-xuan",
       "name": "Hội ngộ thanh xuân",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/hoi-ngo-thanh-xuan-1787288622463.jpg",
@@ -1079,8 +957,6 @@
     },
     {
       "id": "boy-pho",
-      "source": "owner",
-      "sourceId": "boy-pho",
       "name": "Boy phố",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/boy-pho-1787288564445.jpg",
@@ -1096,8 +972,6 @@
     },
     {
       "id": "thu-nguyen-ve-than-2",
-      "source": "owner",
-      "sourceId": "thu-nguyen-ve-than-2",
       "name": "Thứ nguyên vệ thần",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/thu-nguyen-ve-than-2-1787492404851.jpg",
@@ -1113,8 +987,6 @@
     },
     {
       "id": "tiec-bai-bien-2",
-      "source": "owner",
-      "sourceId": "tiec-bai-bien-2",
       "name": "Tiệc bãi biển",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/tiec-bai-bien-2-1787326753295.jpg",
@@ -1130,8 +1002,6 @@
     },
     {
       "id": "linh-ban-tia-viet",
-      "source": "owner",
-      "sourceId": "linh-ban-tia-viet",
       "name": "Lính bắn tỉa Việt",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/linh-ban-tia-viet-1787286549719.png",
@@ -1147,8 +1017,6 @@
     },
     {
       "id": "thong-soai-robot",
-      "source": "owner",
-      "sourceId": "thong-soai-robot",
       "name": "Thống soái Robot",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/thong-soai-robot-1787489930633.jpg",
@@ -1164,8 +1032,6 @@
     },
     {
       "id": "ma-thuat-en",
-      "source": "owner",
-      "sourceId": "ma-thuat-en",
       "name": "Ma thuật đen",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/ma-thuat-en-1787489460681.png",
@@ -1181,8 +1047,6 @@
     },
     {
       "id": "nam-than-bach-khoa",
-      "source": "owner",
-      "sourceId": "nam-than-bach-khoa",
       "name": "Nam thần Bách Khoa",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/nam-than-bach-khoa-1787489402003.png",
@@ -1198,8 +1062,6 @@
     },
     {
       "id": "tai-enzo",
-      "source": "owner",
-      "sourceId": "tai-enzo",
       "name": "Tài Enzo",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/tai-enzo-1787488906323.jpg",
@@ -1215,8 +1077,6 @@
     },
     {
       "id": "lang-chai-vung-tau",
-      "source": "owner",
-      "sourceId": "lang-chai-vung-tau",
       "name": "Làng chài Vũng Tàu",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/lang-chai-vung-tau-1787489134106.jpg",
@@ -1232,8 +1092,6 @@
     },
     {
       "id": "wave-9",
-      "source": "owner",
-      "sourceId": "wave-9",
       "name": "WAVE",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/wave-9-1787674299675.jpg",
@@ -1249,8 +1107,6 @@
     },
     {
       "id": "thien-co-than-giap",
-      "source": "owner",
-      "sourceId": "thien-co-than-giap",
       "name": "Thiên cơ thần giáp",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/thien-co-than-giap-1787673978359.jpg",
@@ -1266,8 +1122,6 @@
     },
     {
       "id": "wave-oc-ban-hoa-phi-chan-hoan",
-      "source": "owner",
-      "sourceId": "wave-oc-ban-hoa-phi-chan-hoan",
       "name": "Wave: Độc bản \"Hoa phi chân hoàn\"",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/wave-oc-ban-hoa-phi-chan-hoan-1787674497440.jpg",
@@ -1283,8 +1137,6 @@
     },
     {
       "id": "an-niet-thanh-mau",
-      "source": "owner",
-      "sourceId": "an-niet-thanh-mau",
       "name": "Đan Niết Thánh Mẫu",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/repo/assets/artworks/an-niet-thanh-mau-1787244735160.jpg",
@@ -1300,8 +1152,6 @@
     },
     {
       "id": "than-ma-ty-vong-nguyet-long",
-      "source": "owner",
-      "sourceId": "than-ma-ty-vong-nguyet-long",
       "name": "Thần Ma Tỷ: Vọng Nguyệt Long",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/than-ma-ty-vong-nguyet-long-1787673445160.jpg",
@@ -1333,9 +1183,7 @@
       "rankOrder": 0,
       "thumbnail": "https://images.unsplash.com/photo-1483347756197-71ef80e95f73?auto=format&fit=crop&w=1800&q=88",
       "description": "",
-      "isVietnameseSkin": false,
-      "source": "owner",
-      "sourceId": "aurora-seer"
+      "isVietnameseSkin": false
     },
     {
       "id": "jade-tempest",
@@ -1355,9 +1203,7 @@
       "rankOrder": 0,
       "thumbnail": "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1800&q=88",
       "description": "",
-      "isVietnameseSkin": false,
-      "source": "owner",
-      "sourceId": "jade-tempest"
+      "isVietnameseSkin": false
     },
     {
       "id": "crimson-kitsune",
@@ -1377,14 +1223,10 @@
       "rankOrder": 1,
       "thumbnail": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1800&q=88",
       "description": "",
-      "isVietnameseSkin": false,
-      "source": "owner",
-      "sourceId": "crimson-kitsune"
+      "isVietnameseSkin": false
     },
     {
       "id": "o-cong-lang-tu",
-      "source": "owner",
-      "sourceId": "o-cong-lang-tu",
       "name": "Đồ công lãng tử",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/o-cong-lang-tu-1787488775210.jpg",
@@ -1400,8 +1242,6 @@
     },
     {
       "id": "fmvp-nailiu-apl-2025-fake",
-      "source": "owner",
-      "sourceId": "fmvp-nailiu-apl-2025-fake",
       "name": "FMVP NaiLiu APL 2025 (Fake)",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/repo/assets/artworks/fmvp-nailiu-apl-2025-fake-1787244802412.jpg",
@@ -1417,8 +1257,6 @@
     },
     {
       "id": "maid-bung-ca-phe",
-      "source": "owner",
-      "sourceId": "maid-bung-ca-phe",
       "name": "Maid Bưng Cà Phê",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/maid-bung-ca-phe-1787671491463.jpg",
@@ -1434,8 +1272,6 @@
     },
     {
       "id": "than-tai",
-      "source": "owner",
-      "sourceId": "than-tai",
       "name": "Thần tài",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/than-tai-1787490617708.jpg",
@@ -1451,8 +1287,6 @@
     },
     {
       "id": "the-gioi-cau-vong",
-      "source": "owner",
-      "sourceId": "the-gioi-cau-vong",
       "name": "Thế giới cầu vồng",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/the-gioi-cau-vong-1787671805624.jpg",
@@ -1468,8 +1302,6 @@
     },
     {
       "id": "wave-2",
-      "source": "owner",
-      "sourceId": "wave-2",
       "name": "WAVE",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/repo/assets/artworks/wave-2-1787245765906.jpg",
@@ -1485,8 +1317,6 @@
     },
     {
       "id": "wave-5",
-      "source": "owner",
-      "sourceId": "wave-5",
       "name": "WAVE",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/wave-5-1787288818871.jpg",
@@ -1502,8 +1332,6 @@
     },
     {
       "id": "vu-nu-kagura",
-      "source": "owner",
-      "sourceId": "vu-nu-kagura",
       "name": "Vu Nữ Kagura",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/vu-nu-kagura-1787664285846.jpg",
@@ -1519,8 +1347,6 @@
     },
     {
       "id": "than-tuong-am-nhac",
-      "source": "owner",
-      "sourceId": "than-tuong-am-nhac",
       "name": "Thần tượng âm nhạc",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/than-tuong-am-nhac-1787301119912.jpg",
@@ -1536,8 +1362,6 @@
     },
     {
       "id": "chi-ton-kiem-tien",
-      "source": "owner",
-      "sourceId": "chi-ton-kiem-tien",
       "name": "Chí tôn kiếm tiên",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/chi-ton-kiem-tien-1787301140475.jpg",
@@ -1553,8 +1377,6 @@
     },
     {
       "id": "giang-sinh-an-lanh",
-      "source": "owner",
-      "sourceId": "giang-sinh-an-lanh",
       "name": "Giáng sinh an lành",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/giang-sinh-an-lanh-1787286604812.png",
@@ -1586,9 +1408,7 @@
       "rankOrder": 0,
       "thumbnail": "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1800&q=88",
       "description": "",
-      "isVietnameseSkin": false,
-      "source": "owner",
-      "sourceId": "emerald-sentinel"
+      "isVietnameseSkin": false
     },
     {
       "id": "moonlit-huntress",
@@ -1608,9 +1428,7 @@
       "rankOrder": 0,
       "thumbnail": "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=1800&q=88",
       "description": "",
-      "isVietnameseSkin": false,
-      "source": "owner",
-      "sourceId": "moonlit-huntress"
+      "isVietnameseSkin": false
     },
     {
       "id": "verdant-king",
@@ -1630,14 +1448,10 @@
       "rankOrder": 1,
       "thumbnail": "https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1800&q=88",
       "description": "",
-      "isVietnameseSkin": false,
-      "source": "owner",
-      "sourceId": "verdant-king"
+      "isVietnameseSkin": false
     },
     {
       "id": "hoa-van-viem-e",
-      "source": "owner",
-      "sourceId": "hoa-van-viem-e",
       "name": "Hoà vân viêm đế",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/hoa-van-viem-e-1787459769628.jpg",
@@ -1653,8 +1467,6 @@
     },
     {
       "id": "chien-than-eo-hai-van",
-      "source": "owner",
-      "sourceId": "chien-than-eo-hai-van",
       "name": "Chiến thần Đèo Hải Vân",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/chien-than-eo-hai-van-1787457443586.jpg",
@@ -1670,8 +1482,6 @@
     },
     {
       "id": "ao-mieu",
-      "source": "owner",
-      "sourceId": "ao-mieu",
       "name": "Miêu Linh Đào mộng",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/ao-mieu-1787318439119.jpg",
@@ -1687,8 +1497,6 @@
     },
     {
       "id": "bang-thanh-hoa-tam",
-      "source": "owner",
-      "sourceId": "bang-thanh-hoa-tam",
       "name": "Băng thành hỏa tâm",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/bang-thanh-hoa-tam-1787672063725.jpg",
@@ -1704,8 +1512,6 @@
     },
     {
       "id": "tiec-lau-ech",
-      "source": "owner",
-      "sourceId": "tiec-lau-ech",
       "name": "Tiệc lẩu ếch",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/tiec-lau-ech-1787458281688.jpg",
@@ -1721,8 +1527,6 @@
     },
     {
       "id": "loi-nguyen-huyet-tam",
-      "source": "owner",
-      "sourceId": "loi-nguyen-huyet-tam",
       "name": "Lời Nguyền Huyết Tâm",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/loi-nguyen-huyet-tam-1787317365050.jpg",
@@ -1738,8 +1542,6 @@
     },
     {
       "id": "bach-hac-hoa-tien",
-      "source": "owner",
-      "sourceId": "bach-hac-hoa-tien",
       "name": "Bạch Hạc Hoạ Tiên",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/bach-hac-hoa-tien-1787318126285.jpg",
@@ -1755,8 +1557,6 @@
     },
     {
       "id": "nguyet-anh-huyen-ho",
-      "source": "owner",
-      "sourceId": "nguyet-anh-huyen-ho",
       "name": "Nguyệt Ảnh Huyễn Hồ",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/nguyet-anh-huyen-ho-1787573602765.jpg",
@@ -1772,8 +1572,6 @@
     },
     {
       "id": "wave-4",
-      "source": "owner",
-      "sourceId": "wave-4",
       "name": "WAVE",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/wave-4-1787288792393.jpg",
@@ -1789,8 +1587,6 @@
     },
     {
       "id": "fmvp-vie-quochuy-seagames-33",
-      "source": "owner",
-      "sourceId": "fmvp-vie-quochuy-seagames-33",
       "name": "FMVP Vie QuocHuy SEAGAMES 33",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/fmvp-vie-quochuy-seagames-33-1787290221873.jpg",
@@ -1806,8 +1602,6 @@
     },
     {
       "id": "co-nang-thanh-hoa",
-      "source": "owner",
-      "sourceId": "co-nang-thanh-hoa",
       "name": "Cô nàng Thanh Hóa",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/co-nang-thanh-hoa-1787290233814.jpg",
@@ -1823,8 +1617,6 @@
     },
     {
       "id": "ma-nu-thoi-thuong",
-      "source": "owner",
-      "sourceId": "ma-nu-thoi-thuong",
       "name": "Ma Nữ thời thượng",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/ma-nu-thoi-thuong-1787321583246.jpg",
@@ -1840,8 +1632,6 @@
     },
     {
       "id": "thien-am-phuong-vu",
-      "source": "owner",
-      "sourceId": "thien-am-phuong-vu",
       "name": "Thiên Âm Phượng Vũ",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/thien-am-phuong-vu-1787317719032.jpg",
@@ -1857,8 +1647,6 @@
     },
     {
       "id": "wave-6",
-      "source": "owner",
-      "sourceId": "wave-6",
       "name": "WAVE",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/wave-6-1787326429001.jpg",
@@ -1874,8 +1662,6 @@
     },
     {
       "id": "sieu-pham-chan-hoan",
-      "source": "owner",
-      "sourceId": "sieu-pham-chan-hoan",
       "name": "Siêu phẩm chân hoàn",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/sieu-pham-chan-hoan-1787629329633.jpg",
@@ -1891,8 +1677,6 @@
     },
     {
       "id": "tiec-bai-bien-4",
-      "source": "owner",
-      "sourceId": "tiec-bai-bien-4",
       "name": "Tiệc bãi biển",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/tiec-bai-bien-4-1787326775873.jpg",
@@ -1924,9 +1708,7 @@
       "rankOrder": 0,
       "thumbnail": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1800&q=88",
       "description": "",
-      "isVietnameseSkin": false,
-      "source": "owner",
-      "sourceId": "frost-wyrm"
+      "isVietnameseSkin": false
     },
     {
       "id": "grave-tide",
@@ -1946,9 +1728,7 @@
       "rankOrder": 0,
       "thumbnail": "https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=1800&q=88",
       "description": "",
-      "isVietnameseSkin": false,
-      "source": "owner",
-      "sourceId": "grave-tide"
+      "isVietnameseSkin": false
     },
     {
       "id": "sunforge-titan",
@@ -1968,9 +1748,7 @@
       "rankOrder": 0,
       "thumbnail": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=88",
       "description": "",
-      "isVietnameseSkin": false,
-      "source": "owner",
-      "sourceId": "sunforge-titan"
+      "isVietnameseSkin": false
     },
     {
       "id": "infernal-crown",
@@ -1990,14 +1768,10 @@
       "rankOrder": 1,
       "thumbnail": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1800&q=88",
       "description": "",
-      "isVietnameseSkin": false,
-      "source": "owner",
-      "sourceId": "infernal-crown"
+      "isVietnameseSkin": false
     },
     {
       "id": "bat-luong-hem-pho",
-      "source": "owner",
-      "sourceId": "bat-luong-hem-pho",
       "name": "Bất lương hẻm phố",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/bat-luong-hem-pho-1787304035983.jpg",
@@ -2013,8 +1787,6 @@
     },
     {
       "id": "hac-vu-luan-kiem",
-      "source": "owner",
-      "sourceId": "hac-vu-luan-kiem",
       "name": "Hạc Vũ Luân Kiếm",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/hac-vu-luan-kiem-1787317884401.jpg",
@@ -2030,8 +1802,6 @@
     },
     {
       "id": "ao-hoa-mi-anh",
-      "source": "owner",
-      "sourceId": "ao-hoa-mi-anh",
       "name": "Đào Hoa Mị Ảnh",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/ao-hoa-mi-anh-1787317413534.jpg",
@@ -2047,8 +1817,6 @@
     },
     {
       "id": "linh-xa-song-sinh",
-      "source": "owner",
-      "sourceId": "linh-xa-song-sinh",
       "name": "Linh xà song sinh",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/linh-xa-song-sinh-1787569395045.jpg",
@@ -2064,8 +1832,6 @@
     },
     {
       "id": "my-ho",
-      "source": "owner",
-      "sourceId": "my-ho",
       "name": "Mỵ Hồ",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/my-ho-1787490126860.jpg",
@@ -2081,8 +1847,6 @@
     },
     {
       "id": "hac-bach-ngoc-tho",
-      "source": "owner",
-      "sourceId": "hac-bach-ngoc-tho",
       "name": "Hắc bạch Ngọc thố",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/hac-bach-ngoc-tho-1787319811449.jpg",
@@ -2098,8 +1862,6 @@
     },
     {
       "id": "mac-long-thanh-e",
-      "source": "owner",
-      "sourceId": "mac-long-thanh-e",
       "name": "Mặc Long thánh đế",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/mac-long-thanh-e-1787490059826.jpg",
@@ -2115,8 +1877,6 @@
     },
     {
       "id": "bat-chi-hoa-vu",
-      "source": "owner",
-      "sourceId": "bat-chi-hoa-vu",
       "name": "Bất chi hoả vũ",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/bat-chi-hoa-vu-1787458874959.jpg",
@@ -2132,8 +1892,6 @@
     },
     {
       "id": "thay-tu-da-en",
-      "source": "owner",
-      "sourceId": "thay-tu-da-en",
       "name": "Thầy tu da đen",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/thay-tu-da-en-1787458901437.jpg",
@@ -2149,8 +1907,6 @@
     },
     {
       "id": "mi-ngu",
-      "source": "owner",
-      "sourceId": "mi-ngu",
       "name": "Mị ngữ",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/mi-ngu-1787459023276.jpg",
@@ -2166,8 +1922,6 @@
     },
     {
       "id": "mieu-quyen-than",
-      "source": "owner",
-      "sourceId": "mieu-quyen-than",
       "name": "Miêu Quyền thần",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/mieu-quyen-than-1787491947133.jpg",
@@ -2183,8 +1937,6 @@
     },
     {
       "id": "phi-nguyet-hanh",
-      "source": "owner",
-      "sourceId": "phi-nguyet-hanh",
       "name": "Phi nguyệt hành",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/phi-nguyet-hanh-1787489818309.png",
@@ -2200,8 +1952,6 @@
     },
     {
       "id": "wave-3",
-      "source": "owner",
-      "sourceId": "wave-3",
       "name": "WAVE",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/wave-3-1787288760522.jpg",
@@ -2217,8 +1967,6 @@
     },
     {
       "id": "hoa-hop-au",
-      "source": "owner",
-      "sourceId": "hoa-hop-au",
       "name": "Hoa hợp đấu",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/hoa-hop-au-1787489769164.png",
@@ -2234,8 +1982,6 @@
     },
     {
       "id": "hoa-mieu-hang-hieu",
-      "source": "owner",
-      "sourceId": "hoa-mieu-hang-hieu",
       "name": "Hoả Miếu: Hàng hiệu",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/hoa-mieu-hang-hieu-1787459644129.jpg",
@@ -2251,8 +1997,6 @@
     },
     {
       "id": "bach-ve-su",
-      "source": "owner",
-      "sourceId": "bach-ve-su",
       "name": "Bạch vệ sứ",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/bach-ve-su-1787456857804.jpg",
@@ -2268,8 +2012,6 @@
     },
     {
       "id": "wave-10",
-      "source": "owner",
-      "sourceId": "wave-10",
       "name": "wave",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/wave-10-1787674647792.jpg",
@@ -2285,8 +2027,6 @@
     },
     {
       "id": "thanh-linh-cam-khuc",
-      "source": "owner",
-      "sourceId": "thanh-linh-cam-khuc",
       "name": "Thanh Linh Cầm Khúc",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/thanh-linh-cam-khuc-1787408279049.jpg",
@@ -2302,8 +2042,6 @@
     },
     {
       "id": "nhung-ngoi-sao-xa-xoi",
-      "source": "owner",
-      "sourceId": "nhung-ngoi-sao-xa-xoi",
       "name": "Những ngôi sao xa xôi",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/repo/assets/artworks/nhung-ngoi-sao-xa-xoi-1787245582595.png",
@@ -2319,8 +2057,6 @@
     },
     {
       "id": "thu-nguyen-ve-than-4",
-      "source": "owner",
-      "sourceId": "thu-nguyen-ve-than-4",
       "name": "Thứ nguyên vệ thần",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/thu-nguyen-ve-than-4-1787498570812.jpg",
@@ -2336,8 +2072,6 @@
     },
     {
       "id": "tho-phe-hoa-chat",
-      "source": "owner",
-      "sourceId": "tho-phe-hoa-chat",
       "name": "Thỏ phê Hóa chất",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/tho-phe-hoa-chat-1787290204591.jpg",
@@ -2353,8 +2087,6 @@
     },
     {
       "id": "oc-tai",
-      "source": "owner",
-      "sourceId": "oc-tai",
       "name": "Độc tài",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/oc-tai-1787326728115.jpg",
@@ -2370,8 +2102,6 @@
     },
     {
       "id": "soai-ca-say-hi",
-      "source": "owner",
-      "sourceId": "soai-ca-say-hi",
       "name": "Soái ca say hi",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/soai-ca-say-hi-1787326734994.jpg",
@@ -2403,9 +2133,7 @@
       "rankOrder": 0,
       "thumbnail": "https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&w=1800&q=88",
       "description": "",
-      "isVietnameseSkin": false,
-      "source": "owner",
-      "sourceId": "dune-exile"
+      "isVietnameseSkin": false
     },
     {
       "id": "obsidian-pilgrim",
@@ -2425,9 +2153,7 @@
       "rankOrder": 0,
       "thumbnail": "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1800&q=88",
       "description": "",
-      "isVietnameseSkin": false,
-      "source": "owner",
-      "sourceId": "obsidian-pilgrim"
+      "isVietnameseSkin": false
     },
     {
       "id": "rustborn-raider",
@@ -2447,14 +2173,10 @@
       "rankOrder": 0,
       "thumbnail": "https://images.unsplash.com/photo-1489493585363-d69421e0edd3?auto=format&fit=crop&w=1800&q=88",
       "description": "",
-      "isVietnameseSkin": false,
-      "source": "owner",
-      "sourceId": "rustborn-raider"
+      "isVietnameseSkin": false
     },
     {
       "id": "be-cuu-chan-de",
-      "source": "owner",
-      "sourceId": "be-cuu-chan-de",
       "name": "bé cừu chăn dê",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/be-cuu-chan-de-1787407794245.jpg",
@@ -2470,8 +2192,6 @@
     },
     {
       "id": "hac-su-ma-than",
-      "source": "owner",
-      "sourceId": "hac-su-ma-than",
       "name": "HẮc Sứ Ma Thần",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/hac-su-ma-than-1787320453356.jpg",
@@ -2487,8 +2207,6 @@
     },
     {
       "id": "linh-xuan-noi-loan",
-      "source": "owner",
-      "sourceId": "linh-xuan-noi-loan",
       "name": "Linh Xuân Nổi loạn",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/linh-xuan-noi-loan-1787291135607.jpg",
@@ -2504,8 +2222,6 @@
     },
     {
       "id": "am-luong-toi-a",
-      "source": "owner",
-      "sourceId": "am-luong-toi-a",
       "name": "Âm lượng tối đa",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/am-luong-toi-a-1787489637144.png",
@@ -2521,8 +2237,6 @@
     },
     {
       "id": "boy-pho-2",
-      "source": "owner",
-      "sourceId": "boy-pho-2",
       "name": "Boy phố",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/boy-pho-2-1787488697105.jpg",
@@ -2538,8 +2252,6 @@
     },
     {
       "id": "cho-cao-bang-bo-pc",
-      "source": "owner",
-      "sourceId": "cho-cao-bang-bo-pc",
       "name": "Chó cao bằng bộ PC",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/cho-cao-bang-bo-pc-1787489321505.png",
@@ -2555,8 +2267,6 @@
     },
     {
       "id": "boy-pho-4",
-      "source": "owner",
-      "sourceId": "boy-pho-4",
       "name": "Boy phố",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/boy-pho-4-1787673005893.jpg",
@@ -2572,8 +2282,6 @@
     },
     {
       "id": "sieu-pham-boy-pho",
-      "source": "owner",
-      "sourceId": "sieu-pham-boy-pho",
       "name": "Siêu phẩm boy phố",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/sieu-pham-boy-pho-1787672477376.jpg",
@@ -2589,8 +2297,6 @@
     },
     {
       "id": "chien-than-tan-the",
-      "source": "owner",
-      "sourceId": "chien-than-tan-the",
       "name": "Chiến thần tận thế",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/chien-than-tan-the-1787672310290.jpg",
@@ -2606,8 +2312,6 @@
     },
     {
       "id": "huyen-xa-than-quan",
-      "source": "owner",
-      "sourceId": "huyen-xa-than-quan",
       "name": "Huyền Xà Thần Quân",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/huyen-xa-than-quan-1787317772273.jpg",
@@ -2623,8 +2327,6 @@
     },
     {
       "id": "tan-than-thien-ha-hang-hieu",
-      "source": "owner",
-      "sourceId": "tan-than-thien-ha-hang-hieu",
       "name": "Tân thần thiên hà: Hàng hiệu",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/repo/assets/artworks/tan-than-thien-ha-hang-hieu-1787245116408.jpg",
@@ -2640,8 +2342,6 @@
     },
     {
       "id": "lang-van-khai-tue-quan",
-      "source": "owner",
-      "sourceId": "lang-van-khai-tue-quan",
       "name": "Lăng vân khải tuế quân",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/repo/assets/artworks/lang-van-khai-tue-quan-1787245054715.jpg",
@@ -2657,8 +2357,6 @@
     },
     {
       "id": "da-hoi-khieu-vu-2",
-      "source": "owner",
-      "sourceId": "da-hoi-khieu-vu-2",
       "name": "Dạ hội khiêu vũ",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/da-hoi-khieu-vu-2-1787492673596.jpg",
@@ -2674,8 +2372,6 @@
     },
     {
       "id": "ang",
-      "source": "owner",
-      "sourceId": "ang",
       "name": "Đấng",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/ang-1787490204387.jpg",
@@ -2691,8 +2387,6 @@
     },
     {
       "id": "ma-sung",
-      "source": "owner",
-      "sourceId": "ma-sung",
       "name": "Ma súng",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/ma-sung-1787490217116.jpg",
@@ -2708,8 +2402,6 @@
     },
     {
       "id": "sieu-viet-2",
-      "source": "owner",
-      "sourceId": "sieu-viet-2",
       "name": "Siêu Việt",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/sieu-viet-2-1787490233625.jpg",
@@ -2725,8 +2417,6 @@
     },
     {
       "id": "tiec-bai-bien-3",
-      "source": "owner",
-      "sourceId": "tiec-bai-bien-3",
       "name": "Tiệc bãi biển",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/tiec-bai-bien-3-1787326767127.jpg",
@@ -2742,8 +2432,6 @@
     },
     {
       "id": "chan-hoan",
-      "source": "owner",
-      "sourceId": "chan-hoan",
       "name": "Hoa Phi",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/chan-hoan-1787629362208.jpg",
@@ -2759,8 +2447,6 @@
     },
     {
       "id": "girl-nao-loan",
-      "source": "owner",
-      "sourceId": "girl-nao-loan",
       "name": "Girl náo loạn",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/girl-nao-loan-1787499009989.jpg",
@@ -2792,9 +2478,7 @@
       "rankOrder": 0,
       "thumbnail": "https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=1800&q=88",
       "description": "",
-      "isVietnameseSkin": false,
-      "source": "owner",
-      "sourceId": "sakura-duelist"
+      "isVietnameseSkin": false
     },
     {
       "id": "stormbreaker",
@@ -2814,9 +2498,7 @@
       "rankOrder": 0,
       "thumbnail": "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1800&q=88",
       "description": "",
-      "isVietnameseSkin": false,
-      "source": "owner",
-      "sourceId": "stormbreaker"
+      "isVietnameseSkin": false
     },
     {
       "id": "ashen-vanguard",
@@ -2836,14 +2518,10 @@
       "rankOrder": 1,
       "thumbnail": "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1800&q=88",
       "description": "",
-      "isVietnameseSkin": false,
-      "source": "owner",
-      "sourceId": "ashen-vanguard"
+      "isVietnameseSkin": false
     },
     {
       "id": "thu-nguyen-ve-than",
-      "source": "owner",
-      "sourceId": "thu-nguyen-ve-than",
       "name": "Thứ Nguyên Vệ Thần",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/thu-nguyen-ve-than-1787326697707.jpg",
@@ -2859,8 +2537,6 @@
     },
     {
       "id": "than-co-thu",
-      "source": "owner",
-      "sourceId": "than-co-thu",
       "name": "Thần cổ thụ",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/than-co-thu-1787656925507.jpg",
@@ -2876,8 +2552,6 @@
     },
     {
       "id": "co-thu-tan-phong",
-      "source": "owner",
-      "sourceId": "co-thu-tan-phong",
       "name": "Cổ thụ tàn phong",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/co-thu-tan-phong-1787318973330.jpg",
@@ -2893,8 +2567,6 @@
     },
     {
       "id": "ha-long-sinh-mach",
-      "source": "owner",
-      "sourceId": "ha-long-sinh-mach",
       "name": "Hạ Long sinh mạch",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/ha-long-sinh-mach-1787460131974.jpg",
@@ -2910,8 +2582,6 @@
     },
     {
       "id": "anh-chang-thanh-hoa",
-      "source": "owner",
-      "sourceId": "anh-chang-thanh-hoa",
       "name": "Anh chàng Thanh Hoá",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/anh-chang-thanh-hoa-1787456596104.png",
@@ -2927,8 +2597,6 @@
     },
     {
       "id": "wave-7",
-      "source": "owner",
-      "sourceId": "wave-7",
       "name": "WAVE",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/wave-7-1787320214877.jpg",
@@ -2944,8 +2612,6 @@
     },
     {
       "id": "mi-sac-hoa-nhen",
-      "source": "owner",
-      "sourceId": "mi-sac-hoa-nhen",
       "name": "Mị sắc hoa nhện",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/mi-sac-hoa-nhen-1787566272707.jpg",
@@ -2961,8 +2627,6 @@
     },
     {
       "id": "nguyet-ma-mong-ky",
-      "source": "owner",
-      "sourceId": "nguyet-ma-mong-ky",
       "name": "Nguyệt Ma Mộng Kỳ",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/nguyet-ma-mong-ky-1787567421046.jpg",
@@ -2978,8 +2642,6 @@
     },
     {
       "id": "vu-khuc-linh-su",
-      "source": "owner",
-      "sourceId": "vu-khuc-linh-su",
       "name": "Vũ khúc linh sứ",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/vu-khuc-linh-su-1787319176908.jpg",
@@ -2995,8 +2657,6 @@
     },
     {
       "id": "nhung-rat-toro-2",
-      "source": "owner",
-      "sourceId": "nhung-rat-toro-2",
       "name": "Nhưng rất Toro",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/nhung-rat-toro-2-1787288429806.png",
@@ -3012,8 +2672,6 @@
     },
     {
       "id": "nhung-rat-toro",
-      "source": "owner",
-      "sourceId": "nhung-rat-toro",
       "name": "SImp Toro",
       "description": "",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/artworks/uploads/nhung-rat-toro-1787288458167.png",
@@ -3158,6 +2816,7 @@
       "Liliana",
       "Lindis",
       "Lorion",
+      "Maloch",
       "Marja",
       "Mina",
       "Monster",
@@ -3199,6 +2858,7 @@
     ],
     "credits": [
       "Cehynz",
+      "Chưa có credit",
       "Hie Lee",
       "Hiemaru",
       "Hika",
@@ -3206,12 +2866,12 @@
       "Hyu",
       "Long",
       "Lumina",
+      "Ngọc Linh",
       "Nhie",
       "Phạm Hằng",
       "Raphena",
       "Tâm",
       "Triều",
-      "Chưa có credit",
       "Vương Hiếu"
     ]
   }
