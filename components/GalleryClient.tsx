@@ -155,10 +155,18 @@ export default function GalleryClient({catalogue,initialCategory,initialArtworkI
   const [vietnameseOnly,setVietnameseOnly]=useState(false);
   const [expanded,setExpanded]=useState(initialArtworkId);
   const [categoryOpen,setCategoryOpen]=useState(false);
+  const [mobileFiltersOpen,setMobileFiltersOpen]=useState(false);
   const [stage,setStage]=useState<0|1|2>(initialArtworkId?2:0);
   const [sampleIds,setSampleIds]=useState<string[]>(()=>catalogue.items.slice(0,INITIAL_RANDOM_COUNT).map(item=>item.id));
 
   useEffect(()=>{setSampleIds(shuffledIds(catalogue.items))},[catalogue.items]);
+
+  useEffect(()=>{
+    if(!mobileFiltersOpen)return;
+    const escape=(event:KeyboardEvent)=>{if(event.key==='Escape')setMobileFiltersOpen(false)};
+    document.addEventListener('keydown',escape);
+    return()=>document.removeEventListener('keydown',escape);
+  },[mobileFiltersOpen]);
 
   const filtered=useMemo(()=>catalogue.items.filter(item=>matches(item,query)&&(category==='all'||item.category===category)&&(rank==='all'||item.rank===rank)&&(credit==='all'||item.credit===credit)&&(!vietnameseOnly||item.isVietnameseSkin)),[catalogue.items,query,category,rank,credit,vietnameseOnly]);
   const defaultBrowse=!query.trim()&&category==='all'&&rank==='all'&&credit==='all'&&!vietnameseOnly;
@@ -214,16 +222,29 @@ export default function GalleryClient({catalogue,initialCategory,initialArtworkI
   const showProgressive=stage===0?filtered.length>INITIAL_RANDOM_COUNT:stage===1?filtered.length>SECOND_BATCH_COUNT:false;
   const progressiveNote=stage===0?`Show ${Math.min(SECOND_BATCH_COUNT,filtered.length)} artwork${Math.min(SECOND_BATCH_COUNT,filtered.length)===1?'':'s'} in catalogue order`:`Open full gallery · ${Math.max(0,filtered.length-SECOND_BATCH_COUNT)} more artwork${filtered.length-SECOND_BATCH_COUNT===1?'':'s'}`;
 
-  return <section className="catalog" id="catalog">
-    <div className={`filter-deck${categoryOpen?' category-expanded':''}`}>
-      <label className="search-wrap"><span>⌕</span><input value={query} onChange={event=>{setQuery(event.target.value);closeExpanded()}} type="search" autoComplete="off" placeholder="Search artwork or combine properties..." title="Combine terms across name, description, category, rank, credit, tags and the Vietnamese-skin property. Example: Marja Việt Nam" aria-label="Search the gallery" aria-description="Multiple terms are combined with AND across artwork properties. Quoted phrases are exact. Vietnamese skins can be searched with Việt Nam, Vietnam or VN." /></label>
-      <div className={`category-shell category-filter-shell${categoryOpen?' open is-expanded':''}`}><div className="category-row" aria-label="Filter by category"><button data-cat="all" className={category==='all'?'active':''} onClick={()=>chooseCategory('all')}>All</button>{catalogue.categories.map(value=><button data-cat={value} key={value} className={category===value?'active':''} onClick={()=>chooseCategory(value)}>{value}</button>)}</div><button className="category-toggle category-filter-toggle" onClick={()=>setCategoryOpen(current=>!current)} aria-label="Toggle category list" aria-expanded={categoryOpen}><span className="category-filter-label">Categories</span><span className="category-filter-icon" aria-hidden="true"></span></button></div>
-      <div className="select-row">
-        <div className="vietnamese-skin-filter"><button type="button" className="vietnamese-skin-switch" role="switch" aria-checked={vietnameseOnly} aria-label="Chỉ xem skin Việt Nam?" onClick={()=>{setVietnameseOnly(current=>!current);closeExpanded()}}><span className="vietnamese-skin-track" aria-hidden="true"><span className="vietnamese-skin-knob"></span></span><span>Chỉ xem skin Việt Nam?</span></button></div>
-        <GalleryFilterControl label="Skin rank" value={rank} options={rankOptions} ariaLabel="Filter by skin rank" onChange={value=>{setRank(value);closeExpanded()}}/>
-        <GalleryFilterControl label="Image credit" value={credit} options={creditOptions} ariaLabel="Filter by image credit" onChange={value=>{setCredit(value);closeExpanded()}}/>
-      </div>
+  const renderFilters=()=> <>
+    <label className="search-wrap"><span>⌕</span><input value={query} onChange={event=>{setQuery(event.target.value);closeExpanded()}} type="search" autoComplete="off" placeholder="Search artwork or combine properties..." title="Combine terms across name, description, category, rank, credit, tags and the Vietnamese-skin property. Example: Marja Việt Nam" aria-label="Search the gallery" aria-description="Multiple terms are combined with AND across artwork properties. Quoted phrases are exact. Vietnamese skins can be searched with Việt Nam, Vietnam or VN." /></label>
+    <div className={`category-shell category-filter-shell${categoryOpen?' open is-expanded':''}`}><div className="category-row" aria-label="Filter by category"><button data-cat="all" className={category==='all'?'active':''} onClick={()=>chooseCategory('all')}>All</button>{catalogue.categories.map(value=><button data-cat={value} key={value} className={category===value?'active':''} onClick={()=>chooseCategory(value)}>{value}</button>)}</div><button className="category-toggle category-filter-toggle" onClick={()=>setCategoryOpen(current=>!current)} aria-label="Toggle category list" aria-expanded={categoryOpen}><span className="category-filter-label">Categories</span><span className="category-filter-icon" aria-hidden="true"></span></button></div>
+    <div className="select-row">
+      <div className="vietnamese-skin-filter"><button type="button" className="vietnamese-skin-switch" role="switch" aria-checked={vietnameseOnly} aria-label="Chỉ xem skin Việt Nam?" onClick={()=>{setVietnameseOnly(current=>!current);closeExpanded()}}><span className="vietnamese-skin-track" aria-hidden="true"><span className="vietnamese-skin-knob"></span></span><span>Chỉ xem skin Việt Nam?</span></button></div>
+      <GalleryFilterControl label="Skin rank" value={rank} options={rankOptions} ariaLabel="Filter by skin rank" onChange={value=>{setRank(value);closeExpanded()}}/>
+      <GalleryFilterControl label="Image credit" value={credit} options={creditOptions} ariaLabel="Filter by image credit" onChange={value=>{setCredit(value);closeExpanded()}}/>
     </div>
+  </>;
+
+  return <section className="catalog" id="catalog">
+    <div className={`filter-deck desktop-filter-deck${categoryOpen?' category-expanded':''}`}>
+      {renderFilters()}
+    </div>
+    <button type="button" className="mobile-filter-launcher" aria-haspopup="dialog" aria-expanded={mobileFiltersOpen} onClick={()=>setMobileFiltersOpen(true)}>
+      <span className="mobile-filter-launcher-icon" aria-hidden="true">⌕</span><span className="mobile-filter-launcher-label">Search &amp; filters</span><span className="mobile-filter-launcher-chevron" aria-hidden="true">⌄</span>
+    </button>
+    {mobileFiltersOpen?<div className="mobile-filter-layer" onClick={event=>{if(event.target===event.currentTarget)setMobileFiltersOpen(false)}}>
+      <div className={`filter-deck mobile-filter-popup${categoryOpen?' category-expanded':''}`} role="dialog" aria-modal="true" aria-label="Gallery search and filters" onClick={event=>event.stopPropagation()}>
+        <div className="mobile-filter-popup-head"><span>Search &amp; filters</span><button type="button" className="mobile-filter-popup-close" aria-label="Close search and filters" onClick={()=>setMobileFiltersOpen(false)}>×</button></div>
+        {renderFilters()}
+      </div>
+    </div>:null}
     <div className="results-line"><div><strong>{String(filtered.length).padStart(2,'0')}</strong><span>{filtered.length===1?'artwork':'artworks'} in view</span></div></div>
     {visible.length?<div className="gallery-grid">{visible.map((item,index)=><ArtworkCard key={item.id} item={item} index={index} expanded={expanded===item.id} onToggle={toggle}/>)}</div>:<div className="empty-state">Nothing in view.</div>}
     {showProgressive?<div className="gallery-progressive-controls"><button type="button" className="gallery-view-all" onClick={showMore}>View all</button><div className="gallery-progressive-note">{progressiveNote}</div></div>:null}
