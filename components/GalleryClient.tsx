@@ -159,6 +159,7 @@ const ArtworkCard = memo(function ArtworkCard({item,index,expanded,onToggle}:{it
 
 export default function GalleryClient({catalogue,initialCategory,initialArtworkId}:{catalogue:Catalogue;initialCategory:string|null;initialArtworkId:string|null}){
   const [query,setQuery]=useState('');
+  const [mobileSearchDraft,setMobileSearchDraft]=useState('');
   const [category,setCategory]=useState(initialCategory||'all');
   const [rank,setRank]=useState('all');
   const [credit,setCredit]=useState('all');
@@ -168,8 +169,10 @@ export default function GalleryClient({catalogue,initialCategory,initialArtworkI
   const [mobileFiltersOpen,setMobileFiltersOpen]=useState(false);
   const [stage,setStage]=useState<0|1|2>(initialArtworkId?2:0);
   const [sampleIds,setSampleIds]=useState<string[]>(()=>catalogue.items.slice(0,INITIAL_RANDOM_COUNT).map(item=>item.id));
+  const mobileSearchInputRef=useRef<HTMLInputElement>(null);
 
   useEffect(()=>{setSampleIds(shuffledIds(catalogue.items))},[catalogue.items]);
+  useEffect(()=>{setMobileSearchDraft(query)},[query]);
 
   useEffect(()=>{
     if(!mobileFiltersOpen)return;
@@ -194,6 +197,37 @@ export default function GalleryClient({catalogue,initialCategory,initialArtworkI
   },[]);
 
   const closeExpanded=useCallback(()=>{setExpanded(null);syncUrl(category,null)},[category,syncUrl]);
+
+  const submitMobileSearch=useCallback(()=>{
+    const next=mobileSearchDraft.trim();
+    mobileSearchInputRef.current?.blur();
+    runMotionTransition(()=>{
+      setQuery(next);
+      setMobileSearchDraft(next);
+      setExpanded(null);
+      setMobileFiltersOpen(false);
+      syncUrl(category,null);
+    });
+  },[mobileSearchDraft,category,syncUrl]);
+
+  const openMobileSearch=useCallback(()=>{
+    flushSync(()=>{
+      setMobileSearchDraft(query);
+      setMobileFiltersOpen(true);
+    });
+    const input=mobileSearchInputRef.current;
+    input?.focus({preventScroll:true});
+    if(input)input.setSelectionRange(input.value.length,input.value.length);
+  },[query]);
+
+  const clearMobileSearch=useCallback(()=>{
+    runMotionTransition(()=>{
+      setQuery('');
+      setMobileSearchDraft('');
+      setExpanded(null);
+      syncUrl(category,null);
+    });
+  },[category,syncUrl]);
 
   const chooseCategory=(value:string)=>{
     const next=value===category&&value!=='all'?'all':value;
@@ -233,9 +267,9 @@ export default function GalleryClient({catalogue,initialCategory,initialArtworkI
   const creditOptions=useMemo<FilterOption[]>(()=>[{value:'all',label:'All credits'},...catalogue.credits.map(value=>({value,label:value}))],[catalogue.credits]);
   const showProgressive=stage===0?filtered.length>INITIAL_RANDOM_COUNT:stage===1?filtered.length>SECOND_BATCH_COUNT:false;
   const progressiveNote=stage===0?`Show ${Math.min(SECOND_BATCH_COUNT,filtered.length)} artwork${Math.min(SECOND_BATCH_COUNT,filtered.length)===1?'':'s'} in catalogue order`:`Open full gallery · ${Math.max(0,filtered.length-SECOND_BATCH_COUNT)} more artwork${filtered.length-SECOND_BATCH_COUNT===1?'':'s'}`;
+  const activeMobileQuery=query.trim();
 
-  const renderFilters=()=> <>
-    <label className="search-wrap"><span>⌕</span><input value={query} onChange={event=>{setQuery(event.target.value);closeExpanded()}} type="search" autoComplete="off" placeholder="Search artwork or combine properties..." title="Combine terms across name, description, category, rank, credit, tags and the Vietnamese-skin property. Example: Marja Việt Nam" aria-label="Search the gallery" aria-description="Multiple terms are combined with AND across artwork properties. Quoted phrases are exact. Vietnamese skins can be searched with Việt Nam, Vietnam or VN." /></label>
+  const sharedFilterControls=<>
     <div className={`category-shell category-filter-shell${categoryOpen?' open is-expanded':''}`}><div className="category-row" aria-label="Filter by category"><button data-cat="all" className={category==='all'?'active':''} onClick={()=>chooseCategory('all')}>All</button>{catalogue.categories.map(value=><button data-cat={value} key={value} className={category===value?'active':''} onClick={()=>chooseCategory(value)}>{value}</button>)}</div><button className="category-toggle category-filter-toggle" onClick={()=>setCategoryOpen(current=>!current)} aria-label="Toggle category list" aria-expanded={categoryOpen}><span className="category-filter-label">Categories</span><span className="category-filter-icon" aria-hidden="true"></span></button></div>
     <div className="select-row">
       <div className="vietnamese-skin-filter"><button type="button" className="vietnamese-skin-switch" role="switch" aria-checked={vietnameseOnly} aria-label="Chỉ xem skin Việt Nam?" onClick={()=>runMotionTransition(()=>{setVietnameseOnly(current=>!current);closeExpanded()})}><span className="vietnamese-skin-track" aria-hidden="true"><span className="vietnamese-skin-knob"></span></span><span>Chỉ xem skin Việt Nam?</span></button></div>
@@ -244,17 +278,36 @@ export default function GalleryClient({catalogue,initialCategory,initialArtworkI
     </div>
   </>;
 
+  const desktopFilters=<>
+    <label className="search-wrap"><span aria-hidden="true">⌕</span><input value={query} onChange={event=>{setQuery(event.target.value);closeExpanded()}} type="search" autoComplete="off" placeholder="Search artwork or combine properties..." title="Combine terms across name, description, category, rank, credit, tags and the Vietnamese-skin property. Example: Marja Việt Nam" aria-label="Search the gallery" aria-description="Multiple terms are combined with AND across artwork properties. Quoted phrases are exact. Vietnamese skins can be searched with Việt Nam, Vietnam or VN." /></label>
+    {sharedFilterControls}
+  </>;
+
+  const mobileFilters=<>
+    <form className="search-wrap mobile-search-wrap" role="search" onSubmit={event=>{event.preventDefault();submitMobileSearch()}}>
+      <span aria-hidden="true">⌕</span>
+      <input ref={mobileSearchInputRef} value={mobileSearchDraft} onChange={event=>setMobileSearchDraft(event.target.value)} type="search" inputMode="search" enterKeyHint="search" autoComplete="off" placeholder="Search artwork or combine properties..." title="Combine terms across name, description, category, rank, credit, tags and the Vietnamese-skin property. Example: Marja Việt Nam" aria-label="Search the gallery" aria-description="Type a query, then press the search button or the keyboard Search key to apply it. Other filters remain active." />
+      <button type="submit" className="mobile-search-submit" aria-label="Apply search"><span aria-hidden="true">⌕</span></button>
+    </form>
+    {sharedFilterControls}
+  </>;
+
   return <section className="catalog" id="catalog">
     <div className={`filter-deck desktop-filter-deck${categoryOpen?' category-expanded':''}`}>
-      {renderFilters()}
+      {desktopFilters}
     </div>
-    <button type="button" className="mobile-filter-launcher" aria-haspopup="dialog" aria-expanded={mobileFiltersOpen} onClick={()=>setMobileFiltersOpen(true)}>
-      <span className="mobile-filter-launcher-icon" aria-hidden="true">⌕</span><span className="mobile-filter-launcher-label">Search &amp; filters</span><span className="mobile-filter-launcher-chevron" aria-hidden="true">⌄</span>
-    </button>
+    <div className={`mobile-filter-launcher-shell${activeMobileQuery?' has-search':''}`}>
+      <button type="button" className={`mobile-filter-launcher${activeMobileQuery?' is-search-active':''}`} aria-haspopup="dialog" aria-expanded={mobileFiltersOpen} aria-label={activeMobileQuery?`Edit search: ${activeMobileQuery}`:'Open search and filters'} onClick={()=>activeMobileQuery?openMobileSearch():setMobileFiltersOpen(true)}>
+        <span className="mobile-filter-launcher-icon" aria-hidden="true">⌕</span>
+        {activeMobileQuery?<span className="mobile-search-summary-copy"><span className="mobile-search-summary-kicker">Searching for</span><span className="mobile-search-summary-query">{activeMobileQuery}</span></span>:<span className="mobile-filter-launcher-label">Search &amp; filters</span>}
+        {!activeMobileQuery?<span className="mobile-filter-launcher-chevron" aria-hidden="true">⌄</span>:null}
+      </button>
+      {activeMobileQuery?<button type="button" className="mobile-search-clear" aria-label={`Clear search: ${activeMobileQuery}`} onClick={clearMobileSearch}>×</button>:null}
+    </div>
     <div className={`mobile-filter-layer ${mobileFiltersOpen?'is-open':'is-closed'}`} aria-hidden={!mobileFiltersOpen} onClick={event=>{if(event.target===event.currentTarget)setMobileFiltersOpen(false)}}>
       <div className={`filter-deck mobile-filter-popup${categoryOpen?' category-expanded':''}`} role="dialog" aria-modal={mobileFiltersOpen} aria-label="Gallery search and filters" onClick={event=>event.stopPropagation()}>
         <div className="mobile-filter-popup-head"><span>Search &amp; filters</span><button type="button" className="mobile-filter-popup-close" aria-label="Close search and filters" onClick={()=>setMobileFiltersOpen(false)}>×</button></div>
-        {renderFilters()}
+        {mobileFilters}
       </div>
     </div>
     <div className="results-line"><div><strong>{String(filtered.length).padStart(2,'0')}</strong><span>{filtered.length===1?'artwork':'artworks'} in view</span></div></div>
