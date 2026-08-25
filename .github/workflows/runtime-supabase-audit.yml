@@ -20,10 +20,33 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          mapfile -t files < <(find app components lib assets -type f \( -name '*.ts' -o -name '*.tsx' -o -name '*.js' -o -name '*.mjs' -o -name '*.cjs' -o -name '*.html' \) -print; find . -maxdepth 1 -type f -name '*.html' -print)
-          patterns='https?://[^[:space:]"'"']*supabase\.co|storage/v1/object/public|@supabase/supabase-js|NEXT_PUBLIC_[A-Z0-9_]*SUPABASE|supabase-js@'
-          if grep -nEi "$patterns" "${files[@]}"; then
-            echo 'Supabase runtime/reference path remains in deployable files.' >&2
-            exit 1
-          fi
-          echo "Runtime audit passed across ${#files[@]} deployable source files: no Supabase request/client paths."
+          node <<'NODE'
+          const fs=require('fs');
+          const path=require('path');
+          const roots=['app','components','lib','assets'];
+          const exts=new Set(['.ts','.tsx','.js','.mjs','.cjs','.html']);
+          const files=[];
+          function walk(p){
+            if(!fs.existsSync(p)) return;
+            const st=fs.statSync(p);
+            if(st.isDirectory()) for(const name of fs.readdirSync(p)) walk(path.join(p,name));
+            else if(exts.has(path.extname(p))) files.push(p);
+          }
+          for(const root of roots) walk(root);
+          for(const name of fs.readdirSync('.')) if(name.endsWith('.html')&&fs.statSync(name).isFile()) files.push(name);
+          const rules=[
+            /https?:\/\/[^\s"']*supabase\.co/i,
+            /storage\/v1\/object\/public/i,
+            /@supabase\/supabase-js/i,
+            /NEXT_PUBLIC_[A-Z0-9_]*SUPABASE/i,
+            /supabase-js@/i
+          ];
+          const hits=[];
+          for(const file of files){
+            const text=fs.readFileSync(file,'utf8');
+            const lines=text.split(/\r?\n/);
+            lines.forEach((line,i)=>{if(rules.some(r=>r.test(line)))hits.push(`${file}:${i+1}:${line.trim().slice(0,240)}`)});
+          }
+          if(hits.length){console.error(hits.join('\n'));console.error(`Supabase runtime/reference paths remain: ${hits.length}`);process.exit(1)}
+          console.log(`Runtime audit passed across ${files.length} deployable source files: no Supabase request/client paths.`);
+          NODE
