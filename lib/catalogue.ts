@@ -78,6 +78,7 @@ export function absoluteImageUrl(value: string) {
 
 const alpha = (a: string, b: string) => a.localeCompare(b, undefined, { sensitivity: 'base', numeric: true });
 const uniqueSorted = (values: string[]) => [...new Set(values.filter(Boolean))].sort(alpha);
+const localizeCredit = (value: string) => value.trim().toLowerCase() === 'uncredited' ? 'Chưa có credit' : value;
 
 async function rest<T>(source: CatalogueSource, path: string): Promise<T> {
   const response = await fetch(`${source.url}/rest/v1/${path}`, {
@@ -160,13 +161,13 @@ async function loadSource(source: CatalogueSource): Promise<SourceCatalogue> {
       category: String(row.category?.name || 'Chưa phân loại'),
       rank: String(row.rank?.name || 'Chưa xếp hạng'),
       rankOrder: Number(row.rank?.sort_order) || 0,
-      credit: String(row.credit?.name || 'Chưa có credit'),
+      credit: localizeCredit(String(row.credit?.name || 'Chưa có credit')),
       isVietnameseSkin: Boolean(row.is_vietnamese_skin),
       updatedAt: row.updated_at || undefined
     })),
     categories: categories.map(x => String(x.name)),
     ranks: ranks.map(x => ({ name: String(x.name), sortOrder: Number(x.sort_order) || 0 })),
-    credits: credits.map(x => String(x.name))
+    credits: credits.map(x => localizeCredit(String(x.name)))
   };
 }
 
