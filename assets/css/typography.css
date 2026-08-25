@@ -1,6 +1,6 @@
 :root{
-  --hyu-font:Arial,Helvetica,sans-serif;
-  --hyu-serif:Georgia,"Times New Roman",serif;
+  --hyu-font:var(--font-hyu-sans),Arial,Helvetica,sans-serif;
+  --hyu-serif:var(--font-hyu-serif),Georgia,"Times New Roman",serif;
 }
 
 html,
