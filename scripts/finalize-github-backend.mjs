@@ -10,8 +10,12 @@ const [categories,ranks,credits]=await Promise.all([
   rest('ranks?select=name,sort_order&order=sort_order.asc'),
   rest('image_credits?select=name&order=name.asc')
 ]);
-const catalogue=JSON.parse(await fs.readFile(path.join(dir,'catalogue.json'),'utf8'));
-const storage=JSON.parse(await fs.readFile(path.join(dir,'storage.json'),'utf8'));
+const [catalogue,storage,seo,audit]=await Promise.all([
+  fs.readFile(path.join(dir,'catalogue.json'),'utf8').then(JSON.parse),
+  fs.readFile(path.join(dir,'storage.json'),'utf8').then(JSON.parse),
+  fs.readFile(path.join(dir,'seo.json'),'utf8').then(JSON.parse),
+  fs.readFile(path.join(dir,'seo-audit-seed.json'),'utf8').then(JSON.parse)
+]);
 catalogue.ready=true;
 catalogue.ownerOptions={
   categories:categories.map(x=>String(x.name)),
@@ -19,8 +23,10 @@ catalogue.ownerOptions={
   credits:credits.map(x=>String(x.name).trim().toLowerCase()==='uncredited'?'Chưa có credit':String(x.name))
 };
 storage.ready=true;
+seo.logs=Array.isArray(seo.logs)?seo.logs:Array.isArray(audit)?audit:[];
 await Promise.all([
   fs.writeFile(path.join(dir,'catalogue.json'),JSON.stringify(catalogue,null,2)+'\n'),
-  fs.writeFile(path.join(dir,'storage.json'),JSON.stringify(storage,null,2)+'\n')
+  fs.writeFile(path.join(dir,'storage.json'),JSON.stringify(storage,null,2)+'\n'),
+  fs.writeFile(path.join(dir,'seo.json'),JSON.stringify(seo,null,2)+'\n')
 ]);
-console.log(JSON.stringify({ready:true,ownerOptions:{categories:catalogue.ownerOptions.categories.length,ranks:catalogue.ownerOptions.ranks.length,credits:catalogue.ownerOptions.credits.length},storage:storage.publicBaseUrl},null,2));
+console.log(JSON.stringify({ready:true,ownerOptions:{categories:catalogue.ownerOptions.categories.length,ranks:catalogue.ownerOptions.ranks.length,credits:catalogue.ownerOptions.credits.length},seoLogs:seo.logs.length,storage:storage.publicBaseUrl},null,2));
