@@ -1,6 +1,6 @@
 @media(max-width:760px){
   .desktop-filter-deck{display:none!important}
-  body:has(.mobile-filter-layer){overflow:hidden}
+  body:has(.mobile-filter-layer.is-open){overflow:hidden}
 
   .mobile-filter-launcher{position:sticky;top:0;z-index:85;display:flex;width:calc(100% - 8vw);min-height:48px;margin:.72rem 4vw .35rem;padding:0 14px;align-items:center;gap:10px;border:1px solid rgba(67,220,255,.34);background:rgba(8,9,8,.97);color:var(--paper);text-align:left;font-size:.62rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;box-shadow:0 8px 20px rgba(0,0,0,.24);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);isolation:isolate}
   .mobile-filter-launcher:hover,.mobile-filter-launcher:focus-visible{border-color:var(--brand);outline:none}
