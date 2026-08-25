@@ -2,9 +2,36 @@
 
 Tài liệu này tổng hợp lịch sử thay đổi của `HyuPremiumSplashArtGallery` theo từng Pull Request đã được đưa vào repository. Các mục được sắp xếp từ mới nhất đến cũ nhất để dễ truy vết quá trình phát triển.
 
-> Phạm vi hiện tại: PR #1 → PR #76.
+> Phạm vi hiện tại: PR #1 → PR #79.
 
 ---
+
+## PR #79 — Move mobile filters into popup
+
+- Chỉ thay đổi Gallery filter UX trên mobile (`<=760px`); desktop tiếp tục dùng nguyên `filter-deck` hiện tại và không thay đổi layout/behavior.
+- Loại bỏ mobile sticky/freeze filter pane và thay bằng launcher không-sticky để người dùng chủ động mở bộ lọc.
+- Popup tái sử dụng đúng các control hiện hữu: Search, Category + expand/collapse, `Chỉ xem skin Việt Nam?`, Skin Rank và Image Credit.
+- Filter vẫn áp dụng tức thời như trước; không thêm nút Apply, không đổi search/filter semantics hoặc URL behavior.
+- Tăng touch target của các control trong popup và cho popup/category/dropdown scroll độc lập khi nội dung vượt viewport.
+
+[Pull Request #79](https://github.com/hyu276/HyuPremiumSplashArtGallery/pull/79)
+
+## PR #78 — Prevent reload scroll restoration
+
+- Ngăn hard reload trên `/character/...` tự restore stale browser scroll position và đôi khi nhảy xuống gần cuối Gallery.
+- Chỉ can thiệp vào reload navigation, tạm dùng manual scroll restoration rồi trả browser về behavior trước đó sau load.
+- Giữ Back/Forward, deep links, filter và artwork expand/collapse behavior hiện hữu.
+
+[Pull Request #78](https://github.com/hyu276/HyuPremiumSplashArtGallery/pull/78)
+
+## PR #77 — Retry Vercel egress shield on current main
+
+- Bổ sung multi-origin Vercel egress shield để giảm direct artwork media egress từ upstream Storage.
+- Route catalogue artwork media và SEO override images qua Vercel cache/proxy layer.
+- Gate gallery media theo viewport và safe mode để hạn chế tải ảnh không cần thiết.
+- Giữ Gallery UX và canonical artwork behavior trong khi giảm egress amplification.
+
+[Pull Request #77](https://github.com/hyu276/HyuPremiumSplashArtGallery/pull/77)
 
 ## PR #76 — Add isolated collaborator Supabase and dual-source public catalogue
 
