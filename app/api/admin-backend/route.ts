@@ -8,6 +8,7 @@ const DATA_ROOT = 'data/backend';
 type GitHubUser = { login?: string };
 type GitHubRepo = { permissions?: { push?: boolean; admin?: boolean } };
 type GitHubContent = { content?: string; encoding?: string };
+type OwnerOptions = { categories?: string[]; ranks?: string[]; credits?: string[] };
 type Catalogue = {
   schemaVersion?: number;
   generatedAt?: string;
@@ -15,6 +16,7 @@ type Catalogue = {
   categories: string[];
   ranks: string[];
   credits: string[];
+  ownerOptions?: OwnerOptions;
 };
 
 type AdminPayload = {
@@ -91,7 +93,7 @@ function unique(values: string[]) {
 }
 
 function rankList(preferred: string[], external: any[]) {
-  const ordered = [...preferred.map(String)];
+  const ordered = [...preferred.map(String).filter(Boolean)];
   for (const item of external) if (item?.rank && !ordered.includes(String(item.rank))) ordered.push(String(item.rank));
   return ordered;
 }
@@ -105,36 +107,36 @@ async function createBlob(token: string, content: string) {
 }
 
 async function atomicCommit(token: string, branch: string, files: Record<string, unknown>) {
-  const refPath = `/repos/${REPO}/git/ref/heads/${branch.split('/').map(encodeURIComponent).join('/')}`;
-  const ref = await gh<{ object: { sha: string } }>(token, refPath);
+  const refPart = branch.split('/').map(encodeURIComponent).join('/');
+  const ref = await gh<{ object: { sha: string } }>(token, `/repos/${REPO}/git/ref/heads/${refPart}`);
   const parent = ref.object.sha;
   const commit = await gh<{ tree: { sha: string } }>(token, `/repos/${REPO}/git/commits/${parent}`);
-
   const tree: Array<{ path: string; mode: '100644'; type: 'blob'; sha: string }> = [];
   for (const [file, value] of Object.entries(files)) {
     const blob = await createBlob(token, JSON.stringify(value, null, 2) + '\n');
     tree.push({ path: file, mode: '100644', type: 'blob', sha: blob.sha });
   }
   const newTree = await gh<{ sha: string }>(token, `/repos/${REPO}/git/trees`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ base_tree: commit.tree.sha, tree })
   });
   const next = await gh<{ sha: string }>(token, `/repos/${REPO}/git/commits`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      message: 'content(admin): cập nhật backend GitHub từ dashboard',
-      tree: newTree.sha,
-      parents: [parent]
-    })
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message: 'content(admin): cập nhật backend GitHub từ dashboard', tree: newTree.sha, parents: [parent] })
   });
-  await gh(token, `/repos/${REPO}/git/refs/heads/${branch.split('/').map(encodeURIComponent).join('/')}`, {
-    method: 'PATCH',
-    headers: { 'Content-Type': 'application/json' },
+  await gh(token, `/repos/${REPO}/git/refs/heads/${refPart}`, {
+    method: 'PATCH', headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ sha: next.sha, force: false })
   });
   return next.sha;
+}
+
+function ownerOptions(catalogue: Catalogue) {
+  return {
+    categories: catalogue.ownerOptions?.categories || catalogue.categories || [],
+    ranks: catalogue.ownerOptions?.ranks || catalogue.ranks || [],
+    credits: catalogue.ownerOptions?.credits || catalogue.credits || []
+  };
 }
 
 export async function GET(request: Request) {
@@ -149,14 +151,11 @@ export async function GET(request: Request) {
       readJson<any>(token, `${DATA_ROOT}/storage.json`, branch)
     ]);
     const ownerItems = (catalogue.items || []).filter(item => String(item?.source || 'owner') === 'owner');
+    const options = ownerOptions(catalogue);
     return Response.json({
-      ok: true,
-      user: admin,
-      branch,
-      catalogue: { ...catalogue, items: ownerItems },
-      team,
-      seo,
-      storage
+      ok: true, user: admin, branch,
+      catalogue: { ...catalogue, items: ownerItems, categories: options.categories, ranks: options.ranks, credits: options.credits },
+      team, seo, storage
     }, { headers: { 'Cache-Control': 'no-store' } });
   } catch (error: any) {
     const message = error?.message || 'Không thể xác thực GitHub hoặc đọc backend metadata.';
@@ -171,29 +170,36 @@ export async function POST(request: Request) {
     const admin = await verify(token);
     const payload = await request.json() as AdminPayload;
     const branch = dataBranch();
-    const [current, currentSeo] = await Promise.all([
+    const [current, currentTeam, currentSeo] = await Promise.all([
       readJson<Catalogue>(token, `${DATA_ROOT}/catalogue.json`, branch),
+      readJson<any[]>(token, `${DATA_ROOT}/team.json`, branch),
       readJson<any>(token, `${DATA_ROOT}/seo.json`, branch)
     ]);
+    const previousOwnerOptions = ownerOptions(current);
+    const nextOwnerOptions = {
+      categories: Array.isArray(payload.categories) ? payload.categories.map(String) : previousOwnerOptions.categories,
+      ranks: Array.isArray(payload.ranks) ? payload.ranks.map(String) : previousOwnerOptions.ranks,
+      credits: Array.isArray(payload.credits) ? payload.credits.map(String) : previousOwnerOptions.credits
+    };
     const external = (current.items || []).filter(item => String(item?.source || 'owner') !== 'owner');
-    const owner = Array.isArray(payload.ownerItems) ? payload.ownerItems.map(item => ({ ...item, source: 'owner', sourceId: String(item?.sourceId || item?.id || '') })) : (current.items || []).filter(item => String(item?.source || 'owner') === 'owner');
-    const categories = unique([...(payload.categories || []), ...external.map(item => String(item?.category || ''))]);
-    const credits = unique([...(payload.credits || []), ...external.map(item => String(item?.credit || ''))]);
-    const ranks = rankList(payload.ranks || current.ranks || [], external);
+    const owner = Array.isArray(payload.ownerItems)
+      ? payload.ownerItems.map(item => ({ ...item, source: 'owner', sourceId: String(item?.sourceId || item?.id || '') }))
+      : (current.items || []).filter(item => String(item?.source || 'owner') === 'owner');
+    const categories = unique([...nextOwnerOptions.categories, ...external.map(item => String(item?.category || ''))]);
+    const credits = unique([...nextOwnerOptions.credits, ...external.map(item => String(item?.credit || ''))]);
+    const ranks = rankList(nextOwnerOptions.ranks, external);
     const catalogue: Catalogue = {
       ...current,
       schemaVersion: 1,
       generatedAt: new Date().toISOString(),
+      ownerOptions: nextOwnerOptions,
       items: [...owner, ...external].sort((a, b) => alpha(String(a.category || ''), String(b.category || '')) || Number(a.rankOrder || 0) - Number(b.rankOrder || 0) || alpha(String(a.name || ''), String(b.name || ''))),
-      categories,
-      ranks,
-      credits
+      categories, ranks, credits
     };
-    const files: Record<string, unknown> = {
-      [`${DATA_ROOT}/catalogue.json`]: catalogue,
-      [`${DATA_ROOT}/team.json`]: Array.isArray(payload.team) ? payload.team : [],
-      [`${DATA_ROOT}/seo.json`]: payload.seo ?? currentSeo
-    };
+    const files: Record<string, unknown> = { [`${DATA_ROOT}/catalogue.json`]: catalogue };
+    if (Array.isArray(payload.team)) files[`${DATA_ROOT}/team.json`] = payload.team;
+    else files[`${DATA_ROOT}/team.json`] = currentTeam;
+    files[`${DATA_ROOT}/seo.json`] = payload.seo ?? currentSeo;
     const sha = await atomicCommit(token, branch, files);
     revalidateTag('catalogue');
     for (const path of ['/', '/character/', '/artworks/', '/about/', '/sitemap.xml', '/image-sitemap.xml']) revalidatePath(path);
