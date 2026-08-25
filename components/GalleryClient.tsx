@@ -1,6 +1,7 @@
 'use client';
 
 import { memo, useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
+import { flushSync } from 'react-dom';
 import type { Artwork, Catalogue } from '@/lib/catalogue';
 import { artworkPath, slug } from '@/lib/catalogue';
 
@@ -70,7 +71,7 @@ function shuffledIds(items:Artwork[]){
 function runMotionTransition(update:()=>void){
   if(typeof document==='undefined'||typeof window==='undefined'||window.matchMedia?.('(prefers-reduced-motion: reduce)').matches){update();return}
   const start=(document as MotionDocument).startViewTransition;
-  if(typeof start==='function'){start.call(document,update);return}
+  if(typeof start==='function'){start.call(document,()=>flushSync(update));return}
   update();
 }
 function artworkTransitionName(id:string){return `hyu-artwork-${id.replace(/[^a-zA-Z0-9_-]/g,'-')}`}
