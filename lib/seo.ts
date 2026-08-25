@@ -10,11 +10,18 @@ const DEFAULT_GLOBAL:SeoGlobalSettings={site_name:'HYU PREMIUM',site_url:'https:
 
 function assertReady(){if((backendCatalogue as any).ready!==true)throw new Error('GitHub backend SEO metadata is not ready.')}
 function localSeo(){assertReady();return backendSeo as any}
+function socialMediaUrl(value:string){
+  const absolute=publicMediaUrl(value);if(!absolute)return '';
+  const items=Array.isArray((backendCatalogue as any).items)?(backendCatalogue as any).items:[];
+  const item=items.find((row:any)=>String(row?.image||'')===absolute||String(row?.thumbnail||'')===absolute||Object.values(row?.variants||{}).some((variant:any)=>String(variant?.url||'')===absolute));
+  return publicMediaUrl(String(item?.variants?.['1600']?.url||item?.thumbnail||absolute));
+}
 
 export async function getSeoGlobalSettings():Promise<SeoGlobalSettings>{
   const row=localSeo()?.global;
   if(!row)return DEFAULT_GLOBAL;
-  return {...DEFAULT_GLOBAL,...row,llms_key_pages:Array.isArray(row.llms_key_pages)?row.llms_key_pages:DEFAULT_GLOBAL.llms_key_pages,ai_crawlers:row.ai_crawlers&&typeof row.ai_crawlers==='object'?row.ai_crawlers:DEFAULT_GLOBAL.ai_crawlers};
+  const merged={...DEFAULT_GLOBAL,...row,llms_key_pages:Array.isArray(row.llms_key_pages)?row.llms_key_pages:DEFAULT_GLOBAL.llms_key_pages,ai_crawlers:row.ai_crawlers&&typeof row.ai_crawlers==='object'?row.ai_crawlers:DEFAULT_GLOBAL.ai_crawlers};
+  return {...merged,default_og_image:merged.default_og_image?socialMediaUrl(String(merged.default_og_image)):''};
 }
 
 export async function getSeoOverride(path:string):Promise<SeoPageOverride|null>{
@@ -33,7 +40,7 @@ export function applySeoOverride(base:Metadata,override:SeoPageOverride|null,glo
   const description=override.meta_description||undefined;
   const ogTitle=override.og_title||override.title||undefined;
   const ogDescription=override.og_description||override.meta_description||undefined;
-  const ogImage=override.og_image?publicMediaUrl(override.og_image):undefined;
+  const ogImage=override.og_image?socialMediaUrl(override.og_image):undefined;
   return {...base,...(title?{title:{absolute:title}}:{}),...(description?{description}:{}),...(override.keywords?.length?{keywords:override.keywords}:{}),alternates:{...(base.alternates||{}),canonical},robots:{index:override.robots_index,follow:override.robots_follow,googleBot:{index:override.robots_index,follow:override.robots_follow,'max-image-preview':'large','max-snippet':-1,'max-video-preview':-1}},openGraph:{...(base.openGraph||{}),...(ogTitle?{title:ogTitle}:{}),...(ogDescription?{description:ogDescription}:{}),...(ogImage?{images:[{url:ogImage,alt:override.image_alt||ogTitle||''}]}:{}),...(global?.default_locale?{locale:global.default_locale}:{})},twitter:{...(base.twitter||{}),card:'summary_large_image',...(ogTitle?{title:ogTitle}:{}),...(ogDescription?{description:ogDescription}:{}),...(ogImage?{images:[{url:ogImage,alt:override.image_alt||ogTitle||''}]}:{})}};
 }
 

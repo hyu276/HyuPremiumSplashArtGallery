@@ -3,11 +3,10 @@
 import { memo, useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
 import { flushSync } from 'react-dom';
 import type { Artwork, Catalogue } from '@/lib/catalogue';
-import { artworkPath, slug } from '@/lib/catalogue';
+import { artworkPath, artworkPreview, artworkSrcSet, slug } from '@/lib/catalogue';
 
 const INITIAL_RANDOM_COUNT=6;
-const SECOND_BATCH_COUNT=50;
-const EGRESS_SAFE_MODE=(process.env.NEXT_PUBLIC_HYU_EGRESS_SAFE_MODE??'true').toLowerCase()!=='false';
+const SECOND_BATCH_COUNT=30;
 
 const RANK_GRADIENTS: Record<string,string> = {
   A:'linear-gradient(180deg,#035365 0%,#045C6C 48%,#08929C 100%)',
@@ -108,7 +107,7 @@ function GalleryFilterControl({label,value,options,onChange,ariaLabel}:{label:st
   </div>;
 }
 
-const ViewportPreview=memo(function ViewportPreview({src,alt,eager}:{src:string;alt:string;eager:boolean}){
+const ViewportPreview=memo(function ViewportPreview({src,srcSet,sizes,alt,eager}:{src:string;srcSet:string;sizes:string;alt:string;eager:boolean}){
   const node=useRef<HTMLImageElement>(null);
   const [armed,setArmed]=useState(eager);
 
@@ -118,36 +117,25 @@ const ViewportPreview=memo(function ViewportPreview({src,alt,eager}:{src:string;
     if(typeof IntersectionObserver==='undefined'){setArmed(true);return;}
     const observer=new IntersectionObserver(entries=>{
       if(entries.some(entry=>entry.isIntersecting)){setArmed(true);observer.disconnect();}
-    },{rootMargin:'640px 0px'});
+    },{rootMargin:'320px 0px'});
     observer.observe(image);
     return()=>observer.disconnect();
   },[armed]);
 
   useEffect(()=>{if(eager&&!armed)setArmed(true)},[eager,armed]);
 
-  return <img ref={node} className="preview" src={armed?src:undefined} data-src={armed?undefined:src} alt={alt} loading={eager?'eager':'lazy'} decoding="async" fetchPriority={eager?'high':'low'} />;
+  return <img ref={node} className="preview" src={armed?src:undefined} srcSet={armed&&srcSet?srcSet:undefined} sizes={armed?sizes:undefined} data-src={armed?undefined:src} alt={alt} loading={eager?'eager':'lazy'} decoding="async" fetchPriority={eager?'high':'low'} />;
 });
 
 const ArtworkCard = memo(function ArtworkCard({item,index,expanded,onToggle}:{item:Artwork;index:number;expanded:boolean;onToggle:(item:Artwork)=>void}){
-  const [fullReady,setFullReady]=useState(EGRESS_SAFE_MODE||item.image===item.thumbnail);
-
-  useEffect(()=>{
-    if(EGRESS_SAFE_MODE||!expanded||fullReady||item.image===item.thumbnail)return;
-    let cancelled=false;
-    const loader=new Image();
-    loader.decoding='async';loader.src=item.image;
-    const reveal=()=>{if(!cancelled)setFullReady(true)};
-    const decode=()=>loader.decode?.().then(reveal,reveal)??reveal();
-    if(loader.complete)decode();else{loader.onload=decode;loader.onerror=()=>{}};
-    return()=>{cancelled=true;loader.onload=null;loader.onerror=null};
-  },[expanded,fullReady,item.image,item.thumbnail]);
-
   const imageAlt=`${item.name} — ${item.category}, splash art game, hạng skin ${item.rank}`;
   const motionStyle={viewTransitionName:artworkTransitionName(item.id),'--art-motion-delay':`${Math.min(index,12)*18}ms`} as CSSProperties;
+  const src=artworkPreview(item,expanded?1600:960);
+  const srcSet=artworkSrcSet(item);
+  const sizes=expanded?'(max-width: 760px) 96vw, 92vw':'(max-width: 760px) 50vw, (max-width: 1200px) 50vw, 33vw';
   return <button style={motionStyle} className={`art-card${expanded?' expanded':''}`} data-id={item.id} aria-expanded={expanded} aria-label={`${expanded?'Thu gọn':'Mở rộng'} ${item.name}`} onClick={()=>onToggle(item)}>
     <span className="art-image-layer">
-      <ViewportPreview src={item.thumbnail||item.image} alt={imageAlt} eager={index<INITIAL_RANDOM_COUNT||expanded}/>
-      {!EGRESS_SAFE_MODE&&expanded&&item.image!==item.thumbnail&&fullReady?<img className="full ready" src={item.image} alt="" aria-hidden="true" decoding="async" fetchPriority="high"/>:null}
+      <ViewportPreview src={src} srcSet={srcSet} sizes={sizes} alt={imageAlt} eager={index<INITIAL_RANDOM_COUNT||expanded}/>
     </span>
     <span className="shade" aria-hidden="true"></span>
     <span className="card-number">{String(index+1).padStart(2,'0')}</span>
