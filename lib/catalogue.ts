@@ -1,4 +1,5 @@
 import { publicMediaUrl, toAbsoluteSiteUrl } from '@/lib/media';
+import backendCatalogue from '@/data/backend/catalogue.json';
 
 export type Artwork = {
   id: string;
@@ -22,37 +23,17 @@ export type Catalogue = {
   credits: string[];
 };
 
-type CatalogueSource = {
-  id: 'owner' | 'huy9vnd';
-  url: string;
-  key: string;
-};
-
-type SourceCatalogue = {
-  items: Artwork[];
-  categories: string[];
-  ranks: { name: string; sortOrder: number }[];
-  credits: string[];
-};
-
-type PublishGate = {
-  source_profile: string;
-  artwork_id: string;
-  status: 'pending' | 'approved' | 'declined';
-  candidate_image: string;
-  approved_image: string;
-};
+type CatalogueSource = { id: 'owner' | 'huy9vnd'; url: string; key: string };
+type SourceCatalogue = { items: Artwork[]; categories: string[]; ranks: { name: string; sortOrder: number }[]; credits: string[] };
+type PublishGate = { source_profile: string; artwork_id: string; status: 'pending' | 'approved' | 'declined'; candidate_image: string; approved_image: string };
+type LocalBackendCatalogue = { ready?: boolean; items?: any[]; categories?: string[]; ranks?: string[]; credits?: string[] };
 
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://hyupremium.vercel.app').replace(/\/$/, '');
 const OWNER_SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://zkrhwqgmynbbmoktokdq.supabase.co';
 const OWNER_SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || 'sb_publishable_Fqcxk9-U1qalClQZjKcrhA_U822LTIq';
 const HUY_SUPABASE_URL = process.env.NEXT_PUBLIC_HUY9VND_SUPABASE_URL || 'https://unggkruzjmsjscdiukfr.supabase.co';
 const HUY_SUPABASE_KEY = process.env.NEXT_PUBLIC_HUY9VND_SUPABASE_PUBLISHABLE_KEY || 'sb_publishable_UQXSQcKH_81clodAPnceYg_1UUYz7bc';
-
-// Original artwork uploads created by admin.html use uploads/<artwork>-<Date.now()>.<ext>.
-// Uploads created after the moderation feature went live must have an explicit publish gate.
 const MODERATION_ENFORCEMENT_MS = 1787542800000;
-
 const CATALOGUE_SOURCES: CatalogueSource[] = [
   { id: 'owner', url: OWNER_SUPABASE_URL, key: OWNER_SUPABASE_KEY },
   { id: 'huy9vnd', url: HUY_SUPABASE_URL, key: HUY_SUPABASE_KEY }
@@ -62,155 +43,81 @@ const OWNER_SOURCE = CATALOGUE_SOURCES[0];
 export const siteUrl = SITE_URL;
 
 export function slug(value: string) {
-  return String(value ?? '')
-    .replace(/Đ/g, 'D')
-    .replace(/đ/g, 'd')
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '') || 'item';
+  return String(value ?? '').replace(/Đ/g, 'D').replace(/đ/g, 'd').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'item';
 }
-
-export function absoluteImageUrl(value: string) {
-  return toAbsoluteSiteUrl(value);
-}
-
+export function absoluteImageUrl(value: string) { return toAbsoluteSiteUrl(value); }
 const alpha = (a: string, b: string) => a.localeCompare(b, undefined, { sensitivity: 'base', numeric: true });
 const uniqueSorted = (values: string[]) => [...new Set(values.filter(Boolean))].sort(alpha);
 const localizeCredit = (value: string) => value.trim().toLowerCase() === 'uncredited' ? 'Chưa có credit' : value;
 
+function localCatalogue(): Catalogue | null {
+  const source = backendCatalogue as LocalBackendCatalogue;
+  if (source.ready !== true || !Array.isArray(source.items)) return null;
+  const items: Artwork[] = source.items.filter(row => !row?.hidden).map(row => ({
+    id: String(row.id),
+    name: String(row.name || 'Tác phẩm chưa đặt tên').trim(),
+    description: String(row.description || '').trim(),
+    image: String(row.image || ''),
+    thumbnail: String(row.thumbnail || row.image || ''),
+    tags: Array.isArray(row.tags) ? row.tags.map(String) : [],
+    category: String(row.category || 'Chưa phân loại'),
+    rank: String(row.rank || 'Chưa xếp hạng'),
+    rankOrder: Number(row.rankOrder) || 0,
+    credit: localizeCredit(String(row.credit || 'Chưa có credit')),
+    isVietnameseSkin: Boolean(row.isVietnameseSkin),
+    updatedAt: row.updatedAt || undefined
+  })).sort((a,b)=>alpha(a.category,b.category)||a.rankOrder-b.rankOrder||alpha(a.name,b.name));
+  return {
+    items,
+    categories: uniqueSorted((source.categories || []).map(String)),
+    ranks: (source.ranks || []).map(String),
+    credits: uniqueSorted((source.credits || []).map(value=>localizeCredit(String(value))))
+  };
+}
+
 async function rest<T>(source: CatalogueSource, path: string): Promise<T> {
-  const response = await fetch(`${source.url}/rest/v1/${path}`, {
-    headers: { apikey: source.key },
-    next: { revalidate: 300, tags: ['catalogue'] }
-  });
+  const response = await fetch(`${source.url}/rest/v1/${path}`, { headers: { apikey: source.key }, next: { revalidate: 300, tags: ['catalogue'] } });
   if (!response.ok) throw new Error(`${source.id} Supabase REST ${response.status}: ${await response.text()}`);
   return response.json() as Promise<T>;
 }
-
 async function moderationRest<T>(path: string): Promise<T> {
-  const response = await fetch(`${OWNER_SOURCE.url}/rest/v1/${path}`, {
-    headers: { apikey: OWNER_SOURCE.key },
-    next: { revalidate: 15, tags: ['catalogue', 'publish-moderation'] }
-  });
+  const response = await fetch(`${OWNER_SOURCE.url}/rest/v1/${path}`, { headers: { apikey: OWNER_SOURCE.key }, next: { revalidate: 15, tags: ['catalogue', 'publish-moderation'] } });
   if (!response.ok) throw new Error(`Moderation gate REST ${response.status}: ${await response.text()}`);
   return response.json() as Promise<T>;
 }
-
-function normalizedImage(value: string) {
-  const raw = absoluteImageUrl(value);
-  try { return decodeURIComponent(raw); } catch { return raw; }
-}
-
-function uploadTimestamp(value: string) {
-  const raw = normalizedImage(value);
-  const match = raw.match(/\/uploads\/[^/?#]*-(\d{13})\.[a-z0-9]+(?:[?#].*)?$/i);
-  return match ? Number(match[1]) : 0;
-}
-
+function normalizedImage(value: string) { const raw = absoluteImageUrl(value); try { return decodeURIComponent(raw); } catch { return raw; } }
+function uploadTimestamp(value: string) { const raw=normalizedImage(value);const match=raw.match(/\/uploads\/[^/?#]*-(\d{13})\.[a-z0-9]+(?:[?#].*)?$/i);return match?Number(match[1]):0; }
 function moderatedImage(source: CatalogueSource, row: any, gate?: PublishGate) {
-  const current = String(row.image || '');
-  if (source.id === 'owner') return current;
-
-  if (gate) {
-    const approved = String(gate.approved_image || '');
-    if (gate.status === 'approved' && approved && normalizedImage(approved) === normalizedImage(current)) {
-      return current;
-    }
-    // Keep the last approved asset visible while a replacement is pending or declined.
-    if (approved) return approved;
-    return '';
-  }
-
-  // Grandfather pre-moderation artwork. New dashboard uploads are blocked until a gate exists.
-  const timestamp = uploadTimestamp(current);
-  return !timestamp || timestamp < MODERATION_ENFORCEMENT_MS ? current : '';
+  const current=String(row.image||'');if(source.id==='owner')return current;
+  if(gate){const approved=String(gate.approved_image||'');if(gate.status==='approved'&&approved&&normalizedImage(approved)===normalizedImage(current))return current;if(approved)return approved;return ''}
+  const timestamp=uploadTimestamp(current);return !timestamp||timestamp<MODERATION_ENFORCEMENT_MS?current:'';
 }
-
 async function loadSource(source: CatalogueSource): Promise<SourceCatalogue> {
-  const select = 'id,name,description,image,thumbnail,tags,hidden,updated_at,is_vietnamese_skin,category:categories(name),rank:ranks(name,sort_order),credit:image_credits(name)';
-  const gatesPromise = source.id === 'owner'
-    ? Promise.resolve([] as PublishGate[])
-    : moderationRest<PublishGate[]>(`publish_gates?select=source_profile,artwork_id,status,candidate_image,approved_image&source_profile=eq.${encodeURIComponent(source.id)}`);
-
-  const [rows, categories, ranks, credits, gates] = await Promise.all([
-    rest<any[]>(source, `artworks?select=${encodeURIComponent(select)}&hidden=eq.false`),
-    rest<any[]>(source, 'categories?select=name&order=name.asc'),
-    rest<any[]>(source, 'ranks?select=name,sort_order&order=sort_order.asc'),
-    rest<any[]>(source, 'image_credits?select=name&order=name.asc'),
-    gatesPromise
+  const select='id,name,description,image,thumbnail,tags,hidden,updated_at,is_vietnamese_skin,category:categories(name),rank:ranks(name,sort_order),credit:image_credits(name)';
+  const gatesPromise=source.id==='owner'?Promise.resolve([] as PublishGate[]):moderationRest<PublishGate[]>(`publish_gates?select=source_profile,artwork_id,status,candidate_image,approved_image&source_profile=eq.${encodeURIComponent(source.id)}`);
+  const [rows,categories,ranks,credits,gates]=await Promise.all([
+    rest<any[]>(source,`artworks?select=${encodeURIComponent(select)}&hidden=eq.false`),rest<any[]>(source,'categories?select=name&order=name.asc'),rest<any[]>(source,'ranks?select=name,sort_order&order=sort_order.asc'),rest<any[]>(source,'image_credits?select=name&order=name.asc'),gatesPromise
   ]);
-
-  const gateByArtwork = new Map(gates.map(gate => [String(gate.artwork_id), gate]));
-  const moderatedRows = rows.flatMap(row => {
-    const image = moderatedImage(source, row, gateByArtwork.get(String(row.id)));
-    if (!image) return [];
-    const usesCurrentImage = normalizedImage(image) === normalizedImage(String(row.image || ''));
-    return [{ ...row, __moderatedImage: image, __moderatedThumbnail: usesCurrentImage ? (row.thumbnail || row.image) : image }];
-  });
-
+  const gateByArtwork=new Map(gates.map(gate=>[String(gate.artwork_id),gate]));
+  const moderatedRows=rows.flatMap(row=>{const image=moderatedImage(source,row,gateByArtwork.get(String(row.id)));if(!image)return[];const usesCurrentImage=normalizedImage(image)===normalizedImage(String(row.image||''));return[{...row,__moderatedImage:image,__moderatedThumbnail:usesCurrentImage?(row.thumbnail||row.image):image}]});
   return {
-    items: moderatedRows.map(row => ({
-      id: source.id === 'owner' ? String(row.id) : `${source.id}:${String(row.id)}`,
-      name: String(row.name || 'Tác phẩm chưa đặt tên').trim(),
-      description: String(row.description || '').trim(),
-      image: publicMediaUrl(row.__moderatedImage),
-      thumbnail: publicMediaUrl(row.__moderatedThumbnail || row.__moderatedImage),
-      tags: Array.isArray(row.tags) ? row.tags.map(String) : [],
-      category: String(row.category?.name || 'Chưa phân loại'),
-      rank: String(row.rank?.name || 'Chưa xếp hạng'),
-      rankOrder: Number(row.rank?.sort_order) || 0,
-      credit: localizeCredit(String(row.credit?.name || 'Chưa có credit')),
-      isVietnameseSkin: Boolean(row.is_vietnamese_skin),
-      updatedAt: row.updated_at || undefined
-    })),
-    categories: categories.map(x => String(x.name)),
-    ranks: ranks.map(x => ({ name: String(x.name), sortOrder: Number(x.sort_order) || 0 })),
-    credits: credits.map(x => localizeCredit(String(x.name)))
+    items:moderatedRows.map(row=>({id:source.id==='owner'?String(row.id):`${source.id}:${String(row.id)}`,name:String(row.name||'Tác phẩm chưa đặt tên').trim(),description:String(row.description||'').trim(),image:publicMediaUrl(row.__moderatedImage),thumbnail:publicMediaUrl(row.__moderatedThumbnail||row.__moderatedImage),tags:Array.isArray(row.tags)?row.tags.map(String):[],category:String(row.category?.name||'Chưa phân loại'),rank:String(row.rank?.name||'Chưa xếp hạng'),rankOrder:Number(row.rank?.sort_order)||0,credit:localizeCredit(String(row.credit?.name||'Chưa có credit')),isVietnameseSkin:Boolean(row.is_vietnamese_skin),updatedAt:row.updated_at||undefined})),
+    categories:categories.map(x=>String(x.name)),ranks:ranks.map(x=>({name:String(x.name),sortOrder:Number(x.sort_order)||0})),credits:credits.map(x=>localizeCredit(String(x.name)))
   };
 }
 
 export async function getCatalogue(): Promise<Catalogue> {
-  const settled = await Promise.allSettled(CATALOGUE_SOURCES.map(loadSource));
-  const loaded = settled.flatMap(result => result.status === 'fulfilled' ? [result.value] : []);
-  if (!loaded.length) {
-    const reasons = settled.flatMap(result => result.status === 'rejected' ? [String(result.reason)] : []);
-    throw new Error(`Unable to load any Supabase catalogue source. ${reasons.join(' | ')}`);
-  }
-
-  const items = loaded
-    .flatMap(source => source.items)
-    .sort((a, b) => alpha(a.category, b.category) || a.rankOrder - b.rankOrder || alpha(a.name, b.name));
-
-  const rankOrder = new Map<string, number>();
-  for (const source of loaded) {
-    for (const rank of source.ranks) {
-      const current = rankOrder.get(rank.name);
-      if (current === undefined || rank.sortOrder < current) rankOrder.set(rank.name, rank.sortOrder);
-    }
-  }
-
-  return {
-    items,
-    categories: uniqueSorted(loaded.flatMap(source => source.categories)),
-    ranks: [...rankOrder.entries()].sort((a, b) => a[1] - b[1] || alpha(a[0], b[0])).map(([name]) => name),
-    credits: uniqueSorted(loaded.flatMap(source => source.credits))
-  };
+  const local=localCatalogue();if(local)return local;
+  const settled=await Promise.allSettled(CATALOGUE_SOURCES.map(loadSource));const loaded=settled.flatMap(result=>result.status==='fulfilled'?[result.value]:[]);
+  if(!loaded.length){const reasons=settled.flatMap(result=>result.status==='rejected'?[String(result.reason)]:[]);throw new Error(`Unable to load any Supabase catalogue source. ${reasons.join(' | ')}`)}
+  const items=loaded.flatMap(source=>source.items).sort((a,b)=>alpha(a.category,b.category)||a.rankOrder-b.rankOrder||alpha(a.name,b.name));
+  const rankOrder=new Map<string,number>();for(const source of loaded){for(const rank of source.ranks){const current=rankOrder.get(rank.name);if(current===undefined||rank.sortOrder<current)rankOrder.set(rank.name,rank.sortOrder)}}
+  return {items,categories:uniqueSorted(loaded.flatMap(source=>source.categories)),ranks:[...rankOrder.entries()].sort((a,b)=>a[1]-b[1]||alpha(a[0],b[0])).map(([name])=>name),credits:uniqueSorted(loaded.flatMap(source=>source.credits))};
 }
 
 export function findArtwork(items: Artwork[], categorySlug?: string, artworkSlug?: string) {
   if (!categorySlug) return { category: null as string | null, artwork: null as Artwork | null };
-  const category = items.find(item => slug(item.category) === categorySlug)?.category || null;
-  if (!category || !artworkSlug) return { category, artwork: null };
-  const artwork = items.find(item => item.category === category && slug(item.name || item.id) === artworkSlug) || null;
-  return { category, artwork };
+  const category=items.find(item=>slug(item.category)===categorySlug)?.category||null;if(!category||!artworkSlug)return{category,artwork:null as Artwork|null};const artwork=items.find(item=>item.category===category&&slug(item.name||item.id)===artworkSlug)||null;return{category,artwork};
 }
-
-export function artworkPath(item: Artwork) {
-  return `/character/${slug(item.category)}/${slug(item.name || item.id)}/`;
-}
-
-export function factualDescription(item: Artwork) {
-  return item.description || `${item.name} là splash art của ${item.category} trong thư viện HYU PREMIUM. Hạng skin: ${item.rank}. Credit ảnh: ${item.credit}.`;
-}
+export function artworkPath(item: Artwork) { return `/character/${slug(item.category)}/${slug(item.name || item.id)}/`; }
+export function factualDescription(item: Artwork) { return item.description || `${item.name} là splash art của ${item.category} trong thư viện HYU PREMIUM. Hạng skin: ${item.rank}. Credit ảnh: ${item.credit}.`; }
