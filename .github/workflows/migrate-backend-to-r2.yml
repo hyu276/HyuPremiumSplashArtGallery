@@ -9,6 +9,7 @@ on:
       - '.github/workflows/migrate-backend-to-r2.yml'
       - 'cloudflare/r2-media-worker/**'
       - 'scripts/migrate-supabase-to-r2.mjs'
+      - 'scripts/finalize-github-backend.mjs'
       - 'data/backend/migration-seed.json'
 
 permissions:
@@ -89,6 +90,10 @@ jobs:
           R2_MIGRATION_KEY: ${{ steps.migration_key.outputs.key }}
         run: node scripts/migrate-supabase-to-r2.mjs
 
+      - name: Finalize GitHub source-of-truth snapshot
+        shell: bash
+        run: node scripts/finalize-github-backend.mjs
+
       - name: Verify generated backend snapshot
         shell: bash
         run: |
@@ -101,9 +106,13 @@ jobs:
           const fs=require('fs');
           const c=JSON.parse(fs.readFileSync('data/backend/catalogue.json','utf8'));
           const s=JSON.parse(fs.readFileSync('data/backend/storage.json','utf8'));
+          if(c.ready!==true||s.ready!==true) throw new Error('Backend snapshot was not marked ready.');
           if(!Array.isArray(c.items)||c.items.length<100) throw new Error('Catalogue snapshot is unexpectedly small.');
+          if(!c.ownerOptions||!Array.isArray(c.ownerOptions.categories)||!Array.isArray(c.ownerOptions.ranks)||!Array.isArray(c.ownerOptions.credits)) throw new Error('Owner option metadata is incomplete.');
           if(!String(s.publicBaseUrl||'').includes('workers.dev')) throw new Error('R2 public URL was not generated.');
-          console.log({items:c.items.length,hidden:c.items.filter(x=>x.hidden).length,r2Objects:s.migratedObjects,publicBaseUrl:s.publicBaseUrl});
+          const supabaseMedia=c.items.filter(x=>/\.supabase\.co\/storage\/v1\/object\/public\//i.test(String(x.image||''))||/\.supabase\.co\/storage\/v1\/object\/public\//i.test(String(x.thumbnail||'')));
+          if(supabaseMedia.length) throw new Error(`Found ${supabaseMedia.length} catalogue items still using Supabase Storage.`);
+          console.log({items:c.items.length,hidden:c.items.filter(x=>x.hidden).length,r2Objects:s.migratedObjects,ownerOptions:c.ownerOptions,publicBaseUrl:s.publicBaseUrl});
           NODE
 
       - name: Remove one-time migration credential
