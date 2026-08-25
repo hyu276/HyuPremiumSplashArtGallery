@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 import { getSeoGlobalSettings } from '@/lib/seo';
+import ArtworkTitleFitter from '@/components/ArtworkTitleFitter';
 import './globals.css';
+import '../assets/css/typography.css';
+import '../assets/css/desktop-gallery.css';
 import './mobile-artwork-type.css';
 import './mobile-gallery-filters.css';
 import './motion.css';
@@ -20,5 +23,5 @@ export async function generateMetadata():Promise<Metadata>{
 }
 
 export default function RootLayout({children}:{children:React.ReactNode}){
-  return <html lang="vi"><body>{children}</body></html>;
+  return <html lang="vi"><body>{children}<ArtworkTitleFitter/></body></html>;
 }
