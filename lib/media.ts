@@ -1,12 +1,5 @@
 const SITE_URL=(process.env.NEXT_PUBLIC_SITE_URL||'https://hyupremium.vercel.app').replace(/\/$/,'');
-const STORAGE_PREFIX='/storage/v1/object/public/artworks/';
-
-type MediaSourceId='owner'|'huy9vnd';
-
-const MEDIA_SOURCES:Record<MediaSourceId,string>={
-  owner:(process.env.NEXT_PUBLIC_SUPABASE_URL||'https://zkrhwqgmynbbmoktokdq.supabase.co').replace(/\/$/,''),
-  huy9vnd:(process.env.NEXT_PUBLIC_HUY9VND_SUPABASE_URL||'https://unggkruzjmsjscdiukfr.supabase.co').replace(/\/$/,'')
-};
+export const MEDIA_BASE_URL=(process.env.NEXT_PUBLIC_MEDIA_BASE_URL||'https://hyu-premium-media.csquocnguyen.workers.dev').replace(/\/$/,'');
 
 export function toAbsoluteSiteUrl(value:string){
   const raw=String(value||'').trim();
@@ -15,36 +8,27 @@ export function toAbsoluteSiteUrl(value:string){
   return new URL(raw.replace(/^\.\//,''),`${SITE_URL}/`).href;
 }
 
-function encodeObjectPath(pathname:string){
-  return pathname
-    .slice(STORAGE_PREFIX.length)
+export function publicMediaUrl(value:string){
+  return toAbsoluteSiteUrl(value);
+}
+
+function encodePath(value:string){
+  return String(value||'')
     .split('/')
     .filter(Boolean)
     .map(segment=>encodeURIComponent(decodeURIComponent(segment)))
     .join('/');
 }
 
-export function publicMediaUrl(value:string){
-  const absolute=toAbsoluteSiteUrl(value);
-  if(!absolute)return '';
-  try{
-    const url=new URL(absolute);
-    for(const [sourceId,origin] of Object.entries(MEDIA_SOURCES) as [MediaSourceId,string][]){
-      const source=new URL(origin);
-      if(url.origin!==source.origin||!url.pathname.startsWith(STORAGE_PREFIX))continue;
-      const objectPath=encodeObjectPath(url.pathname);
-      if(!objectPath)return absolute;
-      return `${SITE_URL}/media/${sourceId}/${objectPath}`;
-    }
-    return absolute;
-  }catch{return absolute;}
+export function legacyMediaRedirectUrl(segments:string[]){
+  const [sourceId,...objectSegments]=segments||[];
+  if(!sourceId||!['owner','huy9vnd'].includes(sourceId))return '';
+  const clean=objectSegments.map(segment=>decodeURIComponent(segment)).filter(Boolean);
+  if(!clean.length||clean.some(segment=>segment==='.'||segment==='..'||segment.includes('\\')))return '';
+  if(!['uploads','thumbnails'].includes(clean[0]))return '';
+  return `${MEDIA_BASE_URL}/media/legacy/${encodeURIComponent(sourceId)}/artworks/${encodePath(clean.join('/'))}`;
 }
 
-export function supabaseArtworkOrigin(sourceId:string,objectPath:string){
-  if(!(sourceId in MEDIA_SOURCES))return null;
-  const clean=String(objectPath||'').split('/').filter(Boolean);
-  if(!clean.length||clean.some(segment=>segment==='.'||segment==='..'||segment.includes('\\')))return null;
-  if(!['uploads','thumbnails'].includes(clean[0]))return null;
-  const encoded=clean.map(segment=>encodeURIComponent(decodeURIComponent(segment))).join('/');
-  return `${MEDIA_SOURCES[sourceId as MediaSourceId]}${STORAGE_PREFIX}${encoded}`;
+export function isManagedMediaUrl(value:string){
+  try{return new URL(value).origin===new URL(MEDIA_BASE_URL).origin}catch{return false}
 }
