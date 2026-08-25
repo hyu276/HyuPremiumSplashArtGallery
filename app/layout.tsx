@@ -3,6 +3,7 @@ import { getSeoGlobalSettings } from '@/lib/seo';
 import './globals.css';
 import './mobile-artwork-type.css';
 import './mobile-gallery-filters.css';
+import './motion.css';
 
 export async function generateMetadata():Promise<Metadata>{
   const seo=await getSeoGlobalSettings();
