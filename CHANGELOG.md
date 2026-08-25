@@ -2,9 +2,29 @@
 
 Tài liệu này tổng hợp lịch sử thay đổi của `HyuPremiumSplashArtGallery` theo từng Pull Request đã được đưa vào repository. Các mục được sắp xếp từ mới nhất đến cũ nhất để dễ truy vết quá trình phát triển.
 
-> Phạm vi hiện tại: PR #1 → PR #80.
+> Phạm vi hiện tại: PR #1 → PR #82.
 
 ---
+
+## PR #82 — Extend motion parity to desktop
+
+- Mở rộng motion system của PR #81 sang desktop (`>760px`) mà không thay đổi layout, data flow hoặc filter semantics.
+- Bổ sung transition cho desktop sticky filter deck, Search focus, Category expand/collapse, Skin Rank/Image Credit dropdown, Vietnamese-skin switch và category controls.
+- Thêm hover/focus motion tinh gọn cho artwork card copy, expand affordance và dropdown options nhưng không thay đổi cấu trúc card.
+- Bổ sung View Transition treatment cho desktop filter/results state và same-origin page navigation để các bước A → B ít bị “snap”.
+- Giữ nguyên mobile popup behavior và tiếp tục tôn trọng `prefers-reduced-motion`.
+
+[Pull Request #82](https://github.com/hyu276/HyuPremiumSplashArtGallery/pull/82)
+
+## PR #81 — Add cohesive site transition system
+
+- Thêm motion system thống nhất cho các chuyển trạng thái lớn của Gallery: artwork expand/collapse, filter state, progressive reveal và navigation.
+- Artwork morph dùng View Transitions API khi browser hỗ trợ, có CSS fallback và `flushSync` để React commit state đúng trong transition callback.
+- Mobile filter popup được giữ mounted để có thể animate cả open lẫn close; backdrop fade/blur và panel translate/scale thay vì biến mất tức thì.
+- Skin Rank/Image Credit dropdown, Category disclosure, Vietnamese switch và View all nhận transition/reveal đồng bộ.
+- Same-origin navigation được opt-in View Transitions khi hỗ trợ và mọi motion mới đều bị vô hiệu hóa gần như hoàn toàn khi `prefers-reduced-motion: reduce`.
+
+[Pull Request #81](https://github.com/hyu276/HyuPremiumSplashArtGallery/pull/81)
 
 ## PR #80 — Refine mobile filter popup UX
 
