@@ -1,0 +1,7 @@
+/* The PR #30-#33 title fitter performs synchronous font-size measurements.
+   Font-size transitions make scrollWidth reflect an in-flight size and can
+   drive the fitter below its intended result. Keep title sizing instantaneous
+   while preserving the visual tracking transition. */
+.art-card .card-copy strong{
+  transition:letter-spacing var(--motion-base) ease;
+}
