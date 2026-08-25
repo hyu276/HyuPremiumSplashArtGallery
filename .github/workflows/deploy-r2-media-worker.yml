@@ -1,0 +1,57 @@
+name: Deploy HYU R2 media worker
+
+on:
+  push:
+    branches:
+      - main
+      - migrate/github-metadata-cloudflare-r2
+    paths:
+      - 'cloudflare/r2-media-worker/**'
+      - '.github/workflows/deploy-r2-media-worker.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: hyu-r2-media-worker
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      WRANGLER_CONFIG: cloudflare/r2-media-worker/wrangler.jsonc
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate Cloudflare credentials
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "${CLOUDFLARE_ACCOUNT_ID:-}"
+          test -n "${CLOUDFLARE_API_TOKEN:-}"
+      - name: Deploy worker
+        shell: bash
+        run: npx --yes wrangler@latest deploy --config "$WRANGLER_CONFIG"
+      - name: Verify worker health
+        shell: bash
+        run: |
+          set -euo pipefail
+          json=$(curl -fsS -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" -H 'Content-Type: application/json' "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/workers/subdomain")
+          subdomain=$(printf '%s' "$json" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{const j=JSON.parse(s);if(!j.success||!j.result?.subdomain)process.exit(2);process.stdout.write(j.result.subdomain)})")
+          base="https://hyu-premium-media.${subdomain}.workers.dev"
+          for attempt in $(seq 1 12); do
+            if curl -fsS "$base/health"; then
+              echo
+              echo "Worker healthy: $base"
+              exit 0
+            fi
+            sleep 5
+          done
+          echo '::error::Worker health check failed.'
+          exit 1
