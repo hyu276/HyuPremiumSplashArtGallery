@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 
 const DESKTOP_MIN_WIDTH=761;
 const ABSOLUTE_MIN_FONT_SIZE=7;
+const FIT_SAFETY_PX=2;
 const TITLE_SELECTOR='.art-card .card-copy strong';
 
 function setTitleSize(title:HTMLElement,size:number){
@@ -17,10 +18,17 @@ function clearDesktopTitleStyles(title:HTMLElement){
   }
 }
 
+function measureRenderedTextWidth(title:HTMLElement){
+  const range=document.createRange();
+  range.selectNodeContents(title);
+  const width=range.getBoundingClientRect().width;
+  range.detach?.();
+  return width;
+}
+
 function fitArtworkTitle(title:HTMLElement){
-  const card=title.closest<HTMLElement>('.art-card');
   const copy=title.closest<HTMLElement>('.card-copy');
-  if(!card||!copy)return;
+  if(!copy)return;
 
   title.style.removeProperty('font-size');
 
@@ -29,8 +37,11 @@ function fitArtworkTitle(title:HTMLElement){
     return;
   }
 
-  // Preserve the one-line desktop treatment from the pre-Next.js gallery while
-  // leaving overflow visible so Vietnamese glyph accents are not vertically clipped.
+  const normalized=(title.textContent||'').normalize('NFC');
+  if(title.textContent!==normalized)title.textContent=normalized;
+
+  // Keep the desktop title on one line while allowing Vietnamese diacritics
+  // to render outside the glyph box instead of being vertically clipped.
   title.style.display='block';
   title.style.width='100%';
   title.style.maxWidth='100%';
@@ -41,31 +52,39 @@ function fitArtworkTitle(title:HTMLElement){
   title.style.letterSpacing='-.025em';
   title.style.paddingBlock='.08em .06em';
 
-  const available=Math.floor(copy.clientWidth);
+  const available=Math.max(0,copy.getBoundingClientRect().width-FIT_SAFETY_PX);
   if(available<=0)return;
 
+  // Always start from the stylesheet's intended desktop size. If it already
+  // fits, leave font-size unset so short/medium titles retain their full size.
   const maxSize=parseFloat(getComputedStyle(title).fontSize)||24;
-  const minSize=Math.min(maxSize,card.classList.contains('expanded')?24:11);
-
   setTitleSize(title,maxSize);
-  if(title.scrollWidth<=available+1)return;
 
-  setTitleSize(title,minSize);
-  if(title.scrollWidth>available+1){
-    const ratio=available/title.scrollWidth;
-    setTitleSize(title,minSize*ratio*.985);
+  let measured=measureRenderedTextWidth(title);
+  if(measured<=available){
+    title.style.removeProperty('font-size');
     return;
   }
 
-  let low=minSize;
-  let high=maxSize;
-  for(let i=0;i<9;i++){
-    const mid=(low+high)/2;
-    setTitleSize(title,mid);
-    if(title.scrollWidth<=available+1)low=mid;
-    else high=mid;
+  // Fit from the intrinsic rendered glyph width rather than element
+  // scrollWidth. The latter is distorted by width:100% in the current flex /
+  // absolute card layout and was causing mildly-long titles to collapse near
+  // the old minimum size.
+  let fittedSize=maxSize*(available/measured);
+
+  // A few ratio corrections handle font hinting / sub-pixel rounding without
+  // a wide binary search that can overshoot downward.
+  for(let i=0;i<4;i++){
+    setTitleSize(title,fittedSize);
+    measured=measureRenderedTextWidth(title);
+    if(measured<=0)break;
+
+    const correction=available/measured;
+    if(Math.abs(1-correction)<0.0025)break;
+    fittedSize=Math.min(maxSize,fittedSize*correction);
   }
-  setTitleSize(title,low-.15);
+
+  setTitleSize(title,fittedSize*.997);
 }
 
 function fitArtworkTitles(root:ParentNode=document){
