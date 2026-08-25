@@ -93,7 +93,7 @@ function GalleryFilterControl({label,value,options,onChange,ariaLabel}:{label:st
     <span>{label}</span>
     <div ref={root} className={`gallery-filter-control${open?' is-open':''}`}>
       <button type="button" className="gallery-filter-trigger" aria-haspopup="listbox" aria-expanded={open} aria-label={ariaLabel} onClick={()=>setOpen(current=>!current)} onKeyDown={event=>{if(event.key==='ArrowDown'||event.key==='Enter'||event.key===' '){event.preventDefault();setOpen(true);focusActive()}}}>
-        <span className="gallery-filter-trigger-text">{selected?.label||'All'}</span><span className="gallery-filter-chevron" aria-hidden="true">⌄</span>
+        <span className="gallery-filter-trigger-text">{selected?.label||'Tất cả'}</span><span className="gallery-filter-chevron" aria-hidden="true">⌄</span>
       </button>
       <div className="gallery-filter-menu" role="listbox" aria-label={ariaLabel} onKeyDown={event=>{
         const buttons=Array.from(event.currentTarget.querySelectorAll<HTMLButtonElement>('.gallery-filter-option'));
@@ -142,9 +142,9 @@ const ArtworkCard = memo(function ArtworkCard({item,index,expanded,onToggle}:{it
     return()=>{cancelled=true;loader.onload=null;loader.onerror=null};
   },[expanded,fullReady,item.image,item.thumbnail]);
 
-  const imageAlt=`${item.name} — ${item.category} gaming splash art, skin rank ${item.rank}`;
+  const imageAlt=`${item.name} — ${item.category}, splash art game, hạng skin ${item.rank}`;
   const motionStyle={viewTransitionName:artworkTransitionName(item.id),'--art-motion-delay':`${Math.min(index,12)*18}ms`} as CSSProperties;
-  return <button style={motionStyle} className={`art-card${expanded?' expanded':''}`} data-id={item.id} aria-expanded={expanded} aria-label={`${expanded?'Collapse':'Expand'} ${item.name}`} onClick={()=>onToggle(item)}>
+  return <button style={motionStyle} className={`art-card${expanded?' expanded':''}`} data-id={item.id} aria-expanded={expanded} aria-label={`${expanded?'Thu gọn':'Mở rộng'} ${item.name}`} onClick={()=>onToggle(item)}>
     <span className="art-image-layer">
       <ViewportPreview src={item.thumbnail||item.image} alt={imageAlt} eager={index<INITIAL_RANDOM_COUNT||expanded}/>
       {!EGRESS_SAFE_MODE&&expanded&&item.image!==item.thumbnail&&fullReady?<img className="full ready" src={item.image} alt="" aria-hidden="true" decoding="async" fetchPriority="high"/>:null}
@@ -153,7 +153,7 @@ const ArtworkCard = memo(function ArtworkCard({item,index,expanded,onToggle}:{it
     <span className="card-number">{String(index+1).padStart(2,'0')}</span>
     <span className="tier" style={{background:RANK_GRADIENTS[item.rank]||'var(--brand)'}}>{item.rank||'—'}</span>
     <span className="expand-mark" aria-hidden="true">{expanded?'−':'+'}</span>
-    <span className="card-copy"><span className="card-meta">{item.category}</span><strong>{item.name}</strong>{item.description?<span className="card-description">{item.description}</span>:null}<span className="card-bottom"><span className="credit">IMAGE CREDIT · {item.credit}</span><span className="rank-label">{item.rank}</span></span></span>
+    <span className="card-copy"><span className="card-meta">{item.category}</span><strong>{item.name}</strong>{item.description?<span className="card-description">{item.description}</span>:null}<span className="card-bottom"><span className="credit">CREDIT ẢNH · {item.credit}</span><span className="rank-label">{item.rank}</span></span></span>
   </button>;
 });
 
@@ -263,31 +263,31 @@ export default function GalleryClient({catalogue,initialCategory,initialArtworkI
     window.addEventListener('popstate',onPop);return()=>window.removeEventListener('popstate',onPop);
   },[catalogue.items]);
 
-  const rankOptions=useMemo<FilterOption[]>(()=>[{value:'all',label:'All ranks'},...catalogue.ranks.map(value=>({value,label:value}))],[catalogue.ranks]);
-  const creditOptions=useMemo<FilterOption[]>(()=>[{value:'all',label:'All credits'},...catalogue.credits.map(value=>({value,label:value}))],[catalogue.credits]);
+  const rankOptions=useMemo<FilterOption[]>(()=>[{value:'all',label:'Tất cả hạng'},...catalogue.ranks.map(value=>({value,label:value}))],[catalogue.ranks]);
+  const creditOptions=useMemo<FilterOption[]>(()=>[{value:'all',label:'Tất cả credit'},...catalogue.credits.map(value=>({value,label:value}))],[catalogue.credits]);
   const showProgressive=stage===0?filtered.length>INITIAL_RANDOM_COUNT:stage===1?filtered.length>SECOND_BATCH_COUNT:false;
-  const progressiveNote=stage===0?`Show ${Math.min(SECOND_BATCH_COUNT,filtered.length)} artwork${Math.min(SECOND_BATCH_COUNT,filtered.length)===1?'':'s'} in catalogue order`:`Open full gallery · ${Math.max(0,filtered.length-SECOND_BATCH_COUNT)} more artwork${filtered.length-SECOND_BATCH_COUNT===1?'':'s'}`;
+  const progressiveNote=stage===0?`Hiển thị ${Math.min(SECOND_BATCH_COUNT,filtered.length)} tác phẩm theo thứ tự bộ sưu tập`:`Mở toàn bộ thư viện · còn ${Math.max(0,filtered.length-SECOND_BATCH_COUNT)} tác phẩm`;
   const activeMobileQuery=query.trim();
 
   const sharedFilterControls=<>
-    <div className={`category-shell category-filter-shell${categoryOpen?' open is-expanded':''}`}><div className="category-row" aria-label="Filter by category"><button data-cat="all" className={category==='all'?'active':''} onClick={()=>chooseCategory('all')}>All</button>{catalogue.categories.map(value=><button data-cat={value} key={value} className={category===value?'active':''} onClick={()=>chooseCategory(value)}>{value}</button>)}</div><button className="category-toggle category-filter-toggle" onClick={()=>setCategoryOpen(current=>!current)} aria-label="Toggle category list" aria-expanded={categoryOpen}><span className="category-filter-label">Categories</span><span className="category-filter-icon" aria-hidden="true"></span></button></div>
+    <div className={`category-shell category-filter-shell${categoryOpen?' open is-expanded':''}`}><div className="category-row" aria-label="Lọc theo danh mục"><button data-cat="all" className={category==='all'?'active':''} onClick={()=>chooseCategory('all')}>Tất cả</button>{catalogue.categories.map(value=><button data-cat={value} key={value} className={category===value?'active':''} onClick={()=>chooseCategory(value)}>{value}</button>)}</div><button className="category-toggle category-filter-toggle" onClick={()=>setCategoryOpen(current=>!current)} aria-label="Mở hoặc thu gọn danh sách danh mục" aria-expanded={categoryOpen}><span className="category-filter-label">Danh mục</span><span className="category-filter-icon" aria-hidden="true"></span></button></div>
     <div className="select-row">
-      <div className="vietnamese-skin-filter"><button type="button" className="vietnamese-skin-switch" role="switch" aria-checked={vietnameseOnly} aria-label="Chỉ xem skin Việt Nam?" onClick={()=>runMotionTransition(()=>{setVietnameseOnly(current=>!current);closeExpanded()})}><span className="vietnamese-skin-track" aria-hidden="true"><span className="vietnamese-skin-knob"></span></span><span>Chỉ xem skin Việt Nam?</span></button></div>
-      <GalleryFilterControl label="Skin rank" value={rank} options={rankOptions} ariaLabel="Filter by skin rank" onChange={value=>runMotionTransition(()=>{setRank(value);closeExpanded()})}/>
-      <GalleryFilterControl label="Image credit" value={credit} options={creditOptions} ariaLabel="Filter by image credit" onChange={value=>runMotionTransition(()=>{setCredit(value);closeExpanded()})}/>
+      <div className="vietnamese-skin-filter"><button type="button" className="vietnamese-skin-switch" role="switch" aria-checked={vietnameseOnly} aria-label="Chỉ xem skin Việt Nam" onClick={()=>runMotionTransition(()=>{setVietnameseOnly(current=>!current);closeExpanded()})}><span className="vietnamese-skin-track" aria-hidden="true"><span className="vietnamese-skin-knob"></span></span><span>Chỉ xem skin Việt Nam</span></button></div>
+      <GalleryFilterControl label="Hạng skin" value={rank} options={rankOptions} ariaLabel="Lọc theo hạng skin" onChange={value=>runMotionTransition(()=>{setRank(value);closeExpanded()})}/>
+      <GalleryFilterControl label="Credit ảnh" value={credit} options={creditOptions} ariaLabel="Lọc theo credit ảnh" onChange={value=>runMotionTransition(()=>{setCredit(value);closeExpanded()})}/>
     </div>
   </>;
 
   const desktopFilters=<>
-    <label className="search-wrap"><span aria-hidden="true">⌕</span><input value={query} onChange={event=>{setQuery(event.target.value);closeExpanded()}} type="search" autoComplete="off" placeholder="Search artwork or combine properties..." title="Combine terms across name, description, category, rank, credit, tags and the Vietnamese-skin property. Example: Marja Việt Nam" aria-label="Search the gallery" aria-description="Multiple terms are combined with AND across artwork properties. Quoted phrases are exact. Vietnamese skins can be searched with Việt Nam, Vietnam or VN." /></label>
+    <label className="search-wrap"><span aria-hidden="true">⌕</span><input value={query} onChange={event=>{setQuery(event.target.value);closeExpanded()}} type="search" autoComplete="off" placeholder="Tìm theo tên, nhân vật, hạng, credit..." title="Có thể kết hợp nhiều từ khóa theo tên, mô tả, danh mục, hạng, credit, tag và thuộc tính skin Việt Nam. Ví dụ: Marja Việt Nam" aria-label="Tìm kiếm trong thư viện" aria-description="Nhập nhiều từ khóa để lọc đồng thời. Cụm từ trong dấu ngoặc kép sẽ được tìm chính xác. Có thể tìm skin Việt Nam bằng Việt Nam, Vietnam hoặc VN." /></label>
     {sharedFilterControls}
   </>;
 
   const mobileFilters=<>
     <form className="search-wrap mobile-search-wrap" role="search" onSubmit={event=>{event.preventDefault();submitMobileSearch()}}>
       <span aria-hidden="true">⌕</span>
-      <input ref={mobileSearchInputRef} value={mobileSearchDraft} onChange={event=>setMobileSearchDraft(event.target.value)} type="search" inputMode="search" enterKeyHint="search" autoComplete="off" placeholder="Search artwork or combine properties..." title="Combine terms across name, description, category, rank, credit, tags and the Vietnamese-skin property. Example: Marja Việt Nam" aria-label="Search the gallery" aria-description="Type a query, then press the search button or the keyboard Search key to apply it. Other filters remain active." />
-      <button type="submit" className="mobile-search-submit" aria-label="Apply search"><span aria-hidden="true">⌕</span></button>
+      <input ref={mobileSearchInputRef} value={mobileSearchDraft} onChange={event=>setMobileSearchDraft(event.target.value)} type="search" inputMode="search" enterKeyHint="search" autoComplete="off" placeholder="Tìm theo tên, nhân vật, hạng, credit..." title="Có thể kết hợp nhiều từ khóa theo tên, mô tả, danh mục, hạng, credit, tag và thuộc tính skin Việt Nam. Ví dụ: Marja Việt Nam" aria-label="Tìm kiếm trong thư viện" aria-description="Nhập từ khóa rồi bấm nút tìm kiếm hoặc phím Tìm kiếm trên bàn phím. Các bộ lọc khác vẫn được giữ nguyên." />
+      <button type="submit" className="mobile-search-submit" aria-label="Tìm kiếm"><span aria-hidden="true">⌕</span></button>
     </form>
     {sharedFilterControls}
   </>;
@@ -297,21 +297,21 @@ export default function GalleryClient({catalogue,initialCategory,initialArtworkI
       {desktopFilters}
     </div>
     <div className={`mobile-filter-launcher-shell${activeMobileQuery?' has-search':''}`}>
-      <button type="button" className={`mobile-filter-launcher${activeMobileQuery?' is-search-active':''}`} aria-haspopup="dialog" aria-expanded={mobileFiltersOpen} aria-label={activeMobileQuery?`Edit search: ${activeMobileQuery}`:'Open search and filters'} onClick={()=>activeMobileQuery?openMobileSearch():setMobileFiltersOpen(true)}>
+      <button type="button" className={`mobile-filter-launcher${activeMobileQuery?' is-search-active':''}`} aria-haspopup="dialog" aria-expanded={mobileFiltersOpen} aria-label={activeMobileQuery?`Chỉnh tìm kiếm: ${activeMobileQuery}`:'Mở tìm kiếm và bộ lọc'} onClick={()=>activeMobileQuery?openMobileSearch():setMobileFiltersOpen(true)}>
         <span className="mobile-filter-launcher-icon" aria-hidden="true">⌕</span>
-        {activeMobileQuery?<span className="mobile-search-summary-copy"><span className="mobile-search-summary-kicker">Searching for</span><span className="mobile-search-summary-query">{activeMobileQuery}</span></span>:<span className="mobile-filter-launcher-label">Search &amp; filters</span>}
+        {activeMobileQuery?<span className="mobile-search-summary-copy"><span className="mobile-search-summary-kicker">Đang tìm</span><span className="mobile-search-summary-query">{activeMobileQuery}</span></span>:<span className="mobile-filter-launcher-label">Tìm kiếm &amp; bộ lọc</span>}
         {!activeMobileQuery?<span className="mobile-filter-launcher-chevron" aria-hidden="true">⌄</span>:null}
       </button>
-      {activeMobileQuery?<button type="button" className="mobile-search-clear" aria-label={`Clear search: ${activeMobileQuery}`} onClick={clearMobileSearch}>×</button>:null}
+      {activeMobileQuery?<button type="button" className="mobile-search-clear" aria-label={`Xóa tìm kiếm: ${activeMobileQuery}`} onClick={clearMobileSearch}>×</button>:null}
     </div>
     <div className={`mobile-filter-layer ${mobileFiltersOpen?'is-open':'is-closed'}`} aria-hidden={!mobileFiltersOpen} onClick={event=>{if(event.target===event.currentTarget)setMobileFiltersOpen(false)}}>
-      <div className={`filter-deck mobile-filter-popup${categoryOpen?' category-expanded':''}`} role="dialog" aria-modal={mobileFiltersOpen} aria-label="Gallery search and filters" onClick={event=>event.stopPropagation()}>
-        <div className="mobile-filter-popup-head"><span>Search &amp; filters</span><button type="button" className="mobile-filter-popup-close" aria-label="Close search and filters" onClick={()=>setMobileFiltersOpen(false)}>×</button></div>
+      <div className={`filter-deck mobile-filter-popup${categoryOpen?' category-expanded':''}`} role="dialog" aria-modal={mobileFiltersOpen} aria-label="Tìm kiếm và bộ lọc thư viện" onClick={event=>event.stopPropagation()}>
+        <div className="mobile-filter-popup-head"><span>Tìm kiếm &amp; bộ lọc</span><button type="button" className="mobile-filter-popup-close" aria-label="Đóng tìm kiếm và bộ lọc" onClick={()=>setMobileFiltersOpen(false)}>×</button></div>
         {mobileFilters}
       </div>
     </div>
-    <div className="results-line"><div><strong>{String(filtered.length).padStart(2,'0')}</strong><span>{filtered.length===1?'artwork':'artworks'} in view</span></div></div>
-    {visible.length?<div className="gallery-grid">{visible.map((item,index)=><ArtworkCard key={item.id} item={item} index={index} expanded={expanded===item.id} onToggle={toggle}/>)}</div>:<div className="empty-state">Nothing in view.</div>}
-    {showProgressive?<div className="gallery-progressive-controls"><button type="button" className="gallery-view-all" onClick={showMore}>View all</button><div className="gallery-progressive-note">{progressiveNote}</div></div>:null}
+    <div className="results-line"><div><strong>{String(filtered.length).padStart(2,'0')}</strong><span>tác phẩm đang hiển thị</span></div></div>
+    {visible.length?<div className="gallery-grid">{visible.map((item,index)=><ArtworkCard key={item.id} item={item} index={index} expanded={expanded===item.id} onToggle={toggle}/>)}</div>:<div className="empty-state">Không tìm thấy tác phẩm phù hợp.</div>}
+    {showProgressive?<div className="gallery-progressive-controls"><button type="button" className="gallery-view-all" onClick={showMore}>Xem thêm</button><div className="gallery-progressive-note">{progressiveNote}</div></div>:null}
   </section>;
 }

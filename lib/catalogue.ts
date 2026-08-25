@@ -152,15 +152,15 @@ async function loadSource(source: CatalogueSource): Promise<SourceCatalogue> {
   return {
     items: moderatedRows.map(row => ({
       id: source.id === 'owner' ? String(row.id) : `${source.id}:${String(row.id)}`,
-      name: String(row.name || 'Untitled artwork').trim(),
+      name: String(row.name || 'Tác phẩm chưa đặt tên').trim(),
       description: String(row.description || '').trim(),
       image: publicMediaUrl(row.__moderatedImage),
       thumbnail: publicMediaUrl(row.__moderatedThumbnail || row.__moderatedImage),
       tags: Array.isArray(row.tags) ? row.tags.map(String) : [],
-      category: String(row.category?.name || 'Uncategorized'),
-      rank: String(row.rank?.name || 'Unranked'),
+      category: String(row.category?.name || 'Chưa phân loại'),
+      rank: String(row.rank?.name || 'Chưa xếp hạng'),
       rankOrder: Number(row.rank?.sort_order) || 0,
-      credit: String(row.credit?.name || 'Uncredited'),
+      credit: String(row.credit?.name || 'Chưa có credit'),
       isVietnameseSkin: Boolean(row.is_vietnamese_skin),
       updatedAt: row.updated_at || undefined
     })),
@@ -211,5 +211,5 @@ export function artworkPath(item: Artwork) {
 }
 
 export function factualDescription(item: Artwork) {
-  return item.description || `${item.name} is a ${item.category} gaming splash artwork in the HYU PREMIUM archive. Skin rank: ${item.rank}. Image credit: ${item.credit}.`;
+  return item.description || `${item.name} là splash art của ${item.category} trong thư viện HYU PREMIUM. Hạng skin: ${item.rank}. Credit ảnh: ${item.credit}.`;
 }

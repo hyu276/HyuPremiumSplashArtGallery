@@ -4,10 +4,10 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 const NAV_ITEMS = [
-  { href: '/character/', label: 'Gallery', matches: ['/character', '/artworks'] },
-  { href: '/about/', label: 'About us', matches: ['/about'] },
-  { href: '/news/', label: 'News', matches: ['/news'] },
-  { href: '/blog/', label: 'Blog', matches: ['/blog'] }
+  { href: '/character/', label: 'Thư viện', matches: ['/character', '/artworks'] },
+  { href: '/about/', label: 'Giới thiệu', matches: ['/about'] },
+  { href: '/news/', label: 'Tin tức', matches: ['/news'] },
+  { href: '/blog/', label: 'Bài viết', matches: ['/blog'] }
 ] as const;
 
 function isActivePath(pathname: string, prefixes: readonly string[]) {
@@ -18,11 +18,11 @@ export function SiteHeader() {
   const pathname = usePathname() || '/';
 
   return <header className="site-header">
-    <Link className="wordmark" href="/character/" aria-label="HYU PREMIUM home">
+    <Link className="wordmark" href="/character/" aria-label="Trang chủ HYU PREMIUM">
       <img className="brand-mark" src="/assets/brand/hyu-industries-logo.png" alt="" aria-hidden="true" />
       HYU <span>PREMIUM</span>
     </Link>
-    <nav aria-label="Main navigation">
+    <nav aria-label="Điều hướng chính">
       {NAV_ITEMS.map(item => {
         const active = isActivePath(pathname, item.matches);
         return <Link
@@ -39,7 +39,7 @@ export function SiteHeader() {
 export function SiteFooter() {
   return <footer>
     <Link className="wordmark" href="/character/">HYU <span>PREMIUM</span></Link>
-    <span>Owner-curated digital splash archive</span>
-    <div className="footer-links"><Link href="/character/">Character</Link><Link href="/artworks/">Artwork Index</Link><a href="#top">Back to top ↑</a></div>
+    <span>Kho splash art được tuyển chọn và quản lý bởi chủ sở hữu</span>
+    <div className="footer-links"><Link href="/character/">Thư viện</Link><Link href="/artworks/">Danh mục tác phẩm</Link><a href="#top">Lên đầu trang ↑</a></div>
   </footer>;
 }
