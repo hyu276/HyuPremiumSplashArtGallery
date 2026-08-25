@@ -12,23 +12,6 @@ export function publicMediaUrl(value:string){
   return toAbsoluteSiteUrl(value);
 }
 
-function encodePath(value:string){
-  return String(value||'')
-    .split('/')
-    .filter(Boolean)
-    .map(segment=>encodeURIComponent(decodeURIComponent(segment)))
-    .join('/');
-}
-
-export function legacyMediaRedirectUrl(segments:string[]){
-  const [sourceId,...objectSegments]=segments||[];
-  if(!sourceId||!['owner','huy9vnd'].includes(sourceId))return '';
-  const clean=objectSegments.map(segment=>decodeURIComponent(segment)).filter(Boolean);
-  if(!clean.length||clean.some(segment=>segment==='.'||segment==='..'||segment.includes('\\')))return '';
-  if(!['uploads','thumbnails'].includes(clean[0]))return '';
-  return `${MEDIA_BASE_URL}/media/legacy/${encodeURIComponent(sourceId)}/artworks/${encodePath(clean.join('/'))}`;
-}
-
 export function isManagedMediaUrl(value:string){
   try{return new URL(value).origin===new URL(MEDIA_BASE_URL).origin}catch{return false}
 }
