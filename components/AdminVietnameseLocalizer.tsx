@@ -3,7 +3,41 @@
 import { useEffect } from 'react';
 
 const EXACT:Record<string,string>={
+  'HYU PREMIUM / OWNER':'HYU PREMIUM / QUẢN TRỊ',
   'OWNER':'QUẢN TRỊ',
+  'Next.js · React · TypeScript owner dashboard for artwork, SEO properties, images and team data.':'Dashboard quản trị artwork, thuộc tính SEO, hình ảnh và dữ liệu đội ngũ trên Next.js · React · TypeScript.',
+  'Owner security:':'Bảo mật quản trị:',
+  'Supabase Auth + Row Level Security remain authoritative. The browser uses only the public publishable key; owner access is verified against public.admins.':'Supabase Auth và Row Level Security là lớp kiểm soát quyền chính. Trình duyệt chỉ sử dụng khóa publishable công khai; quyền quản trị được xác minh qua public.admins.',
+  'Checking Supabase session...':'Đang kiểm tra phiên đăng nhập Supabase...',
+  'Sign in to check thumbnail coverage.':'Đăng nhập để kiểm tra tình trạng thumbnail.',
+  'Sign in to manage the About Us team section.':'Đăng nhập để quản lý mục Đội ngũ trên trang Giới thiệu.',
+  'Loading catalogue from Supabase...':'Đang tải bộ sưu tập từ Supabase...',
+  'Signed out. Enter owner credentials.':'Chưa đăng nhập. Hãy nhập tài khoản quản trị.',
+  'Signing in...':'Đang đăng nhập...',
+  'Signed out.':'Đã đăng xuất.',
+  'Admin login required.':'Cần đăng nhập bằng tài khoản quản trị.',
+  'This account is not listed in public.admins.':'Tài khoản này chưa được cấp quyền trong public.admins.',
+  'Selected image exceeds 10 MB.':'Ảnh đã chọn vượt quá giới hạn 10 MB.',
+  'Use JPG, PNG, WebP or GIF.':'Vui lòng dùng ảnh JPG, PNG, WebP hoặc GIF.',
+  'Artwork updated locally. Publish when ready.':'Đã cập nhật tác phẩm trong bản nháp. Bấm Xuất bản thay đổi khi hoàn tất.',
+  'Artwork added locally. Publish when ready.':'Đã thêm tác phẩm vào bản nháp. Bấm Xuất bản thay đổi khi hoàn tất.',
+  'Saving choices to Supabase...':'Đang lưu các tùy chọn lên Supabase...',
+  'Publishing artwork catalogue...':'Đang xuất bản bộ sưu tập...',
+  'Refreshing public gallery cache...':'Đang làm mới dữ liệu trên thư viện công khai...',
+  'Published to Supabase and refreshed on the public gallery.':'Đã xuất bản lên Supabase và cập nhật thư viện công khai.',
+  'Publish failed.':'Xuất bản thất bại.',
+  'Public cache refresh failed.':'Không thể làm mới cache của thư viện công khai.',
+  'Catalogue/options changed locally.':'Bộ sưu tập hoặc tùy chọn đã được thay đổi trong bản nháp.',
+  'Catalogue is in sync with Supabase.':'Bộ sưu tập đang đồng bộ với Supabase.',
+  'Sign in to load catalogue.':'Đăng nhập để tải bộ sưu tập.',
+  'Thumbnail optimization failed.':'Tối ưu thumbnail thất bại.',
+  'Team image exceeds 10 MB.':'Ảnh thành viên vượt quá giới hạn 10 MB.',
+  'Team member Name is required.':'Vui lòng nhập tên thành viên.',
+  'Team member image URL or file is required.':'Vui lòng nhập URL ảnh hoặc tải ảnh thành viên lên.',
+  'Team member saved.':'Đã lưu thành viên.',
+  'Unable to save team member.':'Không thể lưu thành viên.',
+  'Team order saved.':'Đã lưu thứ tự đội ngũ.',
+  'Unable to save team order.':'Không thể lưu thứ tự đội ngũ.',
   'Signed out':'Chưa đăng nhập',
   'Open gallery':'Mở thư viện',
   'Emergency legacy':'Dashboard dự phòng',
@@ -15,6 +49,7 @@ const EXACT:Record<string,string>={
   'Publish changes':'Xuất bản thay đổi',
   'Edit artwork':'Chỉnh sửa tác phẩm',
   'Add artwork':'Thêm tác phẩm',
+  'Artwork preview':'Xem trước tác phẩm',
   'Name':'Tên',
   'Keep Name for next artwork':'Giữ tên cho tác phẩm tiếp theo',
   'Description':'Mô tả',
@@ -25,10 +60,12 @@ const EXACT:Record<string,string>={
   'Choose rank':'Chọn hạng',
   'Image URL':'URL ảnh',
   'optional when uploading file':'không bắt buộc nếu tải tệp lên',
+  'JPG, PNG, WebP or GIF · max 10 MB · upload to Supabase Storage.':'JPG, PNG, WebP hoặc GIF · tối đa 10 MB · ảnh sẽ được tải lên Supabase Storage.',
   'Update artwork':'Cập nhật tác phẩm',
   'Clear':'Xóa form',
   'Artwork choices':'Tùy chọn tác phẩm',
   'Artwork image optimization':'Tối ưu ảnh tác phẩm',
+  'Gallery cards use optimized 1600×900 WebP/JPEG thumbnails. Originals remain for expanded/detail SEO pages.':'Thẻ trong thư viện dùng thumbnail WebP/JPEG 1600×900 đã tối ưu. Ảnh gốc vẫn được giữ cho chế độ mở rộng và trang chi tiết SEO.',
   'Optimize missing thumbnails':'Tối ưu thumbnail còn thiếu',
   'Refresh status':'Làm mới trạng thái',
   'Stop':'Dừng',
@@ -45,6 +82,8 @@ const EXACT:Record<string,string>={
   'No description':'Chưa có mô tả',
   'No artworks loaded or matching.':'Chưa có tác phẩm hoặc không có kết quả phù hợp.',
   'About Us / Our Team':'Giới thiệu / Đội ngũ',
+  'Team changes save directly to Supabase. Drag rows or use arrows to reorder, then Save order.':'Thay đổi đội ngũ được lưu trực tiếp lên Supabase. Kéo thả hoặc dùng các nút mũi tên để sắp xếp, sau đó bấm Lưu thứ tự.',
+  'Team member preview':'Xem trước ảnh thành viên',
   'Order':'Thứ tự',
   'Hide this member from About Us':'Ẩn thành viên này khỏi trang Giới thiệu',
   'or upload below':'hoặc tải tệp bên dưới',
@@ -80,7 +119,13 @@ function translate(value:string){
     [/^(\d+) deletions$/i,m=>`${m[1]} mục chờ xóa`],
     [/^Optimizing (\d+)\/(\d+): (.+)\.\.\.$/i,m=>`Đang tối ưu ${m[1]}/${m[2]}: ${m[3]}...`],
     [/^Stopped\. (\d+) optimized, (\d+) failed\.$/i,m=>`Đã dừng. Tối ưu thành công ${m[1]}, lỗi ${m[2]}.`],
-    [/^(\d+) optimized, (\d+) failed\.$/i,m=>`Tối ưu thành công ${m[1]}, lỗi ${m[2]}.`]
+    [/^(\d+) optimized, (\d+) failed\.$/i,m=>`Tối ưu thành công ${m[1]}, lỗi ${m[2]}.`],
+    [/^Uploading (.+)\.\.\.$/i,m=>`Đang tải lên ${m[1]}...`],
+    [/^Published in Supabase, but public cache refresh failed: (.+)$/i,m=>`Đã xuất bản lên Supabase nhưng chưa thể làm mới thư viện công khai: ${m[1]}`],
+    [/^Cannot remove (.+): artwork still references it\.$/i,m=>`Không thể xóa ${m[1]} vì vẫn có tác phẩm đang sử dụng mục này.`],
+    [/^(.+) already exists\.$/i,m=>`${m[1]} đã tồn tại.`],
+    [/^Select (.+)$/i,m=>`Chọn ${m[1]}`],
+    [/^Drag (.+)$/i,m=>`Kéo ${m[1]}`]
   ];
   for(const [pattern,fn] of rules){const match=text.match(pattern);if(match)return value.replace(text,fn(match))}
   return value;
@@ -104,7 +149,11 @@ export default function AdminVietnameseLocalizer(){
   useEffect(()=>{
     const body=document.body;
     translateNode(body);
-    const observer=new MutationObserver(records=>{for(const record of records){if(record.type==='characterData'&&record.target.parentNode)translateNode(record.target.parentNode);for(const added of record.addedNodes){if(added.nodeType===Node.ELEMENT_NODE)translateNode(added as Element);else if(added.parentNode)translateNode(added.parentNode)}}});
+    const observer=new MutationObserver(records=>{for(const record of records){
+      if(record.type==='characterData'&&record.target.parentNode)translateNode(record.target.parentNode);
+      if(record.type==='attributes'&&record.target instanceof Element)translateNode(record.target);
+      for(const added of record.addedNodes){if(added.nodeType===Node.ELEMENT_NODE)translateNode(added as Element);else if(added.parentNode)translateNode(added.parentNode)}
+    }});
     observer.observe(body,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['title','aria-label','placeholder']});
 
     const originalConfirm=window.confirm.bind(window);
