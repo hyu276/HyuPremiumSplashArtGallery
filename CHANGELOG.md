@@ -2,9 +2,20 @@
 
 Tài liệu này tổng hợp lịch sử thay đổi của `HyuPremiumSplashArtGallery` theo từng Pull Request đã được đưa vào repository. Các mục được sắp xếp từ mới nhất đến cũ nhất để dễ truy vết quá trình phát triển.
 
-> Phạm vi hiện tại: PR #1 → PR #79.
+> Phạm vi hiện tại: PR #1 → PR #80.
 
 ---
+
+## PR #80 — Refine mobile filter popup UX
+
+- Khôi phục `Search & filters` launcher thành sticky/freeze control trên mobile để luôn truy cập được khi scroll Gallery.
+- Giữ launcher/popup chỉ áp dụng ở mobile (`<=760px`); desktop filter deck, layout và behavior không thay đổi.
+- Chuyển `Chỉ xem skin Việt Nam?` sang hàng full-width trong popup và bỏ truncate/ellipsis để nhãn luôn hiển thị đầy đủ.
+- Khi mở Skin Rank hoặc Image Credit, field đang active tự span toàn chiều ngang; popup tự mở rộng tới chiều cao viewport và dropdown chuyển sang in-flow scroll area cao hơn để cuộn danh sách thuận tiện.
+- Category expanded mode cũng tận dụng chiều cao viewport lớn hơn; khóa background scroll khi popup đang mở để tránh cuộn nhầm Gallery phía sau.
+- Giữ nguyên filter semantics hiện hữu: thay đổi vẫn áp dụng tức thời, không thêm nút Apply và không thay đổi URL/filter logic.
+
+[Pull Request #80](https://github.com/hyu276/HyuPremiumSplashArtGallery/pull/80)
 
 ## PR #79 — Move mobile filters into popup
 
