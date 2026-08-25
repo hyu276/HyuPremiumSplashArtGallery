@@ -8,6 +8,7 @@ import sharp from 'sharp';
 
 const exec=promisify(execFile);
 const ROOT=process.cwd();
+const WRANGLER_BIN=join(ROOT,'node_modules','.bin',process.platform==='win32'?'wrangler.cmd':'wrangler');
 const cataloguePath=join(ROOT,'data/backend/catalogue.json');
 const storagePath=join(ROOT,'data/backend/storage.json');
 const widths=[640,960,1600];
@@ -28,7 +29,7 @@ function publicUrl(key){return `${base}/media/${key.split('/').map(encodeURIComp
 function complete(item){return widths.every(width=>item?.variants?.[String(width)]?.url)&&item?.media?.original?.url}
 
 async function upload(key,file){
-  await exec('npx',['--yes','wrangler@latest','r2','object','put',`${bucket}/${key}`,'--file',file,'--content-type','image/webp','--cache-control','public, max-age=31536000, immutable','--remote','--force'],{cwd:ROOT,env:process.env,maxBuffer:4*1024*1024});
+  await exec(WRANGLER_BIN,['r2','object','put',`${bucket}/${key}`,'--file',file,'--content-type','image/webp','--cache-control','public, max-age=31536000, immutable','--remote','--force'],{cwd:ROOT,env:process.env,maxBuffer:4*1024*1024});
 }
 
 async function processItem(item,index){
