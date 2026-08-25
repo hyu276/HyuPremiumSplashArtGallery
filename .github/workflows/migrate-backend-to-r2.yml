@@ -72,7 +72,17 @@ jobs:
           subdomain=$(printf '%s' "$json" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{const j=JSON.parse(s);if(!j.success||!j.result?.subdomain)process.exit(2);process.stdout.write(j.result.subdomain)})")
           base="https://hyu-premium-media.${subdomain}.workers.dev"
           echo "base=$base" >> "$GITHUB_OUTPUT"
-          curl -fsS "$base/health"
+          for attempt in $(seq 1 12); do
+            if curl -fsS "$base/health"; then
+              echo
+              echo "Worker is healthy at $base"
+              exit 0
+            fi
+            echo "Worker not ready yet (attempt $attempt/12); retrying in 5s..."
+            sleep 5
+          done
+          echo '::error::Worker deployment completed but /health did not become reachable within 60 seconds.'
+          exit 1
 
       - name: Install one-time migration credential
         id: migration_key
