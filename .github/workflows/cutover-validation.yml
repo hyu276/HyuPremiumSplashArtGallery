@@ -1,0 +1,57 @@
+name: Cutover network validation
+
+on:
+  push:
+    branches:
+      - hardening/egress-zero
+    paths:
+      - '.github/workflows/cutover-validation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Resolve cold media probes
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE' >> "$GITHUB_ENV"
+          const fs=require('fs');
+          const c=JSON.parse(fs.readFileSync('data/backend/catalogue.json','utf8'));
+          const item=c.items[c.items.length-1];
+          console.log(`VARIANT_URL=${item.variants['640'].url}`);
+          console.log(`ORIGINAL_URL=${item.media.original.url}`);
+          console.log(`PROBE_ID=${item.id}`);
+          NODE
+      - name: Verify Cloudflare MISS then HIT
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "Probe artwork: $PROBE_ID"
+          curl --fail --silent --show-error -D /tmp/first.headers -o /dev/null "$VARIANT_URL"
+          sleep 1
+          curl --fail --silent --show-error -D /tmp/second.headers -o /dev/null "$VARIANT_URL"
+          echo '--- first response ---'
+          cat /tmp/first.headers
+          echo '--- second response ---'
+          cat /tmp/second.headers
+          grep -Eiq '^x-hyu-cache:[[:space:]]*MISS' /tmp/first.headers
+          grep -Eiq '^x-hyu-cache:[[:space:]]*HIT' /tmp/second.headers
+          grep -Eiq '^cache-control:.*max-age=31536000.*immutable' /tmp/second.headers
+      - name: Verify HTTP Range 206
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error -H 'Range: bytes=0-1023' -D /tmp/range.headers -o /tmp/range.bin "$ORIGINAL_URL"
+          echo '--- range response ---'
+          cat /tmp/range.headers
+          test "$(wc -c < /tmp/range.bin)" -eq 1024
+          grep -Eq '^HTTP/[^ ]+[[:space:]]+206' /tmp/range.headers
+          grep -Eiq '^content-range:[[:space:]]*bytes 0-1023/' /tmp/range.headers
+          grep -Eiq '^accept-ranges:[[:space:]]*bytes' /tmp/range.headers
+          grep -Eiq '^x-hyu-cache:[[:space:]]*RANGE' /tmp/range.headers
