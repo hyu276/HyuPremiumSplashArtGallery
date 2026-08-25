@@ -1,0 +1,101 @@
+{
+  "global": {
+    "site_url": "https://hyupremium.vercel.app",
+    "site_name": "HYU PREMIUM",
+    "ai_crawlers": {
+      "GPTBot": true,
+      "bingbot": true,
+      "ClaudeBot": true,
+      "ChatGPT-User": true,
+      "anthropic-ai": true,
+      "PerplexityBot": true,
+      "Google-Extended": true
+    },
+    "llms_summary": "HYU PREMIUM là thư viện splash art game được tuyển chọn và quản lý thủ công, với các trang tác phẩm cố định được tổ chức theo nhân vật, hạng skin và credit ảnh.",
+    "default_title": "HYU PREMIUM — Thư viện Splash Art Game",
+    "default_locale": "vi_VN",
+    "llms_key_pages": [
+      "/character/",
+      "/artworks/",
+      "/about/",
+      "/news/",
+      "/blog/"
+    ],
+    "title_template": "%s | HYU PREMIUM",
+    "default_og_image": "",
+    "default_description": "Thư viện splash art game được tuyển chọn, có thể tìm kiếm và lọc theo nhân vật, danh mục, hạng skin và credit ảnh.",
+    "google_site_verification": "KMBRePIo30hKHau-mQc3tM_H0bELdtJRxXfo8I1PDGE"
+  },
+  "overrides": [],
+  "targets": [],
+  "logs": [
+    {
+      "id": 1,
+      "action": "UPDATE",
+      "user_id": null,
+      "record_key": "true",
+      "source_table": "seo_global_settings",
+      "created_at": "2026-08-25T15:54:40.180051+00:00",
+      "before_data": {
+        "id": true,
+        "site_url": "https://hyupremium.vercel.app",
+        "site_name": "HYU PREMIUM",
+        "updated_at": "2026-08-23T19:09:16.802518+00:00",
+        "updated_by": null,
+        "ai_crawlers": {
+          "GPTBot": true,
+          "bingbot": true,
+          "ClaudeBot": true,
+          "ChatGPT-User": true,
+          "anthropic-ai": true,
+          "PerplexityBot": true,
+          "Google-Extended": true
+        },
+        "llms_summary": "HYU PREMIUM is an owner-curated gaming splash-art archive with permanent artwork pages organized by character, skin rank and image credit.",
+        "default_title": "HYU PREMIUM — Gaming Splash Art Archive",
+        "default_locale": "vi_VN",
+        "llms_key_pages": [
+          "/character/",
+          "/artworks/",
+          "/about/",
+          "/news/",
+          "/blog/"
+        ],
+        "title_template": "%s | HYU PREMIUM",
+        "default_og_image": "",
+        "default_description": "A curated searchable archive of gaming splash art organized by character/category, skin rank and image credit.",
+        "google_site_verification": "KMBRePIo30hKHau-mQc3tM_H0bELdtJRxXfo8I1PDGE"
+      },
+      "after_data": {
+        "id": true,
+        "site_url": "https://hyupremium.vercel.app",
+        "site_name": "HYU PREMIUM",
+        "updated_at": "2026-08-25T15:54:40.180051+00:00",
+        "updated_by": null,
+        "ai_crawlers": {
+          "GPTBot": true,
+          "bingbot": true,
+          "ClaudeBot": true,
+          "ChatGPT-User": true,
+          "anthropic-ai": true,
+          "PerplexityBot": true,
+          "Google-Extended": true
+        },
+        "llms_summary": "HYU PREMIUM là thư viện splash art game được tuyển chọn và quản lý thủ công, với các trang tác phẩm cố định được tổ chức theo nhân vật, hạng skin và credit ảnh.",
+        "default_title": "HYU PREMIUM — Thư viện Splash Art Game",
+        "default_locale": "vi_VN",
+        "llms_key_pages": [
+          "/character/",
+          "/artworks/",
+          "/about/",
+          "/news/",
+          "/blog/"
+        ],
+        "title_template": "%s | HYU PREMIUM",
+        "default_og_image": "",
+        "default_description": "Thư viện splash art game được tuyển chọn, có thể tìm kiếm và lọc theo nhân vật, danh mục, hạng skin và credit ảnh.",
+        "google_site_verification": "KMBRePIo30hKHau-mQc3tM_H0bELdtJRxXfo8I1PDGE"
+      }
+    }
+  ]
+}

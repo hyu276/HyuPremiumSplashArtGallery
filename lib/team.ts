@@ -1,3 +1,6 @@
+import backendCatalogue from '@/data/backend/catalogue.json';
+import backendTeam from '@/data/backend/team.json';
+
 export type TeamMember = {
   id: number;
   name: string;
@@ -15,17 +18,29 @@ export type TeamMember = {
   linkedin_hidden: boolean;
 };
 
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://zkrhwqgmynbbmoktokdq.supabase.co';
-const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || 'sb_publishable_Fqcxk9-U1qalClQZjKcrhA_U822LTIq';
-
 export async function getTeamMembers(): Promise<TeamMember[]> {
-  const select='id,name,image,sort_order,facebook_url,facebook_hidden,tiktok_url,tiktok_hidden,instagram_url,instagram_hidden,x_url,x_hidden,linkedin_url,linkedin_hidden';
-  const response=await fetch(`${SUPABASE_URL}/rest/v1/team_members?select=${encodeURIComponent(select)}&hidden=eq.false&order=sort_order.asc,id.asc`,{
-    headers:{apikey:SUPABASE_KEY,Authorization:`Bearer ${SUPABASE_KEY}`},
-    next:{revalidate:300,tags:['team']}
-  });
-  if(!response.ok)return [];
-  return response.json() as Promise<TeamMember[]>;
+  if ((backendCatalogue as any).ready !== true) {
+    throw new Error('GitHub backend team metadata is not ready.');
+  }
+  return (backendTeam as any[])
+    .filter(row=>!row?.hidden)
+    .map(row=>({
+      id:Number(row.id)||0,
+      name:String(row.name||''),
+      image:String(row.image||''),
+      sort_order:Number(row.sort_order)||0,
+      facebook_url:String(row.facebook_url||''),
+      facebook_hidden:Boolean(row.facebook_hidden),
+      tiktok_url:String(row.tiktok_url||''),
+      tiktok_hidden:Boolean(row.tiktok_hidden),
+      instagram_url:String(row.instagram_url||''),
+      instagram_hidden:Boolean(row.instagram_hidden),
+      x_url:String(row.x_url||''),
+      x_hidden:Boolean(row.x_hidden),
+      linkedin_url:String(row.linkedin_url||''),
+      linkedin_hidden:Boolean(row.linkedin_hidden)
+    }))
+    .sort((a,b)=>a.sort_order-b.sort_order||a.id-b.id);
 }
 
 export function safeSocialUrl(value:string){

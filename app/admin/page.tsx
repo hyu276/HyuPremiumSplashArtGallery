@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
-import AdminDashboard from '@/components/AdminDashboard';
-import AdminVietnameseLocalizer from '@/components/AdminVietnameseLocalizer';
+import GitHubAdminDashboard from '@/components/GitHubAdminDashboard';
 import './admin.css';
 
 export const metadata: Metadata = {
@@ -9,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function AdminPage(){
-  return <><AdminDashboard/><AdminVietnameseLocalizer/></>;
+  return <GitHubAdminDashboard/>;
 }

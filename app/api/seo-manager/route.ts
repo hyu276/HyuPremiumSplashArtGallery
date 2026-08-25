@@ -1,81 +1,39 @@
-import { createClient } from '@supabase/supabase-js';
 import { revalidatePath, revalidateTag } from 'next/cache';
 
-const SUPABASE_URL=process.env.NEXT_PUBLIC_SUPABASE_URL||'https://zkrhwqgmynbbmoktokdq.supabase.co';
-const SUPABASE_KEY=process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY||'sb_publishable_Fqcxk9-U1qalClQZjKcrhA_U822LTIq';
-const ALLOWED_ORIGINS=new Set(['https://hyu276.github.io','https://hyupremium.vercel.app']);
+const REPO='hyu276/HyuPremiumSplashArtGallery';
+const OWNER='hyu276';
+const API='https://api.github.com';
+const SEO_FILE='data/backend/seo.json';
+const CATALOGUE_FILE='data/backend/catalogue.json';
 
-function cors(request:Request){const origin=request.headers.get('origin')||'';return {'Access-Control-Allow-Origin':ALLOWED_ORIGINS.has(origin)?origin:'https://hyu276.github.io','Access-Control-Allow-Methods':'GET,POST,PUT,DELETE,OPTIONS','Access-Control-Allow-Headers':'authorization,content-type','Access-Control-Max-Age':'86400','Vary':'Origin'} as Record<string,string>}
-function json(request:Request,data:unknown,status=200){return Response.json(data,{status,headers:cors(request)})}
+type GhContent={sha:string;content:string;encoding:string};
+function allowedOrigin(origin:string){try{const u=new URL(origin);if(u.protocol==='https:'&&(u.hostname==='hyupremium.vercel.app'||u.hostname.endsWith('.vercel.app')||u.hostname==='hyu276.github.io'))return origin;if(u.protocol==='http:'&&(u.hostname==='localhost'||u.hostname==='127.0.0.1'))return origin}catch{}return ''}
+function cors(request:Request){const origin=allowedOrigin(request.headers.get('origin')||'');return {'Access-Control-Allow-Origin':origin||'https://hyupremium.vercel.app','Access-Control-Allow-Methods':'GET,POST,OPTIONS','Access-Control-Allow-Headers':'authorization,content-type','Access-Control-Max-Age':'86400','Vary':'Origin'} as Record<string,string>}
+function json(request:Request,data:unknown,status=200){return Response.json(data,{status,headers:{...cors(request),'Cache-Control':'no-store'}})}
 function tokenFrom(request:Request){const value=request.headers.get('authorization')||'';return value.toLowerCase().startsWith('bearer ')?value.slice(7).trim():''}
-function bareClient(){return createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{persistSession:false,autoRefreshToken:false,detectSessionInUrl:false}})}
-function client(token:string){return createClient(SUPABASE_URL,SUPABASE_KEY,{global:{headers:{Authorization:`Bearer ${token}`}},auth:{persistSession:false,autoRefreshToken:false,detectSessionInUrl:false}})}
-async function ensureAdminToken(token:string){
-  if(!token)throw new Error('Authentication required.');
-  const sb=client(token);const {data:{user},error:userError}=await sb.auth.getUser(token);if(userError||!user)throw new Error('Invalid or expired session.');
-  const {data:admin,error}=await sb.from('admins').select('user_id').eq('user_id',user.id).maybeSingle();if(error||!admin)throw new Error('Admin permission required.');
-  return {sb,user};
-}
-async function adminClient(request:Request){return ensureAdminToken(tokenFrom(request))}
-function sessionPayload(session:any,user:any){return {access_token:session.access_token,refresh_token:session.refresh_token,expires_at:session.expires_at,expires_in:session.expires_in,token_type:session.token_type,user:{id:user.id,email:user.email||''}}}
-async function login(request:Request,email:string,password:string){
-  if(!email||!password)return json(request,{error:'Email and password are required.'},400);
-  const auth=bareClient();const {data,error}=await auth.auth.signInWithPassword({email,password});
-  if(error||!data.session||!data.user)return json(request,{error:error?.message||'Unable to sign in.'},401);
-  try{await ensureAdminToken(data.session.access_token)}catch(error:any){return json(request,{error:error?.message||'Admin permission required.'},403)}
-  return json(request,{ok:true,session:sessionPayload(data.session,data.user)});
-}
-async function refreshSession(request:Request,refreshToken:string){
-  if(!refreshToken)return json(request,{error:'Refresh token is required.'},401);
-  const auth=bareClient();const {data,error}=await auth.auth.refreshSession({refresh_token:refreshToken});
-  if(error||!data.session||!data.user)return json(request,{error:error?.message||'Session refresh failed.'},401);
-  try{await ensureAdminToken(data.session.access_token)}catch(error:any){return json(request,{error:error?.message||'Admin permission required.'},403)}
-  return json(request,{ok:true,session:sessionPayload(data.session,data.user)});
-}
+function branch(){return String(process.env.GITHUB_DATA_BRANCH||process.env.VERCEL_GIT_COMMIT_REF||'main')}
+function headers(token:string){return {Accept:'application/vnd.github+json',Authorization:`Bearer ${token}`,'X-GitHub-Api-Version':'2022-11-28','User-Agent':'HYU-PREMIUM-SEO'}}
+async function gh<T>(token:string,path:string,init:RequestInit={}):Promise<T>{const response=await fetch(`${API}${path}`,{...init,headers:{...headers(token),...(init.headers||{})},cache:'no-store'});if(!response.ok)throw new Error(`GitHub ${response.status}: ${(await response.text()).slice(0,500)}`);return response.json() as Promise<T>}
+async function verify(token:string){if(!token.startsWith('github_pat_'))throw new Error('Hãy dùng GitHub fine-grained token bắt đầu bằng github_pat_.');const [user,repo]=await Promise.all([gh<any>(token,'/user'),gh<any>(token,`/repos/${REPO}`)]);if(String(user.login||'').toLowerCase()!==OWNER.toLowerCase())throw new Error('Token không thuộc chủ repository.');if(!repo.permissions?.push&&!repo.permissions?.admin)throw new Error('Token cần quyền Contents: Read and write.');return {login:String(user.login)}}
+function decode(value:string){return Buffer.from(String(value||'').replace(/\s/g,''),'base64').toString('utf8')}
+async function readFile<T>(token:string,path:string){const data=await gh<GhContent>(token,`/repos/${REPO}/contents/${path}?ref=${encodeURIComponent(branch())}`);return {sha:data.sha,data:JSON.parse(data.encoding==='base64'?decode(data.content):data.content) as T}}
+async function writeSeo(token:string,currentSha:string,data:any){const encoded=Buffer.from(JSON.stringify(data,null,2)+'\n','utf8').toString('base64');return gh<any>(token,`/repos/${REPO}/contents/${SEO_FILE}`,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:'content(seo): cập nhật SEO metadata từ dashboard',content:encoded,sha:currentSha,branch:branch()})})}
 function refresh(){revalidateTag('seo-manager');revalidateTag('catalogue');for(const path of ['/','/character/','/artworks/','/about/','/news/','/blog/','/sitemap.xml','/image-sitemap.xml','/robots.txt','/llms.txt'])revalidatePath(path)}
+function now(){return new Date().toISOString()}
+function appendLog(seo:any,source_table:string,record_key:string,action:string,before_data:any,after_data:any,user:string){const logs=Array.isArray(seo.logs)?seo.logs:[];seo.logs=[{id:`git-${Date.now()}`,source_table,record_key,action,user_id:user,created_at:now(),before_data,after_data},...logs].slice(0,200)}
+function normalizeSeo(raw:any){return {global:raw?.global||{},overrides:Array.isArray(raw?.overrides)?raw.overrides:[],targets:Array.isArray(raw?.targets)?raw.targets:[],logs:Array.isArray(raw?.logs)?raw.logs:[]}}
+function nextTargetId(targets:any[]){const ids=targets.map(x=>Number(x?.id)).filter(Number.isFinite);return (ids.length?Math.max(...ids):0)+1}
+function catalogueForSeo(c:any){const ownerOptions=c?.ownerOptions||{};const items=Array.isArray(c?.items)?c.items:[];return {artworks:items.map((x:any)=>({id:x.id,name:x.name,description:x.description||'',image:x.image,thumbnail:x.thumbnail||'',tags:Array.isArray(x.tags)?x.tags:[],hidden:Boolean(x.hidden),is_vietnamese_skin:Boolean(x.isVietnameseSkin),updated_at:x.updatedAt||null,category:{name:x.category},rank:{name:x.rank},credit:{name:x.credit}})),categories:(ownerOptions.categories||c?.categories||[]).map((name:string,i:number)=>({id:i+1,name})),ranks:(ownerOptions.ranks||c?.ranks||[]).map((name:string,i:number)=>({id:i+1,name,sort_order:i})),credits:(ownerOptions.credits||c?.credits||[]).map((name:string,i:number)=>({id:i+1,name}))}}
 
 export async function OPTIONS(request:Request){return new Response(null,{status:204,headers:cors(request)})}
-
-export async function GET(request:Request){
-  try{
-    const {sb}=await adminClient(request);const url=new URL(request.url);const view=url.searchParams.get('view')||'bootstrap';
-    if(view==='health')return json(request,{ok:true});
-    const [global,overrides,targets,logs,artworks,categories,ranks,credits]=await Promise.all([
-      sb.from('seo_global_settings').select('*').eq('id',true).maybeSingle(),
-      sb.from('seo_page_overrides').select('*').order('path'),
-      sb.from('seo_query_targets').select('*').order('priority',{ascending:false}).order('query'),
-      sb.from('seo_change_log').select('*').order('created_at',{ascending:false}).limit(50),
-      sb.from('artworks').select('id,name,description,image,thumbnail,tags,hidden,is_vietnamese_skin,updated_at,category:categories(name),rank:ranks(name),credit:image_credits(name)').order('name'),
-      sb.from('categories').select('id,name').order('name'),sb.from('ranks').select('id,name,sort_order').order('sort_order'),sb.from('image_credits').select('id,name').order('name')
-    ]);
-    const error=global.error||overrides.error||targets.error||logs.error||artworks.error||categories.error||ranks.error||credits.error;if(error)throw error;
-    return json(request,{global:global.data,overrides:overrides.data||[],targets:targets.data||[],logs:logs.data||[],artworks:artworks.data||[],categories:categories.data||[],ranks:ranks.data||[],credits:credits.data||[]});
-  }catch(error:any){return json(request,{error:error?.message||'Request failed.'},401)}
-}
-
-export async function POST(request:Request){
-  let body:any={};
-  try{body=await request.json()}catch{return json(request,{error:'Invalid JSON request.'},400)}
-  const action=String(body.action||'');
-  if(action==='login')return login(request,String(body.email||'').trim(),String(body.password||''));
-  if(action==='refresh-session')return refreshSession(request,String(body.refresh_token||''));
-  try{
-    const {sb}=await adminClient(request);let result:any=null;
-    if(action==='save-global'){
-      const allowed=['site_name','site_url','default_title','title_template','default_description','default_og_image','default_locale','google_site_verification','llms_summary','llms_key_pages','ai_crawlers'];const payload:Object=Object.fromEntries(allowed.filter(k=>k in body.data).map(k=>[k,body.data[k]]));
-      const response=await sb.from('seo_global_settings').update(payload).eq('id',true).select().single();if(response.error)throw response.error;result=response.data;
-    }else if(action==='upsert-page'){
-      const allowed=['id','path','page_type','entity_id','target_keyword','keywords','title','meta_description','canonical_url','h1_suggestion','image_alt','og_title','og_description','og_image','robots_index','robots_follow','include_in_sitemap','schema_json','ai_summary','ai_key_facts','ai_faq','enabled'];
-      const payload=Object.fromEntries(allowed.filter(k=>k in body.data).map(k=>[k,body.data[k]]));delete (payload as any).id;
-      const response=await sb.from('seo_page_overrides').upsert(payload,{onConflict:'path'}).select().single();if(response.error)throw response.error;result=response.data;
-    }else if(action==='delete-page'){
-      const response=await sb.from('seo_page_overrides').delete().eq('path',String(body.path||''));if(response.error)throw response.error;result={deleted:true};
-    }else if(action==='upsert-target'){
-      const allowed=['id','query','intent','platform','priority','active','notes','cited','cited_url','competitors','last_checked_at'];const payload=Object.fromEntries(allowed.filter(k=>k in body.data).map(k=>[k,body.data[k]]));
-      let response;if(payload.id){const id=payload.id;delete (payload as any).id;response=await sb.from('seo_query_targets').update(payload).eq('id',id).select().single()}else response=await sb.from('seo_query_targets').insert(payload).select().single();if(response.error)throw response.error;result=response.data;
-    }else if(action==='delete-target'){
-      const response=await sb.from('seo_query_targets').delete().eq('id',body.id);if(response.error)throw response.error;result={deleted:true};
-    }else throw new Error('Unknown action.');
-    refresh();return json(request,{ok:true,result});
-  }catch(error:any){return json(request,{error:error?.message||'Request failed.'},400)}
-}
+export async function GET(request:Request){try{const token=tokenFrom(request);await verify(token);const url=new URL(request.url);if((url.searchParams.get('view')||'bootstrap')==='health')return json(request,{ok:true,backend:'github'});const [seoFile,catalogueFile]=await Promise.all([readFile<any>(token,SEO_FILE),readFile<any>(token,CATALOGUE_FILE)]);const seo=normalizeSeo(seoFile.data);return json(request,{global:seo.global,overrides:seo.overrides,targets:seo.targets,logs:seo.logs.slice(0,50),...catalogueForSeo(catalogueFile.data),backend:'github',branch:branch()})}catch(error:any){return json(request,{error:error?.message||'Request failed.'},401)}}
+export async function POST(request:Request){let body:any={};try{body=await request.json()}catch{return json(request,{error:'JSON không hợp lệ.'},400)}const action=String(body.action||'');if(action==='login'){try{const admin=await verify(String(body.token||''));return json(request,{ok:true,session:{access_token:String(body.token||''),user:{email:`@${admin.login}`,login:admin.login}}})}catch(error:any){return json(request,{error:error?.message||'Đăng nhập thất bại.'},401)}}
+  try{const token=tokenFrom(request);const admin=await verify(token);const file=await readFile<any>(token,SEO_FILE);const seo=normalizeSeo(file.data);let result:any=null;
+    if(action==='save-global'){const before={...seo.global};const allowed=['site_name','site_url','default_title','title_template','default_description','default_og_image','default_locale','google_site_verification','llms_summary','llms_key_pages','ai_crawlers'];const payload=Object.fromEntries(allowed.filter(k=>k in (body.data||{})).map(k=>[k,body.data[k]]));seo.global={...seo.global,...payload,updated_at:now()};result=seo.global;appendLog(seo,'seo_global_settings','true','UPDATE',before,result,admin.login)}
+    else if(action==='upsert-page'){const allowed=['path','page_type','entity_id','target_keyword','keywords','title','meta_description','canonical_url','h1_suggestion','image_alt','og_title','og_description','og_image','robots_index','robots_follow','include_in_sitemap','schema_json','ai_summary','ai_key_facts','ai_faq','enabled'];const payload=Object.fromEntries(allowed.filter(k=>k in (body.data||{})).map(k=>[k,body.data[k]]));const at=seo.overrides.findIndex((x:any)=>x.path===payload.path);const before=at>=0?seo.overrides[at]:null;result={...(before||{}),...payload,id:before?.id||crypto.randomUUID(),updated_at:now()};if(at>=0)seo.overrides[at]=result;else seo.overrides.push(result);seo.overrides.sort((a:any,b:any)=>String(a.path).localeCompare(String(b.path)));appendLog(seo,'seo_page_overrides',String(result.path),before?'UPDATE':'INSERT',before,result,admin.login)}
+    else if(action==='delete-page'){const path=String(body.path||'');const before=seo.overrides.find((x:any)=>x.path===path)||null;seo.overrides=seo.overrides.filter((x:any)=>x.path!==path);result={deleted:true};appendLog(seo,'seo_page_overrides',path,'DELETE',before,null,admin.login)}
+    else if(action==='upsert-target'){const payload={...(body.data||{})};const at=payload.id?seo.targets.findIndex((x:any)=>Number(x.id)===Number(payload.id)):-1;const before=at>=0?seo.targets[at]:null;result={...(before||{}),...payload,id:payload.id?Number(payload.id):nextTargetId(seo.targets),updated_at:now()};if(at>=0)seo.targets[at]=result;else seo.targets.push(result);seo.targets.sort((a:any,b:any)=>Number(b.priority||0)-Number(a.priority||0)||String(a.query||'').localeCompare(String(b.query||'')));appendLog(seo,'seo_query_targets',String(result.id),before?'UPDATE':'INSERT',before,result,admin.login)}
+    else if(action==='delete-target'){const id=Number(body.id);const before=seo.targets.find((x:any)=>Number(x.id)===id)||null;seo.targets=seo.targets.filter((x:any)=>Number(x.id)!==id);result={deleted:true};appendLog(seo,'seo_query_targets',String(id),'DELETE',before,null,admin.login)}
+    else throw new Error('Unknown action.');
+    await writeSeo(token,file.sha,seo);refresh();return json(request,{ok:true,result,backend:'github',branch:branch()});
+  }catch(error:any){return json(request,{error:error?.message||'Request failed.'},400)}}
