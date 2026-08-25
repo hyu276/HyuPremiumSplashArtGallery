@@ -8,15 +8,21 @@ interface Env {
 type GitHubRepo = { permissions?: { push?: boolean; admin?: boolean } };
 type GitHubUser = { login?: string };
 
-const ALLOWED_ORIGINS = new Set([
-  'https://hyupremium.vercel.app',
-  'https://hyu276.github.io'
-]);
+function allowedOrigin(origin: string) {
+  if (!origin) return '';
+  try {
+    const url = new URL(origin);
+    if (url.protocol === 'http:' && (url.hostname === 'localhost' || url.hostname === '127.0.0.1')) return origin;
+    if (url.protocol !== 'https:') return '';
+    if (url.hostname === 'hyupremium.vercel.app' || url.hostname.endsWith('.vercel.app') || url.hostname === 'hyu276.github.io') return origin;
+  } catch {}
+  return '';
+}
 
 function cors(request: Request) {
-  const origin = request.headers.get('Origin') || '';
+  const origin = allowedOrigin(request.headers.get('Origin') || '');
   return {
-    'Access-Control-Allow-Origin': ALLOWED_ORIGINS.has(origin) ? origin : 'https://hyupremium.vercel.app',
+    'Access-Control-Allow-Origin': origin || 'https://hyupremium.vercel.app',
     'Access-Control-Allow-Methods': 'GET,HEAD,PUT,DELETE,OPTIONS',
     'Access-Control-Allow-Headers': 'authorization,content-type,x-hyu-migration-key',
     'Access-Control-Max-Age': '86400',
