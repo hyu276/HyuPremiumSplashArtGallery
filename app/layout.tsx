@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Noto_Serif, Roboto } from 'next/font/google';
 import { getSeoGlobalSettings } from '@/lib/seo';
 import ArtworkTitleFitter from '@/components/ArtworkTitleFitter';
 import './globals.css';
@@ -8,6 +9,22 @@ import './mobile-artwork-type.css';
 import './mobile-gallery-filters.css';
 import './motion.css';
 import './title-fit-motion-compat.css';
+
+const hyuSans = Roboto({
+  subsets: ['latin', 'vietnamese'],
+  weight: ['400', '500', '600', '700', '800', '900'],
+  style: ['normal'],
+  display: 'swap',
+  variable: '--font-hyu-sans'
+});
+
+const hyuSerif = Noto_Serif({
+  subsets: ['latin', 'vietnamese'],
+  weight: ['400'],
+  style: ['normal', 'italic'],
+  display: 'swap',
+  variable: '--font-hyu-serif'
+});
 
 export async function generateMetadata():Promise<Metadata>{
   const seo=await getSeoGlobalSettings();
@@ -24,5 +41,5 @@ export async function generateMetadata():Promise<Metadata>{
 }
 
 export default function RootLayout({children}:{children:React.ReactNode}){
-  return <html lang="vi"><body>{children}<ArtworkTitleFitter/></body></html>;
+  return <html lang="vi" className={`${hyuSans.variable} ${hyuSerif.variable}`}><body>{children}<ArtworkTitleFitter/></body></html>;
 }
