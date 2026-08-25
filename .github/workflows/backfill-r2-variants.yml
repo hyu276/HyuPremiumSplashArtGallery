@@ -1,0 +1,56 @@
+name: Backfill R2 responsive derivatives
+
+on:
+  push:
+    branches:
+      - hardening/egress-zero
+    paths:
+      - 'scripts/backfill-r2-variants.mjs'
+      - '.github/workflows/backfill-r2-variants.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: hyu-r2-variant-backfill
+  cancel-in-progress: false
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: hardening/egress-zero
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate Cloudflare credentials
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "${CLOUDFLARE_ACCOUNT_ID:-}"
+          test -n "${CLOUDFLARE_API_TOKEN:-}"
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Generate and upload derivatives
+        run: node scripts/backfill-r2-variants.mjs
+      - name: Verify egress safety
+        run: node scripts/assert-egress-safety.mjs
+      - name: Commit catalogue metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- data/backend/catalogue.json; then
+            echo 'Catalogue already contains all derivatives.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/backend/catalogue.json
+          git commit -m 'media: backfill responsive R2 derivatives'
+          git push origin HEAD:hardening/egress-zero
