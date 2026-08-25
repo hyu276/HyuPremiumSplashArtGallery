@@ -26,6 +26,7 @@ jobs:
       - uses: actions/checkout@v6
         with:
           ref: hardening/egress-zero
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -41,7 +42,7 @@ jobs:
         run: node scripts/backfill-r2-variants.mjs
       - name: Verify egress safety
         run: node scripts/assert-egress-safety.mjs
-      - name: Commit catalogue metadata
+      - name: Commit catalogue metadata safely
         shell: bash
         run: |
           set -euo pipefail
@@ -49,6 +50,11 @@ jobs:
             echo 'Catalogue already contains all derivatives.'
             exit 0
           fi
+          cp data/backend/catalogue.json /tmp/catalogue.backfill.json
+          git fetch origin hardening/egress-zero
+          git reset --hard origin/hardening/egress-zero
+          cp /tmp/catalogue.backfill.json data/backend/catalogue.json
+          node scripts/assert-egress-safety.mjs
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add data/backend/catalogue.json
