@@ -7,6 +7,7 @@ import '../assets/css/desktop-gallery.css';
 import './mobile-artwork-type.css';
 import './mobile-gallery-filters.css';
 import './motion.css';
+import './title-fit-motion-compat.css';
 
 export async function generateMetadata():Promise<Metadata>{
   const seo=await getSeoGlobalSettings();
