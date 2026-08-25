@@ -72,6 +72,15 @@ export default function ArtworkTitleFitter(){
       });
     };
 
+    const onResize=()=>schedule(catalog||document);
+    const onFontsDone=()=>schedule(catalog||document);
+    const onTransitionEnd=(event:TransitionEvent)=>{
+      const target=event.target;
+      if(!(target instanceof HTMLElement)||!target.matches('.card-copy'))return;
+      if(event.propertyName!=='left'&&event.propertyName!=='right')return;
+      schedule((target.closest('.art-card') as HTMLElement|null)||catalog||document);
+    };
+
     const attach=()=>{
       if(cancelled)return;
       catalog=document.querySelector<HTMLElement>('#catalog');
@@ -83,11 +92,12 @@ export default function ArtworkTitleFitter(){
       schedule(catalog);
       observer=new MutationObserver(()=>schedule(catalog||document));
       observer.observe(catalog,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});
-      window.addEventListener('resize',()=>schedule(catalog||document),{passive:true});
+      window.addEventListener('resize',onResize,{passive:true});
+      catalog.addEventListener('transitionend',onTransitionEnd);
 
       if(document.fonts?.ready){
-        document.fonts.ready.then(()=>schedule(catalog||document));
-        document.fonts.addEventListener?.('loadingdone',()=>schedule(catalog||document));
+        document.fonts.ready.then(onFontsDone);
+        document.fonts.addEventListener?.('loadingdone',onFontsDone);
       }
     };
 
@@ -96,6 +106,9 @@ export default function ArtworkTitleFitter(){
       cancelled=true;
       cancelAnimationFrame(frame);
       observer?.disconnect();
+      window.removeEventListener('resize',onResize);
+      catalog?.removeEventListener('transitionend',onTransitionEnd);
+      document.fonts?.removeEventListener?.('loadingdone',onFontsDone);
     };
   },[]);
 
