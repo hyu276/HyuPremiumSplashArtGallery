@@ -1,6 +1,6 @@
 'use client';
 
-import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { memo, useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
 import type { Artwork, Catalogue } from '@/lib/catalogue';
 import { artworkPath, slug } from '@/lib/catalogue';
 
@@ -22,6 +22,7 @@ const RANK_GRADIENTS: Record<string,string> = {
 
 type SearchToken={text:string;quoted:boolean};
 type FilterOption={value:string;label:string};
+type MotionDocument=Document&{startViewTransition?:(update:()=>void)=>unknown};
 
 function norm(value:string){return String(value??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\s+/g,' ').trim()}
 function parseQuery(query:string){
@@ -66,6 +67,13 @@ function shuffledIds(items:Artwork[]){
   for(let i=copy.length-1;i>0;i--){const j=Math.floor(randomUnit()*(i+1));[copy[i],copy[j]]=[copy[j],copy[i]]}
   return copy.slice(0,Math.min(INITIAL_RANDOM_COUNT,copy.length)).map(item=>item.id);
 }
+function runMotionTransition(update:()=>void){
+  if(typeof document==='undefined'||typeof window==='undefined'||window.matchMedia?.('(prefers-reduced-motion: reduce)').matches){update();return}
+  const start=(document as MotionDocument).startViewTransition;
+  if(typeof start==='function'){start.call(document,update);return}
+  update();
+}
+function artworkTransitionName(id:string){return `hyu-artwork-${id.replace(/[^a-zA-Z0-9_-]/g,'-')}`}
 
 function GalleryFilterControl({label,value,options,onChange,ariaLabel}:{label:string;value:string;options:FilterOption[];onChange:(value:string)=>void;ariaLabel:string}){
   const [open,setOpen]=useState(false);
@@ -134,7 +142,8 @@ const ArtworkCard = memo(function ArtworkCard({item,index,expanded,onToggle}:{it
   },[expanded,fullReady,item.image,item.thumbnail]);
 
   const imageAlt=`${item.name} — ${item.category} gaming splash art, skin rank ${item.rank}`;
-  return <button className={`art-card${expanded?' expanded':''}`} data-id={item.id} aria-expanded={expanded} aria-label={`${expanded?'Collapse':'Expand'} ${item.name}`} onClick={()=>onToggle(item)}>
+  const motionStyle={viewTransitionName:artworkTransitionName(item.id),'--art-motion-delay':`${Math.min(index,12)*18}ms`} as CSSProperties;
+  return <button style={motionStyle} className={`art-card${expanded?' expanded':''}`} data-id={item.id} aria-expanded={expanded} aria-label={`${expanded?'Collapse':'Expand'} ${item.name}`} onClick={()=>onToggle(item)}>
     <span className="art-image-layer">
       <ViewportPreview src={item.thumbnail||item.image} alt={imageAlt} eager={index<INITIAL_RANDOM_COUNT||expanded}/>
       {!EGRESS_SAFE_MODE&&expanded&&item.image!==item.thumbnail&&fullReady?<img className="full ready" src={item.image} alt="" aria-hidden="true" decoding="async" fetchPriority="high"/>:null}
@@ -187,33 +196,35 @@ export default function GalleryClient({catalogue,initialCategory,initialArtworkI
 
   const chooseCategory=(value:string)=>{
     const next=value===category&&value!=='all'?'all':value;
-    setCategory(next);setExpanded(null);syncUrl(next,null);
+    runMotionTransition(()=>{setCategory(next);setExpanded(null);syncUrl(next,null)});
   };
 
   const toggle=useCallback((item:Artwork)=>{
-    setExpanded(current=>{
+    runMotionTransition(()=>setExpanded(current=>{
       const next=current===item.id?null:item.id;
       syncUrl(category,next?item:null);
       if(next)requestAnimationFrame(()=>requestAnimationFrame(()=>document.querySelector(`[data-id="${CSS.escape(item.id)}"]`)?.scrollIntoView({behavior:'smooth',block:'center'})));
       return next;
-    });
+    }));
   },[category,syncUrl]);
 
   const showMore=()=>{
     const scrollX=window.scrollX,scrollY=window.scrollY;
-    setExpanded(null);
-    setStage(current=>current===0?(filtered.length>SECOND_BATCH_COUNT?1:2):2);
+    runMotionTransition(()=>{
+      setExpanded(null);
+      setStage(current=>current===0?(filtered.length>SECOND_BATCH_COUNT?1:2):2);
+    });
     requestAnimationFrame(()=>requestAnimationFrame(()=>window.scrollTo({left:scrollX,top:scrollY,behavior:'auto'})));
   };
 
   useEffect(()=>{
-    const onPop=()=>{
+    const onPop=()=>runMotionTransition(()=>{
       const parts=window.location.pathname.split('/').filter(Boolean);
       if(parts[0]!=='character'){setCategory('all');setExpanded(null);return}
       const cat=catalogue.items.find(item=>slug(item.category)===parts[1])?.category||'all';
       const art=parts[2]?catalogue.items.find(item=>item.category===cat&&slug(item.name||item.id)===parts[2])?.id||null:null;
       setCategory(cat);setExpanded(art);if(art)setStage(2);
-    };
+    });
     window.addEventListener('popstate',onPop);return()=>window.removeEventListener('popstate',onPop);
   },[catalogue.items]);
 
@@ -226,9 +237,9 @@ export default function GalleryClient({catalogue,initialCategory,initialArtworkI
     <label className="search-wrap"><span>⌕</span><input value={query} onChange={event=>{setQuery(event.target.value);closeExpanded()}} type="search" autoComplete="off" placeholder="Search artwork or combine properties..." title="Combine terms across name, description, category, rank, credit, tags and the Vietnamese-skin property. Example: Marja Việt Nam" aria-label="Search the gallery" aria-description="Multiple terms are combined with AND across artwork properties. Quoted phrases are exact. Vietnamese skins can be searched with Việt Nam, Vietnam or VN." /></label>
     <div className={`category-shell category-filter-shell${categoryOpen?' open is-expanded':''}`}><div className="category-row" aria-label="Filter by category"><button data-cat="all" className={category==='all'?'active':''} onClick={()=>chooseCategory('all')}>All</button>{catalogue.categories.map(value=><button data-cat={value} key={value} className={category===value?'active':''} onClick={()=>chooseCategory(value)}>{value}</button>)}</div><button className="category-toggle category-filter-toggle" onClick={()=>setCategoryOpen(current=>!current)} aria-label="Toggle category list" aria-expanded={categoryOpen}><span className="category-filter-label">Categories</span><span className="category-filter-icon" aria-hidden="true"></span></button></div>
     <div className="select-row">
-      <div className="vietnamese-skin-filter"><button type="button" className="vietnamese-skin-switch" role="switch" aria-checked={vietnameseOnly} aria-label="Chỉ xem skin Việt Nam?" onClick={()=>{setVietnameseOnly(current=>!current);closeExpanded()}}><span className="vietnamese-skin-track" aria-hidden="true"><span className="vietnamese-skin-knob"></span></span><span>Chỉ xem skin Việt Nam?</span></button></div>
-      <GalleryFilterControl label="Skin rank" value={rank} options={rankOptions} ariaLabel="Filter by skin rank" onChange={value=>{setRank(value);closeExpanded()}}/>
-      <GalleryFilterControl label="Image credit" value={credit} options={creditOptions} ariaLabel="Filter by image credit" onChange={value=>{setCredit(value);closeExpanded()}}/>
+      <div className="vietnamese-skin-filter"><button type="button" className="vietnamese-skin-switch" role="switch" aria-checked={vietnameseOnly} aria-label="Chỉ xem skin Việt Nam?" onClick={()=>runMotionTransition(()=>{setVietnameseOnly(current=>!current);closeExpanded()})}><span className="vietnamese-skin-track" aria-hidden="true"><span className="vietnamese-skin-knob"></span></span><span>Chỉ xem skin Việt Nam?</span></button></div>
+      <GalleryFilterControl label="Skin rank" value={rank} options={rankOptions} ariaLabel="Filter by skin rank" onChange={value=>runMotionTransition(()=>{setRank(value);closeExpanded()})}/>
+      <GalleryFilterControl label="Image credit" value={credit} options={creditOptions} ariaLabel="Filter by image credit" onChange={value=>runMotionTransition(()=>{setCredit(value);closeExpanded()})}/>
     </div>
   </>;
 
@@ -239,12 +250,12 @@ export default function GalleryClient({catalogue,initialCategory,initialArtworkI
     <button type="button" className="mobile-filter-launcher" aria-haspopup="dialog" aria-expanded={mobileFiltersOpen} onClick={()=>setMobileFiltersOpen(true)}>
       <span className="mobile-filter-launcher-icon" aria-hidden="true">⌕</span><span className="mobile-filter-launcher-label">Search &amp; filters</span><span className="mobile-filter-launcher-chevron" aria-hidden="true">⌄</span>
     </button>
-    {mobileFiltersOpen?<div className="mobile-filter-layer" onClick={event=>{if(event.target===event.currentTarget)setMobileFiltersOpen(false)}}>
-      <div className={`filter-deck mobile-filter-popup${categoryOpen?' category-expanded':''}`} role="dialog" aria-modal="true" aria-label="Gallery search and filters" onClick={event=>event.stopPropagation()}>
+    <div className={`mobile-filter-layer ${mobileFiltersOpen?'is-open':'is-closed'}`} aria-hidden={!mobileFiltersOpen} onClick={event=>{if(event.target===event.currentTarget)setMobileFiltersOpen(false)}}>
+      <div className={`filter-deck mobile-filter-popup${categoryOpen?' category-expanded':''}`} role="dialog" aria-modal={mobileFiltersOpen} aria-label="Gallery search and filters" onClick={event=>event.stopPropagation()}>
         <div className="mobile-filter-popup-head"><span>Search &amp; filters</span><button type="button" className="mobile-filter-popup-close" aria-label="Close search and filters" onClick={()=>setMobileFiltersOpen(false)}>×</button></div>
         {renderFilters()}
       </div>
-    </div>:null}
+    </div>
     <div className="results-line"><div><strong>{String(filtered.length).padStart(2,'0')}</strong><span>{filtered.length===1?'artwork':'artworks'} in view</span></div></div>
     {visible.length?<div className="gallery-grid">{visible.map((item,index)=><ArtworkCard key={item.id} item={item} index={index} expanded={expanded===item.id} onToggle={toggle}/>)}</div>:<div className="empty-state">Nothing in view.</div>}
     {showProgressive?<div className="gallery-progressive-controls"><button type="button" className="gallery-view-all" onClick={showMore}>View all</button><div className="gallery-progressive-note">{progressiveNote}</div></div>:null}
