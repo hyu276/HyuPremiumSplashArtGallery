@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-27T14:16:34.977Z",
+  "generatedAt": "2026-08-27T14:18:02.841Z",
   "items": [
     {
       "id": "en-tho-bang-gia-2",
@@ -8073,10 +8073,6 @@
       "credit": "Raphena",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/hac-nguyet-ma-than-1787840134450.jpg",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hac-nguyet-ma-than-09526865cacf-1600.webp",
-      "tags": [],
-      "hidden": false,
-      "isVietnameseSkin": false,
-      "updatedAt": "2026-08-27T14:15:34.450Z",
       "variants": {
         "640": {
           "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hac-nguyet-ma-than-09526865cacf-640.webp",
@@ -8108,7 +8104,11 @@
           "bytes": 411791,
           "mimeType": "image/jpeg"
         }
-      }
+      },
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-08-27T14:17:03.476Z"
     },
     {
       "id": "nguyet-ma-mong-ky",
