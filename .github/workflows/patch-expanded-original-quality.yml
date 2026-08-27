@@ -1,0 +1,41 @@
+name: Patch expanded original quality
+
+on:
+  push:
+    branches: [fix/expanded-original-quality]
+    paths:
+      - 'scripts/patch-expanded-original-quality.mjs'
+      - '.github/workflows/patch-expanded-original-quality.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: patch-expanded-original-quality
+  cancel-in-progress: true
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: fix/expanded-original-quality
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply quality patch
+        run: node scripts/patch-expanded-original-quality.mjs
+      - name: Commit patched files
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add components/GalleryClient.tsx scripts/assert-egress-safety.mjs
+          git diff --cached --quiet && { echo 'No patch output'; exit 1; }
+          git commit -m 'fix: restore uploaded original for expanded artwork'
+          git pull --rebase origin fix/expanded-original-quality
+          git push origin HEAD:fix/expanded-original-quality
