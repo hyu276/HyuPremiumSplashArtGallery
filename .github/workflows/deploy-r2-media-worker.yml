@@ -40,45 +40,62 @@ jobs:
       - name: Deploy worker
         shell: bash
         run: npx --yes wrangler@latest deploy --config "$WRANGLER_CONFIG"
-      - name: Verify worker health and real edge cache
+      - name: Resolve worker URL and probe object
         shell: bash
         run: |
           set -euo pipefail
           json=$(curl -fsS -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" -H 'Content-Type: application/json' "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/workers/subdomain")
           subdomain=$(printf '%s' "$json" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{const j=JSON.parse(s);if(!j.success||!j.result?.subdomain)process.exit(2);process.stdout.write(j.result.subdomain)})")
           base="https://hyu-premium-media.${subdomain}.workers.dev"
+          media_url=$(node -e "const c=require('./data/backend/catalogue.json');const i=c.items.find(x=>!x.hidden&&x.variants?.['640']?.url);if(!i)process.exit(2);process.stdout.write(i.variants['640'].url)")
+          echo "MEDIA_BASE=$base" >> "$GITHUB_ENV"
+          echo "MEDIA_URL=$media_url" >> "$GITHUB_ENV"
+          echo "Worker: $base"
+          echo "Probe: $media_url"
+      - name: Verify worker health
+        shell: bash
+        run: |
+          set -euo pipefail
+          ok=0
           for attempt in $(seq 1 12); do
-            if health=$(curl -fsS "$base/health"); then
-              echo "$health" | grep -q '"cacheMode":"workers-caching"'
-              echo "$health" | grep -q '"range":"edge-sliced"'
-              break
+            if health=$(curl -fsS "$MEDIA_BASE/health"); then
+              echo "$health"
+              if echo "$health" | grep -q '"cacheMode":"workers-caching"' && echo "$health" | grep -q '"range":"edge-sliced"'; then ok=1; break; fi
             fi
             sleep 5
           done
-          echo "Worker healthy: $base"
-
-          media_url=$(node -e "const c=require('./data/backend/catalogue.json');const i=c.items.find(x=>!x.hidden&&x.variants?.['640']?.url);if(!i)process.exit(2);process.stdout.write(i.variants['640'].url)")
-          echo "Probe object: $media_url"
-
+          test "$ok" = "1" || { echo '::error::Worker health contract failed'; exit 1; }
+      - name: Verify real Workers Caching HIT
+        shell: bash
+        run: |
+          set -euo pipefail
           hit=0
-          for attempt in $(seq 1 8); do
-            curl -fsS -D /tmp/media-headers -o /dev/null "$media_url"
-            cat /tmp/media-headers
+          for attempt in $(seq 1 10); do
+            curl -fsS -D /tmp/media-headers -o /dev/null "$MEDIA_URL"
+            tr -d '\r' </tmp/media-headers
             status=$(tr -d '\r' </tmp/media-headers | awk 'BEGIN{IGNORECASE=1}/^cf-cache-status:/{print $2}' | tail -1)
+            echo "attempt=$attempt cf-cache-status=${status:-missing}"
             if [ "$status" = "HIT" ]; then hit=1; break; fi
             sleep 1
           done
           test "$hit" = "1" || { echo '::error::Workers Caching never produced CF-Cache-Status: HIT'; exit 1; }
-
-          curl -fsS -D /tmp/range-headers -H 'Range: bytes=0-1023' -o /tmp/range-body "$media_url"
-          cat /tmp/range-headers
-          grep -Eq '^HTTP/[0-9.]+ 206' /tmp/range-headers
+      - name: Verify cached Range 206
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsS -D /tmp/range-headers -H 'Range: bytes=0-1023' -o /tmp/range-body "$MEDIA_URL"
+          tr -d '\r' </tmp/range-headers
+          tr -d '\r' </tmp/range-headers | grep -Eq '^HTTP/[0-9.]+ 206'
           test "$(wc -c </tmp/range-body | tr -d ' ')" = "1024"
-          grep -Eiq '^cf-cache-status: HIT' /tmp/range-headers
-
-          probe_url="${media_url}?hyu_cache_bust=$(date +%s%N)"
+          tr -d '\r' </tmp/range-headers | grep -Eiq '^cf-cache-status: HIT'
+      - name: Verify query canonicalization
+        shell: bash
+        run: |
+          set -euo pipefail
+          probe_url="${MEDIA_URL}?hyu_cache_bust=$(date +%s%N)"
           curl -sS -D /tmp/query-headers -o /dev/null "$probe_url"
-          cat /tmp/query-headers
-          grep -Eq '^HTTP/[0-9.]+ 308' /tmp/query-headers
-          grep -Eiq '^location: .*\/media\/[^?]+$' /tmp/query-headers
-          echo 'Workers Caching, Range 206, and query canonicalization verified.'
+          tr -d '\r' </tmp/query-headers
+          tr -d '\r' </tmp/query-headers | grep -Eq '^HTTP/[0-9.]+ 308'
+          location=$(tr -d '\r' </tmp/query-headers | awk 'BEGIN{IGNORECASE=1}/^location:/{sub(/^location:[[:space:]]*/,"");print}' | tail -1)
+          test "$location" = "$MEDIA_URL" || { echo "::error::Expected clean Location $MEDIA_URL but got $location"; exit 1; }
+          echo 'Workers Caching, cached Range, and query canonicalization verified.'
