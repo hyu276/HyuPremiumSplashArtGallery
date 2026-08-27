@@ -20,6 +20,8 @@ async function filesUnder(dir){
   }
   return out;
 }
+function percentile(values,p){if(!values.length)return 0;const sorted=[...values].sort((a,b)=>a-b);return sorted[Math.min(sorted.length-1,Math.ceil(sorted.length*p)-1)];}
+function average(values){return values.length?Math.round(values.reduce((sum,n)=>sum+n,0)/values.length):0;}
 
 const failures=[];
 for(const root of SCAN_ROOTS){
@@ -35,6 +37,7 @@ const catalogue=JSON.parse(await readFile(join(ROOT,'data/backend/catalogue.json
 if(catalogue.ready!==true)failures.push('data/backend/catalogue.json: ready must be true');
 if(!Array.isArray(catalogue.items)||!catalogue.items.length)failures.push('data/backend/catalogue.json: items missing');
 const publicItems=(catalogue.items||[]).filter(item=>!item.hidden);
+const derivativeBytes={'640':[],'960':[],'1600':[]};
 for(const item of catalogue.items||[]){
   const id=String(item.id||'<unknown>');
   for(const key of ['source','sourceId','sourceOptions'])if(Object.hasOwn(item,key))failures.push(`${id}: obsolete collaborator field ${key}`);
@@ -48,15 +51,30 @@ for(const item of catalogue.items||[]){
     const variant=variants[width];
     if(!variant?.url)failures.push(`${id}: missing ${width}px derivative`);
     else if(String(variant.url).toLowerCase().includes('supabase'))failures.push(`${id}: ${width}px derivative references Supabase`);
+    if(variant?.mimeType!=='image/webp')failures.push(`${id}: ${width}px derivative must be image/webp`);
   }
   const limits={640:220*1024,960:360*1024,1600:650*1024};
   for(const [width,limit] of Object.entries(limits)){
     const bytes=Number(variants[width]?.bytes||0);
     if(!bytes)failures.push(`${id}: ${width}px derivative missing byte metadata`);
-    else if(bytes>limit)failures.push(`${id}: ${width}px derivative ${bytes} bytes exceeds ${limit}`);
+    else {
+      derivativeBytes[width].push(bytes);
+      if(bytes>limit)failures.push(`${id}: ${width}px derivative ${bytes} bytes exceeds ${limit}`);
+    }
   }
 }
 if(publicItems.some(item=>!item.thumbnail))failures.push('public catalogue contains artwork without thumbnail');
+
+const aggregateBudgets={
+  '640':{avg:150*1024,p95:210*1024},
+  '960':{avg:250*1024,p95:340*1024},
+  '1600':{avg:450*1024,p95:620*1024}
+};
+for(const [width,budget] of Object.entries(aggregateBudgets)){
+  const values=derivativeBytes[width];const avg=average(values),p95=percentile(values,0.95);
+  if(avg>budget.avg)failures.push(`${width}px derivative average ${avg} exceeds aggregate budget ${budget.avg}`);
+  if(p95>budget.p95)failures.push(`${width}px derivative p95 ${p95} exceeds aggregate budget ${budget.p95}`);
+}
 
 const team=JSON.parse(await readFile(join(ROOT,'data/backend/team.json'),'utf8'));
 for(const member of team){
@@ -67,6 +85,7 @@ for(const member of team){
     const v=member?.variants?.[width];
     if(!v?.url)failures.push(`${id}: missing ${width}px derivative`);
     else if(String(v.url).toLowerCase().includes('supabase'))failures.push(`${id}: ${width}px derivative references Supabase`);
+    if(v?.mimeType!=='image/webp')failures.push(`${id}: ${width}px derivative must be image/webp`);
     const bytes=Number(v?.bytes||0);
     if(!bytes)failures.push(`${id}: ${width}px derivative missing byte metadata`);
     else if(bytes>limit)failures.push(`${id}: ${width}px derivative ${bytes} bytes exceeds ${limit}`);
@@ -78,11 +97,22 @@ if(!gallery.includes('const INITIAL_RANDOM_COUNT=6'))failures.push('gallery init
 if(!gallery.includes('const SECOND_BATCH_COUNT=30'))failures.push('gallery second batch budget must remain 30');
 if(gallery.includes('loader.src=item.image'))failures.push('gallery must not preload original artwork automatically');
 if(!gallery.includes('srcSet='))failures.push('gallery must use responsive image srcSet');
-if(!gallery.includes("artworkPreview(item,expanded?1600:960)"))failures.push('gallery expansion must use derivative, not original');
+if(!gallery.includes("artworkPreview(item,expanded?1600:960)"))failures.push('expanded artwork must remain at the existing 1600px derivative quality');
+
+const imageSitemap=await readFile(join(ROOT,'app/image-sitemap.xml/route.ts'),'utf8');
+if(!imageSitemap.includes('image=artworkPreview(item,1600)'))failures.push('image sitemap must publish the 1600px derivative');
+if(imageSitemap.includes('override?.og_image||item.image')||imageSitemap.includes('image=item.image'))failures.push('image sitemap must not publish artwork originals');
+
+const characterPage=await readFile(join(ROOT,'app/character/[[...segments]]/page.tsx'),'utf8');
+if(characterPage.includes('contentUrl:artwork.image'))failures.push('artwork JSON-LD must not advertise original media to crawlers');
+if(!characterPage.includes("contentUrl:crawlerImage?.url||artworkPreview(artwork,1600)"))failures.push('artwork JSON-LD must publish the 1600px derivative');
 
 const admin=await readFile(join(ROOT,'components/GitHubAdminDashboard.tsx'),'utf8');
 if(admin.includes('makeThumbnail(')||admin.includes('uploadThumbnail='))failures.push('admin must not generate duplicate client-side thumbnails');
 if(!admin.includes('className="admin-thumb"')||!admin.includes('loading="lazy" decoding="async"'))failures.push('admin list images must lazy-load');
+if(!admin.includes('queueUnusedArtworkMedia'))failures.push('admin must garbage collect artwork originals/thumbnails/derivatives');
+if(!admin.includes('deleteUnusedTeamMedia'))failures.push('admin must garbage collect team originals/derivatives');
+if(!admin.includes('variants:imageChanged?undefined:old?.variants'))failures.push('metadata-only artwork edits must preserve derivatives and avoid reprocessing originals');
 
 const worker=await readFile(join(ROOT,'cloudflare/r2-media-worker/src/index.ts'),'utf8');
 if(worker.includes('caches.default'))failures.push('worker must use Workers Caching, not Cache API on workers.dev');
@@ -102,4 +132,4 @@ if(failures.length){
   for(const failure of failures)console.error(` - ${failure}`);
   process.exit(1);
 }
-console.log(`Egress safety gate passed: ${catalogue.items.length} artworks, ${publicItems.length} public, ${team.length} team members, Workers Caching enabled, zero Supabase runtime paths.`);
+console.log(`Egress safety gate passed: ${catalogue.items.length} artworks, ${publicItems.length} public, ${team.length} team members; 1600px expanded quality preserved; SEO uses derivatives; aggregate media budgets healthy.`);
