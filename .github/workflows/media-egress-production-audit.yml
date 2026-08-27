@@ -1,0 +1,89 @@
+name: Media egress production audit
+
+on:
+  schedule:
+    - cron: '17 4 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: media-egress-production-audit
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Prepare deterministic media sample
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .tmp
+          node <<'NODE' > .tmp/media-sample.tsv
+          const c=require('./data/backend/catalogue.json');
+          const items=c.items.filter(x=>!x.hidden&&x.variants?.['640']?.url&&x.variants?.['960']?.url&&x.variants?.['1600']?.url);
+          if(items.length<3)process.exit(2);
+          const picked=[items[0],items[Math.floor(items.length/2)],items[items.length-1]];
+          for(const item of picked)for(const width of ['640','960','1600']){
+            const v=item.variants[width];console.log([item.id,width,v.bytes,v.mimeType,v.url].join('\t'));
+          }
+          NODE
+          cat .tmp/media-sample.tsv
+      - name: Verify actual R2 object headers match GitHub metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          while IFS=$'\t' read -r id width expected_bytes expected_type url; do
+            curl -fsSI "$url" -o /tmp/headers
+            tr -d '\r' </tmp/headers
+            actual_bytes=$(tr -d '\r' </tmp/headers | awk 'BEGIN{IGNORECASE=1}/^content-length:/{print $2}' | tail -1)
+            actual_type=$(tr -d '\r' </tmp/headers | awk 'BEGIN{IGNORECASE=1}/^content-type:/{print $2}' | tail -1)
+            test "$actual_bytes" = "$expected_bytes" || { echo "::error::$id ${width}px content-length $actual_bytes != metadata $expected_bytes"; exit 1; }
+            test "$actual_type" = "$expected_type" || { echo "::error::$id ${width}px content-type $actual_type != metadata $expected_type"; exit 1; }
+          done < .tmp/media-sample.tsv
+      - name: Verify Cloudflare cache HIT and Range semantics
+        shell: bash
+        run: |
+          set -euo pipefail
+          media_url=$(awk -F'\t' '$2=="640"{print $5;exit}' .tmp/media-sample.tsv)
+          hit=0
+          for attempt in $(seq 1 10); do
+            curl -fsS -D /tmp/cache-headers -o /dev/null "$media_url"
+            status=$(tr -d '\r' </tmp/cache-headers | awk 'BEGIN{IGNORECASE=1}/^cf-cache-status:/{print $2}' | tail -1)
+            echo "attempt=$attempt cf-cache-status=${status:-missing}"
+            if [ "$status" = "HIT" ]; then hit=1; break; fi
+            sleep 1
+          done
+          test "$hit" = "1" || { echo '::error::Production media did not produce CF-Cache-Status: HIT'; exit 1; }
+          curl -fsS -D /tmp/range-headers -H 'Range: bytes=0-1023' -o /tmp/range-body "$media_url"
+          tr -d '\r' </tmp/range-headers | grep -Eq '^HTTP/[0-9.]+ 206'
+          tr -d '\r' </tmp/range-headers | grep -Eiq '^content-range: bytes 0-1023/'
+          test "$(wc -c </tmp/range-body | tr -d ' ')" = "1024"
+      - name: Verify production sitemap and JSON-LD never advertise originals
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsS https://hyupremium.vercel.app/image-sitemap.xml -o /tmp/image-sitemap.xml
+          ! grep -Eq '/media/(legacy/|artworks/originals/)' /tmp/image-sitemap.xml
+          grep -Eq -- '-1600\.webp' /tmp/image-sitemap.xml
+          node <<'NODE'
+          const c=require('./data/backend/catalogue.json');
+          const item=c.items.find(x=>!x.hidden&&x.variants?.['1600']?.url);
+          const slug=v=>String(v??'').replace(/Đ/g,'D').replace(/đ/g,'d').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'')||'item';
+          const path=`/character/${slug(item.category)}/${slug(item.name||item.id)}/`;
+          const html=await fetch(`https://hyupremium.vercel.app${path}`).then(r=>{if(!r.ok)throw new Error(`artwork page ${r.status}`);return r.text()});
+          const blocks=[...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(m=>m[1]);
+          const docs=blocks.map(raw=>{try{return JSON.parse(raw)}catch{return null}}).filter(Boolean);
+          const nodes=docs.flatMap(doc=>Array.isArray(doc?.['@graph'])?doc['@graph']:[doc]);
+          const image=nodes.find(node=>node?.['@type']==='ImageObject');
+          if(!image)throw new Error('ImageObject JSON-LD not found');
+          if(image.contentUrl!==item.variants['1600'].url)throw new Error(`JSON-LD contentUrl is not 1600 derivative: ${image.contentUrl}`);
+          if(image.contentUrl===item.image)throw new Error('JSON-LD advertises original image');
+          console.log(`Verified ${path} JSON-LD -> 1600 derivative`);
+          NODE
