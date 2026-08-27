@@ -27,6 +27,7 @@ function patchGithubPatAuth(input:string){
   );
   html=html.replace('Sign in</button>','Đăng nhập bằng GitHub PAT</button>');
   html=html.replace('Sign out</button>','Đăng xuất</button>');
+  html=html.replace('50 thay đổi SEO gần nhất từ Supabase.','50 thay đổi SEO gần nhất từ metadata GitHub.');
   return html;
 }
 
