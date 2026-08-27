@@ -130,8 +130,10 @@ const ViewportPreview=memo(function ViewportPreview({src,srcSet,sizes,alt,eager}
 const ArtworkCard = memo(function ArtworkCard({item,index,expanded,onToggle}:{item:Artwork;index:number;expanded:boolean;onToggle:(item:Artwork)=>void}){
   const imageAlt=`${item.name} — ${item.category}, splash art game, hạng skin ${item.rank}`;
   const motionStyle={viewTransitionName:artworkTransitionName(item.id),'--art-motion-delay':`${Math.min(index,12)*18}ms`} as CSSProperties;
-  const src=artworkPreview(item,expanded?1600:960);
-  const srcSet=artworkSrcSet(item);
+  // Collapsed cards stay responsive; an expanded card loads the exact uploaded original.
+  // Do not attach the derivative srcSet while expanded: browsers may otherwise select 1600px WebP instead of the original.
+  const src=expanded?(item.media?.original?.url||item.image):artworkPreview(item,960);
+  const srcSet=expanded?'':artworkSrcSet(item);
   const sizes=expanded?'(max-width: 760px) 96vw, 92vw':'(max-width: 760px) 50vw, (max-width: 1200px) 50vw, 33vw';
   return <button style={motionStyle} className={`art-card${expanded?' expanded':''}`} data-id={item.id} aria-expanded={expanded} aria-label={`${expanded?'Thu gọn':'Mở rộng'} ${item.name}`} onClick={()=>onToggle(item)}>
     <span className="art-image-layer">
