@@ -7,6 +7,7 @@ const OWNER='hyu276';
 const API='https://api.github.com';
 const DATA_ROOT='data/backend';
 const VARIANT_WIDTHS=[640,960,1600] as const;
+const TEAM_VARIANT_WIDTHS=[320,640] as const;
 
 type GitHubUser={login?:string};
 type GitHubRepo={permissions?:{push?:boolean;admin?:boolean}};
@@ -38,6 +39,7 @@ function orderedRanks(items:any[],preferred:string[]=[]){const out:string[]=[];f
 function canonicalItem(item:any){const {source:_source,sourceId:_sourceId,sourceOptions:_sourceOptions,...rest}=item||{};return {...rest,id:String(rest.id||'')};}
 function optionsFor(catalogue:Catalogue){return {categories:catalogue.ownerOptions?.categories||catalogue.categories||[],ranks:catalogue.ownerOptions?.ranks||catalogue.ranks||[],credits:catalogue.ownerOptions?.credits||catalogue.credits||[]}}
 function mediaKey(id:string,source:string,width:number){const safe=String(id||'art').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'art';const hash=createHash('sha1').update(source).digest('hex').slice(0,12);return `artworks/variants/${safe}-${hash}-${width}.webp`}
+function teamMediaKey(id:string|number,source:string,width:number){const safe=String(id||'member').toLowerCase().replace(/[^a-z0-9]+/g,'-')||'member';const hash=createHash('sha1').update(source).digest('hex').slice(0,12);return `team/variants/${safe}-${hash}-${width}.webp`}
 function publicR2Url(base:string,key:string){return `${base.replace(/\/$/,'')}/media/${key.split('/').map(encodeURIComponent).join('/')}`}
 
 async function putR2(base:string,token:string,key:string,buffer:Buffer){
@@ -70,6 +72,15 @@ async function enrichMedia(item:any,storageBase:string,token:string){
   return next;
 }
 
+async function enrichTeamMember(member:any,storageBase:string,token:string){
+  const next={...(member||{})};if(!next.image)return next;
+  const complete=TEAM_VARIANT_WIDTHS.every(width=>next?.variants?.[String(width)]?.url);if(complete&&next.media?.original?.url)return next;
+  const response=await fetch(String(next.image),{cache:'no-store',headers:{Accept:'image/*'}});if(!response.ok)throw new Error(`Không tải được ảnh đội ngũ ${next.id} (${response.status}).`);
+  const input=Buffer.from(await response.arrayBuffer());const originalMeta=await sharp(input,{animated:false}).metadata();const variants:Record<string,MediaVariant>={...(next.variants||{})};
+  for(const width of TEAM_VARIANT_WIDTHS){if(variants[String(width)]?.url)continue;const {data,info}=await sharp(input,{animated:false}).rotate().resize({width,withoutEnlargement:true}).webp({quality:width===320?76:80,effort:4}).toBuffer({resolveWithObject:true});const key=teamMediaKey(next.id,String(next.image),width);const url=await putR2(storageBase,token,key,data);variants[String(width)]={url,width:info.width,height:info.height,bytes:data.length,mimeType:'image/webp'};}
+  next.variants=variants;next.media={...(next.media||{}),original:{url:String(next.image),width:Number(originalMeta.width)||0,height:Number(originalMeta.height)||0,bytes:input.length,mimeType:String(response.headers.get('content-type')||originalMeta.format||'application/octet-stream').split(';')[0]}};return next;
+}
+
 async function createBlob(token:string,content:string){return gh<{sha:string}>(token,`/repos/${REPO}/git/blobs`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({content,encoding:'utf-8'})})}
 async function atomicCommit(token:string,branch:string,files:Record<string,unknown>){const refPart=branch.split('/').map(encodeURIComponent).join('/');const ref=await gh<{object:{sha:string}}>(token,`/repos/${REPO}/git/ref/heads/${refPart}`);const parent=ref.object.sha;const commit=await gh<{tree:{sha:string}}>(token,`/repos/${REPO}/git/commits/${parent}`);const tree:Array<{path:string;mode:'100644';type:'blob';sha:string}>=[];for(const [file,value] of Object.entries(files)){const blob=await createBlob(token,JSON.stringify(value,null,2)+'\n');tree.push({path:file,mode:'100644',type:'blob',sha:blob.sha})}const newTree=await gh<{sha:string}>(token,`/repos/${REPO}/git/trees`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({base_tree:commit.tree.sha,tree})});const next=await gh<{sha:string}>(token,`/repos/${REPO}/git/commits`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:'content(admin): cập nhật backend GitHub từ dashboard',tree:newTree.sha,parents:[parent]})});await gh(token,`/repos/${REPO}/git/refs/heads/${refPart}`,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({sha:next.sha,force:false})});return next.sha}
 
@@ -99,7 +110,8 @@ export async function POST(request:Request){
     const ranks=orderedRanks(items,preferredRanks.map(String));
     const ownerOptions={categories,ranks,credits};
     const catalogue:Catalogue={...current,schemaVersion:2,generatedAt:new Date().toISOString(),items,categories,ranks,credits,ownerOptions};
-    const files:Record<string,unknown>={[`${DATA_ROOT}/catalogue.json`]:catalogue,[`${DATA_ROOT}/team.json`]:Array.isArray(payload.team)?payload.team:currentTeam,[`${DATA_ROOT}/seo.json`]:payload.seo!==undefined?payload.seo:currentSeo};
+    const requestedTeam=Array.isArray(payload.team)?payload.team:currentTeam;const enrichedTeam=[];for(const member of requestedTeam)enrichedTeam.push(await enrichTeamMember(member,storageBase,token));
+    const files:Record<string,unknown>={[`${DATA_ROOT}/catalogue.json`]:catalogue,[`${DATA_ROOT}/team.json`]:enrichedTeam,[`${DATA_ROOT}/seo.json`]:payload.seo!==undefined?payload.seo:currentSeo};
     const sha=await atomicCommit(token,branch,files);revalidateTag('catalogue');for(const path of ['/','/character/','/artworks/','/about/','/sitemap.xml','/image-sitemap.xml'])revalidatePath(path);
     return Response.json({ok:true,commit:sha,branch,by:admin.login,deployedByGit:true},{headers:{'Cache-Control':'no-store'}});
   }catch(error:any){const message=error?.message||'Không thể publish metadata lên GitHub.';const status=/github_pat_|Token|GitHub 401|GitHub 403|quyền|chủ repository/.test(message)?401:/409|422/.test(message)?409:500;return Response.json({error:message},{status,headers:{'Cache-Control':'no-store'}})}
