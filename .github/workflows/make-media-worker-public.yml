@@ -1,0 +1,74 @@
+name: Make HYU media worker public
+
+on:
+  push:
+    branches: [hardening/egress-no-domain-v2]
+    paths: ['.github/workflows/make-media-worker-public.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  access-bypass:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - name: Resolve Worker ID and create idempotent public bypass
+        shell: bash
+        run: |
+          set -euo pipefail
+          auth=(-H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" -H 'Content-Type: application/json')
+          curl -fsS "${auth[@]}" "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/workers/workers?per_page=100" -o /tmp/workers.json
+          worker_id=$(node - <<'NODE'
+          const j=require('/tmp/workers.json');
+          const w=(j.result||[]).find(x=>x.name==='hyu-premium-media');
+          if(!w?.id){console.error('Worker hyu-premium-media not found');process.exit(2)}
+          process.stdout.write(w.id);
+          NODE
+          )
+          echo "Resolved worker id: $worker_id"
+
+          curl -fsS "${auth[@]}" "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/access/apps" -o /tmp/apps.json
+          app_id=$(WORKER_ID="$worker_id" node - <<'NODE'
+          const j=require('/tmp/apps.json');
+          const id=process.env.WORKER_ID;
+          const a=(j.result||[]).find(x=>(x.destinations||[]).some(d=>d.type==='worker'&&d.worker_id===id));
+          if(a?.id)process.stdout.write(a.id);
+          NODE
+          )
+          if [ -n "$app_id" ]; then
+            echo "Worker-specific Access application already exists: $app_id"
+          else
+            cat >/tmp/payload.json <<JSON
+          {
+            "type":"self_hosted",
+            "name":"Public HYU media worker",
+            "destinations":[{"type":"worker","worker_id":"$worker_id"}],
+            "policies":[{"name":"Public media bypass","decision":"bypass","include":[{"everyone":{}}]}],
+            "app_launcher_visible":false
+          }
+          JSON
+            code=$(curl -sS -o /tmp/create.json -w '%{http_code}' "${auth[@]}" --request POST --data @/tmp/payload.json "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/access/apps")
+            echo "Create bypass HTTP=$code"
+            node - <<'NODE'
+          const j=require('/tmp/create.json');
+          console.log(JSON.stringify({success:j.success,errors:j.errors,result:j.result?{id:j.result.id,name:j.result.name,destinations:j.result.destinations,policies:(j.result.policies||[]).map(p=>({id:p.id,name:p.name,decision:p.decision}))}:null},null,2));
+          NODE
+            test "$code" -ge 200 -a "$code" -lt 300
+          fi
+      - name: Verify public media no longer redirects to Access
+        shell: bash
+        run: |
+          set -euo pipefail
+          base='https://hyu-premium-media.csquocnguyen.workers.dev'
+          for attempt in $(seq 1 12); do
+            code=$(curl -sS -o /tmp/health -w '%{http_code}' "$base/health")
+            echo "attempt=$attempt status=$code body=$(head -c 300 /tmp/health)"
+            if [ "$code" = "200" ]; then exit 0; fi
+            sleep 5
+          done
+          echo '::error::Worker remains protected by Access'
+          exit 1
