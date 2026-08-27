@@ -1,10 +1,13 @@
 import backendCatalogue from '@/data/backend/catalogue.json';
 import backendTeam from '@/data/backend/team.json';
 
+export type TeamMediaVariant={url:string;width:number;height:number;bytes?:number;mimeType?:string};
 export type TeamMember = {
   id: number;
   name: string;
   image: string;
+  variants?: Record<string,TeamMediaVariant>;
+  media?: {original?:TeamMediaVariant};
   sort_order: number;
   facebook_url: string;
   facebook_hidden: boolean;
@@ -18,28 +21,38 @@ export type TeamMember = {
   linkedin_hidden: boolean;
 };
 
+function variant(value:any):TeamMediaVariant|undefined{
+  if(!value?.url)return undefined;
+  return {url:String(value.url),width:Number(value.width)||0,height:Number(value.height)||0,bytes:Number(value.bytes)||undefined,mimeType:value.mimeType?String(value.mimeType):undefined};
+}
+
 export async function getTeamMembers(): Promise<TeamMember[]> {
-  if ((backendCatalogue as any).ready !== true) {
-    throw new Error('GitHub backend team metadata is not ready.');
-  }
+  if ((backendCatalogue as any).ready !== true) throw new Error('GitHub backend team metadata is not ready.');
   return (backendTeam as any[])
     .filter(row=>!row?.hidden)
-    .map(row=>({
-      id:Number(row.id)||0,
-      name:String(row.name||''),
-      image:String(row.image||''),
-      sort_order:Number(row.sort_order)||0,
-      facebook_url:String(row.facebook_url||''),
-      facebook_hidden:Boolean(row.facebook_hidden),
-      tiktok_url:String(row.tiktok_url||''),
-      tiktok_hidden:Boolean(row.tiktok_hidden),
-      instagram_url:String(row.instagram_url||''),
-      instagram_hidden:Boolean(row.instagram_hidden),
-      x_url:String(row.x_url||''),
-      x_hidden:Boolean(row.x_hidden),
-      linkedin_url:String(row.linkedin_url||''),
-      linkedin_hidden:Boolean(row.linkedin_hidden)
-    }))
+    .map(row=>{
+      const variants:Record<string,TeamMediaVariant>={};
+      for(const width of ['320','640']){const v=variant(row?.variants?.[width]);if(v)variants[width]=v;}
+      const original=variant(row?.media?.original);
+      return {
+        id:Number(row.id)||0,
+        name:String(row.name||''),
+        image:String(row.image||''),
+        variants,
+        media:original?{original}:undefined,
+        sort_order:Number(row.sort_order)||0,
+        facebook_url:String(row.facebook_url||''),
+        facebook_hidden:Boolean(row.facebook_hidden),
+        tiktok_url:String(row.tiktok_url||''),
+        tiktok_hidden:Boolean(row.tiktok_hidden),
+        instagram_url:String(row.instagram_url||''),
+        instagram_hidden:Boolean(row.instagram_hidden),
+        x_url:String(row.x_url||''),
+        x_hidden:Boolean(row.x_hidden),
+        linkedin_url:String(row.linkedin_url||''),
+        linkedin_hidden:Boolean(row.linkedin_hidden)
+      };
+    })
     .sort((a,b)=>a.sort_order-b.sort_order||a.id-b.id);
 }
 

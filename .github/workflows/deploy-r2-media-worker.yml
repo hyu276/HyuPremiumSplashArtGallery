@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - main
-      - hardening/egress-zero
-      - migrate/github-metadata-cloudflare-r2
     paths:
       - 'cloudflare/r2-media-worker/**'
       - '.github/workflows/deploy-r2-media-worker.yml'
@@ -15,7 +13,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: hyu-r2-media-worker
+  group: hyu-r2-media-worker-production
   cancel-in-progress: true
 
 jobs:
@@ -36,24 +34,65 @@ jobs:
           set -euo pipefail
           test -n "${CLOUDFLARE_ACCOUNT_ID:-}"
           test -n "${CLOUDFLARE_API_TOKEN:-}"
-      - name: Deploy worker
+      - name: Deploy production worker
         shell: bash
         run: npx --yes wrangler@latest deploy --config "$WRANGLER_CONFIG"
-      - name: Verify worker health and cache headers
+      - name: Resolve production Worker and media URL
         shell: bash
         run: |
           set -euo pipefail
           json=$(curl -fsS -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" -H 'Content-Type: application/json' "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/workers/subdomain")
           subdomain=$(printf '%s' "$json" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{const j=JSON.parse(s);if(!j.success||!j.result?.subdomain)process.exit(2);process.stdout.write(j.result.subdomain)})")
           base="https://hyu-premium-media.${subdomain}.workers.dev"
+          source=$(node -e "const c=require('./data/backend/catalogue.json');const i=c.items.find(x=>!x.hidden&&x.variants?.['640']?.url);if(!i)process.exit(2);process.stdout.write(i.variants['640'].url)")
+          pathname=$(SOURCE="$source" node -e "process.stdout.write(new URL(process.env.SOURCE).pathname)")
+          echo "MEDIA_BASE=$base" >> "$GITHUB_ENV"
+          echo "MEDIA_URL=$base$pathname" >> "$GITHUB_ENV"
+          echo "Worker: $base"
+          echo "Probe media: $base$pathname"
+      - name: Verify production Worker health and public reachability
+        shell: bash
+        run: |
+          set -euo pipefail
+          ok=0
           for attempt in $(seq 1 12); do
-            if health=$(curl -fsS "$base/health"); then
-              echo "$health" | grep -q '"edgeCache":true'
-              echo "$health" | grep -q '"range":true'
-              echo "Worker healthy: $base"
-              exit 0
-            fi
+            code=$(curl -sS -o /tmp/health -w '%{http_code}' "$MEDIA_BASE/health")
+            echo "attempt=$attempt status=$code body=$(head -c 300 /tmp/health)"
+            if [ "$code" = "200" ] && grep -q '"cacheMode":"workers-caching"' /tmp/health && grep -q '"range":"edge-sliced"' /tmp/health; then ok=1; break; fi
             sleep 5
           done
-          echo '::error::Worker health check failed.'
-          exit 1
+          test "$ok" = "1" || { echo '::error::Production Worker is not publicly reachable with the expected cache mode'; exit 1; }
+      - name: Verify real Cloudflare cache HIT
+        shell: bash
+        run: |
+          set -euo pipefail
+          hit=0
+          for attempt in $(seq 1 12); do
+            curl -fsS -D /tmp/media-headers -o /dev/null "$MEDIA_URL"
+            tr -d '\r' </tmp/media-headers
+            status=$(tr -d '\r' </tmp/media-headers | awk 'BEGIN{IGNORECASE=1}/^cf-cache-status:/{print $2}' | tail -1)
+            echo "attempt=$attempt cf-cache-status=${status:-missing}"
+            if [ "$status" = "HIT" ]; then hit=1; break; fi
+            sleep 1
+          done
+          test "$hit" = "1" || { echo '::error::Production media never produced CF-Cache-Status: HIT'; exit 1; }
+      - name: Verify cached Range 206
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsS -D /tmp/range-headers -H 'Range: bytes=0-1023' -o /tmp/range-body "$MEDIA_URL"
+          tr -d '\r' </tmp/range-headers
+          tr -d '\r' </tmp/range-headers | grep -Eq '^HTTP/[0-9.]+ 206'
+          test "$(wc -c </tmp/range-body | tr -d ' ')" = "1024"
+          tr -d '\r' </tmp/range-headers | grep -Eiq '^cf-cache-status: HIT'
+      - name: Verify query canonicalization
+        shell: bash
+        run: |
+          set -euo pipefail
+          probe="${MEDIA_URL}?cache_bust=$(date +%s%N)"
+          curl -sS -D /tmp/query-headers -o /dev/null "$probe"
+          tr -d '\r' </tmp/query-headers
+          tr -d '\r' </tmp/query-headers | grep -Eq '^HTTP/[0-9.]+ 308'
+          location=$(tr -d '\r' </tmp/query-headers | awk 'BEGIN{IGNORECASE=1}/^location:/{sub(/^location:[[:space:]]*/,"");print}' | tail -1)
+          test "$location" = "$MEDIA_URL" || { echo "::error::Expected canonical Location $MEDIA_URL but got $location"; exit 1; }
+          echo 'Production Workers Caching, cached Range 206, and query canonicalization verified.'
