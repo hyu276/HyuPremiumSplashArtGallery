@@ -1,0 +1,105 @@
+name: Test HYU R2 media worker staging
+
+on:
+  push:
+    branches: [hardening/egress-no-domain-v2]
+    paths:
+      - 'cloudflare/r2-media-worker/**'
+      - '.github/workflows/test-r2-media-worker-staging.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: hyu-r2-media-worker-staging
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CONFIG: cloudflare/r2-media-worker/wrangler.staging.jsonc
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Deploy isolated staging Worker
+        run: npx --yes wrangler@latest deploy --config "$CONFIG"
+      - name: Resolve staging URL and make this Worker public
+        shell: bash
+        run: |
+          set -euo pipefail
+          auth=(-H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" -H 'Content-Type: application/json')
+          curl -fsS "${auth[@]}" "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/workers/workers?per_page=100" -o /tmp/workers.json
+          worker_id=$(node - <<'NODE'
+          const j=require('/tmp/workers.json');const w=(j.result||[]).find(x=>x.name==='hyu-premium-media-staging');if(!w?.id)process.exit(2);process.stdout.write(w.id);
+          NODE
+          )
+          curl -fsS "${auth[@]}" "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/access/apps" -o /tmp/apps.json
+          app_id=$(WORKER_ID="$worker_id" node - <<'NODE'
+          const j=require('/tmp/apps.json');const id=process.env.WORKER_ID;const a=(j.result||[]).find(x=>(x.destinations||[]).some(d=>d.type==='worker'&&d.worker_id===id));if(a?.id)process.stdout.write(a.id);
+          NODE
+          )
+          if [ -z "$app_id" ]; then
+            cat >/tmp/payload.json <<JSON
+          {"type":"self_hosted","name":"Public HYU media staging","destinations":[{"type":"worker","worker_id":"$worker_id"}],"policies":[{"name":"Public staging bypass","decision":"bypass","include":[{"everyone":{}}]}],"app_launcher_visible":false}
+          JSON
+            curl -fsS "${auth[@]}" --request POST --data @/tmp/payload.json "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/access/apps" >/tmp/create.json
+          fi
+          subjson=$(curl -fsS "${auth[@]}" "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/workers/subdomain")
+          subdomain=$(printf '%s' "$subjson" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{const j=JSON.parse(s);process.stdout.write(j.result.subdomain)})")
+          base="https://hyu-premium-media-staging.${subdomain}.workers.dev"
+          prod_url=$(node -e "const c=require('./data/backend/catalogue.json');const i=c.items.find(x=>!x.hidden&&x.variants?.['640']?.url);process.stdout.write(i.variants['640'].url)")
+          path=$(PROD_URL="$prod_url" node -e "process.stdout.write(new URL(process.env.PROD_URL).pathname)")
+          echo "STAGING_BASE=$base" >> "$GITHUB_ENV"
+          echo "STAGING_MEDIA=$base$path" >> "$GITHUB_ENV"
+          echo "Staging: $base"
+      - name: Verify public health contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          ok=0
+          for attempt in $(seq 1 12); do
+            code=$(curl -sS -o /tmp/health -w '%{http_code}' "$STAGING_BASE/health")
+            echo "attempt=$attempt status=$code body=$(head -c 300 /tmp/health)"
+            if [ "$code" = "200" ] && grep -q '"cacheMode":"workers-caching"' /tmp/health && grep -q '"range":"edge-sliced"' /tmp/health; then ok=1;break;fi
+            sleep 5
+          done
+          test "$ok" = "1"
+      - name: Verify real Workers Caching HIT
+        shell: bash
+        run: |
+          set -euo pipefail
+          hit=0
+          for attempt in $(seq 1 12); do
+            curl -fsS -D /tmp/h -o /dev/null "$STAGING_MEDIA"
+            tr -d '\r' </tmp/h
+            status=$(tr -d '\r' </tmp/h | awk 'BEGIN{IGNORECASE=1}/^cf-cache-status:/{print $2}' | tail -1)
+            echo "attempt=$attempt cf-cache-status=${status:-missing}"
+            if [ "$status" = "HIT" ];then hit=1;break;fi
+            sleep 1
+          done
+          test "$hit" = "1" || { echo '::error::No real CF-Cache-Status HIT';exit 1; }
+      - name: Verify cached Range 206
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsS -D /tmp/rh -H 'Range: bytes=0-1023' -o /tmp/rb "$STAGING_MEDIA"
+          tr -d '\r' </tmp/rh
+          tr -d '\r' </tmp/rh | grep -Eq '^HTTP/[0-9.]+ 206'
+          test "$(wc -c </tmp/rb | tr -d ' ')" = "1024"
+          tr -d '\r' </tmp/rh | grep -Eiq '^cf-cache-status: HIT'
+      - name: Verify query canonicalization
+        shell: bash
+        run: |
+          set -euo pipefail
+          probe="${STAGING_MEDIA}?cache_bust=$(date +%s%N)"
+          curl -sS -D /tmp/qh -o /dev/null "$probe"
+          tr -d '\r' </tmp/qh
+          tr -d '\r' </tmp/qh | grep -Eq '^HTTP/[0-9.]+ 308'
+          location=$(tr -d '\r' </tmp/qh | awk 'BEGIN{IGNORECASE=1}/^location:/{sub(/^location:[[:space:]]*/,"");print}' | tail -1)
+          test "$location" = "$STAGING_MEDIA"
