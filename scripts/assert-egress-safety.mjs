@@ -97,7 +97,8 @@ if(!gallery.includes('const INITIAL_RANDOM_COUNT=6'))failures.push('gallery init
 if(!gallery.includes('const SECOND_BATCH_COUNT=30'))failures.push('gallery second batch budget must remain 30');
 if(gallery.includes('loader.src=item.image'))failures.push('gallery must not preload original artwork automatically');
 if(!gallery.includes('srcSet='))failures.push('gallery must use responsive image srcSet');
-if(!gallery.includes("artworkPreview(item,expanded?1600:960)"))failures.push('expanded artwork must remain at the existing 1600px derivative quality');
+if(!gallery.includes("const src=expanded?(item.media?.original?.url||item.image):artworkPreview(item,960)"))failures.push('expanded artwork must load the exact uploaded original');
+if(!gallery.includes("const srcSet=expanded?'':artworkSrcSet(item)"))failures.push('expanded artwork must disable derivative srcSet so browsers cannot down-select it');
 
 const imageSitemap=await readFile(join(ROOT,'app/image-sitemap.xml/route.ts'),'utf8');
 if(!imageSitemap.includes('image=artworkPreview(item,1600)'))failures.push('image sitemap must publish the 1600px derivative');
@@ -132,4 +133,4 @@ if(failures.length){
   for(const failure of failures)console.error(` - ${failure}`);
   process.exit(1);
 }
-console.log(`Egress safety gate passed: ${catalogue.items.length} artworks, ${publicItems.length} public, ${team.length} team members; 1600px expanded quality preserved; SEO uses derivatives; aggregate media budgets healthy.`);
+console.log(`Egress safety gate passed: ${catalogue.items.length} artworks, ${publicItems.length} public, ${team.length} team members; expanded artwork uses exact uploaded originals; SEO/listing traffic still uses derivatives; aggregate media budgets healthy.`);
