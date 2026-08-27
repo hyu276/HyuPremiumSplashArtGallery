@@ -32,8 +32,24 @@ jobs:
           node-version: '22'
       - name: Install dependencies
         run: npm install --no-audit --no-fund
+      - name: Verify current team originals are readable
+        shell: bash
+        run: |
+          set -euo pipefail
+          node -e "const t=require('./data/backend/team.json');for(const m of t)console.log([m.id,m.image].join('\t'))" | while IFS=$'\t' read -r id url; do
+            echo "team=$id url=$url"
+            code=$(curl -sS --retry 3 --retry-delay 1 -o "/tmp/team-$id.bin" -w '%{http_code}' "$url")
+            echo "status=$code bytes=$(wc -c <"/tmp/team-$id.bin" | tr -d ' ')"
+            test "$code" = "200"
+            test -s "/tmp/team-$id.bin"
+          done
       - name: Prepare team derivatives
-        run: node scripts/backfill-team-variants.mjs
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/backfill-team-variants.mjs
+          test -f .tmp/team-uploads.json
+          test "$(node -e "const x=require('./.tmp/team-uploads.json');process.stdout.write(String(x.length))")" = "12"
       - name: Install Wrangler
         run: npm install --no-save --no-audit --no-fund wrangler@latest
       - name: Upload derivatives to R2
@@ -41,15 +57,18 @@ jobs:
         run: |
           set -euo pipefail
           node -e "const x=require('./.tmp/team-uploads.json');for(const r of x)console.log([r.key,r.file].join('\t'))" | while IFS=$'\t' read -r key file; do
-            npx wrangler r2 object put "hyu-premium-media/$key" --file "$file" --content-type image/webp --cache-control 'public, max-age=31536000, immutable' --remote --config cloudflare/r2-media-worker/wrangler.jsonc --force
+            ./node_modules/.bin/wrangler r2 object put "hyu-premium-media/$key" --file "$file" --content-type image/webp --cache-control 'public, max-age=31536000, immutable' --remote --config cloudflare/r2-media-worker/wrangler.jsonc --force
           done
       - name: Verify uploaded derivatives
         shell: bash
         run: |
           set -euo pipefail
+          count=0
           node -e "const t=require('./data/backend/team.json');for(const m of t)for(const w of ['320','640'])console.log(m.variants[w].url)" | while read -r url; do
             curl -fsS --retry 4 --retry-delay 2 -o /dev/null "$url"
+            echo "verified $url"
           done
+          test "$(node -e "const t=require('./data/backend/team.json');process.stdout.write(String(t.reduce((n,m)=>n+['320','640'].filter(w=>m.variants?.[w]?.url).length,0)))")" = "12"
       - name: Commit team metadata
         shell: bash
         run: |
