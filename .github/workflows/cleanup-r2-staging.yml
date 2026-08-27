@@ -1,0 +1,45 @@
+name: Cleanup R2 media staging
+
+on:
+  push:
+    branches: [hardening/egress-no-domain-v2]
+    paths: ['.github/workflows/cleanup-r2-staging.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - name: Remove temporary Access bypass and staging Worker
+        shell: bash
+        run: |
+          set -euo pipefail
+          auth=(-H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" -H 'Content-Type: application/json')
+          curl -fsS "${auth[@]}" "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/workers/workers?per_page=100" -o /tmp/workers.json
+          worker_id=$(node - <<'NODE'
+          const j=require('/tmp/workers.json');const w=(j.result||[]).find(x=>x.name==='hyu-premium-media-staging');if(w?.id)process.stdout.write(w.id);
+          NODE
+          )
+          if [ -n "$worker_id" ]; then
+            curl -fsS "${auth[@]}" "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/access/apps" -o /tmp/apps.json
+            app_id=$(WORKER_ID="$worker_id" node - <<'NODE'
+          const j=require('/tmp/apps.json');const id=process.env.WORKER_ID;const a=(j.result||[]).find(x=>(x.destinations||[]).some(d=>d.type==='worker'&&d.worker_id===id));if(a?.id)process.stdout.write(a.id);
+          NODE
+            )
+            if [ -n "$app_id" ]; then
+              code=$(curl -sS -o /tmp/delete-app.json -w '%{http_code}' "${auth[@]}" --request DELETE "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/access/apps/$app_id")
+              echo "Access app delete HTTP=$code"
+              test "$code" -ge 200 -a "$code" -lt 300
+            fi
+            code=$(curl -sS -o /tmp/delete-worker.json -w '%{http_code}' "${auth[@]}" --request DELETE "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/workers/workers/$worker_id")
+            echo "Staging Worker delete HTTP=$code"
+            test "$code" -ge 200 -a "$code" -lt 300
+          else
+            echo 'Staging Worker already absent.'
+          fi
