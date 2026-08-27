@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - hardening/egress-zero
+      - hardening/egress-no-domain-v2
       - migrate/github-metadata-cloudflare-r2
     paths:
       - 'cloudflare/r2-media-worker/**'
@@ -39,7 +40,7 @@ jobs:
       - name: Deploy worker
         shell: bash
         run: npx --yes wrangler@latest deploy --config "$WRANGLER_CONFIG"
-      - name: Verify worker health and cache headers
+      - name: Verify worker health and real edge cache
         shell: bash
         run: |
           set -euo pipefail
@@ -48,12 +49,36 @@ jobs:
           base="https://hyu-premium-media.${subdomain}.workers.dev"
           for attempt in $(seq 1 12); do
             if health=$(curl -fsS "$base/health"); then
-              echo "$health" | grep -q '"edgeCache":true'
-              echo "$health" | grep -q '"range":true'
-              echo "Worker healthy: $base"
-              exit 0
+              echo "$health" | grep -q '"cacheMode":"workers-caching"'
+              echo "$health" | grep -q '"range":"edge-sliced"'
+              break
             fi
             sleep 5
           done
-          echo '::error::Worker health check failed.'
-          exit 1
+          echo "Worker healthy: $base"
+
+          media_url=$(node -e "const c=require('./data/backend/catalogue.json');const i=c.items.find(x=>!x.hidden&&x.variants?.['640']?.url);if(!i)process.exit(2);process.stdout.write(i.variants['640'].url)")
+          echo "Probe object: $media_url"
+
+          hit=0
+          for attempt in $(seq 1 8); do
+            curl -fsS -D /tmp/media-headers -o /dev/null "$media_url"
+            cat /tmp/media-headers
+            status=$(tr -d '\r' </tmp/media-headers | awk 'BEGIN{IGNORECASE=1}/^cf-cache-status:/{print $2}' | tail -1)
+            if [ "$status" = "HIT" ]; then hit=1; break; fi
+            sleep 1
+          done
+          test "$hit" = "1" || { echo '::error::Workers Caching never produced CF-Cache-Status: HIT'; exit 1; }
+
+          curl -fsS -D /tmp/range-headers -H 'Range: bytes=0-1023' -o /tmp/range-body "$media_url"
+          cat /tmp/range-headers
+          grep -Eq '^HTTP/[0-9.]+ 206' /tmp/range-headers
+          test "$(wc -c </tmp/range-body | tr -d ' ')" = "1024"
+          grep -Eiq '^cf-cache-status: HIT' /tmp/range-headers
+
+          probe_url="${media_url}?hyu_cache_bust=$(date +%s%N)"
+          curl -sS -D /tmp/query-headers -o /dev/null "$probe_url"
+          cat /tmp/query-headers
+          grep -Eq '^HTTP/[0-9.]+ 308' /tmp/query-headers
+          grep -Eiq '^location: .*\/media\/[^?]+$' /tmp/query-headers
+          echo 'Workers Caching, Range 206, and query canonicalization verified.'
