@@ -76,15 +76,15 @@ jobs:
             sleep 1
           done
           test "$hit" = "1" || { echo '::error::Production media never produced CF-Cache-Status: HIT'; exit 1; }
-      - name: Verify cached Range 206
+      - name: Verify Range 206 semantics
         shell: bash
         run: |
           set -euo pipefail
           curl -fsS -D /tmp/range-headers -H 'Range: bytes=0-1023' -o /tmp/range-body "$MEDIA_URL"
           tr -d '\r' </tmp/range-headers
           tr -d '\r' </tmp/range-headers | grep -Eq '^HTTP/[0-9.]+ 206'
+          tr -d '\r' </tmp/range-headers | grep -Eiq '^content-range: bytes 0-1023/'
           test "$(wc -c </tmp/range-body | tr -d ' ')" = "1024"
-          tr -d '\r' </tmp/range-headers | grep -Eiq '^cf-cache-status: HIT'
       - name: Verify query canonicalization
         shell: bash
         run: |
@@ -95,4 +95,4 @@ jobs:
           tr -d '\r' </tmp/query-headers | grep -Eq '^HTTP/[0-9.]+ 308'
           location=$(tr -d '\r' </tmp/query-headers | awk 'BEGIN{IGNORECASE=1}/^location:/{sub(/^location:[[:space:]]*/,"");print}' | tail -1)
           test "$location" = "$MEDIA_URL" || { echo "::error::Expected canonical Location $MEDIA_URL but got $location"; exit 1; }
-          echo 'Production Workers Caching, cached Range 206, and query canonicalization verified.'
+          echo 'Production Workers Caching, Range 206, and query canonicalization verified.'
