@@ -8,6 +8,7 @@ on:
       - main
       - hardening/egress-zero
       - hardening/egress-no-domain-v2
+      - hardening/egress-seo-orphan-v3
 
 permissions:
   contents: read
