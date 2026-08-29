@@ -27,6 +27,7 @@ export type Artwork = {
 };
 
 export type Catalogue = {
+  revision: string;
   items: Artwork[];
   categories: string[];
   ranks: string[];
@@ -35,6 +36,7 @@ export type Catalogue = {
 
 type BackendCatalogue = {
   ready?: boolean;
+  generatedAt?: string;
   items?: any[];
   categories?: string[];
   ranks?: string[];
@@ -102,6 +104,7 @@ function authoritativeCatalogue(): Catalogue {
     .sort((a,b)=>alpha(a.category,b.category)||a.rankOrder-b.rankOrder||alpha(a.name,b.name));
 
   return {
+    revision: String(source.generatedAt || ''),
     items,
     categories: uniqueSorted((source.categories || []).map(String)),
     ranks: (source.ranks || []).map(String),
