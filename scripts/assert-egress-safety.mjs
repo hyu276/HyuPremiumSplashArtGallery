@@ -1,4 +1,4 @@
-import { readFile, readdir } from 'node:fs/promises';
+import { readFile, readdir, stat } from 'node:fs/promises';
 import { join, relative } from 'node:path';
 
 const ROOT=process.cwd();
@@ -115,6 +115,24 @@ if(!admin.includes('queueUnusedArtworkMedia'))failures.push('admin must garbage 
 if(!admin.includes('deleteUnusedTeamMedia'))failures.push('admin must garbage collect team originals/derivatives');
 if(!admin.includes('variants:imageChanged?undefined:old?.variants'))failures.push('metadata-only artwork edits must preserve derivatives and avoid reprocessing originals');
 
+const layout=await readFile(join(ROOT,'app/layout.tsx'),'utf8');
+const chrome=await readFile(join(ROOT,'components/SiteChrome.tsx'),'utf8');
+const iconPath=join(ROOT,'app/icon.svg');
+const iconText=await readFile(iconPath,'utf8');
+const iconBytes=(await stat(iconPath)).size;
+if(!layout.includes("url:'/icon.svg'"))failures.push('root metadata must point favicon to /icon.svg');
+if(layout.includes('/assets/brand/hyu-industries-logo.png'))failures.push('root metadata must not point to non-public /assets brand files');
+if(!chrome.includes('src="/icon.svg"'))failures.push('site header must use the cache-safe /icon.svg brand mark');
+if(chrome.includes('/assets/brand/hyu-industries-logo.png'))failures.push('site header must not request the non-public legacy PNG');
+if(!iconText.includes('<svg')||!iconText.includes('viewBox="0 0 64 64"'))failures.push('app/icon.svg must be a valid compact SVG mark');
+if(iconBytes>4096)failures.push(`app/icon.svg ${iconBytes} bytes exceeds 4KB icon budget`);
+const vercel=JSON.parse(await readFile(join(ROOT,'vercel.json'),'utf8'));
+const iconHeader=(vercel.headers||[]).find(x=>x.source==='/icon.svg');
+const iconCache=iconHeader?.headers?.find(x=>x.key==='Cache-Control')?.value||'';
+if(!iconCache.includes('max-age=31536000')||!iconCache.includes('immutable'))failures.push('icon.svg must use a one-year immutable browser cache');
+const faviconRedirect=(vercel.redirects||[]).find(x=>x.source==='/favicon.ico');
+if(faviconRedirect?.destination!=='/icon.svg'||faviconRedirect?.permanent!==true)failures.push('/favicon.ico must permanently redirect to the tiny cache-safe /icon.svg');
+
 const worker=await readFile(join(ROOT,'cloudflare/r2-media-worker/src/index.ts'),'utf8');
 if(worker.includes('caches.default'))failures.push('worker must use Workers Caching, not Cache API on workers.dev');
 if(!worker.includes("'Cloudflare-CDN-Cache-Control'"))failures.push('worker must emit Cloudflare CDN cache control');
@@ -133,4 +151,4 @@ if(failures.length){
   for(const failure of failures)console.error(` - ${failure}`);
   process.exit(1);
 }
-console.log(`Egress safety gate passed: ${catalogue.items.length} artworks, ${publicItems.length} public, ${team.length} team members; expanded artwork uses exact uploaded originals; SEO/listing traffic still uses derivatives; aggregate media budgets healthy.`);
+console.log(`Egress safety gate passed: ${catalogue.items.length} artworks, ${publicItems.length} public, ${team.length} team members; expanded artwork uses exact uploaded originals; SEO/listing traffic still uses derivatives; icon is ${iconBytes} bytes with immutable cache.`);
