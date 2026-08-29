@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-29T10:48:16.722Z",
+  "generatedAt": "2026-08-29T10:49:01.741Z",
   "items": [
     {
       "id": "en-tho-bang-gia-2",
@@ -105,7 +105,7 @@
       "tags": [],
       "hidden": false,
       "category": "Alice",
-      "rank": "SSS+ Ultimate",
+      "rank": "SSS+ Tối thượng",
       "rankOrder": 7,
       "credit": "Hyu",
       "isVietnameseSkin": false,
@@ -2125,7 +2125,7 @@
       "tags": [],
       "hidden": false,
       "category": "Billow",
-      "rank": "SSS+ Ultimate",
+      "rank": "SSS+ Tối thượng",
       "rankOrder": 7,
       "credit": "Hyu",
       "isVietnameseSkin": false,
@@ -3856,7 +3856,7 @@
       "tags": [],
       "hidden": false,
       "category": "Erin",
-      "rank": "SSS+ Ultimate",
+      "rank": "SSS+ Tối thượng",
       "rankOrder": 7,
       "credit": "Hyu",
       "isVietnameseSkin": false,
@@ -3903,7 +3903,7 @@
       "tags": [],
       "hidden": false,
       "category": "Erin",
-      "rank": "SSS+ Ultimate",
+      "rank": "SSS+ Tối thượng",
       "rankOrder": 7,
       "credit": "Hyu",
       "isVietnameseSkin": false,
@@ -7822,7 +7822,7 @@
       "tags": [],
       "hidden": false,
       "category": "Tulen",
-      "rank": "SSS+ Ultimate",
+      "rank": "SSS+ Tối thượng",
       "rankOrder": 7,
       "credit": "Hyu",
       "isVietnameseSkin": false,
@@ -9012,7 +9012,7 @@
       "tags": [],
       "hidden": false,
       "category": "Yue",
-      "rank": "SSS+ Ultimate",
+      "rank": "SSS+ Tối thượng",
       "rankOrder": 7,
       "credit": "Raphena",
       "isVietnameseSkin": false,
@@ -9222,7 +9222,7 @@
     "SS+",
     "SSS",
     "SSS+",
-    "SSS+ Ultimate"
+    "SSS+ Tối thượng"
   ],
   "credits": [
     "Cehynz",
@@ -9322,7 +9322,7 @@
       "SS+",
       "SSS",
       "SSS+",
-      "SSS+ Ultimate"
+      "SSS+ Tối thượng"
     ],
     "credits": [
       "Cehynz",
