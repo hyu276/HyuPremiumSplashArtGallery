@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-29T03:29:21.045Z",
+  "generatedAt": "2026-08-29T03:55:46.104Z",
   "items": [
     {
       "id": "en-tho-bang-gia-2",
@@ -5301,7 +5301,7 @@
       "image": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1800&q=88",
       "credit": "Chưa có credit",
       "hidden": true,
-      "category": "Monster",
+      "category": "Moren",
       "rankOrder": 0,
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/frost-wyrm-f88204b5f997-1600.webp",
       "description": "",
@@ -5353,7 +5353,7 @@
       "image": "https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=1800&q=88",
       "credit": "Chưa có credit",
       "hidden": true,
-      "category": "Monster",
+      "category": "Moren",
       "rankOrder": 0,
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/grave-tide-7b1e76a1bfd1-1600.webp",
       "description": "",
@@ -5405,7 +5405,7 @@
       "image": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=88",
       "credit": "Chưa có credit",
       "hidden": true,
-      "category": "Monster",
+      "category": "Moren",
       "rankOrder": 0,
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sunforge-titan-71a439c87400-1600.webp",
       "description": "",
@@ -5457,7 +5457,7 @@
       "image": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1800&q=88",
       "credit": "Chưa có credit",
       "hidden": true,
-      "category": "Monster",
+      "category": "Moren",
       "rankOrder": 1,
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/infernal-crown-252a9b483e0b-1600.webp",
       "description": "",
@@ -6384,6 +6384,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 429170,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "tiec-tra-co-tich",
+      "name": "Tiệc trà cổ tích",
+      "description": "",
+      "category": "Sinestrea",
+      "rank": "S",
+      "rankOrder": 1,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/tiec-tra-co-tich-1787975614429.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-tra-co-tich-8b715a197d23-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-08-29T03:53:34.429Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-tra-co-tich-8b715a197d23-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 29320,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-tra-co-tich-8b715a197d23-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 56292,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-tra-co-tich-8b715a197d23-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 117688,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/tiec-tra-co-tich-1787975614429.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 582412,
           "mimeType": "image/jpeg"
         }
       }
@@ -8594,6 +8641,7 @@
     "Biron",
     "Bolt Baron",
     "Bright",
+    "Dextra",
     "Điêu Thuyền",
     "Dolia",
     "Dyadia",
@@ -8620,7 +8668,7 @@
     "Maloch",
     "Marja",
     "Mina",
-    "Monster",
+    "Moren",
     "Murad",
     "Natalya",
     "Qi",
@@ -8691,6 +8739,7 @@
       "Biron",
       "Bolt Baron",
       "Bright",
+      "Dextra",
       "Điêu Thuyền",
       "Dolia",
       "Dyadia",
@@ -8717,7 +8766,7 @@
       "Maloch",
       "Marja",
       "Mina",
-      "Monster",
+      "Moren",
       "Murad",
       "Natalya",
       "Qi",
