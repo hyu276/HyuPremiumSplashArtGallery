@@ -19,7 +19,7 @@ export function SiteHeader() {
 
   return <header className="site-header">
     <Link className="wordmark" href="/character/" aria-label="Trang chủ HYU PREMIUM">
-      <img className="brand-mark" src="/assets/brand/hyu-industries-logo.png" alt="" aria-hidden="true" />
+      <img className="brand-mark" src="/icon.svg" width="64" height="64" alt="" aria-hidden="true" decoding="async" />
       HYU <span>PREMIUM</span>
     </Link>
     <nav aria-label="Điều hướng chính">
