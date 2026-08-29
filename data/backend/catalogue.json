@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-29T04:10:53.326Z",
+  "generatedAt": "2026-08-29T04:16:49.244Z",
   "items": [
     {
       "id": "en-tho-bang-gia-2",
@@ -7627,7 +7627,7 @@
     },
     {
       "id": "au-ha-lan",
-      "name": "Đậu Hà Lan",
+      "name": "Pháo Đậu Hà Lan",
       "description": "",
       "category": "valhein",
       "rank": "S",
@@ -7635,10 +7635,6 @@
       "credit": "Hyu",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/au-ha-lan-1787976574420.jpg",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/au-ha-lan-680ea31d214e-1600.webp",
-      "tags": [],
-      "hidden": false,
-      "isVietnameseSkin": false,
-      "updatedAt": "2026-08-29T04:09:34.420Z",
       "variants": {
         "640": {
           "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/au-ha-lan-680ea31d214e-640.webp",
@@ -7670,7 +7666,11 @@
           "bytes": 486700,
           "mimeType": "image/jpeg"
         }
-      }
+      },
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-08-29T04:15:47.372Z"
     },
     {
       "id": "ma-sung",
@@ -8341,6 +8341,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 2599030,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "huong-duong-mat-troi",
+      "name": "Hướng dương mặt trời",
+      "description": "",
+      "category": "Yorn",
+      "rank": "S",
+      "rankOrder": 1,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/huong-duong-mat-troi-1787976936053.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huong-duong-mat-troi-9aad4c001160-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-08-29T04:15:36.053Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huong-duong-mat-troi-9aad4c001160-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 28016,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huong-duong-mat-troi-9aad4c001160-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 54576,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huong-duong-mat-troi-9aad4c001160-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 116422,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/huong-duong-mat-troi-1787976936053.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 582375,
           "mimeType": "image/jpeg"
         }
       }
