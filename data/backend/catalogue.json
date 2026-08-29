@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-29T10:45:03.772Z",
+  "generatedAt": "2026-08-29T10:48:16.722Z",
   "items": [
     {
       "id": "en-tho-bang-gia-2",
@@ -327,6 +327,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 397622,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "wave-a-sac",
+      "name": "WAVE: ĐA SẮC",
+      "description": "",
+      "category": "Amily",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/wave-a-sac-1788000349545.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/wave-a-sac-21fb603bceed-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-08-29T10:45:49.545Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/wave-a-sac-21fb603bceed-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 21386,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/wave-a-sac-21fb603bceed-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 43768,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/wave-a-sac-21fb603bceed-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 101764,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/wave-a-sac-1788000349545.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 521465,
           "mimeType": "image/jpeg"
         }
       }
@@ -2580,6 +2627,53 @@
       }
     },
     {
+      "id": "wave-14",
+      "name": "wave",
+      "description": "",
+      "category": "Charlotte",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/wave-14-1788000426420.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/wave-14-f78397f07358-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-08-29T10:47:06.420Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/wave-14-f78397f07358-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 18540,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/wave-14-f78397f07358-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 38166,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/wave-14-f78397f07358-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 85514,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/wave-14-1788000426420.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 449643,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
       "id": "tiec-tra-co-tich-2",
       "name": "Tiệc trà cổ tích",
       "description": "",
@@ -4719,6 +4813,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 472922,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "wave-13",
+      "name": "WAVE",
+      "description": "",
+      "category": "illumia",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/wave-13-1788000298000.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/wave-13-4528cfc64190-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-08-29T10:44:58.000Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/wave-13-4528cfc64190-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 17524,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/wave-13-4528cfc64190-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 33786,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/wave-13-4528cfc64190-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 73280,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/wave-13-1788000298000.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 407920,
           "mimeType": "image/jpeg"
         }
       }
@@ -9018,6 +9159,7 @@
     "Biron",
     "Bolt Baron",
     "Bright",
+    "Charlotte",
     "Dextra",
     "Điêu Thuyền",
     "Dolia",
@@ -9117,6 +9259,7 @@
       "Biron",
       "Bolt Baron",
       "Bright",
+      "Charlotte",
       "Dextra",
       "Điêu Thuyền",
       "Dolia",
