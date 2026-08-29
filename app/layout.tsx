@@ -36,7 +36,7 @@ export async function generateMetadata():Promise<Metadata>{
     verification:{google:seo.google_site_verification||undefined},
     openGraph:{siteName:seo.site_name,type:'website',locale:seo.default_locale,...(seo.default_og_image?{images:[seo.default_og_image]}:{})},
     twitter:{card:'summary_large_image',...(seo.default_og_image?{images:[seo.default_og_image]}:{})},
-    icons:{icon:'/assets/brand/hyu-industries-logo.png',apple:'/assets/brand/hyu-industries-logo.png'}
+    icons:{icon:[{url:'/icon.svg',type:'image/svg+xml'}],apple:'/icon.svg'}
   };
 }
 
