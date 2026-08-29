@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-29T04:16:49.244Z",
+  "generatedAt": "2026-08-29T10:32:25.588Z",
   "items": [
     {
       "id": "en-tho-bang-gia-2",
@@ -1219,6 +1219,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 640021,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "wave-11",
+      "name": "WAVE",
+      "description": "",
+      "category": "Azzen'ka",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/wave-11-1787999481348.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/wave-11-d5b4bd4dc278-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-08-29T10:31:21.348Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/wave-11-d5b4bd4dc278-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 19678,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/wave-11-d5b4bd4dc278-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 38032,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/wave-11-d5b4bd4dc278-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 84194,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/wave-11-1787999481348.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 2089249,
           "mimeType": "image/jpeg"
         }
       }
@@ -8824,6 +8871,7 @@
     "Aoi",
     "Astrid",
     "Aya",
+    "Azzen'ka",
     "Bijan",
     "Billow",
     "Biron",
@@ -8922,6 +8970,7 @@
       "Aoi",
       "Astrid",
       "Aya",
+      "Azzen'ka",
       "Bijan",
       "Billow",
       "Biron",
