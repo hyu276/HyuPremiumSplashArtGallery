@@ -35,7 +35,7 @@ function decodeBase64(content:string){return Buffer.from(content.replace(/\s/g,'
 async function readJson<T>(token:string,file:string,branch=dataBranch()):Promise<T>{const result=await gh<GitHubContent>(token,`/repos/${REPO}/contents/${file}?ref=${encodeURIComponent(branch)}`);if(!result.content)throw new Error(`Không đọc được ${file} từ GitHub.`);return JSON.parse(result.encoding==='base64'?decodeBase64(result.content):result.content) as T}
 function alpha(a:string,b:string){return String(a).localeCompare(String(b),undefined,{sensitivity:'base',numeric:true})}
 function unique(values:string[]){return [...new Set(values.map(String).map(x=>x.trim()).filter(Boolean))].sort(alpha)}
-function orderedRanks(items:any[],preferred:string[]=[]){const out:string[]=[];for(const name of preferred.map(String).map(x=>x.trim()).filter(Boolean))if(!out.includes(name))out.push(name);const missing=[...items].sort((a,b)=>Number(a?.rankOrder||0)-Number(b?.rankOrder||0)).map(x=>String(x?.rank||'').trim()).filter(Boolean);for(const name of missing)if(!out.includes(name))out.push(name);return out}
+function orderedUnique(values:string[]){const out:string[]=[];for(const raw of values){const name=String(raw).trim();if(name&&!out.includes(name))out.push(name)}return out}
 function canonicalItem(item:any){const {source:_source,sourceId:_sourceId,sourceOptions:_sourceOptions,...rest}=item||{};return {...rest,id:String(rest.id||'')};}
 function optionsFor(catalogue:Catalogue){return {categories:catalogue.ownerOptions?.categories||catalogue.categories||[],ranks:catalogue.ownerOptions?.ranks||catalogue.ranks||[],credits:catalogue.ownerOptions?.credits||catalogue.credits||[]}}
 function mediaKey(id:string,source:string,width:number){const safe=String(id||'art').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'art';const hash=createHash('sha1').update(source).digest('hex').slice(0,12);return `artworks/variants/${safe}-${hash}-${width}.webp`}
@@ -99,15 +99,21 @@ export async function POST(request:Request){
     const [current,currentTeam,currentSeo,storage]=await Promise.all([readJson<Catalogue>(token,`${DATA_ROOT}/catalogue.json`,branch),readJson<any[]>(token,`${DATA_ROOT}/team.json`,branch),readJson<any>(token,`${DATA_ROOT}/seo.json`,branch),readJson<any>(token,`${DATA_ROOT}/storage.json`,branch)]);
     const storageBase=String(storage?.publicBaseUrl||'').replace(/\/$/,'');if(!storageBase)throw new Error('Cloudflare R2 publicBaseUrl chưa được cấu hình.');
     const previous=optionsFor(current);
-    const requested=Array.isArray(payload.ownerItems)?payload.ownerItems:current.items||[];
+    const preferredCategories=unique((Array.isArray(payload.categories)?payload.categories:previous.categories).map(String));
+    const preferredCredits=unique((Array.isArray(payload.credits)?payload.credits:previous.credits).map(String));
+    const preferredRanks=orderedUnique((Array.isArray(payload.ranks)?payload.ranks:previous.ranks).map(String));
+    const requested=(Array.isArray(payload.ownerItems)?payload.ownerItems:current.items||[]).map(canonicalItem);
+    const invalidCategories=unique(requested.map(x=>String(x?.category||'').trim()).filter(value=>Boolean(value)&&!preferredCategories.includes(value)));
+    const invalidCredits=unique(requested.map(x=>String(x?.credit||'').trim()).filter(value=>Boolean(value)&&!preferredCredits.includes(value)));
+    const invalidRanks=unique(requested.map(x=>String(x?.rank||'').trim()).filter(value=>Boolean(value)&&!preferredRanks.includes(value)));
+    if(invalidCategories.length||invalidCredits.length||invalidRanks.length){
+      return Response.json({error:'Taxonomy không hợp lệ: tác phẩm đang tham chiếu tùy chọn không còn tồn tại. Hãy cập nhật tác phẩm trước khi publish.',invalid:{categories:invalidCategories,credits:invalidCredits,ranks:invalidRanks}},{status:409,headers:{'Cache-Control':'no-store'}});
+    }
     const enriched=[];for(const item of requested)enriched.push(await enrichMedia(item,storageBase,token));
     const items=enriched.map(canonicalItem).sort((a,b)=>alpha(String(a.category||''),String(b.category||''))||Number(a.rankOrder||0)-Number(b.rankOrder||0)||alpha(String(a.name||''),String(b.name||'')));
-    const preferredCategories=Array.isArray(payload.categories)?payload.categories:previous.categories;
-    const preferredCredits=Array.isArray(payload.credits)?payload.credits:previous.credits;
-    const preferredRanks=Array.isArray(payload.ranks)?payload.ranks:previous.ranks;
-    const categories=unique([...preferredCategories.map(String),...items.map(x=>String(x?.category||''))]);
-    const credits=unique([...preferredCredits.map(String),...items.map(x=>String(x?.credit||''))]);
-    const ranks=orderedRanks(items,preferredRanks.map(String));
+    const categories=preferredCategories;
+    const credits=preferredCredits;
+    const ranks=preferredRanks;
     const ownerOptions={categories,ranks,credits};
     const catalogue:Catalogue={...current,schemaVersion:2,generatedAt:new Date().toISOString(),items,categories,ranks,credits,ownerOptions};
     const requestedTeam=Array.isArray(payload.team)?payload.team:currentTeam;const enrichedTeam=[];for(const member of requestedTeam)enrichedTeam.push(await enrichTeamMember(member,storageBase,token));
