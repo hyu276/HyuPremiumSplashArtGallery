@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-29T11:41:51.346Z",
+  "generatedAt": "2026-08-30T13:46:11.829Z",
   "items": [
     {
       "id": "en-tho-bang-gia-2",
@@ -5659,6 +5659,53 @@
           "width": 2560,
           "height": 1428,
           "bytes": 203916,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "thai-cuc-huyen-vu",
+      "name": "Thái cực huyền vũ",
+      "description": "",
+      "category": "Marja",
+      "rank": "SS+",
+      "rankOrder": 4,
+      "credit": "Vương Hiếu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/thai-cuc-huyen-vu-1788097557274.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thai-cuc-huyen-vu-093ad3cf6a0a-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-08-30T13:45:57.274Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thai-cuc-huyen-vu-093ad3cf6a0a-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 32568,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thai-cuc-huyen-vu-093ad3cf6a0a-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 63592,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thai-cuc-huyen-vu-093ad3cf6a0a-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 132846,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/thai-cuc-huyen-vu-1788097557274.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 867710,
           "mimeType": "image/jpeg"
         }
       }
