@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-30T13:46:11.829Z",
+  "generatedAt": "2026-08-30T13:48:49.944Z",
   "items": [
     {
       "id": "en-tho-bang-gia-2",
@@ -5670,13 +5670,9 @@
       "category": "Marja",
       "rank": "SS+",
       "rankOrder": 4,
-      "credit": "Vương Hiếu",
+      "credit": "Hiemaru",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/thai-cuc-huyen-vu-1788097557274.jpg",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thai-cuc-huyen-vu-093ad3cf6a0a-1600.webp",
-      "tags": [],
-      "hidden": false,
-      "isVietnameseSkin": false,
-      "updatedAt": "2026-08-30T13:45:57.274Z",
       "variants": {
         "640": {
           "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thai-cuc-huyen-vu-093ad3cf6a0a-640.webp",
@@ -5708,7 +5704,11 @@
           "bytes": 867710,
           "mimeType": "image/jpeg"
         }
-      }
+      },
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-08-30T13:48:41.230Z"
     },
     {
       "id": "sieu-pham-chan-hoan",
