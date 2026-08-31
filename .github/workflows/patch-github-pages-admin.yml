@@ -1,0 +1,62 @@
+name: Patch GitHub Pages admin
+
+on:
+  push:
+    branches: [fix/github-pages-admin-only]
+    paths:
+      - 'scripts/patch-github-pages-admin.mjs'
+      - '.github/workflows/patch-github-pages-admin.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: patch-github-pages-admin
+  cancel-in-progress: true
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: fix/github-pages-admin-only
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Patch source for GitHub Pages admin
+        run: node scripts/patch-github-pages-admin.mjs
+      - name: Bundle dashboard for GitHub Pages
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p assets/js
+          npx --yes esbuild admin-src/entry.tsx --bundle --minify --platform=browser --target=es2020 --outfile=assets/js/admin-github.bundle.js --define:process.env.NODE_ENV='"production"'
+          test -s assets/js/admin-github.bundle.js
+          bytes=$(wc -c < assets/js/admin-github.bundle.js | tr -d ' ')
+          echo "Admin bundle bytes=$bytes"
+          test "$bytes" -lt 500000
+      - name: Validate no Vercel admin route in source
+        shell: bash
+        run: |
+          set -euo pipefail
+          test ! -e app/admin/page.tsx
+          ! grep -q 'hyupremium.vercel.app/admin' admin.html
+          grep -q 'admin-github.bundle.js' admin.html
+          grep -q "ADMIN_ORIGIN='https://hyu276.github.io'" app/api/admin-backend/route.ts
+      - name: Commit static admin migration
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add admin.html admin-src/entry.tsx assets/js/admin-github.bundle.js components/GitHubAdminDashboard.tsx app/api/admin-backend/route.ts scripts/assert-egress-safety.mjs
+          git rm app/admin/page.tsx
+          git diff --cached --quiet && { echo 'No patch output'; exit 1; }
+          git commit -m 'fix: serve admin only from GitHub Pages'
+          git pull --rebase origin fix/github-pages-admin-only
+          git push origin HEAD:fix/github-pages-admin-only
