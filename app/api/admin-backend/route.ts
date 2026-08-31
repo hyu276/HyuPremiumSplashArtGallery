@@ -18,8 +18,8 @@ type Catalogue={schemaVersion?:number;generatedAt?:string;items:any[];categories
 type AdminPayload={ownerItems?:any[];categories?:string[];ranks?:string[];credits?:string[];team?:any[];seo?:any};
 
 const ADMIN_ORIGIN='https://hyu276.github.io';
-function corsHeaders(request:Request){const origin=request.headers.get('origin')||'';return origin===ADMIN_ORIGIN?{'Access-Control-Allow-Origin':ADMIN_ORIGIN,'Access-Control-Allow-Methods':'GET,POST,OPTIONS','Access-Control-Allow-Headers':'Authorization,Content-Type','Access-Control-Max-Age':'86400','Vary':'Origin'}:{}}
-function responseHeaders(request:Request){return {'Cache-Control':'no-store',...corsHeaders(request)}}
+function corsHeaders(request:Request):Record<string,string>{const origin=request.headers.get('origin')||'';return origin===ADMIN_ORIGIN?{'Access-Control-Allow-Origin':ADMIN_ORIGIN,'Access-Control-Allow-Methods':'GET,POST,OPTIONS','Access-Control-Allow-Headers':'Authorization,Content-Type','Access-Control-Max-Age':'86400','Vary':'Origin'}:{}}
+function responseHeaders(request:Request):Record<string,string>{return {'Cache-Control':'no-store',...corsHeaders(request)}}
 export async function OPTIONS(request:Request){return new Response(null,{status:204,headers:responseHeaders(request)})}
 
 function tokenFrom(request:Request){const value=request.headers.get('authorization')||'';return value.toLowerCase().startsWith('bearer ')?value.slice(7).trim():''}
