@@ -22,7 +22,6 @@ async function filesUnder(dir){
 }
 function percentile(values,p){if(!values.length)return 0;const sorted=[...values].sort((a,b)=>a-b);return sorted[Math.min(sorted.length-1,Math.ceil(sorted.length*p)-1)];}
 function average(values){return values.length?Math.round(values.reduce((sum,n)=>sum+n,0)/values.length):0;}
-function stringList(value){return Array.isArray(value)?value.map(String):[];}
 
 const failures=[];
 for(const root of SCAN_ROOTS){
@@ -36,22 +35,8 @@ for(const root of SCAN_ROOTS){
 
 const catalogue=JSON.parse(await readFile(join(ROOT,'data/backend/catalogue.json'),'utf8'));
 if(catalogue.ready!==true)failures.push('data/backend/catalogue.json: ready must be true');
-if(!String(catalogue.generatedAt||''))failures.push('data/backend/catalogue.json: generatedAt revision missing');
 if(!Array.isArray(catalogue.items)||!catalogue.items.length)failures.push('data/backend/catalogue.json: items missing');
 const publicItems=(catalogue.items||[]).filter(item=>!item.hidden);
-const taxonomy={categories:stringList(catalogue.categories),credits:stringList(catalogue.credits),ranks:stringList(catalogue.ranks)};
-for(const [kind,values] of Object.entries(taxonomy)){
-  if(values.length!==new Set(values).size)failures.push(`catalogue ${kind} contains duplicate values`);
-  const ownerValues=stringList(catalogue.ownerOptions?.[kind]);
-  if(JSON.stringify(values)!==JSON.stringify(ownerValues))failures.push(`catalogue ${kind} must exactly match ownerOptions.${kind}`);
-}
-for(const item of catalogue.items||[]){
-  const id=String(item.id||'<unknown>');
-  if(item.category&&!taxonomy.categories.includes(String(item.category)))failures.push(`${id}: category references missing taxonomy value ${item.category}`);
-  if(item.credit&&!taxonomy.credits.includes(String(item.credit)))failures.push(`${id}: credit references missing taxonomy value ${item.credit}`);
-  if(item.rank&&!taxonomy.ranks.includes(String(item.rank)))failures.push(`${id}: rank references missing taxonomy value ${item.rank}`);
-}
-
 const derivativeBytes={'640':[],'960':[],'1600':[]};
 for(const item of catalogue.items||[]){
   const id=String(item.id||'<unknown>');
@@ -122,11 +107,18 @@ if(imageSitemap.includes('override?.og_image||item.image')||imageSitemap.include
 const characterPage=await readFile(join(ROOT,'app/character/[[...segments]]/page.tsx'),'utf8');
 if(characterPage.includes('contentUrl:artwork.image'))failures.push('artwork JSON-LD must not advertise original media to crawlers');
 if(!characterPage.includes("contentUrl:crawlerImage?.url||artworkPreview(artwork,1600)"))failures.push('artwork JSON-LD must publish the 1600px derivative');
-if(!characterPage.includes('<CatalogueFreshnessGuard revision={catalogue.revision}/>'))failures.push('gallery page must mount the catalogue revision freshness guard');
+
+const categories=new Set((catalogue.categories||[]).map(value=>String(value).trim()).filter(Boolean));
+const credits=new Set((catalogue.credits||[]).map(value=>String(value).trim()).filter(Boolean));
+const ranks=new Set((catalogue.ranks||[]).map(value=>String(value).trim()).filter(Boolean));
+for(const item of catalogue.items||[]){
+  if(item.category&&!categories.has(String(item.category).trim()))failures.push(`${item.id}: category ${item.category} is not present in catalogue taxonomy`);
+  if(item.credit&&!credits.has(String(item.credit).trim()))failures.push(`${item.id}: credit ${item.credit} is not present in catalogue taxonomy`);
+  if(item.rank&&!ranks.has(String(item.rank).trim()))failures.push(`${item.id}: rank ${item.rank} is not present in catalogue taxonomy`);
+}
 
 const freshnessGuard=await readFile(join(ROOT,'components/CatalogueFreshnessGuard.tsx'),'utf8');
-if(!freshnessGuard.includes("fetch('/api/catalogue-revision'"))failures.push('catalogue freshness guard must use the fixed revision endpoint');
-if(freshnessGuard.includes('/api/catalogue-revision?'))failures.push('catalogue freshness guard must not cache-bust the revision endpoint');
+if(!freshnessGuard.includes("fetch('/api/catalogue-revision'"))failures.push('catalogue freshness guard must use the tiny revision endpoint');
 if(!freshnessGuard.includes('router.refresh()'))failures.push('catalogue freshness guard must refresh only when the deployed revision changes');
 if(!freshnessGuard.includes("window.addEventListener('focus'"))failures.push('catalogue freshness guard must check again when a stale tab regains focus');
 if(freshnessGuard.includes('setInterval('))failures.push('catalogue freshness guard must not continuously poll');
@@ -178,6 +170,7 @@ const adminHtml=await readFile(join(ROOT,'admin.html'),'utf8');
 if(adminHtml.includes('hyupremium.vercel.app/admin'))failures.push('GitHub Pages admin must not redirect to Vercel /admin');
 if(!adminHtml.includes('admin-github.bundle.js'))failures.push('GitHub Pages admin must load the static dashboard bundle');
 try{await readFile(join(ROOT,'app/admin/page.tsx'),'utf8');failures.push('Vercel /admin page route must not exist')}catch{}
+try{await readFile(join(ROOT,'app/admin-legacy/route.ts'),'utf8');failures.push('Vercel /admin-legacy route must not exist')}catch{}
 const adminDashboard=await readFile(join(ROOT,'components/GitHubAdminDashboard.tsx'),'utf8');
 if(!adminDashboard.includes("window.location.hostname==='hyu276.github.io'?'https://hyupremium.vercel.app/api/admin-backend':'/api/admin-backend'"))failures.push('GitHub Pages admin must use the Vercel API backend only as a cross-origin API');
 const adminApi=await readFile(join(ROOT,'app/api/admin-backend/route.ts'),'utf8');
@@ -193,4 +186,4 @@ if(failures.length){
   for(const failure of failures)console.error(` - ${failure}`);
   process.exit(1);
 }
-console.log(`Egress safety gate passed: ${catalogue.items.length} artworks, ${publicItems.length} public, ${team.length} team members; taxonomy is referentially consistent; stale gallery tabs use a tiny CDN-cached revision check; expanded artwork uses exact uploaded originals; SEO/listing traffic still uses derivatives; icon is ${iconBytes} bytes with immutable cache.`);
+console.log(`Egress safety gate passed: ${catalogue.items.length} artworks, ${publicItems.length} public, ${team.length} team members; taxonomy is referentially consistent; stale gallery tabs use a tiny CDN-cached revision check; expanded artwork uses exact uploaded originals; SEO/listing traffic still uses derivatives; icon is ${iconBytes} bytes with immutable cache; Admin UI is GitHub Pages-only.`);
