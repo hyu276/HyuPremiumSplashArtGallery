@@ -174,6 +174,16 @@ if(!worker.includes('MAX_FALLBACK_RANGE'))failures.push('worker must retain boun
 const wrangler=JSON.parse((await readFile(join(ROOT,'cloudflare/r2-media-worker/wrangler.jsonc'),'utf8')).replace(/^\s*\/\/.*$/gm,''));
 if(wrangler?.cache?.enabled!==true)failures.push('wrangler cache.enabled must be true');
 
+const adminHtml=await readFile(join(ROOT,'admin.html'),'utf8');
+if(adminHtml.includes('hyupremium.vercel.app/admin'))failures.push('GitHub Pages admin must not redirect to Vercel /admin');
+if(!adminHtml.includes('admin-github.bundle.js'))failures.push('GitHub Pages admin must load the static dashboard bundle');
+try{await readFile(join(ROOT,'app/admin/page.tsx'),'utf8');failures.push('Vercel /admin page route must not exist')}catch{}
+const adminDashboard=await readFile(join(ROOT,'components/GitHubAdminDashboard.tsx'),'utf8');
+if(!adminDashboard.includes("window.location.hostname==='hyu276.github.io'?'https://hyupremium.vercel.app/api/admin-backend':'/api/admin-backend'"))failures.push('GitHub Pages admin must use the Vercel API backend only as a cross-origin API');
+const adminApi=await readFile(join(ROOT,'app/api/admin-backend/route.ts'),'utf8');
+if(!adminApi.includes("const ADMIN_ORIGIN='https://hyu276.github.io'"))failures.push('admin API CORS must be restricted to the GitHub Pages origin');
+if(!adminApi.includes('export async function OPTIONS'))failures.push('admin API must support CORS preflight for GitHub Pages');
+
 const pkg=JSON.parse(await readFile(join(ROOT,'package.json'),'utf8'));
 if(pkg.scripts?.prebuild!=='node scripts/assert-egress-safety.mjs')failures.push('prebuild must enforce egress safety');
 if(String(pkg.scripts?.build||'')!=='next build')failures.push('build must not probe remote media');
