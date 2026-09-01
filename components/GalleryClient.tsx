@@ -1,7 +1,6 @@
 'use client';
 
 import { memo, useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
-import { flushSync } from 'react-dom';
 import type { Artwork, Catalogue } from '@/lib/catalogue';
 import { artworkPath, artworkPreview, artworkSrcSet, slug } from '@/lib/catalogue';
 
@@ -22,7 +21,6 @@ const RANK_GRADIENTS: Record<string,string> = {
 
 type SearchToken={text:string;quoted:boolean};
 type FilterOption={value:string;label:string};
-type MotionDocument=Document&{startViewTransition?:(update:()=>void)=>unknown};
 
 function norm(value:string){return String(value??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\s+/g,' ').trim()}
 function parseQuery(query:string){
@@ -68,12 +66,10 @@ function shuffledIds(items:Artwork[]){
   return copy.slice(0,Math.min(INITIAL_RANDOM_COUNT,copy.length)).map(item=>item.id);
 }
 function runMotionTransition(update:()=>void){
-  if(typeof document==='undefined'||typeof window==='undefined'||window.matchMedia?.('(prefers-reduced-motion: reduce)').matches){update();return}
-  const start=(document as MotionDocument).startViewTransition;
-  if(typeof start==='function'){start.call(document,()=>flushSync(update));return}
+  // Grid/filter updates intentionally avoid document.startViewTransition().
+  // Snapshotting a media-heavy grid plus synchronous reflow causes visible jank on mobile and integrated GPUs.
   update();
 }
-function artworkTransitionName(id:string){return `hyu-artwork-${id.replace(/[^a-zA-Z0-9_-]/g,'-')}`}
 
 function GalleryFilterControl({label,value,options,onChange,ariaLabel}:{label:string;value:string;options:FilterOption[];onChange:(value:string)=>void;ariaLabel:string}){
   const [open,setOpen]=useState(false);
@@ -127,17 +123,42 @@ const ViewportPreview=memo(function ViewportPreview({src,srcSet,sizes,alt,eager}
   return <img ref={node} className="preview" src={armed?src:undefined} srcSet={armed&&srcSet?srcSet:undefined} sizes={armed?sizes:undefined} data-src={armed?undefined:src} alt={alt} loading={eager?'eager':'lazy'} decoding="async" fetchPriority={eager?'high':'low'} />;
 });
 
+const ExpandedOriginal=memo(function ExpandedOriginal({src}:{src:string}){
+  const [ready,setReady]=useState(false);
+  const alive=useRef(true);
+
+  useEffect(()=>()=>{alive.current=false},[]);
+
+  return <img
+    className={`full${ready?' ready':''}`}
+    src={src}
+    alt=""
+    aria-hidden="true"
+    loading="eager"
+    decoding="async"
+    fetchPriority="high"
+    onLoad={event=>{
+      const image=event.currentTarget;
+      const reveal=()=>{if(alive.current)setReady(true)};
+      if(typeof image.decode==='function')image.decode().then(reveal,reveal);
+      else reveal();
+    }}
+  />;
+});
+
 const ArtworkCard = memo(function ArtworkCard({item,index,expanded,onToggle}:{item:Artwork;index:number;expanded:boolean;onToggle:(item:Artwork)=>void}){
   const imageAlt=`${item.name} — ${item.category}, splash art game, hạng skin ${item.rank}`;
-  const motionStyle={viewTransitionName:artworkTransitionName(item.id),'--art-motion-delay':`${Math.min(index,12)*18}ms`} as CSSProperties;
-  // Collapsed cards stay responsive; an expanded card loads the exact uploaded original.
-  // Do not attach the derivative srcSet while expanded: browsers may otherwise select 1600px WebP instead of the original.
+  const motionStyle={'--art-motion-delay':`${Math.min(index,12)*18}ms`} as CSSProperties;
+  // Keep the already-cached 960px derivative visible during expansion, then cross-fade the exact uploaded original after decode.
+  // Do not attach derivative srcSet while expanded: this avoids fetching a 1600px derivative in parallel with the original.
   const src=expanded?(item.media?.original?.url||item.image):artworkPreview(item,960);
   const srcSet=expanded?'':artworkSrcSet(item);
-  const sizes=expanded?'(max-width: 760px) 96vw, 92vw':'(max-width: 760px) 50vw, (max-width: 1200px) 50vw, 33vw';
+  const previewSrc=artworkPreview(item,960);
+  const sizes='(max-width: 760px) 50vw, (max-width: 1200px) 50vw, 33vw';
   return <button style={motionStyle} className={`art-card${expanded?' expanded':''}`} data-id={item.id} aria-expanded={expanded} aria-label={`${expanded?'Thu gọn':'Mở rộng'} ${item.name}`} onClick={()=>onToggle(item)}>
     <span className="art-image-layer">
-      <ViewportPreview src={src} srcSet={srcSet} sizes={sizes} alt={imageAlt} eager={index<INITIAL_RANDOM_COUNT||expanded}/>
+      <ViewportPreview src={previewSrc} srcSet={srcSet} sizes={sizes} alt={imageAlt} eager={index<INITIAL_RANDOM_COUNT||expanded}/>
+      {expanded?<ExpandedOriginal src={src}/>:null}
     </span>
     <span className="shade" aria-hidden="true"></span>
     <span className="card-number">{String(index+1).padStart(2,'0')}</span>
@@ -201,13 +222,13 @@ export default function GalleryClient({catalogue,initialCategory,initialArtworkI
   },[mobileSearchDraft,category,syncUrl]);
 
   const openMobileSearch=useCallback(()=>{
-    flushSync(()=>{
-      setMobileSearchDraft(query);
-      setMobileFiltersOpen(true);
+    setMobileSearchDraft(query);
+    setMobileFiltersOpen(true);
+    requestAnimationFrame(()=>{
+      const input=mobileSearchInputRef.current;
+      input?.focus({preventScroll:true});
+      if(input)input.setSelectionRange(input.value.length,input.value.length);
     });
-    const input=mobileSearchInputRef.current;
-    input?.focus({preventScroll:true});
-    if(input)input.setSelectionRange(input.value.length,input.value.length);
   },[query]);
 
   const clearMobileSearch=useCallback(()=>{
@@ -228,7 +249,11 @@ export default function GalleryClient({catalogue,initialCategory,initialArtworkI
     runMotionTransition(()=>setExpanded(current=>{
       const next=current===item.id?null:item.id;
       syncUrl(category,next?item:null);
-      if(next)requestAnimationFrame(()=>requestAnimationFrame(()=>document.querySelector(`[data-id="${CSS.escape(item.id)}"]`)?.scrollIntoView({behavior:'smooth',block:'center'})));
+      if(next)requestAnimationFrame(()=>requestAnimationFrame(()=>{
+        const card=document.querySelector(`[data-id="${CSS.escape(item.id)}"]`);
+        const mobile=window.matchMedia?.('(max-width: 760px)').matches??false;
+        card?.scrollIntoView({behavior:mobile?'auto':'smooth',block:'center'});
+      }));
       return next;
     }));
   },[category,syncUrl]);
