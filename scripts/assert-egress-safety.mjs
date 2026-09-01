@@ -173,6 +173,7 @@ try{await readFile(join(ROOT,'app/admin/page.tsx'),'utf8');failures.push('Vercel
 try{await readFile(join(ROOT,'app/admin-legacy/route.ts'),'utf8');failures.push('Vercel /admin-legacy route must not exist')}catch{}
 const adminDashboard=await readFile(join(ROOT,'components/GitHubAdminDashboard.tsx'),'utf8');
 if(!adminDashboard.includes("window.location.hostname==='hyu276.github.io'?'https://hyupremium.vercel.app/api/admin-backend':'/api/admin-backend'"))failures.push('GitHub Pages admin must use the Vercel API backend only as a cross-origin API');
+if(!adminDashboard.includes("import React, { useCallback"))failures.push('static GitHub Pages admin must import the React runtime explicitly for its standalone bundle');
 const adminApi=await readFile(join(ROOT,'app/api/admin-backend/route.ts'),'utf8');
 if(!adminApi.includes("const ADMIN_ORIGIN='https://hyu276.github.io'"))failures.push('admin API CORS must be restricted to the GitHub Pages origin');
 if(!adminApi.includes('export async function OPTIONS'))failures.push('admin API must support CORS preflight for GitHub Pages');
