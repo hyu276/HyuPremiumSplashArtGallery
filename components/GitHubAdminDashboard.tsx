@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 type Choice={name:string;sort_order?:number};
 type MediaVariant={url:string;width:number;height:number;bytes?:number;mimeType?:string};
