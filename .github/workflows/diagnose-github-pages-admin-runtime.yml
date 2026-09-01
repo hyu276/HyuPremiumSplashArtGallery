@@ -13,6 +13,7 @@ jobs:
   diagnose:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v6
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -52,31 +53,27 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          cat >/tmp/admin-smoke.mjs <<'NODE'
-          import { chromium } from 'playwright';
-          const browser=await chromium.launch({headless:true});
-          const page=await browser.newPage();
-          const consoleErrors=[];const pageErrors=[];const failed=[];
-          page.on('console',msg=>{if(msg.type()==='error')consoleErrors.push(msg.text())});
-          page.on('pageerror',err=>pageErrors.push(String(err.stack||err)));
-          page.on('requestfailed',req=>failed.push(`${req.method()} ${req.url()} :: ${req.failure()?.errorText||'failed'}`));
-          const response=await page.goto('https://hyu276.github.io/HyuPremiumSplashArtGallery/admin.html',{waitUntil:'networkidle',timeout:60000});
-          await page.waitForTimeout(1000);
-          const snapshot=await page.evaluate(()=>({
-            title:document.title,
-            bodyText:(document.body?.innerText||'').slice(0,1600),
-            rootChildren:document.querySelector('#root')?.children.length||0,
-            tokenInput:Boolean(document.querySelector('input[placeholder="github_pat_..."]')),
-            buttons:[...document.querySelectorAll('button')].slice(0,8).map(x=>x.textContent?.trim()),
-          }));
-          console.log(JSON.stringify({status:response?.status(),snapshot,consoleErrors,pageErrors,failed},null,2));
-          await page.screenshot({path:'/tmp/admin-live.png',fullPage:true});
-          await browser.close();
-          if(response?.status()!==200)process.exit(2);
-          if(snapshot.rootChildren<1||!snapshot.tokenInput)process.exit(3);
-          if(pageErrors.length)process.exit(4);
+          cat >admin-smoke.cjs <<'NODE'
+          const { chromium } = require('playwright');
+          (async()=>{
+            const browser=await chromium.launch({headless:true});
+            const page=await browser.newPage();
+            const consoleErrors=[];const pageErrors=[];const failed=[];
+            page.on('console',msg=>{if(msg.type()==='error')consoleErrors.push(msg.text())});
+            page.on('pageerror',err=>pageErrors.push(String(err.stack||err)));
+            page.on('requestfailed',req=>failed.push(`${req.method()} ${req.url()} :: ${req.failure()?.errorText||'failed'}`));
+            const response=await page.goto('https://hyu276.github.io/HyuPremiumSplashArtGallery/admin.html',{waitUntil:'networkidle',timeout:60000});
+            await page.waitForTimeout(1000);
+            const snapshot=await page.evaluate(()=>({title:document.title,bodyText:(document.body?.innerText||'').slice(0,1600),rootChildren:document.querySelector('#root')?.children.length||0,tokenInput:Boolean(document.querySelector('input[placeholder="github_pat_..."]')),buttons:[...document.querySelectorAll('button')].slice(0,8).map(x=>x.textContent?.trim())}));
+            console.log(JSON.stringify({status:response?.status(),snapshot,consoleErrors,pageErrors,failed},null,2));
+            await page.screenshot({path:'/tmp/admin-live.png',fullPage:true});
+            await browser.close();
+            if(response?.status()!==200)process.exit(2);
+            if(snapshot.rootChildren<1||!snapshot.tokenInput)process.exit(3);
+            if(pageErrors.length)process.exit(4);
+          })().catch(error=>{console.error(error);process.exit(10)});
           NODE
-          node /tmp/admin-smoke.mjs
+          node admin-smoke.cjs
       - name: Upload browser screenshot
         uses: actions/upload-artifact@v4
         if: always()
