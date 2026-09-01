@@ -1,0 +1,50 @@
+name: Diagnose GitHub Pages admin runtime
+
+on:
+  push:
+    branches: [fix/github-pages-admin-runtime-v2]
+    paths: ['.github/workflows/diagnose-github-pages-admin-runtime.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Inspect live GitHub Pages admin and assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          base='https://hyu276.github.io/HyuPremiumSplashArtGallery'
+          for path in '/admin.html' '/app/admin/admin.css' '/assets/js/admin-github.bundle.js'; do
+            echo "===== $base$path ====="
+            code=$(curl -sS -L -D /tmp/h -o /tmp/b -w '%{http_code}' "$base$path")
+            tr -d '\r' </tmp/h
+            echo "status=$code bytes=$(wc -c </tmp/b | tr -d ' ')"
+            head -c 300 /tmp/b || true
+            echo
+          done
+      - name: Inspect Vercel admin API CORS preflight
+        shell: bash
+        run: |
+          set -euo pipefail
+          url='https://hyupremium.vercel.app/api/admin-backend'
+          code=$(curl -sS -D /tmp/h -o /tmp/b -w '%{http_code}' -X OPTIONS \
+            -H 'Origin: https://hyu276.github.io' \
+            -H 'Access-Control-Request-Method: GET' \
+            -H 'Access-Control-Request-Headers: authorization' \
+            "$url")
+          tr -d '\r' </tmp/h
+          echo "status=$code"
+          cat /tmp/b || true
+      - name: Inspect API GET without PAT but with Pages origin
+        shell: bash
+        run: |
+          set -euo pipefail
+          url='https://hyupremium.vercel.app/api/admin-backend'
+          code=$(curl -sS -D /tmp/h -o /tmp/b -w '%{http_code}' \
+            -H 'Origin: https://hyu276.github.io' "$url")
+          tr -d '\r' </tmp/h
+          echo "status=$code body=$(cat /tmp/b)"
