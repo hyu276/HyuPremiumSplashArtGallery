@@ -1,0 +1,83 @@
+name: Fix static admin React runtime
+
+on:
+  push:
+    branches: [fix/github-pages-admin-runtime-v2]
+    paths:
+      - 'scripts/fix-admin-react-runtime.mjs'
+      - '.github/workflows/fix-admin-react-runtime.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fix-static-admin-react-runtime
+  cancel-in-progress: true
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: fix/github-pages-admin-runtime-v2
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install project dependencies
+        run: npm install --no-audit --no-fund
+      - name: Patch explicit React runtime
+        run: node scripts/fix-admin-react-runtime.mjs
+      - name: Rebuild standalone GitHub Pages admin bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes esbuild admin-src/entry.tsx --bundle --minify --platform=browser --target=es2020 --jsx=automatic --outfile=assets/js/admin-github.bundle.js --define:process.env.NODE_ENV='"production"'
+          test -s assets/js/admin-github.bundle.js
+          bytes=$(wc -c < assets/js/admin-github.bundle.js | tr -d ' ')
+          echo "Admin bundle bytes=$bytes"
+          test "$bytes" -lt 500000
+      - name: Typecheck and egress safety
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run egress:check
+          npm run typecheck
+      - name: Browser smoke the rebuilt static page locally
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --no-save --no-audit --no-fund playwright@latest
+          npx playwright install --with-deps chromium >/dev/null
+          python3 -m http.server 8765 >/tmp/admin-http.log 2>&1 &
+          server_pid=$!
+          trap 'kill $server_pid || true' EXIT
+          sleep 2
+          cat >admin-local-smoke.cjs <<'NODE'
+          const { chromium } = require('playwright');
+          (async()=>{
+            const browser=await chromium.launch({headless:true});
+            const page=await browser.newPage();
+            const errors=[];
+            page.on('pageerror',e=>errors.push(String(e.stack||e)));
+            const response=await page.goto('http://127.0.0.1:8765/admin.html',{waitUntil:'networkidle',timeout:30000});
+            const state=await page.evaluate(()=>({root:document.querySelector('#root')?.children.length||0,token:Boolean(document.querySelector('input[placeholder="github_pat_..."]')),text:(document.body.innerText||'').slice(0,300)}));
+            console.log(JSON.stringify({status:response?.status(),state,errors},null,2));
+            await browser.close();
+            if(response?.status()!==200||state.root<1||!state.token||errors.length)process.exit(2);
+          })().catch(e=>{console.error(e);process.exit(10)});
+          NODE
+          node admin-local-smoke.cjs
+      - name: Commit fixed runtime bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add components/GitHubAdminDashboard.tsx assets/js/admin-github.bundle.js scripts/assert-egress-safety.mjs
+          git diff --cached --quiet && { echo 'No runtime fix output'; exit 1; }
+          git commit -m 'fix: load React runtime in GitHub Pages admin'
+          git pull --rebase origin fix/github-pages-admin-runtime-v2
+          git push origin HEAD:fix/github-pages-admin-runtime-v2
