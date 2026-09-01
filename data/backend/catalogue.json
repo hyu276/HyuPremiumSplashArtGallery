@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-01T13:37:10.971Z",
+  "generatedAt": "2026-09-01T13:42:24.941Z",
   "items": [
     {
       "id": "en-tho-bang-gia-2",
@@ -2669,6 +2669,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 1228704,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "quai-nu-tu-la",
+      "name": "Quái nữ Tu La",
+      "description": "",
+      "category": "Butterfly",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Tâm",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/quai-nu-tu-la-1788270073835.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/quai-nu-tu-la-93f8e6e62ae5-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-01T13:41:13.835Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/quai-nu-tu-la-93f8e6e62ae5-640.webp",
+          "width": 640,
+          "height": 360,
+          "bytes": 21642,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/quai-nu-tu-la-93f8e6e62ae5-960.webp",
+          "width": 960,
+          "height": 540,
+          "bytes": 46060,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/quai-nu-tu-la-93f8e6e62ae5-1600.webp",
+          "width": 1600,
+          "height": 900,
+          "bytes": 108290,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/quai-nu-tu-la-1788270073835.jpg",
+          "width": 2730,
+          "height": 1536,
+          "bytes": 541438,
           "mimeType": "image/jpeg"
         }
       }
