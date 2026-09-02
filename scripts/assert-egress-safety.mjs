@@ -99,10 +99,15 @@ if(gallery.includes('loader.src=item.image'))failures.push('gallery must not pre
 if(gallery.includes('new Image(')||gallery.includes('loadAndDecodeOriginal('))failures.push('gallery must not use off-DOM original preloaders before expansion');
 if(gallery.includes('artworkPreview(item,1600)'))failures.push('gallery must not fetch a 1600px bridge before the exact original');
 if(!gallery.includes('srcSet='))failures.push('gallery must use responsive image srcSet');
-if(!gallery.includes("const src=expanded?(item.media?.original?.url||item.image):artworkPreview(item,960)"))failures.push('expanded artwork must load the exact uploaded original');
-if(!gallery.includes("const srcSet=expanded?'':artworkSrcSet(item)"))failures.push('expanded artwork must disable derivative srcSet so browsers cannot down-select it');
-if(!gallery.includes('{expanded?null:<ViewportPreview'))failures.push('expanded artwork must remove the derivative preview instead of upscaling it while the original loads');
-if(!gallery.includes('{expanded?<ExpandedOriginal'))failures.push('expanded artwork must mount the exact original directly in the expanded shell');
+if(!gallery.includes("const originalSrc=item.media?.original?.url||item.image"))failures.push('expanded artwork must load the exact uploaded original');
+if(!gallery.includes('const previewSrcSet=artworkSrcSet(item)'))failures.push('listing preview must keep its responsive srcSet stable across expansion');
+if(gallery.includes("const srcSet=expanded?")||gallery.includes('srcSet={expanded?'))failures.push('expansion must not swap preview srcSet because that can trigger another derivative candidate');
+if(gallery.includes('{expanded?null:<ViewportPreview'))failures.push('expanded artwork must retain only the already-loaded preview as a visual hold instead of blanking the shell');
+if(!gallery.includes('suspendLoad={expanded}'))failures.push('expanded visual hold must not start a derivative request that was not already armed before expansion');
+if(!gallery.includes('holdSize={expanded?previewHold:null}'))failures.push('expanded visual hold must preserve the pre-expansion rendered dimensions');
+if(!gallery.includes('eager={index<INITIAL_RANDOM_COUNT&&!expanded}'))failures.push('direct expanded routes must not eagerly fetch a derivative alongside the exact original');
+if(!gallery.includes('setPreviewHold({width:rect.width,height:rect.height})'))failures.push('gallery must capture the collapsed card dimensions before expansion to prevent derivative upscaling');
+if(!gallery.includes('{expanded?<ExpandedOriginal src={originalSrc}'))failures.push('expanded artwork must mount the exact original directly in the expanded shell');
 
 const imageSitemap=await readFile(join(ROOT,'app/image-sitemap.xml/route.ts'),'utf8');
 if(!imageSitemap.includes('image=artworkPreview(item,1600)'))failures.push('image sitemap must publish the 1600px derivative');
