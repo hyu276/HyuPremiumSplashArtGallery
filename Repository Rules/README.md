@@ -25,6 +25,8 @@ The following are repository-level invariants and MUST NOT be changed casually:
 - Cloudflare R2 is the media object store; the Worker is the media delivery/auth boundary.
 - Existing public media URLs and immutable cache keys should remain stable whenever possible.
 - Media egress must not increase without an explicit reason, request-cost analysis, and verification.
+- Final expanded artwork must preserve exact-original image fidelity.
+- Performance optimization must not trade away correctness, responsive usability, cache efficiency, or image sharpness.
 - No direct commits to `main`; use a branch and pull request.
 - Production fixes must preserve previously solved regressions unless the user explicitly accepts a trade-off.
 
@@ -35,6 +37,12 @@ The following are repository-level invariants and MUST NOT be changed casually:
 - Vercel, GitHub Pages, Worker, GitHub Actions, or rollout changes: read `03-DEPLOYMENT-INFRA.md`.
 - Gallery image loading, derivatives, cache, R2, bandwidth, or performance changes: read `04-CACHE-EGRESS-PERFORMANCE.md`.
 - Any code change, branch, commit, PR, auth, CORS, or secrets work: read `05-GIT-QUALITY-SECURITY.md`.
+- Any implementation or refactor: also read `code-quality.MD`.
+- Any runtime, rendering, bundle, network, build, or deployed-performance change: also read `performance.MD`.
+- Any UI/layout/component change: also read `responsive.MD`.
+- Any media request, derivative, R2, Worker cache, image-loading, or expanded-artwork change: also read `cache-egress.MD`.
+
+The specialized lowercase-named files are stricter task-specific rules. When they overlap an older umbrella rule, satisfy both; use the stricter invariant unless the user explicitly changes the architecture.
 
 ## 4. Change discipline
 
@@ -44,15 +52,17 @@ Before editing:
 - Determine whether the change affects the public gallery, admin control plane, media data plane, deployment, or more than one boundary.
 - Prefer the smallest change that fixes the root cause.
 - Do not introduce a new service, hostname, proxy, polling loop, prefetch path, or retry policy unless its failure modes are understood.
+- For performance/media work, write down the expected request/render topology before changing it.
 
 After editing:
 
 - Verify the relevant production path, not only compilation.
 - State what was changed, what was intentionally not changed, and which invariants were checked.
 - If verification is incomplete, say so explicitly; do not present assumptions as production proof.
+- Do not claim performance or egress improvement without evidence appropriate to the claim.
 
 ## 5. Anti-regression principle
 
 A later fix MUST NOT reintroduce an earlier fixed issue. When a sequence of fixes has accumulated multiple constraints, treat all still-valid constraints as a single contract.
 
-Example: an image-loading fix must preserve responsiveness, sharpness, cache behavior, and egress constraints simultaneously rather than optimizing only one dimension.
+Example: an image-loading fix must preserve responsiveness, sharpness, cache behavior, interaction latency, and egress constraints simultaneously rather than optimizing only one dimension.
