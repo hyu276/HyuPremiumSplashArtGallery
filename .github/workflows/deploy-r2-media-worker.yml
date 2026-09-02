@@ -74,7 +74,7 @@ jobs:
             process.stdout.write((j.result||[]).some(app=>(app.destinations||[]).some(d=>d.type==="all_workers"))?"1":"0");
           ')
           if [ "$account_protected" != "1" ]; then
-            echo 'Account-wide Worker Access is not enabled; no bypass is necessary.'
+            echo 'Account-wide Worker Access is not enabled; Worker-level bypass is not necessary.'
             exit 0
           fi
 
@@ -125,13 +125,99 @@ jobs:
           echo "MEDIA_URL=$base$pathname" >> "$GITHUB_ENV"
           echo "Worker: $base"
           echo "Probe media: $base$pathname"
+      - name: Ensure canonical media hostname bypasses Access
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          media_host=$(MEDIA_BASE="$MEDIA_BASE" node -e 'process.stdout.write(new URL(process.env.MEDIA_BASE).host)')
+          media_destination="$media_host/*"
+          echo "Reconciling hostname-level Access bypass for $media_destination"
+
+          status=$(curl -sS -o /tmp/access-host-apps -w '%{http_code}' \
+            -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            -H 'Content-Type: application/json' \
+            "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/access/apps")
+          if [ "$status" = "403" ]; then
+            echo '::error::CLOUDFLARE_API_TOKEN needs Access: Apps and Policies Read/Write so CI can reconcile the canonical media hostname bypass.'
+            exit 1
+          fi
+          test "$status" = "200" || { echo "::error::Unable to inspect hostname-level Access applications (HTTP $status)"; head -c 500 /tmp/access-host-apps; exit 1; }
+
+          MEDIA_HOST="$media_host" node -e '
+            const fs=require("fs");
+            const j=JSON.parse(fs.readFileSync("/tmp/access-host-apps","utf8"));
+            const host=process.env.MEDIA_HOST;
+            const summary=(j.result||[]).filter(app=>(app.destinations||[]).some(d=>d.type==="all_workers"||d.type==="worker"||(d.type==="public"&&String(d.uri||"").includes("workers.dev")))).map(app=>({
+              name:app.name,
+              destinations:(app.destinations||[]).map(d=>d.type==="public"?{type:d.type,uri:d.uri}:{type:d.type}),
+              decisions:(app.policies||[]).map(p=>p.decision)
+            }));
+            console.log("Relevant Access applications:",JSON.stringify(summary));
+            console.log("Canonical media host:",host);
+          '
+
+          bypass_exists=$(MEDIA_DESTINATION="$media_destination" MEDIA_HOST="$media_host" node -e '
+            const fs=require("fs");
+            const j=JSON.parse(fs.readFileSync("/tmp/access-host-apps","utf8"));
+            const clean=v=>String(v||"").replace(/^https?:\/\//,"").replace(/\/+$/,"");
+            const target=clean(process.env.MEDIA_DESTINATION);
+            const host=clean(process.env.MEDIA_HOST);
+            const ok=(j.result||[]).some(app=>
+              (app.destinations||[]).some(d=>d.type==="public"&&(clean(d.uri)===target||clean(d.uri)===host)) &&
+              (app.policies||[]).some(p=>p.decision==="bypass"&&(p.include||[]).some(r=>Object.prototype.hasOwnProperty.call(r,"everyone")))
+            );
+            process.stdout.write(ok?"1":"0");
+          ')
+          if [ "$bypass_exists" = "1" ]; then
+            echo 'Canonical hostname-level public bypass already exists.'
+          else
+            payload=$(MEDIA_DESTINATION="$media_destination" node -e '
+              process.stdout.write(JSON.stringify({
+                type:"self_hosted",
+                name:"HYU Premium media canonical hostname bypass",
+                destinations:[{type:"public",uri:process.env.MEDIA_DESTINATION}],
+                policies:[{decision:"bypass",include:[{everyone:{}}]}],
+                app_launcher_visible:false
+              }));
+            ')
+            create_status=$(curl -sS -o /tmp/access-host-create -w '%{http_code}' \
+              -X POST \
+              -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+              -H 'Content-Type: application/json' \
+              --data "$payload" \
+              "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/access/apps")
+            case "$create_status" in
+              200|201) echo 'Created hostname-level bypass for the canonical media hostname.' ;;
+              *) echo "::error::Unable to create canonical media hostname Access bypass (HTTP $create_status)"; head -c 1000 /tmp/access-host-create; exit 1 ;;
+            esac
+          fi
+
+          curl -fsS \
+            -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            -H 'Content-Type: application/json' \
+            "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/access/apps" > /tmp/access-host-apps-after
+          verified=$(MEDIA_DESTINATION="$media_destination" MEDIA_HOST="$media_host" node -e '
+            const fs=require("fs");
+            const j=JSON.parse(fs.readFileSync("/tmp/access-host-apps-after","utf8"));
+            const clean=v=>String(v||"").replace(/^https?:\/\//,"").replace(/\/+$/,"");
+            const target=clean(process.env.MEDIA_DESTINATION);
+            const host=clean(process.env.MEDIA_HOST);
+            const ok=(j.result||[]).some(app=>
+              (app.destinations||[]).some(d=>d.type==="public"&&(clean(d.uri)===target||clean(d.uri)===host)) &&
+              (app.policies||[]).some(p=>p.decision==="bypass"&&(p.include||[]).some(r=>Object.prototype.hasOwnProperty.call(r,"everyone")))
+            );
+            process.stdout.write(ok?"1":"0");
+          ')
+          test "$verified" = "1" || { echo '::error::Canonical hostname bypass was not observable after reconciliation.'; exit 1; }
       - name: Verify production Worker health and admin CORS boundary
         shell: bash
         run: |
           set -euo pipefail
-          ok=0
+          consecutive=0
+          required=6
           preflight_url="$MEDIA_BASE/admin/media/diagnostics/preflight.webp"
-          for attempt in $(seq 1 12); do
+          for attempt in $(seq 1 30); do
             health=$(curl -sS -o /tmp/health -w '%{http_code}' "$MEDIA_BASE/health")
             curl -sS -o /dev/null -D /tmp/preflight -X OPTIONS "$preflight_url" \
               -H 'Origin: https://hyu276.github.io' \
@@ -139,38 +225,54 @@ jobs:
               -H 'Access-Control-Request-Headers: authorization,content-type'
             preflight=$(tr -d '\r' </tmp/preflight | awk 'NR==1{print $2}')
             allow_origin=$(tr -d '\r' </tmp/preflight | awk 'BEGIN{IGNORECASE=1}/^access-control-allow-origin:/{sub(/^access-control-allow-origin:[[:space:]]*/,"");print}' | tail -1)
-            echo "attempt=$attempt health=$health preflight=${preflight:-missing} allow-origin=${allow_origin:-missing}"
-            if [ "$health" = "200" ] && [ "$preflight" = "204" ] && [ "$allow_origin" = "https://hyu276.github.io" ]; then ok=1; break; fi
+            location=$(tr -d '\r' </tmp/preflight | awk 'BEGIN{IGNORECASE=1}/^location:/{sub(/^location:[[:space:]]*/,"");print}' | tail -1)
+            if [ "$health" = "200" ] && [ "$preflight" = "204" ] && [ "$allow_origin" = "https://hyu276.github.io" ]; then
+              consecutive=$((consecutive+1))
+            else
+              consecutive=0
+            fi
+            echo "attempt=$attempt health=$health preflight=${preflight:-missing} allow-origin=${allow_origin:-missing} consecutive=$consecutive redirect=${location:-none}"
+            if [ "$consecutive" -ge "$required" ]; then break; fi
             sleep 2
           done
-          test "$ok" = "1" || { echo '::error::Media Worker is still intercepted before Worker CORS can run'; exit 1; }
-      - name: Verify unauthenticated admin PUT reaches Worker auth
+          test "$consecutive" -ge "$required" || { echo '::error::Media Worker did not sustain six consecutive health/CORS successes; intermittent Access interception is still present.'; exit 1; }
+      - name: Verify unauthenticated admin PUT consistently reaches Worker auth
         shell: bash
         run: |
           set -euo pipefail
           probe="$MEDIA_BASE/admin/media/diagnostics/unauthorized-probe.webp"
-          code=$(printf 'probe' | curl -sS -o /tmp/put-body -D /tmp/put-headers -w '%{http_code}' -X PUT "$probe" \
-            -H 'Origin: https://hyu276.github.io' \
-            -H 'Content-Type: application/octet-stream' \
-            --data-binary @-)
-          tr -d '\r' </tmp/put-headers
-          test "$code" = "401" || { echo "::error::Expected Worker-auth 401, got $code"; exit 1; }
-          tr -d '\r' </tmp/put-headers | grep -Eiq '^access-control-allow-origin: https://hyu276.github.io$'
-          grep -q 'GitHub token required' /tmp/put-body
-      - name: Verify real Cloudflare cache HIT
+          for attempt in $(seq 1 4); do
+            code=$(printf 'probe' | curl -sS -o /tmp/put-body -D /tmp/put-headers -w '%{http_code}' -X PUT "$probe" \
+              -H 'Origin: https://hyu276.github.io' \
+              -H 'Content-Type: application/octet-stream' \
+              --data-binary @-)
+            allow_origin=$(tr -d '\r' </tmp/put-headers | awk 'BEGIN{IGNORECASE=1}/^access-control-allow-origin:/{sub(/^access-control-allow-origin:[[:space:]]*/,"");print}' | tail -1)
+            echo "attempt=$attempt status=$code allow-origin=${allow_origin:-missing}"
+            test "$code" = "401" || { echo "::error::Expected Worker-auth 401, got $code"; tr -d '\r' </tmp/put-headers; exit 1; }
+            test "$allow_origin" = "https://hyu276.github.io" || { echo '::error::Worker-auth response lost the GitHub Pages CORS origin.'; exit 1; }
+            grep -q 'GitHub token required' /tmp/put-body
+            sleep 1
+          done
+      - name: Verify stable Cloudflare cache HIT
         shell: bash
         run: |
           set -euo pipefail
-          hit=0
-          for attempt in $(seq 1 12); do
-            curl -fsS -D /tmp/media-headers -o /dev/null "$MEDIA_URL"
-            tr -d '\r' </tmp/media-headers
+          consecutive=0
+          required=6
+          for attempt in $(seq 1 24); do
+            http=$(curl -sS -D /tmp/media-headers -o /dev/null -w '%{http_code}' "$MEDIA_URL")
             status=$(tr -d '\r' </tmp/media-headers | awk 'BEGIN{IGNORECASE=1}/^cf-cache-status:/{print $2}' | tail -1)
-            echo "attempt=$attempt cf-cache-status=${status:-missing}"
-            if [ "$status" = "HIT" ]; then hit=1; break; fi
+            location=$(tr -d '\r' </tmp/media-headers | awk 'BEGIN{IGNORECASE=1}/^location:/{sub(/^location:[[:space:]]*/,"");print}' | tail -1)
+            if [ "$http" = "200" ] && [ "$status" = "HIT" ]; then
+              consecutive=$((consecutive+1))
+            else
+              consecutive=0
+            fi
+            echo "attempt=$attempt http=$http cf-cache-status=${status:-missing} consecutive=$consecutive redirect=${location:-none}"
+            if [ "$consecutive" -ge "$required" ]; then break; fi
             sleep 1
           done
-          test "$hit" = "1" || { echo '::error::Production media never produced CF-Cache-Status: HIT'; exit 1; }
+          test "$consecutive" -ge "$required" || { echo '::error::Production media did not sustain six consecutive HTTP 200 cache HIT responses.'; exit 1; }
       - name: Verify Range 206 semantics
         shell: bash
         run: |
@@ -190,4 +292,4 @@ jobs:
           tr -d '\r' </tmp/query-headers | grep -Eq '^HTTP/[0-9.]+ 308'
           location=$(tr -d '\r' </tmp/query-headers | awk 'BEGIN{IGNORECASE=1}/^location:/{sub(/^location:[[:space:]]*/,"");print}' | tail -1)
           test "$location" = "$MEDIA_URL" || { echo "::error::Expected canonical Location $MEDIA_URL but got $location"; exit 1; }
-          echo 'Worker Access bypass, CORS, auth boundary, Workers Caching, Range 206, and query canonicalization verified.'
+          echo 'Worker and canonical-host Access bypasses, sustained CORS/auth reachability, Workers Caching, Range 206, and query canonicalization verified.'
