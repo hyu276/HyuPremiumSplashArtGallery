@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-02T12:33:51.298Z",
+  "generatedAt": "2026-09-02T12:35:54.491Z",
   "items": [
     {
       "id": "en-tho-bang-gia-2",
@@ -8190,6 +8190,53 @@
       }
     },
     {
+      "id": "tuyet-son-thanh-ve",
+      "name": "Tuyết sơn thánh vệ",
+      "description": "",
+      "category": "Toro",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Giokila",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/tuyet-son-thanh-ve-1788352493505.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tuyet-son-thanh-ve-e6db05eebf9b-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-02T12:34:53.506Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tuyet-son-thanh-ve-e6db05eebf9b-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 33952,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tuyet-son-thanh-ve-e6db05eebf9b-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 62946,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tuyet-son-thanh-ve-e6db05eebf9b-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 127592,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/tuyet-son-thanh-ve-1788352493505.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 792599,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
       "id": "cho-cao-bang-bo-pc",
       "name": "Chó cao bằng bộ PC",
       "description": "",
@@ -9125,6 +9172,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 447435,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "tuyet-duong-chi-tu",
+      "name": "Tuyết dương chi tử",
+      "description": "",
+      "category": "Violet",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Giokila",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/tuyet-duong-chi-tu-1788352539996.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tuyet-duong-chi-tu-ba34389bf35b-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-02T12:35:39.996Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tuyet-duong-chi-tu-ba34389bf35b-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 37638,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tuyet-duong-chi-tu-ba34389bf35b-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 71340,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tuyet-duong-chi-tu-ba34389bf35b-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 148678,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/tuyet-duong-chi-tu-1788352539996.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 911545,
           "mimeType": "image/jpeg"
         }
       }
