@@ -21,6 +21,7 @@ const RANK_GRADIENTS: Record<string,string> = {
 
 type SearchToken={text:string;quoted:boolean};
 type FilterOption={value:string;label:string};
+type PreviewHold={width:number;height:number};
 
 function norm(value:string){return String(value??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\s+/g,' ').trim()}
 function parseQuery(query:string){
@@ -103,12 +104,23 @@ function GalleryFilterControl({label,value,options,onChange,ariaLabel}:{label:st
   </div>;
 }
 
-const ViewportPreview=memo(function ViewportPreview({src,srcSet,sizes,alt,eager}:{src:string;srcSet:string;sizes:string;alt:string;eager:boolean}){
+const ViewportPreview=memo(function ViewportPreview({src,srcSet,sizes,alt,eager,suspendLoad,holdSize}:{src:string;srcSet:string;sizes:string;alt:string;eager:boolean;suspendLoad:boolean;holdSize:PreviewHold|null}){
   const node=useRef<HTMLImageElement>(null);
   const [armed,setArmed]=useState(eager);
+  const holdStyle=holdSize?({
+    left:'50%',top:'50%',right:'auto',bottom:'auto',
+    width:`min(${Math.max(1,Math.round(holdSize.width))}px, calc(100% - 24px))`,
+    height:'auto',
+    aspectRatio:`${Math.max(1,Math.round(holdSize.width))} / ${Math.max(1,Math.round(holdSize.height))}`,
+    transform:'translate(-50%,-50%)',
+    filter:'none',
+    opacity:1,
+    transition:'none',
+    boxShadow:'0 18px 54px rgba(0,0,0,.28)'
+  } as CSSProperties):undefined;
 
   useEffect(()=>{
-    if(armed)return;
+    if(armed||suspendLoad)return;
     const image=node.current;if(!image)return;
     if(typeof IntersectionObserver==='undefined'){setArmed(true);return;}
     const observer=new IntersectionObserver(entries=>{
@@ -116,11 +128,11 @@ const ViewportPreview=memo(function ViewportPreview({src,srcSet,sizes,alt,eager}
     },{rootMargin:'320px 0px'});
     observer.observe(image);
     return()=>observer.disconnect();
-  },[armed]);
+  },[armed,suspendLoad]);
 
-  useEffect(()=>{if(eager&&!armed)setArmed(true)},[eager,armed]);
+  useEffect(()=>{if(eager&&!armed&&!suspendLoad)setArmed(true)},[eager,armed,suspendLoad]);
 
-  return <img ref={node} className="preview" src={armed?src:undefined} srcSet={armed&&srcSet?srcSet:undefined} sizes={armed?sizes:undefined} data-src={armed?undefined:src} alt={alt} loading={eager?'eager':'lazy'} decoding="async" fetchPriority={eager?'high':'low'} />;
+  return <img ref={node} className="preview" style={holdStyle} src={armed?src:undefined} srcSet={armed&&srcSet?srcSet:undefined} sizes={armed?sizes:undefined} data-src={armed?undefined:src} alt={alt} loading={eager?'eager':'lazy'} decoding="async" fetchPriority={eager?'high':'low'} />;
 });
 
 const ExpandedOriginal=memo(function ExpandedOriginal({src,onReady}:{src:string;onReady:()=>void}){
@@ -135,6 +147,7 @@ const ExpandedOriginal=memo(function ExpandedOriginal({src,onReady}:{src:string;
 
   return <img
     className={`full${ready?' ready':''}`}
+    style={{transition:'none'}}
     src={src}
     alt=""
     aria-hidden="true"
@@ -155,19 +168,29 @@ const ExpandedOriginal=memo(function ExpandedOriginal({src,onReady}:{src:string;
 });
 
 const ArtworkCard = memo(function ArtworkCard({item,index,expanded,pending,onToggle,onOriginalReady}:{item:Artwork;index:number;expanded:boolean;pending:boolean;onToggle:(item:Artwork)=>void;onOriginalReady:(itemId:string)=>void}){
+  const cardNode=useRef<HTMLButtonElement>(null);
+  const [previewHold,setPreviewHold]=useState<PreviewHold|null>(null);
   const imageAlt=`${item.name} — ${item.category}, splash art game, hạng skin ${item.rank}`;
   const motionStyle={'--art-motion-delay':`${Math.min(index,12)*18}ms`} as CSSProperties;
-  // Expansion reacts immediately, but derivatives are never rendered in the expanded shell.
-  // The exact original is the only expanded media request and appears only after decode completes.
-  const src=expanded?(item.media?.original?.url||item.image):artworkPreview(item,960);
-  const srcSet=expanded?'':artworkSrcSet(item);
+  // Keep the already-rendered listing preview mounted as a same-size visual hold.
+  // Expansion never enlarges that derivative; the exact original is still the only expansion-triggered media load.
+  const originalSrc=item.media?.original?.url||item.image;
   const previewSrc=artworkPreview(item,960);
-  const sizes='(max-width: 760px) 50vw, (max-width: 1200px) 50vw, 33vw';
+  const previewSrcSet=artworkSrcSet(item);
+  const previewSizes='(max-width: 760px) 50vw, (max-width: 1200px) 50vw, 33vw';
   const actionLabel=pending?'Đang tải ảnh gốc':expanded?'Thu gọn':'Mở rộng';
-  return <button style={motionStyle} className={`art-card${expanded?' expanded':''}${pending?' pending-expand':''}`} data-id={item.id} aria-expanded={expanded} aria-busy={pending} aria-label={`${actionLabel} ${item.name}`} onClick={()=>onToggle(item)}>
-    <span className="art-image-layer">
-      {expanded?null:<ViewportPreview src={previewSrc} srcSet={srcSet} sizes={sizes} alt={imageAlt} eager={index<INITIAL_RANDOM_COUNT}/>} 
-      {expanded?<ExpandedOriginal src={src} onReady={()=>onOriginalReady(item.id)}/>:null}
+  const loadingLayerStyle=expanded&&pending?({background:'radial-gradient(circle at 50% 42%,rgba(67,220,255,.10),transparent 34%),linear-gradient(135deg,#12191a 0%,#0b0e0e 55%,#080908 100%)'} as CSSProperties):undefined;
+  const toggleCard=()=>{
+    if(!expanded){
+      const rect=cardNode.current?.getBoundingClientRect();
+      if(rect&&rect.width>0&&rect.height>0)setPreviewHold({width:rect.width,height:rect.height});
+    }
+    onToggle(item);
+  };
+  return <button ref={cardNode} style={motionStyle} className={`art-card${expanded?' expanded':''}${pending?' pending-expand':''}`} data-id={item.id} aria-expanded={expanded} aria-busy={pending} aria-label={`${actionLabel} ${item.name}`} onClick={toggleCard}>
+    <span className="art-image-layer" style={loadingLayerStyle}>
+      <ViewportPreview src={previewSrc} srcSet={previewSrcSet} sizes={previewSizes} alt={imageAlt} eager={index<INITIAL_RANDOM_COUNT&&!expanded} suspendLoad={expanded} holdSize={expanded?previewHold:null}/>
+      {expanded?<ExpandedOriginal src={originalSrc} onReady={()=>onOriginalReady(item.id)}/>:null}
     </span>
     <span className="shade" aria-hidden="true"></span>
     <span className="card-number">{String(index+1).padStart(2,'0')}</span>
