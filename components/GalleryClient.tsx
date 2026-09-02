@@ -154,15 +154,10 @@ const ExpandedOriginal=memo(function ExpandedOriginal({src,onReady}:{src:string;
     loading="eager"
     decoding="async"
     fetchPriority="high"
-    onLoad={event=>{
-      const image=event.currentTarget;
-      const reveal=()=>{
-        if(!alive.current)return;
-        setReady(true);
-        onReady();
-      };
-      if(typeof image.decode==='function')image.decode().then(reveal,reveal);
-      else reveal();
+    onLoad={()=>{
+      if(!alive.current)return;
+      setReady(true);
+      onReady();
     }}
   />;
 });

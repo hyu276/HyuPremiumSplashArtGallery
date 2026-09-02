@@ -98,15 +98,12 @@
 .art-card[aria-expanded="true"] .expand-mark{transform:rotate(180deg) scale(1.08);border-color:var(--brand);color:var(--brand)}
 .art-card[aria-expanded="true"] .tier{transform:translateY(2px)}
 
-/* CSS-only pending loader: no extra media request, no JS state, and it disappears as soon as exact-original decode completes. */
-.art-card.pending-expand .art-image-layer::before,
-.art-card.pending-expand .art-image-layer::after{
+/* CSS-only pending loader: no extra media request or client state. */
+.art-card.pending-expand .art-image-layer::before{
+  content:"";
   position:absolute;
   z-index:4;
   pointer-events:none;
-}
-.art-card.pending-expand .art-image-layer::before{
-  content:"";
   left:50%;
   top:43%;
   width:clamp(34px,4vw,52px);
@@ -116,33 +113,15 @@
   border-right-color:rgba(25,191,255,.72);
   border-radius:50%;
   box-shadow:0 0 0 1px rgba(67,220,255,.06),0 0 22px rgba(67,220,255,.16);
+  opacity:0;
   transform:translate(-50%,-50%) rotate(0deg);
-  animation:hyu-original-loader-spin .9s linear infinite;
-}
-.art-card.pending-expand .art-image-layer::after{
-  content:"ĐANG TẢI ẢNH GỐC";
-  left:50%;
-  top:calc(43% + clamp(31px,4.1vw,44px));
-  max-width:calc(100% - 32px);
-  padding:7px 10px 6px;
-  border:1px solid rgba(67,220,255,.24);
-  border-radius:999px;
-  background:rgba(8,9,8,.78);
-  color:var(--paper);
-  font-size:clamp(.48rem,.68vw,.62rem);
-  font-weight:900;
-  letter-spacing:.14em;
-  line-height:1;
-  white-space:nowrap;
-  transform:translateX(-50%);
-  animation:hyu-original-loader-status 1.35s ease-in-out infinite;
+  animation:hyu-original-loader-spin .9s linear infinite,hyu-original-loader-enter .14s ease .12s forwards;
 }
 @keyframes hyu-original-loader-spin{
   to{transform:translate(-50%,-50%) rotate(360deg)}
 }
-@keyframes hyu-original-loader-status{
-  0%,100%{opacity:.58;transform:translateX(-50%) translateY(0)}
-  50%{opacity:1;transform:translateX(-50%) translateY(-2px)}
+@keyframes hyu-original-loader-enter{
+  to{opacity:.92}
 }
 
 .gallery-progressive-controls{animation:hyu-controls-reveal var(--motion-base) var(--motion-ease) both}
@@ -164,7 +143,6 @@
 @media(max-width:760px){
   .art-card{animation:none}
   .art-card.pending-expand .art-image-layer::before{top:41%;width:34px}
-  .art-card.pending-expand .art-image-layer::after{top:calc(41% + 30px);padding:6px 9px 5px;font-size:.46rem;letter-spacing:.12em}
   .mobile-filter-launcher[aria-expanded="true"]{
     border-color:var(--brand);
     box-shadow:0 10px 28px rgba(0,0,0,.32),0 0 0 1px rgba(67,220,255,.12);
