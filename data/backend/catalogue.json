@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-02T05:33:44.844Z",
+  "generatedAt": "2026-09-02T05:34:19.860Z",
   "items": [
     {
       "id": "en-tho-bang-gia-2",
@@ -5659,6 +5659,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 847704,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "nhat-binh-phuong-cac",
+      "name": "Nhật Binh Phượng Các",
+      "description": "",
+      "category": "Liliana",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hika",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/nhat-binh-phuong-cac-1788327197098.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nhat-binh-phuong-cac-9ce3daffd8de-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": true,
+      "updatedAt": "2026-09-02T05:33:17.098Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nhat-binh-phuong-cac-9ce3daffd8de-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 37740,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nhat-binh-phuong-cac-9ce3daffd8de-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 72876,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nhat-binh-phuong-cac-9ce3daffd8de-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 157978,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/nhat-binh-phuong-cac-1788327197098.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 730601,
           "mimeType": "image/jpeg"
         }
       }
