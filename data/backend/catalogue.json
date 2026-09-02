@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-02T04:34:53.013Z",
+  "generatedAt": "2026-09-02T04:35:25.296Z",
   "items": [
     {
       "id": "en-tho-bang-gia-2",
@@ -8608,6 +8608,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 1131779,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "linh-phu-mi-anh",
+      "name": "Linh Phù Mị Ảnh",
+      "description": "",
+      "category": "Veera",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hiemaru",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/linh-phu-mi-anh-1788323661393.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/linh-phu-mi-anh-e282c10d4ec9-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-02T04:34:21.393Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/linh-phu-mi-anh-e282c10d4ec9-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 37796,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/linh-phu-mi-anh-e282c10d4ec9-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 77698,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/linh-phu-mi-anh-e282c10d4ec9-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 185406,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/linh-phu-mi-anh-1788323661393.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 884575,
           "mimeType": "image/jpeg"
         }
       }
