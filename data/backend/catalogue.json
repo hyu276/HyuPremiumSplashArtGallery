@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-02T05:42:39.943Z",
+  "generatedAt": "2026-09-02T11:45:41.030Z",
   "items": [
     {
       "id": "en-tho-bang-gia-2",
@@ -3092,6 +3092,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 2093036,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "nghe-thuong-tien-tu",
+      "name": "Nghê Thường Tiên Tử",
+      "description": "",
+      "category": "Dolia",
+      "rank": "SS+",
+      "rankOrder": 4,
+      "credit": "Tâm",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/nghe-thuong-tien-tu-1788349477900.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nghe-thuong-tien-tu-740ff53c535c-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-02T11:44:37.900Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nghe-thuong-tien-tu-740ff53c535c-640.webp",
+          "width": 640,
+          "height": 358,
+          "bytes": 25310,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nghe-thuong-tien-tu-740ff53c535c-960.webp",
+          "width": 960,
+          "height": 537,
+          "bytes": 48112,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nghe-thuong-tien-tu-740ff53c535c-1600.webp",
+          "width": 1600,
+          "height": 896,
+          "bytes": 95838,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/nghe-thuong-tien-tu-1788349477900.jpg",
+          "width": 2744,
+          "height": 1536,
+          "bytes": 469536,
           "mimeType": "image/jpeg"
         }
       }
