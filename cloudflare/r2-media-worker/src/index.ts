@@ -9,6 +9,7 @@ type GitHubUser = { login?: string };
 
 const ONE_YEAR=31536000;
 const MAX_FALLBACK_RANGE=8*1024*1024;
+const TRANSIENT_STATUS=new Set([408,425,429,500,502,503,504]);
 
 function allowedOrigin(origin: string) {
   if (!origin) return '';
@@ -49,6 +50,10 @@ function adminKey(url: URL) {
   return cleanKey(url.pathname.slice('/admin/media/'.length));
 }
 
+function sleep(ms:number){return new Promise(resolve=>setTimeout(resolve,ms))}
+function retryDelay(response:Response){const raw=response.headers.get('retry-after')||'';const seconds=/^\d+$/.test(raw)?Number(raw):0;return seconds>0?Math.min(seconds*1000,1500):300}
+async function resilientGitHubGet(url:string,headers:Record<string,string>){let lastError:unknown;for(let attempt=0;attempt<2;attempt+=1){const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),10000);try{const response=await fetch(url,{headers,signal:controller.signal});if(attempt===0&&TRANSIENT_STATUS.has(response.status)){await sleep(retryDelay(response));continue}return response}catch(error){lastError=error;if(attempt===0){await sleep(300);continue}}finally{clearTimeout(timer)}}const timedOut=(lastError as any)?.name==='AbortError';throw new Error(`GitHub API temporarily unavailable${timedOut?' (timeout)':''}.`)}
+
 async function githubAdmin(request: Request, env: Env) {
   const authorization = request.headers.get('authorization') || '';
   if (!authorization.toLowerCase().startsWith('bearer ')) throw new Error('GitHub token required.');
@@ -61,10 +66,13 @@ async function githubAdmin(request: Request, env: Env) {
     'User-Agent': 'HYU-PREMIUM-R2'
   };
   const [userResponse, repoResponse] = await Promise.all([
-    fetch('https://api.github.com/user', { headers }),
-    fetch(`https://api.github.com/repos/${env.REPO_FULL_NAME}`, { headers })
+    resilientGitHubGet('https://api.github.com/user', headers),
+    resilientGitHubGet(`https://api.github.com/repos/${env.REPO_FULL_NAME}`, headers)
   ]);
-  if (!userResponse.ok || !repoResponse.ok) throw new Error('GitHub authentication failed.');
+  if (!userResponse.ok || !repoResponse.ok) {
+    if(TRANSIENT_STATUS.has(userResponse.status)||TRANSIENT_STATUS.has(repoResponse.status))throw new Error('GitHub API temporarily unavailable.');
+    throw new Error('GitHub authentication failed.');
+  }
   const user = await userResponse.json<GitHubUser>();
   const repo = await repoResponse.json<GitHubRepo>();
   if (String(user.login || '').toLowerCase() !== env.REPO_OWNER.toLowerCase()) throw new Error('Token does not belong to the repository owner.');
@@ -181,7 +189,9 @@ export default {
         const publicUrl = new URL(`/media/${key.split('/').map(encodeURIComponent).join('/')}`, url.origin).href;
         return Response.json({ ok: true, key, url: publicUrl }, { headers: { ...adminCors(request), 'Cache-Control':'no-store' } });
       } catch (error: any) {
-        return Response.json({ error: error?.message || 'Unauthorized.' }, { status: 401, headers: { ...adminCors(request), 'Cache-Control':'no-store' } });
+        const message=error?.message||'Unauthorized.';
+        const status=/temporarily unavailable|timeout/i.test(message)?503:401;
+        return Response.json({ error: message }, { status, headers: { ...adminCors(request), 'Cache-Control':'no-store' } });
       }
     }
 

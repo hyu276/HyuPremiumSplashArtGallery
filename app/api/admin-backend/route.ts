@@ -1,4 +1,4 @@
-import { createHash } from 'node:crypto';
+import { createHash, randomUUID } from 'node:crypto';
 import sharp from 'sharp';
 import { revalidatePath, revalidateTag } from 'next/cache';
 
@@ -8,6 +8,7 @@ const API='https://api.github.com';
 const DATA_ROOT='data/backend';
 const VARIANT_WIDTHS=[640,960,1600] as const;
 const TEAM_VARIANT_WIDTHS=[320,640] as const;
+const TRANSIENT_STATUS=new Set([408,425,429,500,502,503,504]);
 
 type GitHubUser={login?:string};
 type GitHubRepo={permissions?:{push?:boolean;admin?:boolean}};
@@ -18,14 +19,17 @@ type Catalogue={schemaVersion?:number;generatedAt?:string;items:any[];categories
 type AdminPayload={ownerItems?:any[];categories?:string[];ranks?:string[];credits?:string[];team?:any[];seo?:any};
 
 const ADMIN_ORIGIN='https://hyu276.github.io';
-function corsHeaders(request:Request):Record<string,string>{const origin=request.headers.get('origin')||'';return origin===ADMIN_ORIGIN?{'Access-Control-Allow-Origin':ADMIN_ORIGIN,'Access-Control-Allow-Methods':'GET,POST,OPTIONS','Access-Control-Allow-Headers':'Authorization,Content-Type','Access-Control-Max-Age':'86400','Vary':'Origin'}:{}}
-function responseHeaders(request:Request):Record<string,string>{return {'Cache-Control':'no-store',...corsHeaders(request)}}
+function corsHeaders(request:Request):Record<string,string>{const origin=request.headers.get('origin')||'';return origin===ADMIN_ORIGIN?{'Access-Control-Allow-Origin':ADMIN_ORIGIN,'Access-Control-Allow-Methods':'GET,POST,OPTIONS','Access-Control-Allow-Headers':'Authorization,Content-Type','Access-Control-Expose-Headers':'X-Admin-Request-Id','Access-Control-Max-Age':'86400','Vary':'Origin'}:{}}
+function responseHeaders(request:Request,requestId?:string):Record<string,string>{return {'Cache-Control':'no-store',...(requestId?{'X-Admin-Request-Id':requestId}:{}),...corsHeaders(request)}}
 export async function OPTIONS(request:Request){return new Response(null,{status:204,headers:responseHeaders(request)})}
 
 function tokenFrom(request:Request){const value=request.headers.get('authorization')||'';return value.toLowerCase().startsWith('bearer ')?value.slice(7).trim():''}
 function dataBranch(){const explicit=String(process.env.GITHUB_DATA_BRANCH||'').trim();if(explicit)return explicit;const vercelRef=String(process.env.VERCEL_GIT_COMMIT_REF||'').trim();return vercelRef||'main'}
 function ghHeaders(token:string){return {Accept:'application/vnd.github+json',Authorization:`Bearer ${token}`,'X-GitHub-Api-Version':'2022-11-28','User-Agent':'HYU-PREMIUM-ADMIN'}}
-async function gh<T>(token:string,pathname:string,init:RequestInit={}):Promise<T>{const response=await fetch(`${API}${pathname}`,{...init,headers:{...ghHeaders(token),...(init.headers||{})},cache:'no-store'});if(!response.ok){const body=await response.text();throw new Error(`GitHub ${response.status}: ${body.slice(0,500)}`)}return response.json() as Promise<T>}
+function sleep(ms:number){return new Promise(resolve=>setTimeout(resolve,ms))}
+function retryDelay(response:Response,attempt:number){const raw=response.headers.get('retry-after')||'';const seconds=/^\d+$/.test(raw)?Number(raw):0;return seconds>0?Math.min(seconds*1000,1500):300+attempt*450}
+async function resilientSmallGet(url:string,init:RequestInit,label:string){let lastError:unknown;for(let attempt=0;attempt<2;attempt+=1){const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),12000);try{const response=await fetch(url,{...init,method:'GET',signal:controller.signal,cache:'no-store'});if(attempt===0&&TRANSIENT_STATUS.has(response.status)){await sleep(retryDelay(response,attempt));continue}return response}catch(error){lastError=error;if(attempt===0){await sleep(300);continue}}finally{clearTimeout(timer)}}const timedOut=(lastError as any)?.name==='AbortError';throw new Error(`${label} tạm thời không phản hồi${timedOut?' (timeout)':''}. Hãy thử lại.`)}
+async function gh<T>(token:string,pathname:string,init:RequestInit={}):Promise<T>{const url=`${API}${pathname}`;const method=String(init.method||'GET').toUpperCase();const options:RequestInit={...init,headers:{...ghHeaders(token),...(init.headers||{})},cache:'no-store'};const response=method==='GET'?await resilientSmallGet(url,options,'GitHub API'):await fetch(url,options);if(!response.ok){const body=await response.text();throw new Error(`GitHub ${response.status}: ${body.slice(0,500)}`)}return response.json() as Promise<T>}
 
 async function verify(token:string){
   if(!token.startsWith('github_pat_'))throw new Error('Hãy sử dụng GitHub fine-grained personal access token bắt đầu bằng github_pat_.');
@@ -49,9 +53,19 @@ function publicR2Url(base:string,key:string){return `${base.replace(/\/$/,'')}/m
 
 async function putR2(base:string,token:string,key:string,buffer:Buffer){
   const url=`${base.replace(/\/$/,'')}/admin/media/${key.split('/').map(encodeURIComponent).join('/')}`;
-  const response=await fetch(url,{method:'PUT',headers:{Authorization:`Bearer ${token}`,'Content-Type':'image/webp'},body:new Uint8Array(buffer),cache:'no-store'});
-  if(!response.ok)throw new Error(`R2 derivative upload ${response.status}: ${(await response.text()).slice(0,300)}`);
-  return publicR2Url(base,key);
+  let lastError:unknown;
+  for(let attempt=0;attempt<2;attempt+=1){
+    const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),45000);
+    try{
+      const response=await fetch(url,{method:'PUT',headers:{Authorization:`Bearer ${token}`,'Content-Type':'image/webp'},body:new Uint8Array(buffer),cache:'no-store',signal:controller.signal});
+      if(attempt===0&&TRANSIENT_STATUS.has(response.status)){await sleep(retryDelay(response,attempt));continue}
+      if(!response.ok)throw new Error(`R2 derivative upload ${response.status}: ${(await response.text()).slice(0,300)}`);
+      return publicR2Url(base,key);
+    }catch(error){lastError=error;if(attempt===0){await sleep(350);continue}}
+    finally{clearTimeout(timer)}
+  }
+  if(lastError instanceof Error)throw lastError;
+  throw new Error('R2 derivative upload tạm thời không phản hồi.');
 }
 
 function completeVariants(item:any){return VARIANT_WIDTHS.every(width=>item?.variants?.[String(width)]?.url)}
@@ -89,16 +103,21 @@ async function enrichTeamMember(member:any,storageBase:string,token:string){
 async function createBlob(token:string,content:string){return gh<{sha:string}>(token,`/repos/${REPO}/git/blobs`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({content,encoding:'utf-8'})})}
 async function atomicCommit(token:string,branch:string,files:Record<string,unknown>){const refPart=branch.split('/').map(encodeURIComponent).join('/');const ref=await gh<{object:{sha:string}}>(token,`/repos/${REPO}/git/ref/heads/${refPart}`);const parent=ref.object.sha;const commit=await gh<{tree:{sha:string}}>(token,`/repos/${REPO}/git/commits/${parent}`);const tree:Array<{path:string;mode:'100644';type:'blob';sha:string}>=[];for(const [file,value] of Object.entries(files)){const blob=await createBlob(token,JSON.stringify(value,null,2)+'\n');tree.push({path:file,mode:'100644',type:'blob',sha:blob.sha})}const newTree=await gh<{sha:string}>(token,`/repos/${REPO}/git/trees`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({base_tree:commit.tree.sha,tree})});const next=await gh<{sha:string}>(token,`/repos/${REPO}/git/commits`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:'content(admin): cập nhật backend GitHub từ dashboard',tree:newTree.sha,parents:[parent]})});await gh(token,`/repos/${REPO}/git/refs/heads/${refPart}`,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({sha:next.sha,force:false})});return next.sha}
 
+function statusFor(message:string){if(/github_pat_|Token|GitHub 401|GitHub 403|quyền|chủ repository/.test(message))return 401;if(/404|409|422/.test(message))return 409;if(/tạm thời không phản hồi|GitHub (408|425|429|500|502|503|504)|R2 derivative upload (408|425|429|500|502|503|504)/.test(message))return 503;return 500}
+function logAdminFailure(requestId:string,method:string,message:string){console.error(`[admin-backend:${requestId}] ${method} failed: ${message.slice(0,1000)}`)}
+
 export async function GET(request:Request){
+  const requestId=randomUUID().slice(0,12);
   try{
     const token=tokenFrom(request);const admin=await verify(token);const branch=dataBranch();
     const [catalogue,team,seo,storage]=await Promise.all([readJson<Catalogue>(token,`${DATA_ROOT}/catalogue.json`,branch),readJson<any[]>(token,`${DATA_ROOT}/team.json`,branch),readJson<any>(token,`${DATA_ROOT}/seo.json`,branch),readJson<any>(token,`${DATA_ROOT}/storage.json`,branch)]);
     const items=(catalogue.items||[]).map(canonicalItem);const options=optionsFor(catalogue);
-    return Response.json({ok:true,user:admin,branch,catalogue:{...catalogue,items,categories:options.categories||[],ranks:options.ranks||[],credits:options.credits||[]},team,seo,storage},{headers:responseHeaders(request)});
-  }catch(error:any){const message=error?.message||'Không thể xác thực GitHub hoặc đọc backend metadata.';const status=/github_pat_|Token|GitHub 401|GitHub 403|quyền|chủ repository/.test(message)?401:/404/.test(message)?409:500;return Response.json({error:message},{status,headers:responseHeaders(request)})}
+    return Response.json({ok:true,requestId,user:admin,branch,catalogue:{...catalogue,items,categories:options.categories||[],ranks:options.ranks||[],credits:options.credits||[]},team,seo,storage},{headers:responseHeaders(request,requestId)});
+  }catch(error:any){const message=error?.message||'Không thể xác thực GitHub hoặc đọc backend metadata.';logAdminFailure(requestId,'GET',message);return Response.json({error:message,requestId},{status:statusFor(message),headers:responseHeaders(request,requestId)})}
 }
 
 export async function POST(request:Request){
+  const requestId=randomUUID().slice(0,12);
   try{
     const token=tokenFrom(request);const admin=await verify(token);const payload=await request.json() as AdminPayload;const branch=dataBranch();
     const [current,currentTeam,currentSeo,storage]=await Promise.all([readJson<Catalogue>(token,`${DATA_ROOT}/catalogue.json`,branch),readJson<any[]>(token,`${DATA_ROOT}/team.json`,branch),readJson<any>(token,`${DATA_ROOT}/seo.json`,branch),readJson<any>(token,`${DATA_ROOT}/storage.json`,branch)]);
@@ -112,7 +131,7 @@ export async function POST(request:Request){
     const invalidCredits=unique(requested.map(x=>String(x?.credit||'').trim()).filter(value=>Boolean(value)&&!preferredCredits.includes(value)));
     const invalidRanks=unique(requested.map(x=>String(x?.rank||'').trim()).filter(value=>Boolean(value)&&!preferredRanks.includes(value)));
     if(invalidCategories.length||invalidCredits.length||invalidRanks.length){
-      return Response.json({error:'Taxonomy không hợp lệ: tác phẩm đang tham chiếu tùy chọn không còn tồn tại. Hãy cập nhật tác phẩm trước khi publish.',invalid:{categories:invalidCategories,credits:invalidCredits,ranks:invalidRanks}},{status:409,headers:responseHeaders(request)});
+      return Response.json({error:'Taxonomy không hợp lệ: tác phẩm đang tham chiếu tùy chọn không còn tồn tại. Hãy cập nhật tác phẩm trước khi publish.',requestId,invalid:{categories:invalidCategories,credits:invalidCredits,ranks:invalidRanks}},{status:409,headers:responseHeaders(request,requestId)});
     }
     const enriched=[];for(const item of requested)enriched.push(await enrichMedia(item,storageBase,token));
     const items=enriched.map(canonicalItem).sort((a,b)=>alpha(String(a.category||''),String(b.category||''))||Number(a.rankOrder||0)-Number(b.rankOrder||0)||alpha(String(a.name||''),String(b.name||'')));
@@ -124,6 +143,6 @@ export async function POST(request:Request){
     const requestedTeam=Array.isArray(payload.team)?payload.team:currentTeam;const enrichedTeam=[];for(const member of requestedTeam)enrichedTeam.push(await enrichTeamMember(member,storageBase,token));
     const files:Record<string,unknown>={[`${DATA_ROOT}/catalogue.json`]:catalogue,[`${DATA_ROOT}/team.json`]:enrichedTeam,[`${DATA_ROOT}/seo.json`]:payload.seo!==undefined?payload.seo:currentSeo};
     const sha=await atomicCommit(token,branch,files);revalidateTag('catalogue');for(const path of ['/','/character/','/artworks/','/about/','/sitemap.xml','/image-sitemap.xml'])revalidatePath(path);
-    return Response.json({ok:true,commit:sha,branch,by:admin.login,deployedByGit:true},{headers:responseHeaders(request)});
-  }catch(error:any){const message=error?.message||'Không thể publish metadata lên GitHub.';const status=/github_pat_|Token|GitHub 401|GitHub 403|quyền|chủ repository/.test(message)?401:/409|422/.test(message)?409:500;return Response.json({error:message},{status,headers:responseHeaders(request)})}
+    return Response.json({ok:true,requestId,commit:sha,branch,by:admin.login,deployedByGit:true},{headers:responseHeaders(request,requestId)});
+  }catch(error:any){const message=error?.message||'Không thể publish metadata lên GitHub.';logAdminFailure(requestId,'POST',message);return Response.json({error:message,requestId},{status:statusFor(message),headers:responseHeaders(request,requestId)})}
 }
