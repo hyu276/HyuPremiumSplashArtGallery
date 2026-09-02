@@ -96,9 +96,13 @@ const gallery=await readFile(join(ROOT,'components/GalleryClient.tsx'),'utf8');
 if(!gallery.includes('const INITIAL_RANDOM_COUNT=6'))failures.push('gallery initial media budget must remain 6');
 if(!gallery.includes('const SECOND_BATCH_COUNT=30'))failures.push('gallery second batch budget must remain 30');
 if(gallery.includes('loader.src=item.image'))failures.push('gallery must not preload original artwork automatically');
+if(gallery.includes('new Image(')||gallery.includes('loadAndDecodeOriginal('))failures.push('gallery must not use off-DOM original preloaders before expansion');
+if(gallery.includes('artworkPreview(item,1600)'))failures.push('gallery must not fetch a 1600px bridge before the exact original');
 if(!gallery.includes('srcSet='))failures.push('gallery must use responsive image srcSet');
 if(!gallery.includes("const src=expanded?(item.media?.original?.url||item.image):artworkPreview(item,960)"))failures.push('expanded artwork must load the exact uploaded original');
 if(!gallery.includes("const srcSet=expanded?'':artworkSrcSet(item)"))failures.push('expanded artwork must disable derivative srcSet so browsers cannot down-select it');
+if(!gallery.includes('{expanded?null:<ViewportPreview'))failures.push('expanded artwork must remove the derivative preview instead of upscaling it while the original loads');
+if(!gallery.includes('{expanded?<ExpandedOriginal'))failures.push('expanded artwork must mount the exact original directly in the expanded shell');
 
 const imageSitemap=await readFile(join(ROOT,'app/image-sitemap.xml/route.ts'),'utf8');
 if(!imageSitemap.includes('image=artworkPreview(item,1600)'))failures.push('image sitemap must publish the 1600px derivative');
