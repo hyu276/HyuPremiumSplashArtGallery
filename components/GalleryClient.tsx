@@ -21,7 +21,6 @@ const RANK_GRADIENTS: Record<string,string> = {
 
 type SearchToken={text:string;quoted:boolean};
 type FilterOption={value:string;label:string};
-type ExpansionOptions={syncUrl?:boolean;scroll?:boolean;category?:string};
 
 function norm(value:string){return String(value??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\s+/g,' ').trim()}
 function parseQuery(query:string){
@@ -70,19 +69,6 @@ function runMotionTransition(update:()=>void){
   // Grid/filter updates intentionally avoid document.startViewTransition().
   // Snapshotting a media-heavy grid plus synchronous reflow causes visible jank on mobile and integrated GPUs.
   update();
-}
-function loadAndDecodeOriginal(src:string){
-  return new Promise<void>((resolve,reject)=>{
-    const image=new Image();
-    let settled=false;
-    const finish=()=>{if(settled)return;settled=true;resolve()};
-    image.decoding='async';
-    image.fetchPriority='high';
-    image.onload=finish;
-    image.onerror=()=>{if(settled)return;settled=true;reject(new Error('Unable to load original artwork'))};
-    image.src=src;
-    if(typeof image.decode==='function')image.decode().then(finish,()=>{});
-  });
 }
 
 function GalleryFilterControl({label,value,options,onChange,ariaLabel}:{label:string;value:string;options:FilterOption[];onChange:(value:string)=>void;ariaLabel:string}){
@@ -137,15 +123,42 @@ const ViewportPreview=memo(function ViewportPreview({src,srcSet,sizes,alt,eager}
   return <img ref={node} className="preview" src={armed?src:undefined} srcSet={armed&&srcSet?srcSet:undefined} sizes={armed?sizes:undefined} data-src={armed?undefined:src} alt={alt} loading={eager?'eager':'lazy'} decoding="async" fetchPriority={eager?'high':'low'} />;
 });
 
-const ExpandedOriginal=memo(function ExpandedOriginal({src}:{src:string}){
-  return <img className="full ready" src={src} alt="" aria-hidden="true" loading="eager" decoding="async" fetchPriority="high" />;
+const ExpandedOriginal=memo(function ExpandedOriginal({src,onReady}:{src:string;onReady:()=>void}){
+  const [ready,setReady]=useState(false);
+  const alive=useRef(true);
+
+  useEffect(()=>{
+    alive.current=true;
+    setReady(false);
+    return()=>{alive.current=false};
+  },[src]);
+
+  return <img
+    className={`full${ready?' ready':''}`}
+    src={src}
+    alt=""
+    aria-hidden="true"
+    loading="eager"
+    decoding="async"
+    fetchPriority="high"
+    onLoad={event=>{
+      const image=event.currentTarget;
+      const reveal=()=>{
+        if(!alive.current)return;
+        setReady(true);
+        onReady();
+      };
+      if(typeof image.decode==='function')image.decode().then(reveal,reveal);
+      else reveal();
+    }}
+  />;
 });
 
-const ArtworkCard = memo(function ArtworkCard({item,index,expanded,pending,onToggle}:{item:Artwork;index:number;expanded:boolean;pending:boolean;onToggle:(item:Artwork)=>void}){
+const ArtworkCard = memo(function ArtworkCard({item,index,expanded,pending,onToggle,onOriginalReady}:{item:Artwork;index:number;expanded:boolean;pending:boolean;onToggle:(item:Artwork)=>void;onOriginalReady:(itemId:string)=>void}){
   const imageAlt=`${item.name} — ${item.category}, splash art game, hạng skin ${item.rank}`;
   const motionStyle={'--art-motion-delay':`${Math.min(index,12)*18}ms`} as CSSProperties;
-  // The exact original is decoded after explicit user intent before expanded=true.
-  // The responsive preview remains listing-only, so expanded cards never show an upscaled derivative while waiting.
+  // Expansion reacts immediately, but derivatives are never rendered in the expanded shell.
+  // The exact original is the only expanded media request and appears only after decode completes.
   const src=expanded?(item.media?.original?.url||item.image):artworkPreview(item,960);
   const srcSet=expanded?'':artworkSrcSet(item);
   const previewSrc=artworkPreview(item,960);
@@ -153,8 +166,8 @@ const ArtworkCard = memo(function ArtworkCard({item,index,expanded,pending,onTog
   const actionLabel=pending?'Đang tải ảnh gốc':expanded?'Thu gọn':'Mở rộng';
   return <button style={motionStyle} className={`art-card${expanded?' expanded':''}${pending?' pending-expand':''}`} data-id={item.id} aria-expanded={expanded} aria-busy={pending} aria-label={`${actionLabel} ${item.name}`} onClick={()=>onToggle(item)}>
     <span className="art-image-layer">
-      <ViewportPreview src={previewSrc} srcSet={srcSet} sizes={sizes} alt={imageAlt} eager={index<INITIAL_RANDOM_COUNT||expanded}/>
-      {expanded?<ExpandedOriginal src={src}/>:null}
+      {expanded?null:<ViewportPreview src={previewSrc} srcSet={srcSet} sizes={sizes} alt={imageAlt} eager={index<INITIAL_RANDOM_COUNT}/>} 
+      {expanded?<ExpandedOriginal src={src} onReady={()=>onOriginalReady(item.id)}/>:null}
     </span>
     <span className="shade" aria-hidden="true"></span>
     <span className="card-number">{String(index+1).padStart(2,'0')}</span>
@@ -171,16 +184,13 @@ export default function GalleryClient({catalogue,initialCategory,initialArtworkI
   const [rank,setRank]=useState('all');
   const [credit,setCredit]=useState('all');
   const [vietnameseOnly,setVietnameseOnly]=useState(false);
-  const [expanded,setExpanded]=useState<string|null>(null);
+  const [expanded,setExpanded]=useState<string|null>(initialArtworkId);
   const [pendingExpanded,setPendingExpanded]=useState<string|null>(initialArtworkId);
   const [categoryOpen,setCategoryOpen]=useState(false);
   const [mobileFiltersOpen,setMobileFiltersOpen]=useState(false);
   const [stage,setStage]=useState<0|1|2>(initialArtworkId?2:0);
   const [sampleIds,setSampleIds]=useState<string[]>(()=>catalogue.items.slice(0,INITIAL_RANDOM_COUNT).map(item=>item.id));
   const mobileSearchInputRef=useRef<HTMLInputElement>(null);
-  const expandRequestVersion=useRef(0);
-  const decodedOriginals=useRef(new Set<string>());
-  const initialExpansionStarted=useRef(false);
 
   useEffect(()=>{setSampleIds(shuffledIds(catalogue.items))},[catalogue.items]);
   useEffect(()=>{setMobileSearchDraft(query)},[query]);
@@ -207,60 +217,28 @@ export default function GalleryClient({catalogue,initialCategory,initialArtworkI
     if(window.location.pathname!==path)window.history.pushState({},'',path);
   },[]);
 
-  const cancelPendingExpansion=useCallback(()=>{
-    expandRequestVersion.current+=1;
-    setPendingExpanded(null);
-  },[]);
-
   const closeExpanded=useCallback(()=>{
-    cancelPendingExpansion();
+    setPendingExpanded(null);
     setExpanded(null);
     syncUrl(category,null);
-  },[cancelPendingExpansion,category,syncUrl]);
-
-  const prepareExpansion=useCallback(async(item:Artwork,options:ExpansionOptions={})=>{
-    const originalSrc=item.media?.original?.url||item.image;
-    const requestVersion=++expandRequestVersion.current;
-    setPendingExpanded(item.id);
-    try{
-      if(!decodedOriginals.current.has(originalSrc)){
-        await loadAndDecodeOriginal(originalSrc);
-        decodedOriginals.current.add(originalSrc);
-      }
-      if(requestVersion!==expandRequestVersion.current)return;
-      setPendingExpanded(null);
-      setExpanded(item.id);
-      if(options.syncUrl!==false)syncUrl(options.category??category,item);
-      if(options.scroll!==false)requestAnimationFrame(()=>requestAnimationFrame(()=>{
-        const card=document.querySelector(`[data-id="${CSS.escape(item.id)}"]`);
-        const mobile=window.matchMedia?.('(max-width: 760px)').matches??false;
-        card?.scrollIntoView({behavior:mobile?'auto':'smooth',block:'center'});
-      }));
-    }catch{
-      if(requestVersion===expandRequestVersion.current)setPendingExpanded(null);
-    }
   },[category,syncUrl]);
 
-  useEffect(()=>{
-    if(initialExpansionStarted.current||!initialArtworkId)return;
-    initialExpansionStarted.current=true;
-    const item=catalogue.items.find(candidate=>candidate.id===initialArtworkId)||null;
-    if(item)void prepareExpansion(item,{syncUrl:false,scroll:false});
-    else setPendingExpanded(null);
-  },[catalogue.items,initialArtworkId,prepareExpansion]);
+  const markOriginalReady=useCallback((itemId:string)=>{
+    setPendingExpanded(current=>current===itemId?null:current);
+  },[]);
 
   const submitMobileSearch=useCallback(()=>{
     const next=mobileSearchDraft.trim();
     mobileSearchInputRef.current?.blur();
     runMotionTransition(()=>{
-      cancelPendingExpansion();
+      setPendingExpanded(null);
       setQuery(next);
       setMobileSearchDraft(next);
       setExpanded(null);
       setMobileFiltersOpen(false);
       syncUrl(category,null);
     });
-  },[mobileSearchDraft,cancelPendingExpansion,category,syncUrl]);
+  },[mobileSearchDraft,category,syncUrl]);
 
   const openMobileSearch=useCallback(()=>{
     setMobileSearchDraft(query);
@@ -274,29 +252,35 @@ export default function GalleryClient({catalogue,initialCategory,initialArtworkI
 
   const clearMobileSearch=useCallback(()=>{
     runMotionTransition(()=>{
-      cancelPendingExpansion();
+      setPendingExpanded(null);
       setQuery('');
       setMobileSearchDraft('');
       setExpanded(null);
       syncUrl(category,null);
     });
-  },[cancelPendingExpansion,category,syncUrl]);
+  },[category,syncUrl]);
 
   const chooseCategory=(value:string)=>{
     const next=value===category&&value!=='all'?'all':value;
-    runMotionTransition(()=>{cancelPendingExpansion();setCategory(next);setExpanded(null);syncUrl(next,null)});
+    runMotionTransition(()=>{setPendingExpanded(null);setCategory(next);setExpanded(null);syncUrl(next,null)});
   };
 
   const toggle=useCallback((item:Artwork)=>{
-    if(pendingExpanded)return;
     if(expanded===item.id){closeExpanded();return;}
-    void prepareExpansion(item);
-  },[closeExpanded,expanded,pendingExpanded,prepareExpansion]);
+    setPendingExpanded(item.id);
+    setExpanded(item.id);
+    syncUrl(category,item);
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{
+      const card=document.querySelector(`[data-id="${CSS.escape(item.id)}"]`);
+      const mobile=window.matchMedia?.('(max-width: 760px)').matches??false;
+      card?.scrollIntoView({behavior:mobile?'auto':'smooth',block:'center'});
+    }));
+  },[category,closeExpanded,expanded,syncUrl]);
 
   const showMore=()=>{
     const scrollX=window.scrollX,scrollY=window.scrollY;
     runMotionTransition(()=>{
-      cancelPendingExpansion();
+      setPendingExpanded(null);
       setExpanded(null);
       setStage(current=>current===0?(filtered.length>SECOND_BATCH_COUNT?1:2):2);
     });
@@ -306,16 +290,17 @@ export default function GalleryClient({catalogue,initialCategory,initialArtworkI
   useEffect(()=>{
     const onPop=()=>runMotionTransition(()=>{
       const parts=window.location.pathname.split('/').filter(Boolean);
-      if(parts[0]!=='character'){cancelPendingExpansion();setCategory('all');setExpanded(null);return}
+      if(parts[0]!=='character'){setPendingExpanded(null);setCategory('all');setExpanded(null);return}
       const cat=catalogue.items.find(item=>slug(item.category)===parts[1])?.category||'all';
       const artItem=parts[2]?catalogue.items.find(item=>item.category===cat&&slug(item.name||item.id)===parts[2])||null:null;
       setCategory(cat);
-      if(!artItem){cancelPendingExpansion();setExpanded(null);return}
+      if(!artItem){setPendingExpanded(null);setExpanded(null);return}
       setStage(2);
-      void prepareExpansion(artItem,{syncUrl:false,category:cat});
+      setPendingExpanded(artItem.id);
+      setExpanded(artItem.id);
     });
     window.addEventListener('popstate',onPop);return()=>window.removeEventListener('popstate',onPop);
-  },[cancelPendingExpansion,catalogue.items,prepareExpansion]);
+  },[catalogue.items]);
 
   const rankOptions=useMemo<FilterOption[]>(()=>[{value:'all',label:'Tất cả hạng'},...catalogue.ranks.map(value=>({value,label:value}))],[catalogue.ranks]);
   const creditOptions=useMemo<FilterOption[]>(()=>[{value:'all',label:'Tất cả credit'},...catalogue.credits.map(value=>({value,label:value}))],[catalogue.credits]);
@@ -365,7 +350,7 @@ export default function GalleryClient({catalogue,initialCategory,initialArtworkI
       </div>
     </div>
     <div className="results-line"><div><strong>{String(filtered.length).padStart(2,'0')}</strong><span>tác phẩm đang hiển thị</span></div></div>
-    {visible.length?<div className="gallery-grid">{visible.map((item,index)=><ArtworkCard key={item.id} item={item} index={index} expanded={expanded===item.id} pending={pendingExpanded===item.id} onToggle={toggle}/>)}</div>:<div className="empty-state">Không tìm thấy tác phẩm phù hợp.</div>}
+    {visible.length?<div className="gallery-grid">{visible.map((item,index)=><ArtworkCard key={item.id} item={item} index={index} expanded={expanded===item.id} pending={pendingExpanded===item.id} onToggle={toggle} onOriginalReady={markOriginalReady}/>)}</div>:<div className="empty-state">Không tìm thấy tác phẩm phù hợp.</div>}
     {showProgressive?<div className="gallery-progressive-controls"><button type="button" className="gallery-view-all" onClick={showMore}>Xem thêm</button><div className="gallery-progressive-note">{progressiveNote}</div></div>:null}
   </section>;
 }
