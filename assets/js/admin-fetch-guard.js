@@ -4,22 +4,7 @@
 
   const nativeFetch = window.fetch.bind(window);
   const RETRYABLE_STATUS = new Set([408, 425, 429, 500, 502, 503, 504]);
-  const LEGACY_R2_HOST = 'hyu-premium-media.csquocnguyen.workers.dev';
-  const R2_V2_HOST = 'hyu-premium-media-v2.csquocnguyen.workers.dev';
   const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
-
-  function rewriteLegacyAdminR2Input(input) {
-    if (typeof Request !== 'undefined' && input instanceof Request) return input;
-    try {
-      const url = new URL(String(input), window.location.href);
-      if (url.hostname === LEGACY_R2_HOST && url.pathname.includes('/admin/media/')) {
-        url.protocol = 'https:';
-        url.host = R2_V2_HOST;
-        return url.href;
-      }
-    } catch {}
-    return input;
-  }
 
   function requestMeta(input, init) {
     const request = typeof Request !== 'undefined' && input instanceof Request ? input : null;
@@ -86,16 +71,15 @@
   }
 
   window.fetch = async function guardedFetch(input, init) {
-    const routedInput = rewriteLegacyAdminR2Input(input);
-    const { url, method } = requestMeta(routedInput, init);
-    const canRetry = safeToRetry(routedInput, init, method, url);
+    const { url, method } = requestMeta(input, init);
+    const canRetry = safeToRetry(input, init, method, url);
     const maxAttempts = canRetry ? 2 : 1;
     const timeout = timeoutMs(method, url);
     let lastError;
 
     for (let attempt = 0; attempt < maxAttempts; attempt += 1) {
       try {
-        const response = await fetchAttempt(routedInput, init, timeout);
+        const response = await fetchAttempt(input, init, timeout);
         if (attempt + 1 < maxAttempts && RETRYABLE_STATUS.has(response.status)) {
           await sleep(retryDelay(response, attempt));
           continue;
@@ -114,7 +98,7 @@
   };
 
   Object.defineProperty(window, '__HYU_ADMIN_FETCH_GUARD__', {
-    value: { version: '2026-09-02-r2-v2', nativeFetch },
+    value: { version: '2026-09-02', nativeFetch },
     configurable: false,
     enumerable: false,
     writable: false

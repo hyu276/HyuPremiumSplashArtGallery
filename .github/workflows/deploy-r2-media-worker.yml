@@ -22,8 +22,8 @@ jobs:
     env:
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-      PUBLIC_WRANGLER_CONFIG: cloudflare/r2-media-worker/wrangler.jsonc
-      V2_WRANGLER_CONFIG: cloudflare/r2-media-worker/wrangler.v2.jsonc
+      WRANGLER_CONFIG: cloudflare/r2-media-worker/wrangler.jsonc
+      WORKER_NAME: hyu-premium-media
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v4
@@ -35,100 +35,159 @@ jobs:
           set -euo pipefail
           test -n "${CLOUDFLARE_ACCOUNT_ID:-}"
           test -n "${CLOUDFLARE_API_TOKEN:-}"
-      - name: Deploy legacy production worker
+      - name: Deploy production worker
         shell: bash
-        run: npx --yes wrangler@latest deploy --config "$PUBLIC_WRANGLER_CONFIG"
-      - name: Deploy v2 production worker
+        run: npx --yes wrangler@latest deploy --config "$WRANGLER_CONFIG"
+      - name: Ensure media Worker bypasses account-wide Access
         shell: bash
-        run: npx --yes wrangler@latest deploy --config "$V2_WRANGLER_CONFIG"
-      - name: Resolve production Worker URLs
+        run: |
+          set -euo pipefail
+
+          workers=$(curl -fsS \
+            -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            -H 'Content-Type: application/json' \
+            "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/workers/scripts")
+          worker_id=$(printf '%s' "$workers" | WORKER_NAME="$WORKER_NAME" node -e '
+            let s="";
+            process.stdin.on("data",d=>s+=d).on("end",()=>{
+              const j=JSON.parse(s);
+              const worker=(j.result||[]).find(x=>x.id===process.env.WORKER_NAME);
+              if(!worker||!worker.tag)process.exit(2);
+              process.stdout.write(String(worker.tag));
+            });
+          ')
+          echo "Resolved immutable Worker ID for $WORKER_NAME."
+
+          status=$(curl -sS -o /tmp/access-apps -w '%{http_code}' \
+            -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            -H 'Content-Type: application/json' \
+            "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/access/apps")
+          if [ "$status" = "403" ]; then
+            echo '::error::CLOUDFLARE_API_TOKEN needs Access: Apps and Policies Read/Write so CI can exempt the public media Worker from account-wide Worker Access.'
+            exit 1
+          fi
+          test "$status" = "200" || { echo "::error::Unable to inspect Cloudflare Access applications (HTTP $status)"; head -c 500 /tmp/access-apps; exit 1; }
+
+          account_protected=$(node -e '
+            const fs=require("fs");
+            const j=JSON.parse(fs.readFileSync("/tmp/access-apps","utf8"));
+            process.stdout.write((j.result||[]).some(app=>(app.destinations||[]).some(d=>d.type==="all_workers"))?"1":"0");
+          ')
+          if [ "$account_protected" != "1" ]; then
+            echo 'Account-wide Worker Access is not enabled; no bypass is necessary.'
+            exit 0
+          fi
+
+          bypass_exists=$(WORKER_ID="$worker_id" node -e '
+            const fs=require("fs");
+            const j=JSON.parse(fs.readFileSync("/tmp/access-apps","utf8"));
+            const id=process.env.WORKER_ID;
+            const ok=(j.result||[]).some(app=>
+              (app.destinations||[]).some(d=>d.type==="worker"&&d.worker_id===id) &&
+              (app.policies||[]).some(p=>p.decision==="bypass"&&(p.include||[]).some(r=>Object.prototype.hasOwnProperty.call(r,"everyone")))
+            );
+            process.stdout.write(ok?"1":"0");
+          ')
+          if [ "$bypass_exists" = "1" ]; then
+            echo 'Worker-level public bypass already exists.'
+            exit 0
+          fi
+
+          payload=$(WORKER_ID="$worker_id" node -e '
+            process.stdout.write(JSON.stringify({
+              type:"self_hosted",
+              name:"HYU Premium media public bypass",
+              destinations:[{type:"worker",worker_id:process.env.WORKER_ID}],
+              policies:[{decision:"bypass",include:[{everyone:{}}]}],
+              app_launcher_visible:false
+            }));
+          ')
+          create_status=$(curl -sS -o /tmp/access-create -w '%{http_code}' \
+            -X POST \
+            -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            -H 'Content-Type: application/json' \
+            --data "$payload" \
+            "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/access/apps")
+          case "$create_status" in
+            200|201) echo 'Created Worker-level bypass for the media Worker.' ;;
+            *) echo "::error::Unable to create media Worker Access bypass (HTTP $create_status)"; head -c 1000 /tmp/access-create; exit 1 ;;
+          esac
+      - name: Resolve production Worker and media URL
         shell: bash
         run: |
           set -euo pipefail
           json=$(curl -fsS -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" -H 'Content-Type: application/json' "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/workers/subdomain")
           subdomain=$(printf '%s' "$json" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{const j=JSON.parse(s);if(!j.success||!j.result?.subdomain)process.exit(2);process.stdout.write(j.result.subdomain)})")
-          legacy="https://hyu-premium-media.${subdomain}.workers.dev"
-          v2="https://hyu-premium-media-v2.${subdomain}.workers.dev"
+          base="https://hyu-premium-media.${subdomain}.workers.dev"
           source=$(node -e "const c=require('./data/backend/catalogue.json');const i=c.items.find(x=>!x.hidden&&x.variants?.['640']?.url);if(!i)process.exit(2);process.stdout.write(i.variants['640'].url)")
           pathname=$(SOURCE="$source" node -e "process.stdout.write(new URL(process.env.SOURCE).pathname)")
-          echo "LEGACY_BASE=$legacy" >> "$GITHUB_ENV"
-          echo "V2_BASE=$v2" >> "$GITHUB_ENV"
-          echo "LEGACY_MEDIA_URL=$legacy$pathname" >> "$GITHUB_ENV"
-          echo "V2_MEDIA_URL=$v2$pathname" >> "$GITHUB_ENV"
-          echo "Legacy Worker: $legacy"
-          echo "V2 Worker: $v2"
-      - name: Verify v2 Worker health and CORS preflight
+          echo "MEDIA_BASE=$base" >> "$GITHUB_ENV"
+          echo "MEDIA_URL=$base$pathname" >> "$GITHUB_ENV"
+          echo "Worker: $base"
+          echo "Probe media: $base$pathname"
+      - name: Verify production Worker health and admin CORS boundary
         shell: bash
         run: |
           set -euo pipefail
           ok=0
-          probe="$V2_BASE/admin/media/diagnostics/preflight.webp"
+          preflight_url="$MEDIA_BASE/admin/media/diagnostics/preflight.webp"
           for attempt in $(seq 1 12); do
-            code=$(curl -sS -o /tmp/v2-health -w '%{http_code}' "$V2_BASE/health")
-            curl -sS -o /dev/null -D /tmp/v2-preflight -X OPTIONS "$probe" \
+            health=$(curl -sS -o /tmp/health -w '%{http_code}' "$MEDIA_BASE/health")
+            curl -sS -o /dev/null -D /tmp/preflight -X OPTIONS "$preflight_url" \
               -H 'Origin: https://hyu276.github.io' \
               -H 'Access-Control-Request-Method: PUT' \
               -H 'Access-Control-Request-Headers: authorization,content-type'
-            preflight=$(tr -d '\r' </tmp/v2-preflight | awk 'NR==1{print $2}')
-            allow_origin=$(tr -d '\r' </tmp/v2-preflight | awk 'BEGIN{IGNORECASE=1}/^access-control-allow-origin:/{sub(/^access-control-allow-origin:[[:space:]]*/,"");print}' | tail -1)
-            echo "attempt=$attempt health=$code preflight=${preflight:-missing} allow-origin=${allow_origin:-missing}"
-            if [ "$code" = "200" ] && [ "$preflight" = "204" ] && [ "$allow_origin" = "https://hyu276.github.io" ]; then ok=1; break; fi
+            preflight=$(tr -d '\r' </tmp/preflight | awk 'NR==1{print $2}')
+            allow_origin=$(tr -d '\r' </tmp/preflight | awk 'BEGIN{IGNORECASE=1}/^access-control-allow-origin:/{sub(/^access-control-allow-origin:[[:space:]]*/,"");print}' | tail -1)
+            echo "attempt=$attempt health=$health preflight=${preflight:-missing} allow-origin=${allow_origin:-missing}"
+            if [ "$health" = "200" ] && [ "$preflight" = "204" ] && [ "$allow_origin" = "https://hyu276.github.io" ]; then ok=1; break; fi
             sleep 2
           done
-          test "$ok" = "1" || { echo '::error::V2 Worker health/CORS preflight did not become reachable'; exit 1; }
-      - name: Verify v2 admin PUT reaches Worker without Cloudflare Access redirect
+          test "$ok" = "1" || { echo '::error::Media Worker is still intercepted before Worker CORS can run'; exit 1; }
+      - name: Verify unauthenticated admin PUT reaches Worker auth
         shell: bash
         run: |
           set -euo pipefail
-          probe="$V2_BASE/admin/media/diagnostics/unauthorized-probe.webp"
-          code=$(printf 'probe' | curl -sS -o /tmp/v2-put-body -D /tmp/v2-put-headers -w '%{http_code}' -X PUT "$probe" \
+          probe="$MEDIA_BASE/admin/media/diagnostics/unauthorized-probe.webp"
+          code=$(printf 'probe' | curl -sS -o /tmp/put-body -D /tmp/put-headers -w '%{http_code}' -X PUT "$probe" \
             -H 'Origin: https://hyu276.github.io' \
             -H 'Content-Type: application/octet-stream' \
             --data-binary @-)
-          tr -d '\r' </tmp/v2-put-headers
+          tr -d '\r' </tmp/put-headers
           test "$code" = "401" || { echo "::error::Expected Worker-auth 401, got $code"; exit 1; }
-          tr -d '\r' </tmp/v2-put-headers | grep -Eiq '^access-control-allow-origin: https://hyu276.github.io$'
-          grep -q 'GitHub token required' /tmp/v2-put-body
-      - name: Verify v2 Cloudflare cache HIT
+          tr -d '\r' </tmp/put-headers | grep -Eiq '^access-control-allow-origin: https://hyu276.github.io$'
+          grep -q 'GitHub token required' /tmp/put-body
+      - name: Verify real Cloudflare cache HIT
         shell: bash
         run: |
           set -euo pipefail
           hit=0
           for attempt in $(seq 1 12); do
-            curl -fsS -D /tmp/v2-media-headers -o /dev/null "$V2_MEDIA_URL"
-            status=$(tr -d '\r' </tmp/v2-media-headers | awk 'BEGIN{IGNORECASE=1}/^cf-cache-status:/{print $2}' | tail -1)
+            curl -fsS -D /tmp/media-headers -o /dev/null "$MEDIA_URL"
+            tr -d '\r' </tmp/media-headers
+            status=$(tr -d '\r' </tmp/media-headers | awk 'BEGIN{IGNORECASE=1}/^cf-cache-status:/{print $2}' | tail -1)
             echo "attempt=$attempt cf-cache-status=${status:-missing}"
             if [ "$status" = "HIT" ]; then hit=1; break; fi
             sleep 1
           done
-          test "$hit" = "1" || { echo '::error::V2 media never produced CF-Cache-Status: HIT'; exit 1; }
-      - name: Verify legacy Worker remains healthy
+          test "$hit" = "1" || { echo '::error::Production media never produced CF-Cache-Status: HIT'; exit 1; }
+      - name: Verify Range 206 semantics
         shell: bash
         run: |
           set -euo pipefail
-          ok=0
-          for attempt in $(seq 1 12); do
-            code=$(curl -sS -o /tmp/legacy-health -w '%{http_code}' "$LEGACY_BASE/health")
-            echo "attempt=$attempt status=$code"
-            if [ "$code" = "200" ]; then ok=1; break; fi
-            sleep 2
-          done
-          test "$ok" = "1" || { echo '::error::Legacy Worker is not publicly reachable'; exit 1; }
-      - name: Verify legacy Range 206 semantics
-        shell: bash
-        run: |
-          set -euo pipefail
-          curl -fsS -D /tmp/range-headers -H 'Range: bytes=0-1023' -o /tmp/range-body "$LEGACY_MEDIA_URL"
+          curl -fsS -D /tmp/range-headers -H 'Range: bytes=0-1023' -o /tmp/range-body "$MEDIA_URL"
+          tr -d '\r' </tmp/range-headers
           tr -d '\r' </tmp/range-headers | grep -Eq '^HTTP/[0-9.]+ 206'
           tr -d '\r' </tmp/range-headers | grep -Eiq '^content-range: bytes 0-1023/'
           test "$(wc -c </tmp/range-body | tr -d ' ')" = "1024"
-      - name: Verify v2 query canonicalization
+      - name: Verify query canonicalization
         shell: bash
         run: |
           set -euo pipefail
-          probe="${V2_MEDIA_URL}?cache_bust=$(date +%s%N)"
+          probe="${MEDIA_URL}?cache_bust=$(date +%s%N)"
           curl -sS -D /tmp/query-headers -o /dev/null "$probe"
+          tr -d '\r' </tmp/query-headers
           tr -d '\r' </tmp/query-headers | grep -Eq '^HTTP/[0-9.]+ 308'
           location=$(tr -d '\r' </tmp/query-headers | awk 'BEGIN{IGNORECASE=1}/^location:/{sub(/^location:[[:space:]]*/,"");print}' | tail -1)
-          test "$location" = "$V2_MEDIA_URL" || { echo "::error::Expected canonical Location $V2_MEDIA_URL but got $location"; exit 1; }
-          echo 'V2 CORS, auth boundary, cache HIT, Range compatibility, and query canonicalization verified.'
+          test "$location" = "$MEDIA_URL" || { echo "::error::Expected canonical Location $MEDIA_URL but got $location"; exit 1; }
+          echo 'Worker Access bypass, CORS, auth boundary, Workers Caching, Range 206, and query canonicalization verified.'

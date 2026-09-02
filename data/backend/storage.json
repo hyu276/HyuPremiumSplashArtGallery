@@ -1,6 +1,6 @@
 {
   "provider": "cloudflare-r2",
-  "publicBaseUrl": "https://hyu-premium-media-v2.csquocnguyen.workers.dev",
+  "publicBaseUrl": "https://hyu-premium-media.csquocnguyen.workers.dev",
   "bucket": "hyu-premium-media",
   "migratedAt": "2026-08-25T17:43:54.725Z",
   "migratedObjects": 300,
