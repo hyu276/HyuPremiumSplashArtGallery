@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-03T14:37:37.053Z",
+  "generatedAt": "2026-09-03T14:54:10.311Z",
   "items": [
     {
       "id": "en-tho-bang-gia-2",
@@ -7042,6 +7042,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 485459,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "my-hau-ai-hoc-thuong-mai",
+      "name": "Mỹ Hầu: Đại học Thương Mại",
+      "description": "",
+      "category": "Ngộ Không",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/my-hau-ai-hoc-thuong-mai-1788447181287.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/my-hau-ai-hoc-thuong-mai-16f30517e3d9-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-03T14:53:01.287Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/my-hau-ai-hoc-thuong-mai-16f30517e3d9-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 23544,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/my-hau-ai-hoc-thuong-mai-16f30517e3d9-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 42656,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/my-hau-ai-hoc-thuong-mai-16f30517e3d9-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 86668,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/my-hau-ai-hoc-thuong-mai-1788447181287.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 455103,
           "mimeType": "image/jpeg"
         }
       }
