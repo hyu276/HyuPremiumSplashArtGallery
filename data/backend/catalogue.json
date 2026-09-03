@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-03T13:30:28.042Z",
+  "generatedAt": "2026-09-03T13:35:58.114Z",
   "items": [
     {
       "id": "en-tho-bang-gia-2",
@@ -8279,6 +8279,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 1093668,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "dau-an-lich-su",
+      "name": "Dấu ấn lịch sử",
+      "description": "",
+      "category": "Tel'Annas",
+      "rank": "SSS+ Tối thượng",
+      "rankOrder": 7,
+      "credit": "Raphena",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/dau-an-lich-su-1788442492235.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dau-an-lich-su-a9c7ad068912-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": true,
+      "updatedAt": "2026-09-03T13:34:52.235Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dau-an-lich-su-a9c7ad068912-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 23338,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dau-an-lich-su-a9c7ad068912-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 43044,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dau-an-lich-su-a9c7ad068912-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 91298,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/dau-an-lich-su-1788442492235.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 492354,
           "mimeType": "image/jpeg"
         }
       }
