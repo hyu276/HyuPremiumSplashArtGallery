@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-03T14:09:10.290Z",
+  "generatedAt": "2026-09-03T14:19:46.710Z",
   "items": [
     {
       "id": "en-tho-bang-gia-2",
@@ -1548,6 +1548,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 721320,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "bich-vu-khong-tuoc",
+      "name": "Bích Vũ Khổng Tước",
+      "description": "",
+      "category": "Bijan",
+      "rank": "SS+",
+      "rankOrder": 4,
+      "credit": "Raphena",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/bich-vu-khong-tuoc-1788445121114.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bich-vu-khong-tuoc-0661cbf8df1a-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-03T14:18:41.115Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bich-vu-khong-tuoc-0661cbf8df1a-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 36848,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bich-vu-khong-tuoc-0661cbf8df1a-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 73226,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bich-vu-khong-tuoc-0661cbf8df1a-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 166008,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/bich-vu-khong-tuoc-1788445121114.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 736216,
           "mimeType": "image/jpeg"
         }
       }
