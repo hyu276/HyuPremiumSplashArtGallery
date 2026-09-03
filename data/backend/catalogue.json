@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-03T11:15:03.975Z",
+  "generatedAt": "2026-09-03T11:27:28.112Z",
   "items": [
     {
       "id": "en-tho-bang-gia-2",
@@ -6270,6 +6270,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 758219,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "quy-ba-quai-go",
+      "name": "Quý Bà Quái Gở",
+      "description": "",
+      "category": "Marja",
+      "rank": "SSS+",
+      "rankOrder": 6,
+      "credit": "Tâm",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/quy-ba-quai-go-1788434783343.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/quy-ba-quai-go-b51b5fba7487-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-03T11:26:23.343Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/quy-ba-quai-go-b51b5fba7487-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 16782,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/quy-ba-quai-go-b51b5fba7487-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 31486,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/quy-ba-quai-go-b51b5fba7487-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 67392,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/quy-ba-quai-go-1788434783343.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 371133,
           "mimeType": "image/jpeg"
         }
       }
