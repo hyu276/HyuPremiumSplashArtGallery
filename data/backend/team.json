@@ -42,10 +42,52 @@
     }
   },
   {
+    "id": 7,
+    "name": "Nihilus",
+    "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/members/nihilus-1788490350505.jpg",
+    "sort_order": 2,
+    "hidden": false,
+    "facebook_url": "",
+    "facebook_hidden": false,
+    "tiktok_url": "",
+    "tiktok_hidden": false,
+    "instagram_url": "",
+    "instagram_hidden": false,
+    "x_url": "",
+    "x_hidden": false,
+    "linkedin_url": "",
+    "linkedin_hidden": false,
+    "variants": {
+      "320": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/variants/7-2165711aa7c3-320.webp",
+        "width": 320,
+        "height": 320,
+        "bytes": 10958,
+        "mimeType": "image/webp"
+      },
+      "640": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/variants/7-2165711aa7c3-640.webp",
+        "width": 640,
+        "height": 640,
+        "bytes": 29760,
+        "mimeType": "image/webp"
+      }
+    },
+    "media": {
+      "original": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/members/nihilus-1788490350505.jpg",
+        "width": 1365,
+        "height": 1365,
+        "bytes": 225171,
+        "mimeType": "image/jpeg"
+      }
+    }
+  },
+  {
     "id": 6,
     "name": "Huy Khánh",
     "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/team/members/huy-khanh-1787315947392.jpg",
-    "sort_order": 2,
+    "sort_order": 3,
     "hidden": false,
     "facebook_url": "",
     "facebook_hidden": false,
@@ -87,7 +129,7 @@
     "id": 5,
     "name": "Raphena",
     "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/team/members/raphena-1787315927422.jpg",
-    "sort_order": 3,
+    "sort_order": 4,
     "hidden": false,
     "facebook_url": "",
     "facebook_hidden": false,
@@ -129,7 +171,7 @@
     "id": 3,
     "name": "Yue",
     "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/team/members/yue-1787309560778.jpg",
-    "sort_order": 4,
+    "sort_order": 5,
     "hidden": true,
     "facebook_url": "",
     "facebook_hidden": false,
@@ -171,7 +213,7 @@
     "id": 2,
     "name": "Nguyễn Trọng Hiếu",
     "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/team/members/yue-1787309560764.jpg",
-    "sort_order": 5,
+    "sort_order": 6,
     "hidden": true,
     "facebook_url": "",
     "facebook_hidden": false,
@@ -213,7 +255,7 @@
     "id": 4,
     "name": "Bảo Kỳ",
     "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/team/members/bao-ky-1787314078639.jpg",
-    "sort_order": 6,
+    "sort_order": 7,
     "hidden": true,
     "facebook_url": "",
     "facebook_hidden": false,
@@ -247,48 +289,6 @@
         "width": 960,
         "height": 1280,
         "bytes": 130265,
-        "mimeType": "image/jpeg"
-      }
-    }
-  },
-  {
-    "id": 7,
-    "name": "Nihilus",
-    "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/members/nihilus-1788490350505.jpg",
-    "sort_order": 2,
-    "hidden": false,
-    "facebook_url": "",
-    "facebook_hidden": false,
-    "tiktok_url": "",
-    "tiktok_hidden": false,
-    "instagram_url": "",
-    "instagram_hidden": false,
-    "x_url": "",
-    "x_hidden": false,
-    "linkedin_url": "",
-    "linkedin_hidden": false,
-    "variants": {
-      "320": {
-        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/variants/7-2165711aa7c3-320.webp",
-        "width": 320,
-        "height": 320,
-        "bytes": 10958,
-        "mimeType": "image/webp"
-      },
-      "640": {
-        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/variants/7-2165711aa7c3-640.webp",
-        "width": 640,
-        "height": 640,
-        "bytes": 29760,
-        "mimeType": "image/webp"
-      }
-    },
-    "media": {
-      "original": {
-        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/members/nihilus-1788490350505.jpg",
-        "width": 1365,
-        "height": 1365,
-        "bytes": 225171,
         "mimeType": "image/jpeg"
       }
     }
