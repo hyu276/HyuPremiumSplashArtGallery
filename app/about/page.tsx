@@ -11,12 +11,12 @@ const SOCIALS=[['facebook','Facebook'],['tiktok','TikTok'],['instagram','Instagr
 type SocialKey=(typeof SOCIALS)[number][0];
 
 function SocialIcon({social}:{social:SocialKey}){
-  const props={width:14,height:14,viewBox:'0 0 24 24',fill:'currentColor','aria-hidden':true as const,focusable:'false'};
+  const props={width:14,height:14,viewBox:'0 0 24 24',fill:'currentColor','aria-hidden':true as const};
   if(social==='facebook')return <svg {...props}><path d="M13.5 22v-8.5h2.85l.43-3.33H13.5V8.04c0-.97.27-1.62 1.66-1.62h1.77V3.45a23.4 23.4 0 0 0-2.58-.14c-2.55 0-4.3 1.56-4.3 4.42v2.44H7.17v3.33h2.88V22h3.45Z"/></svg>;
   if(social==='tiktok')return <svg {...props}><path d="M19.59 6.69a4.8 4.8 0 0 1-3.77-4.25V2h-3.45v13.67a2.9 2.9 0 1 1-2-2.76V9.4a6.33 6.33 0 1 0 5.45 6.27V8.69a8.2 8.2 0 0 0 4.77 1.53V6.79c-.34 0-.67-.04-1-.1Z"/></svg>;
   if(social==='instagram')return <svg {...props} fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>;
   if(social==='x')return <svg {...props}><path d="M18.24 2.25h3.31l-7.23 8.26 8.51 11.24h-6.66l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23 5.45-6.23Zm-1.16 17.52h1.83L7.08 4.13H5.12l11.96 15.64Z"/></svg>;
-  return <svg {...props}><path d="M5.34 7.45H2.2V21h3.14V7.45ZM3.77 2A1.84 1.84 0 1 0 3.8 5.68 1.84 1.84 0 0 0 3.77 2ZM21.8 13.23c0-4.08-2.18-5.98-5.09-5.98-2.35 0-3.4 1.3-3.99 2.2v-2H9.59V21h3.13v-6.72c0-1.77.34-3.49 2.54-3.49 2.17 0 2.2 2.03 2.2 3.6V21h3.14l1.2-7.77Z"/></svg>;
+  return <svg {...props}><circle cx="5" cy="5" r="2"/><rect x="3" y="9" width="4" height="12" rx="1"/><path d="M10 9h3.8v1.65c.95-1.25 2.2-2 4.15-2 3.1 0 4.55 2 4.55 5.7V21h-4v-5.85c0-1.9-.55-3.15-2.25-3.15-1.85 0-2.25 1.4-2.25 3.15V21h-4V9Z"/></svg>;
 }
 
 export default async function About(){
