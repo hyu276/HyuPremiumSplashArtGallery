@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-04T08:35:42.059Z",
+  "generatedAt": "2026-09-04T08:59:27.504Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -233,6 +233,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 698327,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "bong-ma-san-moi-2",
+      "name": "Bóng ma săn mồi",
+      "description": "",
+      "category": "Allain",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/bong-ma-san-moi-2-1788512328837.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bong-ma-san-moi-2-66ea455bcd47-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-04T08:58:48.837Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bong-ma-san-moi-2-66ea455bcd47-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 32092,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bong-ma-san-moi-2-66ea455bcd47-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 59738,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bong-ma-san-moi-2-66ea455bcd47-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 123250,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/bong-ma-san-moi-2-1788512328837.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 792003,
           "mimeType": "image/jpeg"
         }
       }
@@ -6510,6 +6557,53 @@
       }
     },
     {
+      "id": "sieu-viet-7",
+      "name": "Siêu Việt",
+      "description": "",
+      "category": "Lữ Bố",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/sieu-viet-7-1788512177389.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-viet-7-b48a083a2b6d-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-04T08:56:17.389Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-viet-7-b48a083a2b6d-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 29860,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-viet-7-b48a083a2b6d-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 56986,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-viet-7-b48a083a2b6d-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 121822,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/sieu-viet-7-1788512177389.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 836979,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
       "id": "sieu-viet-6",
       "name": "Siêu Việt",
       "description": "",
@@ -7188,6 +7282,53 @@
       }
     },
     {
+      "id": "bong-ma-san-moi",
+      "name": "Bóng ma săn mồi",
+      "description": "",
+      "category": "Murad",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/bong-ma-san-moi-1788512315748.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bong-ma-san-moi-6d8be29cfd45-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-04T08:58:35.748Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bong-ma-san-moi-6d8be29cfd45-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 29376,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bong-ma-san-moi-6d8be29cfd45-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 56708,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bong-ma-san-moi-6d8be29cfd45-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 122262,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/bong-ma-san-moi-1788512315748.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 815981,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
       "id": "hac-vu-luan-kiem",
       "name": "Hạc Vũ Luân Kiếm",
       "description": "",
@@ -7653,6 +7794,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 2700803,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "bong-ma-san-moi-3",
+      "name": "Bóng ma săn mồi",
+      "description": "",
+      "category": "Quillen",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/bong-ma-san-moi-3-1788512344304.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bong-ma-san-moi-3-a1870f58b0aa-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-04T08:59:04.304Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bong-ma-san-moi-3-a1870f58b0aa-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 29748,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bong-ma-san-moi-3-a1870f58b0aa-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 56296,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bong-ma-san-moi-3-a1870f58b0aa-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 121790,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/bong-ma-san-moi-3-1788512344304.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 782971,
           "mimeType": "image/jpeg"
         }
       }
@@ -11255,6 +11443,7 @@
     "Liliana",
     "Lindis",
     "Lorion",
+    "Lữ Bố",
     "Maloch",
     "Marja",
     "Mina",
@@ -11263,6 +11452,7 @@
     "Natalya",
     "Ngộ Không",
     "Qi",
+    "Quillen",
     "Raz",
     "Richter",
     "Rouie",
@@ -11359,6 +11549,7 @@
       "Liliana",
       "Lindis",
       "Lorion",
+      "Lữ Bố",
       "Maloch",
       "Marja",
       "Mina",
@@ -11367,6 +11558,7 @@
       "Natalya",
       "Ngộ Không",
       "Qi",
+      "Quillen",
       "Raz",
       "Richter",
       "Rouie",
