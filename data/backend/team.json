@@ -2,7 +2,7 @@
   {
     "id": 1,
     "name": "Hyu",
-    "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/members/hyu-1788489365200.jpg",
+    "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/members/hyu-1788489368575.jpg",
     "sort_order": 1,
     "hidden": false,
     "facebook_url": "",
@@ -17,14 +17,14 @@
     "linkedin_hidden": false,
     "variants": {
       "320": {
-        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/variants/1-8e15bf3c0c7b-320.webp",
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/variants/1-de95d5dcf203-320.webp",
         "width": 320,
         "height": 320,
         "bytes": 15636,
         "mimeType": "image/webp"
       },
       "640": {
-        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/variants/1-8e15bf3c0c7b-640.webp",
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/variants/1-de95d5dcf203-640.webp",
         "width": 640,
         "height": 640,
         "bytes": 46334,
@@ -33,7 +33,7 @@
     },
     "media": {
       "original": {
-        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/members/hyu-1788489365200.jpg",
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/members/hyu-1788489368575.jpg",
         "width": 1536,
         "height": 1536,
         "bytes": 312644,
