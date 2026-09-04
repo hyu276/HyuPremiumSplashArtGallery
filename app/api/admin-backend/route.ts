@@ -104,7 +104,7 @@ async function enrichTeamMember(member:any,storageBase:string,token:string){
 async function createBlob(token:string,content:string){return gh<{sha:string}>(token,`/repos/${REPO}/git/blobs`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({content,encoding:'utf-8'})})}
 function comparableFile(file:string,value:unknown){if(file.endsWith('/catalogue.json')&&value&&typeof value==='object'&&!Array.isArray(value)){const {generatedAt:_generatedAt,...rest}=value as Record<string,unknown>;return rest}return value}
 function sameFile(file:string,a:unknown,b:unknown){return JSON.stringify(comparableFile(file,a))===JSON.stringify(comparableFile(file,b))}
-function isNonFastForward(error:unknown){return error instanceof Error&&/GitHub 422:.*Update is not a fast forward/is.test(error.message)}
+function isNonFastForward(error:unknown){return error instanceof Error&&/GitHub 422:.*Update is not a fast forward/i.test(error.message)}
 
 async function atomicCommit(token:string,branch:string,files:Record<string,unknown>,baselines:Record<string,unknown>):Promise<CommitResult>{
   const allPaths=Object.keys(files);if(!allPaths.length)throw new Error('Không có metadata nào cần cập nhật.');
