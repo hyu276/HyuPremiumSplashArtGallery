@@ -17,6 +17,7 @@ type OwnerOptions={categories?:string[];ranks?:string[];credits?:string[]};
 type MediaVariant={url:string;width:number;height:number;bytes:number;mimeType:string};
 type Catalogue={schemaVersion?:number;generatedAt?:string;items:any[];categories:string[];ranks:string[];credits:string[];ownerOptions?:OwnerOptions};
 type AdminPayload={ownerItems?:any[];categories?:string[];ranks?:string[];credits?:string[];team?:any[];seo?:any};
+type CommitResult={sha:string;noop:boolean};
 
 const ADMIN_ORIGIN='https://hyu276.github.io';
 function corsHeaders(request:Request):Record<string,string>{const origin=request.headers.get('origin')||'';return origin===ADMIN_ORIGIN?{'Access-Control-Allow-Origin':ADMIN_ORIGIN,'Access-Control-Allow-Methods':'GET,POST,OPTIONS','Access-Control-Allow-Headers':'Authorization,Content-Type','Access-Control-Expose-Headers':'X-Admin-Request-Id','Access-Control-Max-Age':'86400','Vary':'Origin'}:{}}
@@ -101,9 +102,44 @@ async function enrichTeamMember(member:any,storageBase:string,token:string){
 }
 
 async function createBlob(token:string,content:string){return gh<{sha:string}>(token,`/repos/${REPO}/git/blobs`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({content,encoding:'utf-8'})})}
-async function atomicCommit(token:string,branch:string,files:Record<string,unknown>){const refPart=branch.split('/').map(encodeURIComponent).join('/');const ref=await gh<{object:{sha:string}}>(token,`/repos/${REPO}/git/ref/heads/${refPart}`);const parent=ref.object.sha;const commit=await gh<{tree:{sha:string}}>(token,`/repos/${REPO}/git/commits/${parent}`);const tree:Array<{path:string;mode:'100644';type:'blob';sha:string}>=[];for(const [file,value] of Object.entries(files)){const blob=await createBlob(token,JSON.stringify(value,null,2)+'\n');tree.push({path:file,mode:'100644',type:'blob',sha:blob.sha})}const newTree=await gh<{sha:string}>(token,`/repos/${REPO}/git/trees`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({base_tree:commit.tree.sha,tree})});const next=await gh<{sha:string}>(token,`/repos/${REPO}/git/commits`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:'content(admin): cập nhật backend GitHub từ dashboard',tree:newTree.sha,parents:[parent]})});await gh(token,`/repos/${REPO}/git/refs/heads/${refPart}`,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({sha:next.sha,force:false})});return next.sha}
+function comparableFile(file:string,value:unknown){if(file.endsWith('/catalogue.json')&&value&&typeof value==='object'&&!Array.isArray(value)){const {generatedAt:_generatedAt,...rest}=value as Record<string,unknown>;return rest}return value}
+function sameFile(file:string,a:unknown,b:unknown){return JSON.stringify(comparableFile(file,a))===JSON.stringify(comparableFile(file,b))}
+function isNonFastForward(error:unknown){return error instanceof Error&&/GitHub 422:.*Update is not a fast forward/i.test(error.message)}
 
-function statusFor(message:string){if(/github_pat_|Token|GitHub 401|GitHub 403|quyền|chủ repository/.test(message))return 401;if(/404|409|422/.test(message))return 409;if(/tạm thời không phản hồi|GitHub (408|425|429|500|502|503|504)|R2 derivative upload (408|425|429|500|502|503|504)/.test(message))return 503;return 500}
+async function atomicCommit(token:string,branch:string,files:Record<string,unknown>,baselines:Record<string,unknown>):Promise<CommitResult>{
+  const allPaths=Object.keys(files);if(!allPaths.length)throw new Error('Không có metadata nào cần cập nhật.');
+  const refPart=branch.split('/').map(encodeURIComponent).join('/');
+  const blobs:Record<string,string>={};
+  for(const [file,value] of Object.entries(files)){const blob=await createBlob(token,JSON.stringify(value,null,2)+'\n');blobs[file]=blob.sha}
+  let pendingPaths=[...allPaths];
+  let ref=await gh<{object:{sha:string}}>(token,`/repos/${REPO}/git/ref/heads/${refPart}`);
+  let parent=ref.object.sha;
+  for(let attempt=0;attempt<3;attempt+=1){
+    const commit=await gh<{tree:{sha:string}}>(token,`/repos/${REPO}/git/commits/${parent}`);
+    const tree=pendingPaths.map(path=>({path,mode:'100644' as const,type:'blob' as const,sha:blobs[path]}));
+    const newTree=await gh<{sha:string}>(token,`/repos/${REPO}/git/trees`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({base_tree:commit.tree.sha,tree})});
+    const next=await gh<{sha:string}>(token,`/repos/${REPO}/git/commits`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:'content(admin): cập nhật backend GitHub từ dashboard',tree:newTree.sha,parents:[parent]})});
+    try{
+      await gh(token,`/repos/${REPO}/git/refs/heads/${refPart}`,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({sha:next.sha,force:false})});
+      return {sha:next.sha,noop:false};
+    }catch(error){
+      if(!isNonFastForward(error)||attempt===2)throw error;
+      ref=await gh<{object:{sha:string}}>(token,`/repos/${REPO}/git/ref/heads/${refPart}`);parent=ref.object.sha;
+      const safe:string[]=[];
+      for(const path of allPaths){
+        const fresh=await readJson<unknown>(token,path,branch);
+        if(sameFile(path,fresh,files[path]))continue;
+        if(sameFile(path,fresh,baselines[path])){safe.push(path);continue}
+        throw new Error(`GitHub 409: ${path} đã thay đổi bởi một thao tác quản trị khác. Hãy tải lại dashboard trước khi ghi đè.`);
+      }
+      if(!safe.length)return {sha:parent,noop:true};
+      pendingPaths=safe;
+    }
+  }
+  throw new Error('GitHub 409: Không thể hoàn tất cập nhật metadata do có nhiều thao tác đồng thời.');
+}
+
+function statusFor(message:string){if(/github_pat_|Token|GitHub 401|GitHub 403|quyền|chủ repository/.test(message))return 401;if(/Payload .* không hợp lệ/.test(message))return 400;if(/404|409|422/.test(message))return 409;if(/tạm thời không phản hồi|GitHub (408|425|429|500|502|503|504)|R2 derivative upload (408|425|429|500|502|503|504)/.test(message))return 503;return 500}
 function logAdminFailure(requestId:string,method:string,message:string){console.error(`[admin-backend:${requestId}] ${method} failed: ${message.slice(0,1000)}`)}
 
 export async function GET(request:Request){
@@ -120,29 +156,62 @@ export async function POST(request:Request){
   const requestId=randomUUID().slice(0,12);
   try{
     const token=tokenFrom(request);const admin=await verify(token);const payload=await request.json() as AdminPayload;const branch=dataBranch();
+    const catalogueRequested=payload.ownerItems!==undefined||payload.categories!==undefined||payload.ranks!==undefined||payload.credits!==undefined;
+    const teamRequested=payload.team!==undefined;
+    const seoRequested=payload.seo!==undefined;
+    if(teamRequested&&!Array.isArray(payload.team))throw new Error('Payload team không hợp lệ.');
+    if(!catalogueRequested&&!teamRequested&&!seoRequested)throw new Error('Payload admin không hợp lệ.');
+
     const [current,currentTeam,currentSeo,storage]=await Promise.all([readJson<Catalogue>(token,`${DATA_ROOT}/catalogue.json`,branch),readJson<any[]>(token,`${DATA_ROOT}/team.json`,branch),readJson<any>(token,`${DATA_ROOT}/seo.json`,branch),readJson<any>(token,`${DATA_ROOT}/storage.json`,branch)]);
-    const storageBase=String(storage?.publicBaseUrl||'').replace(/\/$/,'');if(!storageBase)throw new Error('Cloudflare R2 publicBaseUrl chưa được cấu hình.');
-    const previous=optionsFor(current);
-    const preferredCategories=unique((Array.isArray(payload.categories)?payload.categories:previous.categories).map(String));
-    const preferredCredits=unique((Array.isArray(payload.credits)?payload.credits:previous.credits).map(String));
-    const preferredRanks=orderedUnique((Array.isArray(payload.ranks)?payload.ranks:previous.ranks).map(String));
-    const requested=(Array.isArray(payload.ownerItems)?payload.ownerItems:current.items||[]).map(canonicalItem);
-    const invalidCategories=unique(requested.map(x=>String(x?.category||'').trim()).filter(value=>Boolean(value)&&!preferredCategories.includes(value)));
-    const invalidCredits=unique(requested.map(x=>String(x?.credit||'').trim()).filter(value=>Boolean(value)&&!preferredCredits.includes(value)));
-    const invalidRanks=unique(requested.map(x=>String(x?.rank||'').trim()).filter(value=>Boolean(value)&&!preferredRanks.includes(value)));
-    if(invalidCategories.length||invalidCredits.length||invalidRanks.length){
-      return Response.json({error:'Taxonomy không hợp lệ: tác phẩm đang tham chiếu tùy chọn không còn tồn tại. Hãy cập nhật tác phẩm trước khi publish.',requestId,invalid:{categories:invalidCategories,credits:invalidCredits,ranks:invalidRanks}},{status:409,headers:responseHeaders(request,requestId)});
+    const storageBase=String(storage?.publicBaseUrl||'').replace(/\/$/,'');
+    if((catalogueRequested||teamRequested)&&!storageBase)throw new Error('Cloudflare R2 publicBaseUrl chưa được cấu hình.');
+
+    const files:Record<string,unknown>={};
+    const baselines:Record<string,unknown>={};
+
+    if(catalogueRequested){
+      const previous=optionsFor(current);
+      const preferredCategories=unique((Array.isArray(payload.categories)?payload.categories:previous.categories).map(String));
+      const preferredCredits=unique((Array.isArray(payload.credits)?payload.credits:previous.credits).map(String));
+      const preferredRanks=orderedUnique((Array.isArray(payload.ranks)?payload.ranks:previous.ranks).map(String));
+      const requested=(Array.isArray(payload.ownerItems)?payload.ownerItems:current.items||[]).map(canonicalItem);
+      const invalidCategories=unique(requested.map(x=>String(x?.category||'').trim()).filter(value=>Boolean(value)&&!preferredCategories.includes(value)));
+      const invalidCredits=unique(requested.map(x=>String(x?.credit||'').trim()).filter(value=>Boolean(value)&&!preferredCredits.includes(value)));
+      const invalidRanks=unique(requested.map(x=>String(x?.rank||'').trim()).filter(value=>Boolean(value)&&!preferredRanks.includes(value)));
+      if(invalidCategories.length||invalidCredits.length||invalidRanks.length){
+        return Response.json({error:'Taxonomy không hợp lệ: tác phẩm đang tham chiếu tùy chọn không còn tồn tại. Hãy cập nhật tác phẩm trước khi publish.',requestId,invalid:{categories:invalidCategories,credits:invalidCredits,ranks:invalidRanks}},{status:409,headers:responseHeaders(request,requestId)});
+      }
+      const enriched=[];for(const item of requested)enriched.push(await enrichMedia(item,storageBase,token));
+      const items=enriched.map(canonicalItem).sort((a,b)=>alpha(String(a.category||''),String(b.category||''))||Number(a.rankOrder||0)-Number(b.rankOrder||0)||alpha(String(a.name||''),String(b.name||'')));
+      const categories=preferredCategories;const credits=preferredCredits;const ranks=preferredRanks;const ownerOptions={categories,ranks,credits};
+      const catalogue:Catalogue={...current,schemaVersion:2,generatedAt:new Date().toISOString(),items,categories,ranks,credits,ownerOptions};
+      const path=`${DATA_ROOT}/catalogue.json`;files[path]=catalogue;baselines[path]=current;
     }
-    const enriched=[];for(const item of requested)enriched.push(await enrichMedia(item,storageBase,token));
-    const items=enriched.map(canonicalItem).sort((a,b)=>alpha(String(a.category||''),String(b.category||''))||Number(a.rankOrder||0)-Number(b.rankOrder||0)||alpha(String(a.name||''),String(b.name||'')));
-    const categories=preferredCategories;
-    const credits=preferredCredits;
-    const ranks=preferredRanks;
-    const ownerOptions={categories,ranks,credits};
-    const catalogue:Catalogue={...current,schemaVersion:2,generatedAt:new Date().toISOString(),items,categories,ranks,credits,ownerOptions};
-    const requestedTeam=Array.isArray(payload.team)?payload.team:currentTeam;const enrichedTeam=[];for(const member of requestedTeam)enrichedTeam.push(await enrichTeamMember(member,storageBase,token));
-    const files:Record<string,unknown>={[`${DATA_ROOT}/catalogue.json`]:catalogue,[`${DATA_ROOT}/team.json`]:enrichedTeam,[`${DATA_ROOT}/seo.json`]:payload.seo!==undefined?payload.seo:currentSeo};
-    const sha=await atomicCommit(token,branch,files);revalidateTag('catalogue');for(const path of ['/','/character/','/artworks/','/about/','/sitemap.xml','/image-sitemap.xml'])revalidatePath(path);
-    return Response.json({ok:true,requestId,commit:sha,branch,by:admin.login,deployedByGit:true},{headers:responseHeaders(request,requestId)});
+
+    if(teamRequested){
+      const requestedTeam=payload.team as any[];const enrichedTeam=[];for(const member of requestedTeam)enrichedTeam.push(await enrichTeamMember(member,storageBase,token));
+      const path=`${DATA_ROOT}/team.json`;
+      if(!sameFile(path,enrichedTeam,currentTeam)){files[path]=enrichedTeam;baselines[path]=currentTeam}
+    }
+
+    if(seoRequested){
+      const path=`${DATA_ROOT}/seo.json`;
+      if(!sameFile(path,payload.seo,currentSeo)){files[path]=payload.seo;baselines[path]=currentSeo}
+    }
+
+    let result:CommitResult;
+    if(Object.keys(files).length){result=await atomicCommit(token,branch,files,baselines)}
+    else{
+      const refPart=branch.split('/').map(encodeURIComponent).join('/');const ref=await gh<{object:{sha:string}}>(token,`/repos/${REPO}/git/ref/heads/${refPart}`);result={sha:ref.object.sha,noop:true};
+    }
+
+    if(!result.noop){
+      const paths=new Set<string>();
+      if(catalogueRequested){revalidateTag('catalogue');for(const path of ['/','/character/','/artworks/','/sitemap.xml','/image-sitemap.xml'])paths.add(path)}
+      if(teamRequested)paths.add('/about/');
+      if(seoRequested)for(const path of ['/','/character/','/artworks/','/about/','/sitemap.xml','/image-sitemap.xml'])paths.add(path);
+      for(const path of paths)revalidatePath(path);
+    }
+    return Response.json({ok:true,requestId,commit:result.sha,branch,by:admin.login,deployedByGit:!result.noop,noop:result.noop},{headers:responseHeaders(request,requestId)});
   }catch(error:any){const message=error?.message||'Không thể publish metadata lên GitHub.';logAdminFailure(requestId,'POST',message);return Response.json({error:message,requestId},{status:statusFor(message),headers:responseHeaders(request,requestId)})}
 }
