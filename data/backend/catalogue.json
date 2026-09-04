@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-03T15:15:17.723Z",
+  "generatedAt": "2026-09-04T02:22:12.467Z",
   "items": [
     {
       "id": "en-tho-bang-gia-2",
@@ -5330,6 +5330,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 496352,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "om-bom-cam-tu",
+      "name": "Ôm bom cảm tử",
+      "description": "",
+      "category": "illumia",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Tâm",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/om-bom-cam-tu-1788488455863.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/om-bom-cam-tu-3837b37b902a-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": true,
+      "updatedAt": "2026-09-04T02:20:55.863Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/om-bom-cam-tu-3837b37b902a-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 19222,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/om-bom-cam-tu-3837b37b902a-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 37516,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/om-bom-cam-tu-3837b37b902a-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 81352,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/om-bom-cam-tu-1788488455863.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 435983,
           "mimeType": "image/jpeg"
         }
       }
