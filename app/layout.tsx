@@ -30,16 +30,29 @@ export async function generateMetadata():Promise<Metadata>{
   const seo=await getSeoGlobalSettings();
   return {
     metadataBase:new URL(seo.site_url),
+    applicationName:seo.site_name,
     title:{default:seo.default_title,template:seo.title_template},
     description:seo.default_description,
     robots:{index:true,follow:true},
     verification:{google:seo.google_site_verification||undefined},
     openGraph:{siteName:seo.site_name,type:'website',locale:seo.default_locale,...(seo.default_og_image?{images:[seo.default_og_image]}:{})},
     twitter:{card:'summary_large_image',...(seo.default_og_image?{images:[seo.default_og_image]}:{})},
-    icons:{icon:[{url:'/icon.svg',type:'image/svg+xml'}],apple:'/icon.svg'}
+    icons:{icon:[{url:'/icon.svg',type:'image/svg+xml'}],apple:'/icon.svg'},
+    appleWebApp:{title:seo.site_name,statusBarStyle:'black-translucent'}
   };
 }
 
-export default function RootLayout({children}:{children:React.ReactNode}){
-  return <html lang="vi" className={`${hyuSans.variable} ${hyuSerif.variable}`}><body>{children}<ArtworkTitleFitter/></body></html>;
+export default async function RootLayout({children}:{children:React.ReactNode}){
+  const seo=await getSeoGlobalSettings();
+  const baseUrl=seo.site_url.replace(/\/$/,'');
+  const websiteJsonLd={
+    '@context':'https://schema.org',
+    '@type':'WebSite',
+    '@id':`${baseUrl}/#website`,
+    url:`${baseUrl}/`,
+    name:seo.site_name,
+    alternateName:['HYU PREMIUM','Hyu Premium AOV Gallery'],
+    inLanguage:'vi-VN'
+  };
+  return <html lang="vi" className={`${hyuSans.variable} ${hyuSerif.variable}`}><body>{children}<ArtworkTitleFitter/><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(websiteJsonLd).replace(/</g,'\\u003c')}}/></body></html>;
 }
