@@ -1,7 +1,7 @@
 {
   "global": {
     "site_url": "https://hyupremium.vercel.app",
-    "site_name": "HYU PREMIUM",
+    "site_name": "Hyu Premium's AOV Gallery",
     "ai_crawlers": {
       "GPTBot": true,
       "bingbot": true,
