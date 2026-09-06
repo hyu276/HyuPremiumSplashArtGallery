@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-06T14:16:03.176Z",
+  "generatedAt": "2026-09-06T16:12:21.876Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -280,6 +280,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 792003,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "dj-tiec-bai-bien-7",
+      "name": "DJ Tiệc bãi biển",
+      "description": "",
+      "category": "Allain",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/dj-tiec-bai-bien-7-1788710999144.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-tiec-bai-bien-7-21563e670cec-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-06T16:09:59.144Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-tiec-bai-bien-7-21563e670cec-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 30096,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-tiec-bai-bien-7-21563e670cec-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 55908,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-tiec-bai-bien-7-21563e670cec-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 114296,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/dj-tiec-bai-bien-7-1788710999144.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 557872,
           "mimeType": "image/jpeg"
         }
       }
@@ -1642,6 +1689,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 640021,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "dj-tiec-bai-bien-3",
+      "name": "DJ Tiệc bãi biển",
+      "description": "",
+      "category": "Azzen'ka",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/dj-tiec-bai-bien-3-1788710915908.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-tiec-bai-bien-3-8306e61d6f25-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-06T16:08:35.908Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-tiec-bai-bien-3-8306e61d6f25-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 29730,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-tiec-bai-bien-3-8306e61d6f25-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 54062,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-tiec-bai-bien-3-8306e61d6f25-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 110324,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/dj-tiec-bai-bien-3-1788710915908.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 538687,
           "mimeType": "image/jpeg"
         }
       }
@@ -6369,6 +6463,53 @@
       }
     },
     {
+      "id": "dj-tiec-bai-bien-5",
+      "name": "DJ Tiệc bãi biển",
+      "description": "",
+      "category": "Kaine",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/dj-tiec-bai-bien-5-1788710979027.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-tiec-bai-bien-5-040209f8576a-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-06T16:09:39.027Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-tiec-bai-bien-5-040209f8576a-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 35204,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-tiec-bai-bien-5-040209f8576a-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 65276,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-tiec-bai-bien-5-040209f8576a-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 130622,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/dj-tiec-bai-bien-5-1788710979027.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 594100,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
       "id": "idol-k-pop",
       "name": "Idol K-Pop",
       "description": "",
@@ -7967,6 +8108,53 @@
       }
     },
     {
+      "id": "dj-tiec-bai-bien-8",
+      "name": "DJ Tiệc bãi biển",
+      "description": "",
+      "category": "Ming",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/dj-tiec-bai-bien-8-1788711007395.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-tiec-bai-bien-8-f30ab29988cd-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-06T16:10:53.397Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-tiec-bai-bien-8-f30ab29988cd-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 31646,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-tiec-bai-bien-8-f30ab29988cd-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 57038,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-tiec-bai-bien-8-f30ab29988cd-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 116138,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/dj-tiec-bai-bien-8-1788711007395.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 552605,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
       "id": "soai-ca-say-hi-2",
       "name": "Soái ca Say Hi",
       "description": "",
@@ -8452,6 +8640,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 422297,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "dj-tiec-bai-bien-6",
+      "name": "DJ Tiệc bãi biển",
+      "description": "",
+      "category": "Natalya",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/dj-tiec-bai-bien-6-1788710988838.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-tiec-bai-bien-6-e5e97755fc6e-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-06T16:09:48.838Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-tiec-bai-bien-6-e5e97755fc6e-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 28032,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-tiec-bai-bien-6-e5e97755fc6e-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 51804,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-tiec-bai-bien-6-e5e97755fc6e-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 105664,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/dj-tiec-bai-bien-6-1788710988838.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 518155,
           "mimeType": "image/jpeg"
         }
       }
@@ -10253,6 +10488,53 @@
           "width": 1800,
           "height": 1200,
           "bytes": 434891,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "dj-tiec-bai-bien-4",
+      "name": "DJ Tiệc bãi biển",
+      "description": "",
+      "category": "Tachi",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/dj-tiec-bai-bien-4-1788710927039.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-tiec-bai-bien-4-5dc8c398fa74-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-06T16:08:47.039Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-tiec-bai-bien-4-5dc8c398fa74-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 30564,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-tiec-bai-bien-4-5dc8c398fa74-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 55104,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-tiec-bai-bien-4-5dc8c398fa74-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 113400,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/dj-tiec-bai-bien-4-1788710927039.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 528664,
           "mimeType": "image/jpeg"
         }
       }
@@ -13300,6 +13582,7 @@
     "Slimz",
     "Stuart",
     "Taara",
+    "Tachi",
     "Teeri",
     "Tel'Annas",
     "Thane",
@@ -13413,6 +13696,7 @@
       "Slimz",
       "Stuart",
       "Taara",
+      "Tachi",
       "Teeri",
       "Tel'Annas",
       "Thane",
