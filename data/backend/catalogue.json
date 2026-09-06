@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-06T04:57:22.704Z",
+  "generatedAt": "2026-09-06T10:50:42.945Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -3614,6 +3614,53 @@
       }
     },
     {
+      "id": "playgirl-thu-gian",
+      "name": "Playgirl Thư giãn",
+      "description": "",
+      "category": "Dolia",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/playgirl-thu-gian-1788691629313.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/playgirl-thu-gian-0b7b596a1dbd-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-06T10:47:09.313Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/playgirl-thu-gian-0b7b596a1dbd-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 19882,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/playgirl-thu-gian-0b7b596a1dbd-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 37092,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/playgirl-thu-gian-0b7b596a1dbd-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 80258,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/playgirl-thu-gian-1788691629313.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 443172,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
       "id": "wave",
       "name": "WAVE",
       "description": "",
@@ -4031,6 +4078,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 666907,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "playboy-thong-chu",
+      "name": "Playboy Thống chủ",
+      "description": "",
+      "category": "Edras",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/playboy-thong-chu-1788691737616.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/playboy-thong-chu-9361dc95af8f-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-06T10:48:57.616Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/playboy-thong-chu-9361dc95af8f-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 23682,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/playboy-thong-chu-9361dc95af8f-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 45020,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/playboy-thong-chu-9361dc95af8f-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 99980,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/playboy-thong-chu-1788691737616.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 517761,
           "mimeType": "image/jpeg"
         }
       }
@@ -7215,6 +7309,53 @@
       }
     },
     {
+      "id": "playgirl-ngo-ngao",
+      "name": "Playgirl ngổ ngáo",
+      "description": "",
+      "category": "Marja",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/playgirl-ngo-ngao-1788691678525.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/playgirl-ngo-ngao-dac156000eff-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-06T10:47:58.525Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/playgirl-ngo-ngao-dac156000eff-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 17260,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/playgirl-ngo-ngao-dac156000eff-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 32724,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/playgirl-ngo-ngao-dac156000eff-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 69222,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/playgirl-ngo-ngao-1788691678525.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 396526,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
       "id": "sieu-pham-girl-pho-2",
       "name": "Siêu phẩm Girl Phố",
       "description": "",
@@ -7935,6 +8076,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 815981,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "playboy-sat-gai",
+      "name": "Playboy Sát gái",
+      "description": "",
+      "category": "Murad",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/playboy-sat-gai-1788691758911.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/playboy-sat-gai-f5151a4e6c9c-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-06T10:49:18.911Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/playboy-sat-gai-f5151a4e6c9c-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 24184,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/playboy-sat-gai-f5151a4e6c9c-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 44906,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/playboy-sat-gai-f5151a4e6c9c-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 95260,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/playboy-sat-gai-1788691758911.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 474034,
           "mimeType": "image/jpeg"
         }
       }
@@ -8880,6 +9068,100 @@
       }
     },
     {
+      "id": "playboy-bang-chu",
+      "name": "Playboy Bang chủ",
+      "description": "",
+      "category": "Ryoma",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/playboy-bang-chu-1788691702828.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/playboy-bang-chu-32ed3b3d8ad6-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-06T10:48:22.828Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/playboy-bang-chu-32ed3b3d8ad6-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 24624,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/playboy-bang-chu-32ed3b3d8ad6-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 45394,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/playboy-bang-chu-32ed3b3d8ad6-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 97588,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/playboy-bang-chu-1788691702828.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 518577,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "playboy-bang-chu-hang-hieu",
+      "name": "Playboy Bang chủ: Hàng hiệu",
+      "description": "",
+      "category": "Ryoma",
+      "rank": "SS+",
+      "rankOrder": 4,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/playboy-bang-chu-hang-hieu-1788691716599.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/playboy-bang-chu-hang-hieu-01df92a7cc56-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-06T10:48:36.599Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/playboy-bang-chu-hang-hieu-01df92a7cc56-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 25746,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/playboy-bang-chu-hang-hieu-01df92a7cc56-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 47840,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/playboy-bang-chu-hang-hieu-01df92a7cc56-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 99798,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/playboy-bang-chu-hang-hieu-1788691716599.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 499252,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
       "id": "thay-tru-ta",
       "name": "Thầy trừ tà",
       "description": "",
@@ -9783,6 +10065,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 378438,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "playgirl-chat-choi-hang-hieu",
+      "name": "Playgirl chất chơi: Hàng hiệu",
+      "description": "",
+      "category": "Tel'Annas",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/playgirl-chat-choi-hang-hieu-1788691664169.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/playgirl-chat-choi-hang-hieu-1dec3853f7c2-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-06T10:47:44.169Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/playgirl-chat-choi-hang-hieu-1dec3853f7c2-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 22326,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/playgirl-chat-choi-hang-hieu-1dec3853f7c2-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 41618,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/playgirl-chat-choi-hang-hieu-1dec3853f7c2-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 87752,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/playgirl-chat-choi-hang-hieu-1788691664169.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 449025,
           "mimeType": "image/jpeg"
         }
       }
@@ -12222,6 +12551,7 @@
     "Điêu Thuyền",
     "Dolia",
     "Dyadia",
+    "Edras",
     "Elando'rr",
     "Elsu",
     "Enzo",
@@ -12258,6 +12588,7 @@
     "Raz",
     "Richter",
     "Rouie",
+    "Ryoma",
     "Sephera",
     "Sinestrea",
     "Slimz",
@@ -12331,6 +12662,7 @@
       "Điêu Thuyền",
       "Dolia",
       "Dyadia",
+      "Edras",
       "Elando'rr",
       "Elsu",
       "Enzo",
@@ -12367,6 +12699,7 @@
       "Raz",
       "Richter",
       "Rouie",
+      "Ryoma",
       "Sephera",
       "Sinestrea",
       "Slimz",
