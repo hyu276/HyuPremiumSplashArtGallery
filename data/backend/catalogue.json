@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-07T15:39:25.312Z",
+  "generatedAt": "2026-09-07T16:02:05.037Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -5649,6 +5649,53 @@
       }
     },
     {
+      "id": "la-bai-xao-quyet",
+      "name": "Lá bài xảo quyệt",
+      "description": "",
+      "category": "Florentino",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/la-bai-xao-quyet-1788796814147.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/la-bai-xao-quyet-7d1b7691d5d0-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-07T16:00:14.147Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/la-bai-xao-quyet-7d1b7691d5d0-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 17574,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/la-bai-xao-quyet-7d1b7691d5d0-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 33620,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/la-bai-xao-quyet-7d1b7691d5d0-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 71840,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/la-bai-xao-quyet-1788796814147.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 388400,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
       "id": "maid-bung-ca-phe",
       "name": "Maid Bưng Cà Phê",
       "description": "",
@@ -5738,6 +5785,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 2998870,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "tiec-be-boi-2",
+      "name": "Tiệc bể bơi",
+      "description": "",
+      "category": "Florentino",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/tiec-be-boi-2-1788796794742.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-be-boi-2-cbf9e2c2df29-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-07T15:59:54.742Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-be-boi-2-cbf9e2c2df29-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 22662,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-be-boi-2-cbf9e2c2df29-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 41244,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-be-boi-2-cbf9e2c2df29-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 84458,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/tiec-be-boi-2-1788796794742.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 425171,
           "mimeType": "image/jpeg"
         }
       }
@@ -7497,6 +7591,53 @@
       }
     },
     {
+      "id": "giang-ho-girl-pho",
+      "name": "Giang hồ girl  phố",
+      "description": "",
+      "category": "Marja",
+      "rank": "A",
+      "rankOrder": 0,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/giang-ho-girl-pho-1788796731684.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giang-ho-girl-pho-31a5c3c6a433-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-07T15:58:51.684Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giang-ho-girl-pho-31a5c3c6a433-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 22336,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giang-ho-girl-pho-31a5c3c6a433-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 44192,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giang-ho-girl-pho-31a5c3c6a433-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 97330,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/giang-ho-girl-pho-1788796731684.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 519546,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
       "id": "ac-linh-hac-giap",
       "name": "Ác linh hắc giáp",
       "description": "",
@@ -8734,6 +8875,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 518155,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "dj-tiec-bai-bien-hang-hieu-2",
+      "name": "DJ Tiệc Bãi biển: Hàng hiệu",
+      "description": "",
+      "category": "Natalya",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/dj-tiec-bai-bien-hang-hieu-2-1788796694892.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-tiec-bai-bien-hang-hieu-2-13b3201881b8-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-07T15:58:14.892Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-tiec-bai-bien-hang-hieu-2-13b3201881b8-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 26644,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-tiec-bai-bien-hang-hieu-2-13b3201881b8-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 48622,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-tiec-bai-bien-hang-hieu-2-13b3201881b8-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 99264,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/dj-tiec-bai-bien-hang-hieu-2-1788796694892.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 486543,
           "mimeType": "image/jpeg"
         }
       }
@@ -10728,6 +10916,53 @@
       }
     },
     {
+      "id": "giang-ho-girl-pho-2",
+      "name": "Giang hồ Girl phố",
+      "description": "",
+      "category": "Tel'Annas",
+      "rank": "A",
+      "rankOrder": 0,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/giang-ho-girl-pho-2-1788796780266.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giang-ho-girl-pho-2-b115715769a3-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-07T15:59:40.266Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giang-ho-girl-pho-2-b115715769a3-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 22336,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giang-ho-girl-pho-2-b115715769a3-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 44192,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giang-ho-girl-pho-2-b115715769a3-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 97330,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/giang-ho-girl-pho-2-1788796780266.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 519546,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
       "id": "playgirl-o-thi",
       "name": "Playgirl Đô Thị",
       "description": "",
@@ -12326,6 +12561,53 @@
       }
     },
     {
+      "id": "dj-tiec-bai-bien-hang-hieu",
+      "name": "DJ Tiệc Bãi biển: Hàng hiệu",
+      "description": "",
+      "category": "Veres",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/dj-tiec-bai-bien-hang-hieu-1788796686267.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-tiec-bai-bien-hang-hieu-987c57f1cee9-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-07T15:58:06.267Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-tiec-bai-bien-hang-hieu-987c57f1cee9-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 30246,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-tiec-bai-bien-hang-hieu-987c57f1cee9-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 55644,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-tiec-bai-bien-hang-hieu-987c57f1cee9-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 111622,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/dj-tiec-bai-bien-hang-hieu-1788796686267.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 520852,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
       "id": "girl-nao-loan",
       "name": "Girl náo loạn",
       "description": "",
@@ -12462,6 +12744,100 @@
           "width": 2752,
           "height": 1536,
           "bytes": 911545,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "giang-ho-boy-pho",
+      "name": "Giang hồ boy phố",
+      "description": "",
+      "category": "Volkath",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/giang-ho-boy-pho-1788796717080.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giang-ho-boy-pho-bcff256b3ebd-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-07T15:58:59.034Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giang-ho-boy-pho-bcff256b3ebd-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 24722,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giang-ho-boy-pho-bcff256b3ebd-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 44888,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giang-ho-boy-pho-bcff256b3ebd-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 90184,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/giang-ho-boy-pho-1788796717080.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 451784,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "giang-ho-boy-pho-hang-hieu",
+      "name": "Giang hồ boy phố: Hàng hiệu",
+      "description": "",
+      "category": "Volkath",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/giang-ho-boy-pho-hang-hieu-1788796710427.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giang-ho-boy-pho-hang-hieu-8a583f801108-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-07T15:59:07.083Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giang-ho-boy-pho-hang-hieu-8a583f801108-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 29866,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giang-ho-boy-pho-hang-hieu-8a583f801108-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 58654,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giang-ho-boy-pho-hang-hieu-8a583f801108-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 124828,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/giang-ho-boy-pho-hang-hieu-1788796710427.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 582398,
           "mimeType": "image/jpeg"
         }
       }
