@@ -61,6 +61,8 @@ function randomUnit(){
   }
   return Math.random();
 }
+function titleFitBucket(value:string){const length=Array.from(String(value||'').trim()).length;return length>=52?'xxlong':length>=38?'xlong':length>=28?'long':length>=19?'medium':'short'}
+
 function shuffledIds(items:Artwork[]){
   const copy=[...items];
   for(let i=copy.length-1;i>0;i--){const j=Math.floor(randomUnit()*(i+1));[copy[i],copy[j]]=[copy[j],copy[i]]}
@@ -191,7 +193,7 @@ const ArtworkCard = memo(function ArtworkCard({item,index,expanded,pending,onTog
     <span className="card-number">{String(index+1).padStart(2,'0')}</span>
     <span className="tier" style={{background:RANK_GRADIENTS[item.rank]||'var(--brand)'}}>{item.rank||'—'}</span>
     <span className="expand-mark" aria-hidden="true">{pending?'…':expanded?'−':'+'}</span>
-    <span className="card-copy"><span className="card-meta">{item.category}</span><strong>{item.name}</strong>{item.description?<span className="card-description">{item.description}</span>:null}<span className="card-bottom"><span className="credit">CREDIT ẢNH · {item.credit}</span><span className="rank-label">{item.rank}</span></span></span>
+    <span className="card-copy"><span className="card-meta">{item.category}</span><strong className="card-title" data-title-fit={titleFitBucket(item.name)}>{item.name}</strong>{item.description?<span className="card-description">{item.description}</span>:null}<span className="card-bottom"><span className="credit">CREDIT ẢNH · {item.credit}</span><span className="rank-label">{item.rank}</span></span></span>
   </button>;
 });
 

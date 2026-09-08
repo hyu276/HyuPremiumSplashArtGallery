@@ -99,6 +99,10 @@ if(gallery.includes('loader.src=item.image'))failures.push('gallery must not pre
 if(gallery.includes('new Image(')||gallery.includes('loadAndDecodeOriginal('))failures.push('gallery must not use off-DOM original preloaders before expansion');
 if(gallery.includes('artworkPreview(item,1600)'))failures.push('gallery must not fetch a 1600px bridge before the exact original');
 if(!gallery.includes('srcSet='))failures.push('gallery must use responsive image srcSet');
+if(!gallery.includes("const previewSrc=artworkPreview(item,960)"))failures.push('mobile title changes must not alter listing media resolution');
+if(!gallery.includes("const originalSrc=item.media?.original?.url||item.image"))failures.push('mobile title changes must not alter exact-original expanded media');
+if(!gallery.includes('data-title-fit={titleFitBucket(item.name)}'))failures.push('gallery titles must use deterministic length buckets');
+if(gallery.includes('ResizeObserver'))failures.push('title fitting must not use ResizeObserver or frame-by-frame font measurement');
 if(!gallery.includes("const originalSrc=item.media?.original?.url||item.image"))failures.push('expanded artwork must load the exact uploaded original');
 if(!gallery.includes('const previewSrcSet=artworkSrcSet(item)'))failures.push('listing preview must keep its responsive srcSet stable across expansion');
 if(gallery.includes("const srcSet=expanded?")||gallery.includes('srcSet={expanded?'))failures.push('expansion must not swap preview srcSet because that can trigger another derivative candidate');
