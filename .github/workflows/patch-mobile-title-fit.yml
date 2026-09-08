@@ -1,0 +1,49 @@
+name: Patch mobile title fit
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/patch-mobile-title-fit.mjs'
+      - '.github/workflows/patch-mobile-title-fit.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: patch-mobile-title-fit
+  cancel-in-progress: true
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply deterministic title-fit patch
+        run: node scripts/patch-mobile-title-fit.mjs
+      - name: Validate media invariants before commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q "const previewSrc=artworkPreview(item,960)" components/GalleryClient.tsx
+          grep -q "const originalSrc=item.media?.original?.url||item.image" components/GalleryClient.tsx
+          grep -q "data-title-fit={titleFitBucket(item.name)}" components/GalleryClient.tsx
+          ! grep -q "ResizeObserver" components/GalleryClient.tsx
+      - name: Commit mobile title fit
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add components/GalleryClient.tsx app/globals.css scripts/assert-egress-safety.mjs
+          git diff --cached --quiet && { echo 'No patch output'; exit 1; }
+          git commit -m 'fix: adapt long artwork titles on mobile'
+          git pull --rebase origin main
+          git push origin HEAD:main
