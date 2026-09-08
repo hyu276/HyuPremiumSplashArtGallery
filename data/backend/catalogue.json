@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-07T16:02:05.037Z",
+  "generatedAt": "2026-09-08T12:53:35.628Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -1459,6 +1459,53 @@
       }
     },
     {
+      "id": "iep-vu-linh-ho",
+      "name": "Điệp Vũ Linh Hồ",
+      "description": "",
+      "category": "Aya",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Long",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/iep-vu-linh-ho-1788871828951.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/iep-vu-linh-ho-be96342c7d77-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-08T12:51:18.118Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/iep-vu-linh-ho-be96342c7d77-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 27090,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/iep-vu-linh-ho-be96342c7d77-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 51536,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/iep-vu-linh-ho-be96342c7d77-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 110490,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/iep-vu-linh-ho-1788871828951.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 549935,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
       "id": "gia-lap",
       "name": "Giả lập",
       "description": "",
@@ -1501,6 +1548,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 483009,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "tinh-linh-vuon-sao",
+      "name": "Tinh linh vườn sao",
+      "description": "",
+      "category": "Aya",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/tinh-linh-vuon-sao-1788871903148.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tinh-linh-vuon-sao-90dda6d2d052-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-08T12:51:43.148Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tinh-linh-vuon-sao-90dda6d2d052-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 20332,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tinh-linh-vuon-sao-90dda6d2d052-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 38166,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tinh-linh-vuon-sao-90dda6d2d052-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 82426,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/tinh-linh-vuon-sao-1788871903148.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 430601,
           "mimeType": "image/jpeg"
         }
       }
@@ -4694,6 +4788,53 @@
       }
     },
     {
+      "id": "huyen-thoai-bat-tu-lai-bang",
+      "name": "Huyền thoại bất tử: Lai Bâng",
+      "description": "",
+      "category": "Elando'rr",
+      "rank": "SSS",
+      "rankOrder": 5,
+      "credit": "Vương Hiếu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/huyen-thoai-bat-tu-lai-bang-1788871870947.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyen-thoai-bat-tu-lai-bang-5ffcb3963de7-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-08T12:51:10.947Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyen-thoai-bat-tu-lai-bang-5ffcb3963de7-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 25162,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyen-thoai-bat-tu-lai-bang-5ffcb3963de7-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 47306,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyen-thoai-bat-tu-lai-bang-5ffcb3963de7-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 101384,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/huyen-thoai-bat-tu-lai-bang-1788871870947.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 518158,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
       "id": "thu-nguyen-ve-than-2",
       "name": "Thứ nguyên vệ thần",
       "description": "",
@@ -6458,6 +6599,100 @@
           "width": 2752,
           "height": 1536,
           "bytes": 472922,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "nu-hoang-da-hoi",
+      "name": "Nữ hoàng dạ hội",
+      "description": "",
+      "category": "Illumia",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/nu-hoang-da-hoi-1788871933721.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nu-hoang-da-hoi-571c7842a771-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-08T12:52:13.721Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nu-hoang-da-hoi-571c7842a771-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 20908,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nu-hoang-da-hoi-571c7842a771-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 39446,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nu-hoang-da-hoi-571c7842a771-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 84398,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/nu-hoang-da-hoi-1788871933721.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 436237,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "nu-than-khau-va",
+      "name": "Nữ thần khâu vá",
+      "description": "",
+      "category": "Illumia",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/nu-than-khau-va-1788871917669.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nu-than-khau-va-43b8e5d5468c-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-08T12:51:57.670Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nu-than-khau-va-43b8e5d5468c-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 19742,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nu-than-khau-va-43b8e5d5468c-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 39250,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nu-than-khau-va-43b8e5d5468c-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 86294,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/nu-than-khau-va-1788871917669.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 470527,
           "mimeType": "image/jpeg"
         }
       }
@@ -9157,6 +9392,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 2914623,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "tiec-bai-bien-5",
+      "name": "Tiệc bãi biển",
+      "description": "",
+      "category": "Qi",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Vương Hiếu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/tiec-bai-bien-5-1788871845527.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-bai-bien-5-bc6950364309-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-08T12:50:45.527Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-bai-bien-5-bc6950364309-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 27374,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-bai-bien-5-bc6950364309-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 49352,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-bai-bien-5-bc6950364309-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 95868,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/tiec-bai-bien-5-1788871845527.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 468630,
           "mimeType": "image/jpeg"
         }
       }
