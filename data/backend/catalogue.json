@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-08T13:03:59.239Z",
+  "generatedAt": "2026-09-08T13:59:33.581Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -4841,13 +4841,9 @@
       "category": "Elando'rr",
       "rank": "SSS",
       "rankOrder": 5,
-      "credit": "Vương Hiếu",
+      "credit": "Hyu",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/huyen-thoai-bat-tu-lai-bang-1788871870947.jpg",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyen-thoai-bat-tu-lai-bang-5ffcb3963de7-1600.webp",
-      "tags": [],
-      "hidden": false,
-      "isVietnameseSkin": false,
-      "updatedAt": "2026-09-08T12:51:10.947Z",
       "variants": {
         "640": {
           "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyen-thoai-bat-tu-lai-bang-5ffcb3963de7-640.webp",
@@ -4879,7 +4875,11 @@
           "bytes": 518158,
           "mimeType": "image/jpeg"
         }
-      }
+      },
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-08T13:58:28.405Z"
     },
     {
       "id": "thu-nguyen-ve-than-2",
