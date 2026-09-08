@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-08T12:53:35.628Z",
+  "generatedAt": "2026-09-08T13:00:25.491Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -1559,13 +1559,9 @@
       "category": "Aya",
       "rank": "SS",
       "rankOrder": 3,
-      "credit": "Hyu",
+      "credit": "Thắng",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/tinh-linh-vuon-sao-1788871903148.jpg",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tinh-linh-vuon-sao-90dda6d2d052-1600.webp",
-      "tags": [],
-      "hidden": false,
-      "isVietnameseSkin": false,
-      "updatedAt": "2026-09-08T12:51:43.148Z",
       "variants": {
         "640": {
           "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tinh-linh-vuon-sao-90dda6d2d052-640.webp",
@@ -1597,7 +1593,11 @@
           "bytes": 430601,
           "mimeType": "image/jpeg"
         }
-      }
+      },
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-08T12:59:18.309Z"
     },
     {
       "id": "man-hoa-lu-hanh",
@@ -6610,13 +6610,9 @@
       "category": "Illumia",
       "rank": "SS",
       "rankOrder": 3,
-      "credit": "Hyu",
+      "credit": "Thắng",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/nu-hoang-da-hoi-1788871933721.jpg",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nu-hoang-da-hoi-571c7842a771-1600.webp",
-      "tags": [],
-      "hidden": false,
-      "isVietnameseSkin": false,
-      "updatedAt": "2026-09-08T12:52:13.721Z",
       "variants": {
         "640": {
           "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nu-hoang-da-hoi-571c7842a771-640.webp",
@@ -6648,7 +6644,11 @@
           "bytes": 436237,
           "mimeType": "image/jpeg"
         }
-      }
+      },
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-08T12:58:50.894Z"
     },
     {
       "id": "nu-than-khau-va",
@@ -6657,13 +6657,9 @@
       "category": "Illumia",
       "rank": "SS",
       "rankOrder": 3,
-      "credit": "Hyu",
+      "credit": "Thắng",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/nu-than-khau-va-1788871917669.jpg",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nu-than-khau-va-43b8e5d5468c-1600.webp",
-      "tags": [],
-      "hidden": false,
-      "isVietnameseSkin": false,
-      "updatedAt": "2026-09-08T12:51:57.670Z",
       "variants": {
         "640": {
           "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nu-than-khau-va-43b8e5d5468c-640.webp",
@@ -6695,7 +6691,11 @@
           "bytes": 470527,
           "mimeType": "image/jpeg"
         }
-      }
+      },
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-08T12:59:00.742Z"
     },
     {
       "id": "wave-13",
@@ -14379,6 +14379,7 @@
     "Phạm Hằng",
     "Raphena",
     "Tâm",
+    "Thắng",
     "Triều",
     "Vương Hiếu"
   ],
@@ -14495,6 +14496,7 @@
       "Phạm Hằng",
       "Raphena",
       "Tâm",
+      "Thắng",
       "Triều",
       "Vương Hiếu"
     ]
