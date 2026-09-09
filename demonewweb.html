@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="color-scheme" content="dark" />
+  <title>HYU PREMIUM — ArtStation-inspired Demo</title>
+  <meta name="description" content="Standalone UX/UI demo for HYU PREMIUM using only local GitHub artwork data and assets." />
+  <link rel="icon" href="assets/brand/hyu-premium-mark.svg" />
+  <style>
+    :root{
+      --bg:#111315;--bg-2:#17191c;--panel:#1d2023;--panel-2:#23262a;--panel-3:#2b2f33;
+      --text:#f2f4f5;--text-2:#c6cbd0;--muted:#8f979f;--line:#30353a;--line-soft:#262a2e;
+      --accent:#43dcff;--accent-2:#16b8e8;--danger:#ff6a6a;--top:56px;--rail:236px;
+      --shadow:0 18px 50px rgba(0,0,0,.38);--radius:4px;
+    }
+    *{box-sizing:border-box}
+    html{background:var(--bg);scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--text);font:14px/1.4 Inter,Arial,Helvetica,sans-serif;overflow-x:hidden}
+    button,input,select{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}img{max-width:100%}
+    ::selection{background:var(--accent);color:#071014}
+
+    .topbar{position:sticky;top:0;z-index:100;height:var(--top);display:flex;align-items:center;gap:18px;padding:0 18px;background:#0d0f11;border-bottom:1px solid #25292d;box-shadow:0 2px 12px rgba(0,0,0,.24)}
+    .brand{display:flex;align-items:center;gap:10px;min-width:218px;font-weight:900;letter-spacing:-.03em}
+    .brand img{width:31px;height:31px;border-radius:50%;background:#eef3f5;object-fit:cover;box-shadow:0 0 0 1px rgba(67,220,255,.25)}
+    .brand b{font-size:15px}.brand b span{color:var(--accent)}
+    .topnav{display:flex;align-items:stretch;height:100%;gap:4px}
+    .topnav a{display:flex;align-items:center;padding:0 12px;color:#a8afb6;font-size:12px;font-weight:700;border-bottom:2px solid transparent}
+    .topnav a:hover,.topnav a.active{color:#fff;background:#171a1d;border-bottom-color:var(--accent)}
+    .top-spacer{flex:1}
+    .top-search{position:relative;width:min(360px,31vw)}
+    .top-search input{width:100%;height:34px;border:1px solid #34393e;border-radius:3px;background:#191c1f;color:#fff;padding:0 34px 0 34px;outline:0}
+    .top-search input:focus{border-color:#4e5b63;box-shadow:0 0 0 1px rgba(67,220,255,.16)}
+    .top-search:before{content:"⌕";position:absolute;left:11px;top:5px;color:#9199a1;font-size:18px;transform:rotate(-18deg)}
+    .top-search button{position:absolute;right:5px;top:5px;width:24px;height:24px;border:0;background:transparent;color:#8e969d;display:none}
+    .top-search.has-value button{display:block}
+    .icon-btn{width:34px;height:34px;border:1px solid #34393e;background:#191c1f;color:#b9c0c6;border-radius:3px;display:grid;place-items:center}
+    .icon-btn:hover{color:#fff;border-color:#4a5259;background:#22262a}
+
+    .app-shell{display:grid;grid-template-columns:var(--rail) minmax(0,1fr);min-height:calc(100vh - var(--top))}
+    .rail{position:sticky;top:var(--top);align-self:start;height:calc(100vh - var(--top));overflow:auto;background:#151719;border-right:1px solid #292d31;padding:16px 12px 30px}
+    .rail-section{margin-bottom:20px}.rail-title{display:flex;align-items:center;justify-content:space-between;color:#737c84;font-size:10px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;margin:0 8px 8px}
+    .rail-list{display:flex;flex-direction:column;gap:2px}
+    .rail-item{width:100%;border:0;background:transparent;color:#aeb5bb;padding:8px;border-radius:3px;text-align:left;display:flex;align-items:center;gap:9px;font-size:12px;min-width:0}
+    .rail-item:hover{background:#22262a;color:#fff}.rail-item.active{background:#2a2e32;color:#fff;box-shadow:inset 2px 0 var(--accent)}
+    .rail-item .label{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rail-item .count{margin-left:auto;color:#707880;font-size:10px}
+    .rail-dot{width:7px;height:7px;border-radius:50%;background:#697178;flex:0 0 auto}.rail-item.active .rail-dot{background:var(--accent);box-shadow:0 0 9px rgba(67,220,255,.5)}
+    .rail-divider{height:1px;background:#272b2f;margin:14px 8px}
+    .rail-note{margin:8px;color:#757d85;font-size:11px;line-height:1.5}
+
+    .workspace{min-width:0;background:var(--bg)}
+    .workspace-head{padding:28px 28px 20px;border-bottom:1px solid #25292d;background:linear-gradient(180deg,#17191c 0%,#121416 100%)}
+    .crumbs{display:flex;align-items:center;gap:7px;color:#7e878f;font-size:11px;margin-bottom:12px}.crumbs b{color:#c6ccd1;font-weight:700}.crumbs i{font-style:normal;color:#515960}
+    .title-row{display:flex;align-items:flex-end;justify-content:space-between;gap:20px}
+    .title-row h1{margin:0;font-size:clamp(27px,3.4vw,47px);line-height:1;font-weight:800;letter-spacing:-.045em}.title-row h1 span{color:var(--accent)}
+    .title-row p{margin:8px 0 0;color:#8f979e;max-width:660px;font-size:12px}
+    .stats{display:flex;gap:18px;flex:0 0 auto}.stat{text-align:right}.stat strong{display:block;font-size:18px;line-height:1;color:#fff}.stat span{display:block;margin-top:5px;color:#737b82;font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+
+    .toolbar{position:sticky;top:var(--top);z-index:60;min-height:58px;background:rgba(17,19,21,.96);backdrop-filter:blur(14px);border-bottom:1px solid #292d31;padding:10px 28px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+    .filter-button,.sort-select{height:36px;border:1px solid #363b40;border-radius:3px;background:#1a1d20;color:#c8ced3;padding:0 11px;font-size:11px;font-weight:700;outline:none}
+    .filter-button:hover,.filter-button.active,.sort-select:focus{border-color:#56616a;color:#fff;background:#22262a}.filter-button.active{box-shadow:inset 0 -2px var(--accent)}
+    .toolbar-sep{width:1px;height:28px;background:#2d3236;margin:0 2px}.toolbar-spacer{flex:1}
+    .result-label{color:#7d858d;font-size:11px}.result-label b{color:#dce0e3}
+    .mobile-filter-trigger{display:none}
+
+    .gallery-wrap{padding:12px;background:#0f1113}
+    .gallery-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;align-items:start}
+    .art-card{position:relative;aspect-ratio:16/9;overflow:hidden;border:0;border-radius:2px;background:#202327;color:#fff;padding:0;text-align:left;isolation:isolate;cursor:zoom-in;box-shadow:0 0 0 1px rgba(255,255,255,.025)}
+    .art-card.expanded{grid-column:1/-1;aspect-ratio:16/9;cursor:zoom-out;margin:8px 0 10px;box-shadow:var(--shadow),0 0 0 1px rgba(255,255,255,.05)}
+    .art-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.002);transition:transform .45s cubic-bezier(.2,.75,.2,1),filter .3s;filter:saturate(.9) contrast(1.03)}
+    .art-card:hover img{transform:scale(1.035);filter:saturate(1.04) contrast(1.04)}.art-card.expanded img{transform:none;filter:none}
+    .shade{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(0,0,0,.02) 28%,rgba(0,0,0,.14) 50%,rgba(0,0,0,.9) 100%)}
+    .art-card:after{content:"";position:absolute;z-index:2;inset:0;border:1px solid transparent;pointer-events:none;transition:border-color .15s}.art-card:hover:after{border-color:rgba(255,255,255,.15)}.art-card.expanded:after{border-color:rgba(67,220,255,.35)}
+    .index{position:absolute;z-index:3;top:10px;left:11px;color:rgba(255,255,255,.76);font:italic 10px Georgia,serif;text-shadow:0 1px 4px #000}
+    .tier{position:absolute;z-index:3;right:10px;top:10px;min-width:29px;min-height:29px;padding:6px 9px;border-radius:999px;display:grid;place-items:center;color:#fff;font-size:9px;font-weight:900;line-height:1;text-shadow:0 1px 4px rgba(0,0,0,.45);box-shadow:0 4px 14px rgba(0,0,0,.22)}
+    .expand{position:absolute;z-index:3;right:11px;bottom:11px;width:25px;height:25px;border:1px solid rgba(255,255,255,.68);border-radius:50%;display:grid;place-items:center;background:rgba(0,0,0,.12);font-size:16px;font-weight:300}
+    .copy{position:absolute;z-index:3;left:12px;right:48px;bottom:11px}.meta{color:var(--accent);font-size:8px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;margin-bottom:3px;text-shadow:0 1px 4px #000}.name{display:block;font-size:clamp(14px,1.35vw,22px);font-weight:850;line-height:.95;letter-spacing:-.035em;text-transform:uppercase;text-shadow:0 2px 8px rgba(0,0,0,.75);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.bottom{display:flex;gap:7px;align-items:center;margin-top:6px;color:#c7cbd0;font-size:7px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;text-shadow:0 1px 4px #000}.bottom span+span{border-left:1px solid rgba(255,255,255,.35);padding-left:7px}
+    .art-card.expanded .copy{left:26px;right:90px;bottom:24px}.art-card.expanded .name{font-size:clamp(30px,5vw,76px);white-space:normal;overflow:visible}.art-card.expanded .meta{font-size:10px}.art-card.expanded .bottom{font-size:9px;margin-top:10px}.art-card.expanded .expand{right:24px;bottom:24px;width:34px;height:34px;font-size:20px}.art-card.expanded .tier{right:24px;top:24px}.art-card.expanded .index{left:25px;top:24px}
+    .expanded-info{display:none}.art-card.expanded .expanded-info{display:block;margin-top:10px;max-width:760px;color:#d7dade;font-size:11px;line-height:1.55;text-transform:none;letter-spacing:0}
+    .skeleton{aspect-ratio:16/9;background:linear-gradient(90deg,#1c1f22 25%,#24282b 37%,#1c1f22 63%);background-size:400% 100%;animation:shimmer 1.2s ease infinite}@keyframes shimmer{0%{background-position:100% 0}100%{background-position:0 0}}
+    .empty{grid-column:1/-1;min-height:320px;display:grid;place-items:center;text-align:center;color:#80888f;border:1px dashed #30353a;background:#151719}.empty strong{display:block;color:#c7ccd0;margin-bottom:6px}
+    .load-error{margin:28px;padding:22px;border:1px solid #543a3a;background:#211718;color:#ffb1b1;border-radius:4px}
+
+    .mobile-sheet,.mobile-overlay{display:none}
+    .footer{padding:24px 28px;border-top:1px solid #292d31;color:#747c83;background:#111315;font-size:10px;display:flex;justify-content:space-between;gap:20px}.footer b{color:#b6bdc3}
+
+    @media (max-width:1220px){:root{--rail:208px}.gallery-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.topnav a{padding:0 8px}.brand{min-width:190px}}
+    @media (max-width:900px){
+      :root{--top:52px}.topbar{height:var(--top);padding:0 10px;gap:9px}.brand{min-width:auto}.brand b{display:none}.brand img{width:30px;height:30px}.topnav{display:none}.top-search{width:auto;flex:1}.app-shell{display:block}.rail{display:none}.workspace-head{padding:20px 14px 16px}.title-row{align-items:flex-start}.stats{gap:10px}.stat:nth-child(2){display:none}.toolbar{top:var(--top);padding:8px 10px;min-height:52px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.toolbar::-webkit-scrollbar{display:none}.toolbar .desktop-only{display:none}.mobile-filter-trigger{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}.toolbar-spacer{display:none}.result-label{white-space:nowrap;margin-left:auto}.gallery-wrap{padding:3px}.gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:3px}.name{font-size:clamp(11px,3.5vw,16px)}.copy{left:8px;right:36px;bottom:8px}.index{left:8px;top:7px;font-size:8px}.tier{right:7px;top:7px;min-width:25px;min-height:25px;padding:5px 7px;font-size:7px}.expand{right:8px;bottom:8px;width:21px;height:21px;font-size:13px}.meta{font-size:6px}.bottom{font-size:6px;margin-top:4px}.art-card.expanded{grid-column:1/-1;margin:3px 0}.art-card.expanded .copy{left:14px;right:58px;bottom:13px}.art-card.expanded .name{font-size:clamp(24px,8vw,48px)}.art-card.expanded .meta{font-size:8px}.art-card.expanded .bottom{font-size:7px;margin-top:7px}.art-card.expanded .expand{right:13px;bottom:13px;width:30px;height:30px}.art-card.expanded .tier{right:13px;top:13px}.art-card.expanded .index{left:13px;top:13px}.footer{padding:18px 14px;flex-direction:column}
+      .mobile-overlay.show{display:block;position:fixed;z-index:119;inset:0;background:rgba(0,0,0,.58);backdrop-filter:blur(2px)}.mobile-sheet.show{display:block;position:fixed;z-index:120;left:0;right:0;bottom:0;max-height:78vh;overflow:auto;background:#181b1e;border-top:1px solid #40464c;border-radius:12px 12px 0 0;padding:10px 14px calc(18px + env(safe-area-inset-bottom));box-shadow:0 -20px 60px rgba(0,0,0,.45)}.sheet-grip{width:44px;height:4px;border-radius:9px;background:#4a5055;margin:0 auto 14px}.sheet-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.sheet-head strong{font-size:15px}.sheet-head button{border:0;background:transparent;color:#aeb5bb;font-size:20px}.sheet-group{padding:12px 0;border-top:1px solid #2a2f33}.sheet-group label{display:block;color:#777f86;font-size:9px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}.chip-row{display:flex;gap:6px;flex-wrap:wrap}.chip{border:1px solid #383e43;background:#202428;color:#aeb5bb;border-radius:999px;padding:7px 10px;font-size:10px}.chip.active{border-color:var(--accent);color:#071014;background:var(--accent)}
+    }
+    @media (max-width:520px){.workspace-head{padding-top:16px}.title-row{display:block}.stats{margin-top:14px;justify-content:flex-start}.stat{text-align:left}.title-row h1{font-size:30px}.title-row p{font-size:11px}.gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.bottom .rank-text{display:none}}
+    @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="HYU PREMIUM home">
+      <img src="assets/brand/hyu-industries-logo.png" alt="" />
+      <b>HYU <span>PREMIUM</span></b>
+    </a>
+    <nav class="topnav" aria-label="Primary">
+      <a class="active" href="#gallery">Explore</a>
+      <a href="#gallery" data-nav-category="Aya">Characters</a>
+      <a href="#gallery" data-nav-rank="SSS+ Ultimate">Premium</a>
+    </nav>
+    <div class="top-spacer"></div>
+    <div class="top-search" id="topSearchWrap">
+      <input id="searchInput" type="search" autocomplete="off" placeholder="Search artworks, characters, credits…" aria-label="Search artworks" />
+      <button id="clearSearch" type="button" aria-label="Clear search">×</button>
+    </div>
+    <button class="icon-btn" id="shuffleBtn" type="button" title="Shuffle artworks" aria-label="Shuffle artworks">↻</button>
+  </header>
+
+  <main class="app-shell" id="top">
+    <aside class="rail" aria-label="Browse filters">
+      <section class="rail-section">
+        <div class="rail-title"><span>Browse</span></div>
+        <div class="rail-list">
+          <button class="rail-item active" data-category="all"><span class="rail-dot"></span><span class="label">All artworks</span><span class="count" id="allCount">0</span></button>
+        </div>
+      </section>
+      <section class="rail-section">
+        <div class="rail-title"><span>Characters</span><span id="characterCount">0</span></div>
+        <div class="rail-list" id="categoryRail"></div>
+      </section>
+      <div class="rail-divider"></div>
+      <section class="rail-section">
+        <div class="rail-title"><span>Skin tier</span></div>
+        <div class="rail-list" id="rankRail"></div>
+      </section>
+      <div class="rail-divider"></div>
+      <p class="rail-note">Demo data source: <b>data/artworks.json</b>. Artwork images are restricted to local <b>assets/</b> paths in this repository.</p>
+    </aside>
+
+    <section class="workspace">
+      <div class="workspace-head">
+        <div class="crumbs"><b>HYU PREMIUM</b><i>/</i><span>Explore</span><i>/</i><span id="crumbFilter">All artworks</span></div>
+        <div class="title-row">
+          <div>
+            <h1>Explore <span>game art.</span></h1>
+            <p>ArtStation-inspired browsing chrome with the existing HYU 16:9 artwork-card language preserved for thumbnails and inline expanded viewing.</p>
+          </div>
+          <div class="stats" aria-label="Catalogue stats">
+            <div class="stat"><strong id="visibleStat">0</strong><span>Visible</span></div>
+            <div class="stat"><strong id="totalStat">0</strong><span>Local artworks</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="toolbar" id="gallery">
+        <button class="filter-button mobile-filter-trigger" id="mobileFilterBtn" type="button">☰ Filters <span id="activeFilterBadge"></span></button>
+        <button class="filter-button desktop-only active" type="button" data-rank-filter="all">All tiers</button>
+        <button class="filter-button desktop-only" type="button" data-rank-filter="SSS+ Ultimate">Ultimate</button>
+        <button class="filter-button desktop-only" type="button" data-rank-filter="SSS+">SSS+</button>
+        <button class="filter-button desktop-only" type="button" data-rank-filter="SS+">SS+</button>
+        <button class="filter-button desktop-only" type="button" data-rank-filter="S+">S+</button>
+        <div class="toolbar-sep desktop-only"></div>
+        <select class="sort-select" id="creditSelect" aria-label="Filter by credit"><option value="all">All credits</option></select>
+        <select class="sort-select" id="sortSelect" aria-label="Sort artworks"><option value="source">Curated order</option><option value="name-asc">Name A–Z</option><option value="category-asc">Character A–Z</option><option value="rank-desc">Tier high–low</option></select>
+        <div class="toolbar-spacer"></div>
+        <span class="result-label"><b id="resultCount">0</b> results</span>
+      </div>
+
+      <div class="gallery-wrap">
+        <div class="gallery-grid" id="galleryGrid" aria-live="polite">
+          <div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div>
+        </div>
+      </div>
+      <footer class="footer"><span><b>HYU PREMIUM</b> · GitHub Pages UX demo</span><span>Local-only catalogue demo · No Cloudflare R2 · No Vercel deployment</span></footer>
+    </section>
+  </main>
+
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+  <aside class="mobile-sheet" id="mobileSheet" aria-label="Mobile filters">
+    <div class="sheet-grip"></div>
+    <div class="sheet-head"><strong>Filters</strong><button id="closeMobileSheet" type="button" aria-label="Close filters">×</button></div>
+    <div class="sheet-group"><label>Characters</label><div class="chip-row" id="mobileCategoryChips"></div></div>
+    <div class="sheet-group"><label>Skin tier</label><div class="chip-row" id="mobileRankChips"></div></div>
+  </aside>
+
+  <script>
+  (()=>{
+    'use strict';
+    const RANKS=['SSS+ Ultimate','SSS+ Tối thượng','SSS+','SSS','SS+','SS','S+','S','A'];
+    const RANK_ORDER=new Map(RANKS.map((v,i)=>[v,RANKS.length-i]));
+    const RANK_GRADIENTS={
+      'A':'linear-gradient(180deg,#035365 0%,#045C6C 48%,#08929C 100%)','S':'linear-gradient(180deg,#60179E 0%,#4D128A 48%,#9244C0 100%)','S+':'linear-gradient(180deg,#E07A38 0%,#D06331 45%,#C15429 100%)','SS':'linear-gradient(180deg,#D88D31 0%,#9E5F0F 48%,#EED76A 100%)','SS+':'linear-gradient(180deg,#E6AF38 0%,#C48211 46%,#A86518 72%,#E06A27 100%)','SSS':'linear-gradient(180deg,#D82B22 0%,#941004 30%,#7E1008 62%,#F16132 100%)','SSS+':'linear-gradient(120deg,#150F24 0%,#3A2289 18%,#4C30A7 34%,#6046B2 48%,#8069E0 63%,#A98FF1 75%,#C8B9F0 87%,#F9F8FB 100%)','SSS+ Ultimate':'linear-gradient(120deg,#281141 0%,#624476 20%,#9F67B0 38%,#B282DE 52%,#F18DC0 67%,#F3AC9A 82%,#F9EFF8 100%)','SSS+ Tối thượng':'linear-gradient(120deg,#281141 0%,#624476 20%,#9F67B0 38%,#B282DE 52%,#F18DC0 67%,#F3AC9A 82%,#F9EFF8 100%)'
+    };
+    const state={items:[],category:'all',rank:'all',credit:'all',query:'',sort:'source',expanded:null,shuffleSeed:0};
+    const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
+    const grid=$('#galleryGrid'), search=$('#searchInput'), searchWrap=$('#topSearchWrap'), creditSelect=$('#creditSelect'), sortSelect=$('#sortSelect');
+    const escapeHtml=value=>String(value??'').replace(/[&<>'"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[ch]));
+    const norm=value=>String(value??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
+    const safeLocalPath=value=>{const p=String(value||'').trim().replace(/^\.\//,'');return /^assets\/[A-Za-z0-9_./%+()\- ]+$/.test(p)&&!p.includes('..')?p:''};
+    const countBy=(arr,key)=>arr.reduce((m,x)=>{const v=x[key]||'Unknown';m.set(v,(m.get(v)||0)+1);return m},new Map());
+    const orderedUnique=values=>Array.from(new Set(values.filter(Boolean)));
+
+    function filteredItems(){
+      let out=state.items.filter(item=>!item.hidden);
+      if(state.category!=='all')out=out.filter(x=>x.category===state.category);
+      if(state.rank!=='all')out=out.filter(x=>x.rank===state.rank);
+      if(state.credit!=='all')out=out.filter(x=>x.credit===state.credit);
+      if(state.query){const q=norm(state.query);out=out.filter(x=>norm([x.name,x.category,x.rank,x.credit,...(x.tags||[])].join(' ')).includes(q))}
+      out=[...out];
+      if(state.sort==='name-asc')out.sort((a,b)=>a.name.localeCompare(b.name,'vi'));
+      else if(state.sort==='category-asc')out.sort((a,b)=>a.category.localeCompare(b.category,'vi')||a.name.localeCompare(b.name,'vi'));
+      else if(state.sort==='rank-desc')out.sort((a,b)=>(RANK_ORDER.get(b.rank)||0)-(RANK_ORDER.get(a.rank)||0));
+      if(state.shuffleSeed)out.sort((a,b)=>hash(a.id+state.shuffleSeed)-hash(b.id+state.shuffleSeed));
+      return out;
+    }
+    function hash(str){let h=2166136261;for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
+
+    function renderRails(){
+      const visible=state.items.filter(x=>!x.hidden&&safeLocalPath(x.image));
+      const categories=countBy(visible,'category');
+      const ranks=countBy(visible,'rank');
+      const categoryNames=[...categories.keys()].sort((a,b)=>a.localeCompare(b,'vi'));
+      $('#allCount').textContent=visible.length;$('#characterCount').textContent=categoryNames.length;
+      $('#categoryRail').innerHTML=categoryNames.map(cat=>`<button class="rail-item${state.category===cat?' active':''}" data-category="${escapeHtml(cat)}"><span class="rail-dot"></span><span class="label">${escapeHtml(cat)}</span><span class="count">${categories.get(cat)}</span></button>`).join('');
+      const rankNames=orderedUnique(RANKS.filter(r=>ranks.has(r)).concat([...ranks.keys()].filter(r=>!RANKS.includes(r))));
+      $('#rankRail').innerHTML=`<button class="rail-item${state.rank==='all'?' active':''}" data-rail-rank="all"><span class="rail-dot"></span><span class="label">All tiers</span><span class="count">${visible.length}</span></button>`+rankNames.map(rank=>`<button class="rail-item${state.rank===rank?' active':''}" data-rail-rank="${escapeHtml(rank)}"><span class="rail-dot"></span><span class="label">${escapeHtml(rank)}</span><span class="count">${ranks.get(rank)||0}</span></button>`).join('');
+      $('#mobileCategoryChips').innerHTML=`<button class="chip${state.category==='all'?' active':''}" data-mobile-category="all">All</button>`+categoryNames.map(cat=>`<button class="chip${state.category===cat?' active':''}" data-mobile-category="${escapeHtml(cat)}">${escapeHtml(cat)}</button>`).join('');
+      $('#mobileRankChips').innerHTML=`<button class="chip${state.rank==='all'?' active':''}" data-mobile-rank="all">All</button>`+rankNames.map(rank=>`<button class="chip${state.rank===rank?' active':''}" data-mobile-rank="${escapeHtml(rank)}">${escapeHtml(rank)}</button>`).join('');
+    }
+
+    function renderGallery(){
+      const list=filteredItems();
+      $('#resultCount').textContent=list.length;$('#visibleStat').textContent=list.length;$('#totalStat').textContent=state.items.filter(x=>!x.hidden&&safeLocalPath(x.image)).length;
+      $('#crumbFilter').textContent=state.category==='all'?'All artworks':state.category;
+      const activeCount=(state.category!=='all')+(state.rank!=='all')+(state.credit!=='all')+Boolean(state.query);
+      $('#activeFilterBadge').textContent=activeCount?`(${activeCount})`:'';
+      $$('[data-rank-filter]').forEach(btn=>btn.classList.toggle('active',btn.dataset.rankFilter===state.rank));
+      renderRails();
+      if(!list.length){grid.innerHTML='<div class="empty"><div><strong>No artworks found.</strong>Try another search or filter.</div></div>';return}
+      grid.innerHTML=list.map((item,index)=>cardTemplate(item,index)).join('');
+      if(state.expanded){const card=grid.querySelector(`[data-id="${CSS.escape(state.expanded)}"]`);if(card)setTimeout(()=>card.scrollIntoView({behavior:'smooth',block:'center'}),20)}
+    }
+
+    function cardTemplate(item,index){
+      const src=safeLocalPath(item.image); if(!src)return '';
+      const expanded=state.expanded===item.id;
+      const desc=item.description?escapeHtml(item.description):'Curated HYU PREMIUM splash-art concept from the local GitHub catalogue.';
+      return `<button class="art-card${expanded?' expanded':''}" data-id="${escapeHtml(item.id)}" aria-expanded="${expanded}">
+        <img src="${encodeURI(src)}" alt="${escapeHtml(item.name+' — '+item.category)}" loading="${index<8?'eager':'lazy'}" decoding="async" />
+        <span class="shade"></span><span class="index">${String(index+1).padStart(2,'0')}</span>
+        <span class="tier" style="background:${RANK_GRADIENTS[item.rank]||'#3c454c'}">${escapeHtml(item.rank||'—')}</span>
+        <span class="expand" aria-hidden="true">${expanded?'−':'+'}</span>
+        <span class="copy"><span class="meta">${escapeHtml(item.category||'Artwork')}</span><strong class="name">${escapeHtml(item.name||'Untitled')}</strong><span class="expanded-info">${desc}</span><span class="bottom"><span>CREDIT ẢNH · ${escapeHtml(item.credit||'—')}</span><span class="rank-text">${escapeHtml(item.rank||'—')}</span></span></span>
+      </button>`;
+    }
+
+    function setCategory(value){state.category=value||'all';state.expanded=null;renderGallery()}
+    function setRank(value){state.rank=value||'all';state.expanded=null;renderGallery()}
+    function openSheet(show){$('#mobileOverlay').classList.toggle('show',show);$('#mobileSheet').classList.toggle('show',show);document.body.style.overflow=show?'hidden':''}
+
+    document.addEventListener('click',event=>{
+      const card=event.target.closest('.art-card');if(card){state.expanded=state.expanded===card.dataset.id?null:card.dataset.id;renderGallery();return}
+      const cat=event.target.closest('[data-category]');if(cat){setCategory(cat.dataset.category);return}
+      const railRank=event.target.closest('[data-rail-rank]');if(railRank){setRank(railRank.dataset.railRank);return}
+      const quickRank=event.target.closest('[data-rank-filter]');if(quickRank){setRank(quickRank.dataset.rankFilter);return}
+      const mobileCat=event.target.closest('[data-mobile-category]');if(mobileCat){setCategory(mobileCat.dataset.mobileCategory);return}
+      const mobileRank=event.target.closest('[data-mobile-rank]');if(mobileRank){setRank(mobileRank.dataset.mobileRank);return}
+      const navCat=event.target.closest('[data-nav-category]');if(navCat){setCategory(navCat.dataset.navCategory);return}
+      const navRank=event.target.closest('[data-nav-rank]');if(navRank){setRank(navRank.dataset.navRank);return}
+    });
+    search.addEventListener('input',()=>{state.query=search.value;searchWrap.classList.toggle('has-value',Boolean(search.value));state.expanded=null;renderGallery()});
+    $('#clearSearch').addEventListener('click',()=>{search.value='';state.query='';searchWrap.classList.remove('has-value');renderGallery();search.focus()});
+    creditSelect.addEventListener('change',()=>{state.credit=creditSelect.value;state.expanded=null;renderGallery()});
+    sortSelect.addEventListener('change',()=>{state.sort=sortSelect.value;state.shuffleSeed=0;renderGallery()});
+    $('#shuffleBtn').addEventListener('click',()=>{state.shuffleSeed=Date.now();state.expanded=null;renderGallery()});
+    $('#mobileFilterBtn').addEventListener('click',()=>openSheet(true));$('#closeMobileSheet').addEventListener('click',()=>openSheet(false));$('#mobileOverlay').addEventListener('click',()=>openSheet(false));
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(state.expanded){state.expanded=null;renderGallery()}else openSheet(false)}});
+
+    fetch('./data/artworks.json',{cache:'no-store'})
+      .then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json()})
+      .then(data=>{
+        const list=Array.isArray(data)?data:[];
+        state.items=list.filter(item=>item&&typeof item==='object'&&safeLocalPath(item.image));
+        const credits=orderedUnique(state.items.filter(x=>!x.hidden).map(x=>x.credit)).sort((a,b)=>a.localeCompare(b,'vi'));
+        creditSelect.innerHTML='<option value="all">All credits</option>'+credits.map(v=>`<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`).join('');
+        renderGallery();
+      })
+      .catch(err=>{console.error(err);grid.innerHTML='<div class="load-error"><strong>Could not load local catalogue.</strong><br>This demo only reads <code>./data/artworks.json</code> and local <code>assets/</code> artwork paths.</div>'});
+  })();
+  </script>
+</body>
+</html>
