@@ -4,7 +4,7 @@
   "version": "2.0.0",
   "scripts": {
     "dev": "next dev",
-    "egress:check": "node scripts/assert-egress-safety.mjs",
+    "egress:check": "node scripts/assert-egress-safety.mjs && node scripts/assert-minigame-egress.mjs",
     "prebuild": "node scripts/assert-egress-safety.mjs",
     "build": "next build",
     "start": "next start",
