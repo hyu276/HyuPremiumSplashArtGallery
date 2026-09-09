@@ -70,19 +70,32 @@
       const status=document.getElementById('status');
       let items=[];
       let currentIndex=-1;
+      let rollPool=[];
 
       const imageOf=item=>item.thumbnail||item.variants?.['1600']?.url||item.image||'';
 
+      function createRollPool(){
+        const pool=Array.from({length:items.length},(_,index)=>index);
+        for(let i=pool.length-1;i>0;i--){
+          const j=Math.floor(Math.random()*(i+1));
+          [pool[i],pool[j]]=[pool[j],pool[i]];
+        }
+        if(pool.length>1&&pool[pool.length-1]===currentIndex){
+          [pool[pool.length-1],pool[pool.length-2]]=[pool[pool.length-2],pool[pool.length-1]];
+        }
+        return pool;
+      }
+
       function pickIndex(){
-        if(items.length<=1)return 0;
-        let next=Math.floor(Math.random()*items.length);
-        while(next===currentIndex)next=Math.floor(Math.random()*items.length);
-        return next;
+        if(!items.length)return -1;
+        if(!rollPool.length)rollPool=createRollPool();
+        return rollPool.pop();
       }
 
       function rollArtwork(){
         if(!items.length)return;
         currentIndex=pickIndex();
+        if(currentIndex<0)return;
         const item=items[currentIndex];
         artwork.src=imageOf(item);
         artwork.alt='Artwork bí ẩn trong HYU PREMIUM';
@@ -90,7 +103,9 @@
         answer.textContent='•••';
         reveal.disabled=false;
         roll.textContent='Roll artwork khác';
-        status.textContent=`Đã tải ${items.length} artwork khả dụng.`;
+        status.textContent=rollPool.length
+          ? `Còn ${rollPool.length}/${items.length} artwork chưa xuất hiện trong chu kỳ này.`
+          : `Đã roll đủ ${items.length} artwork · lượt tiếp theo bắt đầu chu kỳ mới.`;
       }
 
       roll.addEventListener('click',rollArtwork);
@@ -108,9 +123,10 @@
         .then(data=>{
           items=(Array.isArray(data.items)?data.items:[]).filter(item=>!item.hidden&&item.category&&imageOf(item));
           if(!items.length)throw new Error('Catalogue không có artwork khả dụng');
+          rollPool=createRollPool();
           roll.disabled=false;
           roll.textContent='Roll artwork';
-          status.textContent=`Sẵn sàng · ${items.length} artwork.`;
+          status.textContent=`Sẵn sàng · ${items.length} artwork · không lặp cho đến khi roll hết.`;
         })
         .catch(error=>{
           status.textContent=`Không thể tải catalogue: ${error.message}`;
