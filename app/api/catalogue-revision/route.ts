@@ -9,8 +9,8 @@ export async function GET() {
     { revision },
     {
       headers: {
-        'Cache-Control': 'no-store, max-age=0',
-        'CDN-Cache-Control': 'no-store',
+        'Cache-Control': 'public, max-age=0, s-maxage=15, stale-while-revalidate=15',
+        'CDN-Cache-Control': 'public, s-maxage=15, stale-while-revalidate=15',
         'X-Content-Type-Options': 'nosniff'
       }
     }
