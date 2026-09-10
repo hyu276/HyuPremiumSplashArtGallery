@@ -3,7 +3,8 @@ import { SiteHeader, SiteFooter } from '@/components/SiteChrome';
 import { artworkPath, getCatalogue } from '@/lib/catalogue';
 import { metadataForPath } from '@/lib/seo';
 
-export const revalidate=300;
+export const dynamic='force-dynamic';
+export const revalidate=0;
 export async function generateMetadata():Promise<Metadata>{return metadataForPath('/artworks/',{title:'Thư viện Splash Art Game — Danh mục tác phẩm',description:'Duyệt thư viện splash art game HYU PREMIUM theo nhân vật hoặc danh mục, hạng skin và credit ảnh.',alternates:{canonical:'https://hyupremium.vercel.app/artworks/'}})}
 
 export default async function ArtworkIndex(){

@@ -7,9 +7,15 @@ const [minigame, vercelText] = await Promise.all([
 
 const failures = [];
 const vercel = JSON.parse(vercelText);
+const deploymentEnabled = vercel?.git?.deploymentEnabled;
 
-if (vercel?.git?.deploymentEnabled !== false) {
-  failures.push('vercel.json: automatic Git deployments must remain disabled');
+if (
+  !deploymentEnabled ||
+  typeof deploymentEnabled !== 'object' ||
+  deploymentEnabled.main !== true ||
+  deploymentEnabled['*'] !== false
+) {
+  failures.push('vercel.json: main must auto-deploy while non-main Git deployments remain disabled');
 }
 
 const selector = minigame.match(/const imageOf=item=>\{[\s\S]*?\n      \};/)?.[0] || '';
@@ -35,4 +41,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log('Minigame egress guard passed: Git auto-deploy disabled; roll media capped at 640/960 derivatives.');
+console.log('Minigame egress guard passed: main Git deploy enabled; non-main deploys disabled; roll media capped at 640/960 derivatives.');
