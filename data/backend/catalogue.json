@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-09T10:08:56.988Z",
+  "generatedAt": "2026-09-10T14:03:55.352Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -3468,6 +3468,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 521841,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "bonnibel",
+      "name": "Bonnibel",
+      "description": "",
+      "category": "Bonnie",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Tâm",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/bonnibel-1789049024109.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bonnibel-e58b81f72050-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-10T14:03:44.109Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bonnibel-e58b81f72050-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 25070,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bonnibel-e58b81f72050-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 47482,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bonnibel-e58b81f72050-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 101006,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/bonnibel-1789049024109.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 722941,
           "mimeType": "image/jpeg"
         }
       }
