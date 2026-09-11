@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-10T14:45:17.367Z",
+  "generatedAt": "2026-09-11T09:04:49.537Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -14557,41 +14557,41 @@
       "rank": "SSS",
       "rankOrder": 5,
       "credit": "Hyu",
-      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/huyen-thoai-hyu-i-1788930552730.jpg",
-      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyen-thoai-hyu-i-b95493cb4be4-1600.webp",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/huyen-thoai-hyu-i-1789117455175.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyen-thoai-hyu-i-ebf711031beb-1600.webp",
       "tags": [],
       "hidden": false,
       "isVietnameseSkin": false,
-      "updatedAt": "2026-09-09T05:09:12.730Z",
+      "updatedAt": "2026-09-11T09:04:15.175Z",
       "variants": {
         "640": {
-          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyen-thoai-hyu-i-b95493cb4be4-640.webp",
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyen-thoai-hyu-i-ebf711031beb-640.webp",
           "width": 640,
           "height": 357,
-          "bytes": 27718,
+          "bytes": 36912,
           "mimeType": "image/webp"
         },
         "960": {
-          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyen-thoai-hyu-i-b95493cb4be4-960.webp",
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyen-thoai-hyu-i-ebf711031beb-960.webp",
           "width": 960,
           "height": 536,
-          "bytes": 53782,
+          "bytes": 70302,
           "mimeType": "image/webp"
         },
         "1600": {
-          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyen-thoai-hyu-i-b95493cb4be4-1600.webp",
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyen-thoai-hyu-i-ebf711031beb-1600.webp",
           "width": 1600,
           "height": 893,
-          "bytes": 119230,
+          "bytes": 150354,
           "mimeType": "image/webp"
         }
       },
       "media": {
         "original": {
-          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/huyen-thoai-hyu-i-1788930552730.jpg",
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/huyen-thoai-hyu-i-1789117455175.jpg",
           "width": 2752,
           "height": 1536,
-          "bytes": 589474,
+          "bytes": 951147,
           "mimeType": "image/jpeg"
         }
       }
@@ -14604,41 +14604,41 @@
       "rank": "SSS",
       "rankOrder": 5,
       "credit": "Hyu",
-      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/huyen-thoai-hyu-ii-1788948525724.jpg",
-      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyen-thoai-hyu-ii-413bed919078-1600.webp",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/huyen-thoai-hyu-ii-1789117462486.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyen-thoai-hyu-ii-0b518d349235-1600.webp",
       "tags": [],
       "hidden": false,
       "isVietnameseSkin": false,
-      "updatedAt": "2026-09-09T10:08:45.724Z",
+      "updatedAt": "2026-09-11T09:04:22.486Z",
       "variants": {
         "640": {
-          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyen-thoai-hyu-ii-413bed919078-640.webp",
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyen-thoai-hyu-ii-0b518d349235-640.webp",
           "width": 640,
           "height": 357,
-          "bytes": 23052,
+          "bytes": 22282,
           "mimeType": "image/webp"
         },
         "960": {
-          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyen-thoai-hyu-ii-413bed919078-960.webp",
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyen-thoai-hyu-ii-0b518d349235-960.webp",
           "width": 960,
           "height": 536,
-          "bytes": 46214,
+          "bytes": 44106,
           "mimeType": "image/webp"
         },
         "1600": {
-          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyen-thoai-hyu-ii-413bed919078-1600.webp",
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyen-thoai-hyu-ii-0b518d349235-1600.webp",
           "width": 1600,
           "height": 893,
-          "bytes": 104024,
+          "bytes": 99944,
           "mimeType": "image/webp"
         }
       },
       "media": {
         "original": {
-          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/huyen-thoai-hyu-ii-1788948525724.jpg",
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/huyen-thoai-hyu-ii-1789117462486.jpg",
           "width": 2752,
           "height": 1536,
-          "bytes": 727521,
+          "bytes": 685482,
           "mimeType": "image/jpeg"
         }
       }
@@ -14651,41 +14651,41 @@
       "rank": "SSS",
       "rankOrder": 5,
       "credit": "Hyu",
-      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/huyen-thoai-hyu-iii-1788948198909.jpg",
-      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyen-thoai-hyu-iii-80542e81f1d7-1600.webp",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/huyen-thoai-hyu-iii-1789117473155.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyen-thoai-hyu-iii-c1edffb563fb-1600.webp",
       "tags": [],
       "hidden": false,
       "isVietnameseSkin": false,
-      "updatedAt": "2026-09-09T10:03:18.909Z",
+      "updatedAt": "2026-09-11T09:04:33.155Z",
       "variants": {
         "640": {
-          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyen-thoai-hyu-iii-80542e81f1d7-640.webp",
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyen-thoai-hyu-iii-c1edffb563fb-640.webp",
           "width": 640,
           "height": 357,
-          "bytes": 25992,
+          "bytes": 30344,
           "mimeType": "image/webp"
         },
         "960": {
-          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyen-thoai-hyu-iii-80542e81f1d7-960.webp",
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyen-thoai-hyu-iii-c1edffb563fb-960.webp",
           "width": 960,
           "height": 536,
-          "bytes": 50236,
+          "bytes": 59876,
           "mimeType": "image/webp"
         },
         "1600": {
-          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyen-thoai-hyu-iii-80542e81f1d7-1600.webp",
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyen-thoai-hyu-iii-c1edffb563fb-1600.webp",
           "width": 1600,
           "height": 893,
-          "bytes": 107886,
+          "bytes": 137194,
           "mimeType": "image/webp"
         }
       },
       "media": {
         "original": {
-          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/huyen-thoai-hyu-iii-1788948198909.jpg",
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/huyen-thoai-hyu-iii-1789117473155.jpg",
           "width": 2752,
           "height": 1536,
-          "bytes": 708725,
+          "bytes": 881825,
           "mimeType": "image/jpeg"
         }
       }
