@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-11T09:06:11.019Z",
+  "generatedAt": "2026-09-11T09:31:53.048Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -9533,6 +9533,100 @@
           "width": 2752,
           "height": 1536,
           "bytes": 485459,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "than-tuong-am-nhac-hang-hieu",
+      "name": "Thần tượng âm nhạc: Hàng hiệu",
+      "description": "",
+      "category": "Natalya",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/than-tuong-am-nhac-hang-hieu-1789119082553.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/than-tuong-am-nhac-hang-hieu-8ecc579dffc5-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-11T09:31:22.553Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/than-tuong-am-nhac-hang-hieu-8ecc579dffc5-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 38950,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/than-tuong-am-nhac-hang-hieu-8ecc579dffc5-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 72378,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/than-tuong-am-nhac-hang-hieu-8ecc579dffc5-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 150930,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/than-tuong-am-nhac-hang-hieu-1789119082553.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 565198,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "than-tuong-am-nhac-phien-ban-hoan-my",
+      "name": "Thần tượng âm nhạc: Phiên bản hoàn mỹ",
+      "description": "",
+      "category": "Natalya",
+      "rank": "SS+",
+      "rankOrder": 4,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/than-tuong-am-nhac-phien-ban-hoan-my-1789119099272.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/than-tuong-am-nhac-phien-ban-hoan-my-42e1f14612e4-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-11T09:31:39.272Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/than-tuong-am-nhac-phien-ban-hoan-my-42e1f14612e4-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 30644,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/than-tuong-am-nhac-phien-ban-hoan-my-42e1f14612e4-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 60986,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/than-tuong-am-nhac-phien-ban-hoan-my-42e1f14612e4-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 140348,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/than-tuong-am-nhac-phien-ban-hoan-my-1789119099272.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 605191,
           "mimeType": "image/jpeg"
         }
       }
