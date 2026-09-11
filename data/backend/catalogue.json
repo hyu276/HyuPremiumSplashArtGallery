@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-11T09:37:55.142Z",
+  "generatedAt": "2026-09-11T10:33:06.146Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -6020,6 +6020,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 2053616,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "nuoc-noi-uot-at",
+      "name": "Nước nôi ướt át",
+      "description": "",
+      "category": "Florentino",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/nuoc-noi-uot-at-1789122776989.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nuoc-noi-uot-at-16ee7a29b967-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-11T10:32:56.989Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nuoc-noi-uot-at-16ee7a29b967-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 27648,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nuoc-noi-uot-at-16ee7a29b967-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 55346,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nuoc-noi-uot-at-16ee7a29b967-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 127516,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/nuoc-noi-uot-at-1789122776989.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 846611,
           "mimeType": "image/jpeg"
         }
       }
