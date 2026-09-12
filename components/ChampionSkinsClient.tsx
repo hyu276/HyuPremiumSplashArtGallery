@@ -51,14 +51,6 @@ export default function ChampionSkinsClient({ category, items }: { category: str
           decoding="async"
           fetchPriority="high"
         />
-        <div className="champion-media-veil" aria-hidden="true" />
-        <div className="champion-media-meta">
-          <div>
-            <p className="champion-media-category">{category}</p>
-            <h2>{active.name}</h2>
-          </div>
-          <p className="champion-media-stats">Hạng {active.rank}<br/>Credit · {active.credit}</p>
-        </div>
       </div>
 
       <div className="champion-carousel-wrap">
