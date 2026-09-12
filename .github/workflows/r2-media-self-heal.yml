@@ -1,0 +1,27 @@
+name: HYU R2 media self-heal
+
+on:
+  schedule:
+    - cron: '17 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: hyu-r2-media-self-heal
+  cancel-in-progress: true
+
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Reconcile production media Worker and Access/CORS boundary
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh workflow run deploy-r2-media-worker.yml --repo "$GITHUB_REPOSITORY" --ref main
+          echo 'Dispatched the canonical R2 Worker deployment/reconciliation workflow.'
