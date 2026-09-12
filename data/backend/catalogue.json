@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-12T13:47:54.341Z",
+  "generatedAt": "2026-09-12T13:55:27.432Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -15914,7 +15914,7 @@
     },
     {
       "id": "nhat-nguyet-thanh-linh",
-      "name": "Nhật nguyệt thánh linh",
+      "name": "Nhật nguyệt thiên cơ",
       "description": "",
       "category": "Yue",
       "rank": "SSS+ Tối thượng",
@@ -15922,10 +15922,6 @@
       "credit": "Hika",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/nhat-nguyet-thanh-linh-1789212387959.jpg",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nhat-nguyet-thanh-linh-a4f2c9918ff5-1600.webp",
-      "tags": [],
-      "hidden": false,
-      "isVietnameseSkin": false,
-      "updatedAt": "2026-09-12T11:26:27.959Z",
       "variants": {
         "640": {
           "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nhat-nguyet-thanh-linh-a4f2c9918ff5-640.webp",
@@ -15957,7 +15953,11 @@
           "bytes": 775973,
           "mimeType": "image/jpeg"
         }
-      }
+      },
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-12T13:54:18.077Z"
     },
     {
       "id": "vu-khuc-linh-su",
