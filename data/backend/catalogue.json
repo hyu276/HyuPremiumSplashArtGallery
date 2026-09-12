@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-12T13:45:53.762Z",
+  "generatedAt": "2026-09-12T13:46:20.107Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -16370,6 +16370,10 @@
     "Krixi": {
       "mode": "artwork",
       "artworkId": "bang-thanh-hoa-tam"
+    },
+    "Murad": {
+      "mode": "artwork",
+      "artworkId": "hac-am-3"
     }
   }
 }
