@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-12T13:44:26.643Z",
+  "generatedAt": "2026-09-12T13:45:26.501Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -16362,6 +16362,10 @@
     "Elando'rr": {
       "mode": "artwork",
       "artworkId": "huyen-thoai-bat-tu-lai-bang"
+    },
+    "Elsu": {
+      "mode": "artwork",
+      "artworkId": "linh-ban-tia-viet"
     }
   }
 }
