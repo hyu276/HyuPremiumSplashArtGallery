@@ -113,6 +113,13 @@ if(!gallery.includes('eager={index<INITIAL_RANDOM_COUNT&&!expanded}'))failures.p
 if(!gallery.includes('setPreviewHold({width:rect.width,height:rect.height})'))failures.push('gallery must capture the collapsed card dimensions before expansion to prevent derivative upscaling');
 if(!gallery.includes('{expanded?<ExpandedOriginal src={originalSrc}'))failures.push('expanded artwork must mount the exact original directly in the expanded shell');
 
+const championSkins=await readFile(join(ROOT,'components/ChampionSkinsClient.tsx'),'utf8');
+if(!championSkins.includes('const CHAMPION_THUMBNAIL_360P_WIDTH = 640 as const;'))failures.push('champion carousel thumbnails must remain on the 640x~360 derivative tier');
+if(!championSkins.includes("const originalSrc = active ? (active.media?.original?.url || active.image) : '';"))failures.push('champion expanded artwork must resolve the exact uploaded original');
+if(!championSkins.includes('src={originalSrc}'))failures.push('champion expanded viewport must render the exact uploaded original');
+if(!championSkins.includes('src={artworkPreview(item, CHAMPION_THUMBNAIL_360P_WIDTH)}'))failures.push('champion small thumbnails must use the 360p derivative tier');
+if(championSkins.includes('artworkPreview(active, 1600)')||championSkins.includes('artworkSrcSet(active)')||championSkins.includes('srcSet={mainSrcSet'))failures.push('champion expanded viewport must not fetch a 1600px bridge or responsive derivative before the original');
+
 const imageSitemap=await readFile(join(ROOT,'app/image-sitemap.xml/route.ts'),'utf8');
 if(!imageSitemap.includes('image=artworkPreview(item,1600)'))failures.push('image sitemap must publish the 1600px derivative');
 if(imageSitemap.includes('override?.og_image||item.image')||imageSitemap.includes('image=item.image'))failures.push('image sitemap must not publish artwork originals');
@@ -200,4 +207,4 @@ if(failures.length){
   for(const failure of failures)console.error(` - ${failure}`);
   process.exit(1);
 }
-console.log(`Egress safety gate passed: ${catalogue.items.length} artworks, ${publicItems.length} public, ${team.length} team members; taxonomy is referentially consistent; stale gallery tabs use a tiny CDN-cached revision check; expanded artwork uses exact uploaded originals; SEO/listing traffic still uses derivatives; icon is ${iconBytes} bytes with immutable cache; Admin UI is GitHub Pages-only.`);
+console.log(`Egress safety gate passed: ${catalogue.items.length} artworks, ${publicItems.length} public, ${team.length} team members; taxonomy is referentially consistent; gallery and champion expanded artwork use exact uploaded originals; champion carousel thumbnails remain on the cache-safe 640x~360 tier; SEO/listing traffic still uses derivatives; stale gallery tabs use a tiny CDN-cached revision check; icon is ${iconBytes} bytes with immutable cache; Admin UI is GitHub Pages-only.`);
