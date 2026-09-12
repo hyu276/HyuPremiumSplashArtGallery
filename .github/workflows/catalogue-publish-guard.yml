@@ -27,50 +27,67 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Validate and repair public catalogue media
+      - name: Validate and quarantine malformed catalogue media
         id: repair
         shell: bash
         run: |
           set -euo pipefail
           node <<'NODE'
           const fs = require('fs');
-          const path = 'data/backend/catalogue.json';
-          const data = JSON.parse(fs.readFileSync(path, 'utf8'));
+          const cataloguePath = 'data/backend/catalogue.json';
+          const quarantinePath = 'data/backend/catalogue-quarantine.json';
+          const data = JSON.parse(fs.readFileSync(cataloguePath, 'utf8'));
           const items = Array.isArray(data.items) ? data.items : [];
-          const broken = [];
-          for (const item of items) {
-            if (item && item.hidden !== true && !String(item.image || '').trim()) {
-              broken.push({ id: String(item.id || ''), name: String(item.name || '') });
-              item.hidden = true;
-              item.updatedAt = new Date().toISOString();
-            }
-          }
-          if (!broken.length) {
-            console.log('Catalogue guard: no malformed public artwork found.');
+          const malformed = items.filter(item => item && !String(item.image || '').trim());
+          if (!malformed.length) {
+            console.log('Catalogue guard: no malformed artwork found.');
             fs.appendFileSync(process.env.GITHUB_OUTPUT, 'changed=false\n');
             process.exit(0);
           }
+
+          const malformedIds = new Set(malformed.map(item => String(item.id || '')));
+          data.items = items.filter(item => !malformedIds.has(String(item?.id || '')));
           data.generatedAt = new Date().toISOString();
-          fs.writeFileSync(path, JSON.stringify(data, null, 2) + '\n');
-          console.log('Catalogue guard repaired malformed public entries:', broken);
+          fs.writeFileSync(cataloguePath, JSON.stringify(data, null, 2) + '\n');
+
+          let quarantine = { schemaVersion: 1, updatedAt: '', items: [] };
+          if (fs.existsSync(quarantinePath)) {
+            try { quarantine = JSON.parse(fs.readFileSync(quarantinePath, 'utf8')); } catch {}
+          }
+          const existing = new Map((Array.isArray(quarantine.items) ? quarantine.items : []).map(item => [String(item.id || ''), item]));
+          const quarantinedAt = new Date().toISOString();
+          for (const item of malformed) {
+            existing.set(String(item.id || ''), {
+              ...item,
+              quarantine: {
+                reason: 'missing-image',
+                quarantinedAt,
+                source: 'catalogue-publish-guard'
+              }
+            });
+          }
+          quarantine = { schemaVersion: 1, updatedAt: quarantinedAt, items: [...existing.values()] };
+          fs.writeFileSync(quarantinePath, JSON.stringify(quarantine, null, 2) + '\n');
+
+          console.log('Catalogue guard quarantined malformed entries:', malformed.map(item => ({ id: item.id, name: item.name })));
           fs.appendFileSync(process.env.GITHUB_OUTPUT, 'changed=true\n');
-          fs.appendFileSync(process.env.GITHUB_OUTPUT, `repaired=${broken.map(x => x.id).join(',')}\n`);
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `repaired=${malformed.map(x => x.id).join(',')}\n`);
           NODE
       - name: Validate repaired catalogue with production safety gate
         if: steps.repair.outputs.changed == 'true'
         run: npm run egress:check
-      - name: Commit repaired catalogue
+      - name: Commit repaired catalogue and quarantine
         if: steps.repair.outputs.changed == 'true'
         shell: bash
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/backend/catalogue.json
-          git commit -m "fix(catalogue): quarantine malformed public artwork"
+          git add data/backend/catalogue.json data/backend/catalogue-quarantine.json
+          git commit -m "fix(catalogue): quarantine malformed artwork outside production data"
           git push origin HEAD:main
       - name: Report healthy catalogue
         if: steps.repair.outputs.changed != 'true'
         run: echo 'Catalogue publish guard passed without repair.'
 
-# Revision: 2026-09-12a
+# Revision: 2026-09-12b
