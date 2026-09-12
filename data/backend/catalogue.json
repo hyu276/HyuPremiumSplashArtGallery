@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-12T13:46:49.559Z",
+  "generatedAt": "2026-09-12T13:47:01.063Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -16374,6 +16374,10 @@
     "Murad": {
       "mode": "artwork",
       "artworkId": "hac-am-3"
+    },
+    "Tel'Annas": {
+      "mode": "artwork",
+      "artworkId": "sieu-viet-9"
     },
     "Valhein": {
       "mode": "artwork",
