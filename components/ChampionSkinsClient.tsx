@@ -1,16 +1,18 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { Artwork } from '@/lib/catalogue';
-import { artworkPreview, artworkSrcSet } from '@/lib/catalogue';
+import { artworkPreview } from '@/lib/catalogue';
+
+const CHAMPION_THUMBNAIL_360P_WIDTH = 640 as const;
 
 export default function ChampionSkinsClient({ category, items }: { category: string; items: Artwork[] }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
   const active = items[activeIndex] || items[0];
   const progress = items.length > 1 ? ((activeIndex + 1) / items.length) * 100 : 100;
-  const mainSrcSet = useMemo(() => active ? artworkSrcSet(active) : '', [active]);
+  const originalSrc = active ? (active.media?.original?.url || active.image) : '';
 
   useEffect(() => {
     setActiveIndex(0);
@@ -43,9 +45,7 @@ export default function ChampionSkinsClient({ category, items }: { category: str
 
       <div className="champion-media-viewport">
         <img
-          src={artworkPreview(active, 1600)}
-          srcSet={mainSrcSet || undefined}
-          sizes="(max-width: 760px) 100vw, 94vw"
+          src={originalSrc}
           alt={`${active.name} — ${category}, splash art hạng ${active.rank}`}
           loading="eager"
           decoding="async"
@@ -68,7 +68,7 @@ export default function ChampionSkinsClient({ category, items }: { category: str
             >
               <span className="champion-skin-thumb">
                 <img
-                  src={artworkPreview(item, 640)}
+                  src={artworkPreview(item, CHAMPION_THUMBNAIL_360P_WIDTH)}
                   alt=""
                   aria-hidden="true"
                   loading={index < 5 ? 'eager' : 'lazy'}
