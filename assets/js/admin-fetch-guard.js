@@ -26,6 +26,23 @@
     return method === 'PUT' && url.pathname.includes('/admin/media/') && init?.body instanceof Blob;
   }
 
+  function isAdminPublish(method, url, init) {
+    return method === 'POST' && url.pathname.includes('/api/admin-backend') && typeof init?.body === 'string';
+  }
+
+  function validateAdminPublish(method, url, init) {
+    if (!isAdminPublish(method, url, init)) return;
+    let payload;
+    try { payload = JSON.parse(init.body); }
+    catch { return; }
+    if (!Array.isArray(payload?.ownerItems)) return;
+    const malformed = payload.ownerItems.filter(item => item && !String(item.image || '').trim());
+    if (!malformed.length) return;
+    const labels = malformed.slice(0, 5).map(item => String(item.name || item.id || 'không rõ')).join(', ');
+    const suffix = malformed.length > 5 ? ` và ${malformed.length - 5} mục khác` : '';
+    throw new Error(`Không thể publish: ${malformed.length} tác phẩm chưa có ảnh hoàn chỉnh (${labels}${suffix}). Đây thường là clone của một ảnh vẫn đang ở trạng thái pending upload. Bản nháp vẫn được giữ nguyên; hãy gắn ảnh cho các mục này hoặc xóa clone lỗi trước khi publish.`);
+  }
+
   function safeToRetry(input, init, method, url) {
     if (typeof Request !== 'undefined' && input instanceof Request) return false;
     if (method === 'GET' || method === 'HEAD' || method === 'OPTIONS' || method === 'DELETE') return true;
@@ -36,8 +53,6 @@
     if (isR2Put(method, url, init)) {
       const bytes = Number(init?.body?.size || 0);
       const mib = bytes / (1024 * 1024);
-      // Large splash-art files can legitimately take longer on mobile/Vietnam uplinks.
-      // Keep a hard ceiling so a dead request still terminates.
       return Math.min(180000, Math.max(60000, Math.round(60000 + mib * 12000)));
     }
     if (method === 'GET' || method === 'HEAD' || method === 'OPTIONS' || method === 'DELETE') return 20000;
@@ -46,7 +61,9 @@
 
   function maxAttempts(method, url, init, canRetry) {
     if (!canRetry) return 1;
-    if (isR2Put(method, url, init)) return 4;
+    // R2 PUT is idempotent because retries reuse the exact same object key.
+    // Repository policy allows one bounded retry, so total attempts are capped at two.
+    if (isR2Put(method, url, init)) return 2;
     return 2;
   }
 
@@ -90,6 +107,7 @@
 
   window.fetch = async function guardedFetch(input, init) {
     const { url, method } = requestMeta(input, init);
+    validateAdminPublish(method, url, init);
     const canRetry = safeToRetry(input, init, method, url);
     const attempts = maxAttempts(method, url, init, canRetry);
     const timeout = timeoutMs(method, url, init);
@@ -116,7 +134,7 @@
   };
 
   Object.defineProperty(window, '__HYU_ADMIN_FETCH_GUARD__', {
-    value: { version: '2026-09-12', nativeFetch },
+    value: { version: '2026-09-12-publish-guard-2', nativeFetch },
     configurable: false,
     enumerable: false,
     writable: false
