@@ -72,3 +72,5 @@ jobs:
       - name: Report healthy catalogue
         if: steps.repair.outputs.changed != 'true'
         run: echo 'Catalogue publish guard passed without repair.'
+
+# Revision: 2026-09-12a
