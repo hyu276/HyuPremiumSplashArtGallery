@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-12T16:01:54.675Z",
+  "generatedAt": "2026-09-12T16:13:05.827Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -10948,21 +10948,6 @@
       }
     },
     {
-      "id": "tiec-bai-bien-8-copy-copy",
-      "name": "Dân lướt sóng",
-      "description": "",
-      "category": "Quillen",
-      "rank": "A",
-      "rankOrder": 0,
-      "credit": "Hyu",
-      "image": "",
-      "thumbnail": "",
-      "tags": [],
-      "hidden": false,
-      "isVietnameseSkin": false,
-      "updatedAt": "2026-09-12T15:14:24.494Z"
-    },
-    {
       "id": "bong-ma-san-moi-3",
       "name": "Bóng ma săn mồi",
       "description": "",
@@ -11243,21 +11228,6 @@
           "mimeType": "image/png"
         }
       }
-    },
-    {
-      "id": "tiec-bai-bien-8-copy",
-      "name": "Tiệc bãi biển",
-      "description": "",
-      "category": "Raz",
-      "rank": "S+",
-      "rankOrder": 2,
-      "credit": "Hyu",
-      "image": "",
-      "thumbnail": "",
-      "tags": [],
-      "hidden": false,
-      "isVietnameseSkin": false,
-      "updatedAt": "2026-09-12T15:13:55.826Z"
     },
     {
       "id": "wave-3",

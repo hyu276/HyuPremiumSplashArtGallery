@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-09-12T16:13:05.831Z",
+  "items": [
+    {
+      "id": "tiec-bai-bien-8-copy-copy",
+      "name": "Dân lướt sóng",
+      "description": "",
+      "category": "Quillen",
+      "rank": "A",
+      "rankOrder": 0,
+      "credit": "Hyu",
+      "image": "",
+      "thumbnail": "",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-12T15:14:24.494Z",
+      "quarantine": {
+        "reason": "missing-image",
+        "quarantinedAt": "2026-09-12T16:13:05.831Z",
+        "source": "catalogue-publish-guard"
+      }
+    },
+    {
+      "id": "tiec-bai-bien-8-copy",
+      "name": "Tiệc bãi biển",
+      "description": "",
+      "category": "Raz",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hyu",
+      "image": "",
+      "thumbnail": "",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-12T15:13:55.826Z",
+      "quarantine": {
+        "reason": "missing-image",
+        "quarantinedAt": "2026-09-12T16:13:05.831Z",
+        "source": "catalogue-publish-guard"
+      }
+    }
+  ]
+}
