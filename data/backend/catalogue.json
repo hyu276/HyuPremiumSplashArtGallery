@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-11T10:33:06.146Z",
+  "generatedAt": "2026-09-12T04:40:21.571Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -11574,6 +11574,194 @@
       }
     },
     {
+      "id": "an-chinh",
+      "name": "Ẩn chính",
+      "description": "",
+      "category": "Tamyn",
+      "rank": "S",
+      "rankOrder": 1,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/an-chinh-1789187867251.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/an-chinh-8a5fc8765ff7-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-12T04:37:47.251Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/an-chinh-8a5fc8765ff7-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 24254,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/an-chinh-8a5fc8765ff7-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 49162,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/an-chinh-8a5fc8765ff7-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 112868,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/an-chinh-1789187867251.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 536849,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "hac-am",
+      "name": "Hắc ám",
+      "description": "",
+      "category": "Tamyn",
+      "rank": "S",
+      "rankOrder": 1,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/hac-am-1789187853180.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hac-am-7b53dff2fccc-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-12T04:37:33.180Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hac-am-7b53dff2fccc-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 25108,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hac-am-7b53dff2fccc-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 48772,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hac-am-7b53dff2fccc-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 108370,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/hac-am-1789187853180.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 558362,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "canh-ao-nghenh-xuan",
+      "name": "Cành đào nghênh xuân",
+      "description": "",
+      "category": "Tamyn",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/canh-ao-nghenh-xuan-1789187940503.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/canh-ao-nghenh-xuan-1a3cc344466f-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-12T04:39:00.503Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/canh-ao-nghenh-xuan-1a3cc344466f-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 32776,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/canh-ao-nghenh-xuan-1a3cc344466f-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 63140,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/canh-ao-nghenh-xuan-1a3cc344466f-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 133102,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/canh-ao-nghenh-xuan-1789187940503.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 531627,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "suoi-nuoc-nong",
+      "name": "Suối nước nóng",
+      "description": "",
+      "category": "Tamyn",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/suoi-nuoc-nong-1789187805838.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/suoi-nuoc-nong-4800141e7ed0-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-12T04:36:45.839Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/suoi-nuoc-nong-4800141e7ed0-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 34896,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/suoi-nuoc-nong-4800141e7ed0-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 65576,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/suoi-nuoc-nong-4800141e7ed0-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 139134,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/suoi-nuoc-nong-1789187805838.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 656053,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
       "id": "hiem-hoa-sinh-hoc",
       "name": "Hiểm họa sinh học",
       "description": "",
@@ -15182,6 +15370,7 @@
     "Stuart",
     "Taara",
     "Tachi",
+    "Tamyn",
     "Teeri",
     "Tel'Annas",
     "Thane",
@@ -15300,6 +15489,7 @@
       "Stuart",
       "Taara",
       "Tachi",
+      "Tamyn",
       "Teeri",
       "Tel'Annas",
       "Thane",
