@@ -4,16 +4,31 @@
   const MAX_IMAGE_BYTES=10*1024*1024;
   const ACCEPTED=new Set(['image/jpeg','image/png','image/webp','image/gif']);
   const ADMIN_BACKEND=window.location.hostname==='hyu276.github.io'?'https://hyupremium.vercel.app/api/admin-backend':'/api/admin-backend';
-  let state={catalogue:null,storageBase:'',category:'',choiceMap:{}};
+  let state={catalogue:null,storageBase:'',category:'',choiceMap:{},query:''};
 
   function tokenInput(){return document.querySelector('input[type="password"][placeholder^="github_pat_"]')}
   function token(){return String(tokenInput()?.value||'').trim()}
   function authHeaders(){const value=token();if(!value.startsWith('github_pat_'))throw new Error('Hãy đăng nhập dashboard bằng GitHub fine-grained token trước.');return {Authorization:`Bearer ${value}`}}
   function slug(value){return String(value||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'champion'}
+  function normalizeSearch(value){return String(value||'').replace(/Đ/g,'D').replace(/đ/g,'d').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim()}
   function ext(file){return ({'image/jpeg':'jpg','image/png':'png','image/webp':'webp','image/gif':'gif'})[file.type]||'jpg'}
   function r2Url(key){return `${state.storageBase}/media/${key.split('/').map(encodeURIComponent).join('/')}`}
   function setStatus(text,type=''){const box=document.getElementById('champion-thumb-status');if(!box)return;box.className=`admin-status ${type}`;box.textContent=text}
   function categoryItems(category){return (state.catalogue?.items||[]).filter(item=>!item.hidden&&item.category===category)}
+  function availableCategories(){return (state.catalogue?.categories||[]).filter(category=>categoryItems(category).length)}
+  function filteredCategories(){
+    const categories=availableCategories();
+    const query=normalizeSearch(state.query);
+    if(!query)return categories;
+    return categories
+      .filter(category=>normalizeSearch(category).includes(query))
+      .sort((a,b)=>{
+        const aName=normalizeSearch(a),bName=normalizeSearch(b);
+        const aStarts=aName.startsWith(query),bStarts=bName.startsWith(query);
+        if(aStarts!==bStarts)return aStarts?-1:1;
+        return a.localeCompare(b,undefined,{sensitivity:'base',numeric:true});
+      });
+  }
   function artworkPreview(item){return item?.variants?.['640']?.url||item?.thumbnail||''}
   function currentPreview(category){
     const choice=state.choiceMap[category];
@@ -54,10 +69,10 @@
       state.catalogue=data.catalogue||{items:[],categories:[]};
       state.storageBase=String(data.storage?.publicBaseUrl||'').replace(/\/$/,'');
       state.choiceMap={...(state.catalogue.championThumbnails||{})};
-      const available=(state.catalogue.categories||[]).filter(category=>categoryItems(category).length);
+      const available=availableCategories();
       state.category=available.includes(state.category)?state.category:(available[0]||'');
       renderControls();
-      setStatus(`Đã tải ${available.length} tướng. Ảnh card công khai chỉ dùng derivative tối đa 640px.`,'ok');
+      setStatus(`Đã tải ${available.length} tướng. Ô tìm kiếm lọc cục bộ, không tạo thêm request media. Ảnh card công khai chỉ dùng derivative tối đa 640px.`,'ok');
     }catch(error){setStatus(error.message||'Không thể tải cấu hình thumbnail.','err')}
   }
 
@@ -101,18 +116,30 @@
     const categorySelect=document.getElementById('champion-thumb-category');
     const artworkSelect=document.getElementById('champion-thumb-artwork');
     const preview=document.getElementById('champion-thumb-preview');
+    const searchInput=document.getElementById('champion-thumb-search');
+    const searchNote=document.getElementById('champion-thumb-search-note');
     if(!categorySelect||!artworkSelect||!preview)return;
-    const categories=(state.catalogue?.categories||[]).filter(category=>categoryItems(category).length);
-    categorySelect.innerHTML=categories.map(category=>`<option value="${escapeHtml(category)}">${escapeHtml(category)}</option>`).join('');
+    const allCategories=availableCategories();
+    const categories=filteredCategories();
+    if(!categories.includes(state.category))state.category=categories[0]||'';
+    if(searchInput&&searchInput.value!==state.query)searchInput.value=state.query;
+    if(searchNote)searchNote.textContent=state.query?`${categories.length} kết quả / ${allCategories.length} tướng`:`${allCategories.length} tướng có artwork khả dụng`;
+    categorySelect.innerHTML=categories.length?categories.map(category=>`<option value="${escapeHtml(category)}">${escapeHtml(category)}</option>`).join(''):'<option value="">Không tìm thấy tướng</option>';
     categorySelect.value=state.category;
+    categorySelect.disabled=!categories.length;
     const items=categoryItems(state.category);
-    artworkSelect.innerHTML=items.map(item=>`<option value="${escapeHtml(item.id)}">${escapeHtml(item.name)} · ${escapeHtml(item.rank||'')}</option>`).join('');
+    artworkSelect.innerHTML=items.length?items.map(item=>`<option value="${escapeHtml(item.id)}">${escapeHtml(item.name)} · ${escapeHtml(item.rank||'')}</option>`).join(''):'<option value="">Không có artwork khả dụng</option>';
+    artworkSelect.disabled=!items.length;
     const choice=state.choiceMap[state.category];
     if(choice?.mode==='artwork'&&items.some(item=>item.id===choice.artworkId))artworkSelect.value=choice.artworkId;
-    preview.src=currentPreview(state.category)||'';
+    preview.src=state.category?currentPreview(state.category)||'':'';
     preview.hidden=!preview.src;
     const mode=document.getElementById('champion-thumb-mode');
-    if(mode)mode.textContent=choice?.mode==='custom'?'Đang dùng ảnh upload riêng':choice?.mode==='artwork'?'Đang dùng artwork đã chọn':'Đang dùng artwork mặc định đầu tiên';
+    if(mode)mode.textContent=!state.category?'Hãy nhập tên tướng khác.':choice?.mode==='custom'?'Đang dùng ảnh upload riêng':choice?.mode==='artwork'?'Đang dùng artwork đã chọn':'Đang dùng artwork mặc định đầu tiên';
+    for(const id of ['champion-thumb-use-artwork','champion-thumb-default','champion-thumb-upload']){
+      const button=document.getElementById(id);
+      if(button)button.disabled=!state.category;
+    }
   }
 
   function escapeHtml(value){return String(value??'').replace(/[&<>'"]/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]))}
@@ -128,6 +155,8 @@
       <h2>Thumbnail trang Tướng</h2>
       <div class="admin-note">Chọn ảnh đại diện cho từng card tại <code>/champions/</code>. Artwork có sẵn tái sử dụng derivative 640px; ảnh upload riêng được lưu trực tiếp ở R2 và backend chỉ tạo một WebP tối đa 640px cho listing.</div>
       <div class="admin-actions" style="margin-top:10px"><button id="champion-thumb-load" class="admin-btn primary" type="button">Tải cấu hình tướng</button></div>
+      <div class="admin-field"><label for="champion-thumb-search">Tìm tên tướng</label><input id="champion-thumb-search" class="admin-input" type="search" placeholder="Nhập tên tướng, ví dụ: Bijan, Aya..." autocomplete="off" spellcheck="false"/></div>
+      <div id="champion-thumb-search-note" class="admin-note"></div>
       <div class="admin-field"><label>Tướng</label><select id="champion-thumb-category" class="admin-select"></select></div>
       <img id="champion-thumb-preview" class="admin-preview" alt="Xem trước thumbnail tướng" hidden loading="lazy" decoding="async" />
       <div id="champion-thumb-mode" class="admin-note"></div>
@@ -140,6 +169,8 @@
     if(firstPanel?.nextSibling)aside.insertBefore(panel,firstPanel.nextSibling);else aside.appendChild(panel);
 
     document.getElementById('champion-thumb-load')?.addEventListener('click',load);
+    document.getElementById('champion-thumb-search')?.addEventListener('input',event=>{state.query=event.target.value;const matches=filteredCategories();state.category=matches.includes(state.category)?state.category:(matches[0]||'');renderControls()});
+    document.getElementById('champion-thumb-search')?.addEventListener('keydown',event=>{if(event.key!=='Enter')return;event.preventDefault();const first=filteredCategories()[0];if(first){state.category=first;renderControls();document.getElementById('champion-thumb-category')?.focus()}});
     document.getElementById('champion-thumb-category')?.addEventListener('change',event=>{state.category=event.target.value;renderControls()});
     document.getElementById('champion-thumb-artwork')?.addEventListener('change',event=>{const item=categoryItems(state.category).find(value=>value.id===event.target.value);const preview=document.getElementById('champion-thumb-preview');if(preview&&item){preview.src=artworkPreview(item);preview.hidden=!preview.src}});
     document.getElementById('champion-thumb-use-artwork')?.addEventListener('click',async()=>{try{const artworkId=String(document.getElementById('champion-thumb-artwork')?.value||'');if(!artworkId)throw new Error('Tướng này chưa có artwork khả dụng.');await saveChoice(state.category,{mode:'artwork',artworkId})}catch(error){setStatus(error.message||'Không thể lưu thumbnail.','err')}});
