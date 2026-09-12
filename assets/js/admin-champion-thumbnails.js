@@ -21,6 +21,24 @@
     if(choice?.mode==='custom')return choice.variant?.url||choice.thumbnail||'';
     return artworkPreview(categoryItems(category)[0]);
   }
+  function customUrls(choice){return choice?.mode==='custom'?[choice.image,choice.variant?.url,choice.thumbnail].filter(Boolean):[]}
+  function adminDeleteUrl(mediaUrl){
+    try{
+      const media=new URL(mediaUrl),base=new URL(state.storageBase);
+      if(media.origin!==base.origin||!media.pathname.startsWith('/media/champions/'))return '';
+      const key=decodeURIComponent(media.pathname.slice('/media/'.length));
+      return `${state.storageBase}/admin/media/${key.split('/').map(encodeURIComponent).join('/')}`;
+    }catch{return ''}
+  }
+  async function cleanupOldCustom(choice,keepChoice){
+    const keep=new Set(customUrls(keepChoice));
+    for(const mediaUrl of new Set(customUrls(choice))){
+      if(keep.has(mediaUrl))continue;
+      const deleteUrl=adminDeleteUrl(mediaUrl);
+      if(!deleteUrl)continue;
+      try{await fetch(deleteUrl,{method:'DELETE',headers:authHeaders()})}catch{}
+    }
+  }
 
   async function backend(method,body){
     const response=await fetch(ADMIN_BACKEND,{method,headers:{...authHeaders(),...(body?{'Content-Type':'application/json'}:{})},body:body?JSON.stringify(body):undefined,cache:'no-store'});
@@ -45,11 +63,13 @@
 
   async function saveChoice(category,choice){
     if(!category)throw new Error('Vui lòng chọn tướng.');
+    const previous=state.choiceMap[category];
     const next={...state.choiceMap};
     if(choice)next[category]=choice;else delete next[category];
     setStatus(`Đang lưu thumbnail ${category}...`);
     const result=await backend('POST',{championThumbnails:next});
     state.choiceMap=next;
+    await cleanupOldCustom(previous,choice);
     setStatus(`Đã lưu ${category} (${String(result.commit||'').slice(0,7)}). Metadata sẽ kích hoạt deploy public site; admin vẫn ở GitHub Pages.`,'ok');
     setTimeout(()=>load().catch(()=>{}),1200);
   }
