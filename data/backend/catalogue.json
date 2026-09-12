@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-12T11:56:23.679Z",
+  "generatedAt": "2026-09-12T13:40:17.183Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -16337,5 +16337,11 @@
       "Triều",
       "Vương Hiếu"
     ]
+  },
+  "championThumbnails": {
+    "Alice": {
+      "mode": "artwork",
+      "artworkId": "huyen-quang-luan-mau"
+    }
   }
 }
