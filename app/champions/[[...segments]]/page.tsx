@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import CatalogueFreshnessGuard from '@/components/CatalogueFreshnessGuard';
 import ChampionSkinsClient from '@/components/ChampionSkinsClient';
 import { SiteHeader } from '@/components/SiteChrome';
-import { artworkPreview, getCatalogue, siteUrl, slug } from '@/lib/catalogue';
+import { championCardImage, getCatalogue, siteUrl, slug } from '@/lib/catalogue';
 import '../champions.css';
 
 export const revalidate = 300;
@@ -67,12 +67,12 @@ export default async function ChampionsPage({ params }: PageProps) {
         <div className="champions-grid">
           {categories.map((category, index) => {
             const items = catalogue.items.filter(item => item.category === category);
-            const representative = items[0];
-            if (!representative) return null;
+            const cardImage = championCardImage(catalogue, category);
+            if (!cardImage) return null;
             return <Link key={category} className="champion-card" href={`/champions/${slug(category)}/`} prefetch={false}>
               <span className="champion-card-media">
                 <img
-                  src={artworkPreview(representative, 640)}
+                  src={cardImage}
                   alt={`${category} — nhân vật trong HYU PREMIUM`}
                   loading={index < 4 ? 'eager' : 'lazy'}
                   decoding="async"
