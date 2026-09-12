@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-12T04:40:21.571Z",
+  "generatedAt": "2026-09-12T05:27:16.734Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -13595,6 +13595,100 @@
       }
     },
     {
+      "id": "boi-uoc",
+      "name": "Bội ước",
+      "description": "",
+      "category": "Violet",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/boi-uoc-1789190734854.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/boi-uoc-e4159e0d9443-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-12T05:25:34.854Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/boi-uoc-e4159e0d9443-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 28622,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/boi-uoc-e4159e0d9443-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 57972,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/boi-uoc-e4159e0d9443-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 129806,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/boi-uoc-1789190734854.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 640416,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "canh-ao-nghenh-xuan-2",
+      "name": "Cành đào nghênh xuân",
+      "description": "",
+      "category": "Violet",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/canh-ao-nghenh-xuan-2-1789190726534.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/canh-ao-nghenh-xuan-2-ccf40dbcca0f-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-12T05:25:26.534Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/canh-ao-nghenh-xuan-2-ccf40dbcca0f-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 22940,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/canh-ao-nghenh-xuan-2-ccf40dbcca0f-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 43532,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/canh-ao-nghenh-xuan-2-ccf40dbcca0f-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 92358,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/canh-ao-nghenh-xuan-2-1789190726534.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 452720,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
       "id": "girl-nao-loan",
       "name": "Girl náo loạn",
       "description": "",
@@ -14498,6 +14592,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 408810,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "idol-gioi-tre-2",
+      "name": "Idol giới trẻ",
+      "description": "",
+      "category": "Yue",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/idol-gioi-tre-2-1789190750600.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/idol-gioi-tre-2-e47bd0f2756c-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-12T05:25:50.600Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/idol-gioi-tre-2-e47bd0f2756c-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 32168,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/idol-gioi-tre-2-e47bd0f2756c-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 58026,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/idol-gioi-tre-2-e47bd0f2756c-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 116518,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/idol-gioi-tre-2-1789190750600.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 542513,
           "mimeType": "image/jpeg"
         }
       }
