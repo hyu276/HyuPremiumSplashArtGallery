@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-12T15:09:39.171Z",
+  "generatedAt": "2026-09-12T15:12:36.304Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -7398,6 +7398,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 576541,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "wave-15",
+      "name": "WAVE",
+      "description": "",
+      "category": "Kahlii",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/wave-15-1789225879445.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/wave-15-4c95d658546a-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-12T15:11:19.445Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/wave-15-4c95d658546a-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 24686,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/wave-15-4c95d658546a-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 48620,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/wave-15-4c95d658546a-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 102154,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/wave-15-1789225879445.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 2116453,
           "mimeType": "image/jpeg"
         }
       }
