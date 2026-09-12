@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-12T13:41:59.486Z",
+  "generatedAt": "2026-09-12T13:44:01.737Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -16350,6 +16350,10 @@
     "Billow": {
       "mode": "artwork",
       "artworkId": "phuong-tinh-uyen-ton"
+    },
+    "Điêu Thuyền": {
+      "mode": "artwork",
+      "artworkId": "dua-hau-bang"
     }
   }
 }
