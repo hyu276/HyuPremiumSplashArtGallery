@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 
 const NAV_ITEMS = [
   { href: '/character/', label: 'Thư viện', matches: ['/character', '/artworks'] },
+  { href: '/champions/', label: 'Tướng', matches: ['/champions'] },
   { href: '/about/', label: 'Giới thiệu', matches: ['/about'] },
   { href: '/news/', label: 'Tin tức', matches: ['/news'] },
   { href: '/blog/', label: 'Bài viết', matches: ['/blog'] }
