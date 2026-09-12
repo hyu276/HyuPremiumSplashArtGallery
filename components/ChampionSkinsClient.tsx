@@ -5,6 +5,8 @@ import { useEffect, useRef, useState } from 'react';
 import type { Artwork } from '@/lib/catalogue';
 import { artworkPreview } from '@/lib/catalogue';
 
+const CHAMPION_THUMBNAIL_360P_WIDTH = 640 as const;
+
 export default function ChampionSkinsClient({ category, items }: { category: string; items: Artwork[] }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -66,7 +68,7 @@ export default function ChampionSkinsClient({ category, items }: { category: str
             >
               <span className="champion-skin-thumb">
                 <img
-                  src={artworkPreview(item, 640)}
+                  src={artworkPreview(item, CHAMPION_THUMBNAIL_360P_WIDTH)}
                   alt=""
                   aria-hidden="true"
                   loading={index < 5 ? 'eager' : 'lazy'}
