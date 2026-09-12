@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-12T13:44:01.737Z",
+  "generatedAt": "2026-09-12T13:44:12.243Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -16354,6 +16354,10 @@
     "Điêu Thuyền": {
       "mode": "artwork",
       "artworkId": "dua-hau-bang"
+    },
+    "Dolia": {
+      "mode": "artwork",
+      "artworkId": "wave"
     }
   }
 }
