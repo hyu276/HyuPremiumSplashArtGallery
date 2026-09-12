@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-12T13:45:26.501Z",
+  "generatedAt": "2026-09-12T13:45:53.762Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -16366,6 +16366,10 @@
     "Elsu": {
       "mode": "artwork",
       "artworkId": "linh-ban-tia-viet"
+    },
+    "Krixi": {
+      "mode": "artwork",
+      "artworkId": "bang-thanh-hoa-tam"
     }
   }
 }
