@@ -16,5 +16,9 @@
       "binding": "MEDIA",
       "bucket_name": "hyu-premium-media"
     }
-  ]
+  ],
+  // Operational marker: keep the Worker deployment workflow eligible for manual/self-heal reconciliation.
+  "observability": {
+    "enabled": true
+  }
 }
