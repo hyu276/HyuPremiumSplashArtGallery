@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-12T15:15:46.193Z",
+  "generatedAt": "2026-09-12T16:01:54.675Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -2164,6 +2164,53 @@
       }
     },
     {
+      "id": "nhat-nguyet-oan-duyen-2",
+      "name": "Nhật Nguyệt Đoạn Duyên",
+      "description": "",
+      "category": "Azzen'ka",
+      "rank": "SS+",
+      "rankOrder": 4,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/nhat-nguyet-oan-duyen-2-1789228822311.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nhat-nguyet-oan-duyen-2-14311208dbce-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-12T16:00:22.311Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nhat-nguyet-oan-duyen-2-14311208dbce-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 32362,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nhat-nguyet-oan-duyen-2-14311208dbce-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 64770,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nhat-nguyet-oan-duyen-2-14311208dbce-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 148642,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/nhat-nguyet-oan-duyen-2-1789228822311.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 729531,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
       "id": "wave-hang-hieu-2",
       "name": "WAVE: HÀNG HIỆU",
       "description": "",
@@ -2911,6 +2958,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 2253046,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "ong-hoa-tay-dieu",
+      "name": "Đông Hoa Tây Diệu",
+      "description": "",
+      "category": "Billow",
+      "rank": "SS+",
+      "rankOrder": 4,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/ong-hoa-tay-dieu-1789228708318.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ong-hoa-tay-dieu-f3fce1f0e844-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-12T15:58:28.318Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ong-hoa-tay-dieu-f3fce1f0e844-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 36204,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ong-hoa-tay-dieu-f3fce1f0e844-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 72284,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ong-hoa-tay-dieu-f3fce1f0e844-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 177638,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/ong-hoa-tay-dieu-1789228708318.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 822802,
           "mimeType": "image/jpeg"
         }
       }
@@ -4549,6 +4643,53 @@
           "width": 2744,
           "height": 1536,
           "bytes": 469536,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "nguu-lang-chuc-nu-2",
+      "name": "Ngưu lang chức nữ",
+      "description": "",
+      "category": "Dolia",
+      "rank": "SS+",
+      "rankOrder": 4,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/nguu-lang-chuc-nu-2-1789228580550.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nguu-lang-chuc-nu-2-016217c8300f-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-12T15:56:20.550Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nguu-lang-chuc-nu-2-016217c8300f-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 27644,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nguu-lang-chuc-nu-2-016217c8300f-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 50750,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nguu-lang-chuc-nu-2-016217c8300f-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 109154,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/nguu-lang-chuc-nu-2-1789228580550.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 552559,
           "mimeType": "image/jpeg"
         }
       }
@@ -6824,6 +6965,53 @@
       }
     },
     {
+      "id": "nguu-lang-chuc-nu",
+      "name": "Ngưu lang chức nữ",
+      "description": "",
+      "category": "Heino",
+      "rank": "SS+",
+      "rankOrder": 4,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/nguu-lang-chuc-nu-1789228568105.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nguu-lang-chuc-nu-399ee5295235-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-12T15:56:08.105Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nguu-lang-chuc-nu-399ee5295235-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 27644,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nguu-lang-chuc-nu-399ee5295235-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 50750,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nguu-lang-chuc-nu-399ee5295235-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 109154,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/nguu-lang-chuc-nu-1789228568105.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 552559,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
       "id": "emerald-sentinel",
       "name": "Emerald Sentinel",
       "rank": "A",
@@ -6975,6 +7163,53 @@
           "width": 1800,
           "height": 1013,
           "bytes": 451841,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "ong-hoa-tay-dieu-2",
+      "name": "Đông Hoa Tây Diệu",
+      "description": "",
+      "category": "Helen",
+      "rank": "SS+",
+      "rankOrder": 4,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/ong-hoa-tay-dieu-2-1789228719702.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ong-hoa-tay-dieu-2-888088e078ff-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-12T15:58:39.702Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ong-hoa-tay-dieu-2-888088e078ff-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 36204,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ong-hoa-tay-dieu-2-888088e078ff-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 72284,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ong-hoa-tay-dieu-2-888088e078ff-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 177638,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/ong-hoa-tay-dieu-2-1789228719702.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 822802,
           "mimeType": "image/jpeg"
         }
       }
@@ -9862,6 +10097,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 626427,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "nhat-nguyet-oan-duyen",
+      "name": "Nhật Nguyệt Đoạn Duyên",
+      "description": "",
+      "category": "Murad",
+      "rank": "SS+",
+      "rankOrder": 4,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/nhat-nguyet-oan-duyen-1789228813165.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nhat-nguyet-oan-duyen-7f36448f7a7d-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-12T16:00:13.165Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nhat-nguyet-oan-duyen-7f36448f7a7d-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 32362,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nhat-nguyet-oan-duyen-7f36448f7a7d-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 64770,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nhat-nguyet-oan-duyen-7f36448f7a7d-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 148642,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/nhat-nguyet-oan-duyen-1789228813165.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 729531,
           "mimeType": "image/jpeg"
         }
       }
@@ -14654,6 +14936,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 520852,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "isekai-otaku",
+      "name": "Isekai Otaku",
+      "description": "",
+      "category": "Veres",
+      "rank": "SSS+",
+      "rankOrder": 6,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/isekai-otaku-1789228544604.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/isekai-otaku-0b536686bb18-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-12T15:55:44.604Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/isekai-otaku-0b536686bb18-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 36058,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/isekai-otaku-0b536686bb18-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 68026,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/isekai-otaku-0b536686bb18-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 150620,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/isekai-otaku-1789228544604.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 695886,
           "mimeType": "image/jpeg"
         }
       }
