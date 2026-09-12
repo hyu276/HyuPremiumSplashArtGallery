@@ -26,12 +26,21 @@ export type Artwork = {
   updatedAt?: string;
 };
 
+export type ChampionThumbnailChoice = {
+  mode: 'artwork' | 'custom';
+  artworkId?: string;
+  thumbnail?: string;
+  variant?: MediaVariant;
+  updatedAt?: string;
+};
+
 export type Catalogue = {
   revision: string;
   items: Artwork[];
   categories: string[];
   ranks: string[];
   credits: string[];
+  championThumbnails: Record<string, ChampionThumbnailChoice>;
 };
 
 type BackendCatalogue = {
@@ -41,6 +50,7 @@ type BackendCatalogue = {
   categories?: string[];
   ranks?: string[];
   credits?: string[];
+  championThumbnails?: Record<string, any>;
 };
 
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://hyupremium.vercel.app').replace(/\/$/, '');
@@ -71,6 +81,20 @@ function normalizedVariants(value:any){
   const result:Record<string,MediaVariant>={};
   if(!value||typeof value!=='object')return result;
   for(const [key,variant] of Object.entries(value)){const normalized=normalizedVariant(variant);if(normalized)result[String(key)]=normalized;}
+  return result;
+}
+
+function normalizedChampionThumbnails(value:any){
+  const result:Record<string,ChampionThumbnailChoice>={};
+  if(!value||typeof value!=='object')return result;
+  for(const [category,raw] of Object.entries(value as Record<string,any>)){
+    if(raw?.mode==='artwork'&&raw.artworkId){result[category]={mode:'artwork',artworkId:String(raw.artworkId)};continue;}
+    if(raw?.mode==='custom'){
+      const variant=normalizedVariant(raw.variant);
+      const thumbnail=variant?.url||publicMediaUrl(String(raw.thumbnail||''));
+      if(thumbnail)result[category]={mode:'custom',thumbnail,variant,updatedAt:raw.updatedAt?String(raw.updatedAt):undefined};
+    }
+  }
   return result;
 }
 
@@ -108,7 +132,8 @@ function authoritativeCatalogue(): Catalogue {
     items,
     categories: uniqueSorted((source.categories || []).map(String)),
     ranks: (source.ranks || []).map(String),
-    credits: uniqueSorted((source.credits || []).map(value=>localizeCredit(String(value))))
+    credits: uniqueSorted((source.credits || []).map(value=>localizeCredit(String(value)))),
+    championThumbnails: normalizedChampionThumbnails(source.championThumbnails)
   };
 }
 
@@ -118,6 +143,13 @@ export function artworkVariant(item:Artwork,width:640|960|1600){return item.vari
 export function artworkPreview(item:Artwork,width:640|960|1600=1600){return artworkVariant(item,width)?.url||item.thumbnail||item.image;}
 export function artworkSrcSet(item:Artwork){return ([640,960,1600] as const).map(width=>artworkVariant(item,width)).filter((variant):variant is MediaVariant=>Boolean(variant?.url&&variant.width)).map(variant=>`${variant.url} ${variant.width}w`).join(', ');}
 export function artworkSocialImage(item:Artwork){return artworkPreview(item,1600);}
+export function championCardImage(catalogue:Catalogue,category:string){
+  const choice=catalogue.championThumbnails[category];
+  if(choice?.mode==='artwork'&&choice.artworkId){const item=catalogue.items.find(value=>value.category===category&&value.id===choice.artworkId);if(item)return artworkPreview(item,640);}
+  if(choice?.mode==='custom'&&choice.thumbnail)return choice.thumbnail;
+  const fallback=catalogue.items.find(value=>value.category===category);
+  return fallback?artworkPreview(fallback,640):'';
+}
 
 export function findArtwork(items: Artwork[], categorySlug?: string, artworkSlug?: string) {
   if (!categorySlug) return { category: null as string | null, artwork: null as Artwork | null };
