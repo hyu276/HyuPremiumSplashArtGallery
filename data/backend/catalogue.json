@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-12T16:32:06.650Z",
+  "generatedAt": "2026-09-13T03:18:02.740Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -7586,7 +7586,7 @@
         }
       },
       "tags": [],
-      "hidden": false,
+      "hidden": true,
       "isVietnameseSkin": false,
       "updatedAt": "2026-09-08T12:59:00.742Z"
     },
