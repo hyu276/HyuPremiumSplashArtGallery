@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-13T03:18:02.740Z",
+  "generatedAt": "2026-09-13T16:30:51.122Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -703,6 +703,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 335184,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "tong-o-thua",
+      "name": "Tống đồ thừa",
+      "description": "",
+      "category": "Amily",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/tong-o-thua-1789316949863.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tong-o-thua-38d3e3a67c1d-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-13T16:29:09.863Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tong-o-thua-38d3e3a67c1d-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 23938,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tong-o-thua-38d3e3a67c1d-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 44034,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tong-o-thua-38d3e3a67c1d-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 89824,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/tong-o-thua-1789316949863.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 453186,
           "mimeType": "image/jpeg"
         }
       }
@@ -8860,6 +8907,53 @@
       }
     },
     {
+      "id": "hao-kiep-than-cong-2",
+      "name": "Hạo kiếp thần công",
+      "description": "",
+      "category": "Lữ Bố",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/hao-kiep-than-cong-2-1789316833286.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hao-kiep-than-cong-2-963690b8e7e2-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-13T16:27:13.286Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hao-kiep-than-cong-2-963690b8e7e2-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 36130,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hao-kiep-than-cong-2-963690b8e7e2-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 70340,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hao-kiep-than-cong-2-963690b8e7e2-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 148802,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/hao-kiep-than-cong-2-1789316833286.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 685293,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
       "id": "sieu-viet-7",
       "name": "Siêu Việt",
       "description": "",
@@ -8902,6 +8996,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 836979,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "hao-kiep-than-cong-3",
+      "name": "Hạo kiếp thần công",
+      "description": "",
+      "category": "Maloch",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/hao-kiep-than-cong-3-1789316842296.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hao-kiep-than-cong-3-a40cfb461d33-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-13T16:27:22.296Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hao-kiep-than-cong-3-a40cfb461d33-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 31346,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hao-kiep-than-cong-3-a40cfb461d33-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 62026,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hao-kiep-than-cong-3-a40cfb461d33-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 140722,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/hao-kiep-than-cong-3-1789316842296.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 714772,
           "mimeType": "image/jpeg"
         }
       }
@@ -12264,6 +12405,100 @@
       }
     },
     {
+      "id": "hao-kiep-than-cong",
+      "name": "Hạo kiếp thần công",
+      "description": "",
+      "category": "Skud",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/hao-kiep-than-cong-1789316825641.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hao-kiep-than-cong-ad1492b36c0f-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-13T16:27:05.641Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hao-kiep-than-cong-ad1492b36c0f-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 34062,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hao-kiep-than-cong-ad1492b36c0f-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 71084,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hao-kiep-than-cong-ad1492b36c0f-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 172214,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/hao-kiep-than-cong-1789316825641.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 824940,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "hao-kiep-than-cong-hang-hieu",
+      "name": "Hạo kiếp thần công: Hàng hiệu",
+      "description": "",
+      "category": "Skud",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/hao-kiep-than-cong-hang-hieu-1789316872661.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hao-kiep-than-cong-hang-hieu-7a33331abe72-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-13T16:27:52.661Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hao-kiep-than-cong-hang-hieu-7a33331abe72-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 38938,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hao-kiep-than-cong-hang-hieu-7a33331abe72-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 78990,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hao-kiep-than-cong-hang-hieu-7a33331abe72-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 182886,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/hao-kiep-than-cong-hang-hieu-1789316872661.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 833539,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
       "id": "tho-phe-hoa-chat",
       "name": "Thỏ phê Hóa chất",
       "description": "",
@@ -12885,6 +13120,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 628499,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "hao-kiep-than-cong-5",
+      "name": "Hạo kiếp thần công",
+      "description": "",
+      "category": "Tamyn",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/hao-kiep-than-cong-5-1789316889886.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hao-kiep-than-cong-5-20b7fce36541-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-13T16:28:09.886Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hao-kiep-than-cong-5-20b7fce36541-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 33510,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hao-kiep-than-cong-5-20b7fce36541-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 64762,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hao-kiep-than-cong-5-20b7fce36541-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 139656,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/hao-kiep-than-cong-5-1789316889886.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 703931,
           "mimeType": "image/jpeg"
         }
       }
@@ -13778,6 +14060,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 425526,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "hao-kiep-than-cong-4",
+      "name": "Hạo kiếp thần công",
+      "description": "",
+      "category": "Toro",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/hao-kiep-than-cong-4-1789316883158.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hao-kiep-than-cong-4-f463cbb9bad3-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-13T16:28:03.158Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hao-kiep-than-cong-4-f463cbb9bad3-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 32426,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hao-kiep-than-cong-4-f463cbb9bad3-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 66980,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hao-kiep-than-cong-4-f463cbb9bad3-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 154428,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/hao-kiep-than-cong-4-1789316883158.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 736534,
           "mimeType": "image/jpeg"
         }
       }
@@ -14911,6 +15240,53 @@
       }
     },
     {
+      "id": "nang-pha-tra-sua",
+      "name": "Nàng pha trà sữa",
+      "description": "",
+      "category": "Veres",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/nang-pha-tra-sua-1789316931234.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nang-pha-tra-sua-0b9b8c1bc068-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-13T16:28:51.234Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nang-pha-tra-sua-0b9b8c1bc068-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 36896,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nang-pha-tra-sua-0b9b8c1bc068-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 69340,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nang-pha-tra-sua-0b9b8c1bc068-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 146530,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/nang-pha-tra-sua-1789316931234.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 654577,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
       "id": "tien-hac-am",
       "name": "Tiên hắc ám",
       "description": "",
@@ -15767,6 +16143,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 496168,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "hao-kiep-than-cong-6",
+      "name": "Hạo kiếp thần công",
+      "description": "",
+      "category": "Y'Bneth",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/hao-kiep-than-cong-6-1789316908634.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hao-kiep-than-cong-6-c6803ed0895c-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-13T16:28:28.634Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hao-kiep-than-cong-6-c6803ed0895c-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 33714,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hao-kiep-than-cong-6-c6803ed0895c-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 69952,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hao-kiep-than-cong-6-c6803ed0895c-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 166002,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/hao-kiep-than-cong-6-1789316908634.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 816486,
           "mimeType": "image/jpeg"
         }
       }
