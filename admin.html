@@ -7,10 +7,81 @@
 <meta name="referrer" content="no-referrer">
 <title>HYU PREMIUM — Dashboard quản trị</title>
 <link rel="stylesheet" href="./app/admin/admin.css">
+<style>
+  html{scroll-behavior:smooth}
+  .github-admin-nav{position:sticky;top:10px;z-index:40;display:flex;gap:7px;align-items:center;overflow-x:auto;margin:0 0 14px;padding:8px;border:1px solid #28303a;border-radius:9px;background:rgba(11,13,16,.94);backdrop-filter:blur(12px);box-shadow:0 8px 28px rgba(0,0,0,.22);scrollbar-width:thin}
+  .github-admin-nav a{flex:0 0 auto;border:1px solid #28303a;border-radius:999px;padding:7px 10px;color:#cbd5dd;background:#0e1216;font:700 11px/1.2 Inter,system-ui,sans-serif;text-decoration:none;letter-spacing:.03em}
+  .github-admin-nav a:hover,.github-admin-nav a:focus-visible{border-color:#43dcff;color:#43dcff;outline:none}
+  .admin-artwork-library{grid-column:1/-1;margin-top:14px;scroll-margin-top:76px}
+  .admin-artwork-library .admin-list{max-height:none}
+  .admin-static-heading{display:flex;justify-content:space-between;gap:12px;align-items:end;margin:0 0 12px;padding-bottom:10px;border-bottom:1px solid #28303a}
+  .admin-static-heading h2{margin:0!important}
+  .admin-static-heading span{color:#8f9aa6;font-size:11px}
+  #admin-auth,#admin-artwork-editor,#admin-options,#admin-optimizer,#admin-team{scroll-margin-top:76px}
+  @media(max-width:860px){.github-admin-nav{top:6px;margin-left:-2px;margin-right:-2px}.admin-static-heading{align-items:flex-start;flex-direction:column}.admin-artwork-library{margin-top:12px}}
+</style>
 </head>
 <body>
 <div id="root"></div>
 <noscript>Dashboard quản trị cần JavaScript.</noscript>
 <script src="./assets/js/admin-github.bundle.js" defer></script>
+<script>
+(()=>{
+  const root=document.getElementById('root');
+  let observer;
+  const label=(section)=>section?.querySelector('h2')?.textContent?.trim().toLowerCase()||'';
+  function enhanceAdmin(){
+    const wrap=root?.querySelector('.admin-wrap');
+    const grid=wrap?.querySelector('.admin-grid');
+    if(!wrap||!grid||wrap.dataset.staticLayout==='1')return false;
+
+    const aside=grid.querySelector('aside');
+    if(aside){
+      for(const section of aside.querySelectorAll(':scope > .admin-panel')){
+        const text=label(section);
+        if(text.includes('đăng nhập'))section.id='admin-auth';
+        else if(text.includes('tác phẩm')&&(text.includes('thêm')||text.includes('chỉnh sửa')))section.id='admin-artwork-editor';
+        else if(text.includes('tùy chọn'))section.id='admin-options';
+        else if(text.includes('tối ưu ảnh'))section.id='admin-optimizer';
+      }
+    }
+
+    const team=grid.querySelector('.team-manager');
+    if(team)team.id='admin-team';
+
+    const artwork=[...grid.children].find(el=>el!==aside&&el!==team&&el.querySelector?.('.admin-list'));
+    if(!artwork||!team)return false;
+    artwork.id='admin-thumbnails';
+    artwork.classList.add('admin-artwork-library');
+    if(!artwork.querySelector('.admin-static-heading')){
+      const heading=document.createElement('div');
+      heading.className='admin-static-heading';
+      heading.innerHTML='<h2>Thumbnail trang tướng</h2><span>Danh sách artwork được đặt ở cuối trang quản trị.</span>';
+      artwork.prepend(heading);
+    }
+    grid.appendChild(artwork);
+
+    const nav=document.createElement('nav');
+    nav.className='github-admin-nav';
+    nav.setAttribute('aria-label','Điều hướng trang quản trị');
+    nav.innerHTML=[
+      ['#admin-auth','Xác thực'],
+      ['#admin-artwork-editor','Tác phẩm'],
+      ['#admin-options','Tùy chọn'],
+      ['#admin-optimizer','Tối ưu ảnh'],
+      ['#admin-team','Đội ngũ'],
+      ['#admin-thumbnails','Thumbnail trang tướng']
+    ].map(([href,text])=>`<a href="${href}">${text}</a>`).join('');
+    const top=wrap.querySelector('.admin-top');
+    top?.insertAdjacentElement('afterend',nav);
+    wrap.dataset.staticLayout='1';
+    observer?.disconnect();
+    return true;
+  }
+  observer=new MutationObserver(enhanceAdmin);
+  if(root)observer.observe(root,{childList:true,subtree:true});
+  enhanceAdmin();
+})();
+</script>
 </body>
 </html>
