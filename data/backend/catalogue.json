@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-16T14:56:42.333Z",
+  "generatedAt": "2026-09-16T17:46:45.519Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -6725,6 +6725,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 436347,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "ai-cong-tuoc",
+      "name": "Đại công tước",
+      "description": "",
+      "category": "Florentino",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/ai-cong-tuoc-1789580796900.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ai-cong-tuoc-2b09a3e61d52-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-16T17:46:36.900Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ai-cong-tuoc-2b09a3e61d52-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 23298,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ai-cong-tuoc-2b09a3e61d52-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 44308,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ai-cong-tuoc-2b09a3e61d52-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 96172,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/ai-cong-tuoc-1789580796900.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 656120,
           "mimeType": "image/jpeg"
         }
       }
