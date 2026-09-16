@@ -1,15 +1,28 @@
 (()=>{
   'use strict';
 
+  let championObserver=null;
+
   function panelByHeading(root,needle){
     const normalized=needle.toLowerCase();
     return [...root.querySelectorAll('.admin-panel')].find(panel=>String(panel.querySelector('h2')?.textContent||'').trim().toLowerCase().includes(normalized))||null;
   }
 
+  function placeChampionPanel(){
+    const grid=document.querySelector('.admin-grid');
+    const panel=document.getElementById('champion-thumb-panel');
+    if(!grid||!panel)return false;
+    if(panel.parentElement!==grid)grid.appendChild(panel);
+    panel.dataset.adminPosition='bottom';
+    championObserver?.disconnect();
+    championObserver=null;
+    return true;
+  }
+
   function mount(){
     const wrap=document.querySelector('.admin-wrap');
     if(!wrap)return setTimeout(mount,80);
-    if(document.getElementById('admin-page-nav'))return;
+    if(document.getElementById('admin-page-nav'))return placeChampionPanel();
 
     const auth=panelByHeading(wrap,'đăng nhập');
     const artwork=panelByHeading(wrap,'tác phẩm');
@@ -40,6 +53,11 @@
 
     const top=wrap.querySelector('.admin-top');
     if(top)top.insertAdjacentElement('afterend',nav);else wrap.prepend(nav);
+
+    if(!placeChampionPanel()){
+      championObserver=new MutationObserver(placeChampionPanel);
+      championObserver.observe(wrap,{childList:true,subtree:true});
+    }
   }
 
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mount,{once:true});else mount();
