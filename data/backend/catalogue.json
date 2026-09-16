@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-15T18:47:28.930Z",
+  "generatedAt": "2026-09-16T05:01:23.269Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -1173,6 +1173,100 @@
           "width": 2752,
           "height": 1536,
           "bytes": 672762,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "phi-loi-than-thu",
+      "name": "Phi lôi thần thú",
+      "description": "",
+      "category": "Arum",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/phi-loi-than-thu-1789534661759.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/phi-loi-than-thu-cd4599615b83-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-16T04:57:41.759Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/phi-loi-than-thu-cd4599615b83-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 33966,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/phi-loi-than-thu-cd4599615b83-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 62688,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/phi-loi-than-thu-cd4599615b83-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 127170,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/phi-loi-than-thu-1789534661759.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 594257,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "suoi-nuoc-nong-2",
+      "name": "Suối nước nóng",
+      "description": "",
+      "category": "Arum",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/suoi-nuoc-nong-2-1789534673694.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/suoi-nuoc-nong-2-824b93c055c8-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-16T04:57:53.694Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/suoi-nuoc-nong-2-824b93c055c8-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 30592,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/suoi-nuoc-nong-2-824b93c055c8-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 56636,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/suoi-nuoc-nong-2-824b93c055c8-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 113518,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/suoi-nuoc-nong-2-1789534673694.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 529875,
           "mimeType": "image/jpeg"
         }
       }
@@ -6589,6 +6683,53 @@
       }
     },
     {
+      "id": "cong-vien-u-ngua",
+      "name": "Công viên đu ngựa",
+      "description": "",
+      "category": "Florentino",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/cong-vien-u-ngua-1789534764714.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/cong-vien-u-ngua-1e61d55895fa-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-16T04:59:24.714Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/cong-vien-u-ngua-1e61d55895fa-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 22132,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/cong-vien-u-ngua-1e61d55895fa-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 40364,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/cong-vien-u-ngua-1e61d55895fa-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 82926,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/cong-vien-u-ngua-1789534764714.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 436347,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
       "id": "o-cong-lang-tu",
       "name": "Đồ công lãng tử",
       "description": "",
@@ -6819,6 +6960,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 846611,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "quy-ong-pony",
+      "name": "Quý ông Pony",
+      "description": "",
+      "category": "Florentino",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/quy-ong-pony-1789534773353.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/quy-ong-pony-218309c2703a-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-16T04:59:33.353Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/quy-ong-pony-218309c2703a-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 20822,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/quy-ong-pony-218309c2703a-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 36998,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/quy-ong-pony-218309c2703a-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 73470,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/quy-ong-pony-1789534773353.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 383160,
           "mimeType": "image/jpeg"
         }
       }
@@ -8578,6 +8766,53 @@
       }
     },
     {
+      "id": "sieu-viet-12",
+      "name": "Siêu Việt",
+      "description": "",
+      "category": "Krizzix",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/sieu-viet-12-1789534727363.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-viet-12-aec94ce1fb50-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-16T04:58:47.363Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-viet-12-aec94ce1fb50-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 28634,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-viet-12-aec94ce1fb50-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 54156,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-viet-12-aec94ce1fb50-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 117966,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/sieu-viet-12-1789534727363.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 586439,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
       "id": "tiec-lau-ech",
       "name": "Tiệc lẩu ếch",
       "description": "",
@@ -9419,6 +9654,100 @@
           "width": 2752,
           "height": 1536,
           "bytes": 836979,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "cuu-ho-bai-bien",
+      "name": "Cứu hộ bãi biển",
+      "description": "",
+      "category": "Lumburr",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/cuu-ho-bai-bien-1789534705121.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/cuu-ho-bai-bien-e0c508f13aa6-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-16T04:58:25.121Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/cuu-ho-bai-bien-e0c508f13aa6-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 25528,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/cuu-ho-bai-bien-e0c508f13aa6-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 45098,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/cuu-ho-bai-bien-e0c508f13aa6-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 92442,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/cuu-ho-bai-bien-1789534705121.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 474329,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "sieu-viet-11",
+      "name": "Siêu Việt",
+      "description": "",
+      "category": "Lumburr",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/sieu-viet-11-1789534713419.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-viet-11-5c932d25dedd-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-16T04:58:33.419Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-viet-11-5c932d25dedd-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 27970,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-viet-11-5c932d25dedd-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 51252,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-viet-11-5c932d25dedd-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 107948,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/sieu-viet-11-1789534713419.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 522268,
           "mimeType": "image/jpeg"
         }
       }
@@ -16806,6 +17135,53 @@
       }
     },
     {
+      "id": "the-gioi-o-choi",
+      "name": "Thế giới đồ chơi",
+      "description": "",
+      "category": "Y'Bneth",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/the-gioi-o-choi-1789534747551.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/the-gioi-o-choi-76c6e6ea2124-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-16T04:59:07.551Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/the-gioi-o-choi-76c6e6ea2124-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 37354,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/the-gioi-o-choi-76c6e6ea2124-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 68658,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/the-gioi-o-choi-76c6e6ea2124-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 137304,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/the-gioi-o-choi-1789534747551.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 612585,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
       "id": "hao-kiep-than-cong-6",
       "name": "Hạo kiếp thần công",
       "description": "",
@@ -18171,6 +18547,7 @@
     "Lindis",
     "Lorion",
     "Lữ Bố",
+    "Lumburr",
     "Maloch",
     "Marja",
     "Mina",
@@ -18292,6 +18669,7 @@
       "Lindis",
       "Lorion",
       "Lữ Bố",
+      "Lumburr",
       "Maloch",
       "Marja",
       "Mina",
