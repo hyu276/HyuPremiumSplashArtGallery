@@ -4,8 +4,7 @@ import { memo, useCallback, useEffect, useMemo, useRef, useState, type CSSProper
 import type { Artwork, Catalogue } from '@/lib/catalogue';
 import { artworkPath, artworkPreview, artworkSrcSet, slug } from '@/lib/catalogue';
 
-const INITIAL_RANDOM_COUNT=6;
-const SECOND_BATCH_COUNT=30;
+const INITIAL_EAGER_COUNT=6;
 
 const RANK_GRADIENTS: Record<string,string> = {
   A:'linear-gradient(180deg,#035365 0%,#045C6C 48%,#08929C 100%)',
@@ -55,19 +54,8 @@ function matches(item:Artwork,query:string){
   const fields=searchableFields(item);
   return tokens.every(token=>fields.some(field=>field.includes(token.text)||(!token.quoted&&subsequenceMatch(field,token.text))));
 }
-function randomUnit(){
-  if(typeof window!=='undefined'&&window.crypto?.getRandomValues){
-    const bucket=new Uint32Array(1);window.crypto.getRandomValues(bucket);return bucket[0]/4294967296;
-  }
-  return Math.random();
-}
 function titleFitBucket(value:string){const length=Array.from(String(value||'').trim()).length;return length>=52?'xxlong':length>=38?'xlong':length>=28?'long':length>=19?'medium':'short'}
 
-function shuffledIds(items:Artwork[]){
-  const copy=[...items];
-  for(let i=copy.length-1;i>0;i--){const j=Math.floor(randomUnit()*(i+1));[copy[i],copy[j]]=[copy[j],copy[i]]}
-  return copy.slice(0,Math.min(INITIAL_RANDOM_COUNT,copy.length)).map(item=>item.id);
-}
 function runMotionTransition(update:()=>void){
   // Grid/filter updates intentionally avoid document.startViewTransition().
   // Snapshotting a media-heavy grid plus synchronous reflow causes visible jank on mobile and integrated GPUs.
@@ -186,7 +174,7 @@ const ArtworkCard = memo(function ArtworkCard({item,index,expanded,pending,onTog
   };
   return <button ref={cardNode} style={motionStyle} className={`art-card${expanded?' expanded':''}${pending?' pending-expand':''}`} data-id={item.id} aria-expanded={expanded} aria-busy={pending} aria-label={`${actionLabel} ${item.name}`} onClick={toggleCard}>
     <span className="art-image-layer" style={loadingLayerStyle}>
-      <ViewportPreview src={previewSrc} srcSet={previewSrcSet} sizes={previewSizes} alt={imageAlt} eager={index<INITIAL_RANDOM_COUNT&&!expanded} suspendLoad={expanded} holdSize={expanded?previewHold:null}/>
+      <ViewportPreview src={previewSrc} srcSet={previewSrcSet} sizes={previewSizes} alt={imageAlt} eager={index<INITIAL_EAGER_COUNT&&!expanded} suspendLoad={expanded} holdSize={expanded?previewHold:null}/>
       {expanded?<ExpandedOriginal src={originalSrc} onReady={()=>onOriginalReady(item.id)}/>:null}
     </span>
     <span className="shade" aria-hidden="true"></span>
@@ -208,11 +196,8 @@ export default function GalleryClient({catalogue,initialCategory,initialArtworkI
   const [pendingExpanded,setPendingExpanded]=useState<string|null>(initialArtworkId);
   const [categoryOpen,setCategoryOpen]=useState(false);
   const [mobileFiltersOpen,setMobileFiltersOpen]=useState(false);
-  const [stage,setStage]=useState<0|1|2>(initialArtworkId?2:0);
-  const [sampleIds,setSampleIds]=useState<string[]>(()=>catalogue.items.slice(0,INITIAL_RANDOM_COUNT).map(item=>item.id));
   const mobileSearchInputRef=useRef<HTMLInputElement>(null);
 
-  useEffect(()=>{setSampleIds(shuffledIds(catalogue.items))},[catalogue.items]);
   useEffect(()=>{setMobileSearchDraft(query)},[query]);
 
   useEffect(()=>{
@@ -223,14 +208,7 @@ export default function GalleryClient({catalogue,initialCategory,initialArtworkI
   },[mobileFiltersOpen]);
 
   const filtered=useMemo(()=>catalogue.items.filter(item=>matches(item,query)&&(category==='all'||item.category===category)&&(rank==='all'||item.rank===rank)&&(credit==='all'||item.credit===credit)&&(!vietnameseOnly||item.isVietnameseSkin)),[catalogue.items,query,category,rank,credit,vietnameseOnly]);
-  const defaultBrowse=!query.trim()&&category==='all'&&rank==='all'&&credit==='all'&&!vietnameseOnly;
-  const visible=useMemo(()=>{
-    if(stage===2)return filtered;
-    if(stage===1)return filtered.slice(0,Math.min(SECOND_BATCH_COUNT,filtered.length));
-    if(!defaultBrowse)return filtered.slice(0,Math.min(INITIAL_RANDOM_COUNT,filtered.length));
-    const byId=new Map(filtered.map(item=>[item.id,item]));
-    return sampleIds.map(id=>byId.get(id)).filter((item):item is Artwork=>Boolean(item));
-  },[filtered,stage,defaultBrowse,sampleIds]);
+  const visible=filtered;
 
   const syncUrl=useCallback((nextCategory:string,nextExpanded:Artwork|null)=>{
     const path=nextExpanded?artworkPath(nextExpanded):nextCategory==='all'?'/character/':`/character/${slug(nextCategory)}/`;
@@ -297,16 +275,6 @@ export default function GalleryClient({catalogue,initialCategory,initialArtworkI
     }));
   },[category,closeExpanded,expanded,syncUrl]);
 
-  const showMore=()=>{
-    const scrollX=window.scrollX,scrollY=window.scrollY;
-    runMotionTransition(()=>{
-      setPendingExpanded(null);
-      setExpanded(null);
-      setStage(current=>current===0?(filtered.length>SECOND_BATCH_COUNT?1:2):2);
-    });
-    requestAnimationFrame(()=>requestAnimationFrame(()=>window.scrollTo({left:scrollX,top:scrollY,behavior:'auto'})));
-  };
-
   useEffect(()=>{
     const onPop=()=>runMotionTransition(()=>{
       const parts=window.location.pathname.split('/').filter(Boolean);
@@ -315,7 +283,6 @@ export default function GalleryClient({catalogue,initialCategory,initialArtworkI
       const artItem=parts[2]?catalogue.items.find(item=>item.category===cat&&slug(item.name||item.id)===parts[2])||null:null;
       setCategory(cat);
       if(!artItem){setPendingExpanded(null);setExpanded(null);return}
-      setStage(2);
       setPendingExpanded(artItem.id);
       setExpanded(artItem.id);
     });
@@ -324,8 +291,6 @@ export default function GalleryClient({catalogue,initialCategory,initialArtworkI
 
   const rankOptions=useMemo<FilterOption[]>(()=>[{value:'all',label:'Tất cả hạng'},...catalogue.ranks.map(value=>({value,label:value}))],[catalogue.ranks]);
   const creditOptions=useMemo<FilterOption[]>(()=>[{value:'all',label:'Tất cả credit'},...catalogue.credits.map(value=>({value,label:value}))],[catalogue.credits]);
-  const showProgressive=stage===0?filtered.length>INITIAL_RANDOM_COUNT:stage===1?filtered.length>SECOND_BATCH_COUNT:false;
-  const progressiveNote=stage===0?`Hiển thị ${Math.min(SECOND_BATCH_COUNT,filtered.length)} tác phẩm theo thứ tự bộ sưu tập`:`Mở toàn bộ thư viện · còn ${Math.max(0,filtered.length-SECOND_BATCH_COUNT)} tác phẩm`;
   const activeMobileQuery=query.trim();
 
   const sharedFilterControls=<>
@@ -371,6 +336,5 @@ export default function GalleryClient({catalogue,initialCategory,initialArtworkI
     </div>
     <div className="results-line"><div><strong>{String(filtered.length).padStart(2,'0')}</strong><span>tác phẩm đang hiển thị</span></div></div>
     {visible.length?<div className="gallery-grid">{visible.map((item,index)=><ArtworkCard key={item.id} item={item} index={index} expanded={expanded===item.id} pending={pendingExpanded===item.id} onToggle={toggle} onOriginalReady={markOriginalReady}/>)}</div>:<div className="empty-state">Không tìm thấy tác phẩm phù hợp.</div>}
-    {showProgressive?<div className="gallery-progressive-controls"><button type="button" className="gallery-view-all" onClick={showMore}>Xem thêm</button><div className="gallery-progressive-note">{progressiveNote}</div></div>:null}
   </section>;
 }
