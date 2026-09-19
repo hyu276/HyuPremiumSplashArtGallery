@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-16T17:46:45.519Z",
+  "generatedAt": "2026-09-19T06:56:37.734Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -1278,13 +1278,9 @@
       "category": "Astrid",
       "rank": "SS",
       "rankOrder": 3,
-      "credit": "Giokila",
+      "credit": "Chưa có credit",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/kiem-si-pha-le-1787839992723.jpg",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/kiem-si-pha-le-317efef3c9e9-1600.webp",
-      "tags": [],
-      "hidden": false,
-      "isVietnameseSkin": false,
-      "updatedAt": "2026-08-27T14:13:12.723Z",
       "variants": {
         "640": {
           "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/kiem-si-pha-le-317efef3c9e9-640.webp",
@@ -1316,7 +1312,11 @@
           "bytes": 587898,
           "mimeType": "image/jpeg"
         }
-      }
+      },
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-19T06:54:13.863Z"
     },
     {
       "id": "co-be-ca-chua",
@@ -8537,7 +8537,7 @@
       "category": "Keera",
       "rank": "S+",
       "rankOrder": 2,
-      "credit": "Giokila",
+      "credit": "Chưa có credit",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/mieu-than-1787841018039.jpg",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/mieu-than-b1435b90a518-1600.webp",
       "variants": {
@@ -8575,7 +8575,7 @@
       "tags": [],
       "hidden": false,
       "isVietnameseSkin": false,
-      "updatedAt": "2026-08-29T11:40:54.627Z"
+      "updatedAt": "2026-09-19T06:54:19.235Z"
     },
     {
       "id": "ao-mieu",
@@ -11471,7 +11471,7 @@
       "category": "Natalya",
       "rank": "SS",
       "rankOrder": 3,
-      "credit": "Giokila",
+      "credit": "Chưa có credit",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/ke-giat-day-1789049168857.jpg",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ke-giat-day-490d56309685-1600.webp",
       "variants": {
@@ -11509,7 +11509,7 @@
       "tags": [],
       "hidden": false,
       "isVietnameseSkin": false,
-      "updatedAt": "2026-09-10T14:43:54.514Z"
+      "updatedAt": "2026-09-19T06:54:24.194Z"
     },
     {
       "id": "dj-tiec-bai-bien-6",
@@ -12646,13 +12646,9 @@
       "category": "Rouie",
       "rank": "SS",
       "rankOrder": 3,
-      "credit": "Giokila",
+      "credit": "Chưa có credit",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/vu-nu-tien-linh-1789212337389.png",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/vu-nu-tien-linh-253ff16d0fcb-1600.webp",
-      "tags": [],
-      "hidden": false,
-      "isVietnameseSkin": false,
-      "updatedAt": "2026-09-12T11:25:37.389Z",
       "variants": {
         "640": {
           "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/vu-nu-tien-linh-253ff16d0fcb-640.webp",
@@ -12684,7 +12680,11 @@
           "bytes": 2136460,
           "mimeType": "image/png"
         }
-      }
+      },
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-19T06:54:29.481Z"
     },
     {
       "id": "bach-ve-su",
@@ -13398,13 +13398,9 @@
       "category": "Skud",
       "rank": "SS",
       "rankOrder": 3,
-      "credit": "Giokila",
+      "credit": "Chưa có credit",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/ga-he-ma-quai-1789225665933.jpg",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ga-he-ma-quai-a7b5fef8fd53-1600.webp",
-      "tags": [],
-      "hidden": false,
-      "isVietnameseSkin": false,
-      "updatedAt": "2026-09-12T15:07:45.933Z",
       "variants": {
         "640": {
           "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ga-he-ma-quai-a7b5fef8fd53-640.webp",
@@ -13436,7 +13432,11 @@
           "bytes": 561792,
           "mimeType": "image/jpeg"
         }
-      }
+      },
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-19T06:54:37.042Z"
     },
     {
       "id": "hao-kiep-than-cong",
@@ -14541,13 +14541,9 @@
       "category": "Tel'Annas",
       "rank": "SS",
       "rankOrder": 3,
-      "credit": "Giokila",
+      "credit": "Chưa có credit",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/huyet-co-nguyet-tien-1789222917653.jpg",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyet-co-nguyet-tien-fa0ac30f8b20-1600.webp",
-      "tags": [],
-      "hidden": false,
-      "isVietnameseSkin": false,
-      "updatedAt": "2026-09-12T14:21:57.653Z",
       "variants": {
         "640": {
           "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyet-co-nguyet-tien-fa0ac30f8b20-640.webp",
@@ -14579,7 +14575,11 @@
           "bytes": 615374,
           "mimeType": "image/jpeg"
         }
-      }
+      },
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-19T06:54:42.862Z"
     },
     {
       "id": "playgirl-chat-choi-hang-hieu",
@@ -15011,13 +15011,9 @@
       "category": "Toro",
       "rank": "S+",
       "rankOrder": 2,
-      "credit": "Giokila",
+      "credit": "Chưa có credit",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/tuyet-son-thanh-ve-1788352493505.jpg",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tuyet-son-thanh-ve-e6db05eebf9b-1600.webp",
-      "tags": [],
-      "hidden": false,
-      "isVietnameseSkin": false,
-      "updatedAt": "2026-09-02T12:34:53.506Z",
       "variants": {
         "640": {
           "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tuyet-son-thanh-ve-e6db05eebf9b-640.webp",
@@ -15049,7 +15045,11 @@
           "bytes": 792599,
           "mimeType": "image/jpeg"
         }
-      }
+      },
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-19T06:54:48.047Z"
     },
     {
       "id": "cho-cao-bang-bo-pc",
@@ -15105,13 +15105,9 @@
       "category": "Toro",
       "rank": "SS",
       "rankOrder": 3,
-      "credit": "Giokila",
+      "credit": "Chưa có credit",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/dzu-teh-yeti-1788350490742.jpg",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dzu-teh-yeti-72c38653dc2f-1600.webp",
-      "tags": [],
-      "hidden": false,
-      "isVietnameseSkin": false,
-      "updatedAt": "2026-09-02T12:01:30.742Z",
       "variants": {
         "640": {
           "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dzu-teh-yeti-72c38653dc2f-640.webp",
@@ -15143,7 +15139,11 @@
           "bytes": 425526,
           "mimeType": "image/jpeg"
         }
-      }
+      },
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-19T06:54:53.109Z"
     },
     {
       "id": "hao-kiep-than-cong-4",
@@ -15199,13 +15199,9 @@
       "category": "Triệu Vân",
       "rank": "A",
       "rankOrder": 0,
-      "credit": "Giokila",
+      "credit": "Chưa có credit",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/tiec-bai-bien-7-1789190805712.jpg",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-bai-bien-7-1547b7f374fe-1600.webp",
-      "tags": [],
-      "hidden": false,
-      "isVietnameseSkin": false,
-      "updatedAt": "2026-09-12T05:26:45.712Z",
       "variants": {
         "640": {
           "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-bai-bien-7-1547b7f374fe-640.webp",
@@ -15237,7 +15233,11 @@
           "bytes": 572039,
           "mimeType": "image/jpeg"
         }
-      }
+      },
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-19T06:54:59.803Z"
     },
     {
       "id": "boy-pho-4",
@@ -16844,13 +16844,9 @@
       "category": "Violet",
       "rank": "SS",
       "rankOrder": 3,
-      "credit": "Giokila",
+      "credit": "Chưa có credit",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/tuyet-duong-chi-tu-1788352539996.jpg",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tuyet-duong-chi-tu-ba34389bf35b-1600.webp",
-      "tags": [],
-      "hidden": false,
-      "isVietnameseSkin": false,
-      "updatedAt": "2026-09-02T12:35:39.996Z",
       "variants": {
         "640": {
           "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tuyet-duong-chi-tu-ba34389bf35b-640.webp",
@@ -16882,7 +16878,11 @@
           "bytes": 911545,
           "mimeType": "image/jpeg"
         }
-      }
+      },
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-19T06:55:06.051Z"
     },
     {
       "id": "giang-ho-boy-pho",
@@ -17470,13 +17470,9 @@
       "category": "Y'Bneth",
       "rank": "SS+",
       "rankOrder": 4,
-      "credit": "Giokila",
+      "credit": "Chưa có credit",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/van-gioi-thoi-quan-1789214054467.jpg",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/van-gioi-thoi-quan-d39ce531627e-1600.webp",
-      "tags": [],
-      "hidden": false,
-      "isVietnameseSkin": false,
-      "updatedAt": "2026-09-12T11:54:14.467Z",
       "variants": {
         "640": {
           "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/van-gioi-thoi-quan-d39ce531627e-640.webp",
@@ -17508,7 +17504,11 @@
           "bytes": 752098,
           "mimeType": "image/jpeg"
         }
-      }
+      },
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-19T06:55:11.470Z"
     },
     {
       "id": "sieu-viet-5",
@@ -17752,13 +17752,9 @@
       "category": "Yue",
       "rank": "S+",
       "rankOrder": 2,
-      "credit": "Giokila",
+      "credit": "Chưa có credit",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/hong-van-vuong-chu-1788872531171.jpg",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hong-van-vuong-chu-00effe2c453a-1600.webp",
-      "tags": [],
-      "hidden": false,
-      "isVietnameseSkin": false,
-      "updatedAt": "2026-09-08T13:02:11.171Z",
       "variants": {
         "640": {
           "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hong-van-vuong-chu-00effe2c453a-640.webp",
@@ -17790,7 +17786,11 @@
           "bytes": 408810,
           "mimeType": "image/jpeg"
         }
-      }
+      },
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-19T06:55:16.364Z"
     },
     {
       "id": "idol-gioi-tre-2",
@@ -18790,7 +18790,6 @@
   "credits": [
     "Cehynz",
     "Chưa có credit",
-    "Giokila",
     "Hie Lee",
     "Hiemaru",
     "Hika",
@@ -18913,7 +18912,6 @@
     "credits": [
       "Cehynz",
       "Chưa có credit",
-      "Giokila",
       "Hie Lee",
       "Hiemaru",
       "Hika",
