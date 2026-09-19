@@ -37,6 +37,10 @@ The following are repository-level invariants and MUST NOT be changed casually:
 - Vercel, GitHub Pages, Worker, GitHub Actions, or rollout changes: read `03-DEPLOYMENT-INFRA.md`.
 - Gallery image loading, derivatives, cache, R2, bandwidth, or performance changes: read `04-CACHE-EGRESS-PERFORMANCE.md`.
 - Any code change, branch, commit, PR, auth, CORS, or secrets work: read `05-GIT-QUALITY-SECURITY.md`.
+- Any action that can trigger Vercel, merge to production, or change deployment frequency: read `06-VERCEL-DEPLOYMENT-GOVERNANCE.md`.
+- Any content/admin publishing, Git-backed content mutation, or media publication workflow: read `07-CONTENT-RELEASE-BATCHING.md`.
+- Before any `main` merge or Vercel-producing action: complete `08-AI-RELEASE-CHECKLIST.md`.
+- Any Deployment Storage growth, retention, cleanup, or deployment-volume incident: read `09-DEPLOYMENT-STORAGE-RUNBOOK.md`.
 - Any implementation or refactor: also read `code-quality.MD`.
 - Any runtime, rendering, bundle, network, build, or deployed-performance change: also read `performance.MD`.
 - Any UI/layout/component change: also read `responsive.MD`.
@@ -44,7 +48,22 @@ The following are repository-level invariants and MUST NOT be changed casually:
 
 The specialized lowercase-named files are stricter task-specific rules. When they overlap an older umbrella rule, satisfy both; use the stricter invariant unless the user explicitly changes the architecture.
 
-## 4. Change discipline
+## 4. AI entry point
+
+A root-level `AGENTS.md` routes AI coding agents into this folder.
+
+Agents must not stop after reading `AGENTS.md`; they must load this README and the task-specific rules above before making repository changes.
+
+For deployment-related work, the minimum mandatory set is:
+
+- `03-DEPLOYMENT-INFRA.md`
+- `05-GIT-QUALITY-SECURITY.md`
+- `06-VERCEL-DEPLOYMENT-GOVERNANCE.md`
+- `07-CONTENT-RELEASE-BATCHING.md`
+- `08-AI-RELEASE-CHECKLIST.md`
+- `09-DEPLOYMENT-STORAGE-RUNBOOK.md`
+
+## 5. Change discipline
 
 Before editing:
 
@@ -61,7 +80,21 @@ After editing:
 - If verification is incomplete, say so explicitly; do not present assumptions as production proof.
 - Do not claim performance or egress improvement without evidence appropriate to the claim.
 
-## 5. Anti-regression principle
+## 6. Deployment discipline
+
+A content edit is not automatically a software release.
+
+A Git commit is not automatically a reason to create a Vercel deployment.
+
+Default release targets:
+
+- content-only change: zero production deployments when technically possible;
+- media-only change: zero production deployments when technically possible;
+- coherent code release: one production deployment.
+
+Repeated production pushes for one editing/debugging session are prohibited unless the user explicitly accepts the trade-off.
+
+## 7. Anti-regression principle
 
 A later fix MUST NOT reintroduce an earlier fixed issue. When a sequence of fixes has accumulated multiple constraints, treat all still-valid constraints as a single contract.
 
