@@ -1,0 +1,2298 @@
+name: One-time Supabase and external media migration to R2
+
+on:
+  push:
+    branches:
+      - chore/r2-storage-cleanup
+    paths:
+      - '.github/workflows/one-time-r2-migration.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: one-time-r2-storage-cleanup
+  cancel-in-progress: false
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      MEDIA_BASE: https://hyu-premium-media.csquocnguyen.workers.dev
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate Cloudflare credentials
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "${CLOUDFLARE_ACCOUNT_ID:-}"
+          test -n "${CLOUDFLARE_API_TOKEN:-}"
+      - name: Install Wrangler
+        shell: bash
+        run: npm install --global wrangler@latest
+      - name: Write migration manifest
+        shell: bash
+        run: |
+          cat > /tmp/r2-migration-manifest.json <<'JSON'
+[
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/ac-vu-sieu-linh-1787371499088.webp",
+    "key": "legacy/owner/artworks/thumbnails/ac-vu-sieu-linh-1787371499088.webp",
+    "size": 63078,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/am-luong-toi-a-1787489640390.webp",
+    "key": "legacy/owner/artworks/thumbnails/am-luong-toi-a-1787489640390.webp",
+    "size": 85104,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/an-niet-thanh-mau-1787371567803.webp",
+    "key": "legacy/owner/artworks/thumbnails/an-niet-thanh-mau-1787371567803.webp",
+    "size": 121520,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/ang-1787490238739.webp",
+    "key": "legacy/owner/artworks/thumbnails/ang-1787490238739.webp",
+    "size": 129946,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/anh-chang-thanh-hoa-1787492131372.webp",
+    "key": "legacy/owner/artworks/thumbnails/anh-chang-thanh-hoa-1787492131372.webp",
+    "size": 121250,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/ao-hoa-mi-anh-1787371569005.webp",
+    "key": "legacy/owner/artworks/thumbnails/ao-hoa-mi-anh-1787371569005.webp",
+    "size": 89826,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/ao-mieu-1787371570392.webp",
+    "key": "legacy/owner/artworks/thumbnails/ao-mieu-1787371570392.webp",
+    "size": 132482,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/aya-1787371573703.webp",
+    "key": "legacy/owner/artworks/thumbnails/aya-1787371573703.webp",
+    "size": 80968,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/bach-hac-hoa-tien-1787371575390.webp",
+    "key": "legacy/owner/artworks/thumbnails/bach-hac-hoa-tien-1787371575390.webp",
+    "size": 132788,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/bach-ve-su-1787492135387.webp",
+    "key": "legacy/owner/artworks/thumbnails/bach-ve-su-1787492135387.webp",
+    "size": 103816,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/bang-thanh-hoa-tam-1787672066992.webp",
+    "key": "legacy/owner/artworks/thumbnails/bang-thanh-hoa-tam-1787672066992.webp",
+    "size": 93564,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/bat-chi-hoa-vu-1787492137525.webp",
+    "key": "legacy/owner/artworks/thumbnails/bat-chi-hoa-vu-1787492137525.webp",
+    "size": 107100,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/bat-luong-hem-pho-1787371577457.webp",
+    "key": "legacy/owner/artworks/thumbnails/bat-luong-hem-pho-1787371577457.webp",
+    "size": 119314,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/be-cuu-chan-de-1787407814348.webp",
+    "key": "legacy/owner/artworks/thumbnails/be-cuu-chan-de-1787407814348.webp",
+    "size": 115400,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/bong-ma-hoa-anh-1787371497798.webp",
+    "key": "legacy/owner/artworks/thumbnails/bong-ma-hoa-anh-1787371497798.webp",
+    "size": 114520,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/boy-pho-1787371580529.webp",
+    "key": "legacy/owner/artworks/thumbnails/boy-pho-1787371580529.webp",
+    "size": 235774,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/boy-pho-2-1787488701610.webp",
+    "key": "legacy/owner/artworks/thumbnails/boy-pho-2-1787488701610.webp",
+    "size": 76090,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/boy-pho-3-1787673010430.webp",
+    "key": "legacy/owner/artworks/thumbnails/boy-pho-3-1787673010430.webp",
+    "size": 162636,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/boy-pho-4-1787673009248.webp",
+    "key": "legacy/owner/artworks/thumbnails/boy-pho-4-1787673009248.webp",
+    "size": 162636,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/chan-hoan-1787629366304.jpg",
+    "key": "legacy/owner/artworks/thumbnails/chan-hoan-1787629366304.jpg",
+    "size": 556156,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/chi-ton-kiem-tien-1787371583426.webp",
+    "key": "legacy/owner/artworks/thumbnails/chi-ton-kiem-tien-1787371583426.webp",
+    "size": 128440,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/chien-binh-xu-nghe-1787492141494.webp",
+    "key": "legacy/owner/artworks/thumbnails/chien-binh-xu-nghe-1787492141494.webp",
+    "size": 121156,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/chien-than-eo-hai-van-1787492143493.webp",
+    "key": "legacy/owner/artworks/thumbnails/chien-than-eo-hai-van-1787492143493.webp",
+    "size": 145684,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/chien-than-tan-the-1787672342279.webp",
+    "key": "legacy/owner/artworks/thumbnails/chien-than-tan-the-1787672342279.webp",
+    "size": 121828,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/cho-cao-bang-bo-pc-1787489323580.webp",
+    "key": "legacy/owner/artworks/thumbnails/cho-cao-bang-bo-pc-1787489323580.webp",
+    "size": 102502,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/co-be-ca-chua-1787371586351.webp",
+    "key": "legacy/owner/artworks/thumbnails/co-be-ca-chua-1787371586351.webp",
+    "size": 85420,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/co-nang-thanh-hoa-1787371588457.webp",
+    "key": "legacy/owner/artworks/thumbnails/co-nang-thanh-hoa-1787371588457.webp",
+    "size": 109564,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/co-thu-tan-phong-1787371590370.webp",
+    "key": "legacy/owner/artworks/thumbnails/co-thu-tan-phong-1787371590370.webp",
+    "size": 112122,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/cs-jake-walker-1787371592512.webp",
+    "key": "legacy/owner/artworks/thumbnails/cs-jake-walker-1787371592512.webp",
+    "size": 141226,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/da-hoi-khieu-vu-1787492679687.jpg",
+    "key": "legacy/owner/artworks/thumbnails/da-hoi-khieu-vu-1787492679687.jpg",
+    "size": 368680,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/da-hoi-khieu-vu-2-1787492677602.jpg",
+    "key": "legacy/owner/artworks/thumbnails/da-hoi-khieu-vu-2-1787492677602.jpg",
+    "size": 368680,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/en-tho-bang-gia-1787371598458.webp",
+    "key": "legacy/owner/artworks/thumbnails/en-tho-bang-gia-1787371598458.webp",
+    "size": 137498,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/en-tho-bang-gia-2-1787371602126.webp",
+    "key": "legacy/owner/artworks/thumbnails/en-tho-bang-gia-2-1787371602126.webp",
+    "size": 137498,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/en-tho-than-tuat-1787488484888.jpg",
+    "key": "legacy/owner/artworks/thumbnails/en-tho-than-tuat-1787488484888.jpg",
+    "size": 401247,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/fmvp-nailiu-apl-2025-fake-1787371604048.webp",
+    "key": "legacy/owner/artworks/thumbnails/fmvp-nailiu-apl-2025-fake-1787371604048.webp",
+    "size": 96422,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/fmvp-vie-quochuy-seagames-33-1787371605363.webp",
+    "key": "legacy/owner/artworks/thumbnails/fmvp-vie-quochuy-seagames-33-1787371605363.webp",
+    "size": 134758,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/gia-lap-1787371606700.webp",
+    "key": "legacy/owner/artworks/thumbnails/gia-lap-1787371606700.webp",
+    "size": 121426,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/giang-sinh-an-lanh-1787371607711.webp",
+    "key": "legacy/owner/artworks/thumbnails/giang-sinh-an-lanh-1787371607711.webp",
+    "size": 169130,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/giang-sinh-an-lanh-2-1787488574400.webp",
+    "key": "legacy/owner/artworks/thumbnails/giang-sinh-an-lanh-2-1787488574400.webp",
+    "size": 140216,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/girl-nao-loan-1787499013653.webp",
+    "key": "legacy/owner/artworks/thumbnails/girl-nao-loan-1787499013653.webp",
+    "size": 86238,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/ha-long-sinh-mach-1787492151463.webp",
+    "key": "legacy/owner/artworks/thumbnails/ha-long-sinh-mach-1787492151463.webp",
+    "size": 111970,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/hac-bach-ngoc-tho-1787371608709.webp",
+    "key": "legacy/owner/artworks/thumbnails/hac-bach-ngoc-tho-1787371608709.webp",
+    "size": 125650,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/hac-su-ma-than-1787371609594.webp",
+    "key": "legacy/owner/artworks/thumbnails/hac-su-ma-than-1787371609594.webp",
+    "size": 102320,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/hac-vu-luan-kiem-1787371610515.webp",
+    "key": "legacy/owner/artworks/thumbnails/hac-vu-luan-kiem-1787371610515.webp",
+    "size": 181988,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/hiep-si-tro-tan-1787371496047.webp",
+    "key": "legacy/owner/artworks/thumbnails/hiep-si-tro-tan-1787371496047.webp",
+    "size": 118600,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/hoa-hop-au-1787489821429.webp",
+    "key": "legacy/owner/artworks/thumbnails/hoa-hop-au-1787489821429.webp",
+    "size": 175300,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/hoa-mieu-hang-hieu-1787492153488.webp",
+    "key": "legacy/owner/artworks/thumbnails/hoa-mieu-hang-hieu-1787492153488.webp",
+    "size": 102858,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/hoa-si-mong-mi-1787371611731.webp",
+    "key": "legacy/owner/artworks/thumbnails/hoa-si-mong-mi-1787371611731.webp",
+    "size": 104068,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/hoa-van-viem-e-1787492155352.webp",
+    "key": "legacy/owner/artworks/thumbnails/hoa-van-viem-e-1787492155352.webp",
+    "size": 106426,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/hoi-ngo-thanh-xuan-1787371612749.webp",
+    "key": "legacy/owner/artworks/thumbnails/hoi-ngo-thanh-xuan-1787371612749.webp",
+    "size": 137142,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/hon-sa-mac-1787371498478.webp",
+    "key": "legacy/owner/artworks/thumbnails/hon-sa-mac-1787371498478.webp",
+    "size": 108520,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/huyen-quang-luan-mau-1787487885292.jpg",
+    "key": "legacy/owner/artworks/thumbnails/huyen-quang-luan-mau-1787487885292.jpg",
+    "size": 432534,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/huyen-xa-than-quan-1787371613880.webp",
+    "key": "legacy/owner/artworks/thumbnails/huyen-xa-than-quan-1787371613880.webp",
+    "size": 109768,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/iep-vu-thanh-xuan-1787371615838.webp",
+    "key": "legacy/owner/artworks/thumbnails/iep-vu-thanh-xuan-1787371615838.webp",
+    "size": 120626,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/khuc-ca-giao-hai-1787492160419.webp",
+    "key": "legacy/owner/artworks/thumbnails/khuc-ca-giao-hai-1787492160419.webp",
+    "size": 147256,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/kungfu-cau-may-1787492162496.webp",
+    "key": "legacy/owner/artworks/thumbnails/kungfu-cau-may-1787492162496.webp",
+    "size": 93376,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/lang-chai-vung-tau-1787489136966.webp",
+    "key": "legacy/owner/artworks/thumbnails/lang-chai-vung-tau-1787489136966.webp",
+    "size": 147722,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/lang-van-khai-tue-quan-1787371617261.webp",
+    "key": "legacy/owner/artworks/thumbnails/lang-van-khai-tue-quan-1787371617261.webp",
+    "size": 177296,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/linh-ban-tia-viet-1787371618334.webp",
+    "key": "legacy/owner/artworks/thumbnails/linh-ban-tia-viet-1787371618334.webp",
+    "size": 97582,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/linh-xa-song-sinh-1787569400832.jpg",
+    "key": "legacy/owner/artworks/thumbnails/linh-xa-song-sinh-1787569400832.jpg",
+    "size": 379930,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/linh-xuan-noi-loan-1787371619308.webp",
+    "key": "legacy/owner/artworks/thumbnails/linh-xuan-noi-loan-1787371619308.webp",
+    "size": 209360,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/loi-he-thong-1787371620505.webp",
+    "key": "legacy/owner/artworks/thumbnails/loi-he-thong-1787371620505.webp",
+    "size": 120600,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/loi-nguyen-huyet-tam-1787371621639.webp",
+    "key": "legacy/owner/artworks/thumbnails/loi-nguyen-huyet-tam-1787371621639.webp",
+    "size": 108602,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/ma-nu-thoi-thuong-1787371622744.webp",
+    "key": "legacy/owner/artworks/thumbnails/ma-nu-thoi-thuong-1787371622744.webp",
+    "size": 86102,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/ma-sung-1787490238028.webp",
+    "key": "legacy/owner/artworks/thumbnails/ma-sung-1787490238028.webp",
+    "size": 80296,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/ma-thuat-en-1787489464099.webp",
+    "key": "legacy/owner/artworks/thumbnails/ma-thuat-en-1787489464099.webp",
+    "size": 101322,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/mac-long-thanh-e-1787490131753.webp",
+    "key": "legacy/owner/artworks/thumbnails/mac-long-thanh-e-1787490131753.webp",
+    "size": 103372,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/maid-bung-ca-phe-1787671539696.webp",
+    "key": "legacy/owner/artworks/thumbnails/maid-bung-ca-phe-1787671539696.webp",
+    "size": 82708,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/man-hoa-lu-hanh-1787371624694.webp",
+    "key": "legacy/owner/artworks/thumbnails/man-hoa-lu-hanh-1787371624694.webp",
+    "size": 138642,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/mi-ngu-1787492165500.webp",
+    "key": "legacy/owner/artworks/thumbnails/mi-ngu-1787492165500.webp",
+    "size": 121524,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/mi-sac-hoa-nhen-1787566280050.jpg",
+    "key": "legacy/owner/artworks/thumbnails/mi-sac-hoa-nhen-1787566280050.jpg",
+    "size": 450116,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/mieu-quyen-than-1787491949574.webp",
+    "key": "legacy/owner/artworks/thumbnails/mieu-quyen-than-1787491949574.webp",
+    "size": 94766,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/mieu-tac-duoi-trang-1787656934934.webp",
+    "key": "legacy/owner/artworks/thumbnails/mieu-tac-duoi-trang-1787656934934.webp",
+    "size": 100870,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/my-ho-1787490130795.webp",
+    "key": "legacy/owner/artworks/thumbnails/my-ho-1787490130795.webp",
+    "size": 90580,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/nam-than-bach-khoa-1787489404811.webp",
+    "key": "legacy/owner/artworks/thumbnails/nam-than-bach-khoa-1787489404811.webp",
+    "size": 113242,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/nang-tien-dua-hau-1787371626255.webp",
+    "key": "legacy/owner/artworks/thumbnails/nang-tien-dua-hau-1787371626255.webp",
+    "size": 102782,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/nguyet-anh-huyen-ho-1787573607988.jpg",
+    "key": "legacy/owner/artworks/thumbnails/nguyet-anh-huyen-ho-1787573607988.jpg",
+    "size": 411744,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/nguyet-ma-mong-ky-1787567427875.jpg",
+    "key": "legacy/owner/artworks/thumbnails/nguyet-ma-mong-ky-1787567427875.jpg",
+    "size": 440771,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/nhung-ngoi-sao-xa-xoi-1787371627768.webp",
+    "key": "legacy/owner/artworks/thumbnails/nhung-ngoi-sao-xa-xoi-1787371627768.webp",
+    "size": 65616,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/nhung-rat-toro-1787371628733.webp",
+    "key": "legacy/owner/artworks/thumbnails/nhung-rat-toro-1787371628733.webp",
+    "size": 77408,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/nhung-rat-toro-2-1787371629661.webp",
+    "key": "legacy/owner/artworks/thumbnails/nhung-rat-toro-2-1787371629661.webp",
+    "size": 119192,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/nu-he-ma-mi-1787371630555.webp",
+    "key": "legacy/owner/artworks/thumbnails/nu-he-ma-mi-1787371630555.webp",
+    "size": 198952,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/o-cong-lang-tu-1787488778363.webp",
+    "key": "legacy/owner/artworks/thumbnails/o-cong-lang-tu-1787488778363.webp",
+    "size": 68062,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/oc-tai-1787371631575.webp",
+    "key": "legacy/owner/artworks/thumbnails/oc-tai-1787371631575.webp",
+    "size": 134282,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/phi-nguyet-hanh-1787489820665.webp",
+    "key": "legacy/owner/artworks/thumbnails/phi-nguyet-hanh-1787489820665.webp",
+    "size": 111692,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/phuong-tinh-uyen-ton-1787371632939.webp",
+    "key": "legacy/owner/artworks/thumbnails/phuong-tinh-uyen-ton-1787371632939.webp",
+    "size": 131964,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/quan-ho-bac-ninh-1787492170490.webp",
+    "key": "legacy/owner/artworks/thumbnails/quan-ho-bac-ninh-1787492170490.webp",
+    "size": 157230,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/sat-lang-bach-ho-1787371635034.webp",
+    "key": "legacy/owner/artworks/thumbnails/sat-lang-bach-ho-1787371635034.webp",
+    "size": 144492,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/sat-thu-huyet-toc-1787371497192.webp",
+    "key": "legacy/owner/artworks/thumbnails/sat-thu-huyet-toc-1787371497192.webp",
+    "size": 68180,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/sat-thu-vung-nuoc-o-1787371635991.webp",
+    "key": "legacy/owner/artworks/thumbnails/sat-thu-vung-nuoc-o-1787371635991.webp",
+    "size": 97396,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/sieu-pham-boy-pho-1787672494213.webp",
+    "key": "legacy/owner/artworks/thumbnails/sieu-pham-boy-pho-1787672494213.webp",
+    "size": 116814,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/sieu-pham-boy-pho-2-1787672493139.webp",
+    "key": "legacy/owner/artworks/thumbnails/sieu-pham-boy-pho-2-1787672493139.webp",
+    "size": 116814,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/sieu-pham-chan-hoan-1787629367541.jpg",
+    "key": "legacy/owner/artworks/thumbnails/sieu-pham-chan-hoan-1787629367541.jpg",
+    "size": 366238,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/sieu-viet-1787371636947.webp",
+    "key": "legacy/owner/artworks/thumbnails/sieu-viet-1787371636947.webp",
+    "size": 120122,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/sieu-viet-2-0-1787371638304.webp",
+    "key": "legacy/owner/artworks/thumbnails/sieu-viet-2-0-1787371638304.webp",
+    "size": 133608,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/sieu-viet-2-1787490237008.webp",
+    "key": "legacy/owner/artworks/thumbnails/sieu-viet-2-1787490237008.webp",
+    "size": 135142,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/soai-ca-say-hi-1787371639250.webp",
+    "key": "legacy/owner/artworks/thumbnails/soai-ca-say-hi-1787371639250.webp",
+    "size": 165934,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/sushi-ca-map-1787371640372.webp",
+    "key": "legacy/owner/artworks/thumbnails/sushi-ca-map-1787371640372.webp",
+    "size": 139594,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/tai-enzo-1787488909229.webp",
+    "key": "legacy/owner/artworks/thumbnails/tai-enzo-1787488909229.webp",
+    "size": 64298,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/tan-than-thien-ha-hang-hieu-1787371641709.webp",
+    "key": "legacy/owner/artworks/thumbnails/tan-than-thien-ha-hang-hieu-1787371641709.webp",
+    "size": 103090,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/than-co-thu-1787656933974.webp",
+    "key": "legacy/owner/artworks/thumbnails/than-co-thu-1787656933974.webp",
+    "size": 100872,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/than-ma-ty-vong-nguyet-long-1787673449648.webp",
+    "key": "legacy/owner/artworks/thumbnails/than-ma-ty-vong-nguyet-long-1787673449648.webp",
+    "size": 100978,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/than-nuong-mong-gioi-1787371642953.webp",
+    "key": "legacy/owner/artworks/thumbnails/than-nuong-mong-gioi-1787371642953.webp",
+    "size": 105056,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/than-tai-1787490620938.webp",
+    "key": "legacy/owner/artworks/thumbnails/than-tai-1787490620938.webp",
+    "size": 120276,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/than-tuong-am-nhac-1787371643859.webp",
+    "key": "legacy/owner/artworks/thumbnails/than-tuong-am-nhac-1787371643859.webp",
+    "size": 119774,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/thanh-linh-cam-khuc-1787408284940.webp",
+    "key": "legacy/owner/artworks/thumbnails/thanh-linh-cam-khuc-1787408284940.webp",
+    "size": 163204,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/thanh-moc-linh-su-1787492177364.webp",
+    "key": "legacy/owner/artworks/thumbnails/thanh-moc-linh-su-1787492177364.webp",
+    "size": 114740,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/that-tinh-1787371644912.webp",
+    "key": "legacy/owner/artworks/thumbnails/that-tinh-1787371644912.webp",
+    "size": 145902,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/thay-tu-da-en-1787492179497.webp",
+    "key": "legacy/owner/artworks/thumbnails/thay-tu-da-en-1787492179497.webp",
+    "size": 74760,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/the-gioi-cau-vong-1787671811479.webp",
+    "key": "legacy/owner/artworks/thumbnails/the-gioi-cau-vong-1787671811479.webp",
+    "size": 64150,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/thien-am-phuong-vu-1787371645829.webp",
+    "key": "legacy/owner/artworks/thumbnails/thien-am-phuong-vu-1787371645829.webp",
+    "size": 179786,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/thien-co-than-giap-1787673981252.webp",
+    "key": "legacy/owner/artworks/thumbnails/thien-co-than-giap-1787673981252.webp",
+    "size": 106472,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/thien-ha-than-tuong-1787491088836.jpg",
+    "key": "legacy/owner/artworks/thumbnails/thien-ha-than-tuong-1787491088836.jpg",
+    "size": 369528,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/thien-su-giang-tran-1787492180591.webp",
+    "key": "legacy/owner/artworks/thumbnails/thien-su-giang-tran-1787492180591.webp",
+    "size": 104944,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/thien-su-huyet-ngai-1787371495309.webp",
+    "key": "legacy/owner/artworks/thumbnails/thien-su-huyet-ngai-1787371495309.webp",
+    "size": 62816,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/tho-phe-hoa-chat-1787371646858.webp",
+    "key": "legacy/owner/artworks/thumbnails/tho-phe-hoa-chat-1787371646858.webp",
+    "size": 97554,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/thong-soai-robot-1787489933670.webp",
+    "key": "legacy/owner/artworks/thumbnails/thong-soai-robot-1787489933670.webp",
+    "size": 106322,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/thu-nguyen-ve-than-1787371647964.webp",
+    "key": "legacy/owner/artworks/thumbnails/thu-nguyen-ve-than-1787371647964.webp",
+    "size": 136154,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/thu-nguyen-ve-than-2-1787492410355.jpg",
+    "key": "legacy/owner/artworks/thumbnails/thu-nguyen-ve-than-2-1787492410355.jpg",
+    "size": 362585,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/thu-nguyen-ve-than-3-1787497882336.webp",
+    "key": "legacy/owner/artworks/thumbnails/thu-nguyen-ve-than-3-1787497882336.webp",
+    "size": 146792,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/thu-nguyen-ve-than-4-1787498576315.webp",
+    "key": "legacy/owner/artworks/thumbnails/thu-nguyen-ve-than-4-1787498576315.webp",
+    "size": 147586,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/tiec-bai-bien-1787371649125.webp",
+    "key": "legacy/owner/artworks/thumbnails/tiec-bai-bien-1787371649125.webp",
+    "size": 125920,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/tiec-bai-bien-2-1787371650011.webp",
+    "key": "legacy/owner/artworks/thumbnails/tiec-bai-bien-2-1787371650011.webp",
+    "size": 125920,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/tiec-bai-bien-3-1787371650918.webp",
+    "key": "legacy/owner/artworks/thumbnails/tiec-bai-bien-3-1787371650918.webp",
+    "size": 131456,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/tiec-bai-bien-4-1787371651821.webp",
+    "key": "legacy/owner/artworks/thumbnails/tiec-bai-bien-4-1787371651821.webp",
+    "size": 131456,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/tiec-be-boi-1787371653337.webp",
+    "key": "legacy/owner/artworks/thumbnails/tiec-be-boi-1787371653337.webp",
+    "size": 97420,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/tiec-lau-ech-1787492181737.webp",
+    "key": "legacy/owner/artworks/thumbnails/tiec-lau-ech-1787492181737.webp",
+    "size": 110438,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/vu-ieu-samba-1787371655094.webp",
+    "key": "legacy/owner/artworks/thumbnails/vu-ieu-samba-1787371655094.webp",
+    "size": 113328,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/vu-ieu-to-1787371655945.webp",
+    "key": "legacy/owner/artworks/thumbnails/vu-ieu-to-1787371655945.webp",
+    "size": 100692,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/vu-khuc-linh-su-1787371656906.webp",
+    "key": "legacy/owner/artworks/thumbnails/vu-khuc-linh-su-1787371656906.webp",
+    "size": 182892,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/vu-nu-kagura-1787664290071.webp",
+    "key": "legacy/owner/artworks/thumbnails/vu-nu-kagura-1787664290071.webp",
+    "size": 125156,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/vui-cung-bay-tuat-1787371658898.webp",
+    "key": "legacy/owner/artworks/thumbnails/vui-cung-bay-tuat-1787371658898.webp",
+    "size": 103534,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/vuon-toan-tuat-1787371660147.webp",
+    "key": "legacy/owner/artworks/thumbnails/vuon-toan-tuat-1787371660147.webp",
+    "size": 106328,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/vuon-toan-tuat-2-1787488053736.jpg",
+    "key": "legacy/owner/artworks/thumbnails/vuon-toan-tuat-2-1787488053736.jpg",
+    "size": 330251,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/wave-10-1787674650521.webp",
+    "key": "legacy/owner/artworks/thumbnails/wave-10-1787674650521.webp",
+    "size": 98346,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/wave-1787371661600.webp",
+    "key": "legacy/owner/artworks/thumbnails/wave-1787371661600.webp",
+    "size": 87490,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/wave-2-1787371663303.webp",
+    "key": "legacy/owner/artworks/thumbnails/wave-2-1787371663303.webp",
+    "size": 106202,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/wave-3-1787371664215.webp",
+    "key": "legacy/owner/artworks/thumbnails/wave-3-1787371664215.webp",
+    "size": 83056,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/wave-4-1787371665149.webp",
+    "key": "legacy/owner/artworks/thumbnails/wave-4-1787371665149.webp",
+    "size": 103534,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/wave-5-1787371666048.webp",
+    "key": "legacy/owner/artworks/thumbnails/wave-5-1787371666048.webp",
+    "size": 90752,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/wave-6-1787371666905.webp",
+    "key": "legacy/owner/artworks/thumbnails/wave-6-1787371666905.webp",
+    "size": 75620,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/wave-7-1787371667695.webp",
+    "key": "legacy/owner/artworks/thumbnails/wave-7-1787371667695.webp",
+    "size": 73748,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/wave-8-1787378472261.jpg",
+    "key": "legacy/owner/artworks/thumbnails/wave-8-1787378472261.jpg",
+    "size": 292765,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/wave-9-1787674330646.webp",
+    "key": "legacy/owner/artworks/thumbnails/wave-9-1787674330646.webp",
+    "size": 107162,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/wave-oc-ban-hoa-phi-chan-hoan-1787674500889.webp",
+    "key": "legacy/owner/artworks/thumbnails/wave-oc-ban-hoa-phi-chan-hoan-1787674500889.webp",
+    "size": 84372,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/xich-diem-han-trieu-1787371669201.webp",
+    "key": "legacy/owner/artworks/thumbnails/xich-diem-han-trieu-1787371669201.webp",
+    "size": 125880,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/thumbnails/yet-kieu-1787371670767.webp",
+    "key": "legacy/owner/artworks/thumbnails/yet-kieu-1787371670767.webp",
+    "size": 119594,
+    "mime": "image/webp",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/ac-vu-sieu-linh-1787371285799.jpg",
+    "key": "legacy/owner/artworks/uploads/ac-vu-sieu-linh-1787371285799.jpg",
+    "size": 1880824,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/am-luong-toi-a-1787489637144.png",
+    "key": "legacy/owner/artworks/uploads/am-luong-toi-a-1787489637144.png",
+    "size": 2775046,
+    "mime": "image/png",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/ang-1787490204387.jpg",
+    "key": "legacy/owner/artworks/uploads/ang-1787490204387.jpg",
+    "size": 2934446,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/anh-chang-thanh-hoa-1787456596104.png",
+    "key": "legacy/owner/artworks/uploads/anh-chang-thanh-hoa-1787456596104.png",
+    "size": 9203951,
+    "mime": "image/png",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/ao-hoa-mi-anh-1787317413534.jpg",
+    "key": "legacy/owner/artworks/uploads/ao-hoa-mi-anh-1787317413534.jpg",
+    "size": 422297,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/ao-mieu-1787318439119.jpg",
+    "key": "legacy/owner/artworks/uploads/ao-mieu-1787318439119.jpg",
+    "size": 540436,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/bach-hac-hoa-tien-1787318126285.jpg",
+    "key": "legacy/owner/artworks/uploads/bach-hac-hoa-tien-1787318126285.jpg",
+    "size": 583941,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/bach-ve-su-1787456857804.jpg",
+    "key": "legacy/owner/artworks/uploads/bach-ve-su-1787456857804.jpg",
+    "size": 866953,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/bang-thanh-hoa-tam-1787672063725.jpg",
+    "key": "legacy/owner/artworks/uploads/bang-thanh-hoa-tam-1787672063725.jpg",
+    "size": 489057,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/bat-chi-hoa-vu-1787458874959.jpg",
+    "key": "legacy/owner/artworks/uploads/bat-chi-hoa-vu-1787458874959.jpg",
+    "size": 2816631,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/bat-luong-hem-pho-1787304035983.jpg",
+    "key": "legacy/owner/artworks/uploads/bat-luong-hem-pho-1787304035983.jpg",
+    "size": 2396257,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/be-cuu-chan-de-1787407794245.jpg",
+    "key": "legacy/owner/artworks/uploads/be-cuu-chan-de-1787407794245.jpg",
+    "size": 508936,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/bong-ma-hoa-anh-1787371386506.jpg",
+    "key": "legacy/owner/artworks/uploads/bong-ma-hoa-anh-1787371386506.jpg",
+    "size": 2253046,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/boy-pho-1787288564445.jpg",
+    "key": "legacy/owner/artworks/uploads/boy-pho-1787288564445.jpg",
+    "size": 3070918,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/boy-pho-2-1787488697105.jpg",
+    "key": "legacy/owner/artworks/uploads/boy-pho-2-1787488697105.jpg",
+    "size": 1990789,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/boy-pho-3-1787673000284.jpg",
+    "key": "legacy/owner/artworks/uploads/boy-pho-3-1787673000284.jpg",
+    "size": 721320,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/boy-pho-4-1787673005893.jpg",
+    "key": "legacy/owner/artworks/uploads/boy-pho-4-1787673005893.jpg",
+    "size": 721320,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/chan-hoan-1787629362208.jpg",
+    "key": "legacy/owner/artworks/uploads/chan-hoan-1787629362208.jpg",
+    "size": 1131779,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/chi-ton-kiem-tien-1787301140475.jpg",
+    "key": "legacy/owner/artworks/uploads/chi-ton-kiem-tien-1787301140475.jpg",
+    "size": 1023532,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/chien-binh-xu-nghe-1787460056547.jpg",
+    "key": "legacy/owner/artworks/uploads/chien-binh-xu-nghe-1787460056547.jpg",
+    "size": 2517931,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/chien-than-eo-hai-van-1787457443586.jpg",
+    "key": "legacy/owner/artworks/uploads/chien-than-eo-hai-van-1787457443586.jpg",
+    "size": 2409613,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/chien-than-tan-the-1787672310290.jpg",
+    "key": "legacy/owner/artworks/uploads/chien-than-tan-the-1787672310290.jpg",
+    "size": 546713,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/cho-cao-bang-bo-pc-1787489321505.png",
+    "key": "legacy/owner/artworks/uploads/cho-cao-bang-bo-pc-1787489321505.png",
+    "size": 2393944,
+    "mime": "image/png",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/co-be-ca-chua-1787320264899.jpg",
+    "key": "legacy/owner/artworks/uploads/co-be-ca-chua-1787320264899.jpg",
+    "size": 381473,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/co-nang-thanh-hoa-1787290233814.jpg",
+    "key": "legacy/owner/artworks/uploads/co-nang-thanh-hoa-1787290233814.jpg",
+    "size": 2218343,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/co-thu-tan-phong-1787318973330.jpg",
+    "key": "legacy/owner/artworks/uploads/co-thu-tan-phong-1787318973330.jpg",
+    "size": 496168,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/cs-jake-walker-1787280721415.jpg",
+    "key": "legacy/owner/artworks/uploads/cs-jake-walker-1787280721415.jpg",
+    "size": 2439596,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/da-hoi-khieu-vu-1787492655534.jpg",
+    "key": "legacy/owner/artworks/uploads/da-hoi-khieu-vu-1787492655534.jpg",
+    "size": 311703,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/da-hoi-khieu-vu-2-1787492673596.jpg",
+    "key": "legacy/owner/artworks/uploads/da-hoi-khieu-vu-2-1787492673596.jpg",
+    "size": 311703,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/en-tho-than-tuat-1787488480911.jpg",
+    "key": "legacy/owner/artworks/uploads/en-tho-than-tuat-1787488480911.jpg",
+    "size": 1340272,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/fmvp-vie-quochuy-seagames-33-1787290221873.jpg",
+    "key": "legacy/owner/artworks/uploads/fmvp-vie-quochuy-seagames-33-1787290221873.jpg",
+    "size": 746175,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/giang-sinh-an-lanh-1787286604812.png",
+    "key": "legacy/owner/artworks/uploads/giang-sinh-an-lanh-1787286604812.png",
+    "size": 2841725,
+    "mime": "image/png",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/giang-sinh-an-lanh-2-1787488572143.png",
+    "key": "legacy/owner/artworks/uploads/giang-sinh-an-lanh-2-1787488572143.png",
+    "size": 3588745,
+    "mime": "image/png",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/girl-nao-loan-1787499009989.jpg",
+    "key": "legacy/owner/artworks/uploads/girl-nao-loan-1787499009989.jpg",
+    "size": 447435,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/ha-long-sinh-mach-1787460131974.jpg",
+    "key": "legacy/owner/artworks/uploads/ha-long-sinh-mach-1787460131974.jpg",
+    "size": 2599030,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/hac-bach-ngoc-tho-1787319811449.jpg",
+    "key": "legacy/owner/artworks/uploads/hac-bach-ngoc-tho-1787319811449.jpg",
+    "size": 495669,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/hac-su-ma-than-1787320453356.jpg",
+    "key": "legacy/owner/artworks/uploads/hac-su-ma-than-1787320453356.jpg",
+    "size": 444306,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/hac-vu-luan-kiem-1787317884401.jpg",
+    "key": "legacy/owner/artworks/uploads/hac-vu-luan-kiem-1787317884401.jpg",
+    "size": 626427,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/hiep-si-tro-tan-1787371462517.jpg",
+    "key": "legacy/owner/artworks/uploads/hiep-si-tro-tan-1787371462517.jpg",
+    "size": 2255393,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/hoa-hop-au-1787489769164.png",
+    "key": "legacy/owner/artworks/uploads/hoa-hop-au-1787489769164.png",
+    "size": 3244949,
+    "mime": "image/png",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/hoa-mieu-hang-hieu-1787459644129.jpg",
+    "key": "legacy/owner/artworks/uploads/hoa-mieu-hang-hieu-1787459644129.jpg",
+    "size": 2607875,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/hoa-van-viem-e-1787459769628.jpg",
+    "key": "legacy/owner/artworks/uploads/hoa-van-viem-e-1787459769628.jpg",
+    "size": 472922,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/hoi-ngo-thanh-xuan-1787288622463.jpg",
+    "key": "legacy/owner/artworks/uploads/hoi-ngo-thanh-xuan-1787288622463.jpg",
+    "size": 2569009,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/hon-sa-mac-1787371312397.jpg",
+    "key": "legacy/owner/artworks/uploads/hon-sa-mac-1787371312397.jpg",
+    "size": 2309720,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/huyen-quang-luan-mau-1787487882141.jpg",
+    "key": "legacy/owner/artworks/uploads/huyen-quang-luan-mau-1787487882141.jpg",
+    "size": 698327,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/huyen-xa-than-quan-1787317772273.jpg",
+    "key": "legacy/owner/artworks/uploads/huyen-xa-than-quan-1787317772273.jpg",
+    "size": 438652,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/khuc-ca-giao-hai-1787458539182.jpg",
+    "key": "legacy/owner/artworks/uploads/khuc-ca-giao-hai-1787458539182.jpg",
+    "size": 878104,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/kungfu-cau-may-1787459721423.jpg",
+    "key": "legacy/owner/artworks/uploads/kungfu-cau-may-1787459721423.jpg",
+    "size": 2662041,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/lang-chai-vung-tau-1787489134106.jpg",
+    "key": "legacy/owner/artworks/uploads/lang-chai-vung-tau-1787489134106.jpg",
+    "size": 2521177,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/linh-ban-tia-viet-1787286549719.png",
+    "key": "legacy/owner/artworks/uploads/linh-ban-tia-viet-1787286549719.png",
+    "size": 2073707,
+    "mime": "image/png",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/linh-xa-song-sinh-1787569395045.jpg",
+    "key": "legacy/owner/artworks/uploads/linh-xa-song-sinh-1787569395045.jpg",
+    "size": 485459,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/linh-xuan-noi-loan-1787291135607.jpg",
+    "key": "legacy/owner/artworks/uploads/linh-xuan-noi-loan-1787291135607.jpg",
+    "size": 1093668,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/loi-he-thong-1787320575265.jpg",
+    "key": "legacy/owner/artworks/uploads/loi-he-thong-1787320575265.jpg",
+    "size": 2438633,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/loi-nguyen-huyet-tam-1787317365050.jpg",
+    "key": "legacy/owner/artworks/uploads/loi-nguyen-huyet-tam-1787317365050.jpg",
+    "size": 466565,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/ma-nu-thoi-thuong-1787321583246.jpg",
+    "key": "legacy/owner/artworks/uploads/ma-nu-thoi-thuong-1787321583246.jpg",
+    "size": 394772,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/ma-sung-1787490217116.jpg",
+    "key": "legacy/owner/artworks/uploads/ma-sung-1787490217116.jpg",
+    "size": 1017899,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/ma-thuat-en-1787489460681.png",
+    "key": "legacy/owner/artworks/uploads/ma-thuat-en-1787489460681.png",
+    "size": 2060023,
+    "mime": "image/png",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/mac-long-thanh-e-1787490059826.jpg",
+    "key": "legacy/owner/artworks/uploads/mac-long-thanh-e-1787490059826.jpg",
+    "size": 2700803,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/maid-bung-ca-phe-1787671491463.jpg",
+    "key": "legacy/owner/artworks/uploads/maid-bung-ca-phe-1787671491463.jpg",
+    "size": 2053616,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/mi-ngu-1787459023276.jpg",
+    "key": "legacy/owner/artworks/uploads/mi-ngu-1787459023276.jpg",
+    "size": 2868099,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/mi-sac-hoa-nhen-1787566272707.jpg",
+    "key": "legacy/owner/artworks/uploads/mi-sac-hoa-nhen-1787566272707.jpg",
+    "size": 616217,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/mieu-quyen-than-1787491947133.jpg",
+    "key": "legacy/owner/artworks/uploads/mieu-quyen-than-1787491947133.jpg",
+    "size": 429610,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/mieu-tac-duoi-trang-1787656806208.jpg",
+    "key": "legacy/owner/artworks/uploads/mieu-tac-duoi-trang-1787656806208.jpg",
+    "size": 470360,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/my-ho-1787490126860.jpg",
+    "key": "legacy/owner/artworks/uploads/my-ho-1787490126860.jpg",
+    "size": 2914623,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/nam-than-bach-khoa-1787489402003.png",
+    "key": "legacy/owner/artworks/uploads/nam-than-bach-khoa-1787489402003.png",
+    "size": 2287372,
+    "mime": "image/png",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/nguyet-anh-huyen-ho-1787573602765.jpg",
+    "key": "legacy/owner/artworks/uploads/nguyet-anh-huyen-ho-1787573602765.jpg",
+    "size": 847704,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/nguyet-ma-mong-ky-1787567421046.jpg",
+    "key": "legacy/owner/artworks/uploads/nguyet-ma-mong-ky-1787567421046.jpg",
+    "size": 986197,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/nhung-rat-toro-1787288458167.png",
+    "key": "legacy/owner/artworks/uploads/nhung-rat-toro-1787288458167.png",
+    "size": 2121231,
+    "mime": "image/png",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/nhung-rat-toro-2-1787288429806.png",
+    "key": "legacy/owner/artworks/uploads/nhung-rat-toro-2-1787288429806.png",
+    "size": 2414138,
+    "mime": "image/png",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/nu-he-ma-mi-1787318872873.jpg",
+    "key": "legacy/owner/artworks/uploads/nu-he-ma-mi-1787318872873.jpg",
+    "size": 793311,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/o-cong-lang-tu-1787488775210.jpg",
+    "key": "legacy/owner/artworks/uploads/o-cong-lang-tu-1787488775210.jpg",
+    "size": 1955189,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/oc-tai-1787301083983.jpg",
+    "key": "legacy/owner/artworks/uploads/oc-tai-1787301083983.jpg",
+    "size": 2750711,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/oc-tai-1787326728115.jpg",
+    "key": "legacy/owner/artworks/uploads/oc-tai-1787326728115.jpg",
+    "size": 346414,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/phi-nguyet-hanh-1787489818309.png",
+    "key": "legacy/owner/artworks/uploads/phi-nguyet-hanh-1787489818309.png",
+    "size": 3052310,
+    "mime": "image/png",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/quan-ho-bac-ninh-1787458678658.jpg",
+    "key": "legacy/owner/artworks/uploads/quan-ho-bac-ninh-1787458678658.jpg",
+    "size": 2653783,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/sat-lang-bach-ho-1787280649281.jpg",
+    "key": "legacy/owner/artworks/uploads/sat-lang-bach-ho-1787280649281.jpg",
+    "size": 2470901,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/sat-thu-huyet-toc-1787371419380.jpg",
+    "key": "legacy/owner/artworks/uploads/sat-thu-huyet-toc-1787371419380.jpg",
+    "size": 1972742,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/sat-thu-vung-nuoc-o-1787280991427.jpg",
+    "key": "legacy/owner/artworks/uploads/sat-thu-vung-nuoc-o-1787280991427.jpg",
+    "size": 2185467,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/sieu-pham-boy-pho-1787672477376.jpg",
+    "key": "legacy/owner/artworks/uploads/sieu-pham-boy-pho-1787672477376.jpg",
+    "size": 590417,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/sieu-pham-boy-pho-2-1787672489370.jpg",
+    "key": "legacy/owner/artworks/uploads/sieu-pham-boy-pho-2-1787672489370.jpg",
+    "size": 590417,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/sieu-pham-chan-hoan-1787629329633.jpg",
+    "key": "legacy/owner/artworks/uploads/sieu-pham-chan-hoan-1787629329633.jpg",
+    "size": 758219,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/sieu-viet-1787280906008.jpg",
+    "key": "legacy/owner/artworks/uploads/sieu-viet-1787280906008.jpg",
+    "size": 2320829,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/sieu-viet-2-0-1787280919675.jpg",
+    "key": "legacy/owner/artworks/uploads/sieu-viet-2-0-1787280919675.jpg",
+    "size": 2470406,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/sieu-viet-2-1787490233625.jpg",
+    "key": "legacy/owner/artworks/uploads/sieu-viet-2-1787490233625.jpg",
+    "size": 1334070,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/soai-ca-say-hi-1787301069901.jpg",
+    "key": "legacy/owner/artworks/uploads/soai-ca-say-hi-1787301069901.jpg",
+    "size": 2840539,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/soai-ca-say-hi-1787326734994.jpg",
+    "key": "legacy/owner/artworks/uploads/soai-ca-say-hi-1787326734994.jpg",
+    "size": 396198,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/sushi-ca-map-1787280955552.png",
+    "key": "legacy/owner/artworks/uploads/sushi-ca-map-1787280955552.png",
+    "size": 2619085,
+    "mime": "image/png",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/tai-enzo-1787488906323.jpg",
+    "key": "legacy/owner/artworks/uploads/tai-enzo-1787488906323.jpg",
+    "size": 1862612,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/than-co-thu-1787656925507.jpg",
+    "key": "legacy/owner/artworks/uploads/than-co-thu-1787656925507.jpg",
+    "size": 529864,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/than-ma-ty-vong-nguyet-long-1787673445160.jpg",
+    "key": "legacy/owner/artworks/uploads/than-ma-ty-vong-nguyet-long-1787673445160.jpg",
+    "size": 500895,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/than-tai-1787490617708.jpg",
+    "key": "legacy/owner/artworks/uploads/than-tai-1787490617708.jpg",
+    "size": 2998870,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/than-tuong-am-nhac-1787301119912.jpg",
+    "key": "legacy/owner/artworks/uploads/than-tuong-am-nhac-1787301119912.jpg",
+    "size": 583757,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/thanh-linh-cam-khuc-1787408279049.jpg",
+    "key": "legacy/owner/artworks/uploads/thanh-linh-cam-khuc-1787408279049.jpg",
+    "size": 2601833,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/thanh-moc-linh-su-1787457647963.jpg",
+    "key": "legacy/owner/artworks/uploads/thanh-moc-linh-su-1787457647963.jpg",
+    "size": 518454,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/that-tinh-1787288553321.jpg",
+    "key": "legacy/owner/artworks/uploads/that-tinh-1787288553321.jpg",
+    "size": 2460896,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/thay-tu-da-en-1787458901437.jpg",
+    "key": "legacy/owner/artworks/uploads/thay-tu-da-en-1787458901437.jpg",
+    "size": 2483582,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/the-gioi-cau-vong-1787671805624.jpg",
+    "key": "legacy/owner/artworks/uploads/the-gioi-cau-vong-1787671805624.jpg",
+    "size": 332876,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/thien-am-phuong-vu-1787317719032.jpg",
+    "key": "legacy/owner/artworks/uploads/thien-am-phuong-vu-1787317719032.jpg",
+    "size": 733956,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/thien-co-than-giap-1787673978359.jpg",
+    "key": "legacy/owner/artworks/uploads/thien-co-than-giap-1787673978359.jpg",
+    "size": 533243,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/thien-ha-than-tuong-1787491086019.jpg",
+    "key": "legacy/owner/artworks/uploads/thien-ha-than-tuong-1787491086019.jpg",
+    "size": 1228704,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/thien-su-giang-tran-1787457816447.jpg",
+    "key": "legacy/owner/artworks/uploads/thien-su-giang-tran-1787457816447.jpg",
+    "size": 524502,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/thien-su-huyet-ngai-1787371491882.jpg",
+    "key": "legacy/owner/artworks/uploads/thien-su-huyet-ngai-1787371491882.jpg",
+    "size": 1885081,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/tho-phe-hoa-chat-1787290204591.jpg",
+    "key": "legacy/owner/artworks/uploads/tho-phe-hoa-chat-1787290204591.jpg",
+    "size": 2146822,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/thong-soai-robot-1787489930633.jpg",
+    "key": "legacy/owner/artworks/uploads/thong-soai-robot-1787489930633.jpg",
+    "size": 2954867,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/thu-nguyen-ve-than-1787303531988.jpg",
+    "key": "legacy/owner/artworks/uploads/thu-nguyen-ve-than-1787303531988.jpg",
+    "size": 1304426,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/thu-nguyen-ve-than-1787326697707.jpg",
+    "key": "legacy/owner/artworks/uploads/thu-nguyen-ve-than-1787326697707.jpg",
+    "size": 373611,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/thu-nguyen-ve-than-2-1787492404851.jpg",
+    "key": "legacy/owner/artworks/uploads/thu-nguyen-ve-than-2-1787492404851.jpg",
+    "size": 683963,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/thu-nguyen-ve-than-3-1787497740074.jpg",
+    "key": "legacy/owner/artworks/uploads/thu-nguyen-ve-than-3-1787497740074.jpg",
+    "size": 640021,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/thu-nguyen-ve-than-4-1787498570812.jpg",
+    "key": "legacy/owner/artworks/uploads/thu-nguyen-ve-than-4-1787498570812.jpg",
+    "size": 663474,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/tiec-bai-bien-1787301027837.png",
+    "key": "legacy/owner/artworks/uploads/tiec-bai-bien-1787301027837.png",
+    "size": 7997387,
+    "mime": "image/png",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/tiec-bai-bien-1787326759634.jpg",
+    "key": "legacy/owner/artworks/uploads/tiec-bai-bien-1787326759634.jpg",
+    "size": 306605,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/tiec-bai-bien-2-1787301047045.png",
+    "key": "legacy/owner/artworks/uploads/tiec-bai-bien-2-1787301047045.png",
+    "size": 7997387,
+    "mime": "image/png",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/tiec-bai-bien-2-1787326753295.jpg",
+    "key": "legacy/owner/artworks/uploads/tiec-bai-bien-2-1787326753295.jpg",
+    "size": 306605,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/tiec-bai-bien-3-1787301184351.jpg",
+    "key": "legacy/owner/artworks/uploads/tiec-bai-bien-3-1787301184351.jpg",
+    "size": 2422797,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/tiec-bai-bien-3-1787326767127.jpg",
+    "key": "legacy/owner/artworks/uploads/tiec-bai-bien-3-1787326767127.jpg",
+    "size": 325031,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/tiec-bai-bien-4-1787301200066.jpg",
+    "key": "legacy/owner/artworks/uploads/tiec-bai-bien-4-1787301200066.jpg",
+    "size": 2422797,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/tiec-bai-bien-4-1787326775873.jpg",
+    "key": "legacy/owner/artworks/uploads/tiec-bai-bien-4-1787326775873.jpg",
+    "size": 325031,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/tiec-lau-ech-1787458281688.jpg",
+    "key": "legacy/owner/artworks/uploads/tiec-lau-ech-1787458281688.jpg",
+    "size": 2581088,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/vu-ieu-to-1787322067074.jpg",
+    "key": "legacy/owner/artworks/uploads/vu-ieu-to-1787322067074.jpg",
+    "size": 502120,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/vu-khuc-linh-su-1787319176908.jpg",
+    "key": "legacy/owner/artworks/uploads/vu-khuc-linh-su-1787319176908.jpg",
+    "size": 2691293,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/vu-nu-kagura-1787664285846.jpg",
+    "key": "legacy/owner/artworks/uploads/vu-nu-kagura-1787664285846.jpg",
+    "size": 577625,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/vuon-toan-tuat-2-1787488051054.jpg",
+    "key": "legacy/owner/artworks/uploads/vuon-toan-tuat-2-1787488051054.jpg",
+    "size": 438789,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/wave-10-1787674647792.jpg",
+    "key": "legacy/owner/artworks/uploads/wave-10-1787674647792.jpg",
+    "size": 2191179,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/wave-3-1787288760522.jpg",
+    "key": "legacy/owner/artworks/uploads/wave-3-1787288760522.jpg",
+    "size": 2251137,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/wave-4-1787288792393.jpg",
+    "key": "legacy/owner/artworks/uploads/wave-4-1787288792393.jpg",
+    "size": 2210967,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/wave-5-1787288818871.jpg",
+    "key": "legacy/owner/artworks/uploads/wave-5-1787288818871.jpg",
+    "size": 2053518,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/wave-6-1787301005926.jpg",
+    "key": "legacy/owner/artworks/uploads/wave-6-1787301005926.jpg",
+    "size": 2006629,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/wave-6-1787326429001.jpg",
+    "key": "legacy/owner/artworks/uploads/wave-6-1787326429001.jpg",
+    "size": 203916,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/wave-7-1787320214877.jpg",
+    "key": "legacy/owner/artworks/uploads/wave-7-1787320214877.jpg",
+    "size": 367157,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/wave-8-1787378467142.jpg",
+    "key": "legacy/owner/artworks/uploads/wave-8-1787378467142.jpg",
+    "size": 2132788,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/wave-9-1787674299675.jpg",
+    "key": "legacy/owner/artworks/uploads/wave-9-1787674299675.jpg",
+    "size": 523546,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/artworks/uploads/wave-oc-ban-hoa-phi-chan-hoan-1787674497440.jpg",
+    "key": "legacy/owner/artworks/uploads/wave-oc-ban-hoa-phi-chan-hoan-1787674497440.jpg",
+    "size": 405327,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/portfolio-project-images/projects/e9a40caf-bc98-4ade-ae5d-932bb7d720a3/1788349351006-4eb4590b-b46e-478b-ab16-a4a9b7720652.jpg",
+    "key": "legacy/owner/portfolio-project-images/projects/e9a40caf-bc98-4ade-ae5d-932bb7d720a3/1788349351006-4eb4590b-b46e-478b-ab16-a4a9b7720652.jpg",
+    "size": 563379,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/team/members/bao-ky-1787314078639.jpg",
+    "key": "legacy/owner/team/members/bao-ky-1787314078639.jpg",
+    "size": 130265,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/team/members/huy-khanh-1787315947392.jpg",
+    "key": "legacy/owner/team/members/huy-khanh-1787315947392.jpg",
+    "size": 111444,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/team/members/hyu-1787307924753.jpg",
+    "key": "legacy/owner/team/members/hyu-1787307924753.jpg",
+    "size": 555377,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/team/members/raphena-1787315927422.jpg",
+    "key": "legacy/owner/team/members/raphena-1787315927422.jpg",
+    "size": 66292,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/team/members/yue-1787309560764.jpg",
+    "key": "legacy/owner/team/members/yue-1787309560764.jpg",
+    "size": 180943,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://zkrhwqgmynbbmoktokdq.supabase.co/storage/v1/object/public/team/members/yue-1787309560778.jpg",
+    "key": "legacy/owner/team/members/yue-1787309560778.jpg",
+    "size": 180943,
+    "mime": "image/jpeg",
+    "kind": "supabase"
+  },
+  {
+    "source": "https://images.unsplash.com/photo-1518709594023-6eab9bab7b23?auto=format&fit=crop&w=1800&q=88",
+    "key": "artworks/originals/chrome-valkyrie-external.jpg",
+    "size": 0,
+    "mime": "image/jpeg",
+    "id": "chrome-valkyrie",
+    "kind": "external"
+  },
+  {
+    "source": "https://images.unsplash.com/photo-1484417894907-623942c8ee29?auto=format&fit=crop&w=1800&q=88",
+    "key": "artworks/originals/iron-choir-external.jpg",
+    "size": 0,
+    "mime": "image/jpeg",
+    "id": "iron-choir",
+    "kind": "external"
+  },
+  {
+    "source": "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=1800&q=88",
+    "key": "artworks/originals/black-ice-protocol-external.jpg",
+    "size": 0,
+    "mime": "image/jpeg",
+    "id": "black-ice-protocol",
+    "kind": "external"
+  },
+  {
+    "source": "https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1800&q=88",
+    "key": "artworks/originals/neon-revenant-external.jpg",
+    "size": 0,
+    "mime": "image/jpeg",
+    "id": "neon-revenant",
+    "kind": "external"
+  },
+  {
+    "source": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1800&q=88",
+    "key": "artworks/originals/silent-orbit-external.jpg",
+    "size": 0,
+    "mime": "image/jpeg",
+    "id": "silent-orbit",
+    "kind": "external"
+  },
+  {
+    "source": "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=1800&q=88",
+    "key": "artworks/originals/celestial-bloom-external.jpg",
+    "size": 0,
+    "mime": "image/jpeg",
+    "id": "celestial-bloom",
+    "kind": "external"
+  },
+  {
+    "source": "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1800&q=88",
+    "key": "artworks/originals/last-starfarer-external.jpg",
+    "size": 0,
+    "mime": "image/jpeg",
+    "id": "last-starfarer",
+    "kind": "external"
+  },
+  {
+    "source": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=1800&q=88",
+    "key": "artworks/originals/void-archon-external.jpg",
+    "size": 0,
+    "mime": "image/jpeg",
+    "id": "void-archon",
+    "kind": "external"
+  },
+  {
+    "source": "https://images.unsplash.com/photo-1483347756197-71ef80e95f73?auto=format&fit=crop&w=1800&q=88",
+    "key": "artworks/originals/aurora-seer-external.jpg",
+    "size": 0,
+    "mime": "image/jpeg",
+    "id": "aurora-seer",
+    "kind": "external"
+  },
+  {
+    "source": "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1800&q=88",
+    "key": "artworks/originals/jade-tempest-external.jpg",
+    "size": 0,
+    "mime": "image/jpeg",
+    "id": "jade-tempest",
+    "kind": "external"
+  },
+  {
+    "source": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1800&q=88",
+    "key": "artworks/originals/crimson-kitsune-external.jpg",
+    "size": 0,
+    "mime": "image/jpeg",
+    "id": "crimson-kitsune",
+    "kind": "external"
+  },
+  {
+    "source": "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1800&q=88",
+    "key": "artworks/originals/emerald-sentinel-external.jpg",
+    "size": 0,
+    "mime": "image/jpeg",
+    "id": "emerald-sentinel",
+    "kind": "external"
+  },
+  {
+    "source": "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=1800&q=88",
+    "key": "artworks/originals/moonlit-huntress-external.jpg",
+    "size": 0,
+    "mime": "image/jpeg",
+    "id": "moonlit-huntress",
+    "kind": "external"
+  },
+  {
+    "source": "https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1800&q=88",
+    "key": "artworks/originals/verdant-king-external.jpg",
+    "size": 0,
+    "mime": "image/jpeg",
+    "id": "verdant-king",
+    "kind": "external"
+  },
+  {
+    "source": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1800&q=88",
+    "key": "artworks/originals/frost-wyrm-external.jpg",
+    "size": 0,
+    "mime": "image/jpeg",
+    "id": "frost-wyrm",
+    "kind": "external"
+  },
+  {
+    "source": "https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=1800&q=88",
+    "key": "artworks/originals/grave-tide-external.jpg",
+    "size": 0,
+    "mime": "image/jpeg",
+    "id": "grave-tide",
+    "kind": "external"
+  },
+  {
+    "source": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=88",
+    "key": "artworks/originals/sunforge-titan-external.jpg",
+    "size": 0,
+    "mime": "image/jpeg",
+    "id": "sunforge-titan",
+    "kind": "external"
+  },
+  {
+    "source": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1800&q=88",
+    "key": "artworks/originals/infernal-crown-external.jpg",
+    "size": 0,
+    "mime": "image/jpeg",
+    "id": "infernal-crown",
+    "kind": "external"
+  },
+  {
+    "source": "https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&w=1800&q=88",
+    "key": "artworks/originals/dune-exile-external.jpg",
+    "size": 0,
+    "mime": "image/jpeg",
+    "id": "dune-exile",
+    "kind": "external"
+  },
+  {
+    "source": "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1800&q=88",
+    "key": "artworks/originals/obsidian-pilgrim-external.jpg",
+    "size": 0,
+    "mime": "image/jpeg",
+    "id": "obsidian-pilgrim",
+    "kind": "external"
+  },
+  {
+    "source": "https://images.unsplash.com/photo-1489493585363-d69421e0edd3?auto=format&fit=crop&w=1800&q=88",
+    "key": "artworks/originals/rustborn-raider-external.jpg",
+    "size": 0,
+    "mime": "image/jpeg",
+    "id": "rustborn-raider",
+    "kind": "external"
+  },
+  {
+    "source": "https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=1800&q=88",
+    "key": "artworks/originals/sakura-duelist-external.jpg",
+    "size": 0,
+    "mime": "image/jpeg",
+    "id": "sakura-duelist",
+    "kind": "external"
+  },
+  {
+    "source": "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1800&q=88",
+    "key": "artworks/originals/stormbreaker-external.jpg",
+    "size": 0,
+    "mime": "image/jpeg",
+    "id": "stormbreaker",
+    "kind": "external"
+  },
+  {
+    "source": "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1800&q=88",
+    "key": "artworks/originals/ashen-vanguard-external.jpg",
+    "size": 0,
+    "mime": "image/jpeg",
+    "id": "ashen-vanguard",
+    "kind": "external"
+  }
+]
+JSON
+      - name: Copy and verify every object
+        shell: bash
+        run: |
+          cat > /tmp/migrate.mjs <<'NODE'
+          import { readFile, writeFile, unlink } from 'node:fs/promises';
+          import { spawnSync } from 'node:child_process';
+
+          const manifest=JSON.parse(await readFile('/tmp/r2-migration-manifest.json','utf8'));
+          const base=process.env.MEDIA_BASE.replace(/\/$/,'');
+          const tmp='/tmp/hyu-r2-object.bin';
+          let skipped=0,uploaded=0,totalBytes=0;
+
+          const mediaUrl=key=>base+'/media/'+key.split('/').map(encodeURIComponent).join('/');
+
+          for(const [index,item] of manifest.entries()){
+            const target=mediaUrl(item.key);
+            let head;
+            try{head=await fetch(target,{method:'HEAD',redirect:'follow'});}catch{}
+            const existing=head?.ok?Number(head.headers.get('content-length')||0):0;
+            if(head?.ok && (!item.size || existing===Number(item.size))){
+              skipped+=1;
+              console.log(`[${index+1}/${manifest.length}] exists ${item.key} (${existing} bytes)`);
+              continue;
+            }
+
+            const response=await fetch(item.source,{redirect:'follow'});
+            if(!response.ok)throw new Error(`source fetch failed ${response.status} ${item.source}`);
+            const body=new Uint8Array(await response.arrayBuffer());
+            if(!body.byteLength)throw new Error(`empty source ${item.source}`);
+            if(item.kind==='supabase' && item.size && body.byteLength!==Number(item.size)){
+              throw new Error(`size mismatch for ${item.source}: got ${body.byteLength}, expected ${item.size}`);
+            }
+            await writeFile(tmp,body);
+            const args=['r2','object','put',`hyu-premium-media/${item.key}`,'--file',tmp,'--content-type',item.mime||'application/octet-stream','--cache-control','public, max-age=31536000, immutable','--remote','--force'];
+            const run=spawnSync('wrangler',args,{stdio:'inherit',env:process.env});
+            if(run.status!==0)throw new Error(`wrangler upload failed for ${item.key}`);
+
+            const verify=await fetch(target,{method:'HEAD',redirect:'follow'});
+            if(!verify.ok)throw new Error(`target verify failed ${verify.status} ${target}`);
+            const actual=Number(verify.headers.get('content-length')||0);
+            if(actual!==body.byteLength)throw new Error(`target size mismatch for ${item.key}: got ${actual}, expected ${body.byteLength}`);
+            uploaded+=1;
+            totalBytes+=body.byteLength;
+            console.log(`[${index+1}/${manifest.length}] uploaded ${item.key} (${body.byteLength} bytes)`);
+          }
+          try{await unlink(tmp)}catch{}
+          console.log(JSON.stringify({ok:true,total:manifest.length,uploaded,skipped,totalBytes}));
+          NODE
+          node /tmp/migrate.mjs | tee /tmp/migration.log
+      - name: Publish migration summary
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo '## One-time R2 migration'
+            echo
+            echo '```'
+            tail -n 30 /tmp/migration.log 2>/dev/null || true
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
