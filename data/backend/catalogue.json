@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-19T06:56:37.734Z",
+  "generatedAt": "2026-09-19T10:54:15.894Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -2300,6 +2300,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 640021,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "ban-nga-ay-oa",
+      "name": "Bản ngã đày đọa",
+      "description": "",
+      "category": "Aya",
+      "rank": "SSS+",
+      "rankOrder": 6,
+      "credit": "Hyu",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/ban-nga-ay-oa-1789815155252.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ban-nga-ay-oa-15fa45ffb1ca-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-19T10:52:35.252Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ban-nga-ay-oa-15fa45ffb1ca-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 39562,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ban-nga-ay-oa-15fa45ffb1ca-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 79454,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ban-nga-ay-oa-15fa45ffb1ca-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 183274,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/ban-nga-ay-oa-1789815155252.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 875382,
           "mimeType": "image/jpeg"
         }
       }
@@ -8296,6 +8343,100 @@
       }
     },
     {
+      "id": "hoc-gia-lang-thang",
+      "name": "Học giả lang thang",
+      "description": "",
+      "category": "Ishar",
+      "rank": "A",
+      "rankOrder": 0,
+      "credit": "Vin",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/hoc-gia-lang-thang-1789815079338.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoc-gia-lang-thang-44c10dceb399-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-19T10:51:19.338Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoc-gia-lang-thang-44c10dceb399-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 23442,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoc-gia-lang-thang-44c10dceb399-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 44594,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoc-gia-lang-thang-44c10dceb399-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 98622,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/hoc-gia-lang-thang-1789815079338.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 487869,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "oi-tay-kheo-leo",
+      "name": "Đôi tay khéo léo",
+      "description": "",
+      "category": "Kahlii",
+      "rank": "S",
+      "rankOrder": 1,
+      "credit": "Vin",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/oi-tay-kheo-leo-1789815047155.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/oi-tay-kheo-leo-cdcdf6d1d63f-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-19T10:50:47.155Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/oi-tay-kheo-leo-cdcdf6d1d63f-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 24152,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/oi-tay-kheo-leo-cdcdf6d1d63f-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 43420,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/oi-tay-kheo-leo-cdcdf6d1d63f-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 89488,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/oi-tay-kheo-leo-1789815047155.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 455494,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
       "id": "son-tinh-cong-chua",
       "name": "Sơn Tinh Công Chúa",
       "description": "",
@@ -9419,6 +9560,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 477593,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "an-chinh-tien-ao",
+      "name": "Ẩn chinh tiên đạo",
+      "description": "",
+      "category": "Liliana",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Raphena",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/an-chinh-tien-ao-1789815116199.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/an-chinh-tien-ao-1887f6920324-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-19T10:52:41.167Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/an-chinh-tien-ao-1887f6920324-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 22516,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/an-chinh-tien-ao-1887f6920324-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 45138,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/an-chinh-tien-ao-1887f6920324-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 99424,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/an-chinh-tien-ao-1789815116199.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 524996,
           "mimeType": "image/jpeg"
         }
       }
@@ -10688,6 +10876,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 371133,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "tien-tri-tai-phep",
+      "name": "Tiên tri tài phép",
+      "description": "",
+      "category": "Mganga",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Huy Khánh",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/tien-tri-tai-phep-1789815018128.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tien-tri-tai-phep-283c0a21725e-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-19T10:50:18.128Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tien-tri-tai-phep-283c0a21725e-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 27974,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tien-tri-tai-phep-283c0a21725e-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 53316,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tien-tri-tai-phep-283c0a21725e-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 113012,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/tien-tri-tai-phep-1789815018128.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 572968,
           "mimeType": "image/jpeg"
         }
       }
@@ -13966,6 +14201,53 @@
           "width": 2752,
           "height": 1536,
           "bytes": 615358,
+          "mimeType": "image/jpeg"
+        }
+      }
+    },
+    {
+      "id": "lang-tu-hoa-hong",
+      "name": "Lãng tử hoa hồng",
+      "description": "",
+      "category": "Tachi",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Vin",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/lang-tu-hoa-hong-1789814945406.jpg",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/lang-tu-hoa-hong-48286faf47ee-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-19T10:49:05.407Z",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/lang-tu-hoa-hong-48286faf47ee-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 34656,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/lang-tu-hoa-hong-48286faf47ee-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 61110,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/lang-tu-hoa-hong-48286faf47ee-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 120134,
+          "mimeType": "image/webp"
+        }
+      },
+      "media": {
+        "original": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/lang-tu-hoa-hong-1789814945406.jpg",
+          "width": 2752,
+          "height": 1536,
+          "bytes": 530890,
           "mimeType": "image/jpeg"
         }
       }
@@ -18724,6 +19006,7 @@
     "Helen",
     "Ignis",
     "Ilumia",
+    "Ishar",
     "Kahlii",
     "Kaine",
     "Keera",
@@ -18738,6 +19021,7 @@
     "Lumburr",
     "Maloch",
     "Marja",
+    "Mganga",
     "Mina",
     "Ming",
     "Moren",
@@ -18846,6 +19130,7 @@
       "Helen",
       "Ignis",
       "Ilumia",
+      "Ishar",
       "Kahlii",
       "Kaine",
       "Keera",
@@ -18860,6 +19145,7 @@
       "Lumburr",
       "Maloch",
       "Marja",
+      "Mganga",
       "Mina",
       "Ming",
       "Moren",
