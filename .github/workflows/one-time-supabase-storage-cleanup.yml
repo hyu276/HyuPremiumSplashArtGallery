@@ -1,0 +1,36 @@
+name: One-time Supabase Storage cleanup
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/one-time-supabase-storage-cleanup.yml'
+      - 'scripts/cleanup-supabase-storage.mjs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: one-time-supabase-storage-cleanup
+  cancel-in-progress: false
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    env:
+      MEDIA_BASE: https://hyu-premium-media.csquocnguyen.workers.dev
+      SUPABASE_URL: https://zkrhwqgmynbbmoktokdq.supabase.co
+      SUPABASE_PUBLISHABLE_KEY: sb_publishable_Fqcxk9-U1qalClQZjKcrhA_U822LTIq
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pinned Supabase client
+        shell: bash
+        run: npm install --no-save @supabase/supabase-js@2.95.0
+      - name: Verify R2 mirrors and delete legacy Supabase Storage objects
+        shell: bash
+        run: node scripts/cleanup-supabase-storage.mjs
