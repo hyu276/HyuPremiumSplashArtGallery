@@ -93,8 +93,9 @@ for(const member of team){
 }
 
 const gallery=await readFile(join(ROOT,'components/GalleryClient.tsx'),'utf8');
-if(!gallery.includes('const INITIAL_RANDOM_COUNT=6'))failures.push('gallery initial media budget must remain 6');
-if(!gallery.includes('const SECOND_BATCH_COUNT=30'))failures.push('gallery second batch budget must remain 30');
+if(!gallery.includes('const INITIAL_EAGER_COUNT=6'))failures.push('gallery eager preview media budget must remain 6');
+if(!gallery.includes('const visible=filtered;'))failures.push('gallery must render all filtered artworks immediately');
+if(gallery.includes('SECOND_BATCH_COUNT')||gallery.includes('setStage(')||gallery.includes('gallery-progressive-controls')||gallery.includes('showMore'))failures.push('gallery progressive 6/batch/all rendering must remain removed');
 if(gallery.includes('loader.src=item.image'))failures.push('gallery must not preload original artwork automatically');
 if(gallery.includes('new Image(')||gallery.includes('loadAndDecodeOriginal('))failures.push('gallery must not use off-DOM original preloaders before expansion');
 if(gallery.includes('artworkPreview(item,1600)'))failures.push('gallery must not fetch a 1600px bridge before the exact original');
@@ -109,7 +110,7 @@ if(gallery.includes("const srcSet=expanded?")||gallery.includes('srcSet={expande
 if(gallery.includes('{expanded?null:<ViewportPreview'))failures.push('expanded artwork must retain only the already-loaded preview as a visual hold instead of blanking the shell');
 if(!gallery.includes('suspendLoad={expanded}'))failures.push('expanded visual hold must not start a derivative request that was not already armed before expansion');
 if(!gallery.includes('holdSize={expanded?previewHold:null}'))failures.push('expanded visual hold must preserve the pre-expansion rendered dimensions');
-if(!gallery.includes('eager={index<INITIAL_RANDOM_COUNT&&!expanded}'))failures.push('direct expanded routes must not eagerly fetch a derivative alongside the exact original');
+if(!gallery.includes('eager={index<INITIAL_EAGER_COUNT&&!expanded}'))failures.push('direct expanded routes must not eagerly fetch a derivative alongside the exact original');
 if(!gallery.includes('setPreviewHold({width:rect.width,height:rect.height})'))failures.push('gallery must capture the collapsed card dimensions before expansion to prevent derivative upscaling');
 if(!gallery.includes('{expanded?<ExpandedOriginal src={originalSrc}'))failures.push('expanded artwork must mount the exact original directly in the expanded shell');
 
