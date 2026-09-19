@@ -3,7 +3,7 @@ name: One-time Supabase and external media migration to R2
 on:
   push:
     branches:
-      - chore/r2-storage-cleanup
+      - main
     paths:
       - '.github/workflows/one-time-r2-migration.yml'
 
