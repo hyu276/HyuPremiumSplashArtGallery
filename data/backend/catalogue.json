@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-19T11:06:41.960Z",
+  "generatedAt": "2026-09-20T03:17:54.221Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -2356,15 +2356,11 @@
       "name": "Bản ngã đày đọa",
       "description": "",
       "category": "Aya",
-      "rank": "SSS+",
-      "rankOrder": 6,
+      "rank": "SSS+ Tối thượng",
+      "rankOrder": 7,
       "credit": "Hyu",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/originals/ban-nga-ay-oa-1789815155252.jpg",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ban-nga-ay-oa-15fa45ffb1ca-1600.webp",
-      "tags": [],
-      "hidden": false,
-      "isVietnameseSkin": false,
-      "updatedAt": "2026-09-19T10:52:35.252Z",
       "variants": {
         "640": {
           "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ban-nga-ay-oa-15fa45ffb1ca-640.webp",
@@ -2396,7 +2392,11 @@
           "bytes": 875382,
           "mimeType": "image/jpeg"
         }
-      }
+      },
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-20T03:16:38.699Z"
     },
     {
       "id": "dj-tiec-bai-bien-3",
