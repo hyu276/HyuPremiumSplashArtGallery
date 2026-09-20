@@ -56,6 +56,22 @@ function championMediaKey(category:string,source:string){const safe=String(categ
 function publicR2Url(base:string,key:string){return `${base.replace(/\/$/,'')}/media/${key.split('/').map(encodeURIComponent).join('/')}`}
 function validChampionOriginal(base:string,value:string){try{const url=new URL(value);const root=new URL(base);return url.origin===root.origin&&decodeURIComponent(url.pathname).startsWith('/media/champions/originals/')}catch{return false}}
 
+async function fetchSourceImage(base:string,token:string,value:string){
+  const source=String(value||'').trim();
+  let url=source;
+  const headers:Record<string,string>={Accept:'image/*'};
+  try{
+    const parsed=new URL(source);
+    const root=new URL(base);
+    if(parsed.origin===root.origin&&parsed.pathname.startsWith('/media/')){
+      const key=decodeURIComponent(parsed.pathname.slice('/media/'.length));
+      url=`${base.replace(/\/$/,'')}/admin/media/${key.split('/').map(encodeURIComponent).join('/')}`;
+      headers.Authorization=`Bearer ${token}`;
+    }
+  }catch{}
+  return fetch(url,{cache:'no-store',headers});
+}
+
 async function putR2(base:string,token:string,key:string,buffer:Buffer){
   const url=`${base.replace(/\/$/,'')}/admin/media/${key.split('/').map(encodeURIComponent).join('/')}`;
   let lastError:unknown;
@@ -92,7 +108,7 @@ async function enrichMedia(item:any,storageBase:string,token:string){
   const next=canonicalItem(item);
   if(!next.image)return next;
   if(completeVariants(next))return finalizeArtworkDerivatives(next);
-  const response=await fetch(String(next.image),{cache:'no-store',headers:{Accept:'image/*'}});
+  const response=await fetchSourceImage(storageBase,token,String(next.image));
   if(!response.ok)throw new Error(`Không tải được ảnh gốc của ${next.id} để tạo derivative (${response.status}).`);
   const input=Buffer.from(await response.arrayBuffer());
   const variants:Record<string,MediaVariant>={...(next.variants||{})};
@@ -122,7 +138,7 @@ async function enrichChampionThumbnail(category:string,choice:ChampionThumbnailC
   if(existing?.url&&Number(existing.width)>0&&Number(existing.width)<=CHAMPION_THUMB_WIDTH){
     return {mode:'custom',image:String(existing.url),thumbnail:String(existing.url),variant:existing,updatedAt:choice.updatedAt};
   }
-  const response=await fetch(image,{cache:'no-store',headers:{Accept:'image/*'}});
+  const response=await fetchSourceImage(storageBase,token,image);
   if(!response.ok)throw new Error(`Không tải được thumbnail gốc của ${category} (${response.status}).`);
   const input=Buffer.from(await response.arrayBuffer());
   const {data,info}=await sharp(input,{animated:false}).rotate().resize({width:CHAMPION_THUMB_WIDTH,withoutEnlargement:true}).webp({quality:78,effort:4}).toBuffer({resolveWithObject:true});
@@ -135,7 +151,7 @@ async function enrichChampionThumbnail(category:string,choice:ChampionThumbnailC
 async function enrichTeamMember(member:any,storageBase:string,token:string){
   const next={...(member||{})};if(!next.image)return next;
   const complete=TEAM_VARIANT_WIDTHS.every(width=>next?.variants?.[String(width)]?.url);if(complete)return finalizeTeamDerivatives(next);
-  const response=await fetch(String(next.image),{cache:'no-store',headers:{Accept:'image/*'}});if(!response.ok)throw new Error(`Không tải được ảnh đội ngũ ${next.id} (${response.status}).`);
+  const response=await fetchSourceImage(storageBase,token,String(next.image));if(!response.ok)throw new Error(`Không tải được ảnh đội ngũ ${next.id} (${response.status}).`);
   const input=Buffer.from(await response.arrayBuffer());const variants:Record<string,MediaVariant>={...(next.variants||{})};
   for(const width of TEAM_VARIANT_WIDTHS){if(variants[String(width)]?.url)continue;const {data,info}=await sharp(input,{animated:false}).rotate().resize({width,withoutEnlargement:true}).webp({quality:width===320?76:80,effort:4}).toBuffer({resolveWithObject:true});const key=teamMediaKey(next.id,String(next.image),width);const url=await putR2(storageBase,token,key,data);variants[String(width)]={url,width:info.width,height:info.height,bytes:data.length,mimeType:'image/webp'};}
   next.variants=variants;return finalizeTeamDerivatives(next);
