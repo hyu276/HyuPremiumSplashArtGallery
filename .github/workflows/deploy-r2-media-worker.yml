@@ -120,9 +120,15 @@ jobs:
           subdomain=$(printf '%s' "$json" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{const j=JSON.parse(s);if(!j.success||!j.result?.subdomain)process.exit(2);process.stdout.write(j.result.subdomain)})")
           base="https://hyu-premium-media.${subdomain}.workers.dev"
           source=$(node -e "const c=require('./data/backend/catalogue.json');const i=c.items.find(x=>!x.hidden&&x.variants?.['640']?.url);if(!i)process.exit(2);process.stdout.write(i.variants['640'].url)")
+          original=$(node -e "const c=require('./data/backend/catalogue.json');const i=c.items.find(x=>x.media?.original?.url);if(!i)process.exit(2);process.stdout.write(i.media.original.url)")
           pathname=$(SOURCE="$source" node -e "process.stdout.write(new URL(process.env.SOURCE).pathname)")
+          original_path=$(SOURCE="$original" node -e "process.stdout.write(new URL(process.env.SOURCE).pathname)")
+          original_key=$(SOURCE="$original_path" node -e "process.stdout.write(decodeURIComponent(process.env.SOURCE.replace(/^\/media\//,'')))")
+          admin_original_path=$(ORIGINAL_KEY="$original_key" node -e "process.stdout.write('/admin/media/'+process.env.ORIGINAL_KEY.split('/').map(encodeURIComponent).join('/'))")
           echo "MEDIA_BASE=$base" >> "$GITHUB_ENV"
           echo "MEDIA_URL=$base$pathname" >> "$GITHUB_ENV"
+          echo "ORIGINAL_URL=$base$original_path" >> "$GITHUB_ENV"
+          echo "ADMIN_ORIGINAL_URL=$base$admin_original_path" >> "$GITHUB_ENV"
           echo "Worker: $base"
           echo "Probe media: $base$pathname"
       - name: Ensure canonical media hostname bypasses Access
@@ -236,6 +242,20 @@ jobs:
             sleep 2
           done
           test "$consecutive" -ge "$required" || { echo '::error::Media Worker did not sustain six consecutive health/CORS successes; intermittent Access interception is still present.'; exit 1; }
+      - name: Verify originals are private and admin reads require auth
+        shell: bash
+        run: |
+          set -euo pipefail
+          public_code=$(curl -sS -o /tmp/original-public -D /tmp/original-public-headers -w '%{http_code}' "$ORIGINAL_URL")
+          echo "public original status=$public_code"
+          test "$public_code" = "404" || { echo "::error::Expected public original 404, got $public_code"; exit 1; }
+          grep -Eiq '^cache-control: .*no-store' /tmp/original-public-headers
+
+          admin_code=$(curl -sS -o /tmp/original-admin -D /tmp/original-admin-headers -w '%{http_code}' "$ADMIN_ORIGINAL_URL")
+          echo "unauthenticated admin original status=$admin_code"
+          test "$admin_code" = "401" || { echo "::error::Expected unauthenticated admin original 401, got $admin_code"; exit 1; }
+          grep -q 'GitHub token required' /tmp/original-admin
+
       - name: Verify unauthenticated admin PUT consistently reaches Worker auth
         shell: bash
         run: |

@@ -188,6 +188,7 @@ const adminBackend=await readFile(join(ROOT,'app/api/admin-backend/route.ts'),'u
 if(!adminBackend.includes("const categories=preferredCategories;"))failures.push('admin backend must keep taxonomy authoritative instead of rebuilding deleted choices from items');
 if(!adminBackend.includes('invalidCredits')||!adminBackend.includes('invalidRanks')||!adminBackend.includes('invalidCategories'))failures.push('admin backend must reject dangling taxonomy references before publish');
 if(!adminBackend.includes('function finalizeArtworkDerivatives')||!adminBackend.includes('function finalizeTeamDerivatives'))failures.push('admin backend must finalize public metadata on derivatives rather than originals');
+if(!adminBackend.includes('async function fetchSourceImage')||!adminBackend.includes('/admin/media/'))failures.push('admin backend must fetch R2 staging originals through the authenticated admin path');
 if(adminBackend.includes("unique([...preferredCredits"))failures.push('admin backend must not resurrect deleted credits from item values');
 
 const admin=await readFile(join(ROOT,'components/GitHubAdminDashboard.tsx'),'utf8');
@@ -220,6 +221,8 @@ if(worker.includes('caches.default'))failures.push('worker must use Workers Cach
 if(!worker.includes("'Cloudflare-CDN-Cache-Control'"))failures.push('worker must emit Cloudflare CDN cache control');
 if(!worker.includes("cacheMode: 'workers-caching'"))failures.push('worker health must expose Workers Caching mode');
 if(!worker.includes('MAX_FALLBACK_RANGE'))failures.push('worker must retain bounded Range fallback');
+if(!worker.includes('PRIVATE_ORIGINAL_PREFIXES')||!worker.includes('privateOriginalKey(publicKey)'))failures.push('worker must deny public access to original/staging namespaces');
+if(!worker.includes("request.method==='GET' || request.method === 'HEAD'")&&!worker.includes("request.method === 'GET' || request.method === 'HEAD'"))failures.push('worker admin path must support authenticated original reads');
 
 const wrangler=JSON.parse((await readFile(join(ROOT,'cloudflare/r2-media-worker/wrangler.jsonc'),'utf8')).replace(/^\s*\/\/.*$/gm,''));
 if(wrangler?.cache?.enabled!==true)failures.push('wrangler cache.enabled must be true');
