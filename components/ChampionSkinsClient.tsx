@@ -12,7 +12,7 @@ export default function ChampionSkinsClient({ category, items }: { category: str
   const trackRef = useRef<HTMLDivElement>(null);
   const active = items[activeIndex] || items[0];
   const progress = items.length > 1 ? ((activeIndex + 1) / items.length) * 100 : 100;
-  const originalSrc = active ? (active.media?.original?.url || active.image) : '';
+  const expandedSrc = active ? artworkPreview(active, 1600) : '';
 
   useEffect(() => {
     setActiveIndex(0);
@@ -45,7 +45,7 @@ export default function ChampionSkinsClient({ category, items }: { category: str
 
       <div className="champion-media-viewport">
         <img
-          src={originalSrc}
+          src={expandedSrc}
           alt={`${active.name} — ${category}, splash art hạng ${active.rank}`}
           loading="eager"
           decoding="async"
