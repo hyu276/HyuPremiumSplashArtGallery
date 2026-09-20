@@ -22,10 +22,12 @@ The following are repository-level invariants and MUST NOT be changed casually:
 - The admin frontend is hosted on GitHub Pages only.
 - Never create, restore, redirect to, or silently deploy an admin frontend on Vercel.
 - GitHub repository metadata is the authoritative content source.
-- Cloudflare R2 is the media object store; the Worker is the media delivery/auth boundary.
-- Existing public media URLs and immutable cache keys should remain stable whenever possible.
+- Cloudflare R2 stores web-serving derivatives only; temporary full-resolution staging objects may exist only during an authenticated publish flow and must be purged after verified archival.
+- Google Drive is the non-serving cold archive for full-resolution originals. Browser/runtime traffic must never fetch Drive originals.
+- Supabase is retired from the HyuPremium architecture. Do not add Supabase Database, Auth, Storage, Realtime, Edge Functions, SDK packages, endpoints, environment variables, or credentials unless the user explicitly reverses this architecture.
+- Existing public derivative URLs and immutable cache keys should remain stable whenever possible.
 - Media egress must not increase without an explicit reason, request-cost analysis, and verification.
-- Final expanded artwork must preserve exact-original image fidelity.
+- Final expanded artwork must use the deterministic 1600px R2 derivative; full-resolution originals are archival assets, not runtime assets.
 - Performance optimization must not trade away correctness, responsive usability, cache efficiency, or image sharpness.
 - No direct commits to `main`; use a branch and pull request.
 - Production fixes must preserve previously solved regressions unless the user explicitly accepts a trade-off.
