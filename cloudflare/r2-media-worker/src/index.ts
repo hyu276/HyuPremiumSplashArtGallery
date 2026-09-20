@@ -62,6 +62,18 @@ function adminKey(url: URL) {
   return cleanKey(url.pathname.slice('/admin/media/'.length));
 }
 
+const PRIVATE_ORIGINAL_PREFIXES=[
+  'artworks/originals/',
+  'champions/originals/',
+  'team/members/',
+  'legacy/repo/',
+  'legacy/owner/'
+] as const;
+
+function privateOriginalKey(key:string){
+  return PRIVATE_ORIGINAL_PREFIXES.some(prefix=>key.startsWith(prefix));
+}
+
 function sleep(ms:number){return new Promise(resolve=>setTimeout(resolve,ms))}
 function retryDelay(response:Response,attempt=0){const raw=response.headers.get('retry-after')||'';const seconds=/^\d+$/.test(raw)?Number(raw):0;return seconds>0?Math.min(seconds*1000,2000):300+attempt*500}
 function r2RetryDelay(attempt:number){return Math.min(2000,250*(2**attempt)+Math.floor(Math.random()*150))}
@@ -211,7 +223,7 @@ function adminFailureResponse(request:Request,error:unknown,requestId:string){
   return Response.json({error:message,requestId,service:'github-auth',code},{status,headers:{...adminCors(request),'Cache-Control':'no-store','X-HYU-Request-Id':requestId}});
 }
 
-function r2FailureResponse(request:Request,error:unknown,requestId:string,operation:'put'|'delete'){
+function r2FailureResponse(request:Request,error:unknown,requestId:string,operation:'put'|'delete'|'get'){
   const status=r2FailureStatus(error);
   const numericCode=r2ErrorCode(error);
   const code=numericCode?String(numericCode):'R2_UPSTREAM';
@@ -269,6 +281,29 @@ function parseSingleRange(value:string,size:number){
   return {offset:start,length,start,end};
 }
 
+async function privateAdminMedia(request:Request,env:Env,key:string,requestId:string){
+  try{
+    if(request.method==='HEAD'){
+      const object=await env.MEDIA.head(key);
+      if(!object)return new Response('Not found',{status:404,headers:{...adminCors(request),'Cache-Control':'no-store','X-HYU-Request-Id':requestId}});
+      const headers=objectHeaders(object);
+      for(const [name,value] of Object.entries(adminCors(request)))headers.set(name,value);
+      headers.set('Cache-Control','private, no-store');
+      headers.set('Cloudflare-CDN-Cache-Control','no-store');
+      headers.set('X-HYU-Request-Id',requestId);
+      return new Response(null,{status:200,headers});
+    }
+    const object=await env.MEDIA.get(key);
+    if(!object)return new Response('Not found',{status:404,headers:{...adminCors(request),'Cache-Control':'no-store','X-HYU-Request-Id':requestId}});
+    const headers=objectHeaders(object);
+    for(const [name,value] of Object.entries(adminCors(request)))headers.set(name,value);
+    headers.set('Cache-Control','private, no-store');
+    headers.set('Cloudflare-CDN-Cache-Control','no-store');
+    headers.set('X-HYU-Request-Id',requestId);
+    return new Response(object.body,{status:200,headers});
+  }catch(error){return r2FailureResponse(request,error,requestId,'get')}
+}
+
 async function publicMedia(request:Request,env:Env,key:string){
   if(request.method==='HEAD'){
     const object=await env.MEDIA.head(key);
@@ -306,6 +341,7 @@ export default {
 
     const publicKey = mediaKey(url);
     if(publicKey&&(request.method==='GET'||request.method==='HEAD')){
+      if(privateOriginalKey(publicKey))return new Response('Not found',{status:404,headers:{'Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff'}});
       if(url.search){
         const clean=new URL(url);clean.search='';clean.hash='';
         return Response.redirect(clean.toString(),308);
@@ -314,11 +350,13 @@ export default {
     }
 
     const key = adminKey(url);
-    if (key && (request.method === 'PUT' || request.method === 'DELETE')) {
+    if (key && (request.method === 'GET' || request.method === 'HEAD' || request.method === 'PUT' || request.method === 'DELETE')) {
       const requestId=crypto.randomUUID().slice(0,12);
       let admin:{login:string};
       try{admin=await githubAdmin(request,env)}
       catch(error){return adminFailureResponse(request,error,requestId)}
+
+      if(request.method==='GET'||request.method==='HEAD')return privateAdminMedia(request,env,key,requestId);
 
       if(request.method==='DELETE'){
         try{
