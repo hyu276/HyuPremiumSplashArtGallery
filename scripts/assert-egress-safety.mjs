@@ -2,8 +2,8 @@ import { readFile, readdir, stat } from 'node:fs/promises';
 import { join, relative } from 'node:path';
 
 const ROOT=process.cwd();
-const SCAN_ROOTS=['app','components','lib','scripts','.github','cloudflare','data/backend'];
-const ROOT_SCAN_FILES=['package.json','package-lock.json','next.config.ts','vercel.json','tsconfig.json','admin.html'];
+const SCAN_ROOTS=['app','components','lib','scripts','.github','cloudflare','data','admin-src','assets'];
+const ROOT_SCAN_FILES=['package.json','package-lock.json','next.config.ts','next.config.mjs','vercel.json','tsconfig.json','admin.html','index.html','about.html','blog.html','news.html','seomanager.html','minigame.html','demonewweb.html'];
 const RETIRED_PROVIDER=['supa','base'].join('');
 const FORBIDDEN=[
   ['retired provider reference',RETIRED_PROVIDER],
