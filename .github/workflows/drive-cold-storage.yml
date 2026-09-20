@@ -94,6 +94,7 @@ jobs:
           test -n "${CLOUDFLARE_API_TOKEN:-}" || { echo '::error::Missing CLOUDFLARE_API_TOKEN'; exit 1; }
           node - <<'NODE'
           const fs=require('fs');
+          (async()=>{
           const storage=JSON.parse(fs.readFileSync('data/backend/storage.json','utf8'));
           const manifest=JSON.parse(fs.readFileSync('data/backend/drive-originals-manifest.json','utf8'));
           const account=process.env.CLOUDFLARE_ACCOUNT_ID;
@@ -129,6 +130,7 @@ jobs:
           if(found+missing!==manifest.objectCount)throw new Error('Inventory count mismatch.');
           fs.writeFileSync('/tmp/r2-purge-inventory.json',JSON.stringify({found,missing,bytes,total:manifest.objectCount},null,2));
           console.log(`Inventory passed: ${found} originals present (${bytes} bytes), ${missing} already absent.`);
+          })().catch(error=>{console.error(error);process.exit(1)});
           NODE
 
       - name: Delete only Drive-verified original keys from R2
@@ -138,6 +140,7 @@ jobs:
           set -euo pipefail
           node - <<'NODE'
           const fs=require('fs');
+          (async()=>{
           const storage=JSON.parse(fs.readFileSync('data/backend/storage.json','utf8'));
           const manifest=JSON.parse(fs.readFileSync('data/backend/drive-originals-manifest.json','utf8'));
           const account=process.env.CLOUDFLARE_ACCOUNT_ID;
@@ -160,6 +163,7 @@ jobs:
             }
           }
           await Promise.all(Array.from({length:8},()=>worker()));
+          })().catch(error=>{console.error(error);process.exit(1)});
           NODE
 
       - name: Verify every archived original key is absent from R2
@@ -169,6 +173,7 @@ jobs:
           set -euo pipefail
           node - <<'NODE'
           const fs=require('fs');
+          (async()=>{
           const storage=JSON.parse(fs.readFileSync('data/backend/storage.json','utf8'));
           const manifest=JSON.parse(fs.readFileSync('data/backend/drive-originals-manifest.json','utf8'));
           const account=process.env.CLOUDFLARE_ACCOUNT_ID;
@@ -206,6 +211,7 @@ jobs:
           };
           fs.writeFileSync('/tmp/r2-original-purge-report.json',JSON.stringify(report,null,2)+'\n');
           console.log(JSON.stringify(report,null,2));
+          })().catch(error=>{console.error(error);process.exit(1)});
           NODE
 
       - name: Upload purge verification report
