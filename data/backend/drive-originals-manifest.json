@@ -1,0 +1,3287 @@
+{
+  "schemaVersion": 1,
+  "purpose": "purge verified full-resolution originals from R2 after Drive archival",
+  "source": {
+    "catalogueBlobSha": "3139006821ef5c27f25cf85c24611be490e4b2d2",
+    "teamBlobSha": "55eaea47509670c4af55644a8a76b32b757514de",
+    "archiveVerifiedRunId": 35488669144,
+    "archiveObjectCount": 409,
+    "archiveBytes": 384897226,
+    "snapshotSha256": "4999fbdfc6b54462cfca18a954bfff75701ba2fb3301855e7f6d496ea88da3b9"
+  },
+  "objectCount": 409,
+  "objects": [
+    {
+      "key": "artworks/originals/a-i-hate-you-1788930570357.jpg",
+      "expectedBytes": 674826,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:a-i-hate-you"
+      ]
+    },
+    {
+      "key": "artworks/originals/ac-linh-hac-giap-1788632574691.jpg",
+      "expectedBytes": 557469,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:ac-linh-hac-giap"
+      ]
+    },
+    {
+      "key": "artworks/originals/ac-linh-hac-giap-a-sac-1788632603221.jpg",
+      "expectedBytes": 540655,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:ac-linh-hac-giap-a-sac"
+      ]
+    },
+    {
+      "key": "artworks/originals/ai-cong-tuoc-1789580796900.jpg",
+      "expectedBytes": 656120,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:ai-cong-tuoc"
+      ]
+    },
+    {
+      "key": "artworks/originals/an-chinh-1789187867251.jpg",
+      "expectedBytes": 536849,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:an-chinh"
+      ]
+    },
+    {
+      "key": "artworks/originals/an-chinh-tien-ao-1789815116199.jpg",
+      "expectedBytes": 524996,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:an-chinh-tien-ao"
+      ]
+    },
+    {
+      "key": "artworks/originals/ao-nguyet-1789317152854.jpg",
+      "expectedBytes": 450500,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:ao-nguyet"
+      ]
+    },
+    {
+      "key": "artworks/originals/ao-nguyet-mong-hoa-1788703064034.jpg",
+      "expectedBytes": 444735,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:ao-nguyet-mong-hoa"
+      ]
+    },
+    {
+      "key": "artworks/originals/ashen-vanguard-external.jpg",
+      "expectedBytes": 466521,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:ashen-vanguard"
+      ]
+    },
+    {
+      "key": "artworks/originals/au-ha-lan-1787976574420.jpg",
+      "expectedBytes": 486700,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:au-ha-lan"
+      ]
+    },
+    {
+      "key": "artworks/originals/aurora-seer-external.jpg",
+      "expectedBytes": 436051,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:aurora-seer"
+      ]
+    },
+    {
+      "key": "artworks/originals/ban-nga-ay-oa-1789815155252.jpg",
+      "expectedBytes": 875382,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:ban-nga-ay-oa"
+      ]
+    },
+    {
+      "key": "artworks/originals/ban-nga-ta-ac-1788512732151.jpg",
+      "expectedBytes": 617713,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:ban-nga-ta-ac"
+      ]
+    },
+    {
+      "key": "artworks/originals/bao-tu-chua-1788930635643.jpg",
+      "expectedBytes": 561881,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:bao-tu-chua"
+      ]
+    },
+    {
+      "key": "artworks/originals/bich-vu-khong-tuoc-1788445121114.jpg",
+      "expectedBytes": 736216,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:bich-vu-khong-tuoc"
+      ]
+    },
+    {
+      "key": "artworks/originals/black-ice-protocol-external.jpg",
+      "expectedBytes": 218613,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:black-ice-protocol"
+      ]
+    },
+    {
+      "key": "artworks/originals/boi-uoc-1789190734854.jpg",
+      "expectedBytes": 640416,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:boi-uoc"
+      ]
+    },
+    {
+      "key": "artworks/originals/boi-uoc-2-1789191818010.jpg",
+      "expectedBytes": 631566,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:boi-uoc-2"
+      ]
+    },
+    {
+      "key": "artworks/originals/boi-uoc-3-1789212314066.jpg",
+      "expectedBytes": 587069,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:boi-uoc-3"
+      ]
+    },
+    {
+      "key": "artworks/originals/boi-uoc-4-1789214004214.jpg",
+      "expectedBytes": 654902,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:boi-uoc-4"
+      ]
+    },
+    {
+      "key": "artworks/originals/bong-ma-san-moi-1788512315748.jpg",
+      "expectedBytes": 815981,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:bong-ma-san-moi"
+      ]
+    },
+    {
+      "key": "artworks/originals/bong-ma-san-moi-2-1788512328837.jpg",
+      "expectedBytes": 792003,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:bong-ma-san-moi-2"
+      ]
+    },
+    {
+      "key": "artworks/originals/bong-ma-san-moi-3-1788512344304.jpg",
+      "expectedBytes": 782971,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:bong-ma-san-moi-3"
+      ]
+    },
+    {
+      "key": "artworks/originals/bong-ma-san-moi-4-1788692995094.jpg",
+      "expectedBytes": 454748,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:bong-ma-san-moi-4"
+      ]
+    },
+    {
+      "key": "artworks/originals/bonnibel-1789049024109.jpg",
+      "expectedBytes": 722941,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:bonnibel"
+      ]
+    },
+    {
+      "key": "artworks/originals/canh-ao-nghenh-xuan-1789212414681.jpg",
+      "expectedBytes": 628499,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:canh-ao-nghenh-xuan"
+      ]
+    },
+    {
+      "key": "artworks/originals/canh-ao-nghenh-xuan-2-1789190726534.jpg",
+      "expectedBytes": 452720,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:canh-ao-nghenh-xuan-2"
+      ]
+    },
+    {
+      "key": "artworks/originals/canh-loc-gio-vang-1789223371945.jpg",
+      "expectedBytes": 600509,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:canh-loc-gio-vang"
+      ]
+    },
+    {
+      "key": "artworks/originals/celestial-bloom-external.jpg",
+      "expectedBytes": 460542,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:celestial-bloom"
+      ]
+    },
+    {
+      "key": "artworks/originals/cham-vo-tan-so-1789223331600.png",
+      "expectedBytes": 2388968,
+      "mimeType": "image/png",
+      "sources": [
+        "catalogue:cham-vo-tan-so"
+      ]
+    },
+    {
+      "key": "artworks/originals/chien-than-tan-the-2-1788444483588.jpg",
+      "expectedBytes": 457389,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:chien-than-tan-the-2"
+      ]
+    },
+    {
+      "key": "artworks/originals/chrome-valkyrie-external.jpg",
+      "expectedBytes": 739689,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:chrome-valkyrie"
+      ]
+    },
+    {
+      "key": "artworks/originals/chubby-me-an-1788448448705.jpg",
+      "expectedBytes": 419457,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:chubby-me-an"
+      ]
+    },
+    {
+      "key": "artworks/originals/cong-cong-ai-duong-1788702950202.jpg",
+      "expectedBytes": 579510,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:cong-cong-ai-duong"
+      ]
+    },
+    {
+      "key": "artworks/originals/cong-vien-u-ngua-1789534764714.jpg",
+      "expectedBytes": 436347,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:cong-vien-u-ngua"
+      ]
+    },
+    {
+      "key": "artworks/originals/crimson-kitsune-external.jpg",
+      "expectedBytes": 292250,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:crimson-kitsune"
+      ]
+    },
+    {
+      "key": "artworks/originals/cuong-loi-quy-vuong-1788446147173.jpg",
+      "expectedBytes": 696034,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:cuong-loi-quy-vuong"
+      ]
+    },
+    {
+      "key": "artworks/originals/cuu-ho-bai-bien-1789534705121.jpg",
+      "expectedBytes": 474329,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:cuu-ho-bai-bien"
+      ]
+    },
+    {
+      "key": "artworks/originals/cuu-thien-ngoc-nu-1788703775691.jpg",
+      "expectedBytes": 609102,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:cuu-thien-ngoc-nu"
+      ]
+    },
+    {
+      "key": "artworks/originals/dau-an-lich-su-1788442492235.jpg",
+      "expectedBytes": 492354,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:dau-an-lich-su"
+      ]
+    },
+    {
+      "key": "artworks/originals/dj-sieu-ang-1788445752716.jpg",
+      "expectedBytes": 469581,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:dj-sieu-ang"
+      ]
+    },
+    {
+      "key": "artworks/originals/dj-sieu-ang-2-1788446183094.jpg",
+      "expectedBytes": 427445,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:dj-sieu-ang-2"
+      ]
+    },
+    {
+      "key": "artworks/originals/dj-tiec-bai-bien-1788633604225.jpg",
+      "expectedBytes": 924659,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:dj-tiec-bai-bien"
+      ]
+    },
+    {
+      "key": "artworks/originals/dj-tiec-bai-bien-2-1788633617415.jpg",
+      "expectedBytes": 936361,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:dj-tiec-bai-bien-2"
+      ]
+    },
+    {
+      "key": "artworks/originals/dj-tiec-bai-bien-3-1788710915908.jpg",
+      "expectedBytes": 538687,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:dj-tiec-bai-bien-3"
+      ]
+    },
+    {
+      "key": "artworks/originals/dj-tiec-bai-bien-4-1788710927039.jpg",
+      "expectedBytes": 528664,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:dj-tiec-bai-bien-4"
+      ]
+    },
+    {
+      "key": "artworks/originals/dj-tiec-bai-bien-5-1788710979027.jpg",
+      "expectedBytes": 594100,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:dj-tiec-bai-bien-5"
+      ]
+    },
+    {
+      "key": "artworks/originals/dj-tiec-bai-bien-6-1788710988838.jpg",
+      "expectedBytes": 518155,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:dj-tiec-bai-bien-6"
+      ]
+    },
+    {
+      "key": "artworks/originals/dj-tiec-bai-bien-7-1788710999144.jpg",
+      "expectedBytes": 557872,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:dj-tiec-bai-bien-7"
+      ]
+    },
+    {
+      "key": "artworks/originals/dj-tiec-bai-bien-8-1788711007395.jpg",
+      "expectedBytes": 552605,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:dj-tiec-bai-bien-8"
+      ]
+    },
+    {
+      "key": "artworks/originals/dj-tiec-bai-bien-9-1788711285853.jpg",
+      "expectedBytes": 578792,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:dj-tiec-bai-bien-9"
+      ]
+    },
+    {
+      "key": "artworks/originals/dj-tiec-bai-bien-hang-hieu-1788796686267.jpg",
+      "expectedBytes": 520852,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:dj-tiec-bai-bien-hang-hieu"
+      ]
+    },
+    {
+      "key": "artworks/originals/dj-tiec-bai-bien-hang-hieu-2-1788796694892.jpg",
+      "expectedBytes": 486543,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:dj-tiec-bai-bien-hang-hieu-2"
+      ]
+    },
+    {
+      "key": "artworks/originals/dua-hau-bang-1787976587546.jpg",
+      "expectedBytes": 425936,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:dua-hau-bang"
+      ]
+    },
+    {
+      "key": "artworks/originals/dune-exile-external.jpg",
+      "expectedBytes": 416742,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:dune-exile"
+      ]
+    },
+    {
+      "key": "artworks/originals/dzu-teh-yeti-1788350490742.jpg",
+      "expectedBytes": 425526,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:dzu-teh-yeti"
+      ]
+    },
+    {
+      "key": "artworks/originals/e-vuong-uong-top-1789496368878.jpg",
+      "expectedBytes": 695095,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:e-vuong-uong-top"
+      ]
+    },
+    {
+      "key": "artworks/originals/ech-xanh-vui-ve-1788702928608.jpg",
+      "expectedBytes": 521841,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:ech-xanh-vui-ve"
+      ]
+    },
+    {
+      "key": "artworks/originals/emerald-sentinel-external.jpg",
+      "expectedBytes": 475490,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:emerald-sentinel"
+      ]
+    },
+    {
+      "key": "artworks/originals/frost-wyrm-external.jpg",
+      "expectedBytes": 558593,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:frost-wyrm"
+      ]
+    },
+    {
+      "key": "artworks/originals/ga-he-ma-quai-1789225665933.jpg",
+      "expectedBytes": 561792,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:ga-he-ma-quai"
+      ]
+    },
+    {
+      "key": "artworks/originals/giang-ho-boy-pho-1788796717080.jpg",
+      "expectedBytes": 451784,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:giang-ho-boy-pho"
+      ]
+    },
+    {
+      "key": "artworks/originals/giang-ho-boy-pho-hang-hieu-1788796710427.jpg",
+      "expectedBytes": 582398,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:giang-ho-boy-pho-hang-hieu"
+      ]
+    },
+    {
+      "key": "artworks/originals/giang-ho-can-tat-1789230539698.jpg",
+      "expectedBytes": 446911,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:giang-ho-can-tat"
+      ]
+    },
+    {
+      "key": "artworks/originals/giang-ho-girl-pho-1788796731684.jpg",
+      "expectedBytes": 519546,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:giang-ho-girl-pho"
+      ]
+    },
+    {
+      "key": "artworks/originals/giang-ho-girl-pho-2-1788796780266.jpg",
+      "expectedBytes": 519546,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:giang-ho-girl-pho-2"
+      ]
+    },
+    {
+      "key": "artworks/originals/grave-tide-external.jpg",
+      "expectedBytes": 228964,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:grave-tide"
+      ]
+    },
+    {
+      "key": "artworks/originals/hac-am-1789187853180.jpg",
+      "expectedBytes": 558362,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:hac-am"
+      ]
+    },
+    {
+      "key": "artworks/originals/hac-am-2-1789212268307.jpg",
+      "expectedBytes": 516932,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:hac-am-2"
+      ]
+    },
+    {
+      "key": "artworks/originals/hac-am-3-1789212274151.jpg",
+      "expectedBytes": 452866,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:hac-am-3"
+      ]
+    },
+    {
+      "key": "artworks/originals/hac-am-4-1789212286549.jpg",
+      "expectedBytes": 394581,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:hac-am-4"
+      ]
+    },
+    {
+      "key": "artworks/originals/hac-nguyet-ma-than-1787840134450.jpg",
+      "expectedBytes": 411791,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:hac-nguyet-ma-than"
+      ]
+    },
+    {
+      "key": "artworks/originals/hac-nu-khuyen-1788930618249.jpg",
+      "expectedBytes": 470012,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:hac-nu-khuyen"
+      ]
+    },
+    {
+      "key": "artworks/originals/hai-trieu-hu-khong-1789223343509.png",
+      "expectedBytes": 1974174,
+      "mimeType": "image/png",
+      "sources": [
+        "catalogue:hai-trieu-hu-khong"
+      ]
+    },
+    {
+      "key": "artworks/originals/hao-kiep-than-cong-1789316825641.jpg",
+      "expectedBytes": 824940,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:hao-kiep-than-cong"
+      ]
+    },
+    {
+      "key": "artworks/originals/hao-kiep-than-cong-2-1789316833286.jpg",
+      "expectedBytes": 685293,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:hao-kiep-than-cong-2"
+      ]
+    },
+    {
+      "key": "artworks/originals/hao-kiep-than-cong-3-1789316842296.jpg",
+      "expectedBytes": 714772,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:hao-kiep-than-cong-3"
+      ]
+    },
+    {
+      "key": "artworks/originals/hao-kiep-than-cong-4-1789316883158.jpg",
+      "expectedBytes": 736534,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:hao-kiep-than-cong-4"
+      ]
+    },
+    {
+      "key": "artworks/originals/hao-kiep-than-cong-5-1789316889886.jpg",
+      "expectedBytes": 703931,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:hao-kiep-than-cong-5"
+      ]
+    },
+    {
+      "key": "artworks/originals/hao-kiep-than-cong-6-1789316908634.jpg",
+      "expectedBytes": 816486,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:hao-kiep-than-cong-6"
+      ]
+    },
+    {
+      "key": "artworks/originals/hao-kiep-than-cong-hang-hieu-1789316872661.jpg",
+      "expectedBytes": 833539,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:hao-kiep-than-cong-hang-hieu"
+      ]
+    },
+    {
+      "key": "artworks/originals/hau-gai-gau-bong-1789358009620.jpg",
+      "expectedBytes": 672762,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:hau-gai-gau-bong"
+      ]
+    },
+    {
+      "key": "artworks/originals/hiem-hoa-sinh-hoc-1788703039626.jpg",
+      "expectedBytes": 581564,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:hiem-hoa-sinh-hoc"
+      ]
+    },
+    {
+      "key": "artworks/originals/hoa-nguc-giai-nguyen-1789230435291.jpg",
+      "expectedBytes": 1046701,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:hoa-nguc-giai-nguyen"
+      ]
+    },
+    {
+      "key": "artworks/originals/hoang-vu-phi-thien-1787840533933.jpg",
+      "expectedBytes": 583535,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:hoang-vu-phi-thien"
+      ]
+    },
+    {
+      "key": "artworks/originals/hoc-gia-lang-thang-1789815079338.jpg",
+      "expectedBytes": 487869,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:hoc-gia-lang-thang"
+      ]
+    },
+    {
+      "key": "artworks/originals/hong-lang-pha-van-1788703023733.jpg",
+      "expectedBytes": 526824,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:hong-lang-pha-van"
+      ]
+    },
+    {
+      "key": "artworks/originals/hong-lien-mi-anh-1788358655958.jpg",
+      "expectedBytes": 337280,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:hong-lien-mi-anh"
+      ]
+    },
+    {
+      "key": "artworks/originals/hong-lien-yeu-co-1788701265691.jpg",
+      "expectedBytes": 441029,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:hong-lien-yeu-co"
+      ]
+    },
+    {
+      "key": "artworks/originals/hong-van-vuong-chu-1788872531171.jpg",
+      "expectedBytes": 408810,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:hong-van-vuong-chu"
+      ]
+    },
+    {
+      "key": "artworks/originals/huong-duong-mat-troi-1787976936053.jpg",
+      "expectedBytes": 582375,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:huong-duong-mat-troi"
+      ]
+    },
+    {
+      "key": "artworks/originals/huyen-thoai-bat-tu-adc-1788884133058.jpg",
+      "expectedBytes": 536793,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:huyen-thoai-bat-tu-adc"
+      ]
+    },
+    {
+      "key": "artworks/originals/huyen-thoai-bat-tu-lai-bang-1788871870947.jpg",
+      "expectedBytes": 518158,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:huyen-thoai-bat-tu-lai-bang"
+      ]
+    },
+    {
+      "key": "artworks/originals/huyen-thoai-hyu-i-1789117455175.jpg",
+      "expectedBytes": 951147,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:huyen-thoai-hyu-i"
+      ]
+    },
+    {
+      "key": "artworks/originals/huyen-thoai-hyu-ii-1789117462486.jpg",
+      "expectedBytes": 685482,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:huyen-thoai-hyu-ii"
+      ]
+    },
+    {
+      "key": "artworks/originals/huyen-thoai-hyu-iii-1789117473155.jpg",
+      "expectedBytes": 881825,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:huyen-thoai-hyu-iii"
+      ]
+    },
+    {
+      "key": "artworks/originals/huyet-co-nguyet-tien-1789222917653.jpg",
+      "expectedBytes": 615374,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:huyet-co-nguyet-tien"
+      ]
+    },
+    {
+      "key": "artworks/originals/huyet-hoa-mong-anh-1787840380369.jpg",
+      "expectedBytes": 460325,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:huyet-hoa-mong-anh"
+      ]
+    },
+    {
+      "key": "artworks/originals/ia-nguc-mong-mi-1787974097756.jpg",
+      "expectedBytes": 429170,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:ia-nguc-mong-mi"
+      ]
+    },
+    {
+      "key": "artworks/originals/idol-gioi-tre-1788711907561.jpg",
+      "expectedBytes": 568540,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:idol-gioi-tre"
+      ]
+    },
+    {
+      "key": "artworks/originals/idol-gioi-tre-2-1789190750600.jpg",
+      "expectedBytes": 542513,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:idol-gioi-tre-2"
+      ]
+    },
+    {
+      "key": "artworks/originals/idol-k-pop-1787839087284.jpg",
+      "expectedBytes": 547719,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:idol-k-pop"
+      ]
+    },
+    {
+      "key": "artworks/originals/iep-vu-linh-ho-1788871828951.jpg",
+      "expectedBytes": 549935,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:iep-vu-linh-ho"
+      ]
+    },
+    {
+      "key": "artworks/originals/infernal-crown-external.jpg",
+      "expectedBytes": 692827,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:infernal-crown"
+      ]
+    },
+    {
+      "key": "artworks/originals/inh-cao-xao-mi-1789317057728.jpg",
+      "expectedBytes": 497737,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:inh-cao-xao-mi"
+      ]
+    },
+    {
+      "key": "artworks/originals/iron-choir-external.jpg",
+      "expectedBytes": 196795,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:iron-choir"
+      ]
+    },
+    {
+      "key": "artworks/originals/isekai-otaku-1789228544604.jpg",
+      "expectedBytes": 695886,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:isekai-otaku"
+      ]
+    },
+    {
+      "key": "artworks/originals/jade-tempest-external.jpg",
+      "expectedBytes": 482858,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:jade-tempest"
+      ]
+    },
+    {
+      "key": "artworks/originals/ke-giat-day-1789049168857.jpg",
+      "expectedBytes": 586305,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:ke-giat-day"
+      ]
+    },
+    {
+      "key": "artworks/originals/kiem-si-pha-le-1787839992723.jpg",
+      "expectedBytes": 587898,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:kiem-si-pha-le"
+      ]
+    },
+    {
+      "key": "artworks/originals/kinh-duong-khai-quoc-1789222833024.jpg",
+      "expectedBytes": 606685,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:kinh-duong-khai-quoc"
+      ]
+    },
+    {
+      "key": "artworks/originals/la-bai-xao-quyet-1788796814147.jpg",
+      "expectedBytes": 388400,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:la-bai-xao-quyet"
+      ]
+    },
+    {
+      "key": "artworks/originals/lam-uyen-vu-co-1788702978706.jpg",
+      "expectedBytes": 555538,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:lam-uyen-vu-co"
+      ]
+    },
+    {
+      "key": "artworks/originals/lan-au-lam-me-1788000137904.jpg",
+      "expectedBytes": 470074,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:lan-au-lam-me"
+      ]
+    },
+    {
+      "key": "artworks/originals/lang-kinh-hong-quang-1789214026354.jpg",
+      "expectedBytes": 615358,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:lang-kinh-hong-quang"
+      ]
+    },
+    {
+      "key": "artworks/originals/lang-tu-hoa-hong-1789814945406.jpg",
+      "expectedBytes": 530890,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:lang-tu-hoa-hong"
+      ]
+    },
+    {
+      "key": "artworks/originals/last-starfarer-external.jpg",
+      "expectedBytes": 293239,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:last-starfarer"
+      ]
+    },
+    {
+      "key": "artworks/originals/le-hoi-nhat-ban-1789487239349.jpg",
+      "expectedBytes": 535317,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:le-hoi-nhat-ban"
+      ]
+    },
+    {
+      "key": "artworks/originals/lego-ti-hon-1789225693276.jpg",
+      "expectedBytes": 522641,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:lego-ti-hon"
+      ]
+    },
+    {
+      "key": "artworks/originals/liet-hoa-ho-ly-1789487216667.jpg",
+      "expectedBytes": 642254,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:liet-hoa-ho-ly"
+      ]
+    },
+    {
+      "key": "artworks/originals/linh-mieu-thoi-ai-moi-1789815920649.jpg",
+      "expectedBytes": 508983,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:linh-mieu-thoi-ai-moi"
+      ]
+    },
+    {
+      "key": "artworks/originals/linh-mo-su-1788269224623.jpg",
+      "expectedBytes": 496352,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:linh-mo-su"
+      ]
+    },
+    {
+      "key": "artworks/originals/linh-phu-mi-anh-1788323661393.jpg",
+      "expectedBytes": 884575,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:linh-phu-mi-anh"
+      ]
+    },
+    {
+      "key": "artworks/originals/ma-sung-tro-tan-1788695956248.jpg",
+      "expectedBytes": 547552,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:ma-sung-tro-tan"
+      ]
+    },
+    {
+      "key": "artworks/originals/mac-anh-tien-son-1787841474116.jpg",
+      "expectedBytes": 738635,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:mac-anh-tien-son"
+      ]
+    },
+    {
+      "key": "artworks/originals/mat-ma-thi-nghiem-1788327162190.jpg",
+      "expectedBytes": 619554,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:mat-ma-thi-nghiem"
+      ]
+    },
+    {
+      "key": "artworks/originals/mi-am-1788350374105.jpg",
+      "expectedBytes": 453452,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:mi-am"
+      ]
+    },
+    {
+      "key": "artworks/originals/mi-tu-chi-nguyen-1789230521954.jpg",
+      "expectedBytes": 1046701,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:mi-tu-chi-nguyen"
+      ]
+    },
+    {
+      "key": "artworks/originals/mieu-than-1787841018039.jpg",
+      "expectedBytes": 620130,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:mieu-than"
+      ]
+    },
+    {
+      "key": "artworks/originals/mong-tuong-tu-1788670614971.jpg",
+      "expectedBytes": 709963,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:mong-tuong-tu"
+      ]
+    },
+    {
+      "key": "artworks/originals/moonlit-huntress-external.jpg",
+      "expectedBytes": 704509,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:moonlit-huntress"
+      ]
+    },
+    {
+      "key": "artworks/originals/my-hau-ai-hoc-thuong-mai-1788447181287.jpg",
+      "expectedBytes": 455103,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:my-hau-ai-hoc-thuong-mai"
+      ]
+    },
+    {
+      "key": "artworks/originals/nan-banh-mi-1789317007246.jpg",
+      "expectedBytes": 522488,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:nan-banh-mi"
+      ]
+    },
+    {
+      "key": "artworks/originals/nang-pha-tra-sua-1789316931234.jpg",
+      "expectedBytes": 654577,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:nang-pha-tra-sua"
+      ]
+    },
+    {
+      "key": "artworks/originals/nang-tien-gao-2026-1788322418354.jpg",
+      "expectedBytes": 505593,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:nang-tien-gao-2026"
+      ]
+    },
+    {
+      "key": "artworks/originals/neon-revenant-external.jpg",
+      "expectedBytes": 329528,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:neon-revenant"
+      ]
+    },
+    {
+      "key": "artworks/originals/nghe-nhan-banh-kem-1789317026557.jpg",
+      "expectedBytes": 558137,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:nghe-nhan-banh-kem"
+      ]
+    },
+    {
+      "key": "artworks/originals/nghe-thuong-tien-tu-1788349477900.jpg",
+      "expectedBytes": 469536,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:nghe-thuong-tien-tu"
+      ]
+    },
+    {
+      "key": "artworks/originals/nguc-hoa-ma-toc-1788447698194.jpg",
+      "expectedBytes": 439997,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:nguc-hoa-ma-toc"
+      ]
+    },
+    {
+      "key": "artworks/originals/nguu-lang-chuc-nu-1789228568105.jpg",
+      "expectedBytes": 552559,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:nguu-lang-chuc-nu"
+      ]
+    },
+    {
+      "key": "artworks/originals/nguu-lang-chuc-nu-2-1789228580550.jpg",
+      "expectedBytes": 552559,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:nguu-lang-chuc-nu-2"
+      ]
+    },
+    {
+      "key": "artworks/originals/nguyet-anh-linh-ao-1789570382685.jpg",
+      "expectedBytes": 544097,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:nguyet-anh-linh-ao"
+      ]
+    },
+    {
+      "key": "artworks/originals/nhat-binh-phuong-cac-1788327197098.jpg",
+      "expectedBytes": 730601,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:nhat-binh-phuong-cac"
+      ]
+    },
+    {
+      "key": "artworks/originals/nhat-nguyet-oan-duyen-1789228813165.jpg",
+      "expectedBytes": 729531,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:nhat-nguyet-oan-duyen"
+      ]
+    },
+    {
+      "key": "artworks/originals/nhat-nguyet-oan-duyen-2-1789228822311.jpg",
+      "expectedBytes": 729531,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:nhat-nguyet-oan-duyen-2"
+      ]
+    },
+    {
+      "key": "artworks/originals/nhat-nguyet-thanh-linh-1789212387959.jpg",
+      "expectedBytes": 775973,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:nhat-nguyet-thanh-linh"
+      ]
+    },
+    {
+      "key": "artworks/originals/nu-hoang-da-hoi-1788871933721.jpg",
+      "expectedBytes": 436237,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:nu-hoang-da-hoi"
+      ]
+    },
+    {
+      "key": "artworks/originals/nu-sinh-tinh-nghich-1789190789950.jpg",
+      "expectedBytes": 598196,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:nu-sinh-tinh-nghich"
+      ]
+    },
+    {
+      "key": "artworks/originals/nu-than-khau-va-1788871917669.jpg",
+      "expectedBytes": 470527,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:nu-than-khau-va"
+      ]
+    },
+    {
+      "key": "artworks/originals/nuoc-noi-uot-at-1789122776989.jpg",
+      "expectedBytes": 846611,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:nuoc-noi-uot-at"
+      ]
+    },
+    {
+      "key": "artworks/originals/obsidian-pilgrim-external.jpg",
+      "expectedBytes": 607888,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:obsidian-pilgrim"
+      ]
+    },
+    {
+      "key": "artworks/originals/oi-tay-kheo-leo-1789815047155.jpg",
+      "expectedBytes": 455494,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:oi-tay-kheo-leo"
+      ]
+    },
+    {
+      "key": "artworks/originals/om-bom-cam-tu-1788488455863.jpg",
+      "expectedBytes": 435983,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:om-bom-cam-tu"
+      ]
+    },
+    {
+      "key": "artworks/originals/ong-hoa-tay-dieu-1789228708318.jpg",
+      "expectedBytes": 822802,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:ong-hoa-tay-dieu"
+      ]
+    },
+    {
+      "key": "artworks/originals/ong-hoa-tay-dieu-2-1789228719702.jpg",
+      "expectedBytes": 822802,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:ong-hoa-tay-dieu-2"
+      ]
+    },
+    {
+      "key": "artworks/originals/phi-loi-than-thu-1789534661759.jpg",
+      "expectedBytes": 594257,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:phi-loi-than-thu"
+      ]
+    },
+    {
+      "key": "artworks/originals/phi-thuy-co-giap-1789496335401.jpg",
+      "expectedBytes": 548018,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:phi-thuy-co-giap"
+      ]
+    },
+    {
+      "key": "artworks/originals/phung-vu-nhat-binh-1788702999655.jpg",
+      "expectedBytes": 493365,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:phung-vu-nhat-binh"
+      ]
+    },
+    {
+      "key": "artworks/originals/playboy-bang-chu-1788691702828.jpg",
+      "expectedBytes": 518577,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:playboy-bang-chu"
+      ]
+    },
+    {
+      "key": "artworks/originals/playboy-bang-chu-hang-hieu-1788691716599.jpg",
+      "expectedBytes": 499252,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:playboy-bang-chu-hang-hieu"
+      ]
+    },
+    {
+      "key": "artworks/originals/playboy-sat-gai-1788691758911.jpg",
+      "expectedBytes": 474034,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:playboy-sat-gai"
+      ]
+    },
+    {
+      "key": "artworks/originals/playboy-thong-chu-1788691737616.jpg",
+      "expectedBytes": 517761,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:playboy-thong-chu"
+      ]
+    },
+    {
+      "key": "artworks/originals/playboy-toc-o-1788692448784.jpg",
+      "expectedBytes": 458068,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:playboy-toc-o"
+      ]
+    },
+    {
+      "key": "artworks/originals/playboy-toc-o-hang-hieu-1788692458813.jpg",
+      "expectedBytes": 499616,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:playboy-toc-o-hang-hieu"
+      ]
+    },
+    {
+      "key": "artworks/originals/playgirl-chat-choi-hang-hieu-1788691664169.jpg",
+      "expectedBytes": 449025,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:playgirl-chat-choi-hang-hieu"
+      ]
+    },
+    {
+      "key": "artworks/originals/playgirl-ngo-ngao-1788691678525.jpg",
+      "expectedBytes": 396526,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:playgirl-ngo-ngao"
+      ]
+    },
+    {
+      "key": "artworks/originals/playgirl-noi-loan-1788441161983.jpg",
+      "expectedBytes": 449316,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:playgirl-noi-loan"
+      ]
+    },
+    {
+      "key": "artworks/originals/playgirl-o-thi-1788442161609.jpg",
+      "expectedBytes": 378438,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:playgirl-o-thi"
+      ]
+    },
+    {
+      "key": "artworks/originals/playgirl-thu-gian-1788691629313.jpg",
+      "expectedBytes": 443172,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:playgirl-thu-gian"
+      ]
+    },
+    {
+      "key": "artworks/originals/quai-nu-tu-la-1788270073835.jpg",
+      "expectedBytes": 541438,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:quai-nu-tu-la"
+      ]
+    },
+    {
+      "key": "artworks/originals/quoc-su-thai-mau-1788322159976.jpg",
+      "expectedBytes": 448970,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:quoc-su-thai-mau"
+      ]
+    },
+    {
+      "key": "artworks/originals/quy-ba-quai-go-1788434783343.jpg",
+      "expectedBytes": 371133,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:quy-ba-quai-go"
+      ]
+    },
+    {
+      "key": "artworks/originals/quy-co-hai-san-1789317070218.jpg",
+      "expectedBytes": 430486,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:quy-co-hai-san"
+      ]
+    },
+    {
+      "key": "artworks/originals/quy-co-radar-1788434039892.jpg",
+      "expectedBytes": 338565,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:quy-co-radar"
+      ]
+    },
+    {
+      "key": "artworks/originals/quy-ong-pony-1789534773353.jpg",
+      "expectedBytes": 383160,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:quy-ong-pony"
+      ]
+    },
+    {
+      "key": "artworks/originals/rustborn-raider-external.jpg",
+      "expectedBytes": 434778,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:rustborn-raider"
+      ]
+    },
+    {
+      "key": "artworks/originals/sakura-duelist-external.jpg",
+      "expectedBytes": 1053903,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:sakura-duelist"
+      ]
+    },
+    {
+      "key": "artworks/originals/sau-roi-1788322308791.jpg",
+      "expectedBytes": 335184,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:sau-roi"
+      ]
+    },
+    {
+      "key": "artworks/originals/sieu-hung-cuu-the-1789496350562.jpg",
+      "expectedBytes": 548158,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:sieu-hung-cuu-the"
+      ]
+    },
+    {
+      "key": "artworks/originals/sieu-pham-girl-pho-1788589410109.jpg",
+      "expectedBytes": 493263,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:sieu-pham-girl-pho"
+      ]
+    },
+    {
+      "key": "artworks/originals/sieu-pham-girl-pho-2-1788589416282.jpg",
+      "expectedBytes": 588606,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:sieu-pham-girl-pho-2"
+      ]
+    },
+    {
+      "key": "artworks/originals/sieu-pham-girl-pho-3-1788589424000.jpg",
+      "expectedBytes": 528400,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:sieu-pham-girl-pho-3"
+      ]
+    },
+    {
+      "key": "artworks/originals/sieu-pham-girl-pho-4-1788589431869.jpg",
+      "expectedBytes": 426471,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:sieu-pham-girl-pho-4"
+      ]
+    },
+    {
+      "key": "artworks/originals/sieu-pham-girl-pho-5-1788589438867.jpg",
+      "expectedBytes": 444726,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:sieu-pham-girl-pho-5"
+      ]
+    },
+    {
+      "key": "artworks/originals/sieu-viet-10-1788704095387.jpg",
+      "expectedBytes": 674069,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:sieu-viet-10"
+      ]
+    },
+    {
+      "key": "artworks/originals/sieu-viet-11-1789534713419.jpg",
+      "expectedBytes": 522268,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:sieu-viet-11"
+      ]
+    },
+    {
+      "key": "artworks/originals/sieu-viet-12-1789534727363.jpg",
+      "expectedBytes": 586439,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:sieu-viet-12"
+      ]
+    },
+    {
+      "key": "artworks/originals/sieu-viet-2-0-2026-1788493573879.jpg",
+      "expectedBytes": 701570,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:sieu-viet-2-0-2026"
+      ]
+    },
+    {
+      "key": "artworks/originals/sieu-viet-2026-1788493035229.jpg",
+      "expectedBytes": 713359,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:sieu-viet-2026"
+      ]
+    },
+    {
+      "key": "artworks/originals/sieu-viet-3-1788491011307.jpg",
+      "expectedBytes": 469143,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:sieu-viet-3"
+      ]
+    },
+    {
+      "key": "artworks/originals/sieu-viet-4-1788492200844.jpg",
+      "expectedBytes": 210659,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:sieu-viet-4"
+      ]
+    },
+    {
+      "key": "artworks/originals/sieu-viet-5-1788492233419.jpg",
+      "expectedBytes": 202085,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:sieu-viet-5"
+      ]
+    },
+    {
+      "key": "artworks/originals/sieu-viet-6-1788510740914.jpg",
+      "expectedBytes": 957467,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:sieu-viet-6"
+      ]
+    },
+    {
+      "key": "artworks/originals/sieu-viet-7-1788512177389.jpg",
+      "expectedBytes": 836979,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:sieu-viet-7"
+      ]
+    },
+    {
+      "key": "artworks/originals/sieu-viet-8-1788632620933.jpg",
+      "expectedBytes": 600897,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:sieu-viet-8"
+      ]
+    },
+    {
+      "key": "artworks/originals/sieu-viet-9-1788693413546.jpg",
+      "expectedBytes": 626552,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:sieu-viet-9"
+      ]
+    },
+    {
+      "key": "artworks/originals/silent-orbit-external.jpg",
+      "expectedBytes": 267041,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:silent-orbit"
+      ]
+    },
+    {
+      "key": "artworks/originals/soai-ca-say-hi-2-1788589373910.jpg",
+      "expectedBytes": 522981,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:soai-ca-say-hi-2"
+      ]
+    },
+    {
+      "key": "artworks/originals/soai-ca-say-hi-3-1788589390089.jpg",
+      "expectedBytes": 551326,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:soai-ca-say-hi-3"
+      ]
+    },
+    {
+      "key": "artworks/originals/soai-ca-say-hi-4-1788589396660.jpg",
+      "expectedBytes": 485383,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:soai-ca-say-hi-4"
+      ]
+    },
+    {
+      "key": "artworks/originals/soai-ca-say-hi-hoan-my-1788590880413.jpg",
+      "expectedBytes": 648274,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:soai-ca-say-hi-hoan-my"
+      ]
+    },
+    {
+      "key": "artworks/originals/son-tinh-cong-chua-1788327695194.jpg",
+      "expectedBytes": 576541,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:son-tinh-cong-chua"
+      ]
+    },
+    {
+      "key": "artworks/originals/starfire-1789212351606.jpg",
+      "expectedBytes": 456593,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:starfire"
+      ]
+    },
+    {
+      "key": "artworks/originals/stormbreaker-external.jpg",
+      "expectedBytes": 325913,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:stormbreaker"
+      ]
+    },
+    {
+      "key": "artworks/originals/sunforge-titan-external.jpg",
+      "expectedBytes": 949900,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:sunforge-titan"
+      ]
+    },
+    {
+      "key": "artworks/originals/suoi-nuoc-nong-1789187805838.jpg",
+      "expectedBytes": 656053,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:suoi-nuoc-nong"
+      ]
+    },
+    {
+      "key": "artworks/originals/suoi-nuoc-nong-2-1789534673694.jpg",
+      "expectedBytes": 529875,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:suoi-nuoc-nong-2"
+      ]
+    },
+    {
+      "key": "artworks/originals/thai-cuc-huyen-vu-1788097557274.jpg",
+      "expectedBytes": 867710,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:thai-cuc-huyen-vu"
+      ]
+    },
+    {
+      "key": "artworks/originals/than-ong-lap-phuong-1789570402813.jpg",
+      "expectedBytes": 490213,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:than-ong-lap-phuong"
+      ]
+    },
+    {
+      "key": "artworks/originals/than-thoi-gian-1788510926776.jpg",
+      "expectedBytes": 817525,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:than-thoi-gian"
+      ]
+    },
+    {
+      "key": "artworks/originals/than-tuong-am-nhac-2-1789117562467.jpg",
+      "expectedBytes": 674946,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:than-tuong-am-nhac-2"
+      ]
+    },
+    {
+      "key": "artworks/originals/than-tuong-am-nhac-hang-hieu-1789119456923.jpg",
+      "expectedBytes": 878783,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:than-tuong-am-nhac-hang-hieu"
+      ]
+    },
+    {
+      "key": "artworks/originals/than-tuong-am-nhac-phien-ban-hoan-my-1789119462773.jpg",
+      "expectedBytes": 876835,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:than-tuong-am-nhac-phien-ban-hoan-my"
+      ]
+    },
+    {
+      "key": "artworks/originals/thay-tru-ta-1788352421757.jpg",
+      "expectedBytes": 588324,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:thay-tru-ta"
+      ]
+    },
+    {
+      "key": "artworks/originals/the-gioi-o-choi-1789534747551.jpg",
+      "expectedBytes": 612585,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:the-gioi-o-choi"
+      ]
+    },
+    {
+      "key": "artworks/originals/thien-nuong-mau-mau-1788589351379.jpg",
+      "expectedBytes": 666907,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:thien-nuong-mau-mau"
+      ]
+    },
+    {
+      "key": "artworks/originals/thiet-thuong-than-kiem-1789498039686.jpg",
+      "expectedBytes": 822927,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:thiet-thuong-than-kiem"
+      ]
+    },
+    {
+      "key": "artworks/originals/thiet-ve-bien-ong-2-1788324220619.jpg",
+      "expectedBytes": 587322,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:thiet-ve-bien-ong-2"
+      ]
+    },
+    {
+      "key": "artworks/originals/tho-san-tu-linh-1788098732293.jpg",
+      "expectedBytes": 766188,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:tho-san-tu-linh"
+      ]
+    },
+    {
+      "key": "artworks/originals/thoi-thu-mi-anh-1788442562021.jpg",
+      "expectedBytes": 477593,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:thoi-thu-mi-anh"
+      ]
+    },
+    {
+      "key": "artworks/originals/thoi-xuan-mi-anh-1788443125118.jpg",
+      "expectedBytes": 450206,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:thoi-xuan-mi-anh"
+      ]
+    },
+    {
+      "key": "artworks/originals/thu-nguyen-ve-than-5-1788269004206.jpg",
+      "expectedBytes": 722464,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:thu-nguyen-ve-than-5"
+      ]
+    },
+    {
+      "key": "artworks/originals/thu-nguyen-ve-than-6-1788269767684.jpg",
+      "expectedBytes": 617252,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:thu-nguyen-ve-than-6"
+      ]
+    },
+    {
+      "key": "artworks/originals/thu-nguyet-anh-1788872566162.jpg",
+      "expectedBytes": 515470,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:thu-nguyet-anh"
+      ]
+    },
+    {
+      "key": "artworks/originals/tiec-bai-bien-5-1788871845527.jpg",
+      "expectedBytes": 468630,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:tiec-bai-bien-5"
+      ]
+    },
+    {
+      "key": "artworks/originals/tiec-bai-bien-6-1788882366216.jpg",
+      "expectedBytes": 555139,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:tiec-bai-bien-6"
+      ]
+    },
+    {
+      "key": "artworks/originals/tiec-bai-bien-7-1789190805712.jpg",
+      "expectedBytes": 572039,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:tiec-bai-bien-7"
+      ]
+    },
+    {
+      "key": "artworks/originals/tiec-bai-bien-8-1789226019514.jpg",
+      "expectedBytes": 2345357,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:tiec-bai-bien-8"
+      ]
+    },
+    {
+      "key": "artworks/originals/tiec-bai-bien-9-1789553912273.jpg",
+      "expectedBytes": 479535,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:tiec-bai-bien-9"
+      ]
+    },
+    {
+      "key": "artworks/originals/tiec-be-boi-2-1788796794742.jpg",
+      "expectedBytes": 425171,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:tiec-be-boi-2"
+      ]
+    },
+    {
+      "key": "artworks/originals/tiec-tra-co-tich-1787975614429.jpg",
+      "expectedBytes": 582412,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:tiec-tra-co-tich"
+      ]
+    },
+    {
+      "key": "artworks/originals/tiec-tra-co-tich-2-1787975738897.jpg",
+      "expectedBytes": 582412,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:tiec-tra-co-tich-2"
+      ]
+    },
+    {
+      "key": "artworks/originals/tien-hac-am-1789212300156.jpg",
+      "expectedBytes": 495316,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:tien-hac-am"
+      ]
+    },
+    {
+      "key": "artworks/originals/tien-tri-tai-phep-1789815018128.jpg",
+      "expectedBytes": 572968,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:tien-tri-tai-phep"
+      ]
+    },
+    {
+      "key": "artworks/originals/tinh-linh-vuon-sao-1788871903148.jpg",
+      "expectedBytes": 430601,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:tinh-linh-vuon-sao"
+      ]
+    },
+    {
+      "key": "artworks/originals/tong-o-thua-1789316949863.jpg",
+      "expectedBytes": 453186,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:tong-o-thua"
+      ]
+    },
+    {
+      "key": "artworks/originals/tro-choi-ma-soi-1789486378872.jpg",
+      "expectedBytes": 687164,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:tro-choi-ma-soi"
+      ]
+    },
+    {
+      "key": "artworks/originals/tuyet-duong-chi-tu-1788352539996.jpg",
+      "expectedBytes": 911545,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:tuyet-duong-chi-tu"
+      ]
+    },
+    {
+      "key": "artworks/originals/tuyet-son-thanh-ve-1788352493505.jpg",
+      "expectedBytes": 792599,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:tuyet-son-thanh-ve"
+      ]
+    },
+    {
+      "key": "artworks/originals/van-co-inh-oat-1789222798622.jpg",
+      "expectedBytes": 621130,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:van-co-inh-oat"
+      ]
+    },
+    {
+      "key": "artworks/originals/van-gioi-thoi-quan-1789214054467.jpg",
+      "expectedBytes": 752098,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:van-gioi-thoi-quan"
+      ]
+    },
+    {
+      "key": "artworks/originals/verdant-king-external.jpg",
+      "expectedBytes": 451841,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:verdant-king"
+      ]
+    },
+    {
+      "key": "artworks/originals/void-archon-external.jpg",
+      "expectedBytes": 408397,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:void-archon"
+      ]
+    },
+    {
+      "key": "artworks/originals/vu-cong-em-en-1788882405842.jpg",
+      "expectedBytes": 404634,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:vu-cong-em-en"
+      ]
+    },
+    {
+      "key": "artworks/originals/vu-nu-em-en-1788882385357.jpg",
+      "expectedBytes": 551000,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:vu-nu-em-en"
+      ]
+    },
+    {
+      "key": "artworks/originals/vu-nu-tien-linh-1789212337389.png",
+      "expectedBytes": 2136460,
+      "mimeType": "image/png",
+      "sources": [
+        "catalogue:vu-nu-tien-linh"
+      ]
+    },
+    {
+      "key": "artworks/originals/wave-11-1787999481348.jpg",
+      "expectedBytes": 2089249,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:wave-11"
+      ]
+    },
+    {
+      "key": "artworks/originals/wave-12-1787999606378.jpg",
+      "expectedBytes": 397622,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:wave-12"
+      ]
+    },
+    {
+      "key": "artworks/originals/wave-13-1788000298000.jpg",
+      "expectedBytes": 407920,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:wave-13"
+      ]
+    },
+    {
+      "key": "artworks/originals/wave-14-1788000426420.jpg",
+      "expectedBytes": 449643,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:wave-14"
+      ]
+    },
+    {
+      "key": "artworks/originals/wave-15-1789225879445.jpg",
+      "expectedBytes": 2116453,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:wave-15"
+      ]
+    },
+    {
+      "key": "artworks/originals/wave-a-sac-1788000349545.jpg",
+      "expectedBytes": 521465,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:wave-a-sac"
+      ]
+    },
+    {
+      "key": "artworks/originals/wave-hang-hieu-1787974025637.jpg",
+      "expectedBytes": 690664,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:wave-hang-hieu"
+      ]
+    },
+    {
+      "key": "artworks/originals/wave-hang-hieu-2-1788000241091.jpg",
+      "expectedBytes": 498270,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:wave-hang-hieu-2"
+      ]
+    },
+    {
+      "key": "artworks/originals/xich-hoa-mong-iep-1789317115999.jpg",
+      "expectedBytes": 565194,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:xich-hoa-mong-iep"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/ac-vu-sieu-linh-1787371285799.jpg",
+      "expectedBytes": 1880824,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:ac-vu-sieu-linh"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/am-luong-toi-a-1787489637144.png",
+      "expectedBytes": 2775046,
+      "mimeType": "image/png",
+      "sources": [
+        "catalogue:am-luong-toi-a"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/ang-1787490204387.jpg",
+      "expectedBytes": 2934446,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:ang"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/anh-chang-thanh-hoa-1787456596104.png",
+      "expectedBytes": 9203951,
+      "mimeType": "image/png",
+      "sources": [
+        "catalogue:anh-chang-thanh-hoa"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/ao-hoa-mi-anh-1787317413534.jpg",
+      "expectedBytes": 422297,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:ao-hoa-mi-anh"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/ao-mieu-1787318439119.jpg",
+      "expectedBytes": 540436,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:ao-mieu"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/bach-hac-hoa-tien-1787318126285.jpg",
+      "expectedBytes": 583941,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:bach-hac-hoa-tien"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/bach-ve-su-1787456857804.jpg",
+      "expectedBytes": 866953,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:bach-ve-su"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/bang-thanh-hoa-tam-1787672063725.jpg",
+      "expectedBytes": 489057,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:bang-thanh-hoa-tam"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/bat-chi-hoa-vu-1787458874959.jpg",
+      "expectedBytes": 2816631,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:bat-chi-hoa-vu"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/bat-luong-hem-pho-1787304035983.jpg",
+      "expectedBytes": 2396257,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:bat-luong-hem-pho"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/be-cuu-chan-de-1787407794245.jpg",
+      "expectedBytes": 508936,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:be-cuu-chan-de"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/bong-ma-hoa-anh-1787371386506.jpg",
+      "expectedBytes": 2253046,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:bong-ma-hoa-anh"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/boy-pho-1787288564445.jpg",
+      "expectedBytes": 3070918,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:boy-pho"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/boy-pho-2-1787488697105.jpg",
+      "expectedBytes": 1990789,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:boy-pho-2"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/boy-pho-3-1787673000284.jpg",
+      "expectedBytes": 721320,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:boy-pho-3"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/boy-pho-4-1787673005893.jpg",
+      "expectedBytes": 721320,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:boy-pho-4"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/chan-hoan-1787629362208.jpg",
+      "expectedBytes": 1131779,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:chan-hoan"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/chi-ton-kiem-tien-1787301140475.jpg",
+      "expectedBytes": 1023532,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:chi-ton-kiem-tien"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/chien-binh-xu-nghe-1787460056547.jpg",
+      "expectedBytes": 2517931,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:chien-binh-xu-nghe"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/chien-than-eo-hai-van-1787457443586.jpg",
+      "expectedBytes": 2409613,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:chien-than-eo-hai-van"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/chien-than-tan-the-1787672310290.jpg",
+      "expectedBytes": 546713,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:chien-than-tan-the"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/cho-cao-bang-bo-pc-1787489321505.png",
+      "expectedBytes": 2393944,
+      "mimeType": "image/png",
+      "sources": [
+        "catalogue:cho-cao-bang-bo-pc"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/co-be-ca-chua-1787320264899.jpg",
+      "expectedBytes": 381473,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:co-be-ca-chua"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/co-nang-thanh-hoa-1787290233814.jpg",
+      "expectedBytes": 2218343,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:co-nang-thanh-hoa"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/co-thu-tan-phong-1787318973330.jpg",
+      "expectedBytes": 496168,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:co-thu-tan-phong"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/cs-jake-walker-1787280721415.jpg",
+      "expectedBytes": 2439596,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:cs-jake-walker"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/da-hoi-khieu-vu-1787492655534.jpg",
+      "expectedBytes": 311703,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:da-hoi-khieu-vu"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/da-hoi-khieu-vu-2-1787492673596.jpg",
+      "expectedBytes": 311703,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:da-hoi-khieu-vu-2"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/en-tho-than-tuat-1787488480911.jpg",
+      "expectedBytes": 1340272,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:en-tho-than-tuat"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/fmvp-vie-quochuy-seagames-33-1787290221873.jpg",
+      "expectedBytes": 746175,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:fmvp-vie-quochuy-seagames-33"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/giang-sinh-an-lanh-1787286604812.png",
+      "expectedBytes": 2841725,
+      "mimeType": "image/png",
+      "sources": [
+        "catalogue:giang-sinh-an-lanh"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/giang-sinh-an-lanh-2-1787488572143.png",
+      "expectedBytes": 3588745,
+      "mimeType": "image/png",
+      "sources": [
+        "catalogue:giang-sinh-an-lanh-2"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/girl-nao-loan-1787499009989.jpg",
+      "expectedBytes": 447435,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:girl-nao-loan"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/ha-long-sinh-mach-1787460131974.jpg",
+      "expectedBytes": 2599030,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:ha-long-sinh-mach"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/hac-bach-ngoc-tho-1787319811449.jpg",
+      "expectedBytes": 495669,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:hac-bach-ngoc-tho"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/hac-su-ma-than-1787320453356.jpg",
+      "expectedBytes": 444306,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:hac-su-ma-than"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/hac-vu-luan-kiem-1787317884401.jpg",
+      "expectedBytes": 626427,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:hac-vu-luan-kiem"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/hiep-si-tro-tan-1787371462517.jpg",
+      "expectedBytes": 2255393,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:hiep-si-tro-tan"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/hoa-hop-au-1787489769164.png",
+      "expectedBytes": 3244949,
+      "mimeType": "image/png",
+      "sources": [
+        "catalogue:hoa-hop-au"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/hoa-mieu-hang-hieu-1787459644129.jpg",
+      "expectedBytes": 2607875,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:hoa-mieu-hang-hieu"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/hoa-van-viem-e-1787459769628.jpg",
+      "expectedBytes": 472922,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:hoa-van-viem-e"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/hoi-ngo-thanh-xuan-1787288622463.jpg",
+      "expectedBytes": 2569009,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:hoi-ngo-thanh-xuan"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/hon-sa-mac-1787371312397.jpg",
+      "expectedBytes": 2309720,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:hon-sa-mac"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/huyen-quang-luan-mau-1787487882141.jpg",
+      "expectedBytes": 698327,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:huyen-quang-luan-mau"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/huyen-xa-than-quan-1787317772273.jpg",
+      "expectedBytes": 438652,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:huyen-xa-than-quan"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/khuc-ca-giao-hai-1787458539182.jpg",
+      "expectedBytes": 878104,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:khuc-ca-giao-hai"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/kungfu-cau-may-1787459721423.jpg",
+      "expectedBytes": 2662041,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:kungfu-cau-may"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/lang-chai-vung-tau-1787489134106.jpg",
+      "expectedBytes": 2521177,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:lang-chai-vung-tau"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/linh-ban-tia-viet-1787286549719.png",
+      "expectedBytes": 2073707,
+      "mimeType": "image/png",
+      "sources": [
+        "catalogue:linh-ban-tia-viet"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/linh-xa-song-sinh-1787569395045.jpg",
+      "expectedBytes": 485459,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:linh-xa-song-sinh"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/linh-xuan-noi-loan-1787291135607.jpg",
+      "expectedBytes": 1093668,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:linh-xuan-noi-loan"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/loi-he-thong-1787320575265.jpg",
+      "expectedBytes": 2438633,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:loi-he-thong"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/loi-nguyen-huyet-tam-1787317365050.jpg",
+      "expectedBytes": 466565,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:loi-nguyen-huyet-tam"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/ma-nu-thoi-thuong-1787321583246.jpg",
+      "expectedBytes": 394772,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:ma-nu-thoi-thuong"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/ma-sung-1787490217116.jpg",
+      "expectedBytes": 1017899,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:ma-sung"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/ma-thuat-en-1787489460681.png",
+      "expectedBytes": 2060023,
+      "mimeType": "image/png",
+      "sources": [
+        "catalogue:ma-thuat-en"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/mac-long-thanh-e-1787490059826.jpg",
+      "expectedBytes": 2700803,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:mac-long-thanh-e"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/maid-bung-ca-phe-1787671491463.jpg",
+      "expectedBytes": 2053616,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:maid-bung-ca-phe"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/mi-ngu-1787459023276.jpg",
+      "expectedBytes": 2868099,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:mi-ngu"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/mi-sac-hoa-nhen-1787566272707.jpg",
+      "expectedBytes": 616217,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:mi-sac-hoa-nhen"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/mieu-quyen-than-1787491947133.jpg",
+      "expectedBytes": 429610,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:mieu-quyen-than"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/mieu-tac-duoi-trang-1787656806208.jpg",
+      "expectedBytes": 470360,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:mieu-tac-duoi-trang"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/my-ho-1787490126860.jpg",
+      "expectedBytes": 2914623,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:my-ho"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/nam-than-bach-khoa-1787489402003.png",
+      "expectedBytes": 2287372,
+      "mimeType": "image/png",
+      "sources": [
+        "catalogue:nam-than-bach-khoa"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/nguyet-anh-huyen-ho-1787573602765.jpg",
+      "expectedBytes": 847704,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:nguyet-anh-huyen-ho"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/nguyet-ma-mong-ky-1787567421046.jpg",
+      "expectedBytes": 986197,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:nguyet-ma-mong-ky"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/nhung-rat-toro-1787288458167.png",
+      "expectedBytes": 2121231,
+      "mimeType": "image/png",
+      "sources": [
+        "catalogue:nhung-rat-toro"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/nhung-rat-toro-2-1787288429806.png",
+      "expectedBytes": 2414138,
+      "mimeType": "image/png",
+      "sources": [
+        "catalogue:nhung-rat-toro-2"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/nu-he-ma-mi-1787318872873.jpg",
+      "expectedBytes": 793311,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:nu-he-ma-mi"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/o-cong-lang-tu-1787488775210.jpg",
+      "expectedBytes": 1955189,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:o-cong-lang-tu"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/oc-tai-1787326728115.jpg",
+      "expectedBytes": 346414,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:oc-tai"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/phi-nguyet-hanh-1787489818309.png",
+      "expectedBytes": 3052310,
+      "mimeType": "image/png",
+      "sources": [
+        "catalogue:phi-nguyet-hanh"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/quan-ho-bac-ninh-1787458678658.jpg",
+      "expectedBytes": 2653783,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:quan-ho-bac-ninh"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/sat-lang-bach-ho-1787280649281.jpg",
+      "expectedBytes": 2470901,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:sat-lang-bach-ho"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/sat-thu-huyet-toc-1787371419380.jpg",
+      "expectedBytes": 1972742,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:sat-thu-huyet-toc"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/sat-thu-vung-nuoc-o-1787280991427.jpg",
+      "expectedBytes": 2185467,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:sat-thu-vung-nuoc-o"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/sieu-pham-boy-pho-1787672477376.jpg",
+      "expectedBytes": 590417,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:sieu-pham-boy-pho"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/sieu-pham-boy-pho-2-1787672489370.jpg",
+      "expectedBytes": 590417,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:sieu-pham-boy-pho-2"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/sieu-pham-chan-hoan-1787629329633.jpg",
+      "expectedBytes": 758219,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:sieu-pham-chan-hoan"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/sieu-viet-1787280906008.jpg",
+      "expectedBytes": 2320829,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:sieu-viet"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/sieu-viet-2-0-1787280919675.jpg",
+      "expectedBytes": 2470406,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:sieu-viet-2-0"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/sieu-viet-2-1787490233625.jpg",
+      "expectedBytes": 1334070,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:sieu-viet-2"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/soai-ca-say-hi-1787326734994.jpg",
+      "expectedBytes": 396198,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:soai-ca-say-hi"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/sushi-ca-map-1787280955552.png",
+      "expectedBytes": 2619085,
+      "mimeType": "image/png",
+      "sources": [
+        "catalogue:sushi-ca-map"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/tai-enzo-1787488906323.jpg",
+      "expectedBytes": 1862612,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:tai-enzo"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/than-co-thu-1787656925507.jpg",
+      "expectedBytes": 529864,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:than-co-thu"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/than-ma-ty-vong-nguyet-long-1787673445160.jpg",
+      "expectedBytes": 500895,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:than-ma-ty-vong-nguyet-long"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/than-tai-1787490617708.jpg",
+      "expectedBytes": 2998870,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:than-tai"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/than-tuong-am-nhac-1787301119912.jpg",
+      "expectedBytes": 583757,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:than-tuong-am-nhac"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/thanh-linh-cam-khuc-1787408279049.jpg",
+      "expectedBytes": 2601833,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:thanh-linh-cam-khuc"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/thanh-moc-linh-su-1787457647963.jpg",
+      "expectedBytes": 518454,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:thanh-moc-linh-su"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/that-tinh-1787288553321.jpg",
+      "expectedBytes": 2460896,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:that-tinh"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/thay-tu-da-en-1787458901437.jpg",
+      "expectedBytes": 2483582,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:thay-tu-da-en"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/the-gioi-cau-vong-1787671805624.jpg",
+      "expectedBytes": 332876,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:the-gioi-cau-vong"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/thien-am-phuong-vu-1787317719032.jpg",
+      "expectedBytes": 733956,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:thien-am-phuong-vu"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/thien-co-than-giap-1787673978359.jpg",
+      "expectedBytes": 533243,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:thien-co-than-giap"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/thien-ha-than-tuong-1787491086019.jpg",
+      "expectedBytes": 1228704,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:thien-ha-than-tuong"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/thien-su-giang-tran-1787457816447.jpg",
+      "expectedBytes": 524502,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:thien-su-giang-tran"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/thien-su-huyet-ngai-1787371491882.jpg",
+      "expectedBytes": 1885081,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:thien-su-huyet-ngai"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/tho-phe-hoa-chat-1787290204591.jpg",
+      "expectedBytes": 2146822,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:tho-phe-hoa-chat"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/thong-soai-robot-1787489930633.jpg",
+      "expectedBytes": 2954867,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:thong-soai-robot"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/thu-nguyen-ve-than-1787326697707.jpg",
+      "expectedBytes": 373611,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:thu-nguyen-ve-than"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/thu-nguyen-ve-than-2-1787492404851.jpg",
+      "expectedBytes": 683963,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:thu-nguyen-ve-than-2"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/thu-nguyen-ve-than-3-1787497740074.jpg",
+      "expectedBytes": 640021,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:thu-nguyen-ve-than-3"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/thu-nguyen-ve-than-4-1787498570812.jpg",
+      "expectedBytes": 663474,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:thu-nguyen-ve-than-4"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/tiec-bai-bien-1787326759634.jpg",
+      "expectedBytes": 306605,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:tiec-bai-bien"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/tiec-bai-bien-2-1787326753295.jpg",
+      "expectedBytes": 306605,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:tiec-bai-bien-2"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/tiec-bai-bien-3-1787326767127.jpg",
+      "expectedBytes": 325031,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:tiec-bai-bien-3"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/tiec-bai-bien-4-1787326775873.jpg",
+      "expectedBytes": 325031,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:tiec-bai-bien-4"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/tiec-lau-ech-1787458281688.jpg",
+      "expectedBytes": 2581088,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:tiec-lau-ech"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/vu-ieu-to-1787322067074.jpg",
+      "expectedBytes": 502120,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:vu-ieu-to"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/vu-khuc-linh-su-1787319176908.jpg",
+      "expectedBytes": 2691293,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:vu-khuc-linh-su"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/vu-nu-kagura-1787664285846.jpg",
+      "expectedBytes": 577625,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:vu-nu-kagura"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/vuon-toan-tuat-2-1787488051054.jpg",
+      "expectedBytes": 438789,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:vuon-toan-tuat-2"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/wave-10-1787674647792.jpg",
+      "expectedBytes": 2191179,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:wave-10"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/wave-3-1787288760522.jpg",
+      "expectedBytes": 2251137,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:wave-3"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/wave-4-1787288792393.jpg",
+      "expectedBytes": 2210967,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:wave-4"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/wave-5-1787288818871.jpg",
+      "expectedBytes": 2053518,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:wave-5"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/wave-6-1787326429001.jpg",
+      "expectedBytes": 203916,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:wave-6"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/wave-7-1787320214877.jpg",
+      "expectedBytes": 367157,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:wave-7"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/wave-8-1787378467142.jpg",
+      "expectedBytes": 2132788,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:wave-8"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/wave-9-1787674299675.jpg",
+      "expectedBytes": 523546,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:wave-9"
+      ]
+    },
+    {
+      "key": "legacy/owner/artworks/uploads/wave-oc-ban-hoa-phi-chan-hoan-1787674497440.jpg",
+      "expectedBytes": 405327,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:wave-oc-ban-hoa-phi-chan-hoan"
+      ]
+    },
+    {
+      "key": "legacy/owner/team/members/bao-ky-1787314078639.jpg",
+      "expectedBytes": 130265,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "team:4"
+      ]
+    },
+    {
+      "key": "legacy/owner/team/members/huy-khanh-1787315947392.jpg",
+      "expectedBytes": 111444,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "team:6"
+      ]
+    },
+    {
+      "key": "legacy/owner/team/members/raphena-1787315927422.jpg",
+      "expectedBytes": 66292,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "team:5"
+      ]
+    },
+    {
+      "key": "legacy/owner/team/members/yue-1787309560764.jpg",
+      "expectedBytes": 180943,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "team:2"
+      ]
+    },
+    {
+      "key": "legacy/owner/team/members/yue-1787309560778.jpg",
+      "expectedBytes": 180943,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "team:3"
+      ]
+    },
+    {
+      "key": "legacy/repo/assets/artworks/an-niet-thanh-mau-1787244735160.jpg",
+      "expectedBytes": 563379,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:an-niet-thanh-mau"
+      ]
+    },
+    {
+      "key": "legacy/repo/assets/artworks/aya-1787206597131.jpg",
+      "expectedBytes": 376326,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:aya"
+      ]
+    },
+    {
+      "key": "legacy/repo/assets/artworks/en-tho-bang-gia-1787245727082.png",
+      "expectedBytes": 7219859,
+      "mimeType": "image/png",
+      "sources": [
+        "catalogue:en-tho-bang-gia"
+      ]
+    },
+    {
+      "key": "legacy/repo/assets/artworks/en-tho-bang-gia-2-1787245979723.png",
+      "expectedBytes": 7219859,
+      "mimeType": "image/png",
+      "sources": [
+        "catalogue:en-tho-bang-gia-2"
+      ]
+    },
+    {
+      "key": "legacy/repo/assets/artworks/fmvp-nailiu-apl-2025-fake-1787244802412.jpg",
+      "expectedBytes": 2083481,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:fmvp-nailiu-apl-2025-fake"
+      ]
+    },
+    {
+      "key": "legacy/repo/assets/artworks/gia-lap-1787232877311.jpg",
+      "expectedBytes": 483009,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:gia-lap"
+      ]
+    },
+    {
+      "key": "legacy/repo/assets/artworks/hoa-si-mong-mi-1787231891847.jpg",
+      "expectedBytes": 476834,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:hoa-si-mong-mi"
+      ]
+    },
+    {
+      "key": "legacy/repo/assets/artworks/iep-vu-thanh-xuan-1787231956023.jpg",
+      "expectedBytes": 525139,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:iep-vu-thanh-xuan"
+      ]
+    },
+    {
+      "key": "legacy/repo/assets/artworks/lang-van-khai-tue-quan-1787245054715.jpg",
+      "expectedBytes": 722560,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:lang-van-khai-tue-quan"
+      ]
+    },
+    {
+      "key": "legacy/repo/assets/artworks/man-hoa-lu-hanh-1787232807607.jpg",
+      "expectedBytes": 552146,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:man-hoa-lu-hanh"
+      ]
+    },
+    {
+      "key": "legacy/repo/assets/artworks/nang-tien-dua-hau-1787245950320.jpg",
+      "expectedBytes": 468331,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:nang-tien-dua-hau"
+      ]
+    },
+    {
+      "key": "legacy/repo/assets/artworks/nhung-ngoi-sao-xa-xoi-1787245582595.png",
+      "expectedBytes": 2213617,
+      "mimeType": "image/png",
+      "sources": [
+        "catalogue:nhung-ngoi-sao-xa-xoi"
+      ]
+    },
+    {
+      "key": "legacy/repo/assets/artworks/phuong-tinh-uyen-ton-1787244190418.jpg",
+      "expectedBytes": 624151,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:phuong-tinh-uyen-ton"
+      ]
+    },
+    {
+      "key": "legacy/repo/assets/artworks/tan-than-thien-ha-hang-hieu-1787245116408.jpg",
+      "expectedBytes": 474341,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:tan-than-thien-ha-hang-hieu"
+      ]
+    },
+    {
+      "key": "legacy/repo/assets/artworks/than-nuong-mong-gioi-1787233013194.jpg",
+      "expectedBytes": 440560,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:than-nuong-mong-gioi"
+      ]
+    },
+    {
+      "key": "legacy/repo/assets/artworks/tiec-be-boi-1787232033199.jpg",
+      "expectedBytes": 407388,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:tiec-be-boi"
+      ]
+    },
+    {
+      "key": "legacy/repo/assets/artworks/vu-ieu-samba-1787232985989.jpg",
+      "expectedBytes": 3024382,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:vu-ieu-samba"
+      ]
+    },
+    {
+      "key": "legacy/repo/assets/artworks/vui-cung-bay-tuat-1787232833296.png",
+      "expectedBytes": 2776262,
+      "mimeType": "image/png",
+      "sources": [
+        "catalogue:vui-cung-bay-tuat"
+      ]
+    },
+    {
+      "key": "legacy/repo/assets/artworks/vuon-toan-tuat-1787232965760.jpg",
+      "expectedBytes": 433455,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:vuon-toan-tuat"
+      ]
+    },
+    {
+      "key": "legacy/repo/assets/artworks/wave-1787244906275.jpg",
+      "expectedBytes": 2093036,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:wave"
+      ]
+    },
+    {
+      "key": "legacy/repo/assets/artworks/wave-2-1787245765906.jpg",
+      "expectedBytes": 2289039,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:wave-2"
+      ]
+    },
+    {
+      "key": "legacy/repo/assets/artworks/xich-diem-han-trieu-1787245697619.jpg",
+      "expectedBytes": 2391102,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:xich-diem-han-trieu"
+      ]
+    },
+    {
+      "key": "legacy/repo/assets/artworks/yet-kieu-1787244660272.jpg",
+      "expectedBytes": 2403789,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "catalogue:yet-kieu"
+      ]
+    },
+    {
+      "key": "team/members/hyu-1788489373443.jpg",
+      "expectedBytes": 312644,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "team:1"
+      ]
+    },
+    {
+      "key": "team/members/nihilus-1788490350505.jpg",
+      "expectedBytes": 225171,
+      "mimeType": "image/jpeg",
+      "sources": [
+        "team:7"
+      ]
+    }
+  ]
+}
