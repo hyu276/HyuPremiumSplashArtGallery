@@ -107,15 +107,14 @@ function authoritativeCatalogue(): Catalogue {
     .filter(row => !row?.hidden)
     .map(row => {
       const variants=normalizedVariants(row.variants);
-      const original=normalizedVariant(row.media?.original);
+      const displayImage=variants['1600']?.url||publicMediaUrl(String(row.thumbnail||row.image||''));
       return {
         id: String(row.id),
         name: String(row.name || 'Tác phẩm chưa đặt tên').trim(),
         description: String(row.description || '').trim(),
-        image: publicMediaUrl(String(row.image || '')),
-        thumbnail: publicMediaUrl(String(row.thumbnail || variants['1600']?.url || row.image || '')),
+        image: displayImage,
+        thumbnail: displayImage,
         variants,
-        media: original?{original}:undefined,
         tags: Array.isArray(row.tags) ? row.tags.map(String) : [],
         category: String(row.category || 'Chưa phân loại'),
         rank: String(row.rank || 'Chưa xếp hạng'),
