@@ -120,11 +120,9 @@ jobs:
           subdomain=$(printf '%s' "$json" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{const j=JSON.parse(s);if(!j.success||!j.result?.subdomain)process.exit(2);process.stdout.write(j.result.subdomain)})")
           base="https://hyu-premium-media.${subdomain}.workers.dev"
           source=$(node -e "const c=require('./data/backend/catalogue.json');const i=c.items.find(x=>!x.hidden&&x.variants?.['640']?.url);if(!i)process.exit(2);process.stdout.write(i.variants['640'].url)")
-          original=$(node -e "const c=require('./data/backend/catalogue.json');const i=c.items.find(x=>x.media?.original?.url);if(!i)process.exit(2);process.stdout.write(i.media.original.url)")
           pathname=$(SOURCE="$source" node -e "process.stdout.write(new URL(process.env.SOURCE).pathname)")
-          original_path=$(SOURCE="$original" node -e "process.stdout.write(new URL(process.env.SOURCE).pathname)")
-          original_key=$(SOURCE="$original_path" node -e "process.stdout.write(decodeURIComponent(process.env.SOURCE.replace(/^\/media\//,'')))")
-          admin_original_path=$(ORIGINAL_KEY="$original_key" node -e "process.stdout.write('/admin/media/'+process.env.ORIGINAL_KEY.split('/').map(encodeURIComponent).join('/'))")
+          original_path="/media/artworks/originals/diagnostics/private-probe.jpg"
+          admin_original_path="/admin/media/artworks/originals/diagnostics/private-probe.jpg"
           echo "MEDIA_BASE=$base" >> "$GITHUB_ENV"
           echo "MEDIA_URL=$base$pathname" >> "$GITHUB_ENV"
           echo "ORIGINAL_URL=$base$original_path" >> "$GITHUB_ENV"

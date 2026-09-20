@@ -1,4 +1,4 @@
-name: Drive cold-storage backfill
+name: Drive archive gate and R2 original purge
 
 on:
   pull_request:
@@ -7,8 +7,7 @@ on:
       - 'data/backend/catalogue.json'
       - 'data/backend/team.json'
       - 'data/backend/storage.json'
-      - 'scripts/build-drive-archive-manifest.mjs'
-      - 'scripts/sync-drive-archive.mjs'
+      - 'data/backend/drive-originals-manifest.json'
       - '.github/workflows/drive-cold-storage.yml'
   workflow_dispatch:
 
@@ -16,13 +15,16 @@ permissions:
   contents: read
 
 concurrency:
-  group: drive-cold-storage-${{ github.ref }}
+  group: drive-archive-r2-purge
   cancel-in-progress: false
 
 jobs:
-  snapshot:
+  purge-verified-originals:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 30
+    env:
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
     steps:
       - uses: actions/checkout@v6
 
@@ -30,120 +32,197 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Build immutable-original manifest
-        run: node scripts/build-drive-archive-manifest.mjs --output .artifacts/drive-archive-manifest.json
-
-      - name: Download and verify every referenced original
-        run: node scripts/sync-drive-archive.mjs --manifest .artifacts/drive-archive-manifest.json --output-dir .artifacts/drive-cold-storage
-
-      - name: Verify snapshot completeness
+      - name: Validate Drive archive and finalized metadata gate
+        id: gate
         shell: bash
         run: |
           set -euo pipefail
           node - <<'NODE'
           const fs=require('fs');
-          const result=JSON.parse(fs.readFileSync('.artifacts/drive-cold-storage/manifests/archive-result.json','utf8'));
-          if(result.verifiedObjectCount!==result.objectCount)throw new Error('Not every referenced original was verified.');
-          if(result.verifiedBytes<=0)throw new Error('Verified archive byte count is zero.');
-          if(result.target?.servesPublicTraffic!==false)throw new Error('Drive archive must not serve public traffic.');
-          console.log(`Verified ${result.verifiedObjectCount} originals and ${result.verifiedBytes} bytes for Drive cold storage.`);
+          const storage=JSON.parse(fs.readFileSync('data/backend/storage.json','utf8'));
+          const manifest=JSON.parse(fs.readFileSync('data/backend/drive-originals-manifest.json','utf8'));
+          const catalogue=JSON.parse(fs.readFileSync('data/backend/catalogue.json','utf8'));
+          const team=JSON.parse(fs.readFileSync('data/backend/team.json','utf8'));
+          const archive=storage.coldArchive||{};
+
+          const fail=message=>{throw new Error(message)};
+          if(archive.provider!=='google-drive')fail('Cold archive provider must be google-drive.');
+          if(archive.mode!=='drive-originals-r2-derivatives')fail('Storage mode must be drive-originals-r2-derivatives.');
+          if(archive.r2DerivativeOnly!==true)fail('R2 derivative-only policy is not enabled.');
+          if(archive.archiveVerifiedRunId!==35488669144)fail('Unexpected Drive archive verification run.');
+          if(archive.archiveObjectCount!==409||manifest.objectCount!==409)fail('Drive archive object count must remain 409.');
+          if(archive.archiveBytes!==384897226)fail('Drive archive verified byte count changed.');
+          if(archive.snapshotSha256!=='4999fbdfc6b54462cfca18a954bfff75701ba2fb3301855e7f6d496ea88da3b9')fail('Drive snapshot SHA-256 does not match the verified archive.');
+          if(manifest.source?.catalogueBlobSha!=='3139006821ef5c27f25cf85c24611be490e4b2d2')fail('Purge manifest catalogue source is not the archived blob.');
+          if(manifest.source?.teamBlobSha!=='55eaea47509670c4af55644a8a76b32b757514de')fail('Purge manifest team source is not the archived blob.');
+          if(archive.sourceCatalogueBlobSha!==manifest.source.catalogueBlobSha||archive.sourceTeamBlobSha!==manifest.source.teamBlobSha)fail('Storage archive source does not match the purge manifest.');
+
+          const allowedPrefixes=['artworks/originals/','champions/originals/','team/members/','legacy/repo/','legacy/owner/'];
+          const keys=new Set();
+          for(const object of manifest.objects||[]){
+            const key=String(object.key||'');
+            if(!allowedPrefixes.some(prefix=>key.startsWith(prefix)))fail('Unexpected key outside original namespaces: '+key);
+            if(key.includes('/variants/'))fail('Derivative key appeared in original purge manifest: '+key);
+            if(keys.has(key))fail('Duplicate purge key: '+key);
+            keys.add(key);
+          }
+          if(keys.size!==manifest.objectCount)fail('Purge manifest unique key count mismatch.');
+
+          for(const item of catalogue.items||[]){
+            if(item?.media?.original)fail('Finalized catalogue still contains media.original: '+item.id);
+            const display=item?.variants?.['1600']?.url;
+            if(!display||item.image!==display||item.thumbnail!==display)fail('Catalogue item is not finalized on 1600 derivative: '+item.id);
+          }
+          for(const member of team||[]){
+            if(member?.media?.original)fail('Finalized team still contains media.original: '+member.id);
+            const display=member?.variants?.['640']?.url||member?.variants?.['320']?.url;
+            if(!display||member.image!==display)fail('Team member is not finalized on derivative: '+member.id);
+          }
+
+          const status=String(archive.r2OriginalsPurgeStatus||'');
+          if(!['pending','complete'].includes(status))fail('Unexpected R2 original purge status: '+status);
+          fs.appendFileSync(process.env.GITHUB_OUTPUT,'should_purge='+(status==='pending'?'true':'false')+'\n');
+          console.log('Archive gate passed: 409 exact original keys are backed by the verified Drive snapshot.');
           NODE
 
-      - name: Pack and split restorable snapshot
+      - name: Inventory exact R2 originals before purge
+        if: steps.gate.outputs.should_purge == 'true'
         shell: bash
         run: |
           set -euo pipefail
-          tar -C .artifacts -czf .artifacts/hyupremium-r2-originals.tar.gz drive-cold-storage
-          sha256sum .artifacts/hyupremium-r2-originals.tar.gz > .artifacts/hyupremium-r2-originals.tar.gz.sha256
-          split -b 50M .artifacts/hyupremium-r2-originals.tar.gz .artifacts/snapshot.part-
-          ls -lh .artifacts/hyupremium-r2-originals.tar.gz .artifacts/hyupremium-r2-originals.tar.gz.sha256 .artifacts/snapshot.part-*
+          test -n "${CLOUDFLARE_ACCOUNT_ID:-}" || { echo '::error::Missing CLOUDFLARE_ACCOUNT_ID'; exit 1; }
+          test -n "${CLOUDFLARE_API_TOKEN:-}" || { echo '::error::Missing CLOUDFLARE_API_TOKEN'; exit 1; }
+          node - <<'NODE'
+          const fs=require('fs');
+          (async()=>{
+          const storage=JSON.parse(fs.readFileSync('data/backend/storage.json','utf8'));
+          const manifest=JSON.parse(fs.readFileSync('data/backend/drive-originals-manifest.json','utf8'));
+          const account=process.env.CLOUDFLARE_ACCOUNT_ID;
+          const token=process.env.CLOUDFLARE_API_TOKEN;
+          const bucket=storage.bucket;
+          const base=`https://api.cloudflare.com/client/v4/accounts/${account}/r2/buckets/${encodeURIComponent(bucket)}/objects`;
 
-      - uses: actions/upload-artifact@v4
+          async function listAll(){
+            const all=[];let cursor='';
+            do{
+              const url=new URL(base);url.searchParams.set('per_page','1000');if(cursor)url.searchParams.set('cursor',cursor);
+              const response=await fetch(url,{headers:{Authorization:`Bearer ${token}`}});
+              const text=await response.text();if(!response.ok)throw new Error(`R2 list failed ${response.status}: ${text.slice(0,500)}`);
+              const payload=JSON.parse(text);if(payload.success===false)throw new Error('R2 list API returned failure: '+text.slice(0,500));
+              const page=Array.isArray(payload.result)?payload.result:(payload.result?.objects||[]);
+              all.push(...page);
+              cursor=String(payload.result_info?.cursor||payload.result?.cursor||'');
+              if(!(payload.result_info?.is_truncated||cursor))cursor='';
+            }while(cursor);
+            return all;
+          }
+
+          const objects=await listAll();
+          const live=new Map(objects.map(object=>[String(object.key||''),object]));
+          let found=0,missing=0,bytes=0;
+          for(const item of manifest.objects){
+            const object=live.get(item.key);
+            if(!object){missing+=1;continue}
+            found+=1;bytes+=Number(object.size||0);
+            const expected=Number(item.expectedBytes||0);
+            if(expected&&Number(object.size)!==expected)throw new Error(`R2 byte mismatch for ${item.key}: expected ${expected}, found ${object.size}`);
+          }
+          if(found+missing!==manifest.objectCount)throw new Error('Inventory count mismatch.');
+          fs.writeFileSync('/tmp/r2-purge-inventory.json',JSON.stringify({found,missing,bytes,total:manifest.objectCount},null,2));
+          console.log(`Inventory passed: ${found} originals present (${bytes} bytes), ${missing} already absent.`);
+          })().catch(error=>{console.error(error);process.exit(1)});
+          NODE
+
+      - name: Delete only Drive-verified original keys from R2
+        if: steps.gate.outputs.should_purge == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          node - <<'NODE'
+          const fs=require('fs');
+          (async()=>{
+          const storage=JSON.parse(fs.readFileSync('data/backend/storage.json','utf8'));
+          const manifest=JSON.parse(fs.readFileSync('data/backend/drive-originals-manifest.json','utf8'));
+          const account=process.env.CLOUDFLARE_ACCOUNT_ID;
+          const token=process.env.CLOUDFLARE_API_TOKEN;
+          const bucket=storage.bucket;
+          const encodeKey=key=>key.split('/').map(encodeURIComponent).join('/');
+
+          let cursor=0,deleted=0;
+          async function worker(){
+            while(cursor<manifest.objects.length){
+              const index=cursor++;
+              const item=manifest.objects[index];
+              const url=`https://api.cloudflare.com/client/v4/accounts/${account}/r2/buckets/${encodeURIComponent(bucket)}/objects/${encodeKey(item.key)}`;
+              const response=await fetch(url,{method:'DELETE',headers:{Authorization:`Bearer ${token}`}});
+              const text=await response.text();
+              if(!response.ok)throw new Error(`R2 delete failed ${response.status} for ${item.key}: ${text.slice(0,400)}`);
+              if(text){const payload=JSON.parse(text);if(payload.success===false)throw new Error(`R2 delete API failure for ${item.key}: ${text.slice(0,400)}`)}
+              deleted+=1;
+              if(deleted%25===0||deleted===manifest.objects.length)console.log(`Deleted/confirmed ${deleted}/${manifest.objects.length} archived original keys.`);
+            }
+          }
+          await Promise.all(Array.from({length:8},()=>worker()));
+          })().catch(error=>{console.error(error);process.exit(1)});
+          NODE
+
+      - name: Verify every archived original key is absent from R2
+        if: steps.gate.outputs.should_purge == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          node - <<'NODE'
+          const fs=require('fs');
+          (async()=>{
+          const storage=JSON.parse(fs.readFileSync('data/backend/storage.json','utf8'));
+          const manifest=JSON.parse(fs.readFileSync('data/backend/drive-originals-manifest.json','utf8'));
+          const account=process.env.CLOUDFLARE_ACCOUNT_ID;
+          const token=process.env.CLOUDFLARE_API_TOKEN;
+          const bucket=storage.bucket;
+          const base=`https://api.cloudflare.com/client/v4/accounts/${account}/r2/buckets/${encodeURIComponent(bucket)}/objects`;
+
+          async function listAll(){
+            const all=[];let cursor='';
+            do{
+              const url=new URL(base);url.searchParams.set('per_page','1000');if(cursor)url.searchParams.set('cursor',cursor);
+              const response=await fetch(url,{headers:{Authorization:`Bearer ${token}`}});
+              const text=await response.text();if(!response.ok)throw new Error(`R2 list failed ${response.status}: ${text.slice(0,500)}`);
+              const payload=JSON.parse(text);
+              const page=Array.isArray(payload.result)?payload.result:(payload.result?.objects||[]);
+              all.push(...page);
+              cursor=String(payload.result_info?.cursor||payload.result?.cursor||'');
+              if(!(payload.result_info?.is_truncated||cursor))cursor='';
+            }while(cursor);
+            return all;
+          }
+
+          const live=new Set((await listAll()).map(object=>String(object.key||'')));
+          const remaining=manifest.objects.map(item=>item.key).filter(key=>live.has(key));
+          if(remaining.length)throw new Error(`${remaining.length} archived originals remain in R2; first: ${remaining.slice(0,10).join(', ')}`);
+          const inventory=JSON.parse(fs.readFileSync('/tmp/r2-purge-inventory.json','utf8'));
+          const report={
+            ok:true,
+            verifiedDriveSnapshotSha256:storage.coldArchive.snapshotSha256,
+            manifestObjects:manifest.objectCount,
+            objectsPresentBeforePurge:inventory.found,
+            bytesPresentBeforePurge:inventory.bytes,
+            verifiedRemaining:0,
+            completedAt:new Date().toISOString()
+          };
+          fs.writeFileSync('/tmp/r2-original-purge-report.json',JSON.stringify(report,null,2)+'\n');
+          console.log(JSON.stringify(report,null,2));
+          })().catch(error=>{console.error(error);process.exit(1)});
+          NODE
+
+      - name: Upload purge verification report
+        if: steps.gate.outputs.should_purge == 'true'
+        uses: actions/upload-artifact@v4
         with:
-          name: drive-cold-storage-metadata
-          path: |
-            .artifacts/hyupremium-r2-originals.tar.gz.sha256
-            .artifacts/drive-cold-storage/manifests/archive-result.json
+          name: r2-original-purge-report
+          path: /tmp/r2-original-purge-report.json
           if-no-files-found: error
-          compression-level: 0
-          retention-days: 30
+          retention-days: 90
 
-      - uses: actions/upload-artifact@v4
-        with:
-          name: drive-cold-storage-part-aa
-          path: .artifacts/snapshot.part-aa
-          if-no-files-found: ignore
-          compression-level: 0
-          retention-days: 30
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: drive-cold-storage-part-ab
-          path: .artifacts/snapshot.part-ab
-          if-no-files-found: ignore
-          compression-level: 0
-          retention-days: 30
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: drive-cold-storage-part-ac
-          path: .artifacts/snapshot.part-ac
-          if-no-files-found: ignore
-          compression-level: 0
-          retention-days: 30
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: drive-cold-storage-part-ad
-          path: .artifacts/snapshot.part-ad
-          if-no-files-found: ignore
-          compression-level: 0
-          retention-days: 30
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: drive-cold-storage-part-ae
-          path: .artifacts/snapshot.part-ae
-          if-no-files-found: ignore
-          compression-level: 0
-          retention-days: 30
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: drive-cold-storage-part-af
-          path: .artifacts/snapshot.part-af
-          if-no-files-found: ignore
-          compression-level: 0
-          retention-days: 30
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: drive-cold-storage-part-ag
-          path: .artifacts/snapshot.part-ag
-          if-no-files-found: ignore
-          compression-level: 0
-          retention-days: 30
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: drive-cold-storage-part-ah
-          path: .artifacts/snapshot.part-ah
-          if-no-files-found: ignore
-          compression-level: 0
-          retention-days: 30
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: drive-cold-storage-part-ai
-          path: .artifacts/snapshot.part-ai
-          if-no-files-found: ignore
-          compression-level: 0
-          retention-days: 30
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: drive-cold-storage-part-aj
-          path: .artifacts/snapshot.part-aj
-          if-no-files-found: ignore
-          compression-level: 0
-          retention-days: 30
+      - name: Already purged
+        if: steps.gate.outputs.should_purge != 'true'
+        run: echo "R2 original purge already marked complete; no destructive action performed."
