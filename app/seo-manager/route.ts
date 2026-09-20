@@ -6,7 +6,7 @@ function patchGithubPatAuth(input:string){
   let html=input;
   html=html.replace("const API='https://hyupremium.vercel.app/api/seo-manager'","const API='/api/seo-manager/'");
   html=html.replace(
-    'Đăng nhập bằng tài khoản owner/admin. Xác thực được proxy qua backend Vercel để tránh lỗi browser → Supabase trực tiếp.',
+    'Đăng nhập bằng tài khoản owner/admin. Xác thực được xử lý qua backend Vercel để trình duyệt không phụ thuộc vào dịch vụ dữ liệu bên ngoài.',
     'Đăng nhập bằng GitHub fine-grained personal access token của chủ repository. Token chỉ được giữ trong bộ nhớ của tab này và không được lưu vào localStorage hoặc repository.'
   );
   html=html.replace(
@@ -27,7 +27,7 @@ function patchGithubPatAuth(input:string){
   );
   html=html.replace('Sign in</button>','Đăng nhập bằng GitHub PAT</button>');
   html=html.replace('Sign out</button>','Đăng xuất</button>');
-  html=html.replace('50 thay đổi SEO gần nhất từ Supabase.','50 thay đổi SEO gần nhất từ metadata GitHub.');
+  html=html.replace('50 thay đổi SEO gần nhất từ metadata GitHub.','50 thay đổi SEO gần nhất từ metadata GitHub.');
   return html;
 }
 

@@ -20,7 +20,6 @@ const objects=new Map();
 function mediaKey(value){
   const raw=String(value||'').trim();
   if(!raw)return null;
-  if(raw.toLowerCase().includes('supabase'))throw new Error(`Supabase media reference is forbidden: ${raw}`);
   const url=new URL(raw);
   if(url.origin!==mediaOrigin)throw new Error(`Original is outside the managed R2 Worker origin: ${raw}`);
   if(!url.pathname.startsWith('/media/'))throw new Error(`Managed media URL must use /media/: ${raw}`);
