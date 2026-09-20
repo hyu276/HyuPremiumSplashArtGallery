@@ -125,7 +125,7 @@ const ViewportPreview=memo(function ViewportPreview({src,srcSet,sizes,alt,eager,
   return <img ref={node} className="preview" style={holdStyle} src={armed?src:undefined} srcSet={armed&&srcSet?srcSet:undefined} sizes={armed?sizes:undefined} data-src={armed?undefined:src} alt={alt} loading={eager?'eager':'lazy'} decoding="async" fetchPriority={eager?'high':'low'} />;
 });
 
-const ExpandedOriginal=memo(function ExpandedOriginal({src,onReady}:{src:string;onReady:()=>void}){
+const ExpandedArtwork=memo(function ExpandedArtwork({src,onReady}:{src:string;onReady:()=>void}){
   const [ready,setReady]=useState(false);
   const alive=useRef(true);
 
@@ -158,12 +158,12 @@ const ArtworkCard = memo(function ArtworkCard({item,index,expanded,pending,onTog
   const imageAlt=`${item.name} — ${item.category}, splash art game, hạng skin ${item.rank}`;
   const motionStyle={'--art-motion-delay':`${Math.min(index,12)*18}ms`} as CSSProperties;
   // Keep the already-rendered listing preview mounted as a same-size visual hold.
-  // Expansion never enlarges that derivative; the exact original is still the only expansion-triggered media load.
-  const originalSrc=item.media?.original?.url||item.image;
+  // Expanded views use the cacheable 1600px web derivative; full-resolution originals stay in Drive cold storage.
+  const expandedSrc=artworkPreview(item,1600);
   const previewSrc=artworkPreview(item,960);
   const previewSrcSet=artworkSrcSet(item);
   const previewSizes='(max-width: 760px) 50vw, (max-width: 1200px) 50vw, 33vw';
-  const actionLabel=pending?'Đang tải ảnh gốc':expanded?'Thu gọn':'Mở rộng';
+  const actionLabel=pending?'Đang tải ảnh lớn':expanded?'Thu gọn':'Mở rộng';
   const loadingLayerStyle=expanded&&pending?({background:'radial-gradient(circle at 50% 42%,rgba(67,220,255,.10),transparent 34%),linear-gradient(135deg,#12191a 0%,#0b0e0e 55%,#080908 100%)'} as CSSProperties):undefined;
   const toggleCard=()=>{
     if(!expanded){
@@ -175,7 +175,7 @@ const ArtworkCard = memo(function ArtworkCard({item,index,expanded,pending,onTog
   return <button ref={cardNode} style={motionStyle} className={`art-card${expanded?' expanded':''}${pending?' pending-expand':''}`} data-id={item.id} aria-expanded={expanded} aria-busy={pending} aria-label={`${actionLabel} ${item.name}`} onClick={toggleCard}>
     <span className="art-image-layer" style={loadingLayerStyle}>
       <ViewportPreview src={previewSrc} srcSet={previewSrcSet} sizes={previewSizes} alt={imageAlt} eager={index<INITIAL_EAGER_COUNT&&!expanded} suspendLoad={expanded} holdSize={expanded?previewHold:null}/>
-      {expanded?<ExpandedOriginal src={originalSrc} onReady={()=>onOriginalReady(item.id)}/>:null}
+      {expanded?<ExpandedArtwork src={expandedSrc} onReady={()=>onOriginalReady(item.id)}/>:null}
     </span>
     <span className="shade" aria-hidden="true"></span>
     <span className="card-number">{String(index+1).padStart(2,'0')}</span>
