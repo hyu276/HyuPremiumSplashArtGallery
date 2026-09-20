@@ -26,6 +26,7 @@
     "archiveVerifiedRunId": 35488669144,
     "archiveObjectCount": 409,
     "archiveBytes": 384897226,
-    "snapshotSha256": "4999fbdfc6b54462cfca18a954bfff75701ba2fb3301855e7f6d496ea88da3b9"
+    "snapshotSha256": "4999fbdfc6b54462cfca18a954bfff75701ba2fb3301855e7f6d496ea88da3b9",
+    "migrationPhase": "runtime-switched"
   }
 }
