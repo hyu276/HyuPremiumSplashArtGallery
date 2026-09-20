@@ -41,8 +41,12 @@ if(publicBaseUrl.includes('supabase'))failures.push('active media publicBaseUrl 
 if(publicBaseUrl.includes('drive.google.com')||publicBaseUrl.includes('googleusercontent.com'))failures.push('Google Drive must never become the public media origin');
 const coldArchive=storageConfig.coldArchive||{};
 if(coldArchive.provider!=='google-drive')failures.push('cold archive provider must be google-drive');
-if(coldArchive.mode!=='verified-snapshot-bundle')failures.push('Google Drive cold archive must use verified-snapshot-bundle mode');
-if(coldArchive.scope!=='referenced-originals-only')failures.push('Google Drive cold archive must contain referenced originals only');
+if(coldArchive.mode!=='drive-originals-r2-derivatives')failures.push('storage mode must keep originals in Drive and web derivatives in R2');
+if(coldArchive.scope!=='full-resolution-originals')failures.push('Google Drive cold archive must own full-resolution originals');
+if(coldArchive.snapshotFormat!=='verified-snapshot-bundle')failures.push('Google Drive archive must retain the verified snapshot bundle format');
+if(coldArchive.r2DerivativeOnly!==true)failures.push('R2 policy must be derivatives-only after migration');
+if(coldArchive.stagingOriginals?.allowed!==true||coldArchive.stagingOriginals?.servesPublicTraffic!==false||coldArchive.stagingOriginals?.mustBeArchivedBeforePurge!==true)failures.push('temporary R2 originals must be non-serving staging objects and require archive before purge');
+const derivativesOnlyFinalized=coldArchive.migrationPhase==='derivatives-only';
 if(coldArchive.servesPublicTraffic!==false)failures.push('Google Drive cold archive must never serve public traffic');
 if(coldArchive.sourceOfTruth!==false)failures.push('Google Drive cold archive must not replace GitHub metadata as source of truth');
 if(coldArchive.restorePreservesR2Keys!==true)failures.push('Drive restore must preserve R2 object keys');
@@ -83,6 +87,12 @@ for(const item of catalogue.items||[]){
   }
 }
 if(publicItems.some(item=>!item.thumbnail))failures.push('public catalogue contains artwork without thumbnail');
+if(derivativesOnlyFinalized){
+  for(const item of catalogue.items||[]){
+    if(item?.media?.original)failures.push(`${item.id}: finalized catalogue must not retain media.original`);
+    if(String(item.image||'')!==String(item?.variants?.['1600']?.url||''))failures.push(`${item.id}: finalized artwork image must equal its 1600px derivative`);
+  }
+}
 
 const aggregateBudgets={
   '640':{avg:150*1024,p95:210*1024},
@@ -109,6 +119,11 @@ for(const member of team){
     if(!bytes)failures.push(`${id}: ${width}px derivative missing byte metadata`);
     else if(bytes>limit)failures.push(`${id}: ${width}px derivative ${bytes} bytes exceeds ${limit}`);
   }
+  if(derivativesOnlyFinalized){
+    if(member?.media?.original)failures.push(`${id}: finalized team metadata must not retain media.original`);
+    const expected=member?.variants?.['640']?.url||member?.variants?.['320']?.url||'';
+    if(String(member.image||'')!==String(expected))failures.push(`${id}: finalized team image must equal its largest derivative`);
+  }
 }
 
 const gallery=await readFile(join(ROOT,'components/GalleryClient.tsx'),'utf8');
@@ -117,13 +132,14 @@ if(!gallery.includes('const visible=filtered;'))failures.push('gallery must rend
 if(gallery.includes('SECOND_BATCH_COUNT')||gallery.includes('setStage(')||gallery.includes('gallery-progressive-controls')||gallery.includes('showMore'))failures.push('gallery progressive 6/batch/all rendering must remain removed');
 if(gallery.includes('loader.src=item.image'))failures.push('gallery must not preload original artwork automatically');
 if(gallery.includes('new Image(')||gallery.includes('loadAndDecodeOriginal('))failures.push('gallery must not use off-DOM original preloaders before expansion');
-if(gallery.includes('artworkPreview(item,1600)'))failures.push('gallery must not fetch a 1600px bridge before the exact original');
+if(!gallery.includes('const expandedSrc=artworkPreview(item,1600)'))failures.push('expanded gallery artwork must use the 1600px web derivative');
+if(gallery.includes('media?.original')||gallery.includes('originalSrc='))failures.push('gallery runtime must never resolve full-resolution originals');
 if(!gallery.includes('srcSet='))failures.push('gallery must use responsive image srcSet');
 if(!gallery.includes("const previewSrc=artworkPreview(item,960)"))failures.push('mobile title changes must not alter listing media resolution');
-if(!gallery.includes("const originalSrc=item.media?.original?.url||item.image"))failures.push('mobile title changes must not alter exact-original expanded media');
+if(!gallery.includes("const expandedSrc=artworkPreview(item,1600)"))failures.push('mobile title changes must preserve the 1600px expanded derivative');
 if(!gallery.includes('data-title-fit={titleFitBucket(item.name)}'))failures.push('gallery titles must use deterministic length buckets');
 if(gallery.includes('ResizeObserver'))failures.push('title fitting must not use ResizeObserver or frame-by-frame font measurement');
-if(!gallery.includes("const originalSrc=item.media?.original?.url||item.image"))failures.push('expanded artwork must load the exact uploaded original');
+if(!gallery.includes("const expandedSrc=artworkPreview(item,1600)"))failures.push('expanded artwork must resolve the cacheable 1600px derivative');
 if(!gallery.includes('const previewSrcSet=artworkSrcSet(item)'))failures.push('listing preview must keep its responsive srcSet stable across expansion');
 if(gallery.includes("const srcSet=expanded?")||gallery.includes('srcSet={expanded?'))failures.push('expansion must not swap preview srcSet because that can trigger another derivative candidate');
 if(gallery.includes('{expanded?null:<ViewportPreview'))failures.push('expanded artwork must retain only the already-loaded preview as a visual hold instead of blanking the shell');
@@ -131,14 +147,15 @@ if(!gallery.includes('suspendLoad={expanded}'))failures.push('expanded visual ho
 if(!gallery.includes('holdSize={expanded?previewHold:null}'))failures.push('expanded visual hold must preserve the pre-expansion rendered dimensions');
 if(!gallery.includes('eager={index<INITIAL_EAGER_COUNT&&!expanded}'))failures.push('direct expanded routes must not eagerly fetch a derivative alongside the exact original');
 if(!gallery.includes('setPreviewHold({width:rect.width,height:rect.height})'))failures.push('gallery must capture the collapsed card dimensions before expansion to prevent derivative upscaling');
-if(!gallery.includes('{expanded?<ExpandedOriginal src={originalSrc}'))failures.push('expanded artwork must mount the exact original directly in the expanded shell');
+if(!gallery.includes('{expanded?<ExpandedArtwork src={expandedSrc}'))failures.push('expanded artwork must mount the 1600px derivative directly in the expanded shell');
 
 const championSkins=await readFile(join(ROOT,'components/ChampionSkinsClient.tsx'),'utf8');
 if(!championSkins.includes('const CHAMPION_THUMBNAIL_360P_WIDTH = 640 as const;'))failures.push('champion carousel thumbnails must remain on the 640x~360 derivative tier');
-if(!championSkins.includes("const originalSrc = active ? (active.media?.original?.url || active.image) : '';"))failures.push('champion expanded artwork must resolve the exact uploaded original');
-if(!championSkins.includes('src={originalSrc}'))failures.push('champion expanded viewport must render the exact uploaded original');
+if(!championSkins.includes("const expandedSrc = active ? artworkPreview(active, 1600) : '';"))failures.push('champion expanded artwork must resolve the 1600px derivative');
+if(!championSkins.includes('src={expandedSrc}'))failures.push('champion expanded viewport must render the 1600px derivative');
+if(championSkins.includes('media?.original')||championSkins.includes('originalSrc'))failures.push('champion runtime must never resolve full-resolution originals');
 if(!championSkins.includes('src={artworkPreview(item, CHAMPION_THUMBNAIL_360P_WIDTH)}'))failures.push('champion small thumbnails must use the 360p derivative tier');
-if(championSkins.includes('artworkPreview(active, 1600)')||championSkins.includes('artworkSrcSet(active)')||championSkins.includes('srcSet={mainSrcSet'))failures.push('champion expanded viewport must not fetch a 1600px bridge or responsive derivative before the original');
+if(championSkins.includes('artworkSrcSet(active)')||championSkins.includes('srcSet={mainSrcSet'))failures.push('champion expanded viewport must use one deterministic 1600px derivative, not a responsive candidate set');
 
 const imageSitemap=await readFile(join(ROOT,'app/image-sitemap.xml/route.ts'),'utf8');
 if(!imageSitemap.includes('image=artworkPreview(item,1600)'))failures.push('image sitemap must publish the 1600px derivative');
@@ -170,6 +187,7 @@ if(/publicMediaUrl|MEDIA_BASE_URL|artworkPreview|\.image\b/.test(revisionRoute))
 const adminBackend=await readFile(join(ROOT,'app/api/admin-backend/route.ts'),'utf8');
 if(!adminBackend.includes("const categories=preferredCategories;"))failures.push('admin backend must keep taxonomy authoritative instead of rebuilding deleted choices from items');
 if(!adminBackend.includes('invalidCredits')||!adminBackend.includes('invalidRanks')||!adminBackend.includes('invalidCategories'))failures.push('admin backend must reject dangling taxonomy references before publish');
+if(!adminBackend.includes('function finalizeArtworkDerivatives')||!adminBackend.includes('function finalizeTeamDerivatives'))failures.push('admin backend must finalize public metadata on derivatives rather than originals');
 if(adminBackend.includes("unique([...preferredCredits"))failures.push('admin backend must not resurrect deleted credits from item values');
 
 const admin=await readFile(join(ROOT,'components/GitHubAdminDashboard.tsx'),'utf8');
@@ -227,4 +245,4 @@ if(failures.length){
   for(const failure of failures)console.error(` - ${failure}`);
   process.exit(1);
 }
-console.log(`Egress safety gate passed: ${catalogue.items.length} artworks, ${publicItems.length} public, ${team.length} team members; active media remains Cloudflare R2; Google Drive is non-serving cold archive only; Supabase media origin is retired; taxonomy is referentially consistent; expanded artwork uses exact originals; SEO/listing traffic uses derivatives; icon is ${iconBytes} bytes with immutable cache; Admin UI is GitHub Pages-only.`);
+console.log(`Egress safety gate passed: ${catalogue.items.length} artworks, ${publicItems.length} public, ${team.length} team members; R2 serves web derivatives only at runtime; Google Drive owns full-resolution originals; Supabase media origin is retired; taxonomy is referentially consistent; expanded artwork uses 1600px derivatives; icon is ${iconBytes} bytes with immutable cache; Admin UI is GitHub Pages-only.`);
