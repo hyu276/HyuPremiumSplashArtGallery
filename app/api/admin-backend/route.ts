@@ -74,14 +74,27 @@ async function putR2(base:string,token:string,key:string,buffer:Buffer){
 }
 
 function completeVariants(item:any){return VARIANT_WIDTHS.every(width=>item?.variants?.[String(width)]?.url)}
+function finalizeArtworkDerivatives(item:any){
+  const next=canonicalItem(item);
+  const display=next?.variants?.['1600'];
+  if(display?.url){next.image=String(display.url);next.thumbnail=String(display.url);}
+  delete next.media;
+  return next;
+}
+function finalizeTeamDerivatives(member:any){
+  const next={...(member||{})};
+  const display=next?.variants?.['640']||next?.variants?.['320'];
+  if(display?.url)next.image=String(display.url);
+  delete next.media;
+  return next;
+}
 async function enrichMedia(item:any,storageBase:string,token:string){
   const next=canonicalItem(item);
   if(!next.image)return next;
-  if(completeVariants(next)&&next.media?.original?.url)return next;
+  if(completeVariants(next))return finalizeArtworkDerivatives(next);
   const response=await fetch(String(next.image),{cache:'no-store',headers:{Accept:'image/*'}});
   if(!response.ok)throw new Error(`Không tải được ảnh gốc của ${next.id} để tạo derivative (${response.status}).`);
   const input=Buffer.from(await response.arrayBuffer());
-  const originalMeta=await sharp(input,{animated:false}).metadata();
   const variants:Record<string,MediaVariant>={...(next.variants||{})};
   for(const width of VARIANT_WIDTHS){
     if(variants[String(width)]?.url)continue;
@@ -91,9 +104,7 @@ async function enrichMedia(item:any,storageBase:string,token:string){
     variants[String(width)]={url,width:info.width,height:info.height,bytes:data.length,mimeType:'image/webp'};
   }
   next.variants=variants;
-  next.thumbnail=variants['1600']?.url||next.thumbnail||next.image;
-  next.media={...(next.media||{}),original:{url:String(next.image),width:Number(originalMeta.width)||0,height:Number(originalMeta.height)||0,bytes:input.length,mimeType:String(response.headers.get('content-type')||originalMeta.format||'application/octet-stream').split(';')[0]}};
-  return next;
+  return finalizeArtworkDerivatives(next);
 }
 
 async function enrichChampionThumbnail(category:string,choice:ChampionThumbnailChoice,items:any[],storageBase:string,token:string):Promise<ChampionThumbnailChoice>{
@@ -108,27 +119,26 @@ async function enrichChampionThumbnail(category:string,choice:ChampionThumbnailC
   const image=String(choice.image||'').trim();
   if(!image||!validChampionOriginal(storageBase,image))throw new Error(`Thumbnail tải riêng của ${category} phải là ảnh trong R2 champions/originals.`);
   const existing=choice.variant;
-  if(existing?.url&&Number(existing.width)>0&&Number(existing.width)<=CHAMPION_THUMB_WIDTH&&choice.media?.original?.url===image){
-    return {...choice,mode:'custom',image,thumbnail:String(existing.url),variant:existing};
+  if(existing?.url&&Number(existing.width)>0&&Number(existing.width)<=CHAMPION_THUMB_WIDTH){
+    return {mode:'custom',image:String(existing.url),thumbnail:String(existing.url),variant:existing,updatedAt:choice.updatedAt};
   }
   const response=await fetch(image,{cache:'no-store',headers:{Accept:'image/*'}});
   if(!response.ok)throw new Error(`Không tải được thumbnail gốc của ${category} (${response.status}).`);
   const input=Buffer.from(await response.arrayBuffer());
-  const originalMeta=await sharp(input,{animated:false}).metadata();
   const {data,info}=await sharp(input,{animated:false}).rotate().resize({width:CHAMPION_THUMB_WIDTH,withoutEnlargement:true}).webp({quality:78,effort:4}).toBuffer({resolveWithObject:true});
   const key=championMediaKey(category,image);
   const url=await putR2(storageBase,token,key,data);
   const variant:MediaVariant={url,width:info.width,height:info.height,bytes:data.length,mimeType:'image/webp'};
-  return {mode:'custom',image,thumbnail:url,variant,media:{original:{url:image,width:Number(originalMeta.width)||0,height:Number(originalMeta.height)||0,bytes:input.length,mimeType:String(response.headers.get('content-type')||originalMeta.format||'application/octet-stream').split(';')[0]}},updatedAt:new Date().toISOString()};
+  return {mode:'custom',image:url,thumbnail:url,variant,updatedAt:new Date().toISOString()};
 }
 
 async function enrichTeamMember(member:any,storageBase:string,token:string){
   const next={...(member||{})};if(!next.image)return next;
-  const complete=TEAM_VARIANT_WIDTHS.every(width=>next?.variants?.[String(width)]?.url);if(complete&&next.media?.original?.url)return next;
+  const complete=TEAM_VARIANT_WIDTHS.every(width=>next?.variants?.[String(width)]?.url);if(complete)return finalizeTeamDerivatives(next);
   const response=await fetch(String(next.image),{cache:'no-store',headers:{Accept:'image/*'}});if(!response.ok)throw new Error(`Không tải được ảnh đội ngũ ${next.id} (${response.status}).`);
-  const input=Buffer.from(await response.arrayBuffer());const originalMeta=await sharp(input,{animated:false}).metadata();const variants:Record<string,MediaVariant>={...(next.variants||{})};
+  const input=Buffer.from(await response.arrayBuffer());const variants:Record<string,MediaVariant>={...(next.variants||{})};
   for(const width of TEAM_VARIANT_WIDTHS){if(variants[String(width)]?.url)continue;const {data,info}=await sharp(input,{animated:false}).rotate().resize({width,withoutEnlargement:true}).webp({quality:width===320?76:80,effort:4}).toBuffer({resolveWithObject:true});const key=teamMediaKey(next.id,String(next.image),width);const url=await putR2(storageBase,token,key,data);variants[String(width)]={url,width:info.width,height:info.height,bytes:data.length,mimeType:'image/webp'};}
-  next.variants=variants;next.media={...(next.media||{}),original:{url:String(next.image),width:Number(originalMeta.width)||0,height:Number(originalMeta.height)||0,bytes:input.length,mimeType:String(response.headers.get('content-type')||originalMeta.format||'application/octet-stream').split(';')[0]}};return next;
+  next.variants=variants;return finalizeTeamDerivatives(next);
 }
 
 async function createBlob(token:string,content:string){return gh<{sha:string}>(token,`/repos/${REPO}/git/blobs`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({content,encoding:'utf-8'})})}
