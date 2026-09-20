@@ -1,4 +1,4 @@
-import { createHash, createSign } from 'node:crypto';
+import { createHash, createSign, randomUUID } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 
 const DRIVE_SCOPE = 'https://www.googleapis.com/auth/drive';
@@ -189,7 +189,7 @@ async function downloadMedia(url) {
 }
 
 async function createDriveFile(token, parentId, fileName, bytes, contentType) {
-  const boundary = `hyu-${crypto.randomUUID()}`;
+  const boundary = `hyu-${randomUUID()}`;
   const metadata = Buffer.from(JSON.stringify({ name: fileName, parents: [parentId] }));
   const prefix = Buffer.from(
     `--${boundary}\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n${metadata}\r\n--${boundary}\r\nContent-Type: ${contentType}\r\n\r\n`
