@@ -4,5 +4,16 @@
   "bucket": "hyu-premium-media",
   "migratedAt": "2026-08-25T17:43:54.725Z",
   "migratedObjects": 300,
-  "ready": true
+  "ready": true,
+  "coldArchive": {
+    "provider": "google-drive",
+    "mode": "verified-snapshot-bundle",
+    "scope": "referenced-originals-only",
+    "rootFolderId": "1yBnLtkxgT1odW6P38Qs_aLtcN_exKE5X",
+    "snapshotsFolderId": "1qsIk5hrWt31BK__muKIOrzOBEBbgPpYC",
+    "manifestsFolderId": "1YfU8h7B_Poo-nFm1ex5ur94bi8BVknBY",
+    "servesPublicTraffic": false,
+    "sourceOfTruth": false,
+    "restorePreservesR2Keys": true
+  }
 }
