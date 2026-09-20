@@ -8,61 +8,62 @@ Every media-path change must answer:
 - Does it increase object size transferred?
 - Does it bypass Cloudflare cache?
 - Does it cause a derivative candidate switch?
-- Does it preload an original that the user may never open?
+- Does it fetch an archival original or another provider unnecessarily?
 - Does it proxy bytes through another provider?
 
 If the answer to any is yes, quantify the trade-off before implementation.
 
 ## 2. Media delivery rules
 
-- Keep Cloudflare R2 as the media origin.
-- Preserve immutable public cache semantics for stable media objects.
-- Keep existing public object URLs stable whenever possible.
+- Cloudflare R2 is the public media origin and stores web-serving derivatives only.
+- Google Drive owns verified full-resolution originals as non-serving cold storage.
+- A publish flow may use temporary authenticated R2 staging originals only long enough to generate derivatives and verify archival; staging originals must never serve public traffic and must be purged after archive verification.
+- Preserve immutable public cache semantics for stable derivative objects.
+- Keep existing public derivative URLs stable whenever possible.
 - Do not add cache-busting query parameters to normal media URLs.
 - Canonicalize accidental query variants instead of letting them fragment cache keys.
-- Preserve byte-range support for large originals.
+- Never fetch Google Drive originals from browser/runtime code.
 
-## 3. Derivative policy
+## 3. Retired provider boundary
 
-Derivatives exist to reduce listing/SEO bandwidth.
+- Supabase is not part of the HyuPremium runtime, build, admin, media, metadata, auth, or persistence architecture.
+- Do not add Supabase SDK dependencies, project URLs, API keys, environment variables, Storage paths, Database/Auth calls, Realtime, or Edge Functions.
+- The egress safety gate must fail if a runtime/config/automation reference to the retired provider is reintroduced.
+- Reintroducing Supabase requires explicit user approval and a new architecture review.
 
-- Listing/card/SEO traffic should use appropriate derivatives rather than exact originals.
-- Existing derivative tiers such as 640/960/1600 must not be expanded or replaced casually.
-- Do not change derivative budgets or initial loading budgets without measuring request/byte impact and updating the egress safety gate.
+## 4. Derivative policy
 
-## 4. Expanded artwork contract
+Derivatives are the only public artwork payloads.
 
-The accumulated expansion rules are one contract:
+- Listing/card/SEO traffic should select the smallest existing derivative that preserves expected quality.
+- Existing 640/960/1600 tiers must not be expanded or replaced casually.
+- Expanded artwork uses the deterministic 1600px derivative.
+- Do not regenerate unchanged derivatives unnecessarily.
+- Do not create a new derivative tier unless measured savings justify the storage/generation complexity.
+
+## 5. Expanded artwork contract
 
 - User click must produce immediate UI response.
-- Do not stretch a low-resolution derivative to full expanded size and show a blurry image.
-- The exact uploaded original is the final expanded image.
-- Do not speculative-prefetch exact originals on hover/touch merely to hide cold-load latency.
-- Do not introduce an extra 1600px bridge request between thumbnail and original.
-- If a preview is retained while the original loads, reuse the already-loaded preview and keep it at its pre-expansion rendered size rather than upscaling it.
-- Direct-link expanded routes should not fetch a derivative solely to create a placeholder.
+- The final expanded image is the existing 1600px R2 derivative.
+- Do not request a full-resolution original from Drive, R2 staging, Supabase, Vercel, or another provider.
+- Do not speculative-prefetch archival originals on hover/touch.
+- Direct-link expanded routes must resolve to the same derivative-only topology.
+- Preserve intrinsic dimensions/aspect ratio and avoid layout shift.
 
-## 5. No large-media proxying through Vercel
+## 6. No large-media proxying through Vercel
 
 Do not proxy artwork uploads/downloads through Vercel solely to avoid browser-to-Worker CORS or Access issues.
 
-Reasons:
-
-- duplicates the media transfer path;
-- increases bandwidth/provider coupling;
-- makes cache accounting harder;
-- creates new serverless limits and failure modes.
-
 Fix Cloudflare/CORS/auth at its own boundary instead.
 
-## 6. Retry and duplication cost
+## 7. Retry and duplication cost
 
-- Do not automatically retry large original downloads.
+- Do not automatically retry large archival transfers.
 - Do not retry uploads unless the object key and operation are demonstrably idempotent.
 - Avoid generating the same derivative multiple times in one publish flow.
 - Avoid background prefetch that is not tied to clear user intent.
 
-## 7. Performance rules
+## 8. Performance rules
 
 - Prefer CSS-only loading ambience/skeletons over extra media requests.
 - Animate `transform` and `opacity` where animation is necessary.
@@ -70,7 +71,7 @@ Fix Cloudflare/CORS/auth at its own boundary instead.
 - Avoid layout shifts when changing image loading behavior.
 - Performance fixes must be evaluated together with visual quality and egress, not in isolation.
 
-## 8. Egress regression gate
+## 9. Egress regression gate
 
 `scripts/assert-egress-safety.mjs` is a policy gate, not an obstacle to work around.
 

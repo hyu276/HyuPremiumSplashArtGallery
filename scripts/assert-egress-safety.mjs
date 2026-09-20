@@ -2,12 +2,12 @@ import { readFile, readdir, stat } from 'node:fs/promises';
 import { join, relative } from 'node:path';
 
 const ROOT=process.cwd();
-const SCAN_ROOTS=['app','components','lib','scripts'];
+const SCAN_ROOTS=['app','components','lib','scripts','.github','cloudflare','data','admin-src','assets'];
+const ROOT_SCAN_FILES=['package.json','package-lock.json','next.config.ts','next.config.mjs','vercel.json','tsconfig.json','admin.html','index.html','about.html','blog.html','news.html','seomanager.html','minigame.html','demonewweb.html'];
+const RETIRED_PROVIDER=['supa','base'].join('');
 const FORBIDDEN=[
-  ['supabase origin helper',['supabase','ArtworkOrigin'].join('')],
-  ['owner Supabase env',['NEXT_PUBLIC','SUPABASE','URL'].join('_')],
-  ['collaborator Supabase env',['NEXT_PUBLIC','HUY9VND','SUPABASE','URL'].join('_')],
-  ['Supabase public storage path',['storage','v1','object','public'].join('/')],
+  ['retired provider reference',RETIRED_PROVIDER],
+  ['retired project reference',['zkrhwqg','mynbbmoktokdq'].join('')],
   ['cache-busting retry',['_hyu','retry'].join('_')]
 ];
 
@@ -16,7 +16,7 @@ async function filesUnder(dir){
   for(const entry of await readdir(dir,{withFileTypes:true})){
     const full=join(dir,entry.name);
     if(entry.isDirectory())out.push(...await filesUnder(full));
-    else if(/\.(?:ts|tsx|js|mjs|cjs)$/.test(entry.name))out.push(full);
+    else if(/\.(?:ts|tsx|js|mjs|cjs|json|jsonc|ya?ml|html)$/.test(entry.name))out.push(full);
   }
   return out;
 }
@@ -29,9 +29,19 @@ for(const root of SCAN_ROOTS){
     const rel=relative(ROOT,file);
     if(rel==='scripts/assert-egress-safety.mjs')continue;
     const text=await readFile(file,'utf8');
-    for(const [label,needle] of FORBIDDEN){if(text.includes(needle))failures.push(`${rel}: forbidden ${label}`);}
+    for(const [label,needle] of FORBIDDEN){if(text.toLowerCase().includes(needle.toLowerCase()))failures.push(`${rel}: forbidden ${label}`);}
   }
 }
+for(const rel of ROOT_SCAN_FILES){
+  try{
+    const text=await readFile(join(ROOT,rel),'utf8');
+    for(const [label,needle] of FORBIDDEN){if(text.toLowerCase().includes(needle.toLowerCase()))failures.push(`${rel}: forbidden ${label}`);}
+  }catch(error){if(error?.code!=='ENOENT')throw error;}
+}
+try{
+  const retiredDir=join(ROOT,['supa','base'].join(''));
+  if((await stat(retiredDir)).isDirectory())failures.push('retired provider directory must not exist in repository');
+}catch(error){if(error?.code!=='ENOENT')throw error;}
 
 const storageConfig=JSON.parse(await readFile(join(ROOT,'data/backend/storage.json'),'utf8'));
 if(storageConfig.provider!=='cloudflare-r2')failures.push('active media provider must remain cloudflare-r2');
@@ -46,7 +56,8 @@ if(coldArchive.scope!=='full-resolution-originals')failures.push('Google Drive c
 if(coldArchive.snapshotFormat!=='verified-snapshot-bundle')failures.push('Google Drive archive must retain the verified snapshot bundle format');
 if(coldArchive.r2DerivativeOnly!==true)failures.push('R2 policy must be derivatives-only after migration');
 if(coldArchive.stagingOriginals?.allowed!==true||coldArchive.stagingOriginals?.servesPublicTraffic!==false||coldArchive.stagingOriginals?.mustBeArchivedBeforePurge!==true)failures.push('temporary R2 originals must be non-serving staging objects and require archive before purge');
-const derivativesOnlyFinalized=coldArchive.migrationPhase==='derivatives-only';
+const derivativesOnlyFinalized=coldArchive.r2DerivativeOnly===true&&coldArchive.r2OriginalsPurgeStatus==='complete';
+if(coldArchive.migrationPhase!=='r2-originals-purged')failures.push('storage migration phase must remain r2-originals-purged after Drive archival');
 if(coldArchive.servesPublicTraffic!==false)failures.push('Google Drive cold archive must never serve public traffic');
 if(coldArchive.sourceOfTruth!==false)failures.push('Google Drive cold archive must not replace GitHub metadata as source of truth');
 if(coldArchive.restorePreservesR2Keys!==true)failures.push('Drive restore must preserve R2 object keys');

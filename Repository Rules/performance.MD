@@ -40,11 +40,11 @@ Performance is a repository-level requirement covering local code execution, cli
 
 ## 6. Images and media
 
-- Listing/card/SEO views should use appropriately sized derivatives.
-- Do not load exact originals before user intent requires them.
-- Expanded artwork must eventually display the exact uploaded original at full available fidelity.
-- Never improve apparent speed by permanently substituting a lower-resolution image in expanded mode.
-- Reuse already-loaded previews as temporary visual holds rather than issuing redundant bridge requests.
+- Listing/card/SEO views should use appropriately sized R2 derivatives.
+- Expanded artwork uses the deterministic 1600px R2 derivative.
+- Full-resolution originals belong to Google Drive cold storage and must not be fetched by browser/runtime paths.
+- Temporary R2 staging originals are publish-time inputs only and must not serve public traffic.
+- Never route public media through Supabase or Drive.
 - Preserve intrinsic dimensions/aspect ratios to avoid layout shift.
 
 ## 7. Network efficiency
@@ -55,6 +55,7 @@ Performance is a repository-level requirement covering local code execution, cli
 - Do not cache-bust immutable media URLs.
 - Retry only bounded, safe operations according to repository retry rules.
 - Do not proxy large media through Vercel when Cloudflare R2 can serve it directly.
+- Supabase is a retired provider for this project; runtime/config/automation must not depend on it.
 
 ## 8. Cache-aware performance
 
@@ -119,6 +120,6 @@ Do not merge a performance change that:
 - increases initial JS without a justified user benefit;
 - converts static content to dynamic rendering unnecessarily;
 - adds background polling or speculative original-media fetches;
-- improves perceived speed by reducing expanded-image fidelity;
+- improves perceived speed by reducing expanded-derivative fidelity;
 - increases origin egress when an equivalent cache-preserving solution exists;
 - introduces layout shift, interaction blocking, or mobile GPU overload.

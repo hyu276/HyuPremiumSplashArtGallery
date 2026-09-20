@@ -407,4 +407,4 @@ await createNestedArtworkPages(rootHtml, routes);
 await migrateLegacyInternalLinks(routes);
 await updateSitemaps(routes);
 
-console.log(`Character routing enabled safely: ${routes.length} artworks across ${characterCount} character URLs; existing Supabase/gallery runtime and in-place artwork expansion preserved.`);
+console.log(`Character routing enabled safely: ${routes.length} artworks across ${characterCount} character URLs; existing gallery runtime and in-place artwork expansion preserved.`);
