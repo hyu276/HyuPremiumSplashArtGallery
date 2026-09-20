@@ -7,13 +7,25 @@
   "ready": true,
   "coldArchive": {
     "provider": "google-drive",
-    "mode": "verified-snapshot-bundle",
-    "scope": "referenced-originals-only",
+    "mode": "drive-originals-r2-derivatives",
+    "scope": "full-resolution-originals",
     "rootFolderId": "1yBnLtkxgT1odW6P38Qs_aLtcN_exKE5X",
     "snapshotsFolderId": "1qsIk5hrWt31BK__muKIOrzOBEBbgPpYC",
     "manifestsFolderId": "1YfU8h7B_Poo-nFm1ex5ur94bi8BVknBY",
     "servesPublicTraffic": false,
     "sourceOfTruth": false,
-    "restorePreservesR2Keys": true
+    "restorePreservesR2Keys": true,
+    "snapshotFormat": "verified-snapshot-bundle",
+    "r2DerivativeOnly": true,
+    "stagingOriginals": {
+      "allowed": true,
+      "servesPublicTraffic": false,
+      "mustBeArchivedBeforePurge": true
+    },
+    "archiveVerifiedAt": "2026-09-20T04:16:14Z",
+    "archiveVerifiedRunId": 35488669144,
+    "archiveObjectCount": 409,
+    "archiveBytes": 384897226,
+    "snapshotSha256": "4999fbdfc6b54462cfca18a954bfff75701ba2fb3301855e7f6d496ea88da3b9"
   }
 }
