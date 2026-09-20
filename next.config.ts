@@ -5,7 +5,6 @@ const nextConfig: NextConfig = {
   trailingSlash: true,
   images: {
     remotePatterns: [
-      { protocol: 'https', hostname: 'zkrhwqgmynbbmoktokdq.supabase.co' },
       { protocol: 'https', hostname: 'raw.githubusercontent.com' }
     ]
   },
