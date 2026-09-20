@@ -1,0 +1,134 @@
+name: Drive cold-storage snapshot
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'data/backend/catalogue.json'
+      - 'data/backend/team.json'
+      - 'data/backend/storage.json'
+      - 'scripts/build-drive-archive-manifest.mjs'
+      - 'scripts/sync-drive-archive.mjs'
+      - '.github/workflows/drive-cold-storage.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: drive-cold-storage-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Build immutable-original manifest
+        run: node scripts/build-drive-archive-manifest.mjs --output .artifacts/drive-archive-manifest.json
+
+      - name: Download and verify every referenced original
+        run: node scripts/sync-drive-archive.mjs --manifest .artifacts/drive-archive-manifest.json --output-dir .artifacts/drive-cold-storage
+
+      - name: Verify snapshot completeness
+        shell: bash
+        run: |
+          set -euo pipefail
+          node - <<'NODE'
+          const fs=require('fs');
+          const result=JSON.parse(fs.readFileSync('.artifacts/drive-cold-storage/manifests/archive-result.json','utf8'));
+          if(result.verifiedObjectCount!==result.objectCount)throw new Error('Not every referenced original was verified.');
+          if(result.verifiedBytes<=0)throw new Error('Verified archive byte count is zero.');
+          if(result.target?.servesPublicTraffic!==false)throw new Error('Drive archive must not serve public traffic.');
+          console.log(`Verified ${result.verifiedObjectCount} originals and ${result.verifiedBytes} bytes for Drive cold storage.`);
+          NODE
+
+      - name: Pack and split restorable snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          tar -C .artifacts -czf .artifacts/hyupremium-r2-originals.tar.gz drive-cold-storage
+          sha256sum .artifacts/hyupremium-r2-originals.tar.gz > .artifacts/hyupremium-r2-originals.tar.gz.sha256
+          split -b 50M -a 2 .artifacts/hyupremium-r2-originals.tar.gz .artifacts/snapshot.part-
+          ls -lh .artifacts/hyupremium-r2-originals.tar.gz.sha256 .artifacts/snapshot.part-*
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: drive-cold-storage-manifest
+          path: |
+            .artifacts/drive-archive-manifest.json
+            .artifacts/drive-cold-storage/manifests/archive-result.json
+            .artifacts/hyupremium-r2-originals.tar.gz.sha256
+          if-no-files-found: error
+          compression-level: 9
+          retention-days: 30
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: drive-cold-storage-part-aa
+          path: .artifacts/snapshot.part-aa
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: drive-cold-storage-part-ab
+          path: .artifacts/snapshot.part-ab
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: drive-cold-storage-part-ac
+          path: .artifacts/snapshot.part-ac
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: drive-cold-storage-part-ad
+          path: .artifacts/snapshot.part-ad
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: drive-cold-storage-part-ae
+          path: .artifacts/snapshot.part-ae
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: drive-cold-storage-part-af
+          path: .artifacts/snapshot.part-af
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: drive-cold-storage-part-ag
+          path: .artifacts/snapshot.part-ag
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: drive-cold-storage-part-ah
+          path: .artifacts/snapshot.part-ah
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: drive-cold-storage-part-ai
+          path: .artifacts/snapshot.part-ai
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
