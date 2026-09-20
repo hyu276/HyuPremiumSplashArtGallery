@@ -1,0 +1,81 @@
+name: Drive cold-storage backfill
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'data/backend/storage.json'
+      - 'scripts/build-drive-archive-manifest.mjs'
+      - 'scripts/sync-drive-archive.mjs'
+      - '.github/workflows/drive-cold-storage.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: drive-cold-storage-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    env:
+      DRIVE_REMOTE: gdrive
+      DRIVE_ROOT_FOLDER_ID: 1yBnLtkxgT1odW6P38Qs_aLtcN_exKE5X
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Validate Google Drive credential
+        shell: bash
+        env:
+          GDRIVE_RCLONE_CONFIG_B64: ${{ secrets.GDRIVE_RCLONE_CONFIG_B64 }}
+        run: |
+          set -euo pipefail
+          test -n "${GDRIVE_RCLONE_CONFIG_B64:-}" || {
+            echo "::error::Missing repository secret GDRIVE_RCLONE_CONFIG_B64. Store a base64-encoded rclone config containing a [gdrive] Google Drive remote."
+            exit 1
+          }
+          printf '%s' "$GDRIVE_RCLONE_CONFIG_B64" | base64 --decode > "$RUNNER_TEMP/rclone.conf"
+          chmod 600 "$RUNNER_TEMP/rclone.conf"
+          grep -Eq '^\[gdrive\]$' "$RUNNER_TEMP/rclone.conf" || {
+            echo "::error::The rclone config must contain a [gdrive] remote."
+            exit 1
+          }
+          echo "RCLONE_CONFIG=$RUNNER_TEMP/rclone.conf" >> "$GITHUB_ENV"
+
+      - name: Install rclone
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y rclone
+
+      - name: Build immutable-original manifest
+        run: node scripts/build-drive-archive-manifest.mjs --output .artifacts/drive-archive-manifest.json
+
+      - name: Mirror originals to Google Drive and verify byte sizes
+        run: node scripts/sync-drive-archive.mjs --manifest .artifacts/drive-archive-manifest.json
+
+      - name: Verify completed archive result
+        shell: bash
+        run: |
+          set -euo pipefail
+          node - <<'NODE'
+          const fs=require('fs');
+          const result=JSON.parse(fs.readFileSync('.artifacts/drive-archive-result.json','utf8'));
+          if(result.verifiedObjectCount!==result.objectCount)throw new Error('Not every original was verified in Google Drive.');
+          if(result.verifiedBytes<=0)throw new Error('Verified archive byte count is zero.');
+          console.log(`Verified ${result.verifiedObjectCount} originals and ${result.verifiedBytes} bytes in Google Drive.`);
+          NODE
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: drive-cold-storage-manifest
+          path: .artifacts/drive-archive-result.json
+          if-no-files-found: error
+          retention-days: 30
