@@ -2,7 +2,7 @@
   {
     "id": 1,
     "name": "Hyu",
-    "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/members/hyu-1788489373443.jpg",
+    "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/variants/1-d30e087dc0b6-640.webp",
     "sort_order": 1,
     "hidden": false,
     "facebook_url": "",
@@ -30,21 +30,12 @@
         "bytes": 46334,
         "mimeType": "image/webp"
       }
-    },
-    "media": {
-      "original": {
-        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/members/hyu-1788489373443.jpg",
-        "width": 1536,
-        "height": 1536,
-        "bytes": 312644,
-        "mimeType": "image/jpeg"
-      }
     }
   },
   {
     "id": 7,
     "name": "Nihilus",
-    "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/members/nihilus-1788490350505.jpg",
+    "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/variants/7-2165711aa7c3-640.webp",
     "sort_order": 2,
     "hidden": false,
     "facebook_url": "",
@@ -72,21 +63,12 @@
         "bytes": 29760,
         "mimeType": "image/webp"
       }
-    },
-    "media": {
-      "original": {
-        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/members/nihilus-1788490350505.jpg",
-        "width": 1365,
-        "height": 1365,
-        "bytes": 225171,
-        "mimeType": "image/jpeg"
-      }
     }
   },
   {
     "id": 6,
     "name": "Huy Khánh",
-    "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/team/members/huy-khanh-1787315947392.jpg",
+    "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/variants/6-82a14ff33099-640.webp",
     "sort_order": 3,
     "hidden": false,
     "facebook_url": "",
@@ -114,21 +96,12 @@
         "bytes": 28084,
         "mimeType": "image/webp"
       }
-    },
-    "media": {
-      "original": {
-        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/team/members/huy-khanh-1787315947392.jpg",
-        "width": 843,
-        "height": 1124,
-        "bytes": 111444,
-        "mimeType": "image/jpeg"
-      }
     }
   },
   {
     "id": 5,
     "name": "Raphena",
-    "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/team/members/raphena-1787315927422.jpg",
+    "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/variants/5-538dec969089-640.webp",
     "sort_order": 4,
     "hidden": false,
     "facebook_url": "",
@@ -156,21 +129,12 @@
         "bytes": 20506,
         "mimeType": "image/webp"
       }
-    },
-    "media": {
-      "original": {
-        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/team/members/raphena-1787315927422.jpg",
-        "width": 720,
-        "height": 879,
-        "bytes": 66292,
-        "mimeType": "image/jpeg"
-      }
     }
   },
   {
     "id": 3,
     "name": "Yue",
-    "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/team/members/yue-1787309560778.jpg",
+    "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/variants/3-c1bc917fd577-640.webp",
     "sort_order": 5,
     "hidden": true,
     "facebook_url": "",
@@ -198,21 +162,12 @@
         "bytes": 39432,
         "mimeType": "image/webp"
       }
-    },
-    "media": {
-      "original": {
-        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/team/members/yue-1787309560778.jpg",
-        "width": 1079,
-        "height": 1280,
-        "bytes": 180943,
-        "mimeType": "image/jpeg"
-      }
     }
   },
   {
     "id": 2,
     "name": "Nguyễn Trọng Hiếu",
-    "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/team/members/yue-1787309560764.jpg",
+    "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/variants/2-18822ce30fef-640.webp",
     "sort_order": 6,
     "hidden": true,
     "facebook_url": "",
@@ -240,21 +195,12 @@
         "bytes": 39432,
         "mimeType": "image/webp"
       }
-    },
-    "media": {
-      "original": {
-        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/team/members/yue-1787309560764.jpg",
-        "width": 1079,
-        "height": 1280,
-        "bytes": 180943,
-        "mimeType": "image/jpeg"
-      }
     }
   },
   {
     "id": 4,
     "name": "Bảo Kỳ",
-    "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/team/members/bao-ky-1787314078639.jpg",
+    "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/variants/4-a78c31ee4fb7-640.webp",
     "sort_order": 7,
     "hidden": true,
     "facebook_url": "",
@@ -281,15 +227,6 @@
         "height": 853,
         "bytes": 30364,
         "mimeType": "image/webp"
-      }
-    },
-    "media": {
-      "original": {
-        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/legacy/owner/team/members/bao-ky-1787314078639.jpg",
-        "width": 960,
-        "height": 1280,
-        "bytes": 130265,
-        "mimeType": "image/jpeg"
       }
     }
   }
