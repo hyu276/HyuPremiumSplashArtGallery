@@ -33,6 +33,25 @@ for(const root of SCAN_ROOTS){
   }
 }
 
+const storageConfig=JSON.parse(await readFile(join(ROOT,'data/backend/storage.json'),'utf8'));
+if(storageConfig.provider!=='cloudflare-r2')failures.push('active media provider must remain cloudflare-r2');
+if(storageConfig.ready!==true)failures.push('active Cloudflare R2 storage must remain ready');
+const publicBaseUrl=String(storageConfig.publicBaseUrl||'').toLowerCase();
+if(publicBaseUrl.includes('supabase'))failures.push('active media publicBaseUrl must not use Supabase');
+if(publicBaseUrl.includes('drive.google.com')||publicBaseUrl.includes('googleusercontent.com'))failures.push('Google Drive must never become the public media origin');
+const coldArchive=storageConfig.coldArchive||{};
+if(coldArchive.provider!=='google-drive')failures.push('cold archive provider must be google-drive');
+if(coldArchive.mode!=='verified-snapshot-bundle')failures.push('Google Drive cold archive must use verified-snapshot-bundle mode');
+if(coldArchive.scope!=='referenced-originals-only')failures.push('Google Drive cold archive must contain referenced originals only');
+if(coldArchive.servesPublicTraffic!==false)failures.push('Google Drive cold archive must never serve public traffic');
+if(coldArchive.sourceOfTruth!==false)failures.push('Google Drive cold archive must not replace GitHub metadata as source of truth');
+if(coldArchive.restorePreservesR2Keys!==true)failures.push('Drive restore must preserve R2 object keys');
+for(const field of ['rootFolderId','snapshotsFolderId','manifestsFolderId'])if(!String(coldArchive[field]||'').trim())failures.push(`Google Drive cold archive missing ${field}`);
+
+const nextConfigText=await readFile(join(ROOT,'next.config.ts'),'utf8');
+if(nextConfigText.toLowerCase().includes('supabase.co'))failures.push('next.config.ts must not allow the retired Supabase media origin');
+if(nextConfigText.toLowerCase().includes('drive.google.com')||nextConfigText.toLowerCase().includes('googleusercontent.com'))failures.push('next.config.ts must not allow Google Drive as a public image origin');
+
 const catalogue=JSON.parse(await readFile(join(ROOT,'data/backend/catalogue.json'),'utf8'));
 if(catalogue.ready!==true)failures.push('data/backend/catalogue.json: ready must be true');
 if(!Array.isArray(catalogue.items)||!catalogue.items.length)failures.push('data/backend/catalogue.json: items missing');
@@ -208,4 +227,4 @@ if(failures.length){
   for(const failure of failures)console.error(` - ${failure}`);
   process.exit(1);
 }
-console.log(`Egress safety gate passed: ${catalogue.items.length} artworks, ${publicItems.length} public, ${team.length} team members; taxonomy is referentially consistent; gallery and champion expanded artwork use exact uploaded originals; champion carousel thumbnails remain on the cache-safe 640x~360 tier; SEO/listing traffic still uses derivatives; stale gallery tabs use a tiny CDN-cached revision check; icon is ${iconBytes} bytes with immutable cache; Admin UI is GitHub Pages-only.`);
+console.log(`Egress safety gate passed: ${catalogue.items.length} artworks, ${publicItems.length} public, ${team.length} team members; active media remains Cloudflare R2; Google Drive is non-serving cold archive only; Supabase media origin is retired; taxonomy is referentially consistent; expanded artwork uses exact originals; SEO/listing traffic uses derivatives; icon is ${iconBytes} bytes with immutable cache; Admin UI is GitHub Pages-only.`);
