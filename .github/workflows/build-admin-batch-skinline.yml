@@ -1,0 +1,47 @@
+name: Build admin batch skinline
+
+on:
+  push:
+    branches:
+      - feat/admin-batch-skinline
+
+permissions:
+  contents: write
+
+jobs:
+  verify-and-build-admin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: feat/admin-batch-skinline
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Egress regression gate
+        run: npm run egress:check
+      - name: Typecheck
+        run: npm run typecheck
+      - name: Build admin bundle
+        run: npm run admin:build
+      - name: Assert batch Skinline UI exists
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q "Thêm vào skinline" assets/js/admin-github.bundle.js
+          grep -q "Chọn skinline" assets/js/admin-github.bundle.js
+          grep -q "Admin root element missing" assets/js/admin-github.bundle.js
+      - name: Production build
+        run: npm run build
+      - name: Commit rebuilt admin bundle and remove temporary workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add components/GitHubAdminDashboard.tsx app/admin/admin.css admin.html assets/js/admin-github.bundle.js
+          git rm .github/workflows/build-admin-batch-skinline.yml
+          git commit -m "chore(admin): build batch skinline bundle"
+          git push origin HEAD:feat/admin-batch-skinline
