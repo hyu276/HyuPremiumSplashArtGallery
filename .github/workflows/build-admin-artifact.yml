@@ -1,0 +1,29 @@
+name: Build admin artifact
+
+on:
+  push:
+    branches:
+      - feat/admin-taxonomy
+
+permissions:
+  contents: read
+
+jobs:
+  build-admin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Typecheck source
+        run: npm run typecheck
+      - name: Build GitHub Pages admin bundle
+        run: npm run admin:build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: admin-github-bundle
+          path: assets/js/admin-github.bundle.js
+          if-no-files-found: error
