@@ -9,7 +9,7 @@
     "build": "next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "admin:build": "npx --yes esbuild@0.25.9 components/GitHubAdminDashboard.tsx --bundle --minify --platform=browser --format=iife --jsx=automatic --outfile=assets/js/admin-github.bundle.js"
+    "admin:build": "npx --yes esbuild@0.25.9 admin-src/entry.tsx --bundle --minify --platform=browser --format=iife --jsx=automatic --outfile=assets/js/admin-github.bundle.js"
   },
   "dependencies": {
     "next": "^15.5.2",
