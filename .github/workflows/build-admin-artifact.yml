@@ -6,13 +6,15 @@ on:
       - feat/admin-taxonomy
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build-admin:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+        with:
+          ref: feat/admin-taxonomy
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -22,8 +24,13 @@ jobs:
         run: npm run typecheck
       - name: Build GitHub Pages admin bundle
         run: npm run admin:build
-      - uses: actions/upload-artifact@v4
-        with:
-          name: admin-github-bundle
-          path: assets/js/admin-github.bundle.js
-          if-no-files-found: error
+      - name: Commit built admin artifact and remove temporary workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/js/admin-github.bundle.js
+          git rm .github/workflows/build-admin-artifact.yml
+          git commit -m "chore(admin): build GitHub Pages bundle"
+          git push origin HEAD:feat/admin-taxonomy
