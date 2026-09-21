@@ -2,9 +2,11 @@
 
 import { useEffect, useId, useRef, useState } from 'react';
 
+type PickerOption=string|{value:string;label:string};
+
 type Props={
   value:string;
-  options:string[];
+  options:PickerOption[];
   placeholder:string;
   ariaLabel:string;
   onChange:(value:string)=>void;
@@ -30,13 +32,16 @@ export default function AdminCompactPicker({value,options,placeholder,ariaLabel,
     setOpen(false);
   }
 
+  const normalized=options.map(option=>typeof option==='string'?{value:option,label:option}:option);
+  const selected=normalized.find(option=>option.value===value);
+
   return <div className="admin-compact-picker" ref={rootRef} onKeyDown={event=>{if(event.key==='Escape')setOpen(false)}}>
     <button type="button" className="admin-compact-picker-trigger" aria-label={ariaLabel} aria-haspopup="listbox" aria-expanded={open} aria-controls={listId} disabled={disabled||!options.length} onClick={()=>setOpen(current=>!current)}>
-      <span>{value||placeholder}</span><span aria-hidden="true">▾</span>
+      <span>{selected?.label||placeholder}</span><span aria-hidden="true">▾</span>
     </button>
     {open?<div className="admin-compact-picker-menu" role="listbox" id={listId} aria-label={ariaLabel}>
       <div className="admin-compact-picker-list">
-        {options.map(option=><button type="button" role="option" aria-selected={value===option} className={`admin-compact-picker-option${value===option?' active':''}`} key={option} onClick={()=>choose(option)}>{option}</button>)}
+        {normalized.map(option=><button type="button" role="option" aria-selected={value===option.value} className={`admin-compact-picker-option${value===option.value?' active':''}`} key={option.value} onClick={()=>choose(option.value)}>{option.label}</button>)}
       </div>
     </div>:null}
   </div>;

@@ -159,7 +159,7 @@ export default function AdminTaxonomyManager({
           {activeSkinline?<>
             <div className="taxonomy-detail-head"><div><strong>{activeSkinline}</strong><span>{(assignedBySkinline.get(activeSkinline)||[]).length} artwork</span></div><div className="admin-controls"><button className="admin-btn small" onClick={()=>renameSkinline(activeSkinline)}>Đổi tên</button><button className="admin-btn small danger" onClick={()=>removeSkinline(activeSkinline)}>Xóa</button></div></div>
             <div className="taxonomy-detail-add">
-              <AdminCompactPicker value={activeArtworkTarget} options={availableArtwork.map(item=>item.id)} placeholder="Chọn artwork..." ariaLabel={`Artwork để thêm vào ${activeSkinline}`} onChange={value=>setArtworkTargets(current=>({...current,[activeSkinline]:value}))}/>
+              <AdminCompactPicker value={activeArtworkTarget} options={availableArtwork.map(item=>({value:item.id,label:`${item.name} — ${item.category}`}))} placeholder="Chọn artwork..." ariaLabel={`Artwork để thêm vào ${activeSkinline}`} onChange={value=>setArtworkTargets(current=>({...current,[activeSkinline]:value}))}/>
               <button className="admin-btn small" disabled={!activeArtworkTarget} onClick={assignArtwork}>Thêm skin</button>
             </div>
             <div className="taxonomy-member-list">
