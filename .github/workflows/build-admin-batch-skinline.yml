@@ -30,8 +30,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          grep -q "Thêm vào skinline" assets/js/admin-github.bundle.js
-          grep -q "Chọn skinline" assets/js/admin-github.bundle.js
+          grep -q "batchAssignSkinline" components/GitHubAdminDashboard.tsx
+          grep -q "admin-batch-skinline" assets/js/admin-github.bundle.js
           grep -q "Admin root element missing" assets/js/admin-github.bundle.js
       - name: Production build
         run: npm run build
