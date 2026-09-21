@@ -1,0 +1,48 @@
+name: Build compact admin taxonomy
+
+on:
+  push:
+    branches:
+      - feat/admin-compact-taxonomy
+
+permissions:
+  contents: write
+
+jobs:
+  verify-and-build-admin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: feat/admin-compact-taxonomy
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Egress regression gate
+        run: npm run egress:check
+      - name: Typecheck
+        run: npm run typecheck
+      - name: Build admin bundle
+        run: npm run admin:build
+      - name: Assert compact taxonomy UI
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q "taxonomy-compact-manager" assets/js/admin-github.bundle.js
+          grep -q "taxonomy-batch-list" assets/js/admin-github.bundle.js
+          grep -q "admin-compact-picker" assets/js/admin-github.bundle.js
+          grep -q "Admin root element missing" assets/js/admin-github.bundle.js
+      - name: Production build
+        run: npm run build
+      - name: Commit rebuilt admin bundle and remove temporary workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add components/GitHubAdminDashboard.tsx components/AdminTaxonomyManager.tsx components/AdminCompactPicker.tsx app/admin/admin.css admin.html assets/js/admin-github.bundle.js
+          git rm .github/workflows/build-compact-admin-taxonomy.yml
+          git commit -m "chore(admin): build compact taxonomy bundle"
+          git push origin HEAD:feat/admin-compact-taxonomy
