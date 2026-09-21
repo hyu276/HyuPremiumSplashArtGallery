@@ -28,6 +28,8 @@
     const artwork=panelByHeading(wrap,'tác phẩm');
     const options=panelByHeading(wrap,'tùy chọn tác phẩm');
     const optimizer=panelByHeading(wrap,'tối ưu ảnh tác phẩm');
+    const skinlines=wrap.querySelector('.skinline-manager');
+    const universes=wrap.querySelector('.universe-manager');
     const team=wrap.querySelector('.team-manager');
     const artworkList=wrap.querySelector('.admin-list')?.closest('.admin-panel');
 
@@ -35,6 +37,8 @@
     if(artwork)artwork.id='admin-artwork-editor';
     if(options)options.id='admin-options';
     if(optimizer)optimizer.id='admin-optimizer';
+    if(skinlines)skinlines.id='admin-skinlines';
+    if(universes)universes.id='admin-universes';
     if(team)team.id='admin-team';
     if(artworkList)artworkList.id='admin-artwork-list';
 
@@ -48,6 +52,8 @@
       <a href="#admin-options">Tùy chọn</a>
       <a href="#admin-optimizer">Tối ưu ảnh</a>
       <a href="#admin-artwork-list">Danh sách artwork</a>
+      <a href="#admin-skinlines">Skinline</a>
+      <a href="#admin-universes">Skin Universe</a>
       <a href="#admin-team">Đội ngũ</a>
       <a href="#champion-thumb-panel">Thumbnail trang Tướng</a>`;
 
