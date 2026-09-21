@@ -1,6 +1,6 @@
 {
   "schemaVersion": 3,
-  "generatedAt": "2026-09-21T18:08:12.781Z",
+  "generatedAt": "2026-09-21T18:11:52.362Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -7840,7 +7840,10 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [
+        "Vũ trụ âm nhạc"
+      ],
+      "skinline": "Soái ca Say Hi"
     },
     {
       "id": "tro-choi-ma-soi",
@@ -8389,7 +8392,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Hạo kiếp thần công"
     },
     {
       "id": "sieu-viet-7",
@@ -8547,7 +8551,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Hạo kiếp thần công"
     },
     {
       "id": "sieu-viet-6",
@@ -9143,7 +9148,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Chân Hoàn Truyện"
     },
     {
       "id": "quy-ba-quai-go",
@@ -9344,7 +9350,10 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [
+        "Vũ trụ âm nhạc"
+      ],
+      "skinline": "Soái ca Say Hi"
     },
     {
       "id": "frost-wyrm",
@@ -11587,7 +11596,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Hạo kiếp thần công"
     },
     {
       "id": "hao-kiep-than-cong-hang-hieu",
@@ -11626,7 +11636,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Hạo kiếp thần công"
     },
     {
       "id": "tho-phe-hoa-chat",
@@ -11785,7 +11796,10 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [
+        "Vũ trụ âm nhạc"
+      ],
+      "skinline": "Soái ca Say Hi"
     },
     {
       "id": "soai-ca-say-hi-hoan-my",
@@ -11824,7 +11838,10 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [
+        "Vũ trụ âm nhạc"
+      ],
+      "skinline": "Soái ca Say Hi"
     },
     {
       "id": "dune-exile",
@@ -12272,7 +12289,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Hạo kiếp thần công"
     },
     {
       "id": "suoi-nuoc-nong",
@@ -13067,7 +13085,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Hạo kiếp thần công"
     },
     {
       "id": "tiec-bai-bien-7",
@@ -13346,7 +13365,10 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [
+        "Vũ trụ âm nhạc"
+      ],
+      "skinline": "Soái ca Say Hi"
     },
     {
       "id": "tan-than-thien-ha-hang-hieu",
@@ -13896,7 +13918,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Chân Hoàn Truyện"
     },
     {
       "id": "linh-phu-mi-anh",
@@ -14935,7 +14958,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Hạo kiếp thần công"
     },
     {
       "id": "ha-long-sinh-mach",
@@ -16317,7 +16341,10 @@
     "Boy phố",
     "Idol giới trẻ",
     "Thần tượng âm nhạc",
-    "Siêu Việt"
+    "Siêu Việt",
+    "Soái ca Say Hi",
+    "Hạo kiếp thần công",
+    "Chân Hoàn Truyện"
   ],
   "universes": [
     {
@@ -16338,7 +16365,8 @@
       "skinlines": [
         "Idol giới trẻ",
         "WAVE",
-        "Thần tượng âm nhạc"
+        "Thần tượng âm nhạc",
+        "Soái ca Say Hi"
       ]
     }
   ]
