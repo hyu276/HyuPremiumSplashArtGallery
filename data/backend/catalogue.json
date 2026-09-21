@@ -1,6 +1,6 @@
 {
   "schemaVersion": 3,
-  "generatedAt": "2026-09-21T18:01:53.984Z",
+  "generatedAt": "2026-09-21T18:08:12.781Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -237,7 +237,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Thứ Nguyên Vệ Thần"
     },
     {
       "id": "huyen-quang-luan-mau",
@@ -435,7 +436,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Siêu Việt"
     },
     {
       "id": "chien-binh-xu-nghe",
@@ -747,7 +749,9 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": [],
+      "universes": [
+        "Vũ trụ âm nhạc"
+      ],
       "skinline": "WAVE"
     },
     {
@@ -787,7 +791,9 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": [],
+      "universes": [
+        "Vũ trụ âm nhạc"
+      ],
       "skinline": "WAVE"
     },
     {
@@ -905,7 +911,9 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": [],
+      "universes": [
+        "Vũ trụ âm nhạc"
+      ],
       "skinline": "WAVE"
     },
     {
@@ -1257,7 +1265,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Thú vui nhộn"
     },
     {
       "id": "hoa-si-mong-mi",
@@ -1611,7 +1620,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Thú vui nhộn"
     },
     {
       "id": "vuon-toan-tuat",
@@ -1650,7 +1660,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Thú vui nhộn"
     },
     {
       "id": "vuon-toan-tuat-2",
@@ -1961,7 +1972,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Thứ Nguyên Vệ Thần"
     },
     {
       "id": "ban-nga-ay-oa",
@@ -2159,7 +2171,9 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": [],
+      "universes": [
+        "Vũ trụ âm nhạc"
+      ],
       "skinline": "WAVE"
     },
     {
@@ -2238,7 +2252,9 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": [],
+      "universes": [
+        "Vũ trụ âm nhạc"
+      ],
       "skinline": "WAVE"
     },
     {
@@ -2278,7 +2294,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Boy phố"
     },
     {
       "id": "sieu-pham-boy-pho-2",
@@ -2317,7 +2334,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Boy phố"
     },
     {
       "id": "chien-than-tan-the-2",
@@ -2669,7 +2687,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Siêu Việt"
     },
     {
       "id": "sieu-viet-2-0",
@@ -2708,7 +2727,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Siêu Việt"
     },
     {
       "id": "sieu-viet-2026",
@@ -2747,7 +2767,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Siêu Việt"
     },
     {
       "id": "sushi-ca-map",
@@ -2903,7 +2924,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Siêu Việt"
     },
     {
       "id": "yet-kieu",
@@ -3684,7 +3706,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Thứ Nguyên Vệ Thần"
     },
     {
       "id": "dj-tiec-bai-bien",
@@ -3765,7 +3788,9 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": [],
+      "universes": [
+        "Vũ trụ âm nhạc"
+      ],
       "skinline": "WAVE"
     },
     {
@@ -4117,7 +4142,10 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [
+        "Vũ trụ âm nhạc"
+      ],
+      "skinline": "Idol giới trẻ"
     },
     {
       "id": "playgirl-thu-gian",
@@ -4156,7 +4184,10 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [
+        "Flexer"
+      ],
+      "skinline": "Dân chơi"
     },
     {
       "id": "wave",
@@ -4195,7 +4226,9 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": [],
+      "universes": [
+        "Vũ trụ âm nhạc"
+      ],
       "skinline": "WAVE"
     },
     {
@@ -4663,7 +4696,10 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [
+        "Flexer"
+      ],
+      "skinline": "Dân chơi"
     },
     {
       "id": "da-hoi-khieu-vu",
@@ -4819,7 +4855,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Boy phố"
     },
     {
       "id": "huyen-thoai-bat-tu-lai-bang",
@@ -4897,7 +4934,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Thứ Nguyên Vệ Thần"
     },
     {
       "id": "tiec-bai-bien-2",
@@ -5290,7 +5328,9 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": [],
+      "universes": [
+        "Vũ trụ âm nhạc"
+      ],
       "skinline": "WAVE"
     },
     {
@@ -5369,7 +5409,9 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": [],
+      "universes": [
+        "Vũ trụ âm nhạc"
+      ],
       "skinline": "WAVE"
     },
     {
@@ -6165,7 +6207,9 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": [],
+      "universes": [
+        "Vũ trụ âm nhạc"
+      ],
       "skinline": "WAVE"
     },
     {
@@ -6283,7 +6327,9 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": [],
+      "universes": [
+        "Vũ trụ âm nhạc"
+      ],
       "skinline": "WAVE"
     },
     {
@@ -6962,7 +7008,9 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": [],
+      "universes": [
+        "Vũ trụ âm nhạc"
+      ],
       "skinline": "WAVE"
     },
     {
@@ -7158,7 +7206,9 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": [],
+      "universes": [
+        "Vũ trụ âm nhạc"
+      ],
       "skinline": "WAVE"
     },
     {
@@ -7279,7 +7329,10 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [
+        "Vũ trụ âm nhạc"
+      ],
+      "skinline": "Idol giới trẻ"
     },
     {
       "id": "mieu-than",
@@ -7552,7 +7605,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Siêu Việt"
     },
     {
       "id": "tiec-lau-ech",
@@ -8176,7 +8230,9 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": [],
+      "universes": [
+        "Vũ trụ âm nhạc"
+      ],
       "skinline": "WAVE"
     },
     {
@@ -8372,7 +8428,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Siêu Việt"
     },
     {
       "id": "cuu-ho-bai-bien",
@@ -8450,7 +8507,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Siêu Việt"
     },
     {
       "id": "hao-kiep-than-cong-3",
@@ -8528,7 +8586,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Siêu Việt"
     },
     {
       "id": "giang-ho-girl-pho",
@@ -8843,7 +8902,10 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [
+        "Flexer"
+      ],
+      "skinline": "Dân chơi"
     },
     {
       "id": "sieu-pham-girl-pho-2",
@@ -8921,7 +8983,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Siêu Việt"
     },
     {
       "id": "thien-am-phuong-vu",
@@ -8999,7 +9062,9 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": [],
+      "universes": [
+        "Vũ trụ âm nhạc"
+      ],
       "skinline": "WAVE"
     },
     {
@@ -9612,7 +9677,10 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [
+        "Flexer"
+      ],
+      "skinline": "Dân chơi"
     },
     {
       "id": "hac-vu-luan-kiem",
@@ -9768,7 +9836,10 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [
+        "Vũ trụ âm nhạc"
+      ],
+      "skinline": "Thần tượng âm nhạc"
     },
     {
       "id": "ao-hoa-mi-anh",
@@ -10008,7 +10079,10 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [
+        "Vũ trụ âm nhạc"
+      ],
+      "skinline": "Thần tượng âm nhạc"
     },
     {
       "id": "than-tuong-am-nhac-phien-ban-hoan-my",
@@ -10047,7 +10121,10 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [
+        "Vũ trụ âm nhạc"
+      ],
+      "skinline": "Thần tượng âm nhạc"
     },
     {
       "id": "my-hau-ai-hoc-thuong-mai",
@@ -10713,7 +10790,9 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": [],
+      "universes": [
+        "Vũ trụ âm nhạc"
+      ],
       "skinline": "WAVE"
     },
     {
@@ -10909,7 +10988,10 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [
+        "Flexer"
+      ],
+      "skinline": "Dân chơi"
     },
     {
       "id": "sieu-viet-10",
@@ -10948,7 +11030,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Siêu Việt"
     },
     {
       "id": "playboy-bang-chu-hang-hieu",
@@ -10987,7 +11070,10 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [
+        "Flexer"
+      ],
+      "skinline": "Dân chơi"
     },
     {
       "id": "thay-tru-ta",
@@ -11065,7 +11151,9 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": [],
+      "universes": [
+        "Vũ trụ âm nhạc"
+      ],
       "skinline": "WAVE"
     },
     {
@@ -11300,7 +11388,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Thứ Nguyên Vệ Thần"
     },
     {
       "id": "wave-hang-hieu",
@@ -11339,7 +11428,9 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": [],
+      "universes": [
+        "Vũ trụ âm nhạc"
+      ],
       "skinline": "WAVE"
     },
     {
@@ -12415,7 +12506,10 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [
+        "Flexer"
+      ],
+      "skinline": "Dân chơi"
     },
     {
       "id": "huyet-co-nguyet-tien",
@@ -12493,7 +12587,10 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [
+        "Flexer"
+      ],
+      "skinline": "Dân chơi"
     },
     {
       "id": "sieu-viet-9",
@@ -12532,7 +12629,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Siêu Việt"
     },
     {
       "id": "linh-xuan-noi-loan",
@@ -12649,7 +12747,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Siêu Việt"
     },
     {
       "id": "playboy-toc-o",
@@ -12688,7 +12787,10 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [
+        "Flexer"
+      ],
+      "skinline": "Dân chơi"
     },
     {
       "id": "ma-sung-tro-tan",
@@ -12766,7 +12868,10 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [
+        "Flexer"
+      ],
+      "skinline": "Dân chơi"
     },
     {
       "id": "boy-pho-2",
@@ -12805,7 +12910,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Boy phố"
     },
     {
       "id": "tuyet-son-thanh-ve",
@@ -13042,7 +13148,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Boy phố"
     },
     {
       "id": "hac-am-4",
@@ -13121,7 +13228,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Boy phố"
     },
     {
       "id": "chien-than-tan-the",
@@ -13589,7 +13697,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Siêu Việt"
     },
     {
       "id": "hong-lien-yeu-co",
@@ -14418,7 +14527,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Boy phố"
     },
     {
       "id": "giang-ho-boy-pho-hang-hieu",
@@ -14457,7 +14567,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Boy phố"
     },
     {
       "id": "hoa-nguc-giai-nguyen",
@@ -14667,7 +14778,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Thứ Nguyên Vệ Thần"
     },
     {
       "id": "than-co-thu",
@@ -14940,7 +15052,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Siêu Việt"
     },
     {
       "id": "huong-duong-mat-troi",
@@ -15174,7 +15287,10 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [
+        "Vũ trụ âm nhạc"
+      ],
+      "skinline": "Idol giới trẻ"
     },
     {
       "id": "nang-tien-gao-2026",
@@ -15372,7 +15488,9 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": [],
+      "universes": [
+        "Vũ trụ âm nhạc"
+      ],
       "skinline": "WAVE"
     },
     {
@@ -16192,7 +16310,14 @@
     "Tiệc bãi biển",
     "DJ Bãi biển",
     "WAVE",
-    "Tiên hắc ám"
+    "Tiên hắc ám",
+    "Thú vui nhộn",
+    "Thứ Nguyên Vệ Thần",
+    "Dân chơi",
+    "Boy phố",
+    "Idol giới trẻ",
+    "Thần tượng âm nhạc",
+    "Siêu Việt"
   ],
   "universes": [
     {
@@ -16200,6 +16325,20 @@
       "skinlines": [
         "Tiệc bãi biển",
         "DJ Bãi biển"
+      ]
+    },
+    {
+      "name": "Flexer",
+      "skinlines": [
+        "Dân chơi"
+      ]
+    },
+    {
+      "name": "Vũ trụ âm nhạc",
+      "skinlines": [
+        "Idol giới trẻ",
+        "WAVE",
+        "Thần tượng âm nhạc"
       ]
     }
   ]
