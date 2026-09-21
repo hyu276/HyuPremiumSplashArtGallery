@@ -23,8 +23,13 @@ export type Artwork = {
   rankOrder: number;
   credit: string;
   isVietnameseSkin: boolean;
+  skinlines: string[];
+  universes: string[];
   updatedAt?: string;
 };
+
+export type ArtworkTaxonomyKey = 'skinlines' | 'universes';
+export type ArtworkTaxonomyGroup = { name: string; items: Artwork[] };
 
 export type ChampionThumbnailChoice = {
   mode: 'artwork' | 'custom';
@@ -84,6 +89,15 @@ function normalizedVariants(value:any){
   return result;
 }
 
+function normalizedTaxonomyValues(...values:any[]){
+  const entries:string[]=[];
+  for(const value of values){
+    if(Array.isArray(value))entries.push(...value.map(item=>String(item).trim()));
+    else if(value!==undefined&&value!==null&&String(value).trim())entries.push(String(value).trim());
+  }
+  return uniqueSorted(entries);
+}
+
 function normalizedChampionThumbnails(value:any){
   const result:Record<string,ChampionThumbnailChoice>={};
   if(!value||typeof value!=='object')return result;
@@ -121,6 +135,8 @@ function authoritativeCatalogue(): Catalogue {
         rankOrder: Number(row.rankOrder) || 0,
         credit: localizeCredit(String(row.credit || 'Chưa có credit')),
         isVietnameseSkin: Boolean(row.isVietnameseSkin),
+        skinlines: normalizedTaxonomyValues(row.skinlines,row.skinline),
+        universes: normalizedTaxonomyValues(row.universes,row.universe),
         updatedAt: row.updatedAt || undefined
       };
     })
@@ -137,6 +153,20 @@ function authoritativeCatalogue(): Catalogue {
 }
 
 export async function getCatalogue(): Promise<Catalogue> { return authoritativeCatalogue(); }
+
+export function artworkTaxonomyGroups(items:Artwork[],key:ArtworkTaxonomyKey):ArtworkTaxonomyGroup[]{
+  const groups=new Map<string,Artwork[]>();
+  for(const item of items){
+    for(const name of item[key]){
+      const group=groups.get(name);
+      if(group)group.push(item);
+      else groups.set(name,[item]);
+    }
+  }
+  return [...groups.entries()]
+    .sort(([a],[b])=>alpha(a,b))
+    .map(([name,groupItems])=>({name,items:groupItems}));
+}
 
 export function artworkVariant(item:Artwork,width:640|960|1600){return item.variants?.[String(width)];}
 export function artworkPreview(item:Artwork,width:640|960|1600=1600){return artworkVariant(item,width)?.url||item.thumbnail||item.image;}
