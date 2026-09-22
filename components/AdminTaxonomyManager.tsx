@@ -12,6 +12,7 @@ type ArtworkRef={
   category:string;
   rank?:string;
   rankOrder?:number;
+  hidden?:boolean;
   skinline?:string;
   skinlines?:string[];
 };
@@ -60,9 +61,9 @@ export default function AdminTaxonomyManager({
   const activeSkinline=skinlines.find(name=>sameName(name,activeSkinlineState))||skinlines[0]||'';
   const activeUniverse=universes.find(universe=>sameName(universe.name,activeUniverseState))||universes[0]||null;
   const activeArtworkTarget=activeSkinline?artworkTargets[activeSkinline]||'':'';
-  const activeSkinlineArtwork=activeSkinline?(assignedBySkinline.get(activeSkinline)||[]):[];
+  const activeSkinlineArtwork=activeSkinline?(assignedBySkinline.get(activeSkinline)||[]).filter(item=>!item.hidden):[];
   const availableArtwork=activeSkinline?items.filter(item=>!sameName(item.skinline||item.skinlines?.[0]||'',activeSkinline)):[];
-  const activeUniverseArtwork=activeUniverse?items.filter(item=>activeUniverse.skinlines.some(line=>sameName(line,item.skinline||item.skinlines?.[0]||''))):[];
+  const activeUniverseArtwork=activeUniverse?items.filter(item=>!item.hidden&&activeUniverse.skinlines.some(line=>sameName(line,item.skinline||item.skinlines?.[0]||''))):[];
   const skinlineNeedle=skinlineSearch.trim().toLowerCase();
   const filteredSkinlines=skinlineNeedle?skinlines.filter(name=>name.toLowerCase().includes(skinlineNeedle)):skinlines;
 
