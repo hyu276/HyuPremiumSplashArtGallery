@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useRef, useState, type CSSProperties } from 'react';
 import ArtworkTitleFitter from '@/components/ArtworkTitleFitter';
 import type { Artwork, ArtworkTaxonomyGroup } from '@/lib/catalogue';
 import { artworkPreview } from '@/lib/catalogue';
@@ -18,50 +18,103 @@ const RANK_GRADIENTS: Record<string,string> = {
 };
 
 type TaxonomyMode='skinlines'|'universes';
-type ExpandedArtwork={groupName:string;artwork:Artwork}|null;
+type ExpandedArtwork={groupName:string;artworkId:string}|null;
+type PreviewHold={width:number;height:number};
 
 function titleFitBucket(value:string){const length=Array.from(String(value||'').trim()).length;return length>=52?'xxlong':length>=38?'xlong':length>=28?'long':length>=19?'medium':'short';}
 function groupPanelId(mode:TaxonomyMode,index:number){return `${mode}-gallery-${index+1}`;}
 
-function ArtworkCard({item,index,onExpand}:{item:Artwork;index:number;onExpand:()=>void}){
-  return <button type="button" className="art-card taxonomy-art-card" aria-label={`Mở ${item.name}`} onClick={onExpand}>
+function ArtworkCard({item,index,expanded,pending,onToggle,onReady}:{item:Artwork;index:number;expanded:boolean;pending:boolean;onToggle:()=>void;onReady:()=>void}){
+  const cardNode=useRef<HTMLButtonElement>(null);
+  const [previewHold,setPreviewHold]=useState<PreviewHold|null>(null);
+  const [fullReady,setFullReady]=useState(false);
+  const motionStyle={'--art-motion-delay':`${Math.min(index,12)*18}ms`} as CSSProperties;
+  const holdStyle=expanded&&previewHold?({
+    left:'50%',top:'50%',right:'auto',bottom:'auto',
+    width:`min(${Math.max(1,Math.round(previewHold.width))}px, calc(100% - 24px))`,
+    height:'auto',
+    aspectRatio:`${Math.max(1,Math.round(previewHold.width))} / ${Math.max(1,Math.round(previewHold.height))}`,
+    transform:'translate(-50%,-50%)',
+    filter:'none',
+    opacity:fullReady?0:1,
+    transition:'opacity .16s ease',
+    boxShadow:'0 18px 54px rgba(0,0,0,.28)'
+  } as CSSProperties):undefined;
+
+  function toggle(){
+    if(!expanded){
+      const rect=cardNode.current?.getBoundingClientRect();
+      if(rect&&rect.width>0&&rect.height>0)setPreviewHold({width:rect.width,height:rect.height});
+      setFullReady(false);
+    }
+    onToggle();
+  }
+
+  return <button
+    ref={cardNode}
+    type="button"
+    style={motionStyle}
+    className={`art-card taxonomy-art-card${expanded?' expanded':''}${pending?' pending-expand':''}`}
+    data-taxonomy-artwork={item.id}
+    aria-expanded={expanded}
+    aria-busy={pending}
+    aria-label={pending?`Đang tải ảnh lớn ${item.name}`:expanded?`Thu gọn ${item.name}`:`Mở ${item.name}`}
+    onClick={toggle}
+  >
     <span className="art-image-layer">
-      <img src={artworkPreview(item,640)} alt={`${item.name} — ${item.category}`} loading={index<5?'eager':'lazy'} decoding="async" fetchPriority="low" />
+      <img className="preview" style={holdStyle} src={artworkPreview(item,640)} alt={`${item.name} — ${item.category}`} loading={index<5?'eager':'lazy'} decoding="async" fetchPriority="low" />
+      {expanded?<img
+        className={`full${fullReady?' ready':''}`}
+        src={artworkPreview(item,1600)}
+        alt=""
+        aria-hidden="true"
+        loading="eager"
+        decoding="async"
+        fetchPriority="high"
+        onLoad={()=>{setFullReady(true);onReady();}}
+      />:null}
     </span>
-    <span className="shade" />
+    <span className="shade" aria-hidden="true" />
     <span className="card-number">{String(index+1).padStart(2,'0')}</span>
     <span className="tier" style={{background:RANK_GRADIENTS[item.rank]||RANK_GRADIENTS.A}}>{item.rank}</span>
-    <span className="expand-mark">+</span>
+    <span className="expand-mark" aria-hidden="true">{pending?'…':expanded?'−':'+'}</span>
     <span className="card-copy">
       <span className="card-meta">{item.category}</span>
       <strong className="card-title" data-title-fit={titleFitBucket(item.name)}>{item.name}</strong>
+      {item.description?<span className="card-description">{item.description}</span>:null}
       <span className="card-bottom"><span>CREDIT ẢNH · {item.credit}</span><span className="rank-label">{item.rank}</span></span>
     </span>
   </button>;
 }
 
-function ExpandedStage({artwork,onClose}:{artwork:Artwork;onClose:()=>void}){
-  return <div className="taxonomy-expanded-stage">
-    <img src={artworkPreview(artwork,1600)} alt={`${artwork.name} — ${artwork.category}`} loading="eager" decoding="async" fetchPriority="high" />
-    <span className="taxonomy-expanded-shade" />
-    <div className="taxonomy-expanded-copy">
-      <span className="card-meta">{artwork.category}</span>
-      <strong>{artwork.name}</strong>
-      <span className="card-bottom"><span>CREDIT ẢNH · {artwork.credit}</span><span className="rank-label">{artwork.rank}</span></span>
-    </div>
-    <button type="button" className="taxonomy-expanded-close" aria-label="Đóng artwork" onClick={onClose}>−</button>
-  </div>;
-}
-
 export default function TaxonomyGalleryClient({mode,groups}:{mode:TaxonomyMode;groups:ArtworkTaxonomyGroup[]}){
   const [openGroups,setOpenGroups]=useState<string[]>([]);
   const [expanded,setExpanded]=useState<ExpandedArtwork>(null);
+  const [pendingExpanded,setPendingExpanded]=useState<string|null>(null);
   const tracks=useRef<Record<string,HTMLDivElement|null>>({});
 
   function toggleGroup(name:string){
     setOpenGroups(current=>current.includes(name)?current.filter(value=>value!==name):[...current,name]);
-    setExpanded(current=>current?.groupName===name?null:current);
+    if(expanded?.groupName===name){setExpanded(null);setPendingExpanded(null);}
   }
+
+  function toggleArtwork(groupName:string,item:Artwork){
+    if(expanded?.groupName===groupName&&expanded.artworkId===item.id){
+      setExpanded(null);
+      setPendingExpanded(null);
+      return;
+    }
+    setExpanded({groupName,artworkId:item.id});
+    setPendingExpanded(item.id);
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{
+      const track=tracks.current[groupName];
+      const card=track?.querySelector<HTMLElement>(`[data-taxonomy-artwork="${CSS.escape(item.id)}"]`);
+      const mobile=window.matchMedia?.('(max-width: 760px)').matches??false;
+      card?.scrollIntoView({behavior:mobile?'auto':'smooth',block:'center',inline:'nearest'});
+    }));
+  }
+
+  function markReady(id:string){setPendingExpanded(current=>current===id?null:current);}
 
   function scrollGroup(name:string,direction:-1|1){
     const track=tracks.current[name];
@@ -81,12 +134,15 @@ export default function TaxonomyGalleryClient({mode,groups}:{mode:TaxonomyMode;g
     {groups.map((group,groupIndex)=>{
       const isOpen=openGroups.includes(group.name);
       const panelId=groupPanelId(mode,groupIndex);
-      const expandedArtwork=expanded?.groupName===group.name?expanded.artwork:null;
       return <section key={group.name} className={`taxonomy-group${isOpen?' is-open':''}`}>
         <button type="button" className="taxonomy-trigger" aria-expanded={isOpen} aria-controls={panelId} onClick={()=>toggleGroup(group.name)}>
-          <span>
+          <span className="taxonomy-representative" aria-hidden="true">
+            <img src={artworkPreview(group.representative,640)} alt="" loading={groupIndex<3?'eager':'lazy'} decoding="async" fetchPriority="low" />
+          </span>
+          <span className="taxonomy-heading">
             <span className="taxonomy-index">{String(groupIndex+1).padStart(2,'0')}</span>
             <span className="taxonomy-name">{group.name}</span>
+            <span className="taxonomy-representative-label">Đại diện · {group.representative.name}</span>
           </span>
           <span className="taxonomy-meta">
             <span><span className="taxonomy-count">{String(group.items.length).padStart(2,'0')}</span> artwork</span>
@@ -103,9 +159,11 @@ export default function TaxonomyGalleryClient({mode,groups}:{mode:TaxonomyMode;g
               </span>
             </div>
             <div ref={node=>{tracks.current[group.name]=node;}} className="taxonomy-gallery-carousel" role="group" aria-label={`Artwork thuộc ${group.name}`}>
-              {group.items.map((item,index)=><ArtworkCard key={item.id} item={item} index={index} onExpand={()=>setExpanded({groupName:group.name,artwork:item})}/>)}
+              {group.items.map((item,index)=>{
+                const isExpanded=expanded?.groupName===group.name&&expanded.artworkId===item.id;
+                return <ArtworkCard key={item.id} item={item} index={index} expanded={isExpanded} pending={isExpanded&&pendingExpanded===item.id} onToggle={()=>toggleArtwork(group.name,item)} onReady={()=>markReady(item.id)}/>;
+              })}
             </div>
-            {expandedArtwork?<ExpandedStage artwork={expandedArtwork} onClose={()=>setExpanded(null)}/>:null}
           </div>
         </div>:null}
       </section>;

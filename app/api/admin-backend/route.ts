@@ -16,10 +16,11 @@ type GitHubRepo={permissions?:{push?:boolean;admin?:boolean}};
 type GitHubContent={content?:string;encoding?:string};
 type OwnerOptions={categories?:string[];ranks?:string[];credits?:string[]};
 type UniverseDef={name:string;skinlines:string[]};
+type TaxonomyRepresentatives={skinlines:Record<string,string>;universes:Record<string,string>};
 type MediaVariant={url:string;width:number;height:number;bytes:number;mimeType:string};
 type ChampionThumbnailChoice={mode:'artwork'|'custom';artworkId?:string;image?:string;thumbnail?:string;variant?:MediaVariant;media?:{original?:MediaVariant};updatedAt?:string};
-type Catalogue={schemaVersion?:number;generatedAt?:string;items:any[];categories:string[];ranks:string[];credits:string[];skinlines?:string[];universes?:UniverseDef[];ownerOptions?:OwnerOptions;championThumbnails?:Record<string,ChampionThumbnailChoice>};
-type AdminPayload={ownerItems?:any[];categories?:string[];ranks?:string[];credits?:string[];skinlines?:string[];universes?:UniverseDef[];championThumbnails?:Record<string,ChampionThumbnailChoice>;team?:any[];seo?:any};
+type Catalogue={schemaVersion?:number;generatedAt?:string;items:any[];categories:string[];ranks:string[];credits:string[];skinlines?:string[];universes?:UniverseDef[];ownerOptions?:OwnerOptions;championThumbnails?:Record<string,ChampionThumbnailChoice>;taxonomyRepresentatives?:Partial<TaxonomyRepresentatives>};
+type AdminPayload={ownerItems?:any[];categories?:string[];ranks?:string[];credits?:string[];skinlines?:string[];universes?:UniverseDef[];championThumbnails?:Record<string,ChampionThumbnailChoice>;taxonomyRepresentatives?:Partial<TaxonomyRepresentatives>;team?:any[];seo?:any};
 type CommitResult={sha:string;noop:boolean};
 
 const ADMIN_ORIGIN='https://hyu276.github.io';
@@ -54,6 +55,30 @@ function normalizeUniverses(value:unknown,skinlines:string[]):UniverseDef[]{if(v
 function canonicalItem(item:any){const {source:_source,sourceId:_sourceId,sourceOptions:_sourceOptions,...rest}=item||{};return {...rest,id:String(rest.id||'')};}
 function taxonomyItem(item:any,skinlines:string[],universes:UniverseDef[]){const next=canonicalItem(item);const requested=itemSkinline(next);const skinline=requested?(skinlines.find(line=>line.toLowerCase()===requested.toLowerCase())||requested):'';delete next.skinlines;if(skinline)next.skinline=skinline;else delete next.skinline;next.universes=skinline?universes.filter(universe=>universe.skinlines.some(line=>line.toLowerCase()===skinline.toLowerCase())).map(universe=>universe.name):[];return next}
 function optionsFor(catalogue:Catalogue){return {categories:catalogue.ownerOptions?.categories||catalogue.categories||[],ranks:catalogue.ownerOptions?.ranks||catalogue.ranks||[],credits:catalogue.ownerOptions?.credits||catalogue.credits||[]}}
+function taxonomyRepresentativeSeed(scope:'skinlines'|'universes',name:string){let hash=2166136261;for(const char of `${scope}:${name}`){hash^=char.charCodeAt(0);hash=Math.imul(hash,16777619)}return hash>>>0}
+function taxonomyRepresentativeRank(item:any,ranks:string[]){const direct=Number(item?.rankOrder);if(Number.isFinite(direct)&&direct>=0)return direct;const index=ranks.findIndex(rank=>String(rank).toLowerCase()===String(item?.rank||'').toLowerCase());return index>=0?index:0}
+function taxonomyRepresentativeCandidates(items:any[],scope:'skinlines'|'universes',name:string){
+  const lower=name.toLowerCase();
+  return items.filter(item=>!item?.hidden&&(scope==='skinlines'?itemSkinline(item).toLowerCase()===lower:Array.isArray(item?.universes)&&item.universes.some((value:any)=>String(value).toLowerCase()===lower)));
+}
+function materializeTaxonomyRepresentatives(items:any[],skinlines:string[],universes:UniverseDef[],ranks:string[],raw?:Partial<TaxonomyRepresentatives>):TaxonomyRepresentatives{
+  const result:TaxonomyRepresentatives={skinlines:{},universes:{}};
+  const definitions:{scope:'skinlines'|'universes';names:string[]}[]=[{scope:'skinlines',names:skinlines},{scope:'universes',names:universes.map(universe=>universe.name)}];
+  for(const definition of definitions){
+    for(const name of definition.names){
+      const candidates=taxonomyRepresentativeCandidates(items,definition.scope,name);
+      if(!candidates.length)continue;
+      const requested=String(raw?.[definition.scope]?.[name]||'').trim();
+      const requestedItem=requested?candidates.find(item=>String(item.id)===requested):undefined;
+      if(requestedItem){result[definition.scope][name]=requested;continue}
+      const highest=Math.max(...candidates.map(item=>taxonomyRepresentativeRank(item,ranks)));
+      const top=candidates.filter(item=>taxonomyRepresentativeRank(item,ranks)===highest).sort((a,b)=>alpha(String(a.id||''),String(b.id||'')));
+      const selected=top[taxonomyRepresentativeSeed(definition.scope,name)%top.length];
+      if(selected?.id)result[definition.scope][name]=String(selected.id);
+    }
+  }
+  return result;
+}
 function mediaKey(id:string,source:string,width:number){const safe=String(id||'art').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'art';const hash=createHash('sha1').update(source).digest('hex').slice(0,12);return `artworks/variants/${safe}-${hash}-${width}.webp`}
 function teamMediaKey(id:string|number,source:string,width:number){const safe=String(id||'member').toLowerCase().replace(/[^a-z0-9]+/g,'-')||'member';const hash=createHash('sha1').update(source).digest('hex').slice(0,12);return `team/variants/${safe}-${hash}-${width}.webp`}
 function championMediaKey(category:string,source:string){const safe=String(category||'champion').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'champion';const hash=createHash('sha1').update(source).digest('hex').slice(0,12);return `champions/variants/${safe}-${hash}-${CHAMPION_THUMB_WIDTH}.webp`}
@@ -207,8 +232,8 @@ export async function GET(request:Request){
   try{
     const token=tokenFrom(request);const admin=await verify(token);const branch=dataBranch();
     const [catalogue,team,seo,storage]=await Promise.all([readJson<Catalogue>(token,`${DATA_ROOT}/catalogue.json`,branch),readJson<any[]>(token,`${DATA_ROOT}/team.json`,branch),readJson<any>(token,`${DATA_ROOT}/seo.json`,branch),readJson<any>(token,`${DATA_ROOT}/storage.json`,branch)]);
-    const skinlines=orderedUnique([...(catalogue.skinlines||[]),...(catalogue.items||[]).map(itemSkinline)]);const universes=normalizeUniverses(catalogue.universes||[],skinlines);const items=(catalogue.items||[]).map(item=>taxonomyItem(item,skinlines,universes));const options=optionsFor(catalogue);
-    return Response.json({ok:true,requestId,user:admin,branch,catalogue:{...catalogue,items,categories:options.categories||[],ranks:options.ranks||[],credits:options.credits||[],skinlines,universes},team,seo,storage},{headers:responseHeaders(request,requestId)});
+    const skinlines=orderedUnique([...(catalogue.skinlines||[]),...(catalogue.items||[]).map(itemSkinline)]);const universes=normalizeUniverses(catalogue.universes||[],skinlines);const items=(catalogue.items||[]).map(item=>taxonomyItem(item,skinlines,universes));const options=optionsFor(catalogue);const taxonomyRepresentatives=materializeTaxonomyRepresentatives(items,skinlines,universes,options.ranks||[],catalogue.taxonomyRepresentatives);
+    return Response.json({ok:true,requestId,user:admin,branch,catalogue:{...catalogue,items,categories:options.categories||[],ranks:options.ranks||[],credits:options.credits||[],skinlines,universes,taxonomyRepresentatives},team,seo,storage},{headers:responseHeaders(request,requestId)});
   }catch(error:any){const message=error?.message||'Không thể xác thực GitHub hoặc đọc backend metadata.';logAdminFailure(requestId,'GET',message);return Response.json({error:message,requestId},{status:statusFor(message),headers:responseHeaders(request,requestId)})}
 }
 
@@ -216,7 +241,7 @@ export async function POST(request:Request){
   const requestId=randomUUID().slice(0,12);
   try{
     const token=tokenFrom(request);const admin=await verify(token);const payload=await request.json() as AdminPayload;const branch=dataBranch();
-    const catalogueRequested=payload.ownerItems!==undefined||payload.categories!==undefined||payload.ranks!==undefined||payload.credits!==undefined||payload.skinlines!==undefined||payload.universes!==undefined||payload.championThumbnails!==undefined;
+    const catalogueRequested=payload.ownerItems!==undefined||payload.categories!==undefined||payload.ranks!==undefined||payload.credits!==undefined||payload.skinlines!==undefined||payload.universes!==undefined||payload.championThumbnails!==undefined||payload.taxonomyRepresentatives!==undefined;
     const teamRequested=payload.team!==undefined;
     const seoRequested=payload.seo!==undefined;
     if(teamRequested&&!Array.isArray(payload.team))throw new Error('Payload team không hợp lệ.');
@@ -255,7 +280,9 @@ export async function POST(request:Request){
       }
       const championThumbnails:Record<string,ChampionThumbnailChoice>={};
       for(const category of categories){const choice=requestedChampionThumbnails[category];if(choice)championThumbnails[category]=await enrichChampionThumbnail(category,choice,items,storageBase,token)}
-      const catalogue:Catalogue={...current,schemaVersion:3,generatedAt:new Date().toISOString(),items,categories,ranks,credits,skinlines:preferredSkinlines,universes:preferredUniverses,ownerOptions,championThumbnails};
+      const requestedTaxonomyRepresentatives=payload.taxonomyRepresentatives!==undefined?payload.taxonomyRepresentatives:(current.taxonomyRepresentatives||{});
+      const taxonomyRepresentatives=materializeTaxonomyRepresentatives(items,preferredSkinlines,preferredUniverses,ranks,requestedTaxonomyRepresentatives);
+      const catalogue:Catalogue={...current,schemaVersion:3,generatedAt:new Date().toISOString(),items,categories,ranks,credits,skinlines:preferredSkinlines,universes:preferredUniverses,ownerOptions,championThumbnails,taxonomyRepresentatives};
       const path=`${DATA_ROOT}/catalogue.json`;files[path]=catalogue;baselines[path]=current;
     }
 

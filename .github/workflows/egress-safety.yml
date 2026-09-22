@@ -11,7 +11,7 @@ on:
       - hardening/egress-seo-orphan-v3
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   verify:
@@ -29,3 +29,25 @@ jobs:
         run: npm run typecheck
       - name: Production build
         run: npm run build
+      - name: Build GitHub Pages admin bundle
+        run: npm run admin:build
+      - name: Commit rebuilt admin bundle to PR branch
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- assets/js/admin-github.bundle.js; then
+            echo "Admin bundle already current."
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/js/admin-github.bundle.js
+          git commit -m "chore: rebuild GitHub Pages admin bundle"
+          git push origin HEAD:${{ github.head_ref }}
+      - name: Upload admin bundle artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: admin-bundle
+          path: assets/js/admin-github.bundle.js
+          retention-days: 1
