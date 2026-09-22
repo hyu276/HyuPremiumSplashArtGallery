@@ -29,7 +29,8 @@ export type Artwork = {
 };
 
 export type ArtworkTaxonomyKey = 'skinlines' | 'universes';
-export type ArtworkTaxonomyGroup = { name: string; items: Artwork[] };
+export type TaxonomyRepresentatives = { skinlines: Record<string,string>; universes: Record<string,string> };
+export type ArtworkTaxonomyGroup = { name: string; items: Artwork[]; representative: Artwork };
 
 export type ChampionThumbnailChoice = {
   mode: 'artwork' | 'custom';
@@ -46,6 +47,7 @@ export type Catalogue = {
   ranks: string[];
   credits: string[];
   championThumbnails: Record<string, ChampionThumbnailChoice>;
+  taxonomyRepresentatives: TaxonomyRepresentatives;
 };
 
 type BackendCatalogue = {
@@ -56,6 +58,7 @@ type BackendCatalogue = {
   ranks?: string[];
   credits?: string[];
   championThumbnails?: Record<string, any>;
+  taxonomyRepresentatives?: { skinlines?: Record<string,unknown>; universes?: Record<string,unknown> };
 };
 
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://hyupremium.vercel.app').replace(/\/$/, '');
@@ -96,6 +99,11 @@ function normalizedTaxonomyValues(...values:any[]){
     else if(value!==undefined&&value!==null&&String(value).trim())entries.push(String(value).trim());
   }
   return uniqueSorted(entries);
+}
+
+function normalizedTaxonomyRepresentatives(value:any):TaxonomyRepresentatives{
+  const normalize=(raw:any)=>{const result:Record<string,string>={};if(!raw||typeof raw!=='object'||Array.isArray(raw))return result;for(const [name,id] of Object.entries(raw)){const cleanName=String(name||'').trim(),cleanId=String(id||'').trim();if(cleanName&&cleanId)result[cleanName]=cleanId;}return result};
+  return {skinlines:normalize(value?.skinlines),universes:normalize(value?.universes)};
 }
 
 function normalizedChampionThumbnails(value:any){
@@ -148,13 +156,16 @@ function authoritativeCatalogue(): Catalogue {
     categories: uniqueSorted((source.categories || []).map(String)),
     ranks: (source.ranks || []).map(String),
     credits: uniqueSorted((source.credits || []).map(value=>localizeCredit(String(value)))),
-    championThumbnails: normalizedChampionThumbnails(source.championThumbnails)
+    championThumbnails: normalizedChampionThumbnails(source.championThumbnails),
+    taxonomyRepresentatives: normalizedTaxonomyRepresentatives(source.taxonomyRepresentatives)
   };
 }
 
 export async function getCatalogue(): Promise<Catalogue> { return authoritativeCatalogue(); }
 
-export function artworkTaxonomyGroups(items:Artwork[],key:ArtworkTaxonomyKey):ArtworkTaxonomyGroup[]{
+function fallbackTaxonomyRepresentative(items:Artwork[]){return [...items].sort((a,b)=>b.rankOrder-a.rankOrder||alpha(a.id,b.id))[0];}
+
+export function artworkTaxonomyGroups(items:Artwork[],key:ArtworkTaxonomyKey,representatives:Record<string,string>={}):ArtworkTaxonomyGroup[]{
   const groups=new Map<string,Artwork[]>();
   for(const item of items){
     for(const name of item[key]){
@@ -165,7 +176,7 @@ export function artworkTaxonomyGroups(items:Artwork[],key:ArtworkTaxonomyKey):Ar
   }
   return [...groups.entries()]
     .sort(([a],[b])=>alpha(a,b))
-    .map(([name,groupItems])=>({name,items:groupItems}));
+    .map(([name,groupItems])=>{const manualId=representatives[name];const representative=groupItems.find(item=>item.id===manualId)||fallbackTaxonomyRepresentative(groupItems);return {name,items:groupItems,representative};});
 }
 
 export function artworkVariant(item:Artwork,width:640|960|1600){return item.variants?.[String(width)];}
