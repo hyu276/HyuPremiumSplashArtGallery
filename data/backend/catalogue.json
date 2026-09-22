@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-09-22T12:59:25.397Z",
+  "generatedAt": "2026-09-22T13:07:12.364Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -13332,6 +13332,54 @@
       }
     },
     {
+      "id": "chu-cuoi",
+      "name": "Chú cuội",
+      "description": "",
+      "category": "Ryoma",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hiemaru",
+      "skinline": "Cổ tích Việt Nam",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/chu-cuoi-5fc9b8411800-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/chu-cuoi-5fc9b8411800-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": true,
+      "updatedAt": "2026-09-22T13:05:46.877Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/chu-cuoi-6c6a390959858cec.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 504836,
+        "mimeType": "image/jpeg",
+        "sha256": "6c6a390959858ceca3dc035fcb0ab02b52147de8fa37d83094500525aa053e10"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/chu-cuoi-5fc9b8411800-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 23704,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/chu-cuoi-5fc9b8411800-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 46178,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/chu-cuoi-5fc9b8411800-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 101708,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "playboy-bang-chu",
       "name": "Playboy Bang chủ",
       "description": "",
@@ -19940,7 +19988,8 @@
     "Tỉnh thành Việt Nam",
     "Chiến thần",
     "Lịch sử đất Việt",
-    "Nguyệt hoa tiên giới"
+    "Nguyệt hoa tiên giới",
+    "Cổ tích Việt Nam"
   ],
   "universes": [
     {
