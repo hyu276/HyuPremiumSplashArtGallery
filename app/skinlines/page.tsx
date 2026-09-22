@@ -15,17 +15,11 @@ export const metadata:Metadata={
 
 export default async function SkinlinesPage(){
   const catalogue=await getCatalogue();
-  const groups=artworkTaxonomyGroups(catalogue.items,'skinlines');
+  const groups=artworkTaxonomyGroups(catalogue.items,'skinlines',catalogue.taxonomyRepresentatives.skinlines);
   return <>
     <SiteHeader/>
     <CatalogueFreshnessGuard revision={catalogue.revision}/>
-    <main className="taxonomy-page">
-      <section className="taxonomy-intro" id="top">
-        <div><p className="taxonomy-intro-kicker">HYU PREMIUM / Skinline catalogue</p><h1>Trang phục theo bộ<br/><em>theo nhóm.</em></h1></div>
-        <p className="taxonomy-intro-copy">Mỗi bộ là một section riêng. Chọn tên bộ để mở gallery carousel chứa những artwork đã được gán vào bộ đó.</p>
-      </section>
-      <TaxonomyGalleryClient mode="skinlines" groups={groups}/>
-    </main>
+    <main className="taxonomy-page"><section className="hero taxonomy-hero" id="top"><div className="hero-kicker"><i></i> HYU PREMIUM / Skinline catalogue</div><h1>Trang phục<br/><em>theo bộ.</em></h1><div className="hero-foot"><p>Khám phá các bộ trang phục qua artwork đại diện cố định và gallery tương tác theo chuẩn thư viện HYU PREMIUM.</p><span>Cuộn xuống để khám phá ↓</span></div></section><TaxonomyGalleryClient mode="skinlines" groups={groups}/><section className="manifesto"><p className="eyebrow">HYU PREMIUM / SKINLINES</p><h2>Mỗi bộ sưu tập có<br/>một dấu ấn <em>riêng.</em></h2><div className="manifesto-copy"><p>Artwork đại diện được chỉ định thủ công trong admin hoặc chọn ổn định từ skin rank cao nhất khi chưa có lựa chọn riêng.</p><p>Gallery sử dụng cùng ngôn ngữ tương tác với thư viện nhân vật: card 16:9, hover, expand inline và derivative 1600px khi mở rộng.</p></div></section></main>
     <SiteFooter/>
   </>;
 }
