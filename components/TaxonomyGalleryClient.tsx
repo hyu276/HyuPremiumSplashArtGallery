@@ -1,9 +1,11 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { Fragment, memo, useCallback, useEffect, useRef, useState, type CSSProperties } from 'react';
 import ArtworkTitleFitter from '@/components/ArtworkTitleFitter';
 import type { Artwork, ArtworkTaxonomyGroup } from '@/lib/catalogue';
-import { artworkPreview } from '@/lib/catalogue';
+import { artworkPreview, artworkSrcSet } from '@/lib/catalogue';
+
+const INITIAL_EAGER_COUNT=6;
 
 const RANK_GRADIENTS: Record<string,string> = {
   A:'linear-gradient(180deg,#035365 0%,#045C6C 48%,#08929C 100%)',
@@ -18,97 +20,167 @@ const RANK_GRADIENTS: Record<string,string> = {
 };
 
 type TaxonomyMode='skinlines'|'universes';
-type ExpandedArtwork={groupName:string;artwork:Artwork}|null;
+type PreviewHold={width:number;height:number};
+type ExpandedArtwork={groupName:string;artworkId:string}|null;
 
 function titleFitBucket(value:string){const length=Array.from(String(value||'').trim()).length;return length>=52?'xxlong':length>=38?'xlong':length>=28?'long':length>=19?'medium':'short';}
-function groupPanelId(mode:TaxonomyMode,index:number){return `${mode}-gallery-${index+1}`;}
 
-function ArtworkCard({item,index,onExpand}:{item:Artwork;index:number;onExpand:()=>void}){
-  return <button type="button" className="art-card taxonomy-art-card" aria-label={`Mở ${item.name}`} onClick={onExpand}>
+const ViewportPreview=memo(function ViewportPreview({item,alt,eager,suspendLoad,holdSize,sizes}:{item:Artwork;alt:string;eager:boolean;suspendLoad:boolean;holdSize:PreviewHold|null;sizes:string}){
+  const node=useRef<HTMLImageElement>(null);
+  const [armed,setArmed]=useState(eager);
+  const src=artworkPreview(item,960);
+  const srcSet=artworkSrcSet(item);
+  const holdStyle=holdSize?({
+    left:'50%',top:'50%',right:'auto',bottom:'auto',
+    width:`min(${Math.max(1,Math.round(holdSize.width))}px, calc(100% - 24px))`,
+    height:'auto',
+    aspectRatio:`${Math.max(1,Math.round(holdSize.width))} / ${Math.max(1,Math.round(holdSize.height))}`,
+    transform:'translate(-50%,-50%)',
+    filter:'none',
+    opacity:1,
+    transition:'none',
+    boxShadow:'0 18px 54px rgba(0,0,0,.28)'
+  } as CSSProperties):undefined;
+
+  useEffect(()=>{
+    if(armed||suspendLoad)return;
+    const image=node.current;if(!image)return;
+    if(typeof IntersectionObserver==='undefined'){setArmed(true);return;}
+    const observer=new IntersectionObserver(entries=>{
+      if(entries.some(entry=>entry.isIntersecting)){setArmed(true);observer.disconnect();}
+    },{rootMargin:'320px 0px'});
+    observer.observe(image);
+    return()=>observer.disconnect();
+  },[armed,suspendLoad]);
+
+  useEffect(()=>{if(eager&&!armed&&!suspendLoad)setArmed(true)},[eager,armed,suspendLoad]);
+
+  return <img ref={node} className="preview" style={holdStyle} src={armed?src:undefined} srcSet={armed&&srcSet?srcSet:undefined} sizes={armed?sizes:undefined} data-src={armed?undefined:src} alt={alt} loading={eager?'eager':'lazy'} decoding="async" fetchPriority={eager?'high':'low'} />;
+});
+
+const ExpandedImage=memo(function ExpandedImage({item,onReady}:{item:Artwork;onReady:()=>void}){
+  const [ready,setReady]=useState(false);
+  useEffect(()=>{setReady(false)},[item.id]);
+  return <img className={`full${ready?' ready':''}`} style={{transition:'none'}} src={artworkPreview(item,1600)} alt="" aria-hidden="true" loading="eager" decoding="async" fetchPriority="high" onLoad={()=>{setReady(true);onReady()}}/>;
+});
+
+const GroupCard=memo(function GroupCard({group,index,mode,expanded,pending,onToggle,onReady}:{group:ArtworkTaxonomyGroup;index:number;mode:TaxonomyMode;expanded:boolean;pending:boolean;onToggle:(group:ArtworkTaxonomyGroup)=>void;onReady:(name:string)=>void}){
+  const node=useRef<HTMLButtonElement>(null);
+  const [hold,setHold]=useState<PreviewHold|null>(null);
+  const rep=group.representative;
+  const toggle=()=>{
+    if(!expanded){
+      const rect=node.current?.getBoundingClientRect();
+      if(rect&&rect.width>0&&rect.height>0)setHold({width:rect.width,height:rect.height});
+    }
+    onToggle(group);
+  };
+  const sourceLabel=group.representativeSource==='manual'?'được chỉ định thủ công':'tự động theo hạng skin cao nhất';
+  return <button ref={node} type="button" className={`art-card taxonomy-group-card${expanded?' expanded':''}${pending?' pending-expand':''}`} data-taxonomy-group={group.name} aria-expanded={expanded} aria-busy={pending} aria-label={`${expanded?'Thu gọn':'Mở'} ${group.name}`} onClick={toggle}>
     <span className="art-image-layer">
-      <img src={artworkPreview(item,640)} alt={`${item.name} — ${item.category}`} loading={index<5?'eager':'lazy'} decoding="async" fetchPriority="low" />
+      <ViewportPreview item={rep} alt={`${group.name} — đại diện bởi ${rep.name}`} eager={index<INITIAL_EAGER_COUNT&&!expanded} suspendLoad={expanded} holdSize={expanded?hold:null} sizes="(max-width:760px) 50vw,(max-width:1180px) 33vw,20vw"/>
+      {expanded?<ExpandedImage item={rep} onReady={()=>onReady(group.name)}/>:null}
     </span>
-    <span className="shade" />
+    <span className="shade" aria-hidden="true"/>
     <span className="card-number">{String(index+1).padStart(2,'0')}</span>
-    <span className="tier" style={{background:RANK_GRADIENTS[item.rank]||RANK_GRADIENTS.A}}>{item.rank}</span>
-    <span className="expand-mark">+</span>
+    <span className="tier" style={{background:RANK_GRADIENTS[rep.rank]||'var(--brand)'}}>{rep.rank||'—'}</span>
+    <span className="expand-mark" aria-hidden="true">{pending?'…':expanded?'−':'+'}</span>
+    <span className="card-copy">
+      <span className="card-meta">{mode==='skinlines'?'Trang phục theo bộ':'Dòng trang phục'}</span>
+      <strong className="card-title" data-title-fit={titleFitBucket(group.name)}>{group.name}</strong>
+      <span className="card-description">{group.items.length} artwork · Ảnh đại diện {sourceLabel}: {rep.name}.</span>
+      <span className="card-bottom"><span>{String(group.items.length).padStart(2,'0')} artwork</span><span className="rank-label">Đại diện · {rep.name}</span></span>
+    </span>
+  </button>;
+});
+
+const ArtworkCard=memo(function ArtworkCard({item,index,expanded,pending,onToggle,onReady}:{item:Artwork;index:number;expanded:boolean;pending:boolean;onToggle:(item:Artwork)=>void;onReady:(id:string)=>void}){
+  const node=useRef<HTMLButtonElement>(null);
+  const [hold,setHold]=useState<PreviewHold|null>(null);
+  const toggle=()=>{
+    if(!expanded){
+      const rect=node.current?.getBoundingClientRect();
+      if(rect&&rect.width>0&&rect.height>0)setHold({width:rect.width,height:rect.height});
+    }
+    onToggle(item);
+  };
+  return <button ref={node} type="button" className={`art-card${expanded?' expanded':''}${pending?' pending-expand':''}`} data-taxonomy-art={item.id} aria-expanded={expanded} aria-busy={pending} aria-label={`${pending?'Đang tải ảnh lớn':expanded?'Thu gọn':'Mở rộng'} ${item.name}`} onClick={toggle}>
+    <span className="art-image-layer">
+      <ViewportPreview item={item} alt={`${item.name} — ${item.category}, splash art game, hạng skin ${item.rank}`} eager={index<INITIAL_EAGER_COUNT&&!expanded} suspendLoad={expanded} holdSize={expanded?hold:null} sizes="(max-width:760px) 50vw,(max-width:1180px) 33vw,20vw"/>
+      {expanded?<ExpandedImage item={item} onReady={()=>onReady(item.id)}/>:null}
+    </span>
+    <span className="shade" aria-hidden="true"/>
+    <span className="card-number">{String(index+1).padStart(2,'0')}</span>
+    <span className="tier" style={{background:RANK_GRADIENTS[item.rank]||'var(--brand)'}}>{item.rank||'—'}</span>
+    <span className="expand-mark" aria-hidden="true">{pending?'…':expanded?'−':'+'}</span>
     <span className="card-copy">
       <span className="card-meta">{item.category}</span>
       <strong className="card-title" data-title-fit={titleFitBucket(item.name)}>{item.name}</strong>
+      {item.description?<span className="card-description">{item.description}</span>:null}
       <span className="card-bottom"><span>CREDIT ẢNH · {item.credit}</span><span className="rank-label">{item.rank}</span></span>
     </span>
   </button>;
-}
-
-function ExpandedStage({artwork,onClose}:{artwork:Artwork;onClose:()=>void}){
-  return <div className="taxonomy-expanded-stage">
-    <img src={artworkPreview(artwork,1600)} alt={`${artwork.name} — ${artwork.category}`} loading="eager" decoding="async" fetchPriority="high" />
-    <span className="taxonomy-expanded-shade" />
-    <div className="taxonomy-expanded-copy">
-      <span className="card-meta">{artwork.category}</span>
-      <strong>{artwork.name}</strong>
-      <span className="card-bottom"><span>CREDIT ẢNH · {artwork.credit}</span><span className="rank-label">{artwork.rank}</span></span>
-    </div>
-    <button type="button" className="taxonomy-expanded-close" aria-label="Đóng artwork" onClick={onClose}>−</button>
-  </div>;
-}
+});
 
 export default function TaxonomyGalleryClient({mode,groups}:{mode:TaxonomyMode;groups:ArtworkTaxonomyGroup[]}){
-  const [openGroups,setOpenGroups]=useState<string[]>([]);
-  const [expanded,setExpanded]=useState<ExpandedArtwork>(null);
-  const tracks=useRef<Record<string,HTMLDivElement|null>>({});
+  const [expandedGroup,setExpandedGroup]=useState<string|null>(null);
+  const [pendingGroup,setPendingGroup]=useState<string|null>(null);
+  const [expandedArtwork,setExpandedArtwork]=useState<ExpandedArtwork>(null);
+  const [pendingArtwork,setPendingArtwork]=useState<ExpandedArtwork>(null);
 
-  function toggleGroup(name:string){
-    setOpenGroups(current=>current.includes(name)?current.filter(value=>value!==name):[...current,name]);
-    setExpanded(current=>current?.groupName===name?null:current);
-  }
+  const toggleGroup=useCallback((group:ArtworkTaxonomyGroup)=>{
+    if(expandedGroup===group.name){
+      setExpandedGroup(null);setPendingGroup(null);setExpandedArtwork(null);setPendingArtwork(null);return;
+    }
+    setExpandedArtwork(null);setPendingArtwork(null);
+    setPendingGroup(group.name);setExpandedGroup(group.name);
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{
+      const card=document.querySelector<HTMLElement>(`[data-taxonomy-group="${CSS.escape(group.name)}"]`);
+      const mobile=window.matchMedia?.('(max-width:760px)').matches??false;
+      card?.scrollIntoView({behavior:mobile?'auto':'smooth',block:'center'});
+    }));
+  },[expandedGroup]);
 
-  function scrollGroup(name:string,direction:-1|1){
-    const track=tracks.current[name];
-    if(!track)return;
-    track.scrollBy({left:track.clientWidth*.82*direction,behavior:'smooth'});
-  }
+  const toggleArtwork=useCallback((groupName:string,item:Artwork)=>{
+    if(expandedArtwork?.groupName===groupName&&expandedArtwork.artworkId===item.id){
+      setExpandedArtwork(null);setPendingArtwork(null);return;
+    }
+    const next={groupName,artworkId:item.id};
+    setPendingArtwork(next);setExpandedArtwork(next);
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{
+      const card=document.querySelector<HTMLElement>(`[data-taxonomy-art="${CSS.escape(item.id)}"]`);
+      const mobile=window.matchMedia?.('(max-width:760px)').matches??false;
+      card?.scrollIntoView({behavior:mobile?'auto':'smooth',block:'center'});
+    }));
+  },[expandedArtwork]);
 
   if(!groups.length){
-    return <section className="taxonomy-empty" aria-live="polite">
-      <strong>Chưa có taxonomy được gán.</strong>
-      <span>Các artwork sẽ tự xuất hiện tại đây khi metadata {mode==='skinlines'?'skinlines':'universes'} được thêm vào catalogue.</span>
-    </section>;
+    return <section className="taxonomy-empty" aria-live="polite"><strong>Chưa có taxonomy được gán.</strong><span>Các artwork sẽ tự xuất hiện tại đây khi metadata được thêm vào catalogue.</span></section>;
   }
 
-  return <div className="taxonomy-stack" id="catalog">
-    <ArtworkTitleFitter />
-    {groups.map((group,groupIndex)=>{
-      const isOpen=openGroups.includes(group.name);
-      const panelId=groupPanelId(mode,groupIndex);
-      const expandedArtwork=expanded?.groupName===group.name?expanded.artwork:null;
-      return <section key={group.name} className={`taxonomy-group${isOpen?' is-open':''}`}>
-        <button type="button" className="taxonomy-trigger" aria-expanded={isOpen} aria-controls={panelId} onClick={()=>toggleGroup(group.name)}>
-          <span>
-            <span className="taxonomy-index">{String(groupIndex+1).padStart(2,'0')}</span>
-            <span className="taxonomy-name">{group.name}</span>
-          </span>
-          <span className="taxonomy-meta">
-            <span><span className="taxonomy-count">{String(group.items.length).padStart(2,'0')}</span> artwork</span>
-            <span className="taxonomy-toggle" aria-hidden="true">+</span>
-          </span>
-        </button>
-        {isOpen?<div className="gallery-drawer" id={panelId}>
-          <div className="carousel-shell">
-            <div className="carousel-topline">
-              <span className="carousel-label">Gallery carousel · <strong>{group.name}</strong></span>
-              <span className="carousel-controls">
-                <button type="button" className="carousel-arrow" aria-label={`Cuộn ${group.name} sang trái`} onClick={()=>scrollGroup(group.name,-1)}>←</button>
-                <button type="button" className="carousel-arrow" aria-label={`Cuộn ${group.name} sang phải`} onClick={()=>scrollGroup(group.name,1)}>→</button>
-              </span>
+  return <section className="catalog taxonomy-catalog" id="catalog">
+    <ArtworkTitleFitter/>
+    <div className="results-line"><div><strong>{String(groups.length).padStart(2,'0')}</strong><span>{mode==='skinlines'?'bộ trang phục':'dòng trang phục'} đang hiển thị</span></div></div>
+    <div className="gallery-grid taxonomy-groups-grid">
+      {groups.map((group,index)=>{
+        const open=expandedGroup===group.name;
+        return <Fragment key={group.name}>
+          <GroupCard group={group} index={index} mode={mode} expanded={open} pending={pendingGroup===group.name} onToggle={toggleGroup} onReady={name=>setPendingGroup(current=>current===name?null:current)}/>
+          {open?<section className="taxonomy-gallery-panel" aria-label={`Artwork thuộc ${group.name}`}>
+            <div className="taxonomy-gallery-panel-head">
+              <div><span>{mode==='skinlines'?'Skinline gallery':'Universe gallery'}</span><strong>{group.name}</strong></div>
+              <span>{String(group.items.length).padStart(2,'0')} artwork</span>
             </div>
-            <div ref={node=>{tracks.current[group.name]=node;}} className="taxonomy-gallery-carousel" role="group" aria-label={`Artwork thuộc ${group.name}`}>
-              {group.items.map((item,index)=><ArtworkCard key={item.id} item={item} index={index} onExpand={()=>setExpanded({groupName:group.name,artwork:item})}/>)}
+            <div className="gallery-grid taxonomy-artwork-grid">
+              {group.items.map((item,itemIndex)=>{
+                const expanded=expandedArtwork?.groupName===group.name&&expandedArtwork.artworkId===item.id;
+                const pending=pendingArtwork?.groupName===group.name&&pendingArtwork.artworkId===item.id;
+                return <ArtworkCard key={item.id} item={item} index={itemIndex} expanded={expanded} pending={pending} onToggle={art=>toggleArtwork(group.name,art)} onReady={id=>setPendingArtwork(current=>current?.groupName===group.name&&current.artworkId===id?null:current)}/>;
+              })}
             </div>
-            {expandedArtwork?<ExpandedStage artwork={expandedArtwork} onClose={()=>setExpanded(null)}/>:null}
-          </div>
-        </div>:null}
-      </section>;
-    })}
-  </div>;
+          </section>:null}
+        </Fragment>;
+      })}
+    </div>
+  </section>;
 }
