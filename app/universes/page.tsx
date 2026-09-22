@@ -20,10 +20,7 @@ export default async function UniversesPage(){
     <SiteHeader/>
     <CatalogueFreshnessGuard revision={catalogue.revision}/>
     <main className="taxonomy-page">
-      <section className="taxonomy-intro" id="top">
-        <div><p className="taxonomy-intro-kicker">HYU PREMIUM / Universe catalogue</p><h1>Dòng trang phục<br/><em>theo thế giới.</em></h1></div>
-        <p className="taxonomy-intro-copy">Mỗi dòng là một section riêng. Chọn tên dòng để mở gallery artwork theo cùng thao tác mở rộng của thư viện chính.</p>
-      </section>
+      <section className="hero taxonomy-hero" id="top"><div className="hero-kicker"><i></i> HYU PREMIUM / Universe catalogue</div><h1>Dòng trang phục<br/>theo <em>thế giới.</em></h1><div className="hero-foot"><p>Chọn một dòng trang phục để mở rộng artwork đại diện và khám phá toàn bộ splash art thuộc thế giới đó theo cùng thao tác của thư viện chính.</p><span>Cuộn xuống để khám phá ↓</span></div></section>
       <TaxonomyGalleryClient mode="universes" groups={groups}/>
     </main>
     <SiteFooter/>
