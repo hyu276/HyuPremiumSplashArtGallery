@@ -81,7 +81,8 @@ for(const item of catalogue.items||[]){
     if(value.toLowerCase().includes('supabase'))failures.push(`${id}: ${field} still references Supabase`);
   }
   const expanded=item.expanded;
-  if(expanded){
+  if(!expanded)failures.push(`${id}: missing exact expanded display asset`);
+  else{
     const expandedUrl=String(expanded.url||'');
     if(!expandedUrl.includes('/media/artworks/expanded/'))failures.push(`${id}: expanded display must use the public artworks/expanded namespace`);
     if(/drive\.google\.com|googleusercontent\.com|supabase|\/originals\//i.test(expandedUrl))failures.push(`${id}: expanded display must not resolve Drive, Supabase, or private original namespaces`);
