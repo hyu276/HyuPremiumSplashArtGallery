@@ -15,7 +15,7 @@ export const metadata:Metadata={
 
 export default async function SkinlinesPage(){
   const catalogue=await getCatalogue();
-  const groups=artworkTaxonomyGroups(catalogue.items,'skinlines');
+  const groups=artworkTaxonomyGroups(catalogue.items,'skinlines',catalogue.taxonomyRepresentatives);
   return <>
     <SiteHeader/>
     <CatalogueFreshnessGuard revision={catalogue.revision}/>
