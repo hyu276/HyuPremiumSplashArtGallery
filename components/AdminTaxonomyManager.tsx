@@ -42,12 +42,15 @@ export default function AdminTaxonomyManager({
   const [artworkTargets,setArtworkTargets]=useState<Record<string,string>>({});
   const [selectedSkinlines,setSelectedSkinlines]=useState<Set<string>>(()=>new Set());
   const [batchUniverse,setBatchUniverse]=useState('');
+  const [skinlineSearch,setSkinlineSearch]=useState('');
 
   const assignedBySkinline=useMemo(()=>new Map(skinlines.map(name=>[name,items.filter(item=>sameName(item.skinline||item.skinlines?.[0]||'',name))])),[items,skinlines]);
   const activeSkinline=skinlines.find(name=>sameName(name,activeSkinlineState))||skinlines[0]||'';
   const activeUniverse=universes.find(universe=>sameName(universe.name,activeUniverseState))||universes[0]||null;
   const activeArtworkTarget=activeSkinline?artworkTargets[activeSkinline]||'':'';
   const availableArtwork=activeSkinline?items.filter(item=>!sameName(item.skinline||item.skinlines?.[0]||'',activeSkinline)):[];
+  const skinlineNeedle=skinlineSearch.trim().toLowerCase();
+  const filteredSkinlines=skinlineNeedle?skinlines.filter(name=>name.toLowerCase().includes(skinlineNeedle)):skinlines;
 
   function createSkinline(){
     const value=skinlineDraft.trim();
@@ -122,8 +125,11 @@ export default function AdminTaxonomyManager({
 
   function toggleAllSkinlines(){
     setSelectedSkinlines(current=>{
-      const allSelected=skinlines.length>0&&skinlines.every(name=>[...current].some(value=>sameName(value,name)));
-      return allSelected?new Set():new Set(skinlines);
+      if(!filteredSkinlines.length)return current;
+      const allSelected=filteredSkinlines.every(name=>[...current].some(value=>sameName(value,name)));
+      const next=new Set(current);
+      filteredSkinlines.forEach(name=>{const existing=[...next].find(value=>sameName(value,name));if(allSelected&&existing)next.delete(existing);else if(!allSelected&&!existing)next.add(name)});
+      return next;
     });
   }
 
@@ -137,7 +143,7 @@ export default function AdminTaxonomyManager({
     setSelectedSkinlines(new Set());
   }
 
-  const selectedAll=skinlines.length>0&&skinlines.every(name=>[...selectedSkinlines].some(value=>sameName(value,name)));
+  const selectedAll=filteredSkinlines.length>0&&filteredSkinlines.every(name=>[...selectedSkinlines].some(value=>sameName(value,name)));
 
   return <>
     <section className="admin-panel skinline-manager">
@@ -159,7 +165,7 @@ export default function AdminTaxonomyManager({
           {activeSkinline?<>
             <div className="taxonomy-detail-head"><div><strong>{activeSkinline}</strong><span>{(assignedBySkinline.get(activeSkinline)||[]).length} artwork</span></div><div className="admin-controls"><button className="admin-btn small" onClick={()=>renameSkinline(activeSkinline)}>Đổi tên</button><button className="admin-btn small danger" onClick={()=>removeSkinline(activeSkinline)}>Xóa</button></div></div>
             <div className="taxonomy-detail-add">
-              <AdminCompactPicker value={activeArtworkTarget} options={availableArtwork.map(item=>({value:item.id,label:`${item.name} — ${item.category}`}))} placeholder="Chọn artwork..." ariaLabel={`Artwork để thêm vào ${activeSkinline}`} onChange={value=>setArtworkTargets(current=>({...current,[activeSkinline]:value}))}/>
+              <AdminCompactPicker value={activeArtworkTarget} options={availableArtwork.map(item=>({value:item.id,label:`${item.name} — ${item.category}`}))} placeholder="Chọn artwork..." ariaLabel={`Artwork để thêm vào ${activeSkinline}`} onChange={value=>setArtworkTargets(current=>({...current,[activeSkinline]:value}))} searchable searchPlaceholder="Tìm theo tên artwork hoặc tướng..."/>
               <button className="admin-btn small" disabled={!activeArtworkTarget} onClick={assignArtwork}>Thêm skin</button>
             </div>
             <div className="taxonomy-member-list">
@@ -196,13 +202,14 @@ export default function AdminTaxonomyManager({
 
     <section className="admin-panel universe-batch-manager">
       <div className="taxonomy-section-head"><div><h2>Danh sách Skinline — Batch add vào Skin Universe</h2><div className="admin-note">Tick nhiều Skinline, chọn Universe rồi thêm hàng loạt. Khung danh sách chỉ hiện tối đa 4 Skinline và cuộn phần còn lại.</div></div><span className="admin-badge">Đã chọn {selectedSkinlines.size}</span></div>
+      <div className="taxonomy-batch-search"><input className="admin-input" type="search" value={skinlineSearch} onChange={event=>setSkinlineSearch(event.target.value)} placeholder="Tìm Skinline cần add vào Universe..." aria-label="Tìm Skinline cần add vào Universe"/><span className="admin-badge">{filteredSkinlines.length}/{skinlines.length} Skinline</span></div>
       <div className="admin-batch taxonomy-batch-toolbar">
-        <label className="admin-check" style={{margin:0}}><input type="checkbox" checked={selectedAll} onChange={toggleAllSkinlines}/> Chọn tất cả Skinline</label>
+        <label className="admin-check" style={{margin:0}}><input type="checkbox" checked={selectedAll} onChange={toggleAllSkinlines}/> Chọn các Skinline đang hiển thị</label>
         <AdminCompactPicker value={batchUniverse} options={universes.map(universe=>universe.name)} placeholder="Chọn Universe..." ariaLabel="Universe cho các Skinline đã chọn" onChange={setBatchUniverse}/>
         <button className="admin-btn small primary" disabled={!selectedSkinlines.size||!batchUniverse} onClick={batchAddToUniverse}>Thêm vào Universe</button>
       </div>
       <div className="taxonomy-batch-list">
-        {skinlines.length?skinlines.map(skinline=>{
+        {filteredSkinlines.length?filteredSkinlines.map(skinline=>{
           const memberships=universes.filter(universe=>universe.skinlines.some(member=>sameName(member,skinline))).map(universe=>universe.name);
           const checked=[...selectedSkinlines].some(value=>sameName(value,skinline));
           return <label className={`taxonomy-batch-row${checked?' selected':''}`} key={skinline}>
@@ -210,7 +217,7 @@ export default function AdminTaxonomyManager({
             <span><strong>{skinline}</strong><small>{assignedBySkinline.get(skinline)?.length||0} artwork</small></span>
             <span className="admin-meta">{memberships.length?'Universe: '+memberships.join(', '):'Chưa thuộc Universe nào'}</span>
           </label>;
-        }):<div className="taxonomy-compact-empty">Chưa có Skinline để batch add.</div>}
+        }):<div className="taxonomy-compact-empty">{skinlineSearch.trim()?'Không có Skinline phù hợp với tìm kiếm.':'Chưa có Skinline để batch add.'}</div>}
       </div>
     </section>
   </>;
