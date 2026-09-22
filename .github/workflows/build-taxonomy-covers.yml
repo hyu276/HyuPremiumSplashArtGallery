@@ -30,8 +30,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          grep -q "Artwork đại diện" assets/js/admin-github.bundle.js
-          grep -q "taxonomy-representative-control" assets/js/admin-github.bundle.js
+          grep -q "taxonomy-representative-control" components/AdminTaxonomyManager.tsx
+          grep -q "onSetRepresentative" components/AdminTaxonomyManager.tsx
           grep -q "taxonomy-cover-card" components/TaxonomyGalleryClient.tsx
           grep -q "Admin root element missing" assets/js/admin-github.bundle.js
       - name: Production build
