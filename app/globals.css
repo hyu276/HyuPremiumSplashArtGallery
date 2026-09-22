@@ -38,7 +38,6 @@
 /* Taxonomy line format: representative preview + drawer carousel */
 .taxonomy-trigger{min-height:clamp(104px,10vw,136px);padding:12px 3vw;grid-template-columns:minmax(0,1fr) auto auto;gap:34px;transition:background .24s ease}
 .taxonomy-heading{position:relative;z-index:1;min-width:0}
-.taxonomy-sub{display:block;margin-top:8px;color:#727a76;font-size:.48rem;font-weight:900;letter-spacing:.13em;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .rep-preview{position:relative;height:86px;aspect-ratio:16/9;overflow:hidden;background:#111;border:1px solid var(--line);flex:none}
 .rep-art{display:block;width:100%;height:100%;object-fit:cover;filter:saturate(.9) contrast(1.04);transform:scale(1.01);transition:transform .42s cubic-bezier(.22,.8,.22,1),filter .24s ease}
 .taxonomy-trigger:hover .rep-art,.taxonomy-trigger:focus-visible .rep-art{transform:scale(1.04);filter:saturate(1.04) contrast(1.02)}
@@ -60,7 +59,6 @@
   .taxonomy-trigger{min-height:92px;padding:10px 4vw;grid-template-columns:minmax(0,1fr) auto;gap:14px}
   .taxonomy-index{font-size:.58rem}
   .taxonomy-name{font-size:clamp(1.45rem,7.5vw,2.5rem)}
-  .taxonomy-sub{font-size:.39rem;margin-top:5px;max-width:66vw}
   .rep-preview{position:absolute;z-index:0;right:56px;top:50%;bottom:auto;width:auto;height:68px;aspect-ratio:16/9;transform:translateY(-50%);border:0;opacity:.7;mask-image:linear-gradient(90deg,transparent,#000 38%);-webkit-mask-image:linear-gradient(90deg,transparent,#000 38%)}
   .taxonomy-meta{gap:10px;font-size:.43rem}
   .taxonomy-meta>span:first-child{display:none}

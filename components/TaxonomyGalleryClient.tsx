@@ -87,7 +87,6 @@ export default function TaxonomyGalleryClient({mode,groups}:{mode:TaxonomyMode;g
           <span className="taxonomy-heading">
             <span className="taxonomy-index">{String(index+1).padStart(2,'0')}</span>
             <span className="taxonomy-name">{group.name}</span>
-            <span className="taxonomy-sub">Artwork đại diện cố định · {representative.name}</span>
           </span>
           <span className="rep-preview" aria-hidden="true">
             <img className="rep-art" src={artworkPreview(representative,640)} srcSet={artworkSrcSet(representative)||undefined} sizes="(max-width:760px) 121px,153px" alt="" loading={index<INITIAL_EAGER_COUNT?'eager':'lazy'} decoding="async" fetchPriority={index<INITIAL_EAGER_COUNT?'high':'low'}/>
