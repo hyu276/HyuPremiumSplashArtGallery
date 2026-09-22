@@ -9,8 +9,12 @@ type ArtworkRef={
   id:string;
   name:string;
   category:string;
+  rank?:string;
+  rankOrder?:number;
+  hidden?:boolean;
   skinline?:string;
   skinlines?:string[];
+  universes?:string[];
 };
 
 type Status={text:string;type?:'ok'|'err'|'warn'|''};
@@ -20,6 +24,8 @@ type Props={
   skinlines:string[];
   universes:AdminUniverse[];
   status:Status;
+  skinlineRepresentatives:Record<string,string>;
+  universeRepresentatives:Record<string,string>;
   onAddSkinline:(name:string)=>void;
   onRenameSkinline:(currentName:string,nextName:string)=>void;
   onDeleteSkinline:(name:string)=>void;
@@ -28,12 +34,15 @@ type Props={
   onRenameUniverse:(currentName:string,nextName:string)=>void;
   onDeleteUniverse:(name:string)=>void;
   onSetUniverseSkinlines:(universeName:string,skinlines:string[])=>void;
+  onSetSkinlineRepresentative:(skinline:string,artworkId:string)=>void;
+  onSetUniverseRepresentative:(universe:string,artworkId:string)=>void;
 };
 
 function sameName(a:string,b:string){return a.trim().toLowerCase()===b.trim().toLowerCase()}
+function highestRankArtwork(rows:ArtworkRef[]){return [...rows].filter(item=>!item.hidden).sort((a,b)=>Number(b.rankOrder||0)-Number(a.rankOrder||0)||a.id.localeCompare(b.id,undefined,{sensitivity:'base',numeric:true}))[0]}
 
 export default function AdminTaxonomyManager({
-  items,skinlines,universes,status,onAddSkinline,onRenameSkinline,onDeleteSkinline,onSetArtworkSkinline,onAddUniverse,onRenameUniverse,onDeleteUniverse,onSetUniverseSkinlines
+  items,skinlines,universes,status,skinlineRepresentatives,universeRepresentatives,onAddSkinline,onRenameSkinline,onDeleteSkinline,onSetArtworkSkinline,onAddUniverse,onRenameUniverse,onDeleteUniverse,onSetUniverseSkinlines,onSetSkinlineRepresentative,onSetUniverseRepresentative
 }:Props){
   const [skinlineDraft,setSkinlineDraft]=useState('');
   const [universeDraft,setUniverseDraft]=useState('');
@@ -48,7 +57,15 @@ export default function AdminTaxonomyManager({
   const activeSkinline=skinlines.find(name=>sameName(name,activeSkinlineState))||skinlines[0]||'';
   const activeUniverse=universes.find(universe=>sameName(universe.name,activeUniverseState))||universes[0]||null;
   const activeArtworkTarget=activeSkinline?artworkTargets[activeSkinline]||'':'';
+  const activeSkinlineItems=activeSkinline?(assignedBySkinline.get(activeSkinline)||[]):[];
   const availableArtwork=activeSkinline?items.filter(item=>!sameName(item.skinline||item.skinlines?.[0]||'',activeSkinline)):[];
+  const activeSkinlineRepresentativeId=activeSkinline?skinlineRepresentatives[activeSkinline]||'':'';
+  const activeSkinlineRepresentative=activeSkinlineItems.find(item=>item.id===activeSkinlineRepresentativeId&&!item.hidden);
+  const automaticSkinlineRepresentative=highestRankArtwork(activeSkinlineItems);
+  const activeUniverseItems=activeUniverse?items.filter(item=>!item.hidden&&(item.universes||[]).some(name=>sameName(name,activeUniverse.name))):[];
+  const activeUniverseRepresentativeId=activeUniverse?universeRepresentatives[activeUniverse.name]||'':'';
+  const activeUniverseRepresentative=activeUniverseItems.find(item=>item.id===activeUniverseRepresentativeId);
+  const automaticUniverseRepresentative=highestRankArtwork(activeUniverseItems);
   const skinlineNeedle=skinlineSearch.trim().toLowerCase();
   const filteredSkinlines=skinlineNeedle?skinlines.filter(name=>name.toLowerCase().includes(skinlineNeedle)):skinlines;
 
@@ -163,7 +180,11 @@ export default function AdminTaxonomyManager({
         </div>
         <div className="taxonomy-detail">
           {activeSkinline?<>
-            <div className="taxonomy-detail-head"><div><strong>{activeSkinline}</strong><span>{(assignedBySkinline.get(activeSkinline)||[]).length} artwork</span></div><div className="admin-controls"><button className="admin-btn small" onClick={()=>renameSkinline(activeSkinline)}>Đổi tên</button><button className="admin-btn small danger" onClick={()=>removeSkinline(activeSkinline)}>Xóa</button></div></div>
+            <div className="taxonomy-detail-head"><div><strong>{activeSkinline}</strong><span>{activeSkinlineItems.length} artwork</span></div><div className="admin-controls"><button className="admin-btn small" onClick={()=>renameSkinline(activeSkinline)}>Đổi tên</button><button className="admin-btn small danger" onClick={()=>removeSkinline(activeSkinline)}>Xóa</button></div></div>
+            <div className="taxonomy-representative">
+              <div className="taxonomy-representative-label"><strong>Artwork đại diện</strong><span>{activeSkinlineRepresentative?'Chỉ định thủ công':automaticSkinlineRepresentative?`Tự động · hạng cao nhất: ${automaticSkinlineRepresentative.name} (${automaticSkinlineRepresentative.rank||'—'})`:'Chưa có artwork khả dụng'}</span></div>
+              <div className="taxonomy-detail-add"><AdminCompactPicker value={activeSkinlineRepresentative?.id||''} options={activeSkinlineItems.filter(item=>!item.hidden).map(item=>({value:item.id,label:`${item.name} — ${item.category} · ${item.rank||'—'}`}))} placeholder={automaticSkinlineRepresentative?`Tự động · ${automaticSkinlineRepresentative.name}`:'Chọn artwork đại diện...'} ariaLabel={`Artwork đại diện cho ${activeSkinline}`} onChange={value=>onSetSkinlineRepresentative(activeSkinline,value)} searchable searchPlaceholder="Tìm artwork đại diện..."/><button className="admin-btn small" disabled={!activeSkinlineRepresentativeId} onClick={()=>onSetSkinlineRepresentative(activeSkinline,'')}>Tự động</button></div>
+            </div>
             <div className="taxonomy-detail-add">
               <AdminCompactPicker value={activeArtworkTarget} options={availableArtwork.map(item=>({value:item.id,label:`${item.name} — ${item.category}`}))} placeholder="Chọn artwork..." ariaLabel={`Artwork để thêm vào ${activeSkinline}`} onChange={value=>setArtworkTargets(current=>({...current,[activeSkinline]:value}))} searchable searchPlaceholder="Tìm theo tên artwork hoặc tướng..."/>
               <button className="admin-btn small" disabled={!activeArtworkTarget} onClick={assignArtwork}>Thêm skin</button>
@@ -191,7 +212,11 @@ export default function AdminTaxonomyManager({
         </div>
         <div className="taxonomy-detail">
           {activeUniverse?<>
-            <div className="taxonomy-detail-head"><div><strong>{activeUniverse.name}</strong><span>{activeUniverse.skinlines.length} skinline</span></div><div className="admin-controls"><button className="admin-btn small" onClick={()=>renameUniverse(activeUniverse.name)}>Đổi tên</button><button className="admin-btn small danger" onClick={()=>removeUniverse(activeUniverse.name)}>Xóa</button></div></div>
+            <div className="taxonomy-detail-head"><div><strong>{activeUniverse.name}</strong><span>{activeUniverse.skinlines.length} skinline · {activeUniverseItems.length} artwork</span></div><div className="admin-controls"><button className="admin-btn small" onClick={()=>renameUniverse(activeUniverse.name)}>Đổi tên</button><button className="admin-btn small danger" onClick={()=>removeUniverse(activeUniverse.name)}>Xóa</button></div></div>
+            <div className="taxonomy-representative">
+              <div className="taxonomy-representative-label"><strong>Artwork đại diện</strong><span>{activeUniverseRepresentative?'Chỉ định thủ công':automaticUniverseRepresentative?`Tự động · hạng cao nhất: ${automaticUniverseRepresentative.name} (${automaticUniverseRepresentative.rank||'—'})`:'Chưa có artwork khả dụng'}</span></div>
+              <div className="taxonomy-detail-add"><AdminCompactPicker value={activeUniverseRepresentative?.id||''} options={activeUniverseItems.map(item=>({value:item.id,label:`${item.name} — ${item.category} · ${item.rank||'—'}`}))} placeholder={automaticUniverseRepresentative?`Tự động · ${automaticUniverseRepresentative.name}`:'Chọn artwork đại diện...'} ariaLabel={`Artwork đại diện cho ${activeUniverse.name}`} onChange={value=>onSetUniverseRepresentative(activeUniverse.name,value)} searchable searchPlaceholder="Tìm artwork đại diện..."/><button className="admin-btn small" disabled={!activeUniverseRepresentativeId} onClick={()=>onSetUniverseRepresentative(activeUniverse.name,'')}>Tự động</button></div>
+            </div>
             <div className="taxonomy-member-list">
               {activeUniverse.skinlines.length?activeUniverse.skinlines.map(skinline=><div className="taxonomy-member-row" key={skinline}><span>{skinline}<small> · {assignedBySkinline.get(skinline)?.length||0} artwork</small></span><button type="button" onClick={()=>removeUniverseMember(skinline)} title="Bỏ khỏi Universe">×</button></div>):<div className="taxonomy-member-row"><span className="admin-muted">Chưa có Skinline. Dùng batch list bên dưới để thêm.</span></div>}
             </div>
