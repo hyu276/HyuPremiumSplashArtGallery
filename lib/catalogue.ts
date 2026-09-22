@@ -26,10 +26,12 @@ export type Artwork = {
   skinlines: string[];
   universes: string[];
   updatedAt?: string;
+  representativeSkinlines?: string[];
+  representativeUniverses?: string[];
 };
 
 export type ArtworkTaxonomyKey = 'skinlines' | 'universes';
-export type ArtworkTaxonomyGroup = { name: string; items: Artwork[] };
+export type ArtworkTaxonomyGroup = { name: string; items: Artwork[]; representative: Artwork };
 
 export type ChampionThumbnailChoice = {
   mode: 'artwork' | 'custom';
@@ -137,6 +139,8 @@ function authoritativeCatalogue(): Catalogue {
         isVietnameseSkin: Boolean(row.isVietnameseSkin),
         skinlines: normalizedTaxonomyValues(row.skinlines,row.skinline),
         universes: normalizedTaxonomyValues(row.universes,row.universe),
+        representativeSkinlines: normalizedTaxonomyValues(row.representativeSkinlines),
+        representativeUniverses: normalizedTaxonomyValues(row.representativeUniverses),
         updatedAt: row.updatedAt || undefined
       };
     })
@@ -154,6 +158,18 @@ function authoritativeCatalogue(): Catalogue {
 
 export async function getCatalogue(): Promise<Catalogue> { return authoritativeCatalogue(); }
 
+function taxonomyRepresentativeFlags(item:Artwork,key:ArtworkTaxonomyKey){
+  return key==='skinlines'?(item.representativeSkinlines||[]):(item.representativeUniverses||[]);
+}
+
+function stableTaxonomyRepresentative(name:string,items:Artwork[]){
+  const highest=Math.max(...items.map(item=>Number(item.rankOrder)||0));
+  const candidates=items.filter(item=>(Number(item.rankOrder)||0)===highest);
+  let hash=0;
+  for(const char of name)hash=(hash*31+char.charCodeAt(0))>>>0;
+  return candidates[hash%candidates.length]||items[0];
+}
+
 export function artworkTaxonomyGroups(items:Artwork[],key:ArtworkTaxonomyKey):ArtworkTaxonomyGroup[]{
   const groups=new Map<string,Artwork[]>();
   for(const item of items){
@@ -165,7 +181,10 @@ export function artworkTaxonomyGroups(items:Artwork[],key:ArtworkTaxonomyKey):Ar
   }
   return [...groups.entries()]
     .sort(([a],[b])=>alpha(a,b))
-    .map(([name,groupItems])=>({name,items:groupItems}));
+    .map(([name,groupItems])=>{
+      const explicit=groupItems.find(item=>taxonomyRepresentativeFlags(item,key).some(value=>value.toLowerCase()===name.toLowerCase()));
+      return {name,items:groupItems,representative:explicit||stableTaxonomyRepresentative(name,groupItems)};
+    });
 }
 
 export function artworkVariant(item:Artwork,width:640|960|1600){return item.variants?.[String(width)];}
