@@ -1,6 +1,6 @@
 {
   "schemaVersion": 3,
-  "generatedAt": "2026-09-22T00:53:36.102Z",
+  "generatedAt": "2026-09-22T00:56:12.106Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -2376,7 +2376,10 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [
+        "Chiến thần"
+      ],
+      "skinline": "Chiến thần"
     },
     {
       "id": "sat-thu-huyet-toc",
@@ -13302,7 +13305,10 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [
+        "Chiến thần"
+      ],
+      "skinline": "Chiến thần"
     },
     {
       "id": "huyen-xa-than-quan",
@@ -16365,7 +16371,8 @@
     "Bóng ma thành phố ngầm",
     "Mị ảnh",
     "Quân đội nhân dân",
-    "Tỉnh thành Việt Nam"
+    "Tỉnh thành Việt Nam",
+    "Chiến thần"
   ],
   "universes": [
     {
@@ -16388,6 +16395,12 @@
         "WAVE",
         "Thần tượng âm nhạc",
         "Soái ca Say Hi"
+      ]
+    },
+    {
+      "name": "Chiến thần",
+      "skinlines": [
+        "Chiến thần"
       ]
     }
   ]
