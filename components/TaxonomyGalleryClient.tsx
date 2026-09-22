@@ -3,7 +3,7 @@
 import { memo, useRef, useState, type CSSProperties } from 'react';
 import ArtworkTitleFitter from '@/components/ArtworkTitleFitter';
 import type { Artwork, ArtworkTaxonomyGroup } from '@/lib/catalogue';
-import { artworkPreview, artworkSrcSet } from '@/lib/catalogue';
+import { artworkExpandedUrl, artworkPreview, artworkSrcSet } from '@/lib/catalogue';
 
 const INITIAL_EAGER_COUNT=5;
 
@@ -37,7 +37,7 @@ const ArtworkCard=memo(function ArtworkCard({item,index,onExpand}:{item:Artwork;
 
 function ExpandedStage({item,groupName,onClose}:{item:Artwork;groupName:string;onClose:()=>void}){
   return <div className="taxonomy-expanded-stage">
-    <img src={artworkPreview(item,1600)} alt={`${item.name} — ${item.category}`} loading="eager" decoding="async" fetchPriority="high"/>
+    <img src={artworkExpandedUrl(item)} alt={`${item.name} — ${item.category}`} loading="eager" decoding="async" fetchPriority="high"/>
     <span className="taxonomy-expanded-shade" aria-hidden="true"/>
     <span className="tier taxonomy-expanded-tier" style={{background:RANK_GRADIENTS[item.rank]||'var(--brand)'}}>{item.rank||'—'}</span>
     <div className="taxonomy-expanded-copy">
