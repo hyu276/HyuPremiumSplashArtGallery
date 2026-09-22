@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-09-22T12:54:55.550Z",
+  "generatedAt": "2026-09-22T12:59:25.397Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -1384,6 +1384,53 @@
         "bytes": 508983,
         "mimeType": "image/jpeg",
         "sha256": "d2e88fb9304769b6f12c1e453fc57145581b296f7624d4e3347e1d92eeb2be60"
+      }
+    },
+    {
+      "id": "anh-ao-ngan-vu",
+      "name": "Anh đào ngân vũ",
+      "description": "",
+      "category": "Aya",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hiemaru",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/anh-ao-ngan-vu-026619536586-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/anh-ao-ngan-vu-026619536586-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-22T12:56:58.404Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/anh-ao-ngan-vu-27032b0bb72ac6e6.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 525777,
+        "mimeType": "image/jpeg",
+        "sha256": "27032b0bb72ac6e6444295b1ca859c3e147636dca3db5ef02fcbaa1816a34035"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/anh-ao-ngan-vu-026619536586-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 27508,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/anh-ao-ngan-vu-026619536586-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 51702,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/anh-ao-ngan-vu-026619536586-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 107002,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -9299,6 +9346,54 @@
       }
     },
     {
+      "id": "nguyet-hoa-linh-vu",
+      "name": "Nguyệt Hoa Linh Vũ",
+      "description": "",
+      "category": "Lauriel",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hiemaru",
+      "skinline": "Nguyệt hoa tiên giới",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nguyet-hoa-linh-vu-ca22fda94488-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nguyet-hoa-linh-vu-ca22fda94488-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-22T12:57:23.681Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/nguyet-hoa-linh-vu-382b529fd83d803d.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 643943,
+        "mimeType": "image/jpeg",
+        "sha256": "382b529fd83d803dd7082967638f8fc346f761c82f4d5cab359cce648d3d3023"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nguyet-hoa-linh-vu-ca22fda94488-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 28088,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nguyet-hoa-linh-vu-ca22fda94488-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 55058,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nguyet-hoa-linh-vu-ca22fda94488-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 123212,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "bach-hac-hoa-tien",
       "name": "Bạch Hạc Hoạ Tiên",
       "description": "",
@@ -13429,6 +13524,54 @@
         "bytes": 588324,
         "mimeType": "image/jpeg",
         "sha256": "4f45e39c3a5b8d9add5f7fad0ed4f851f60ddf9d700d84bb249e63ef743aa140"
+      }
+    },
+    {
+      "id": "tien-canh-nguyet-hoa",
+      "name": "Tiên Cảnh Nguyệt Hoa",
+      "description": "",
+      "category": "Sephera",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hiemaru",
+      "skinline": "Nguyệt hoa tiên giới",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tien-canh-nguyet-hoa-1b0d6eef3b79-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tien-canh-nguyet-hoa-1b0d6eef3b79-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-22T12:57:46.543Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/tien-canh-nguyet-hoa-d6adfc046412f0f2.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 456989,
+        "mimeType": "image/jpeg",
+        "sha256": "d6adfc046412f0f227ed1a0df46ecb297ca9ea5de9d362c0f8c5fa62d2d46e24"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tien-canh-nguyet-hoa-1b0d6eef3b79-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 25506,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tien-canh-nguyet-hoa-1b0d6eef3b79-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 46804,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tien-canh-nguyet-hoa-1b0d6eef3b79-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 94642,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -19796,7 +19939,8 @@
     "Quân đội nhân dân",
     "Tỉnh thành Việt Nam",
     "Chiến thần",
-    "Lịch sử đất Việt"
+    "Lịch sử đất Việt",
+    "Nguyệt hoa tiên giới"
   ],
   "universes": [
     {
