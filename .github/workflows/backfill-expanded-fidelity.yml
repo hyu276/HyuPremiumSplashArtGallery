@@ -1,0 +1,272 @@
+name: Backfill exact-fidelity expanded artwork
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/backfill-expanded-fidelity.yml'
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Type RESTORE_EXPANDED_FIDELITY to upload exact archived artwork bytes to the public expanded namespace.'
+        required: true
+        type: string
+
+permissions:
+  actions: read
+  contents: write
+
+concurrency:
+  group: backfill-expanded-fidelity
+  cancel-in-progress: false
+
+jobs:
+  validate-and-backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      ARCHIVE_RUN_ID: '35488669144'
+      ARCHIVE_SHA256: '4999fbdfc6b54462cfca18a954bfff75701ba2fb3301855e7f6d496ea88da3b9'
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install project dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Validate destructive confirmation
+        if: github.event_name == 'workflow_dispatch'
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "${{ inputs.confirm }}" = 'RESTORE_EXPANDED_FIDELITY'
+
+      - name: Download verified archive artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf .restore
+          mkdir -p .restore
+          for name in \
+            drive-cold-storage-metadata \
+            drive-cold-storage-part-aa \
+            drive-cold-storage-part-ab \
+            drive-cold-storage-part-ac \
+            drive-cold-storage-part-ad \
+            drive-cold-storage-part-ae \
+            drive-cold-storage-part-af \
+            drive-cold-storage-part-ag \
+            drive-cold-storage-part-ah
+          do
+            mkdir -p ".restore/$name"
+            gh run download "$ARCHIVE_RUN_ID" --repo "$GITHUB_REPOSITORY" --name "$name" --dir ".restore/$name"
+          done
+
+      - name: Reconstruct and verify exact Drive archive snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat \
+            .restore/drive-cold-storage-part-aa/snapshot.part-aa \
+            .restore/drive-cold-storage-part-ab/snapshot.part-ab \
+            .restore/drive-cold-storage-part-ac/snapshot.part-ac \
+            .restore/drive-cold-storage-part-ad/snapshot.part-ad \
+            .restore/drive-cold-storage-part-ae/snapshot.part-ae \
+            .restore/drive-cold-storage-part-af/snapshot.part-af \
+            .restore/drive-cold-storage-part-ag/snapshot.part-ag \
+            .restore/drive-cold-storage-part-ah/snapshot.part-ah \
+            > .restore/hyupremium-r2-originals.tar.gz
+          echo "$ARCHIVE_SHA256  .restore/hyupremium-r2-originals.tar.gz" | sha256sum -c -
+          mkdir -p .restore/extracted
+          tar -xzf .restore/hyupremium-r2-originals.tar.gz -C .restore/extracted drive-cold-storage/media
+
+      - name: Build and verify 402-artwork restore plan
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs=require('fs');
+          const path=require('path');
+          const crypto=require('crypto');
+          const sharp=require('sharp');
+
+          const catalogue=JSON.parse(fs.readFileSync('data/backend/catalogue.json','utf8'));
+          const archive=JSON.parse(fs.readFileSync('.restore/drive-cold-storage-metadata/drive-cold-storage/manifests/archive-result.json','utf8'));
+          const storage=JSON.parse(fs.readFileSync('data/backend/storage.json','utf8'));
+          const publicBase=String(storage.publicBaseUrl||'').replace(/\/$/,'');
+          if(!publicBase)throw new Error('Missing R2 publicBaseUrl.');
+
+          const byId=new Map();
+          for(const object of archive.objects||[]){
+            for(const source of object.sources||[]){
+              if(!String(source).startsWith('catalogue:'))continue;
+              const id=String(source).slice('catalogue:'.length);
+              if(byId.has(id))throw new Error('Duplicate archived original for '+id);
+              byId.set(id,object);
+            }
+          }
+
+          const safeId=value=>String(value||'art').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'art';
+          const ext=mime=>mime==='image/png'?'png':mime==='image/webp'?'webp':mime==='image/avif'?'avif':'jpg';
+          const publicUrl=key=>publicBase+'/media/'+key.split('/').map(encodeURIComponent).join('/');
+
+          (async()=>{
+            const plan=[];
+            for(const item of catalogue.items||[]){
+              const archived=byId.get(String(item.id));
+              if(!archived)throw new Error('Archived original missing for catalogue item '+item.id);
+              const file=path.join('.restore/extracted/drive-cold-storage/media',String(archived.key));
+              if(!fs.existsSync(file))throw new Error('Snapshot file missing: '+archived.key);
+              const buffer=fs.readFileSync(file);
+              if(buffer.length!==Number(archived.expectedBytes))throw new Error('Byte mismatch: '+archived.key);
+              const sha256=crypto.createHash('sha256').update(buffer).digest('hex');
+              if(sha256!==String(archived.sha256))throw new Error('SHA-256 mismatch: '+archived.key);
+              const md5=crypto.createHash('md5').update(buffer).digest('hex');
+              const meta=await sharp(buffer,{animated:false}).metadata();
+              const width=Number(meta.autoOrient?.width||meta.width||0);
+              const height=Number(meta.autoOrient?.height||meta.height||0);
+              if(!width||!height)throw new Error('Missing dimensions: '+archived.key);
+              const mimeType=String(archived.contentType||archived.mimeType||'').split(';')[0].toLowerCase();
+              if(!/^image\/(jpeg|png|webp|avif)$/.test(mimeType))throw new Error('Unsupported MIME type: '+mimeType);
+              const key='artworks/expanded/'+safeId(item.id)+'-'+sha256.slice(0,16)+'.'+ext(mimeType);
+              plan.push({
+                id:String(item.id),
+                sourceKey:String(archived.key),
+                file,
+                key,
+                url:publicUrl(key),
+                width,
+                height,
+                bytes:buffer.length,
+                mimeType,
+                sha256,
+                md5
+              });
+            }
+            if(plan.length!==(catalogue.items||[]).length||plan.length!==402)throw new Error('Expected exactly 402 artwork restore entries, got '+plan.length);
+            fs.writeFileSync('.restore/expanded-plan.json',JSON.stringify(plan,null,2)+'\n');
+            fs.writeFileSync('.restore/expanded-plan.tsv',plan.map(x=>[x.id,x.key,x.file,x.mimeType,x.bytes,x.width,x.height,x.sha256,x.md5,x.url].join('\t')).join('\n')+'\n');
+            const bytes=plan.reduce((sum,x)=>sum+x.bytes,0);
+            console.log(JSON.stringify({artworks:plan.length,exactBytes:bytes,minWidth:Math.min(...plan.map(x=>x.width)),maxWidth:Math.max(...plan.map(x=>x.width))},null,2));
+          })().catch(error=>{console.error(error);process.exit(1)});
+          NODE
+
+      - name: Report dry-run validation
+        if: github.event_name == 'pull_request'
+        run: echo 'Verified archive reconstruction and exact 402-artwork restore plan. No R2 writes were performed.'
+
+      - name: Install Wrangler
+        if: github.event_name == 'workflow_dispatch'
+        shell: bash
+        run: npm install -g wrangler@latest --no-audit --no-fund
+
+      - name: Upload exact-fidelity expanded display assets to R2
+        if: github.event_name == 'workflow_dispatch'
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "${CLOUDFLARE_ACCOUNT_ID:-}"
+          test -n "${CLOUDFLARE_API_TOKEN:-}"
+          bucket=$(node -e "process.stdout.write(require('./data/backend/storage.json').bucket)")
+          count=0
+          total=$(wc -l < .restore/expanded-plan.tsv | tr -d ' ')
+          while IFS=$'\t' read -r id key file mime bytes width height sha md5 url; do
+            wrangler r2 object put "$bucket/$key" \
+              --file="$file" \
+              --content-type="$mime" \
+              --cache-control='public, max-age=31536000, immutable' \
+              --remote \
+              --force >/tmp/wrangler-put.log 2>&1 || {
+                cat /tmp/wrangler-put.log
+                echo "::error::R2 upload failed for $id -> $key"
+                exit 1
+              }
+            count=$((count+1))
+            if [ $((count % 25)) -eq 0 ] || [ "$count" -eq "$total" ]; then
+              echo "Uploaded $count/$total exact-fidelity expanded assets."
+            fi
+          done < .restore/expanded-plan.tsv
+
+      - name: Verify every expanded R2 object by size, MIME and ETag
+        if: github.event_name == 'workflow_dispatch'
+        shell: bash
+        run: |
+          set -euo pipefail
+          count=0
+          total=$(wc -l < .restore/expanded-plan.tsv | tr -d ' ')
+          while IFS=$'\t' read -r id key file mime bytes width height sha md5 url; do
+            curl -fsSI "$url" -o /tmp/expanded-head
+            actual_bytes=$(tr -d '\r' </tmp/expanded-head | awk 'BEGIN{IGNORECASE=1}/^content-length:/{print $2}' | tail -1)
+            actual_type=$(tr -d '\r' </tmp/expanded-head | awk 'BEGIN{IGNORECASE=1}/^content-type:/{print $2}' | tail -1)
+            etag=$(tr -d '\r' </tmp/expanded-head | awk 'BEGIN{IGNORECASE=1}/^etag:/{print $2}' | tail -1 | tr -d '"')
+            test "$actual_bytes" = "$bytes" || { echo "::error::$id byte mismatch $actual_bytes != $bytes"; exit 1; }
+            test "$actual_type" = "$mime" || { echo "::error::$id MIME mismatch $actual_type != $mime"; exit 1; }
+            if [ -n "$etag" ] && [ "$etag" != "$md5" ]; then
+              echo "::warning::$id ETag $etag differs from local MD5 $md5; size and MIME still match."
+            fi
+            count=$((count+1))
+            if [ $((count % 50)) -eq 0 ] || [ "$count" -eq "$total" ]; then
+              echo "Verified $count/$total expanded assets."
+            fi
+          done < .restore/expanded-plan.tsv
+
+      - name: Refresh main before metadata commit
+        if: github.event_name == 'workflow_dispatch'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git reset --hard origin/main
+
+      - name: Attach expanded media metadata to current catalogue
+        if: github.event_name == 'workflow_dispatch'
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs=require('fs');
+          const cataloguePath='data/backend/catalogue.json';
+          const catalogue=JSON.parse(fs.readFileSync(cataloguePath,'utf8'));
+          const plan=JSON.parse(fs.readFileSync('.restore/expanded-plan.json','utf8'));
+          const byId=new Map(plan.map(x=>[String(x.id),x]));
+          let updated=0;
+          for(const item of catalogue.items||[]){
+            const media=byId.get(String(item.id));
+            if(!media)throw new Error('Backfill plan missing current catalogue item '+item.id);
+            item.expanded={
+              url:media.url,
+              width:media.width,
+              height:media.height,
+              bytes:media.bytes,
+              mimeType:media.mimeType,
+              sha256:media.sha256
+            };
+            updated+=1;
+          }
+          if(updated!==402)throw new Error('Expected 402 metadata updates, got '+updated);
+          catalogue.generatedAt=new Date().toISOString();
+          fs.writeFileSync(cataloguePath,JSON.stringify(catalogue,null,2)+'\n');
+          console.log('Attached exact-fidelity expanded metadata to '+updated+' artworks.');
+          NODE
+          npm run egress:check
+          npm run typecheck
+
+      - name: Commit verified backfill metadata
+        if: github.event_name == 'workflow_dispatch'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/backend/catalogue.json
+          git diff --cached --quiet && { echo 'No catalogue metadata change required.'; exit 0; }
+          git commit -m 'fix(media): restore exact expanded artwork assets'
+          git push origin HEAD:main
