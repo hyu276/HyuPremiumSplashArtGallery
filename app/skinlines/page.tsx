@@ -8,7 +8,7 @@ export const revalidate=300;
 
 export const metadata:Metadata={
   title:'Trang phục theo bộ — HYU PREMIUM',
-  description:'Khám phá splash art HYU PREMIUM theo từng bộ trang phục và mở gallery carousel của mỗi bộ.',
+  description:'Khám phá splash art HYU PREMIUM theo từng bộ trang phục với artwork đại diện cố định và gallery tương tác.',
   alternates:{canonical:`${siteUrl}/skinlines/`},
   openGraph:{title:'Trang phục theo bộ — HYU PREMIUM',description:'Khám phá splash art HYU PREMIUM theo từng bộ trang phục.',url:`${siteUrl}/skinlines/`,type:'website',locale:'vi_VN'}
 };
