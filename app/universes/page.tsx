@@ -15,14 +15,14 @@ export const metadata:Metadata={
 
 export default async function UniversesPage(){
   const catalogue=await getCatalogue();
-  const groups=artworkTaxonomyGroups(catalogue.items,'universes');
+  const groups=artworkTaxonomyGroups(catalogue.items,'universes',catalogue.taxonomyRepresentatives.universes);
   return <>
     <SiteHeader/>
     <CatalogueFreshnessGuard revision={catalogue.revision}/>
     <main className="taxonomy-page">
       <section className="taxonomy-intro" id="top">
         <div><p className="taxonomy-intro-kicker">HYU PREMIUM / Universe catalogue</p><h1>Dòng trang phục<br/><em>theo thế giới.</em></h1></div>
-        <p className="taxonomy-intro-copy">Mỗi dòng là một section riêng. Chọn tên dòng để mở gallery carousel chứa những artwork đã được gán vào dòng đó.</p>
+        <p className="taxonomy-intro-copy">Mỗi dòng là một section riêng. Chọn tên dòng để mở gallery artwork theo cùng thao tác mở rộng của thư viện chính.</p>
       </section>
       <TaxonomyGalleryClient mode="universes" groups={groups}/>
     </main>
