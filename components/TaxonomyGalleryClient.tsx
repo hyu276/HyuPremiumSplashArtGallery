@@ -32,22 +32,22 @@ const ArtworkCard=memo(function ArtworkCard({item,index,onExpand}:{item:Artwork;
     <span className="card-number">{String(index+1).padStart(2,'0')}</span>
     <span className="tier" style={{background:RANK_GRADIENTS[item.rank]||'var(--brand)'}}>{item.rank||'—'}</span>
     <span className="expand-mark" aria-hidden="true">+</span>
-    <span className="card-copy"><span className="card-meta">{item.category}</span><strong className="card-title" data-title-fit={titleFitBucket(item.name)}>{item.name}</strong><span className="card-bottom"><span>CREDIT ẢNH · {item.credit}</span><span className="rank-label">{item.rank}</span></span></span>
+    <span className="card-copy"><span className="card-meta">{item.category}</span><strong className="card-title" data-title-fit={titleFitBucket(item.name)}>{item.name}</strong><span className="card-bottom"><span>CREDIT ẢNH · {item.credit}</span></span></span>
   </button>;
 });
 
 function ExpandedStage({item,onClose}:{item:Artwork;onClose:()=>void}){
-  return <div className="taxonomy-expanded-stage">
+  return <button type="button" className="taxonomy-expanded-stage" aria-label={`Thu gọn ${item.name}`} onClick={onClose}>
     <img src={artworkExpandedUrl(item)} alt={`${item.name} — ${item.category}`} loading="eager" decoding="async" fetchPriority="high"/>
     <span className="taxonomy-expanded-shade" aria-hidden="true"/>
     <span className="tier taxonomy-expanded-tier" style={{background:RANK_GRADIENTS[item.rank]||'var(--brand)'}}>{item.rank||'—'}</span>
-    <div className="taxonomy-expanded-copy">
+    <span className="taxonomy-expanded-copy">
       <span className="card-meta">{item.category}</span>
       <strong className="taxonomy-expanded-title">{item.name}</strong>
-      {item.description?<p>{item.description}</p>:null}
-    </div>
-    <button type="button" className="taxonomy-expanded-close" aria-label={`Thu gọn ${item.name}`} onClick={onClose}>−</button>
-  </div>;
+      {item.description?<span className="taxonomy-expanded-description">{item.description}</span>:null}
+    </span>
+    <span className="taxonomy-expanded-close" aria-hidden="true">−</span>
+  </button>;
 }
 
 export default function TaxonomyGalleryClient({mode,groups}:{mode:TaxonomyMode;groups:ArtworkTaxonomyGroup[]}){
