@@ -17,6 +17,9 @@ function fitText(element:HTMLElement,{max,min,maxLines}:FitOptions){
     clearInlineFit(element);
     return;
   }
+  const normalized=(element.textContent||'').normalize('NFC');
+  if(element.textContent!==normalized)element.textContent=normalized;
+
   const width=element.clientWidth;
   if(width<=0)return;
 
@@ -27,7 +30,7 @@ function fitText(element:HTMLElement,{max,min,maxLines}:FitOptions){
   let chosen=Math.floor(min);
   for(let size=Math.floor(max);size>=Math.floor(min);size--){
     element.style.fontSize=`${size}px`;
-    const lineHeight=Math.round(size*.92);
+    const lineHeight=Math.ceil(size*1.10);
     element.style.lineHeight=`${lineHeight}px`;
     const widthOK=element.scrollWidth<=element.clientWidth+1;
     const heightOK=element.scrollHeight<=lineHeight*maxLines+1;
@@ -38,7 +41,7 @@ function fitText(element:HTMLElement,{max,min,maxLines}:FitOptions){
   }
 
   element.style.fontSize=`${Math.floor(chosen)}px`;
-  element.style.lineHeight=`${Math.round(chosen*.92)}px`;
+  element.style.lineHeight=`${Math.ceil(chosen*1.10)}px`;
 }
 
 function fitAll(root:ParentNode=document){

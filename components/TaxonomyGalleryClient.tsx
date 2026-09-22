@@ -36,13 +36,13 @@ const ArtworkCard=memo(function ArtworkCard({item,index,onExpand}:{item:Artwork;
   </button>;
 });
 
-function ExpandedStage({item,groupName,onClose}:{item:Artwork;groupName:string;onClose:()=>void}){
+function ExpandedStage({item,onClose}:{item:Artwork;onClose:()=>void}){
   return <div className="taxonomy-expanded-stage">
     <img src={artworkExpandedUrl(item)} alt={`${item.name} — ${item.category}`} loading="eager" decoding="async" fetchPriority="high"/>
     <span className="taxonomy-expanded-shade" aria-hidden="true"/>
     <span className="tier taxonomy-expanded-tier" style={{background:RANK_GRADIENTS[item.rank]||'var(--brand)'}}>{item.rank||'—'}</span>
     <div className="taxonomy-expanded-copy">
-      <span className="card-meta">{item.category} · {groupName}</span>
+      <span className="card-meta">{item.category}</span>
       <strong className="taxonomy-expanded-title">{item.name}</strong>
       {item.description?<p>{item.description}</p>:null}
     </div>
@@ -109,7 +109,7 @@ export default function TaxonomyGalleryClient({mode,groups}:{mode:TaxonomyMode;g
             <div ref={node=>{tracks.current[group.name]=node;}} className="taxonomy-gallery-carousel" role="group" aria-label={`Artwork thuộc ${group.name}`}>
               {group.items.map((item,itemIndex)=><ArtworkCard key={item.id} item={item} index={itemIndex} onExpand={()=>expandArtwork(group.name,item)}/>)}
             </div>
-            {expandedItem?<div data-taxonomy-expanded={group.name}><ExpandedStage item={expandedItem} groupName={group.name} onClose={()=>setExpanded(null)}/></div>:null}
+            {expandedItem?<div data-taxonomy-expanded={group.name}><ExpandedStage item={expandedItem} onClose={()=>setExpanded(null)}/></div>:null}
           </div>
         </div>:null}
       </section>;
