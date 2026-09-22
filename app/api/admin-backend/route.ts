@@ -59,7 +59,7 @@ function taxonomyRepresentativeSeed(scope:'skinlines'|'universes',name:string){l
 function taxonomyRepresentativeRank(item:any,ranks:string[]){const direct=Number(item?.rankOrder);if(Number.isFinite(direct)&&direct>=0)return direct;const index=ranks.findIndex(rank=>String(rank).toLowerCase()===String(item?.rank||'').toLowerCase());return index>=0?index:0}
 function taxonomyRepresentativeCandidates(items:any[],scope:'skinlines'|'universes',name:string){
   const lower=name.toLowerCase();
-  return items.filter(item=>scope==='skinlines'?itemSkinline(item).toLowerCase()===lower:Array.isArray(item?.universes)&&item.universes.some((value:any)=>String(value).toLowerCase()===lower));
+  return items.filter(item=>!item?.hidden&&(scope==='skinlines'?itemSkinline(item).toLowerCase()===lower:Array.isArray(item?.universes)&&item.universes.some((value:any)=>String(value).toLowerCase()===lower)));
 }
 function materializeTaxonomyRepresentatives(items:any[],skinlines:string[],universes:UniverseDef[],ranks:string[],raw?:Partial<TaxonomyRepresentatives>):TaxonomyRepresentatives{
   const result:TaxonomyRepresentatives={skinlines:{},universes:{}};
