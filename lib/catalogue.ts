@@ -7,6 +7,7 @@ export type MediaVariant = {
   height: number;
   bytes?: number;
   mimeType?: string;
+  sha256?: string;
 };
 
 export type Artwork = {
@@ -16,6 +17,7 @@ export type Artwork = {
   image: string;
   thumbnail: string;
   variants?: Record<string, MediaVariant>;
+  expanded?: MediaVariant;
   media?: { original?: MediaVariant };
   tags: string[];
   category: string;
@@ -82,7 +84,7 @@ const localizeCredit = (value: string) => value.trim().toLowerCase() === 'uncred
 
 function normalizedVariant(value:any):MediaVariant|undefined{
   if(!value?.url)return undefined;
-  return {url:publicMediaUrl(String(value.url)),width:Number(value.width)||0,height:Number(value.height)||0,bytes:Number(value.bytes)||undefined,mimeType:value.mimeType?String(value.mimeType):undefined};
+  return {url:publicMediaUrl(String(value.url)),width:Number(value.width)||0,height:Number(value.height)||0,bytes:Number(value.bytes)||undefined,mimeType:value.mimeType?String(value.mimeType):undefined,sha256:value.sha256?String(value.sha256):undefined};
 }
 
 function normalizedVariants(value:any){
@@ -137,6 +139,7 @@ function authoritativeCatalogue(): Catalogue {
         image: displayImage,
         thumbnail: displayImage,
         variants,
+        expanded: normalizedVariant(row.expanded),
         tags: Array.isArray(row.tags) ? row.tags.map(String) : [],
         category: String(row.category || 'Chưa phân loại'),
         rank: String(row.rank || 'Chưa xếp hạng'),
@@ -181,6 +184,8 @@ export function artworkTaxonomyGroups(items:Artwork[],key:ArtworkTaxonomyKey,rep
 
 export function artworkVariant(item:Artwork,width:640|960|1600){return item.variants?.[String(width)];}
 export function artworkPreview(item:Artwork,width:640|960|1600=1600){return artworkVariant(item,width)?.url||item.thumbnail||item.image;}
+export function artworkExpanded(item:Artwork){return item.expanded?.url?item.expanded:artworkVariant(item,1600);}
+export function artworkExpandedUrl(item:Artwork){return artworkExpanded(item)?.url||item.image;}
 export function artworkSrcSet(item:Artwork){return ([640,960,1600] as const).map(width=>artworkVariant(item,width)).filter((variant):variant is MediaVariant=>Boolean(variant?.url&&variant.width)).map(variant=>`${variant.url} ${variant.width}w`).join(', ');}
 export function artworkSocialImage(item:Artwork){return artworkPreview(item,1600);}
 export function championCardImage(catalogue:Catalogue,category:string){
