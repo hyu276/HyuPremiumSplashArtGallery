@@ -15,7 +15,7 @@ export const metadata:Metadata={
 
 export default async function UniversesPage(){
   const catalogue=await getCatalogue();
-  const groups=artworkTaxonomyGroups(catalogue.items,'universes');
+  const groups=artworkTaxonomyGroups(catalogue.items,'universes',catalogue.taxonomyRepresentatives);
   return <>
     <SiteHeader/>
     <CatalogueFreshnessGuard revision={catalogue.revision}/>
