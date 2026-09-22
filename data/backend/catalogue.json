@@ -1,6 +1,6 @@
 {
   "schemaVersion": 3,
-  "generatedAt": "2026-09-22T00:38:56.715Z",
+  "generatedAt": "2026-09-22T00:53:36.102Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -477,7 +477,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Tỉnh thành Việt Nam"
     },
     {
       "id": "mieu-tac-duoi-trang",
@@ -4348,7 +4349,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Tỉnh thành Việt Nam"
     },
     {
       "id": "khuc-ca-giao-hai",
@@ -5215,7 +5217,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Tỉnh thành Việt Nam"
     },
     {
       "id": "nguc-hoa-ma-toc",
@@ -8794,7 +8797,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Tỉnh thành Việt Nam"
     },
     {
       "id": "dj-tiec-bai-bien-2",
@@ -15167,7 +15171,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Tỉnh thành Việt Nam"
     },
     {
       "id": "cong-cong-ai-duong",
@@ -16359,7 +16364,8 @@
     "Chân Hoàn Truyện",
     "Bóng ma thành phố ngầm",
     "Mị ảnh",
-    "Quân đội nhân dân"
+    "Quân đội nhân dân",
+    "Tỉnh thành Việt Nam"
   ],
   "universes": [
     {
