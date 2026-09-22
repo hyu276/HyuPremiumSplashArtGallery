@@ -1,6 +1,6 @@
 {
   "schemaVersion": 3,
-  "generatedAt": "2026-09-21T18:11:52.362Z",
+  "generatedAt": "2026-09-22T00:38:56.715Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -355,7 +355,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Bóng ma thành phố ngầm"
     },
     {
       "id": "dj-tiec-bai-bien-7",
@@ -4103,7 +4104,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Mị ảnh"
     },
     {
       "id": "idol-gioi-tre",
@@ -4657,7 +4659,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Bóng ma thành phố ngầm"
     },
     {
       "id": "playboy-thong-chu",
@@ -5016,7 +5019,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Quân đội nhân dân"
     },
     {
       "id": "thong-soai-robot",
@@ -7248,7 +7252,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Quân đội nhân dân"
     },
     {
       "id": "dj-tiec-bai-bien-5",
@@ -7921,7 +7926,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Mị ảnh"
     },
     {
       "id": "ao-nguyet",
@@ -8077,7 +8083,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Mị ảnh"
     },
     {
       "id": "an-chinh-tien-ao",
@@ -9607,7 +9614,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Bóng ma thành phố ngầm"
     },
     {
       "id": "hac-am-3",
@@ -9887,7 +9895,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Mị ảnh"
     },
     {
       "id": "ke-giat-day",
@@ -10565,7 +10574,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Bóng ma thành phố ngầm"
     },
     {
       "id": "bat-chi-hoa-vu",
@@ -11358,7 +11368,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Quân đội nhân dân"
     },
     {
       "id": "thu-nguyen-ve-than-4",
@@ -13958,7 +13969,8 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": []
+      "universes": [],
+      "skinline": "Mị ảnh"
     },
     {
       "id": "sieu-pham-girl-pho",
@@ -16344,7 +16356,10 @@
     "Siêu Việt",
     "Soái ca Say Hi",
     "Hạo kiếp thần công",
-    "Chân Hoàn Truyện"
+    "Chân Hoàn Truyện",
+    "Bóng ma thành phố ngầm",
+    "Mị ảnh",
+    "Quân đội nhân dân"
   ],
   "universes": [
     {
