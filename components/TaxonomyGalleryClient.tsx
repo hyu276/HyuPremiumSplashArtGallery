@@ -2,6 +2,7 @@
 
 import { memo, useRef, useState, type CSSProperties } from 'react';
 import ArtworkTitleFitter from '@/components/ArtworkTitleFitter';
+import TaxonomyMobileTextFitter from '@/components/TaxonomyMobileTextFitter';
 import type { Artwork, ArtworkTaxonomyGroup } from '@/lib/catalogue';
 import { artworkExpandedUrl, artworkPreview, artworkSrcSet } from '@/lib/catalogue';
 
@@ -42,9 +43,8 @@ function ExpandedStage({item,groupName,onClose}:{item:Artwork;groupName:string;o
     <span className="tier taxonomy-expanded-tier" style={{background:RANK_GRADIENTS[item.rank]||'var(--brand)'}}>{item.rank||'—'}</span>
     <div className="taxonomy-expanded-copy">
       <span className="card-meta">{item.category} · {groupName}</span>
-      <strong>{item.name}</strong>
+      <strong className="taxonomy-expanded-title">{item.name}</strong>
       {item.description?<p>{item.description}</p>:null}
-      <span className="card-bottom"><span>CREDIT ẢNH · {item.credit}</span><span className="rank-label">{item.rank}</span></span>
     </div>
     <button type="button" className="taxonomy-expanded-close" aria-label={`Thu gọn ${item.name}`} onClick={onClose}>−</button>
   </div>;
@@ -78,6 +78,7 @@ export default function TaxonomyGalleryClient({mode,groups}:{mode:TaxonomyMode;g
 
   return <main className="taxonomy-stack" id="catalog">
     <ArtworkTitleFitter/>
+    <TaxonomyMobileTextFitter/>
     {groups.map((group,index)=>{
       const isOpen=openName===group.name;
       const representative=group.representative;
