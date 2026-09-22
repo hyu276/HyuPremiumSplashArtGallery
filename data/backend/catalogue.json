@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-09-22T13:07:12.364Z",
+  "generatedAt": "2026-09-22T14:29:42.229Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -9870,18 +9870,15 @@
     },
     {
       "id": "an-chinh-tien-ao",
-      "name": "Ẩn chinh tiên đạo",
+      "name": "Hỏa Dung Mị Hồ",
       "description": "",
       "category": "Liliana",
       "rank": "SS",
       "rankOrder": 3,
       "credit": "Raphena",
+      "universes": [],
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/an-chinh-tien-ao-1887f6920324-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/an-chinh-tien-ao-1887f6920324-1600.webp",
-      "tags": [],
-      "hidden": false,
-      "isVietnameseSkin": false,
-      "updatedAt": "2026-09-19T10:52:41.167Z",
       "variants": {
         "640": {
           "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/an-chinh-tien-ao-1887f6920324-640.webp",
@@ -9905,15 +9902,10 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": [],
-      "expanded": {
-        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/an-chinh-tien-ao-8aa78e49a457239e.jpg",
-        "width": 2752,
-        "height": 1536,
-        "bytes": 524996,
-        "mimeType": "image/jpeg",
-        "sha256": "8aa78e49a457239e6b74de68135ffac0b5169107f0593e475d4b0ef60fd489dd"
-      }
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-22T14:27:31.090Z"
     },
     {
       "id": "nhat-binh-phuong-cac",
