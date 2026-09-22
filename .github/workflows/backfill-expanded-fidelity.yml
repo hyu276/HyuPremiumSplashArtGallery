@@ -55,14 +55,7 @@ jobs:
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             test "${{ inputs.confirm }}" = 'RESTORE_EXPANDED_FIDELITY'
           else
-            node <<'NODE'
-            const fs=require('fs');
-            const request=JSON.parse(fs.readFileSync('.github/expanded-fidelity-backfill-request.json','utf8'));
-            if(request.confirm!=='RESTORE_EXPANDED_FIDELITY')throw new Error('Backfill request confirmation does not match.');
-            if(Number(request.archiveRunId)!==35488669144)throw new Error('Backfill request archive run does not match verified snapshot.');
-            if(String(request.snapshotSha256)!=='4999fbdfc6b54462cfca18a954bfff75701ba2fb3301855e7f6d496ea88da3b9')throw new Error('Backfill request snapshot SHA-256 does not match verified snapshot.');
-            console.log('One-shot backfill request verified.');
-            NODE
+            node -e "const fs=require('fs');const r=JSON.parse(fs.readFileSync('.github/expanded-fidelity-backfill-request.json','utf8'));if(r.confirm!=='RESTORE_EXPANDED_FIDELITY')throw new Error('Backfill request confirmation does not match.');if(Number(r.archiveRunId)!==35488669144)throw new Error('Backfill request archive run does not match verified snapshot.');if(String(r.snapshotSha256)!=='4999fbdfc6b54462cfca18a954bfff75701ba2fb3301855e7f6d496ea88da3b9')throw new Error('Backfill request snapshot SHA-256 does not match verified snapshot.');console.log('One-shot backfill request verified.');"
           fi
 
       - name: Download verified archive artifacts
