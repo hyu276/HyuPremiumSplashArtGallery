@@ -4,5 +4,6 @@
   "confirm": "RESTORE_EXPANDED_FIDELITY",
   "archiveRunId": 35488669144,
   "snapshotSha256": "4999fbdfc6b54462cfca18a954bfff75701ba2fb3301855e7f6d496ea88da3b9",
-  "expectedArtworkCount": 402
+  "expectedArtworkCount": 402,
+  "attempt": 2
 }
