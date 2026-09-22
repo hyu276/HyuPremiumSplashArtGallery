@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import type { Artwork } from '@/lib/catalogue';
-import { artworkPreview } from '@/lib/catalogue';
+import { artworkExpandedUrl, artworkPreview } from '@/lib/catalogue';
 
 const CHAMPION_THUMBNAIL_360P_WIDTH = 640 as const;
 
@@ -12,7 +12,7 @@ export default function ChampionSkinsClient({ category, items }: { category: str
   const trackRef = useRef<HTMLDivElement>(null);
   const active = items[activeIndex] || items[0];
   const progress = items.length > 1 ? ((activeIndex + 1) / items.length) * 100 : 100;
-  const expandedSrc = active ? artworkPreview(active, 1600) : '';
+  const expandedSrc = active ? artworkExpandedUrl(active) : '';
 
   useEffect(() => {
     setActiveIndex(0);
