@@ -137,7 +137,7 @@ export default function TaxonomyGalleryClient({mode,groups}:{mode:TaxonomyMode;g
       return <section key={group.name} className={`taxonomy-group${isOpen?' is-open':''}`}>
         <button type="button" className="taxonomy-trigger" aria-expanded={isOpen} aria-controls={panelId} onClick={()=>toggleGroup(group.name)}>
           <span className="taxonomy-representative" aria-hidden="true">
-            <img src={artworkPreview(group.representative,960)} alt="" loading={groupIndex<3?'eager':'lazy'} decoding="async" fetchPriority="low" />
+            <img src={artworkPreview(group.representative,640)} alt="" loading={groupIndex<3?'eager':'lazy'} decoding="async" fetchPriority="low" />
           </span>
           <span className="taxonomy-heading">
             <span className="taxonomy-index">{String(groupIndex+1).padStart(2,'0')}</span>
