@@ -80,6 +80,15 @@ for(const item of catalogue.items||[]){
     if(!value)failures.push(`${id}: missing ${field}`);
     if(value.toLowerCase().includes('supabase'))failures.push(`${id}: ${field} still references Supabase`);
   }
+  const expanded=item.expanded;
+  if(expanded){
+    const expandedUrl=String(expanded.url||'');
+    if(!expandedUrl.includes('/media/artworks/expanded/'))failures.push(`${id}: expanded display must use the public artworks/expanded namespace`);
+    if(/drive\.google\.com|googleusercontent\.com|supabase|\/originals\//i.test(expandedUrl))failures.push(`${id}: expanded display must not resolve Drive, Supabase, or private original namespaces`);
+    if(!Number(expanded.width)||!Number(expanded.height)||!Number(expanded.bytes))failures.push(`${id}: expanded display is missing dimensions/byte metadata`);
+    if(!/^image\/(jpeg|png|webp|avif)$/i.test(String(expanded.mimeType||'')))failures.push(`${id}: expanded display has unsupported MIME type`);
+    if(expanded.sha256&&!/^[a-f0-9]{64}$/i.test(String(expanded.sha256)))failures.push(`${id}: expanded display SHA-256 metadata is malformed`);
+  }
   const variants=item.variants||{};
   for(const width of ['640','960','1600']){
     const variant=variants[width];
@@ -143,14 +152,14 @@ if(!gallery.includes('const visible=filtered;'))failures.push('gallery must rend
 if(gallery.includes('SECOND_BATCH_COUNT')||gallery.includes('setStage(')||gallery.includes('gallery-progressive-controls')||gallery.includes('showMore'))failures.push('gallery progressive 6/batch/all rendering must remain removed');
 if(gallery.includes('loader.src=item.image'))failures.push('gallery must not preload original artwork automatically');
 if(gallery.includes('new Image(')||gallery.includes('loadAndDecodeOriginal('))failures.push('gallery must not use off-DOM original preloaders before expansion');
-if(!gallery.includes('const expandedSrc=artworkPreview(item,1600)'))failures.push('expanded gallery artwork must use the 1600px web derivative');
+if(!gallery.includes('const expandedSrc=artworkExpandedUrl(item)'))failures.push('expanded gallery artwork must use the exact-fidelity display helper');
 if(gallery.includes('media?.original')||gallery.includes('originalSrc='))failures.push('gallery runtime must never resolve full-resolution originals');
 if(!gallery.includes('srcSet='))failures.push('gallery must use responsive image srcSet');
 if(!gallery.includes("const previewSrc=artworkPreview(item,960)"))failures.push('mobile title changes must not alter listing media resolution');
-if(!gallery.includes("const expandedSrc=artworkPreview(item,1600)"))failures.push('mobile title changes must preserve the 1600px expanded derivative');
+if(!gallery.includes("const expandedSrc=artworkExpandedUrl(item)"))failures.push('mobile title changes must preserve the expanded display helper');
 if(!gallery.includes('data-title-fit={titleFitBucket(item.name)}'))failures.push('gallery titles must use deterministic length buckets');
 if(gallery.includes('ResizeObserver'))failures.push('title fitting must not use ResizeObserver or frame-by-frame font measurement');
-if(!gallery.includes("const expandedSrc=artworkPreview(item,1600)"))failures.push('expanded artwork must resolve the cacheable 1600px derivative');
+if(!gallery.includes("const expandedSrc=artworkExpandedUrl(item)"))failures.push('expanded artwork must resolve the exact-fidelity display helper');
 if(!gallery.includes('const previewSrcSet=artworkSrcSet(item)'))failures.push('listing preview must keep its responsive srcSet stable across expansion');
 if(gallery.includes("const srcSet=expanded?")||gallery.includes('srcSet={expanded?'))failures.push('expansion must not swap preview srcSet because that can trigger another derivative candidate');
 if(gallery.includes('{expanded?null:<ViewportPreview'))failures.push('expanded artwork must retain only the already-loaded preview as a visual hold instead of blanking the shell');
@@ -158,15 +167,18 @@ if(!gallery.includes('suspendLoad={expanded}'))failures.push('expanded visual ho
 if(!gallery.includes('holdSize={expanded?previewHold:null}'))failures.push('expanded visual hold must preserve the pre-expansion rendered dimensions');
 if(!gallery.includes('eager={index<INITIAL_EAGER_COUNT&&!expanded}'))failures.push('direct expanded routes must not eagerly fetch a derivative alongside the exact original');
 if(!gallery.includes('setPreviewHold({width:rect.width,height:rect.height})'))failures.push('gallery must capture the collapsed card dimensions before expansion to prevent derivative upscaling');
-if(!gallery.includes('{expanded?<ExpandedArtwork src={expandedSrc}'))failures.push('expanded artwork must mount the 1600px derivative directly in the expanded shell');
+if(!gallery.includes('{expanded?<ExpandedArtwork src={expandedSrc}'))failures.push('expanded artwork must mount the exact-fidelity display asset directly in the expanded shell');
+
+const taxonomyGallery=await readFile(join(ROOT,'components/TaxonomyGalleryClient.tsx'),'utf8');
+if(!taxonomyGallery.includes('artworkExpandedUrl(item)'))failures.push('taxonomy expanded artwork must resolve the exact-fidelity display helper');
 
 const championSkins=await readFile(join(ROOT,'components/ChampionSkinsClient.tsx'),'utf8');
 if(!championSkins.includes('const CHAMPION_THUMBNAIL_360P_WIDTH = 640 as const;'))failures.push('champion carousel thumbnails must remain on the 640x~360 derivative tier');
-if(!championSkins.includes("const expandedSrc = active ? artworkPreview(active, 1600) : '';"))failures.push('champion expanded artwork must resolve the 1600px derivative');
-if(!championSkins.includes('src={expandedSrc}'))failures.push('champion expanded viewport must render the 1600px derivative');
+if(!championSkins.includes("const expandedSrc = active ? artworkExpandedUrl(active) : '';"))failures.push('champion expanded artwork must resolve the exact-fidelity display helper');
+if(!championSkins.includes('src={expandedSrc}'))failures.push('champion expanded viewport must render the expanded display asset');
 if(championSkins.includes('media?.original')||championSkins.includes('originalSrc'))failures.push('champion runtime must never resolve full-resolution originals');
 if(!championSkins.includes('src={artworkPreview(item, CHAMPION_THUMBNAIL_360P_WIDTH)}'))failures.push('champion small thumbnails must use the 360p derivative tier');
-if(championSkins.includes('artworkSrcSet(active)')||championSkins.includes('srcSet={mainSrcSet'))failures.push('champion expanded viewport must use one deterministic 1600px derivative, not a responsive candidate set');
+if(championSkins.includes('artworkSrcSet(active)')||championSkins.includes('srcSet={mainSrcSet'))failures.push('champion expanded viewport must use one deterministic exact-fidelity display asset, not a responsive candidate set');
 
 const imageSitemap=await readFile(join(ROOT,'app/image-sitemap.xml/route.ts'),'utf8');
 if(!imageSitemap.includes('image=artworkPreview(item,1600)'))failures.push('image sitemap must publish the 1600px derivative');
@@ -259,4 +271,4 @@ if(failures.length){
   for(const failure of failures)console.error(` - ${failure}`);
   process.exit(1);
 }
-console.log(`Egress safety gate passed: ${catalogue.items.length} artworks, ${publicItems.length} public, ${team.length} team members; R2 serves web derivatives only at runtime; Google Drive owns full-resolution originals; Supabase media origin is retired; taxonomy is referentially consistent; expanded artwork uses 1600px derivatives; icon is ${iconBytes} bytes with immutable cache; Admin UI is GitHub Pages-only.`);
+console.log(`Egress safety gate passed: ${catalogue.items.length} artworks, ${publicItems.length} public, ${team.length} team members; R2 serves web derivatives only at runtime; Google Drive owns full-resolution originals; Supabase media origin is retired; taxonomy is referentially consistent; expanded artwork uses exact-fidelity R2 display assets with 1600px fallback during backfill; icon is ${iconBytes} bytes with immutable cache; Admin UI is GitHub Pages-only.`);
