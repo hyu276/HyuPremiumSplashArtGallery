@@ -74,7 +74,7 @@
   .taxonomy-expanded-copy{left:16px;right:64px;bottom:18px}
   .taxonomy-expanded-copy .card-meta{font-size:9px;letter-spacing:.14em;margin-bottom:5px}
   .taxonomy-expanded-copy>.taxonomy-expanded-title{display:block;width:100%;font-family:Arial,Helvetica,sans-serif;font-size:42px;font-weight:900;line-height:1.10;letter-spacing:-.024em;white-space:nowrap;overflow:hidden;text-shadow:none;filter:none;transform:none;will-change:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:auto}
-  .taxonomy-expanded-copy p{display:none}
+  .taxonomy-expanded-description{display:none}
   .taxonomy-expanded-close{right:14px;bottom:14px;width:42px;height:42px}
   .taxonomy-expanded-tier{right:14px;top:14px}
 }
