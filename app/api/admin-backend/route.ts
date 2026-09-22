@@ -60,7 +60,10 @@ function mediaKey(id:string,source:string,width:number){const safe=String(id||'a
 function teamMediaKey(id:string|number,source:string,width:number){const safe=String(id||'member').toLowerCase().replace(/[^a-z0-9]+/g,'-')||'member';const hash=createHash('sha1').update(source).digest('hex').slice(0,12);return `team/variants/${safe}-${hash}-${width}.webp`}
 function championMediaKey(category:string,source:string){const safe=String(category||'champion').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'champion';const hash=createHash('sha1').update(source).digest('hex').slice(0,12);return `champions/variants/${safe}-${hash}-${CHAMPION_THUMB_WIDTH}.webp`}
 function publicR2Url(base:string,key:string){return `${base.replace(/\/$/,'')}/media/${key.split('/').map(encodeURIComponent).join('/')}`}
+function validArtworkOriginal(base:string,value:string){try{const url=new URL(value);const root=new URL(base);return url.origin===root.origin&&decodeURIComponent(url.pathname).startsWith('/media/artworks/originals/')}catch{return false}}
 function validChampionOriginal(base:string,value:string){try{const url=new URL(value);const root=new URL(base);return url.origin===root.origin&&decodeURIComponent(url.pathname).startsWith('/media/champions/originals/')}catch{return false}}
+function expandedExtension(mimeType:string){if(mimeType==='image/png')return 'png';if(mimeType==='image/webp')return 'webp';if(mimeType==='image/avif')return 'avif';return 'jpg'}
+function artworkExpandedKey(id:string,buffer:Buffer,mimeType:string){const safe=String(id||'art').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'art';const hash=createHash('sha256').update(buffer).digest('hex').slice(0,16);return `artworks/expanded/${safe}-${hash}.${expandedExtension(mimeType)}`}
 
 async function fetchSourceImage(base:string,token:string,value:string){
   const source=String(value||'').trim();
@@ -78,13 +81,13 @@ async function fetchSourceImage(base:string,token:string,value:string){
   return fetch(url,{cache:'no-store',headers});
 }
 
-async function putR2(base:string,token:string,key:string,buffer:Buffer){
+async function putR2(base:string,token:string,key:string,buffer:Buffer,contentType='image/webp'){
   const url=`${base.replace(/\/$/,'')}/admin/media/${key.split('/').map(encodeURIComponent).join('/')}`;
   let lastError:unknown;
   for(let attempt=0;attempt<2;attempt+=1){
     const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),45000);
     try{
-      const response=await fetch(url,{method:'PUT',headers:{Authorization:`Bearer ${token}`,'Content-Type':'image/webp'},body:new Uint8Array(buffer),cache:'no-store',signal:controller.signal});
+      const response=await fetch(url,{method:'PUT',headers:{Authorization:`Bearer ${token}`,'Content-Type':contentType},body:new Uint8Array(buffer),cache:'no-store',signal:controller.signal});
       if(attempt===0&&TRANSIENT_STATUS.has(response.status)){await sleep(retryDelay(response,attempt));continue}
       if(!response.ok)throw new Error(`R2 derivative upload ${response.status}: ${(await response.text()).slice(0,300)}`);
       return publicR2Url(base,key);
@@ -113,15 +116,28 @@ function finalizeTeamDerivatives(member:any){
 async function enrichMedia(item:any,storageBase:string,token:string){
   const next=canonicalItem(item);
   if(!next.image)return next;
-  if(completeVariants(next))return finalizeArtworkDerivatives(next);
-  const response=await fetchSourceImage(storageBase,token,String(next.image));
-  if(!response.ok)throw new Error(`Không tải được ảnh gốc của ${next.id} để tạo derivative (${response.status}).`);
+  const source=String(next.image);
+  const stagingOriginal=validArtworkOriginal(storageBase,source);
+  if(completeVariants(next)&&(!stagingOriginal||next.expanded?.url))return finalizeArtworkDerivatives(next);
+  const response=await fetchSourceImage(storageBase,token,source);
+  if(!response.ok)throw new Error(`Không tải được ảnh gốc của ${next.id} để tạo media (${response.status}).`);
   const input=Buffer.from(await response.arrayBuffer());
+
+  if(stagingOriginal&&!next.expanded?.url){
+    const metadata=await sharp(input,{animated:false}).rotate().metadata();
+    const mimeType=String(response.headers.get('content-type')||metadata.format||'application/octet-stream').split(';')[0].toLowerCase();
+    if(!/^image\/(?:jpeg|png|webp|avif)$/.test(mimeType))throw new Error(`Định dạng ảnh gốc của ${next.id} không được hỗ trợ cho expanded display.`);
+    const sha256=createHash('sha256').update(input).digest('hex');
+    const key=artworkExpandedKey(next.id,input,mimeType);
+    const url=await putR2(storageBase,token,key,input,mimeType);
+    next.expanded={url,width:Number(metadata.width)||0,height:Number(metadata.height)||0,bytes:input.length,mimeType,sha256};
+  }
+
   const variants:Record<string,MediaVariant>={...(next.variants||{})};
   for(const width of VARIANT_WIDTHS){
     if(variants[String(width)]?.url)continue;
     const {data,info}=await sharp(input,{animated:false}).rotate().resize({width,withoutEnlargement:true}).webp({quality:width===640?76:width===960?78:80,effort:4}).toBuffer({resolveWithObject:true});
-    const key=mediaKey(next.id,String(next.image),width);
+    const key=mediaKey(next.id,source,width);
     const url=await putR2(storageBase,token,key,data);
     variants[String(width)]={url,width:info.width,height:info.height,bytes:data.length,mimeType:'image/webp'};
   }

@@ -2,7 +2,7 @@
 
 import { memo, useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
 import type { Artwork, Catalogue } from '@/lib/catalogue';
-import { artworkPath, artworkPreview, artworkSrcSet, slug } from '@/lib/catalogue';
+import { artworkExpandedUrl, artworkPath, artworkPreview, artworkSrcSet, slug } from '@/lib/catalogue';
 
 const INITIAL_EAGER_COUNT=6;
 
@@ -158,8 +158,8 @@ const ArtworkCard = memo(function ArtworkCard({item,index,expanded,pending,onTog
   const imageAlt=`${item.name} — ${item.category}, splash art game, hạng skin ${item.rank}`;
   const motionStyle={'--art-motion-delay':`${Math.min(index,12)*18}ms`} as CSSProperties;
   // Keep the already-rendered listing preview mounted as a same-size visual hold.
-  // Expanded views use the cacheable 1600px web derivative; full-resolution originals stay in Drive cold storage.
-  const expandedSrc=artworkPreview(item,1600);
+  // Expanded views use an exact-fidelity R2 display copy when available; 1600px remains the safe fallback during backfill.
+  const expandedSrc=artworkExpandedUrl(item);
   const previewSrc=artworkPreview(item,960);
   const previewSrcSet=artworkSrcSet(item);
   const previewSizes='(max-width: 760px) 50vw, (max-width: 1200px) 50vw, 33vw';
