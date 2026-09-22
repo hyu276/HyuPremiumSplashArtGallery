@@ -16,10 +16,11 @@ type GitHubRepo={permissions?:{push?:boolean;admin?:boolean}};
 type GitHubContent={content?:string;encoding?:string};
 type OwnerOptions={categories?:string[];ranks?:string[];credits?:string[]};
 type UniverseDef={name:string;skinlines:string[]};
+type TaxonomyRepresentatives={skinlines?:Record<string,string>;universes?:Record<string,string>};
 type MediaVariant={url:string;width:number;height:number;bytes:number;mimeType:string};
 type ChampionThumbnailChoice={mode:'artwork'|'custom';artworkId?:string;image?:string;thumbnail?:string;variant?:MediaVariant;media?:{original?:MediaVariant};updatedAt?:string};
-type Catalogue={schemaVersion?:number;generatedAt?:string;items:any[];categories:string[];ranks:string[];credits:string[];skinlines?:string[];universes?:UniverseDef[];ownerOptions?:OwnerOptions;championThumbnails?:Record<string,ChampionThumbnailChoice>};
-type AdminPayload={ownerItems?:any[];categories?:string[];ranks?:string[];credits?:string[];skinlines?:string[];universes?:UniverseDef[];championThumbnails?:Record<string,ChampionThumbnailChoice>;team?:any[];seo?:any};
+type Catalogue={schemaVersion?:number;generatedAt?:string;items:any[];categories:string[];ranks:string[];credits:string[];skinlines?:string[];universes?:UniverseDef[];taxonomyRepresentatives?:TaxonomyRepresentatives;ownerOptions?:OwnerOptions;championThumbnails?:Record<string,ChampionThumbnailChoice>};
+type AdminPayload={ownerItems?:any[];categories?:string[];ranks?:string[];credits?:string[];skinlines?:string[];universes?:UniverseDef[];taxonomyRepresentatives?:TaxonomyRepresentatives;championThumbnails?:Record<string,ChampionThumbnailChoice>;team?:any[];seo?:any};
 type CommitResult={sha:string;noop:boolean};
 
 const ADMIN_ORIGIN='https://hyu276.github.io';
@@ -53,6 +54,7 @@ function itemSkinline(item:any){if(item&&Object.prototype.hasOwnProperty.call(it
 function normalizeUniverses(value:unknown,skinlines:string[]):UniverseDef[]{if(value===undefined||value===null)return [];if(!Array.isArray(value))throw new Error('Payload universes không hợp lệ.');const out:UniverseDef[]=[];for(const raw of value){const name=String((raw as any)?.name||'').trim();if(!name)throw new Error('Payload universes không hợp lệ: Universe thiếu tên.');if(out.some(row=>row.name.toLowerCase()===name.toLowerCase()))throw new Error(`Payload universes không hợp lệ: trùng tên “${name}”.`);const members=orderedUnique(Array.isArray((raw as any)?.skinlines)?(raw as any).skinlines.map(String):[]);const invalid=members.filter(member=>!skinlines.some(line=>line.toLowerCase()===member.toLowerCase()));if(invalid.length)throw new Error(`Payload universes không hợp lệ: ${name} tham chiếu skinline không tồn tại (${invalid.join(', ')}).`);out.push({name,skinlines:members.map(member=>skinlines.find(line=>line.toLowerCase()===member.toLowerCase())||member)})}return out}
 function canonicalItem(item:any){const {source:_source,sourceId:_sourceId,sourceOptions:_sourceOptions,...rest}=item||{};return {...rest,id:String(rest.id||'')};}
 function taxonomyItem(item:any,skinlines:string[],universes:UniverseDef[]){const next=canonicalItem(item);const requested=itemSkinline(next);const skinline=requested?(skinlines.find(line=>line.toLowerCase()===requested.toLowerCase())||requested):'';delete next.skinlines;if(skinline)next.skinline=skinline;else delete next.skinline;next.universes=skinline?universes.filter(universe=>universe.skinlines.some(line=>line.toLowerCase()===skinline.toLowerCase())).map(universe=>universe.name):[];return next}
+function normalizeTaxonomyRepresentatives(value:unknown,items:any[],skinlines:string[],universes:UniverseDef[]):TaxonomyRepresentatives{const raw=value&&typeof value==='object'&&!Array.isArray(value)?value as TaxonomyRepresentatives:{};const result:TaxonomyRepresentatives={skinlines:{},universes:{}};for(const [name,id] of Object.entries(raw.skinlines||{})){const skinline=skinlines.find(line=>line.toLowerCase()===String(name).trim().toLowerCase());const artworkId=String(id||'').trim();const artwork=items.find(item=>String(item?.id||'')===artworkId&&!item?.hidden&&skinline&&itemSkinline(item).toLowerCase()===skinline.toLowerCase());if(skinline&&artwork)(result.skinlines as Record<string,string>)[skinline]=artworkId}for(const [name,id] of Object.entries(raw.universes||{})){const universe=universes.find(row=>row.name.toLowerCase()===String(name).trim().toLowerCase());const artworkId=String(id||'').trim();const artwork=items.find(item=>String(item?.id||'')===artworkId&&!item?.hidden&&universe&&Array.isArray(item?.universes)&&item.universes.some((entry:any)=>String(entry).toLowerCase()===universe.name.toLowerCase()));if(universe&&artwork)(result.universes as Record<string,string>)[universe.name]=artworkId}return result}
 function optionsFor(catalogue:Catalogue){return {categories:catalogue.ownerOptions?.categories||catalogue.categories||[],ranks:catalogue.ownerOptions?.ranks||catalogue.ranks||[],credits:catalogue.ownerOptions?.credits||catalogue.credits||[]}}
 function mediaKey(id:string,source:string,width:number){const safe=String(id||'art').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'art';const hash=createHash('sha1').update(source).digest('hex').slice(0,12);return `artworks/variants/${safe}-${hash}-${width}.webp`}
 function teamMediaKey(id:string|number,source:string,width:number){const safe=String(id||'member').toLowerCase().replace(/[^a-z0-9]+/g,'-')||'member';const hash=createHash('sha1').update(source).digest('hex').slice(0,12);return `team/variants/${safe}-${hash}-${width}.webp`}
@@ -207,8 +209,8 @@ export async function GET(request:Request){
   try{
     const token=tokenFrom(request);const admin=await verify(token);const branch=dataBranch();
     const [catalogue,team,seo,storage]=await Promise.all([readJson<Catalogue>(token,`${DATA_ROOT}/catalogue.json`,branch),readJson<any[]>(token,`${DATA_ROOT}/team.json`,branch),readJson<any>(token,`${DATA_ROOT}/seo.json`,branch),readJson<any>(token,`${DATA_ROOT}/storage.json`,branch)]);
-    const skinlines=orderedUnique([...(catalogue.skinlines||[]),...(catalogue.items||[]).map(itemSkinline)]);const universes=normalizeUniverses(catalogue.universes||[],skinlines);const items=(catalogue.items||[]).map(item=>taxonomyItem(item,skinlines,universes));const options=optionsFor(catalogue);
-    return Response.json({ok:true,requestId,user:admin,branch,catalogue:{...catalogue,items,categories:options.categories||[],ranks:options.ranks||[],credits:options.credits||[],skinlines,universes},team,seo,storage},{headers:responseHeaders(request,requestId)});
+    const skinlines=orderedUnique([...(catalogue.skinlines||[]),...(catalogue.items||[]).map(itemSkinline)]);const universes=normalizeUniverses(catalogue.universes||[],skinlines);const items=(catalogue.items||[]).map(item=>taxonomyItem(item,skinlines,universes));const taxonomyRepresentatives=normalizeTaxonomyRepresentatives(catalogue.taxonomyRepresentatives||{},items,skinlines,universes);const options=optionsFor(catalogue);
+    return Response.json({ok:true,requestId,user:admin,branch,catalogue:{...catalogue,items,categories:options.categories||[],ranks:options.ranks||[],credits:options.credits||[],skinlines,universes,taxonomyRepresentatives},team,seo,storage},{headers:responseHeaders(request,requestId)});
   }catch(error:any){const message=error?.message||'Không thể xác thực GitHub hoặc đọc backend metadata.';logAdminFailure(requestId,'GET',message);return Response.json({error:message,requestId},{status:statusFor(message),headers:responseHeaders(request,requestId)})}
 }
 
@@ -216,7 +218,7 @@ export async function POST(request:Request){
   const requestId=randomUUID().slice(0,12);
   try{
     const token=tokenFrom(request);const admin=await verify(token);const payload=await request.json() as AdminPayload;const branch=dataBranch();
-    const catalogueRequested=payload.ownerItems!==undefined||payload.categories!==undefined||payload.ranks!==undefined||payload.credits!==undefined||payload.skinlines!==undefined||payload.universes!==undefined||payload.championThumbnails!==undefined;
+    const catalogueRequested=payload.ownerItems!==undefined||payload.categories!==undefined||payload.ranks!==undefined||payload.credits!==undefined||payload.skinlines!==undefined||payload.universes!==undefined||payload.taxonomyRepresentatives!==undefined||payload.championThumbnails!==undefined;
     const teamRequested=payload.team!==undefined;
     const seoRequested=payload.seo!==undefined;
     if(teamRequested&&!Array.isArray(payload.team))throw new Error('Payload team không hợp lệ.');
@@ -247,6 +249,8 @@ export async function POST(request:Request){
       }
       const enriched=[];for(const item of requested)enriched.push(await enrichMedia(taxonomyItem(item,preferredSkinlines,preferredUniverses),storageBase,token));
       const items=enriched.map(canonicalItem).sort((a,b)=>alpha(String(a.category||''),String(b.category||''))||Number(a.rankOrder||0)-Number(b.rankOrder||0)||alpha(String(a.name||''),String(b.name||'')));
+      const requestedRepresentatives=payload.taxonomyRepresentatives!==undefined?payload.taxonomyRepresentatives:(current.taxonomyRepresentatives||{});
+      const taxonomyRepresentatives=normalizeTaxonomyRepresentatives(requestedRepresentatives,items,preferredSkinlines,preferredUniverses);
       const categories=preferredCategories;const credits=preferredCredits;const ranks=preferredRanks;const ownerOptions={categories,ranks,credits};
       const requestedChampionThumbnails=payload.championThumbnails!==undefined?payload.championThumbnails:(current.championThumbnails||{});
       if(payload.championThumbnails!==undefined){
@@ -255,7 +259,7 @@ export async function POST(request:Request){
       }
       const championThumbnails:Record<string,ChampionThumbnailChoice>={};
       for(const category of categories){const choice=requestedChampionThumbnails[category];if(choice)championThumbnails[category]=await enrichChampionThumbnail(category,choice,items,storageBase,token)}
-      const catalogue:Catalogue={...current,schemaVersion:3,generatedAt:new Date().toISOString(),items,categories,ranks,credits,skinlines:preferredSkinlines,universes:preferredUniverses,ownerOptions,championThumbnails};
+      const catalogue:Catalogue={...current,schemaVersion:4,generatedAt:new Date().toISOString(),items,categories,ranks,credits,skinlines:preferredSkinlines,universes:preferredUniverses,taxonomyRepresentatives,ownerOptions,championThumbnails};
       const path=`${DATA_ROOT}/catalogue.json`;files[path]=catalogue;baselines[path]=current;
     }
 
