@@ -15,14 +15,14 @@ export const metadata:Metadata={
 
 export default async function SkinlinesPage(){
   const catalogue=await getCatalogue();
-  const groups=artworkTaxonomyGroups(catalogue.items,'skinlines');
+  const groups=artworkTaxonomyGroups(catalogue.items,'skinlines',catalogue.taxonomyRepresentatives.skinlines);
   return <>
     <SiteHeader/>
     <CatalogueFreshnessGuard revision={catalogue.revision}/>
     <main className="taxonomy-page">
       <section className="taxonomy-intro" id="top">
         <div><p className="taxonomy-intro-kicker">HYU PREMIUM / Skinline catalogue</p><h1>Trang phục theo bộ<br/><em>theo nhóm.</em></h1></div>
-        <p className="taxonomy-intro-copy">Mỗi bộ là một section riêng. Chọn tên bộ để mở gallery carousel chứa những artwork đã được gán vào bộ đó.</p>
+        <p className="taxonomy-intro-copy">Mỗi bộ là một section riêng. Chọn tên bộ để mở gallery artwork theo cùng thao tác mở rộng của thư viện chính.</p>
       </section>
       <TaxonomyGalleryClient mode="skinlines" groups={groups}/>
     </main>
