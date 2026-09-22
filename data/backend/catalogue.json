@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-09-22T12:51:37.911Z",
+  "generatedAt": "2026-09-22T12:54:55.550Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -1714,6 +1714,53 @@
         "bytes": 598196,
         "mimeType": "image/jpeg",
         "sha256": "1e4d610999ee314dc259a73d2f52351e7bdd47ded2549d8cf505fa50802bf20f"
+      }
+    },
+    {
+      "id": "shipper-meo-nho",
+      "name": "Shipper Mèo nhỏ",
+      "description": "",
+      "category": "Aya",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Vin",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/shipper-meo-nho-8b9d97a3e459-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/shipper-meo-nho-8b9d97a3e459-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-22T12:52:13.330Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/shipper-meo-nho-1aaa1cfde8eb3c8e.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 406897,
+        "mimeType": "image/jpeg",
+        "sha256": "1aaa1cfde8eb3c8eb4e6618ccc02da5b76cfd54a89a038b2f06c324fa646a835"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/shipper-meo-nho-8b9d97a3e459-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 20524,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/shipper-meo-nho-8b9d97a3e459-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 36572,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/shipper-meo-nho-8b9d97a3e459-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 73598,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -14099,6 +14146,53 @@
         "bytes": 346414,
         "mimeType": "image/jpeg",
         "sha256": "a1a789374253b4c24dcab998745afc7ef6aa0533c0713ba33c04dc7f32b6a9a2"
+      }
+    },
+    {
+      "id": "tay-sung-bien-khoi",
+      "name": "Tay súng biển khơi",
+      "description": "",
+      "category": "Stuart",
+      "rank": "S",
+      "rankOrder": 1,
+      "credit": "Nhie",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tay-sung-bien-khoi-f0c6374b17c4-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tay-sung-bien-khoi-f0c6374b17c4-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-22T12:53:11.611Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/tay-sung-bien-khoi-8d377ea0cd7d1b25.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 661691,
+        "mimeType": "image/jpeg",
+        "sha256": "8d377ea0cd7d1b257931118111c59731ff03d692893ab9ce3c66e455f17128b1"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tay-sung-bien-khoi-f0c6374b17c4-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 28468,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tay-sung-bien-khoi-f0c6374b17c4-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 55960,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tay-sung-bien-khoi-f0c6374b17c4-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 126092,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
