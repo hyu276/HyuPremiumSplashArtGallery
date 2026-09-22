@@ -59,7 +59,7 @@
   .taxonomy-trigger{height:128px;min-height:128px;padding:14px 16px;grid-template-columns:minmax(0,1fr) 145px 42px;gap:10px;align-items:center}
   .taxonomy-heading{min-width:0;align-self:center}
   .taxonomy-index{margin-bottom:5px;font-size:11px}
-  .taxonomy-name{display:block;max-width:100%;font-family:Arial,Helvetica,sans-serif;font-size:38px;font-weight:900;line-height:.92;letter-spacing:-.055em;overflow:hidden;text-shadow:none;filter:none;transform:none;will-change:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:geometricPrecision}
+  .taxonomy-name{display:block;max-width:100%;font-family:Arial,Helvetica,sans-serif;font-size:38px;font-weight:900;line-height:1.10;letter-spacing:-.028em;overflow:hidden;text-shadow:none;filter:none;transform:none;will-change:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:auto}
   .rep-preview{position:relative;z-index:1;right:auto;top:auto;bottom:auto;width:auto;height:82px;aspect-ratio:16/9;transform:none;border:0;opacity:1;mask-image:none;-webkit-mask-image:none;justify-self:end}
   .taxonomy-meta{gap:0;font-size:.43rem}
   .taxonomy-meta>span:first-child{display:none}
@@ -73,7 +73,7 @@
   .taxonomy-expanded-stage>img{object-fit:cover}
   .taxonomy-expanded-copy{left:16px;right:64px;bottom:18px}
   .taxonomy-expanded-copy .card-meta{font-size:9px;letter-spacing:.14em;margin-bottom:5px}
-  .taxonomy-expanded-copy>.taxonomy-expanded-title{display:block;width:100%;font-family:Arial,Helvetica,sans-serif;font-size:42px;font-weight:900;line-height:.91;letter-spacing:-.05em;white-space:nowrap;overflow:hidden;text-shadow:none;filter:none;transform:none;will-change:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:geometricPrecision}
+  .taxonomy-expanded-copy>.taxonomy-expanded-title{display:block;width:100%;font-family:Arial,Helvetica,sans-serif;font-size:42px;font-weight:900;line-height:1.10;letter-spacing:-.024em;white-space:nowrap;overflow:hidden;text-shadow:none;filter:none;transform:none;will-change:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:auto}
   .taxonomy-expanded-copy p{display:none}
   .taxonomy-expanded-close{right:14px;bottom:14px;width:42px;height:42px}
   .taxonomy-expanded-tier{right:14px;top:14px}
