@@ -62,7 +62,7 @@ function ArtworkCard({item,index,expanded,pending,onToggle,onReady}:{item:Artwor
     onClick={toggle}
   >
     <span className="art-image-layer">
-      <img className="preview" style={holdStyle} src={artworkPreview(item,expanded?960:640)} alt={`${item.name} — ${item.category}`} loading={index<5?'eager':'lazy'} decoding="async" fetchPriority="low" />
+      <img className="preview" style={holdStyle} src={artworkPreview(item,640)} alt={`${item.name} — ${item.category}`} loading={index<5?'eager':'lazy'} decoding="async" fetchPriority="low" />
       {expanded?<img
         className={`full${fullReady?' ready':''}`}
         src={artworkPreview(item,1600)}
