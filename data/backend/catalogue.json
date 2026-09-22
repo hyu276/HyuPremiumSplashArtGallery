@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-09-22T14:59:56.512Z",
+  "generatedAt": "2026-09-22T15:02:58.045Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -1905,7 +1905,8 @@
         "bytes": 407388,
         "mimeType": "image/jpeg",
         "sha256": "0e6ef20579771fbf5371beaac66f437a60b8a7e459d9c0045217aa9ba004ba39"
-      }
+      },
+      "skinline": "Tiệc bể bơi"
     },
     {
       "id": "aya",
@@ -7426,7 +7427,8 @@
         "bytes": 425171,
         "mimeType": "image/jpeg",
         "sha256": "61071541318c341af8cec086a4edd74a9303c7716017cd2de8dff878f7dad315"
-      }
+      },
+      "skinline": "Tiệc bể bơi"
     },
     {
       "id": "sieu-hung-cuu-the",
@@ -20028,7 +20030,8 @@
     "Chiến thần",
     "Lịch sử đất Việt",
     "Nguyệt hoa tiên giới",
-    "Cổ tích Việt Nam"
+    "Cổ tích Việt Nam",
+    "Tiệc bể bơi"
   ],
   "universes": [
     {
