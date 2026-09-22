@@ -20,10 +20,7 @@ export default async function SkinlinesPage(){
     <SiteHeader/>
     <CatalogueFreshnessGuard revision={catalogue.revision}/>
     <main className="taxonomy-page">
-      <section className="taxonomy-intro" id="top">
-        <div><p className="taxonomy-intro-kicker">HYU PREMIUM / Skinline catalogue</p><h1>Trang phục theo bộ<br/><em>theo nhóm.</em></h1></div>
-        <p className="taxonomy-intro-copy">Mỗi bộ là một section riêng. Chọn tên bộ để mở gallery artwork theo cùng thao tác mở rộng của thư viện chính.</p>
-      </section>
+      <section className="hero taxonomy-hero" id="top"><div className="hero-kicker"><i></i> HYU PREMIUM / Skinline catalogue</div><h1>Trang phục<br/>theo <em>bộ.</em></h1><div className="hero-foot"><p>Chọn một bộ trang phục để mở rộng artwork đại diện và khám phá toàn bộ splash art thuộc bộ đó theo cùng thao tác của thư viện chính.</p><span>Cuộn xuống để khám phá ↓</span></div></section>
       <TaxonomyGalleryClient mode="skinlines" groups={groups}/>
     </main>
     <SiteFooter/>
