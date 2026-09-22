@@ -8,7 +8,7 @@ export const revalidate=300;
 
 export const metadata:Metadata={
   title:'Dòng trang phục — HYU PREMIUM',
-  description:'Khám phá splash art HYU PREMIUM theo từng dòng trang phục và mở gallery carousel của mỗi dòng.',
+  description:'Khám phá splash art HYU PREMIUM theo từng dòng trang phục với artwork đại diện cố định và gallery tương tác.',
   alternates:{canonical:`${siteUrl}/universes/`},
   openGraph:{title:'Dòng trang phục — HYU PREMIUM',description:'Khám phá splash art HYU PREMIUM theo từng dòng trang phục.',url:`${siteUrl}/universes/`,type:'website',locale:'vi_VN'}
 };
