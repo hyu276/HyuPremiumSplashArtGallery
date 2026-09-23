@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-09-23T14:02:12.347Z",
+  "generatedAt": "2026-09-23T15:44:45.411Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -5944,6 +5944,54 @@
       }
     },
     {
+      "id": "ke-dan-bip-bom",
+      "name": "Kẻ dẫn bịp bợm",
+      "description": "",
+      "category": "Elando'rr",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hyu",
+      "skinline": "Sòng bạc bịp",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ke-dan-bip-bom-787b258d55f1-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ke-dan-bip-bom-787b258d55f1-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-23T15:42:06.154Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/ke-dan-bip-bom-d142bc20990e4998.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 668555,
+        "mimeType": "image/jpeg",
+        "sha256": "d142bc20990e499895d419d8f19cc58df0ef89f5744592b9dbf98bfbb4c8de12"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ke-dan-bip-bom-787b258d55f1-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 32998,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ke-dan-bip-bom-787b258d55f1-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 65576,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ke-dan-bip-bom-787b258d55f1-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 142998,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "sieu-sao-idol",
       "name": "Siêu sao idol",
       "description": "",
@@ -8257,6 +8305,149 @@
       }
     },
     {
+      "id": "co-moi-ai-bip",
+      "name": "Cò mồi đại bịp",
+      "description": "",
+      "category": "Iggy",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hyu",
+      "skinline": "Sòng bạc bịp",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/co-moi-ai-bip-05f05ae5548b-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/co-moi-ai-bip-05f05ae5548b-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-23T15:40:11.019Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/co-moi-ai-bip-d142bc20990e4998.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 668555,
+        "mimeType": "image/jpeg",
+        "sha256": "d142bc20990e499895d419d8f19cc58df0ef89f5744592b9dbf98bfbb4c8de12"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/co-moi-ai-bip-05f05ae5548b-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 32998,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/co-moi-ai-bip-05f05ae5548b-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 65576,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/co-moi-ai-bip-05f05ae5548b-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 142998,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "femboy-nguyen-tu",
+      "name": "Femboy nguyên tử",
+      "description": "",
+      "category": "Iggy",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hyu",
+      "skinline": "Tình yêu phòng lab",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/femboy-nguyen-tu-08c1eb68bfa4-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/femboy-nguyen-tu-08c1eb68bfa4-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-23T15:41:04.423Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/femboy-nguyen-tu-e7caa558e34d0240.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 641509,
+        "mimeType": "image/jpeg",
+        "sha256": "e7caa558e34d02402d9db0b542c5748444cac92bc23fa16ea8088e38bac947d1"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/femboy-nguyen-tu-08c1eb68bfa4-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 30148,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/femboy-nguyen-tu-08c1eb68bfa4-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 61084,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/femboy-nguyen-tu-08c1eb68bfa4-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 131144,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "guitar-rockstar",
+      "name": "Guitar Rockstar",
+      "description": "",
+      "category": "Iggy",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hyu",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/guitar-rockstar-826fb1c88b0d-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/guitar-rockstar-826fb1c88b0d-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-23T15:38:40.296Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/guitar-rockstar-7dfb60278afc64cd.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 576706,
+        "mimeType": "image/jpeg",
+        "sha256": "7dfb60278afc64cdca90c56f4638c748da5b19402f6fc2903300da89bd09e6c4"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/guitar-rockstar-826fb1c88b0d-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 32818,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/guitar-rockstar-826fb1c88b0d-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 60452,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/guitar-rockstar-826fb1c88b0d-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 127344,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "kinh-duong-khai-quoc",
       "name": "Kinh Dương Khai Quốc",
       "description": "",
@@ -8774,6 +8965,54 @@
         "bytes": 487869,
         "mimeType": "image/jpeg",
         "sha256": "bada0d9fa623056f8da3992ee0ee316d5d1f76e6eedfb477fe901cb4cfe849ba"
+      }
+    },
+    {
+      "id": "giac-mong-gau-hong",
+      "name": "Giấc mộng gấu hồng",
+      "description": "",
+      "category": "Ishar",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Long",
+      "skinline": "Sòng bạc bịp",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giac-mong-gau-hong-3d0a3f044717-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giac-mong-gau-hong-3d0a3f044717-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-23T15:42:54.414Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/giac-mong-gau-hong-ca48eb9663a220c0.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 471759,
+        "mimeType": "image/jpeg",
+        "sha256": "ca48eb9663a220c0355f065428f133e6627b9a73b5474802264a1e2776befbb0"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giac-mong-gau-hong-3d0a3f044717-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 25140,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giac-mong-gau-hong-3d0a3f044717-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 45504,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giac-mong-gau-hong-3d0a3f044717-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 91630,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -19905,6 +20144,54 @@
       }
     },
     {
+      "id": "noi-tru-hoa-sinh",
+      "name": "Nội trú hóa sinh",
+      "description": "",
+      "category": "Zata",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hyu",
+      "skinline": "Tình yêu phòng lab",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/noi-tru-hoa-sinh-56d9ba3bbb78-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/noi-tru-hoa-sinh-56d9ba3bbb78-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-23T15:41:44.965Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/noi-tru-hoa-sinh-e7caa558e34d0240.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 641509,
+        "mimeType": "image/jpeg",
+        "sha256": "e7caa558e34d02402d9db0b542c5748444cac92bc23fa16ea8088e38bac947d1"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/noi-tru-hoa-sinh-56d9ba3bbb78-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 30148,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/noi-tru-hoa-sinh-56d9ba3bbb78-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 61084,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/noi-tru-hoa-sinh-56d9ba3bbb78-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 131144,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "nhung-rat-toro-2",
       "name": "Nhưng rất Toro",
       "description": "",
@@ -20035,6 +20322,7 @@
     "Grakk",
     "Heino",
     "Helen",
+    "Iggy",
     "Ignis",
     "Ilumia",
     "Ishar",
@@ -20091,6 +20379,7 @@
     "Yena",
     "Yorn",
     "Yue",
+    "Zata",
     "Zip"
   ],
   "ranks": [
@@ -20160,6 +20449,7 @@
       "Grakk",
       "Heino",
       "Helen",
+      "Iggy",
       "Ignis",
       "Ilumia",
       "Ishar",
@@ -20216,6 +20506,7 @@
       "Yena",
       "Yorn",
       "Yue",
+      "Zata",
       "Zip"
     ],
     "ranks": [
@@ -20329,7 +20620,9 @@
     "Lịch sử đất Việt",
     "Nguyệt hoa tiên giới",
     "Cổ tích Việt Nam",
-    "Tiệc bể bơi"
+    "Tiệc bể bơi",
+    "Sòng bạc bịp",
+    "Tình yêu phòng lab"
   ],
   "universes": [
     {
