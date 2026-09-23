@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-09-22T15:02:58.045Z",
+  "generatedAt": "2026-09-23T14:02:12.347Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -5894,6 +5894,106 @@
       }
     },
     {
+      "id": "idol-mong-tinh",
+      "name": "Idol Mộng tình",
+      "description": "",
+      "category": "Elando'rr",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hyu",
+      "skinline": "Idol giới trẻ",
+      "universes": [
+        "Vũ trụ âm nhạc"
+      ],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/idol-mong-tinh-e5e6303a8208-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/idol-mong-tinh-e5e6303a8208-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-23T13:59:40.747Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/idol-mong-tinh-7bbb61a07d6806ae.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 492649,
+        "mimeType": "image/jpeg",
+        "sha256": "7bbb61a07d6806ae4d268bcc13d3fbd6a5e1ae7b9593f4faffff09a78e62564d"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/idol-mong-tinh-e5e6303a8208-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 25578,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/idol-mong-tinh-e5e6303a8208-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 46938,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/idol-mong-tinh-e5e6303a8208-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 97864,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "sieu-sao-idol",
+      "name": "Siêu sao idol",
+      "description": "",
+      "category": "Elando'rr",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hiemaru",
+      "skinline": "Idol giới trẻ",
+      "universes": [
+        "Vũ trụ âm nhạc"
+      ],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-sao-idol-9567fec7ec61-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-sao-idol-9567fec7ec61-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-23T14:00:00.174Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/sieu-sao-idol-3e633b9d4e9e59f1.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 566659,
+        "mimeType": "image/jpeg",
+        "sha256": "3e633b9d4e9e59f17f58b398104a6a47d29a6e1838ce9363b1166c08941e8105"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-sao-idol-9567fec7ec61-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 26444,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-sao-idol-9567fec7ec61-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 51096,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-sao-idol-9567fec7ec61-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 112610,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "boy-pho",
       "name": "Boy phố",
       "description": "",
@@ -8536,6 +8636,53 @@
       }
     },
     {
+      "id": "bich-ngoc-hoa-phi",
+      "name": "Bích ngọc hoa phi",
+      "description": "",
+      "category": "Ilumia",
+      "rank": "SS+",
+      "rankOrder": 4,
+      "credit": "Huy Khánh",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bich-ngoc-hoa-phi-30447ae1f1fe-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bich-ngoc-hoa-phi-30447ae1f1fe-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-23T13:58:52.818Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/bich-ngoc-hoa-phi-05ac01177030fa87.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 542612,
+        "mimeType": "image/jpeg",
+        "sha256": "05ac01177030fa87d066490dc2602dc2a9f66acf5d15c026f6d5ba5aaaafb500"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bich-ngoc-hoa-phi-30447ae1f1fe-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 24304,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bich-ngoc-hoa-phi-30447ae1f1fe-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 48726,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bich-ngoc-hoa-phi-30447ae1f1fe-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 108560,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "van-co-inh-oat",
       "name": "Ván cờ định đoạt",
       "description": "",
@@ -9062,6 +9209,100 @@
         "bytes": 540436,
         "mimeType": "image/jpeg",
         "sha256": "143bfd13524c8f7df3d4876c40a1a3af2c74a86b5073fe26a5d95e2d9d6b8e49"
+      }
+    },
+    {
+      "id": "u-minh-linh-nu",
+      "name": "U Minh Linh Nữ",
+      "description": "",
+      "category": "Keera",
+      "rank": "SS+",
+      "rankOrder": 4,
+      "credit": "Long",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/u-minh-linh-nu-3c039205aac1-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/u-minh-linh-nu-3c039205aac1-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-23T14:00:18.521Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/u-minh-linh-nu-e15e5178cd616951.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 544277,
+        "mimeType": "image/jpeg",
+        "sha256": "e15e5178cd6169515250147b06b3b06beb663a05fbb1d087aa337f8a9972e369"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/u-minh-linh-nu-3c039205aac1-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 29552,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/u-minh-linh-nu-3c039205aac1-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 55674,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/u-minh-linh-nu-3c039205aac1-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 117688,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "hiphop-oc-oc",
+      "name": "Hiphop ọc ọc",
+      "description": "",
+      "category": "Kil'Groth",
+      "rank": "A",
+      "rankOrder": 0,
+      "credit": "Hyu",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hiphop-oc-oc-3790da9f8b54-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hiphop-oc-oc-3790da9f8b54-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-23T13:57:47.464Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/hiphop-oc-oc-4c634c68d0a7b7a9.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 490490,
+        "mimeType": "image/jpeg",
+        "sha256": "4c634c68d0a7b7a995874dc73bd27fee3c67dce0e8a2d9e78312bac14bc42122"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hiphop-oc-oc-3790da9f8b54-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 26018,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hiphop-oc-oc-3790da9f8b54-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 47290,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hiphop-oc-oc-3790da9f8b54-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 94442,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -15834,6 +16075,53 @@
       }
     },
     {
+      "id": "giam-oc-showbiz",
+      "name": "Giám đốc showbiz",
+      "description": "",
+      "category": "Toro",
+      "rank": "A",
+      "rankOrder": 0,
+      "credit": "Hyu",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giam-oc-showbiz-6926b7c5941b-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giam-oc-showbiz-6926b7c5941b-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-23T13:57:58.377Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/giam-oc-showbiz-520b6babd7348154.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 335766,
+        "mimeType": "image/jpeg",
+        "sha256": "520b6babd73481544226c7720cd31257085861eaaf7732527b80680863f44981"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giam-oc-showbiz-6926b7c5941b-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 17314,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giam-oc-showbiz-6926b7c5941b-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 31096,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giam-oc-showbiz-6926b7c5941b-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 62902,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "boy-pho-2",
       "name": "Boy phố",
       "description": "",
@@ -19745,6 +20033,7 @@
     "Kahlii",
     "Kaine",
     "Keera",
+    "Kil'Groth",
     "Krixi",
     "Krizzix",
     "Lauriel",
@@ -19869,6 +20158,7 @@
       "Kahlii",
       "Kaine",
       "Keera",
+      "Kil'Groth",
       "Krixi",
       "Krizzix",
       "Lauriel",
