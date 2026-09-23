@@ -213,6 +213,7 @@ if(!adminBackend.includes("const categories=preferredCategories;"))failures.push
 if(!adminBackend.includes('invalidCredits')||!adminBackend.includes('invalidRanks')||!adminBackend.includes('invalidCategories'))failures.push('admin backend must reject dangling taxonomy references before publish');
 if(!adminBackend.includes('function finalizeArtworkDerivatives')||!adminBackend.includes('function finalizeTeamDerivatives'))failures.push('admin backend must finalize public metadata on derivatives rather than originals');
 if(!adminBackend.includes('async function fetchSourceImage')||!adminBackend.includes('/admin/media/'))failures.push('admin backend must fetch R2 staging originals through the authenticated admin path');
+if(!adminBackend.includes('function preserveArtworkMedia')||!adminBackend.includes('const missingExpanded='))failures.push('admin backend must preserve stable expanded metadata and reject invalid catalogue publishes');
 if(adminBackend.includes("unique([...preferredCredits"))failures.push('admin backend must not resurrect deleted credits from item values');
 
 const admin=await readFile(join(ROOT,'components/GitHubAdminDashboard.tsx'),'utf8');
@@ -221,6 +222,8 @@ if(!admin.includes('className="admin-thumb"')||!admin.includes('loading="lazy" d
 if(!admin.includes('queueUnusedArtworkMedia'))failures.push('admin must garbage collect artwork originals/thumbnails/derivatives');
 if(!admin.includes('deleteUnusedTeamMedia'))failures.push('admin must garbage collect team originals/derivatives');
 if(!admin.includes('variants:imageChanged?undefined:old?.variants'))failures.push('metadata-only artwork edits must preserve derivatives and avoid reprocessing originals');
+if(!admin.includes('expanded:imageChanged?undefined:old?.expanded'))failures.push('metadata-only artwork edits must preserve exact expanded display metadata');
+if(!admin.includes('item.expanded=undefined'))failures.push('artwork image replacements must clear stale expanded metadata before backend enrichment');
 
 const layout=await readFile(join(ROOT,'app/layout.tsx'),'utf8');
 const chrome=await readFile(join(ROOT,'components/SiteChrome.tsx'),'utf8');
