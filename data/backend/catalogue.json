@@ -10195,7 +10195,15 @@
       "tags": [],
       "hidden": false,
       "isVietnameseSkin": false,
-      "updatedAt": "2026-09-22T14:27:31.090Z"
+      "updatedAt": "2026-09-22T14:27:31.090Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/an-chinh-tien-ao-8aa78e49a457239e.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 524996,
+        "mimeType": "image/jpeg",
+        "sha256": "8aa78e49a457239e6b74de68135ffac0b5169107f0593e475d4b0ef60fd489dd"
+      }
     },
     {
       "id": "nhat-binh-phuong-cac",
