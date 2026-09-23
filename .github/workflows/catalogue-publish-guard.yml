@@ -34,21 +34,37 @@ jobs:
           set -euo pipefail
           node <<'NODE'
           const fs = require('fs');
+          const { execFileSync } = require('child_process');
           const cataloguePath = 'data/backend/catalogue.json';
           const quarantinePath = 'data/backend/catalogue-quarantine.json';
           const data = JSON.parse(fs.readFileSync(cataloguePath, 'utf8'));
           const items = Array.isArray(data.items) ? data.items : [];
           const malformed = items.filter(item => item && !String(item.image || '').trim());
-          if (!malformed.length) {
-            console.log('Catalogue guard: no malformed artwork found.');
-            fs.appendFileSync(process.env.GITHUB_OUTPUT, 'changed=false\n');
-            process.exit(0);
-          }
-
           const malformedIds = new Set(malformed.map(item => String(item.id || '')));
           data.items = items.filter(item => !malformedIds.has(String(item?.id || '')));
-          data.generatedAt = new Date().toISOString();
-          fs.writeFileSync(cataloguePath, JSON.stringify(data, null, 2) + '\n');
+
+          let previous = null;
+          try { previous = JSON.parse(execFileSync('git', ['show', 'HEAD^:data/backend/catalogue.json'], { encoding: 'utf8' })); } catch {}
+          const previousById = new Map((Array.isArray(previous?.items) ? previous.items : []).map(item => [String(item?.id || ''), item]));
+          const repairedExpanded = [];
+          const unrecoverableExpanded = [];
+          for (const item of data.items) {
+            if (String(item?.expanded?.url || '').trim()) continue;
+            const prior = previousById.get(String(item?.id || ''));
+            const sameImage = Boolean(prior) && String(prior?.image || '') === String(item?.image || '');
+            const sameVariants = ['640','960','1600'].every(width => String(prior?.variants?.[width]?.url || '') === String(item?.variants?.[width]?.url || ''));
+            if (prior?.expanded?.url && sameImage && sameVariants) { item.expanded = prior.expanded; repairedExpanded.push(String(item.id || '')); }
+            else unrecoverableExpanded.push(String(item?.id || '<unknown>'));
+          }
+          if (unrecoverableExpanded.length) {
+            console.error('Catalogue guard cannot safely recover missing expanded metadata:', unrecoverableExpanded);
+            process.exit(1);
+          }
+          const changed = malformed.length > 0 || repairedExpanded.length > 0;
+          if (changed) {
+            data.generatedAt = new Date().toISOString();
+            fs.writeFileSync(cataloguePath, JSON.stringify(data, null, 2) + '\n');
+          }
 
           let quarantine = { schemaVersion: 1, updatedAt: '', items: [] };
           if (fs.existsSync(quarantinePath)) {
@@ -69,12 +85,12 @@ jobs:
           quarantine = { schemaVersion: 1, updatedAt: quarantinedAt, items: [...existing.values()] };
           fs.writeFileSync(quarantinePath, JSON.stringify(quarantine, null, 2) + '\n');
 
-          console.log('Catalogue guard quarantined malformed entries:', malformed.map(item => ({ id: item.id, name: item.name })));
-          fs.appendFileSync(process.env.GITHUB_OUTPUT, 'changed=true\n');
-          fs.appendFileSync(process.env.GITHUB_OUTPUT, `repaired=${malformed.map(x => x.id).join(',')}\n`);
+          if (malformed.length) console.log('Catalogue guard quarantined malformed entries:', malformed.map(item => ({ id: item.id, name: item.name })));
+          if (repairedExpanded.length) console.log('Catalogue guard restored stable expanded metadata:', repairedExpanded);
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `changed=${changed ? 'true' : 'false'}\n`);
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `repaired=${[...malformed.map(x => x.id), ...repairedExpanded].join(',')}\n`);
           NODE
-      - name: Validate repaired catalogue with production safety gate
-        if: steps.repair.outputs.changed == 'true'
+      - name: Validate catalogue with production safety gate
         run: npm run egress:check
       - name: Commit repaired catalogue and quarantine
         if: steps.repair.outputs.changed == 'true'
