@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-09-24T02:55:42.760Z",
+  "generatedAt": "2026-09-24T13:56:05.297Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -1576,6 +1576,53 @@
       }
     },
     {
+      "id": "giai-ieu-cam-ngot",
+      "name": "Giai điệu cam ngọt",
+      "description": "",
+      "category": "Aya",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Vin",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giai-ieu-cam-ngot-ba58c4d4b212-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giai-ieu-cam-ngot-ba58c4d4b212-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-24T13:54:24.192Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/giai-ieu-cam-ngot-a327205212adeefa.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 531227,
+        "mimeType": "image/jpeg",
+        "sha256": "a327205212adeefafc8cc7b4187525b92e8a6b9b0726ca2ac1d689ac344787d1"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giai-ieu-cam-ngot-ba58c4d4b212-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 29504,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giai-ieu-cam-ngot-ba58c4d4b212-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 53166,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giai-ieu-cam-ngot-ba58c4d4b212-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 105428,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "hoa-si-mong-mi",
       "name": "Họa sĩ mộng mị",
       "description": "",
@@ -1908,6 +1955,53 @@
         "bytes": 306605,
         "mimeType": "image/jpeg",
         "sha256": "b31c96e8d6e13750b94858977efbe84b9c7d36b1855367fc8ee6ce5b97da1369"
+      }
+    },
+    {
+      "id": "tiec-bai-tam",
+      "name": "Tiệc bãi tắm",
+      "description": "",
+      "category": "Aya",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Lyj",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-bai-tam-5af3f04650f7-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-bai-tam-5af3f04650f7-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-24T13:52:37.081Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/tiec-bai-tam-2ff6606236a53458.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 761209,
+        "mimeType": "image/jpeg",
+        "sha256": "2ff6606236a534581e57ad77b96440c9773cb3663c2ca3df1d94ba7a7e541357"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-bai-tam-5af3f04650f7-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 43610,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-bai-tam-5af3f04650f7-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 81898,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-bai-tam-5af3f04650f7-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 166292,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -20838,6 +20932,7 @@
     "Hyu",
     "Long",
     "Lumina",
+    "Lyj",
     "Nhie",
     "Phạm Hằng",
     "Raphena",
@@ -20965,6 +21060,7 @@
       "Hyu",
       "Long",
       "Lumina",
+      "Lyj",
       "Nhie",
       "Phạm Hằng",
       "Raphena",
