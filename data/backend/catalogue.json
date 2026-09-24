@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-09-24T16:41:21.031Z",
+  "generatedAt": "2026-09-24T16:45:54.327Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -4762,7 +4762,7 @@
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thu-nguyen-ve-than-5-6dc1c5519fde-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thu-nguyen-ve-than-5-6dc1c5519fde-1600.webp",
       "tags": [],
-      "hidden": false,
+      "hidden": true,
       "isVietnameseSkin": false,
       "updatedAt": "2026-09-01T13:23:24.206Z",
       "variants": {
