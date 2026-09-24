@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-09-24T02:36:28.660Z",
+  "generatedAt": "2026-09-24T02:42:54.005Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -11830,6 +11830,102 @@
       }
     },
     {
+      "id": "bai-tu-trang",
+      "name": "Tối chung binh khí",
+      "description": "",
+      "category": "Mina",
+      "rank": "A",
+      "rankOrder": 0,
+      "credit": "Hyu",
+      "skinline": "Chuyển giao Bạch khởi > Mina",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bai-tu-trang-87764b083733-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bai-tu-trang-87764b083733-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-24T02:40:14.795Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/bai-tu-trang-e95639c1e65ed9a5.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 2821727,
+        "mimeType": "image/jpeg",
+        "sha256": "e95639c1e65ed9a5bf9e987d377580f992b588def88f9437f01f88b9c671c5ef"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bai-tu-trang-87764b083733-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 20096,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bai-tu-trang-87764b083733-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 38248,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bai-tu-trang-87764b083733-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 80608,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "bach-sac-tu-than",
+      "name": "Bạch sắc tử thần",
+      "description": "",
+      "category": "Mina",
+      "rank": "S",
+      "rankOrder": 1,
+      "credit": "Hyu",
+      "skinline": "Chuyển giao Bạch khởi > Mina",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bach-sac-tu-than-a8af3f3072ba-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bach-sac-tu-than-a8af3f3072ba-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-24T02:39:43.019Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/bach-sac-tu-than-547990d7cffff9be.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 2876337,
+        "mimeType": "image/jpeg",
+        "sha256": "547990d7cffff9beea32530bf43aecdc7160fa5e492eabd01d4cde942ba0d1ac"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bach-sac-tu-than-a8af3f3072ba-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 29278,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bach-sac-tu-than-a8af3f3072ba-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 55472,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bach-sac-tu-than-a8af3f3072ba-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 113540,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "tiec-bai-bien-4",
       "name": "Tiệc bãi biển",
       "description": "",
@@ -11877,6 +11973,102 @@
         "bytes": 325031,
         "mimeType": "image/jpeg",
         "sha256": "3072f5afc98264c8157027eb327cddc25b9de26ade2def04f5b5a29390f146ea"
+      }
+    },
+    {
+      "id": "tu-ba-trang",
+      "name": "Tử Bá Trang",
+      "description": "",
+      "category": "Mina",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hyu",
+      "skinline": "Chuyển giao Bạch khởi > Mina",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tu-ba-trang-14e3f98aecb4-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tu-ba-trang-14e3f98aecb4-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-24T02:42:22.451Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/tu-ba-trang-dea9d3a99ce27f73.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 2912657,
+        "mimeType": "image/jpeg",
+        "sha256": "dea9d3a99ce27f739fe76cdbb3615587c201b6bcfbbbf55a4b784fc13893b7d3"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tu-ba-trang-14e3f98aecb4-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 25722,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tu-ba-trang-14e3f98aecb4-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 48206,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tu-ba-trang-14e3f98aecb4-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 96336,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "thuong-lan-an-the",
+      "name": "Thương lân ẩn thế",
+      "description": "",
+      "category": "Mina",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "skinline": "Chuyển giao Bạch khởi > Mina",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thuong-lan-an-the-f0f980f58b69-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thuong-lan-an-the-f0f980f58b69-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-24T02:41:57.804Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/thuong-lan-an-the-4c3b55f49128dffa.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 2838614,
+        "mimeType": "image/jpeg",
+        "sha256": "4c3b55f49128dffaf5ee8060631d08f6ead8a39d24cd902a81d1e734e7ff979b"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thuong-lan-an-the-f0f980f58b69-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 28910,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thuong-lan-an-the-f0f980f58b69-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 53590,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thuong-lan-an-the-f0f980f58b69-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 106774,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -20669,7 +20861,8 @@
     "Cổ tích Việt Nam",
     "Tiệc bể bơi",
     "Sòng bạc bịp",
-    "Tình yêu phòng lab"
+    "Tình yêu phòng lab",
+    "Chuyển giao Bạch khởi > Mina"
   ],
   "universes": [
     {
