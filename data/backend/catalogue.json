@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-09-24T02:42:54.005Z",
+  "generatedAt": "2026-09-24T02:44:00.742Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -13671,7 +13671,8 @@
         "bytes": 2816631,
         "mimeType": "image/jpeg",
         "sha256": "8fa4d2a32bebb306f80946cb19ce15c04dae6b34330ebe21f86b35b13c699ad4"
-      }
+      },
+      "skinline": "Chuyển giao Mai > Raz"
     },
     {
       "id": "thay-tu-da-en",
@@ -13765,7 +13766,8 @@
         "bytes": 2868099,
         "mimeType": "image/jpeg",
         "sha256": "1bb21cf5667c74e06a5c9ab390f2e1abd430fc70658408d8757d621da3c495e8"
-      }
+      },
+      "skinline": "Chuyển giao Mai > Raz"
     },
     {
       "id": "mieu-quyen-than",
@@ -13859,7 +13861,8 @@
         "bytes": 3052310,
         "mimeType": "image/png",
         "sha256": "a3f9bd46511a42090dc1489d87d070cadfa690774ba45904de40da511efd2584"
-      }
+      },
+      "skinline": "Chuyển giao Mai > Raz"
     },
     {
       "id": "wave-3",
@@ -13956,7 +13959,8 @@
         "bytes": 3244949,
         "mimeType": "image/png",
         "sha256": "447f667fb58b1913b24d410cb3377ae7d9d4e6e3f91df34be9044ad92002a95b"
-      }
+      },
+      "skinline": "Chuyển giao Mai > Raz"
     },
     {
       "id": "hoa-mieu-hang-hieu",
@@ -20862,7 +20866,8 @@
     "Tiệc bể bơi",
     "Sòng bạc bịp",
     "Tình yêu phòng lab",
-    "Chuyển giao Bạch khởi > Mina"
+    "Chuyển giao Bạch khởi > Mina",
+    "Chuyển giao Mai > Raz"
   ],
   "universes": [
     {
@@ -20903,7 +20908,9 @@
     }
   ],
   "taxonomyRepresentatives": {
-    "skinlines": {},
+    "skinlines": {
+      "Chuyển giao Mai > Raz": "bat-chi-hoa-vu"
+    },
     "universes": {}
   }
 }
