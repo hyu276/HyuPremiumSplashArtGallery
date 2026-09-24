@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-09-24T14:05:10.238Z",
+  "generatedAt": "2026-09-24T16:38:26.638Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -2097,6 +2097,54 @@
         "bytes": 376326,
         "mimeType": "image/jpeg",
         "sha256": "617a778bfc7243027d8f23e0fe0df35b5632bf1d069389b748a74a00ed39b86d"
+      }
+    },
+    {
+      "id": "trang-ram-trung-thu",
+      "name": "Trăng rằm Trung Thu",
+      "description": "",
+      "category": "Aya",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hiemaru",
+      "skinline": "Văn hóa truyền thống Nhật Bản",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/trang-ram-trung-thu-af84d9f60ddd-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/trang-ram-trung-thu-af84d9f60ddd-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-24T16:34:36.925Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/trang-ram-trung-thu-b0ae3386f513ed02.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 579468,
+        "mimeType": "image/jpeg",
+        "sha256": "b0ae3386f513ed022ddf08bbd9a56f98634612eb6c3a14e30bf7831250850b76"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/trang-ram-trung-thu-af84d9f60ddd-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 34118,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/trang-ram-trung-thu-af84d9f60ddd-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 62472,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/trang-ram-trung-thu-af84d9f60ddd-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 124114,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -6138,6 +6186,54 @@
       }
     },
     {
+      "id": "ruoc-en-trung-thu",
+      "name": "Rước đèn Trung Thu",
+      "description": "",
+      "category": "Elando'rr",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hyu",
+      "skinline": "Lễ hội Việt Nam",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ruoc-en-trung-thu-6a427e42368c-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ruoc-en-trung-thu-6a427e42368c-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": true,
+      "updatedAt": "2026-09-24T16:35:20.534Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/ruoc-en-trung-thu-9db3411b5c054663.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 600812,
+        "mimeType": "image/jpeg",
+        "sha256": "9db3411b5c054663c11c81bea8e90e03e9b9de16070ba0f15c9d84861de27532"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ruoc-en-trung-thu-6a427e42368c-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 33048,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ruoc-en-trung-thu-6a427e42368c-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 61324,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ruoc-en-trung-thu-6a427e42368c-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 126272,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "boy-pho",
       "name": "Boy phố",
       "description": "",
@@ -6183,6 +6279,53 @@
         "bytes": 3070918,
         "mimeType": "image/jpeg",
         "sha256": "6319d79cf1cf24d4729d21457d60a556f93ba11b30e847dc4e2091610cd80c86"
+      }
+    },
+    {
+      "id": "sieu-trum-phan-dien",
+      "name": "Siêu trùm phản diện",
+      "description": "",
+      "category": "Elando'rr",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-trum-phan-dien-786a8cc363a2-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-trum-phan-dien-786a8cc363a2-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-24T16:36:19.813Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/sieu-trum-phan-dien-b7cb932a81e80324.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 1152731,
+        "mimeType": "image/jpeg",
+        "sha256": "b7cb932a81e80324c2b6c80b30041ce12bd68127743e21979f6c5853636a164f"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-trum-phan-dien-786a8cc363a2-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 38668,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-trum-phan-dien-786a8cc363a2-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 99796,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-trum-phan-dien-786a8cc363a2-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 285824,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -14391,6 +14534,53 @@
       }
     },
     {
+      "id": "lu-khach-ngoai-gioi",
+      "name": "Lữ khách ngoại giới",
+      "description": "",
+      "category": "Rouie",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Vin",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/lu-khach-ngoai-gioi-cfa8949baf97-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/lu-khach-ngoai-gioi-cfa8949baf97-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-24T16:36:47.521Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/lu-khach-ngoai-gioi-4ad600e036b0cc0b.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 615541,
+        "mimeType": "image/jpeg",
+        "sha256": "4ad600e036b0cc0b661826ed511da67ba2743244649da67de96d166163155a43"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/lu-khach-ngoai-gioi-cfa8949baf97-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 33196,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/lu-khach-ngoai-gioi-cfa8949baf97-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 61794,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/lu-khach-ngoai-gioi-cfa8949baf97-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 129522,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "vu-nu-tien-linh",
       "name": "vu nữ tiên linh",
       "description": "",
@@ -16988,6 +17178,54 @@
           "width": 1600,
           "height": 893,
           "bytes": 62902,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "bit-tet-hao-hang",
+      "name": "Bít tết hảo hạng",
+      "description": "",
+      "category": "Toro",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hyu",
+      "skinline": "Thịt và đồng loại",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bit-tet-hao-hang-78775d8803c3-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bit-tet-hao-hang-78775d8803c3-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-24T16:35:58.203Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/bit-tet-hao-hang-46d60fb8ef654b5e.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 464537,
+        "mimeType": "image/jpeg",
+        "sha256": "46d60fb8ef654b5e0423f7e3c13d0ae9d47b9816fda48969f0ce43704c1434c7"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bit-tet-hao-hang-78775d8803c3-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 23244,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bit-tet-hao-hang-78775d8803c3-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 43410,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bit-tet-hao-hang-78775d8803c3-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 89880,
           "mimeType": "image/webp"
         }
       }
@@ -21252,7 +21490,10 @@
     "Chuyển giao Bạch khởi > Mina",
     "Chuyển giao Mai > Raz",
     "Samba",
-    "Thế giới ảo tung chảo"
+    "Thế giới ảo tung chảo",
+    "Văn hóa truyền thống Nhật Bản",
+    "Lễ hội Việt Nam",
+    "Thịt và đồng loại"
   ],
   "universes": [
     {
