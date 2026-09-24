@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-09-24T16:39:48.023Z",
+  "generatedAt": "2026-09-24T16:41:21.031Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -1714,7 +1714,8 @@
         "bytes": 535317,
         "mimeType": "image/jpeg",
         "sha256": "29dcff6a9773c3075ccd44d873b70a3c3c7b4742ca8516792109860dc79da019"
-      }
+      },
+      "skinline": "Văn hóa truyền thống Nhật Bản"
     },
     {
       "id": "liet-hoa-ho-ly",
@@ -3719,7 +3720,8 @@
         "bytes": 2619085,
         "mimeType": "image/png",
         "sha256": "2870719efa5ba5e33ad6a11b83e609b15f06b395e0b7226f578c97b90077662b"
-      }
+      },
+      "skinline": "Thịt và đồng loại"
     },
     {
       "id": "bong-ma-hoa-anh",
@@ -10206,7 +10208,8 @@
         "bytes": 2581088,
         "mimeType": "image/jpeg",
         "sha256": "eda1284aa641a8d5e1bf4dce557bfa06143d230037012bc7e58b42d12d76c224"
-      }
+      },
+      "skinline": "Thịt và đồng loại"
     },
     {
       "id": "loi-nguyen-huyet-tam",
@@ -21586,7 +21589,8 @@
   "taxonomyRepresentatives": {
     "skinlines": {
       "Chuyển giao Mai > Raz": "bat-chi-hoa-vu",
-      "Samba": "vu-ieu-samba"
+      "Samba": "vu-ieu-samba",
+      "Thịt và đồng loại": "bit-tet-hao-hang"
     },
     "universes": {}
   }
