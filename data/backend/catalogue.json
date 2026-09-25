@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-09-25T05:15:23.378Z",
+  "generatedAt": "2026-09-25T09:23:39.733Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -1429,6 +1429,54 @@
           "width": 1600,
           "height": 893,
           "bytes": 107002,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "be-boi-hon-loan",
+      "name": "Bể bơi hỗn loạn",
+      "description": "",
+      "category": "Aya",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hiemaru",
+      "skinline": "Bá khí quý ông",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/be-boi-hon-loan-bd5e57b16cf8-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/be-boi-hon-loan-bd5e57b16cf8-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-25T09:19:58.622Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/be-boi-hon-loan-025b037bdc33fb7c.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 884898,
+        "mimeType": "image/jpeg",
+        "sha256": "025b037bdc33fb7cb368c748f296e8914551e049cd66ac5aaf7df66bd201fbbd"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/be-boi-hon-loan-bd5e57b16cf8-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 36370,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/be-boi-hon-loan-bd5e57b16cf8-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 67550,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/be-boi-hon-loan-bd5e57b16cf8-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 138274,
           "mimeType": "image/webp"
         }
       }
@@ -3199,6 +3247,54 @@
         "bytes": 457389,
         "mimeType": "image/jpeg",
         "sha256": "879395d0b470a7193673789a992abfb05414d966f0847c6fb89bde2f62256b36"
+      }
+    },
+    {
+      "id": "ba-khi-quy-ong",
+      "name": "Bá khí quý ông",
+      "description": "",
+      "category": "Billow",
+      "rank": "A",
+      "rankOrder": 0,
+      "credit": "Hyu",
+      "skinline": "Bá khí quý ông",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-d5e489f539cc-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-d5e489f539cc-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": true,
+      "updatedAt": "2026-09-25T09:20:44.739Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/ba-khi-quy-ong-bc2b084969fa7f07.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 671760,
+        "mimeType": "image/jpeg",
+        "sha256": "bc2b084969fa7f070e12808f6adc869579d7069612713095fbcf5f999568e892"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-d5e489f539cc-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 22320,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-d5e489f539cc-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 43520,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-d5e489f539cc-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 95640,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -6388,40 +6484,40 @@
       "rankOrder": 3,
       "credit": "Hyu",
       "universes": [],
-      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-trum-phan-dien-786a8cc363a2-1600.webp",
-      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-trum-phan-dien-786a8cc363a2-1600.webp",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-trum-phan-dien-00720076f000-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-trum-phan-dien-00720076f000-1600.webp",
       "tags": [],
       "hidden": false,
       "isVietnameseSkin": false,
-      "updatedAt": "2026-09-24T16:36:19.813Z",
+      "updatedAt": "2026-09-25T09:22:58.862Z",
       "expanded": {
-        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/sieu-trum-phan-dien-b7cb932a81e80324.jpg",
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/sieu-trum-phan-dien-660202692ea3ddd7.jpg",
         "width": 2752,
         "height": 1536,
-        "bytes": 1152731,
+        "bytes": 1449856,
         "mimeType": "image/jpeg",
-        "sha256": "b7cb932a81e80324c2b6c80b30041ce12bd68127743e21979f6c5853636a164f"
+        "sha256": "660202692ea3ddd79aeef36b9ccaa11c45386783a9d2ad251d43ab7932203812"
       },
       "variants": {
         "640": {
-          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-trum-phan-dien-786a8cc363a2-640.webp",
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-trum-phan-dien-00720076f000-640.webp",
           "width": 640,
           "height": 357,
-          "bytes": 38668,
+          "bytes": 50864,
           "mimeType": "image/webp"
         },
         "960": {
-          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-trum-phan-dien-786a8cc363a2-960.webp",
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-trum-phan-dien-00720076f000-960.webp",
           "width": 960,
           "height": 536,
-          "bytes": 99796,
+          "bytes": 113070,
           "mimeType": "image/webp"
         },
         "1600": {
-          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-trum-phan-dien-786a8cc363a2-1600.webp",
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-trum-phan-dien-00720076f000-1600.webp",
           "width": 1600,
           "height": 893,
-          "bytes": 285824,
+          "bytes": 271114,
           "mimeType": "image/webp"
         }
       }
@@ -6669,6 +6765,102 @@
         "bytes": 2954867,
         "mimeType": "image/jpeg",
         "sha256": "6188f9a27f9a36726e3c93784c86d2dcb8383b3b8a7ca11283169de2fb38f2d8"
+      }
+    },
+    {
+      "id": "ba-khi-quy-ong-3",
+      "name": "Bá khí quý ông",
+      "description": "",
+      "category": "Enzo",
+      "rank": "A",
+      "rankOrder": 0,
+      "credit": "Hyu",
+      "skinline": "Bá khí quý ông",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-3-cd31caad089b-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-3-cd31caad089b-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-25T09:21:49.350Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/ba-khi-quy-ong-3-bc2b084969fa7f07.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 671760,
+        "mimeType": "image/jpeg",
+        "sha256": "bc2b084969fa7f070e12808f6adc869579d7069612713095fbcf5f999568e892"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-3-cd31caad089b-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 22320,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-3-cd31caad089b-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 43520,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-3-cd31caad089b-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 95640,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "ba-khi-quy-ong-2",
+      "name": "Bá khí quý ông",
+      "description": "",
+      "category": "Enzo",
+      "rank": "A",
+      "rankOrder": 0,
+      "credit": "Hyu",
+      "skinline": "Tiệc bể bơi",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-2-81725c4a663c-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-2-81725c4a663c-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-25T09:21:10.116Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/ba-khi-quy-ong-2-bc2b084969fa7f07.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 671760,
+        "mimeType": "image/jpeg",
+        "sha256": "bc2b084969fa7f070e12808f6adc869579d7069612713095fbcf5f999568e892"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-2-81725c4a663c-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 22320,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-2-81725c4a663c-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 43520,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-2-81725c4a663c-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 95640,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -8348,6 +8540,54 @@
         "bytes": 1023532,
         "mimeType": "image/jpeg",
         "sha256": "2e75308510fb89e87ec12da184880bc3cb077335a3ddafca7c1a000f25d794ff"
+      }
+    },
+    {
+      "id": "ba-khi-quy-ong-4",
+      "name": "Bá khí quý ông",
+      "description": "",
+      "category": "Heino",
+      "rank": "A",
+      "rankOrder": 0,
+      "credit": "Hyu",
+      "skinline": "Bá khí quý ông",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-4-964ca9d06997-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-4-964ca9d06997-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-25T09:22:06.992Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/ba-khi-quy-ong-4-bc2b084969fa7f07.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 671760,
+        "mimeType": "image/jpeg",
+        "sha256": "bc2b084969fa7f070e12808f6adc869579d7069612713095fbcf5f999568e892"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-4-964ca9d06997-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 22320,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-4-964ca9d06997-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 43520,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-4-964ca9d06997-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 95640,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -13058,6 +13298,54 @@
           "width": 1600,
           "height": 893,
           "bytes": 141464,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "ba-khi-quy-ong-5",
+      "name": "Bá khí quý ông",
+      "description": "",
+      "category": "Murad",
+      "rank": "A",
+      "rankOrder": 0,
+      "credit": "Hyu",
+      "skinline": "Bá khí quý ông",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-5-53cbb36044c1-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-5-53cbb36044c1-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-25T09:22:15.057Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/ba-khi-quy-ong-5-bc2b084969fa7f07.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 671760,
+        "mimeType": "image/jpeg",
+        "sha256": "bc2b084969fa7f070e12808f6adc869579d7069612713095fbcf5f999568e892"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-5-53cbb36044c1-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 22320,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-5-53cbb36044c1-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 43520,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-5-53cbb36044c1-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 95640,
           "mimeType": "image/webp"
         }
       }
@@ -18062,6 +18350,54 @@
       }
     },
     {
+      "id": "ba-khi-quy-ong-6",
+      "name": "Bá khí quý ông",
+      "description": "",
+      "category": "Valhein",
+      "rank": "A",
+      "rankOrder": 0,
+      "credit": "Hyu",
+      "skinline": "Bá khí quý ông",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-6-fe8df9140c80-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-6-fe8df9140c80-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-25T09:22:23.053Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/ba-khi-quy-ong-6-bc2b084969fa7f07.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 671760,
+        "mimeType": "image/jpeg",
+        "sha256": "bc2b084969fa7f070e12808f6adc869579d7069612713095fbcf5f999568e892"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-6-fe8df9140c80-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 22320,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-6-fe8df9140c80-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 43520,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-6-fe8df9140c80-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 95640,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "da-hoi-khieu-vu-2",
       "name": "Dạ hội khiêu vũ",
       "description": "",
@@ -21391,6 +21727,7 @@
     "Gildur",
     "Goverra",
     "Grakk",
+    "Hayate",
     "Heino",
     "Helen",
     "Iggy",
@@ -21521,6 +21858,7 @@
       "Gildur",
       "Goverra",
       "Grakk",
+      "Hayate",
       "Heino",
       "Helen",
       "Iggy",
@@ -21710,7 +22048,8 @@
     "FMVP Đấu Trường Danh Vọng",
     "FMVP APL",
     "FMVP SEA Games",
-    "Huyền thoại AOG"
+    "Huyền thoại AOG",
+    "Bá khí quý ông"
   ],
   "universes": [
     {
