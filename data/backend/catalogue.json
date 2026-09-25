@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-09-24T16:53:47.531Z",
+  "generatedAt": "2026-09-25T05:15:23.378Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -5327,6 +5327,54 @@
       }
     },
     {
+      "id": "banh-a-cha-ca",
+      "name": "Bánh đa chả cá",
+      "description": "",
+      "category": "Dolia",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hyu",
+      "skinline": "Thịt và đồng loại",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/banh-a-cha-ca-28f618d73ec5-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/banh-a-cha-ca-28f618d73ec5-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": true,
+      "updatedAt": "2026-09-25T05:13:46.924Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/banh-a-cha-ca-741210f54ed5d286.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 607022,
+        "mimeType": "image/jpeg",
+        "sha256": "741210f54ed5d286b1e312ac3882b69d7ea57d1e929cda8fbdbf137e8792f293"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/banh-a-cha-ca-28f618d73ec5-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 36448,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/banh-a-cha-ca-28f618d73ec5-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 66086,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/banh-a-cha-ca-28f618d73ec5-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 136916,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "playgirl-thu-gian",
       "name": "Playgirl Thư giãn",
       "description": "",
@@ -9929,6 +9977,54 @@
           "width": 1600,
           "height": 893,
           "bytes": 94442,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "ga-ca-ban-bun-ca",
+      "name": "Gã bán bún cá",
+      "description": "",
+      "category": "Kil'Groth",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hyu",
+      "skinline": "Thịt và đồng loại",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ga-ca-ban-bun-ca-df96bf4b0351-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ga-ca-ban-bun-ca-df96bf4b0351-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": true,
+      "updatedAt": "2026-09-25T05:13:52.917Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/ga-ca-ban-bun-ca-234cff8ad367af7a.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 547045,
+        "mimeType": "image/jpeg",
+        "sha256": "234cff8ad367af7a9c44426262babb8417f692e396e7bf1f6b1b8d923880504a"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ga-ca-ban-bun-ca-df96bf4b0351-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 24880,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ga-ca-ban-bun-ca-df96bf4b0351-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 48750,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ga-ca-ban-bun-ca-df96bf4b0351-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 108064,
           "mimeType": "image/webp"
         }
       }
