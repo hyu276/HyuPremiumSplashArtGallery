@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-09-26T15:45:38.064Z",
+  "generatedAt": "2026-09-26T15:57:13.716Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -1576,6 +1576,53 @@
       }
     },
     {
+      "id": "ai-nao-haloween",
+      "name": "Đại náo Haloween",
+      "description": "",
+      "category": "Aya",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hiemaru",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ai-nao-haloween-f66ae47ecb35-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ai-nao-haloween-f66ae47ecb35-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-26T15:53:40.659Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/ai-nao-haloween-bbdda4a6ccc76579.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 610200,
+        "mimeType": "image/jpeg",
+        "sha256": "bbdda4a6ccc765797b6c34a7b78853e9c17a7635f2bd153a6447c25bc1a20fd5"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ai-nao-haloween-f66ae47ecb35-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 33742,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ai-nao-haloween-f66ae47ecb35-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 63220,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ai-nao-haloween-f66ae47ecb35-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 128652,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "en-tho-bang-gia",
       "name": "Đền thờ băng giá",
       "description": "",
@@ -2619,6 +2666,53 @@
           "width": 1600,
           "height": 893,
           "bytes": 105986,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "the-gioi-tuong-lai",
+      "name": "Thế giới tương lai",
+      "description": "",
+      "category": "Aya",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hiemaru",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/the-gioi-tuong-lai-53f2425b2327-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/the-gioi-tuong-lai-53f2425b2327-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-26T15:54:48.646Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/the-gioi-tuong-lai-fe27470d46a1d844.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 661257,
+        "mimeType": "image/jpeg",
+        "sha256": "fe27470d46a1d844845196aacf6f74d06c3a12d1e43bc864bc4245bfcff77c3b"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/the-gioi-tuong-lai-53f2425b2327-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 36122,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/the-gioi-tuong-lai-53f2425b2327-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 67376,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/the-gioi-tuong-lai-53f2425b2327-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 140632,
           "mimeType": "image/webp"
         }
       }
@@ -15644,6 +15738,53 @@
         "bytes": 588324,
         "mimeType": "image/jpeg",
         "sha256": "4f45e39c3a5b8d9add5f7fad0ed4f851f60ddf9d700d84bb249e63ef743aa140"
+      }
+    },
+    {
+      "id": "hong-tan-da-khuc",
+      "name": "Hồng tán dạ khúc",
+      "description": "",
+      "category": "Sephera",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Vin",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hong-tan-da-khuc-67320dfc6790-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hong-tan-da-khuc-67320dfc6790-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-26T15:55:33.419Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/hong-tan-da-khuc-6d7461a6659f6f4c.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 442671,
+        "mimeType": "image/jpeg",
+        "sha256": "6d7461a6659f6f4ccff70bc6fa45097005756f5d700b0bdcc62fbc7ffac713c9"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hong-tan-da-khuc-67320dfc6790-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 23332,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hong-tan-da-khuc-67320dfc6790-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 42406,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hong-tan-da-khuc-67320dfc6790-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 85410,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
