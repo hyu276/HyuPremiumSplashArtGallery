@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-09-26T05:29:03.801Z",
+  "generatedAt": "2026-09-26T15:41:05.172Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -9219,6 +9219,53 @@
       }
     },
     {
+      "id": "ghost-mama",
+      "name": "Ghost mama",
+      "description": "",
+      "category": "Ilumia",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Tâm",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ghost-mama-ac182d55f994-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ghost-mama-ac182d55f994-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-26T15:39:12.606Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/ghost-mama-d25e7299255f03c9.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 368774,
+        "mimeType": "image/jpeg",
+        "sha256": "d25e7299255f03c9d244d463ee65d3a85d0bfdfc3323e89d61306e74e9cfe9cc"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ghost-mama-ac182d55f994-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 14668,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ghost-mama-ac182d55f994-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 27910,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ghost-mama-ac182d55f994-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 59902,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "linh-mo-su",
       "name": "Linh mô sư",
       "description": "",
@@ -9595,6 +9642,53 @@
         "bytes": 621130,
         "mimeType": "image/jpeg",
         "sha256": "7c694954defbe5ead29ecc1dca6eaeb7d7ea12b94f3ee26bc93f4d717195e4ec"
+      }
+    },
+    {
+      "id": "luu-ly-anh-nguyet",
+      "name": "Lưu ly ánh nguyệt",
+      "description": "",
+      "category": "Ilumia",
+      "rank": "SSS",
+      "rankOrder": 5,
+      "credit": "Tâm",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/luu-ly-anh-nguyet-d9c0416c58b8-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/luu-ly-anh-nguyet-d9c0416c58b8-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-26T15:39:25.552Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/luu-ly-anh-nguyet-8240b0dbad3af408.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 471849,
+        "mimeType": "image/jpeg",
+        "sha256": "8240b0dbad3af4084078929be027c2a9ae5e16e15cabf9005b417c35ffc629ed"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/luu-ly-anh-nguyet-d9c0416c58b8-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 22612,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/luu-ly-anh-nguyet-d9c0416c58b8-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 42862,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/luu-ly-anh-nguyet-d9c0416c58b8-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 91854,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
