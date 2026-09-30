@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-09-30T13:46:02.335Z",
+  "generatedAt": "2026-09-30T14:08:32.087Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -3496,18 +3496,6 @@
       "universes": [],
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-d5e489f539cc-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-d5e489f539cc-1600.webp",
-      "tags": [],
-      "hidden": false,
-      "isVietnameseSkin": true,
-      "updatedAt": "2026-09-25T09:20:44.739Z",
-      "expanded": {
-        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/ba-khi-quy-ong-bc2b084969fa7f07.jpg",
-        "width": 2752,
-        "height": 1536,
-        "bytes": 671760,
-        "mimeType": "image/jpeg",
-        "sha256": "bc2b084969fa7f070e12808f6adc869579d7069612713095fbcf5f999568e892"
-      },
       "variants": {
         "640": {
           "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-d5e489f539cc-640.webp",
@@ -3530,7 +3518,19 @@
           "bytes": 95640,
           "mimeType": "image/webp"
         }
-      }
+      },
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/ba-khi-quy-ong-bc2b084969fa7f07.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 671760,
+        "mimeType": "image/jpeg",
+        "sha256": "bc2b084969fa7f070e12808f6adc869579d7069612713095fbcf5f999568e892"
+      },
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-30T14:06:54.921Z"
     },
     {
       "id": "sat-thu-huyet-toc",
@@ -7051,54 +7051,6 @@
       }
     },
     {
-      "id": "ba-khi-quy-ong-2",
-      "name": "Bá khí quý ông",
-      "description": "",
-      "category": "Enzo",
-      "rank": "A",
-      "rankOrder": 0,
-      "credit": "Hyu",
-      "skinline": "Tiệc bể bơi",
-      "universes": [],
-      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-2-81725c4a663c-1600.webp",
-      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-2-81725c4a663c-1600.webp",
-      "tags": [],
-      "hidden": false,
-      "isVietnameseSkin": false,
-      "updatedAt": "2026-09-25T09:21:10.116Z",
-      "expanded": {
-        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/ba-khi-quy-ong-2-bc2b084969fa7f07.jpg",
-        "width": 2752,
-        "height": 1536,
-        "bytes": 671760,
-        "mimeType": "image/jpeg",
-        "sha256": "bc2b084969fa7f070e12808f6adc869579d7069612713095fbcf5f999568e892"
-      },
-      "variants": {
-        "640": {
-          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-2-81725c4a663c-640.webp",
-          "width": 640,
-          "height": 357,
-          "bytes": 22320,
-          "mimeType": "image/webp"
-        },
-        "960": {
-          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-2-81725c4a663c-960.webp",
-          "width": 960,
-          "height": 536,
-          "bytes": 43520,
-          "mimeType": "image/webp"
-        },
-        "1600": {
-          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-2-81725c4a663c-1600.webp",
-          "width": 1600,
-          "height": 893,
-          "bytes": 95640,
-          "mimeType": "image/webp"
-        }
-      }
-    },
-    {
       "id": "ma-thuat-en",
       "name": "Ma thuật đen",
       "description": "",
@@ -8776,6 +8728,54 @@
         "mimeType": "image/jpeg",
         "sha256": "2e75308510fb89e87ec12da184880bc3cb077335a3ddafca7c1a000f25d794ff"
       }
+    },
+    {
+      "id": "ba-khi-quy-ong-2",
+      "name": "Bá khí quý ông",
+      "description": "",
+      "category": "Hayate",
+      "rank": "A",
+      "rankOrder": 0,
+      "credit": "Hyu",
+      "skinline": "Tiệc bể bơi",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-2-81725c4a663c-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-2-81725c4a663c-1600.webp",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-2-81725c4a663c-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 22320,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-2-81725c4a663c-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 43520,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ba-khi-quy-ong-2-81725c4a663c-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 95640,
+          "mimeType": "image/webp"
+        }
+      },
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/ba-khi-quy-ong-2-bc2b084969fa7f07.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 671760,
+        "mimeType": "image/jpeg",
+        "sha256": "bc2b084969fa7f070e12808f6adc869579d7069612713095fbcf5f999568e892"
+      },
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-09-30T14:07:02.077Z"
     },
     {
       "id": "ba-khi-quy-ong-4",
