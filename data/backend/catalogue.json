@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-09-30T14:08:32.087Z",
+  "generatedAt": "2026-10-01T03:05:21.538Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -3580,6 +3580,53 @@
       }
     },
     {
+      "id": "sat-thu-soi-oi",
+      "name": "Sát thủ sói đói",
+      "description": "",
+      "category": "Billow",
+      "rank": "S",
+      "rankOrder": 1,
+      "credit": "Hyu",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sat-thu-soi-oi-9738d8cc995d-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sat-thu-soi-oi-9738d8cc995d-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-01T03:04:19.405Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/sat-thu-soi-oi-c73f24affba5fb17.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 709539,
+        "mimeType": "image/jpeg",
+        "sha256": "c73f24affba5fb171e874007f0fb9779c260e17d55f11370d51b8edd8d2d7b2d"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sat-thu-soi-oi-9738d8cc995d-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 21176,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sat-thu-soi-oi-9738d8cc995d-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 43730,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sat-thu-soi-oi-9738d8cc995d-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 101636,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "sat-thu-vung-nuoc-o",
       "name": "Sát thủ vùng nước đỏ",
       "description": "",
@@ -4335,6 +4382,53 @@
         "bytes": 2470901,
         "mimeType": "image/jpeg",
         "sha256": "fe7a93573284e5473b10b1f6d591af5d6cc46a70b22cb2635fdc2396acf1249a"
+      }
+    },
+    {
+      "id": "bach-vu-diet-than",
+      "name": "Bạch vũ diệt thần",
+      "description": "",
+      "category": "Billow",
+      "rank": "SSS+",
+      "rankOrder": 6,
+      "credit": "Hyu",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bach-vu-diet-than-c2c962bb384f-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bach-vu-diet-than-c2c962bb384f-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-01T03:04:58.899Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/bach-vu-diet-than-5d0a9b4fd6b0ea7d.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 757524,
+        "mimeType": "image/jpeg",
+        "sha256": "5d0a9b4fd6b0ea7d62272d996c85fce562fec2c34cb5556f0e90799cd205f880"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bach-vu-diet-than-c2c962bb384f-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 27314,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bach-vu-diet-than-c2c962bb384f-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 52464,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bach-vu-diet-than-c2c962bb384f-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 115378,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
