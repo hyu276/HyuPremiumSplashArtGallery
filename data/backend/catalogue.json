@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-02T18:11:46.612Z",
+  "generatedAt": "2026-10-03T03:38:27.898Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -3960,48 +3960,48 @@
       "id": "sieu-viet",
       "name": "Siêu Việt",
       "description": "",
-      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-viet-b588fcd6a4c9-1600.webp",
-      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-viet-b588fcd6a4c9-1600.webp",
-      "tags": [],
-      "hidden": false,
       "category": "Billow",
       "rank": "SS",
       "rankOrder": 3,
       "credit": "Hyu",
+      "skinline": "Siêu Việt",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-viet-5646cf69a02d-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-viet-5646cf69a02d-1600.webp",
+      "tags": [],
+      "hidden": false,
       "isVietnameseSkin": false,
-      "updatedAt": "2026-08-25T16:22:24.138711+00:00",
+      "updatedAt": "2026-10-03T03:38:18.550Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/sieu-viet-be9a038bfd4b7fa8.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 801065,
+        "mimeType": "image/jpeg",
+        "sha256": "be9a038bfd4b7fa8df356d7d9198a392832a765bffec0f16c4f66fda830744c1"
+      },
       "variants": {
         "640": {
-          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-viet-b588fcd6a4c9-640.webp",
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-viet-5646cf69a02d-640.webp",
           "width": 640,
           "height": 357,
-          "bytes": 31940,
+          "bytes": 33988,
           "mimeType": "image/webp"
         },
         "960": {
-          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-viet-b588fcd6a4c9-960.webp",
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-viet-5646cf69a02d-960.webp",
           "width": 960,
           "height": 536,
-          "bytes": 60394,
+          "bytes": 64222,
           "mimeType": "image/webp"
         },
         "1600": {
-          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-viet-b588fcd6a4c9-1600.webp",
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-viet-5646cf69a02d-1600.webp",
           "width": 1600,
           "height": 893,
-          "bytes": 118062,
+          "bytes": 128286,
           "mimeType": "image/webp"
         }
-      },
-      "universes": [],
-      "skinline": "Siêu Việt",
-      "expanded": {
-        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/sieu-viet-9e89bedc4e479083.jpg",
-        "width": 2752,
-        "height": 1536,
-        "bytes": 2320829,
-        "mimeType": "image/jpeg",
-        "sha256": "9e89bedc4e479083c3bd0f01c64f55bd04dd9e96137dafb79ee03a0e9f5f6cdd"
       }
     },
     {
