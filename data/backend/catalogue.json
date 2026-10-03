@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-03T03:38:27.898Z",
+  "generatedAt": "2026-10-03T05:33:36.790Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -17292,7 +17292,7 @@
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/lang-kinh-hong-quang-79f6206524cb-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/lang-kinh-hong-quang-79f6206524cb-1600.webp",
       "tags": [],
-      "hidden": false,
+      "hidden": true,
       "isVietnameseSkin": false,
       "updatedAt": "2026-09-12T11:53:46.354Z",
       "variants": {
