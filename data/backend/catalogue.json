@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-03T09:45:33.919Z",
+  "generatedAt": "2026-10-03T10:16:47.318Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -12689,6 +12689,53 @@
       }
     },
     {
+      "id": "huyet-nguyet-hong-mong",
+      "name": "Huyết nguyệt hồng mộng",
+      "description": "",
+      "category": "Marja",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Bee",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyet-nguyet-hong-mong-01d808c48a37-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyet-nguyet-hong-mong-01d808c48a37-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-03T10:16:36.881Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/huyet-nguyet-hong-mong-e83d02ee6b4ee056.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 443518,
+        "mimeType": "image/jpeg",
+        "sha256": "e83d02ee6b4ee056482645b74e14c619939cdabce23ab02260f5fc2b12626e7e"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyet-nguyet-hong-mong-01d808c48a37-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 18980,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyet-nguyet-hong-mong-01d808c48a37-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 36044,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyet-nguyet-hong-mong-01d808c48a37-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 77390,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "co-nang-thanh-hoa",
       "name": "Cô nàng Thanh Hóa",
       "description": "",
@@ -22695,6 +22742,7 @@
     "SSS+ Tối thượng"
   ],
   "credits": [
+    "Bee",
     "Cehynz",
     "Chưa có credit",
     "Hie Lee",
@@ -22827,6 +22875,7 @@
       "SSS+ Tối thượng"
     ],
     "credits": [
+      "Bee",
       "Cehynz",
       "Chưa có credit",
       "Hie Lee",
