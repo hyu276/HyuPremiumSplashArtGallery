@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-04T15:44:58.859Z",
+  "generatedAt": "2026-10-04T16:08:14.162Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -626,6 +626,54 @@
       }
     },
     {
+      "id": "huyet-chien-binh-2",
+      "name": "Huyết chiến binh",
+      "description": "",
+      "category": "Amily",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Yokyn",
+      "skinline": "Huyết Binh",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyet-chien-binh-2-694601a88caf-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyet-chien-binh-2-694601a88caf-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-04T16:04:22.161Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/huyet-chien-binh-2-1686f870734df96f.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 569974,
+        "mimeType": "image/jpeg",
+        "sha256": "1686f870734df96f1adab2f27fb63bdd6dfc3f3e2a11fa213f1744dfda54e072"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyet-chien-binh-2-694601a88caf-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 23928,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyet-chien-binh-2-694601a88caf-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 49060,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyet-chien-binh-2-694601a88caf-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 113324,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "kungfu-cau-may",
       "name": "Kungfu Cầu Mây",
       "description": "",
@@ -670,6 +718,53 @@
         "bytes": 2662041,
         "mimeType": "image/jpeg",
         "sha256": "c745147432e09a6fc94e23acf6fc4be453e6f4a2edeb6ffd6232ec485d685518"
+      }
+    },
+    {
+      "id": "quy-me-tinh",
+      "name": "Quỷ Mê Tình",
+      "description": "",
+      "category": "Amily",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/quy-me-tinh-ebcb9d2060ae-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/quy-me-tinh-ebcb9d2060ae-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-04T16:02:47.397Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/quy-me-tinh-8b950aa80dc46174.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 545407,
+        "mimeType": "image/jpeg",
+        "sha256": "8b950aa80dc46174da445b6a4754df573a24350f7537e6fa680393e2780d46d0"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/quy-me-tinh-ebcb9d2060ae-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 25714,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/quy-me-tinh-ebcb9d2060ae-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 50078,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/quy-me-tinh-ebcb9d2060ae-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 110500,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -9689,6 +9784,101 @@
       }
     },
     {
+      "id": "hai-than-nu-vuong",
+      "name": "Hải thần nữ vương",
+      "description": "",
+      "category": "Ilumia",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hai-than-nu-vuong-4fb0d9eda0fd-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hai-than-nu-vuong-4fb0d9eda0fd-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-04T16:05:18.979Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/hai-than-nu-vuong-d9e57cf20519e0ed.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 759453,
+        "mimeType": "image/jpeg",
+        "sha256": "d9e57cf20519e0ed02ec58a78a0ce31926c5b88bf742136c2adce04f2cc0e5a0"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hai-than-nu-vuong-4fb0d9eda0fd-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 37408,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hai-than-nu-vuong-4fb0d9eda0fd-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 74386,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hai-than-nu-vuong-4fb0d9eda0fd-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 166722,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "huyet-ot-su",
+      "name": "Huyết đột sư",
+      "description": "",
+      "category": "Ilumia",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Yokyn",
+      "skinline": "Huyết Binh",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyet-ot-su-ace726f308a7-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyet-ot-su-ace726f308a7-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-04T16:04:45.578Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/huyet-ot-su-36b217d9b1266963.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 541993,
+        "mimeType": "image/jpeg",
+        "sha256": "36b217d9b126696392fc6c2feee6f40830e18a2db2b2947c68ffd31d05feecb3"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyet-ot-su-ace726f308a7-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 26706,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyet-ot-su-ace726f308a7-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 52340,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyet-ot-su-ace726f308a7-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 115382,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "linh-mo-su",
       "name": "Linh mô sư",
       "description": "",
@@ -16591,6 +16781,53 @@
       }
     },
     {
+      "id": "tinh-tu-su",
+      "name": "Tinh tú sư",
+      "description": "",
+      "category": "Sephera",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tinh-tu-su-b9fcdbba294e-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tinh-tu-su-b9fcdbba294e-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-04T16:03:04.873Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/tinh-tu-su-2151d3edc15f213a.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 794437,
+        "mimeType": "image/jpeg",
+        "sha256": "2151d3edc15f213a5eefdaed77c5b9c9b5027c44fc952a9a6272f3e72470d591"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tinh-tu-su-b9fcdbba294e-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 35612,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tinh-tu-su-b9fcdbba294e-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 70702,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tinh-tu-su-b9fcdbba294e-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 164948,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "wave-10",
       "name": "wave",
       "description": "",
@@ -17708,6 +17945,54 @@
       }
     },
     {
+      "id": "huyet-chien-binh",
+      "name": "Huyết Chiến binh",
+      "description": "",
+      "category": "Taara",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Yokyn",
+      "skinline": "Huyết Binh",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyet-chien-binh-f65d3140a371-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyet-chien-binh-f65d3140a371-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-04T16:04:02.142Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/huyet-chien-binh-63e463acd76ab216.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 580483,
+        "mimeType": "image/jpeg",
+        "sha256": "63e463acd76ab216d8f7488569637a9d2208b0ac427905c997403053d0bbf77b"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyet-chien-binh-f65d3140a371-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 30868,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyet-chien-binh-f65d3140a371-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 60632,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyet-chien-binh-f65d3140a371-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 127136,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "lang-kinh-hong-quang",
       "name": "Lăng Kính Hồng Quang",
       "description": "",
@@ -18371,6 +18656,53 @@
         "bytes": 378438,
         "mimeType": "image/jpeg",
         "sha256": "b6fd1eddf18e8e0d4dec7972a950799c211d3fe89a915399cb63298f6c993841"
+      }
+    },
+    {
+      "id": "ve-binh-chom-sao",
+      "name": "Vệ binh chòm sao",
+      "description": "",
+      "category": "Tel'Annas",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ve-binh-chom-sao-f056268e9d3f-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ve-binh-chom-sao-f056268e9d3f-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-04T16:06:18.392Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/ve-binh-chom-sao-8aeb350b00ffdee2.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 647660,
+        "mimeType": "image/jpeg",
+        "sha256": "8aeb350b00ffdee2b6d8991e5626fa2fe71d434a24ec39fe9068a72950502ce2"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ve-binh-chom-sao-f056268e9d3f-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 29704,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ve-binh-chom-sao-f056268e9d3f-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 60336,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ve-binh-chom-sao-f056268e9d3f-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 134652,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -23374,7 +23706,8 @@
     "FMVP APL",
     "FMVP SEA Games",
     "Huyền thoại AOG",
-    "Bá khí quý ông"
+    "Bá khí quý ông",
+    "Huyết Binh"
   ],
   "universes": [
     {
