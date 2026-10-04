@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-04T15:41:52.610Z",
+  "generatedAt": "2026-10-04T15:44:58.859Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -11113,6 +11113,53 @@
         "bytes": 460325,
         "mimeType": "image/jpeg",
         "sha256": "22aa1418022bc26bc9a1c5c4fb75c95373b2a82bc1c869d9a5d30de189072088"
+      }
+    },
+    {
+      "id": "loi-thi-tham-xanh",
+      "name": "Lời thì thầm xanh",
+      "description": "",
+      "category": "Krixi",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Vin",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/loi-thi-tham-xanh-088e196ae0be-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/loi-thi-tham-xanh-088e196ae0be-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-04T15:43:26.132Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/loi-thi-tham-xanh-c724f4f4fe79b440.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 549770,
+        "mimeType": "image/jpeg",
+        "sha256": "c724f4f4fe79b440a34695e62481922db8acde391ae7da71ffb1c13f817db6eb"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/loi-thi-tham-xanh-088e196ae0be-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 26672,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/loi-thi-tham-xanh-088e196ae0be-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 50576,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/loi-thi-tham-xanh-088e196ae0be-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 107408,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
