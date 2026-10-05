@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-05T16:19:51.428Z",
+  "generatedAt": "2026-10-05T16:22:19.867Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -4581,7 +4581,7 @@
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/cs-jake-walker-9b2aaa7d0803-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/cs-jake-walker-9b2aaa7d0803-1600.webp",
       "tags": [],
-      "hidden": false,
+      "hidden": true,
       "category": "Billow",
       "rank": "SSS",
       "rankOrder": 5,
@@ -4628,7 +4628,7 @@
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sat-lang-bach-ho-10ea22db56ef-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sat-lang-bach-ho-10ea22db56ef-1600.webp",
       "tags": [],
-      "hidden": false,
+      "hidden": true,
       "category": "Billow",
       "rank": "SSS",
       "rankOrder": 5,
