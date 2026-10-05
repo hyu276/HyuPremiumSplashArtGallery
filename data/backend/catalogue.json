@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-05T11:12:22.054Z",
+  "generatedAt": "2026-10-05T11:44:37.808Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -15538,6 +15538,53 @@
       }
     },
     {
+      "id": "tu-nguyet-linh-ho",
+      "name": "Tử Nguyệt Linh Hồ",
+      "description": "",
+      "category": "Natalya",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Sol",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tu-nguyet-linh-ho-3dd7c5d551ec-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tu-nguyet-linh-ho-3dd7c5d551ec-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-05T11:42:30.171Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/tu-nguyet-linh-ho-d0d80ae5df12bdba.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 493271,
+        "mimeType": "image/jpeg",
+        "sha256": "d0d80ae5df12bdba7a25717c298e3d5bbf712419a8215377098b0e0959a619a8"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tu-nguyet-linh-ho-3dd7c5d551ec-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 26864,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tu-nguyet-linh-ho-3dd7c5d551ec-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 49950,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tu-nguyet-linh-ho-3dd7c5d551ec-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 103788,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "than-tuong-am-nhac-phien-ban-hoan-my",
       "name": "Thần tượng âm nhạc: Phiên bản hoàn mỹ",
       "description": "",
@@ -23799,6 +23846,7 @@
     "Nhie",
     "Phạm Hằng",
     "Raphena",
+    "Sol",
     "Tâm",
     "Thắng",
     "Tom",
@@ -23933,6 +23981,7 @@
       "Nhie",
       "Phạm Hằng",
       "Raphena",
+      "Sol",
       "Tâm",
       "Thắng",
       "Tom",
