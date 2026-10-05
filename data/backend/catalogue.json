@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-05T15:17:34.183Z",
+  "generatedAt": "2026-10-05T15:45:00.071Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -11835,7 +11835,7 @@
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/loi-nguyen-huyet-tam-39ab2d12b048-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/loi-nguyen-huyet-tam-39ab2d12b048-1600.webp",
       "tags": [],
-      "hidden": false,
+      "hidden": true,
       "category": "Lauriel",
       "rank": "S+",
       "rankOrder": 2,
@@ -15396,7 +15396,7 @@
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ao-hoa-mi-anh-9f7f2e858ec6-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ao-hoa-mi-anh-9f7f2e858ec6-1600.webp",
       "tags": [],
-      "hidden": false,
+      "hidden": true,
       "category": "Natalya",
       "rank": "SS",
       "rankOrder": 3,
