@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-05T15:16:15.510Z",
+  "generatedAt": "2026-10-05T15:17:19.491Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -23542,7 +23542,7 @@
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nguyet-ma-mong-ky-966d57d6bbf1-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nguyet-ma-mong-ky-966d57d6bbf1-1600.webp",
       "tags": [],
-      "hidden": false,
+      "hidden": true,
       "category": "Yue",
       "rank": "SSS",
       "rankOrder": 5,
