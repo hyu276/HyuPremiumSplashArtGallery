@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-05T16:03:03.053Z",
+  "generatedAt": "2026-10-05T16:08:55.957Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -7914,7 +7914,7 @@
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/mong-tuong-tu-361f5e56a762-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/mong-tuong-tu-361f5e56a762-1600.webp",
       "tags": [],
-      "hidden": false,
+      "hidden": true,
       "isVietnameseSkin": false,
       "updatedAt": "2026-09-06T04:56:54.971Z",
       "variants": {
