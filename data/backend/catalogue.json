@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-05T11:44:37.808Z",
+  "generatedAt": "2026-10-05T11:48:33.872Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -1337,6 +1337,54 @@
           "width": 1600,
           "height": 893,
           "bytes": 117848,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "guitarist-a-sac",
+      "name": "Guitarist Đa Sắc",
+      "description": "",
+      "category": "Arthur",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Huy Khánh",
+      "skinline": "DJ Đa Sắc",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/guitarist-a-sac-dcaabda18e1c-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/guitarist-a-sac-dcaabda18e1c-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-05T11:46:34.216Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/guitarist-a-sac-882ab71c2dd5fa99.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 556042,
+        "mimeType": "image/jpeg",
+        "sha256": "882ab71c2dd5fa99798543490a665175557382932ef470e6176638420f7d03bd"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/guitarist-a-sac-dcaabda18e1c-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 29116,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/guitarist-a-sac-dcaabda18e1c-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 56258,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/guitarist-a-sac-dcaabda18e1c-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 119274,
           "mimeType": "image/webp"
         }
       }
@@ -10495,6 +10543,54 @@
       }
     },
     {
+      "id": "dj-a-sac",
+      "name": "DJ Đa sắc",
+      "description": "",
+      "category": "Ilumia",
+      "rank": "SS+",
+      "rankOrder": 4,
+      "credit": "Huy Khánh",
+      "skinline": "DJ Đa Sắc",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-a-sac-4ce5151ac4d3-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-a-sac-4ce5151ac4d3-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-05T11:46:50.477Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/dj-a-sac-784c9bb31170000b.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 635998,
+        "mimeType": "image/jpeg",
+        "sha256": "784c9bb31170000b9f57769114fd747e23924ec19198f67211d54c76887958f4"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-a-sac-4ce5151ac4d3-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 28236,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-a-sac-4ce5151ac4d3-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 56014,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-a-sac-4ce5151ac4d3-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 122152,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "van-co-inh-oat",
       "name": "Ván cờ định đoạt",
       "description": "",
@@ -13411,21 +13507,10 @@
       "rank": "SS",
       "rankOrder": 3,
       "credit": "Huy Khánh",
+      "skinline": "DJ Đa Sắc",
       "universes": [],
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-tuyet-sac-a44acb4785f9-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-tuyet-sac-a44acb4785f9-1600.webp",
-      "tags": [],
-      "hidden": false,
-      "isVietnameseSkin": false,
-      "updatedAt": "2026-10-04T15:38:26.478Z",
-      "expanded": {
-        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/dj-tuyet-sac-84c913e6eb614042.jpg",
-        "width": 2752,
-        "height": 1536,
-        "bytes": 548700,
-        "mimeType": "image/jpeg",
-        "sha256": "84c913e6eb614042d923abf4665568f50aed38e36a177d5f97615737f50574cf"
-      },
       "variants": {
         "640": {
           "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-tuyet-sac-a44acb4785f9-640.webp",
@@ -13448,7 +13533,19 @@
           "bytes": 107872,
           "mimeType": "image/webp"
         }
-      }
+      },
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/dj-tuyet-sac-84c913e6eb614042.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 548700,
+        "mimeType": "image/jpeg",
+        "sha256": "84c913e6eb614042d923abf4665568f50aed38e36a177d5f97615737f50574cf"
+      },
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-05T11:46:56.425Z"
     },
     {
       "id": "ma-nu-thoi-thuong",
@@ -23729,6 +23826,7 @@
     "Amily",
     "Annette",
     "Aoi",
+    "Arthur",
     "Arum",
     "Astrid",
     "Aya",
@@ -23864,6 +23962,7 @@
       "Amily",
       "Annette",
       "Aoi",
+      "Arthur",
       "Arum",
       "Astrid",
       "Aya",
@@ -24088,7 +24187,8 @@
     "Huyền thoại AOG",
     "Bá khí quý ông",
     "Huyết Binh",
-    "Phá tan tiệc cưới"
+    "Phá tan tiệc cưới",
+    "DJ Đa Sắc"
   ],
   "universes": [
     {
