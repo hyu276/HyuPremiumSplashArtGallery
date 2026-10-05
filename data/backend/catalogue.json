@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-05T10:24:55.613Z",
+  "generatedAt": "2026-10-05T10:25:17.916Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -10365,7 +10365,7 @@
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bich-ngoc-hoa-phi-30447ae1f1fe-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bich-ngoc-hoa-phi-30447ae1f1fe-1600.webp",
       "tags": [],
-      "hidden": false,
+      "hidden": true,
       "isVietnameseSkin": false,
       "updatedAt": "2026-09-23T13:58:52.818Z",
       "expanded": {
@@ -17414,7 +17414,7 @@
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bao-tu-chua-000d31458806-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bao-tu-chua-000d31458806-1600.webp",
       "tags": [],
-      "hidden": false,
+      "hidden": true,
       "isVietnameseSkin": false,
       "updatedAt": "2026-09-09T05:10:35.643Z",
       "variants": {
