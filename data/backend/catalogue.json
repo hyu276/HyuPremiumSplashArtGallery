@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-05T13:34:25.634Z",
+  "generatedAt": "2026-10-05T15:16:15.510Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -13964,7 +13964,7 @@
         }
       },
       "tags": [],
-      "hidden": false,
+      "hidden": true,
       "isVietnameseSkin": false,
       "updatedAt": "2026-08-30T13:48:41.230Z",
       "universes": [],
@@ -23264,7 +23264,7 @@
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/mac-anh-tien-son-8b5e1e9c80bc-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/mac-anh-tien-son-8b5e1e9c80bc-1600.webp",
       "tags": [],
-      "hidden": false,
+      "hidden": true,
       "isVietnameseSkin": false,
       "updatedAt": "2026-08-27T14:37:54.116Z",
       "variants": {
