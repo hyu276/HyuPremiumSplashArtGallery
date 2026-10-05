@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-04T18:28:51.070Z",
+  "generatedAt": "2026-10-05T10:24:55.613Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -3526,6 +3526,53 @@
         "bytes": 498270,
         "mimeType": "image/jpeg",
         "sha256": "b1ba611a30427e6b9a275bb1b4d9766441a1f9ba3b76f675f09781c3c7244ef9"
+      }
+    },
+    {
+      "id": "thai-so-chi-mau",
+      "name": "Thái sơ chi mẫu",
+      "description": "",
+      "category": "Azzen'ka",
+      "rank": "SSS+",
+      "rankOrder": 6,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thai-so-chi-mau-e09df529b532-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thai-so-chi-mau-e09df529b532-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-05T10:23:21.312Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/thai-so-chi-mau-ac1d3d2dbe89cebf.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 751363,
+        "mimeType": "image/jpeg",
+        "sha256": "ac1d3d2dbe89cebf3a36b2ebe6688609429ed29274ddb25d7117f815e4a4d838"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thai-so-chi-mau-e09df529b532-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 31230,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thai-so-chi-mau-e09df529b532-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 63220,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thai-so-chi-mau-e09df529b532-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 156760,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
