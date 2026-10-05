@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-05T15:17:19.491Z",
+  "generatedAt": "2026-10-05T15:17:34.183Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -20957,7 +20957,7 @@
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/chan-hoan-4073657ae353-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/chan-hoan-4073657ae353-1600.webp",
       "tags": [],
-      "hidden": false,
+      "hidden": true,
       "category": "Veera",
       "rank": "SS",
       "rankOrder": 3,
