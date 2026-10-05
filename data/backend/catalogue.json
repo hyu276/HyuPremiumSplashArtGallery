@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-05T16:18:30.380Z",
+  "generatedAt": "2026-10-05T16:19:51.428Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -585,7 +585,7 @@
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/mieu-tac-duoi-trang-6a22d72ed314-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/mieu-tac-duoi-trang-6a22d72ed314-1600.webp",
       "tags": [],
-      "hidden": false,
+      "hidden": true,
       "category": "Amily",
       "rank": "S",
       "rankOrder": 1,
@@ -872,7 +872,7 @@
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/cuu-thien-ngoc-nu-4da4ec85a45b-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/cuu-thien-ngoc-nu-4da4ec85a45b-1600.webp",
       "tags": [],
-      "hidden": false,
+      "hidden": true,
       "isVietnameseSkin": false,
       "updatedAt": "2026-09-06T14:09:35.691Z",
       "variants": {
