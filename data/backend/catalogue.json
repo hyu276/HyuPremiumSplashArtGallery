@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-05T15:45:00.071Z",
+  "generatedAt": "2026-10-05T15:54:19.350Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -6043,7 +6043,7 @@
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hong-lien-mi-anh-1828b04a811c-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hong-lien-mi-anh-1828b04a811c-1600.webp",
       "tags": [],
-      "hidden": false,
+      "hidden": true,
       "isVietnameseSkin": false,
       "updatedAt": "2026-09-02T14:17:35.958Z",
       "variants": {
