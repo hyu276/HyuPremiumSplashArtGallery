@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-06T16:34:25.607Z",
+  "generatedAt": "2026-10-06T16:39:53.097Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -17218,7 +17218,7 @@
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thay-tru-ta-749c8c1329ed-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thay-tru-ta-749c8c1329ed-1600.webp",
       "tags": [],
-      "hidden": false,
+      "hidden": true,
       "isVietnameseSkin": false,
       "updatedAt": "2026-09-02T12:33:41.757Z",
       "variants": {
@@ -17457,7 +17457,7 @@
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/mi-am-6351be41c5c0-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/mi-am-6351be41c5c0-1600.webp",
       "tags": [],
-      "hidden": false,
+      "hidden": true,
       "isVietnameseSkin": false,
       "updatedAt": "2026-09-02T11:59:34.105Z",
       "variants": {
@@ -23639,7 +23639,7 @@
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/mi-sac-hoa-nhen-9354ec192ede-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/mi-sac-hoa-nhen-9354ec192ede-1600.webp",
       "tags": [],
-      "hidden": false,
+      "hidden": true,
       "category": "Yue",
       "rank": "SS+",
       "rankOrder": 4,
