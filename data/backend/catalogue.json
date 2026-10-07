@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-07T15:37:11.765Z",
+  "generatedAt": "2026-10-07T15:39:19.417Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -19557,6 +19557,53 @@
       }
     },
     {
+      "id": "merry-chrismas",
+      "name": "Merry Chrismas",
+      "description": "",
+      "category": "Tel'Annas",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Kerrie",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/merry-chrismas-a6fb0eb42cb7-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/merry-chrismas-a6fb0eb42cb7-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-07T15:37:33.137Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/merry-chrismas-83e59a2fe06b10d7.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 620784,
+        "mimeType": "image/jpeg",
+        "sha256": "83e59a2fe06b10d727863965f16dc1a08a06ce4c77d194cefdf89ced19b94899"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/merry-chrismas-a6fb0eb42cb7-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 35256,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/merry-chrismas-a6fb0eb42cb7-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 65348,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/merry-chrismas-a6fb0eb42cb7-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 137106,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "playgirl-chat-choi-hang-hieu",
       "name": "Playgirl chất chơi: Hàng hiệu",
       "description": "",
@@ -23580,6 +23627,100 @@
         "bytes": 555139,
         "mimeType": "image/jpeg",
         "sha256": "194f6b94916fc78290341c53415b498c4bd9e00733752d7084687d5dbac10d94"
+      }
+    },
+    {
+      "id": "tu-sac-giai-nhan",
+      "name": "Tử sắc giai nhân",
+      "description": "",
+      "category": "Yue",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Raphena",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tu-sac-giai-nhan-9afd962ecb0f-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tu-sac-giai-nhan-9afd962ecb0f-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-07T15:36:32.921Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/tu-sac-giai-nhan-cfa8b7711174ae13.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 444029,
+        "mimeType": "image/jpeg",
+        "sha256": "cfa8b7711174ae1302f73cc98c0c1b377d4b5ee405a26f251bc2ba7fe2a21e70"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tu-sac-giai-nhan-9afd962ecb0f-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 19716,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tu-sac-giai-nhan-9afd962ecb0f-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 37864,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tu-sac-giai-nhan-9afd962ecb0f-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 80668,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "bua-an-chinh",
+      "name": "Bữa ăn chính",
+      "description": "",
+      "category": "Yue",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Tâm",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bua-an-chinh-a72ca18820dd-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bua-an-chinh-a72ca18820dd-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-07T15:37:03.119Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/bua-an-chinh-8bbec21856bf0338.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 329097,
+        "mimeType": "image/jpeg",
+        "sha256": "8bbec21856bf033842362b581eab4018a6df82ca4e35b9fa401c8e45fd313c40"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bua-an-chinh-a72ca18820dd-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 13896,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bua-an-chinh-a72ca18820dd-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 26712,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bua-an-chinh-a72ca18820dd-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 57214,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
