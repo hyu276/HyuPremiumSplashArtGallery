@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-07T14:21:33.778Z",
+  "generatedAt": "2026-10-07T15:01:09.338Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -19427,7 +19427,7 @@
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nao-loan-san-khau-15242cbb231d-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nao-loan-san-khau-15242cbb231d-1600.webp",
       "tags": [],
-      "hidden": false,
+      "hidden": true,
       "isVietnameseSkin": false,
       "updatedAt": "2026-10-07T14:19:55.813Z",
       "expanded": {
