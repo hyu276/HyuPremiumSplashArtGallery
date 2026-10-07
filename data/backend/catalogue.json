@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-06T16:43:23.403Z",
+  "generatedAt": "2026-10-07T14:11:14.539Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -428,6 +428,53 @@
         "bytes": 792003,
         "mimeType": "image/jpeg",
         "sha256": "219698e715c093f420e663d05bf49f69fbf80bf0fddfaa5a9fafb41a1b8c3b73"
+      }
+    },
+    {
+      "id": "idol-nhac-rock",
+      "name": "Idol Nhạc Rock",
+      "description": "",
+      "category": "Allain",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Vin",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/idol-nhac-rock-9015be54ec5c-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/idol-nhac-rock-9015be54ec5c-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-07T14:09:08.618Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/idol-nhac-rock-da07dc8bdd61c2c8.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 473706,
+        "mimeType": "image/jpeg",
+        "sha256": "da07dc8bdd61c2c820bb840482b579d3d9e1b9a7d23ac1497c2f4c7221c7325b"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/idol-nhac-rock-9015be54ec5c-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 23108,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/idol-nhac-rock-9015be54ec5c-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 43268,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/idol-nhac-rock-9015be54ec5c-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 91612,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -5889,6 +5936,53 @@
         "bytes": 587069,
         "mimeType": "image/jpeg",
         "sha256": "93bec485a75330c8a2e5b4bf63519452ae448665e2005e50e92a6ca3cb89ccbc"
+      }
+    },
+    {
+      "id": "hoa-khoi-hoc-vien",
+      "name": "Hoa Khôi Học Viện",
+      "description": "",
+      "category": "Điêu Thuyền",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Sol",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoa-khoi-hoc-vien-1a18ecf1f65f-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoa-khoi-hoc-vien-1a18ecf1f65f-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-07T14:07:40.972Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/hoa-khoi-hoc-vien-1141909c1063dbaf.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 716522,
+        "mimeType": "image/jpeg",
+        "sha256": "1141909c1063dbaf762b51ed7f12b85b5049d13c52291017e060d84a42ebdf10"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoa-khoi-hoc-vien-1a18ecf1f65f-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 33642,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoa-khoi-hoc-vien-1a18ecf1f65f-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 66604,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoa-khoi-hoc-vien-1a18ecf1f65f-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 146778,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -21942,6 +22036,53 @@
           "width": 1600,
           "height": 893,
           "bytes": 121706,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "nebu-a-heart",
+      "name": "Nebu;a Heart",
+      "description": "",
+      "category": "Violet",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Nhie",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nebu-a-heart-f31f604dd6c0-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nebu-a-heart-f31f604dd6c0-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-07T14:08:37.865Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/nebu-a-heart-269dfa9d2bf0b201.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 646513,
+        "mimeType": "image/jpeg",
+        "sha256": "269dfa9d2bf0b201d49dfd50e46a56eaadf07d7a77efda1560dd1af9a7aa360b"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nebu-a-heart-f31f604dd6c0-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 33340,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nebu-a-heart-f31f604dd6c0-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 60952,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nebu-a-heart-f31f604dd6c0-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 129876,
           "mimeType": "image/webp"
         }
       }
