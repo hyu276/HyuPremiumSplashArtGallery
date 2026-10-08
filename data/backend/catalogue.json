@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-08T15:30:07.586Z",
+  "generatedAt": "2026-10-08T15:40:28.298Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -7466,6 +7466,53 @@
       }
     },
     {
+      "id": "luu-quang-uoc-vu",
+      "name": "Lưu Quang Ước Vũ",
+      "description": "",
+      "category": "Elando'rr",
+      "rank": "SS+",
+      "rankOrder": 4,
+      "credit": "Bee",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/luu-quang-uoc-vu-8de19664ffe4-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/luu-quang-uoc-vu-8de19664ffe4-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-08T15:38:18.046Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/luu-quang-uoc-vu-404a1c44def80986.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 657571,
+        "mimeType": "image/jpeg",
+        "sha256": "404a1c44def80986b2166651698ee6f30f409c97041cc124d5b795bc7b1da7a3"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/luu-quang-uoc-vu-8de19664ffe4-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 34430,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/luu-quang-uoc-vu-8de19664ffe4-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 64290,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/luu-quang-uoc-vu-8de19664ffe4-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 137768,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "huyen-thoai-bat-tu-lai-bang",
       "name": "Huyền thoại bất tử: Lai Bâng",
       "description": "",
@@ -12011,6 +12058,53 @@
           "width": 1600,
           "height": 893,
           "bytes": 107408,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "luu-quanh-uoc-vu",
+      "name": "Lưu Quanh Ước Vũ",
+      "description": "",
+      "category": "Krixi",
+      "rank": "SS+",
+      "rankOrder": 4,
+      "credit": "Bee",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/luu-quanh-uoc-vu-5164020b21e7-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/luu-quanh-uoc-vu-5164020b21e7-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-08T15:37:45.598Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/luu-quanh-uoc-vu-404a1c44def80986.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 657571,
+        "mimeType": "image/jpeg",
+        "sha256": "404a1c44def80986b2166651698ee6f30f409c97041cc124d5b795bc7b1da7a3"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/luu-quanh-uoc-vu-5164020b21e7-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 34430,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/luu-quanh-uoc-vu-5164020b21e7-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 64290,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/luu-quanh-uoc-vu-5164020b21e7-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 137768,
           "mimeType": "image/webp"
         }
       }
@@ -22800,6 +22894,54 @@
       }
     },
     {
+      "id": "xuc-xich-thit-ngua",
+      "name": "Xúc xích thịt ngựa",
+      "description": "",
+      "category": "Volkath",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Vin",
+      "skinline": "Thịt và đồng loại",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/xuc-xich-thit-ngua-23c83367b990-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/xuc-xich-thit-ngua-23c83367b990-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-08T15:39:57.498Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/xuc-xich-thit-ngua-9d4680d3d30ada98.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 656990,
+        "mimeType": "image/jpeg",
+        "sha256": "9d4680d3d30ada98b6e097874a5e4c4e768ff14347f019c7fee24870580fc237"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/xuc-xich-thit-ngua-23c83367b990-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 37448,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/xuc-xich-thit-ngua-23c83367b990-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 67954,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/xuc-xich-thit-ngua-23c83367b990-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 138858,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "hoa-nguc-giai-nguyen",
       "name": "Hỏa ngục giải nguyền",
       "description": "",
@@ -24901,6 +25043,100 @@
         "bytes": 986197,
         "mimeType": "image/jpeg",
         "sha256": "c8940f3a2d7ffa9c7427df4c531bdcd806d42622737b8d3a232dfb60bc6901c4"
+      }
+    },
+    {
+      "id": "nguyet-vu-luu-quang-2",
+      "name": "Nguyệt Vũ Lưu Quang",
+      "description": "",
+      "category": "Yue",
+      "rank": "SSS",
+      "rankOrder": 5,
+      "credit": "Sol",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nguyet-vu-luu-quang-2-28d85fd26b8b-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nguyet-vu-luu-quang-2-28d85fd26b8b-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-08T15:36:29.907Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/nguyet-vu-luu-quang-2-4a0e3549aa9fde70.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 817342,
+        "mimeType": "image/jpeg",
+        "sha256": "4a0e3549aa9fde70909c37eb98917e647317937098081bc4429c993c037a342e"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nguyet-vu-luu-quang-2-28d85fd26b8b-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 35556,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nguyet-vu-luu-quang-2-28d85fd26b8b-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 67372,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nguyet-vu-luu-quang-2-28d85fd26b8b-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 140218,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "nguyet-vu-luu-quang",
+      "name": "Nguyệt Vũ Lưu Quang",
+      "description": "",
+      "category": "Yue",
+      "rank": "SSS",
+      "rankOrder": 5,
+      "credit": "Sol",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nguyet-vu-luu-quang-1037ad2ac211-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nguyet-vu-luu-quang-1037ad2ac211-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-08T15:35:23.498Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/nguyet-vu-luu-quang-4a0e3549aa9fde70.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 817342,
+        "mimeType": "image/jpeg",
+        "sha256": "4a0e3549aa9fde70909c37eb98917e647317937098081bc4429c993c037a342e"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nguyet-vu-luu-quang-1037ad2ac211-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 35556,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nguyet-vu-luu-quang-1037ad2ac211-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 67372,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nguyet-vu-luu-quang-1037ad2ac211-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 140218,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
