@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-08T15:20:38.010Z",
+  "generatedAt": "2026-10-08T15:24:55.928Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -10728,6 +10728,54 @@
       }
     },
     {
+      "id": "ty-muoi-thien-hoa",
+      "name": "Tỷ muội thiên hoa",
+      "description": "",
+      "category": "Ilumia",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Yokyn",
+      "skinline": "Tỷ muội thiên hoa",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ty-muoi-thien-hoa-2c5e55b67e1f-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ty-muoi-thien-hoa-2c5e55b67e1f-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-08T15:23:46.313Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/ty-muoi-thien-hoa-20a1e6cdc4b9bc83.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 808391,
+        "mimeType": "image/jpeg",
+        "sha256": "20a1e6cdc4b9bc832b228b0e813c3a50b628070f7c5c5a58e73a0d048a2abca3"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ty-muoi-thien-hoa-2c5e55b67e1f-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 34880,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ty-muoi-thien-hoa-2c5e55b67e1f-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 62910,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ty-muoi-thien-hoa-2c5e55b67e1f-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 126408,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "wave-13",
       "name": "WAVE",
       "description": "",
@@ -12154,6 +12202,54 @@
           "width": 1600,
           "height": 893,
           "bytes": 123212,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "ty-muoi-thien-hoa-2",
+      "name": "Tỷ muội thiên hoa",
+      "description": "",
+      "category": "Lauriel",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Yokyn",
+      "skinline": "Tỷ muội thiên hoa",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ty-muoi-thien-hoa-2-593942aa4a21-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ty-muoi-thien-hoa-2-593942aa4a21-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-08T15:24:20.607Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/ty-muoi-thien-hoa-2-afc4f5c4a43ecf19.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 566060,
+        "mimeType": "image/jpeg",
+        "sha256": "afc4f5c4a43ecf19342731ba345a83c2457b31b6e5672fc5120eb654e469751c"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ty-muoi-thien-hoa-2-593942aa4a21-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 38456,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ty-muoi-thien-hoa-2-593942aa4a21-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 68926,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ty-muoi-thien-hoa-2-593942aa4a21-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 138284,
           "mimeType": "image/webp"
         }
       }
@@ -16006,6 +16102,53 @@
           "width": 1600,
           "height": 893,
           "bytes": 103788,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "xu-so-than-tien-2",
+      "name": "Xứ sở thần tiên",
+      "description": "",
+      "category": "Natalya",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/xu-so-than-tien-2-d72fe6e1d4a8-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/xu-so-than-tien-2-d72fe6e1d4a8-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-08T15:22:54.079Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/xu-so-than-tien-2-452107f73b6af88b.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 675074,
+        "mimeType": "image/jpeg",
+        "sha256": "452107f73b6af88be51377a3d8631a1aa5994584759fe3388621798fd321a246"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/xu-so-than-tien-2-d72fe6e1d4a8-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 35246,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/xu-so-than-tien-2-d72fe6e1d4a8-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 66970,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/xu-so-than-tien-2-d72fe6e1d4a8-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 137880,
           "mimeType": "image/webp"
         }
       }
@@ -25274,7 +25417,8 @@
     "Bá khí quý ông",
     "Huyết Binh",
     "Phá tan tiệc cưới",
-    "DJ Đa Sắc"
+    "DJ Đa Sắc",
+    "Tỷ muội thiên hoa"
   ],
   "universes": [
     {
