@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-08T15:24:55.928Z",
+  "generatedAt": "2026-10-08T15:30:07.586Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -13778,6 +13778,53 @@
       }
     },
     {
+      "id": "girl-pho-noi-loan",
+      "name": "Girl Phố nổi loạn",
+      "description": "",
+      "category": "Marja",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Raphena",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/girl-pho-noi-loan-a2924fb33671-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/girl-pho-noi-loan-a2924fb33671-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-08T15:29:36.614Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/girl-pho-noi-loan-49a7393ffbf2db3c.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 478732,
+        "mimeType": "image/jpeg",
+        "sha256": "49a7393ffbf2db3c14147dfda0aa604a92d15ad73d069d4e92dd777db6082782"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/girl-pho-noi-loan-a2924fb33671-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 16252,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/girl-pho-noi-loan-a2924fb33671-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 29800,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/girl-pho-noi-loan-a2924fb33671-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 61010,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "huyet-nguyet-hong-mong",
       "name": "Huyết nguyệt hồng mộng",
       "description": "",
@@ -13820,6 +13867,100 @@
           "width": 1600,
           "height": 893,
           "bytes": 77390,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "ma-nu-thoi-thuong-2",
+      "name": "Ma nữ thời thượng",
+      "description": "",
+      "category": "Marja",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Raphena",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ma-nu-thoi-thuong-2-858c10c30585-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ma-nu-thoi-thuong-2-858c10c30585-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-08T15:26:45.915Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/ma-nu-thoi-thuong-2-5e4a6bb05efd0f94.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 495187,
+        "mimeType": "image/jpeg",
+        "sha256": "5e4a6bb05efd0f94dad547ba52ca7aad8dd046ec19d5fd05a46c021525cf30ec"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ma-nu-thoi-thuong-2-858c10c30585-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 16240,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ma-nu-thoi-thuong-2-858c10c30585-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 30518,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ma-nu-thoi-thuong-2-858c10c30585-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 64032,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "suu-tap-thu-bong",
+      "name": "Sưu tập thú bông",
+      "description": "",
+      "category": "Marja",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Raphena",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/suu-tap-thu-bong-9773b05462f0-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/suu-tap-thu-bong-9773b05462f0-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-08T15:29:01.397Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/suu-tap-thu-bong-67677eb0481b5c24.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 578730,
+        "mimeType": "image/jpeg",
+        "sha256": "67677eb0481b5c248756a3c6fd99412fa42abbf1b78cd8d907f635debcd4a502"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/suu-tap-thu-bong-9773b05462f0-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 18216,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/suu-tap-thu-bong-9773b05462f0-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 35250,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/suu-tap-thu-bong-9773b05462f0-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 74348,
           "mimeType": "image/webp"
         }
       }
