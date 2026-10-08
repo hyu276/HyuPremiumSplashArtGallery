@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-08T15:54:07.923Z",
+  "generatedAt": "2026-10-08T16:50:36.692Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -25386,7 +25386,7 @@
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nguyet-vu-luu-quang-1037ad2ac211-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nguyet-vu-luu-quang-1037ad2ac211-1600.webp",
       "tags": [],
-      "hidden": false,
+      "hidden": true,
       "isVietnameseSkin": false,
       "updatedAt": "2026-10-08T15:35:23.498Z",
       "expanded": {
