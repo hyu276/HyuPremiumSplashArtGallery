@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-08T16:50:36.692Z",
+  "generatedAt": "2026-10-09T10:37:00.010Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -6363,6 +6363,54 @@
         "bytes": 568540,
         "mimeType": "image/jpeg",
         "sha256": "35a22307c25c4de49e9f280aadae9cbeb40c2ec6579cc7b68d38ad2660d26cc4"
+      }
+    },
+    {
+      "id": "be-nguyet-tu-hoa",
+      "name": "Bế Nguyệt Tu Hoa",
+      "description": "",
+      "category": "Điêu Thuyền",
+      "rank": "SSS",
+      "rankOrder": 5,
+      "credit": "Yokyn",
+      "skinline": "Bế Nguyệt Tu Hoa",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/be-nguyet-tu-hoa-1bd50628f6db-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/be-nguyet-tu-hoa-1bd50628f6db-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-09T10:36:31.796Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/be-nguyet-tu-hoa-52e5d6f531f3e684.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 1018619,
+        "mimeType": "image/jpeg",
+        "sha256": "52e5d6f531f3e684b8f42b15ef0caf11e47adb214bf40a6c273eecf82b7f8c06"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/be-nguyet-tu-hoa-1bd50628f6db-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 42112,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/be-nguyet-tu-hoa-1bd50628f6db-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 81002,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/be-nguyet-tu-hoa-1bd50628f6db-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 176534,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -13923,24 +13971,12 @@
       "name": "Chị đại của phố",
       "description": "",
       "category": "Marja",
-      "rank": "S",
-      "rankOrder": 1,
+      "rank": "S+",
+      "rankOrder": 2,
       "credit": "Long",
       "universes": [],
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/chi-ai-cua-pho-e3e80c9c2aec-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/chi-ai-cua-pho-e3e80c9c2aec-1600.webp",
-      "tags": [],
-      "hidden": false,
-      "isVietnameseSkin": false,
-      "updatedAt": "2026-10-08T15:49:11.675Z",
-      "expanded": {
-        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/chi-ai-cua-pho-1aa9169bd9e97878.jpg",
-        "width": 2752,
-        "height": 1536,
-        "bytes": 537832,
-        "mimeType": "image/jpeg",
-        "sha256": "1aa9169bd9e978787a10f0ef2faec9e6b84ffc2b503332135834e6e4dfbf33e9"
-      },
       "variants": {
         "640": {
           "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/chi-ai-cua-pho-e3e80c9c2aec-640.webp",
@@ -13963,54 +13999,19 @@
           "bytes": 66658,
           "mimeType": "image/webp"
         }
-      }
-    },
-    {
-      "id": "lanh-lung-quay-got",
-      "name": "Lạnh lùng quay gót",
-      "description": "",
-      "category": "Marja",
-      "rank": "S",
-      "rankOrder": 1,
-      "credit": "Long",
-      "universes": [],
-      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/lanh-lung-quay-got-e4434c6d8d02-1600.webp",
-      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/lanh-lung-quay-got-e4434c6d8d02-1600.webp",
+      },
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/chi-ai-cua-pho-1aa9169bd9e97878.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 537832,
+        "mimeType": "image/jpeg",
+        "sha256": "1aa9169bd9e978787a10f0ef2faec9e6b84ffc2b503332135834e6e4dfbf33e9"
+      },
       "tags": [],
       "hidden": false,
       "isVietnameseSkin": false,
-      "updatedAt": "2026-10-08T15:48:59.430Z",
-      "expanded": {
-        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/lanh-lung-quay-got-e703430efc81c875.jpg",
-        "width": 2752,
-        "height": 1536,
-        "bytes": 594108,
-        "mimeType": "image/jpeg",
-        "sha256": "e703430efc81c8755477d15e33f2c75954235ee437cda8ac0c66feaa86bae0ea"
-      },
-      "variants": {
-        "640": {
-          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/lanh-lung-quay-got-e4434c6d8d02-640.webp",
-          "width": 640,
-          "height": 357,
-          "bytes": 18606,
-          "mimeType": "image/webp"
-        },
-        "960": {
-          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/lanh-lung-quay-got-e4434c6d8d02-960.webp",
-          "width": 960,
-          "height": 536,
-          "bytes": 35494,
-          "mimeType": "image/webp"
-        },
-        "1600": {
-          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/lanh-lung-quay-got-e4434c6d8d02-1600.webp",
-          "width": 1600,
-          "height": 893,
-          "bytes": 75004,
-          "mimeType": "image/webp"
-        }
-      }
+      "updatedAt": "2026-10-09T10:35:35.771Z"
     },
     {
       "id": "inh-cao-xao-mi",
@@ -14152,6 +14153,53 @@
           "mimeType": "image/webp"
         }
       }
+    },
+    {
+      "id": "lanh-lung-quay-got",
+      "name": "Lạnh lùng quay gót",
+      "description": "",
+      "category": "Marja",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Long",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/lanh-lung-quay-got-e4434c6d8d02-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/lanh-lung-quay-got-e4434c6d8d02-1600.webp",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/lanh-lung-quay-got-e4434c6d8d02-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 18606,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/lanh-lung-quay-got-e4434c6d8d02-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 35494,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/lanh-lung-quay-got-e4434c6d8d02-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 75004,
+          "mimeType": "image/webp"
+        }
+      },
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/lanh-lung-quay-got-e703430efc81c875.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 594108,
+        "mimeType": "image/jpeg",
+        "sha256": "e703430efc81c8755477d15e33f2c75954235ee437cda8ac0c66feaa86bae0ea"
+      },
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-09T10:35:28.110Z"
     },
     {
       "id": "ma-nu-thoi-thuong-2",
@@ -26077,7 +26125,8 @@
     "Huyết Binh",
     "Phá tan tiệc cưới",
     "DJ Đa Sắc",
-    "Tỷ muội thiên hoa"
+    "Tỷ muội thiên hoa",
+    "Bế Nguyệt Tu Hoa"
   ],
   "universes": [
     {
