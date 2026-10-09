@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-09T12:57:18.129Z",
+  "generatedAt": "2026-10-09T13:02:04.642Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -1575,6 +1575,53 @@
         "bytes": 672762,
         "mimeType": "image/jpeg",
         "sha256": "cb8179a95b081b7cc533fb00ece78da92587aea7ef667d55f1c65b0ee23e5794"
+      }
+    },
+    {
+      "id": "merry-chrismas-2",
+      "name": "Merry Chrismas",
+      "description": "",
+      "category": "Arum",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Kerrie",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/merry-chrismas-2-e6bf242d1007-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/merry-chrismas-2-e6bf242d1007-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-09T13:01:11.158Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/merry-chrismas-2-13cddc74a4c7a40b.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 899014,
+        "mimeType": "image/jpeg",
+        "sha256": "13cddc74a4c7a40b5be857c5b5f08f6a8090a52957176fc0003a1d5efbd29786"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/merry-chrismas-2-e6bf242d1007-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 42686,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/merry-chrismas-2-e6bf242d1007-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 79090,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/merry-chrismas-2-e6bf242d1007-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 159456,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -5742,6 +5789,53 @@
         "bytes": 722464,
         "mimeType": "image/jpeg",
         "sha256": "74ea89c824ee440ef163ce6d0e623387e2df67840f08b3d40f9924c0aecd8014"
+      }
+    },
+    {
+      "id": "giai-ieu-rung-xanh",
+      "name": "Giai điệu rừng xanh",
+      "description": "",
+      "category": "Capheny",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Long",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giai-ieu-rung-xanh-02f872be0b54-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giai-ieu-rung-xanh-02f872be0b54-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-09T13:00:48.263Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/giai-ieu-rung-xanh-5f86b43e6aec3402.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 804718,
+        "mimeType": "image/jpeg",
+        "sha256": "5f86b43e6aec340257bb04df12417d901f9844a62b28fb275bb9f77a22785fab"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giai-ieu-rung-xanh-02f872be0b54-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 33142,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giai-ieu-rung-xanh-02f872be0b54-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 61740,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giai-ieu-rung-xanh-02f872be0b54-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 128108,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -20889,6 +20983,53 @@
       }
     },
     {
+      "id": "pho-mai-con-bo-cuoi",
+      "name": "Phô mai con bò cười",
+      "description": "",
+      "category": "Toro",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hyu",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/pho-mai-con-bo-cuoi-7d7dd51ba4f8-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/pho-mai-con-bo-cuoi-7d7dd51ba4f8-1600.webp",
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/pho-mai-con-bo-cuoi-7d7dd51ba4f8-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 26008,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/pho-mai-con-bo-cuoi-7d7dd51ba4f8-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 48528,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/pho-mai-con-bo-cuoi-7d7dd51ba4f8-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 101670,
+          "mimeType": "image/webp"
+        }
+      },
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/pho-mai-con-bo-cuoi-9a9c088250a546c5.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 518344,
+        "mimeType": "image/jpeg",
+        "sha256": "9a9c088250a546c512fe5ba051f621cdb1ad587681f63ca3046afa44de6d65ac"
+      },
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-09T13:00:55.799Z"
+    },
+    {
       "id": "tuyet-son-thanh-ve",
       "name": "Tuyết sơn thánh vệ",
       "description": "",
@@ -23998,53 +24139,6 @@
         "bytes": 582375,
         "mimeType": "image/jpeg",
         "sha256": "dc90a3ee15991b1abc705c318d168fbc65d99eefe6c3bf10f462d689bb10957f"
-      }
-    },
-    {
-      "id": "pho-mai-con-bo-cuoi",
-      "name": "Phô mai con bò cười",
-      "description": "",
-      "category": "Yorn",
-      "rank": "S+",
-      "rankOrder": 2,
-      "credit": "Hyu",
-      "universes": [],
-      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/pho-mai-con-bo-cuoi-7d7dd51ba4f8-1600.webp",
-      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/pho-mai-con-bo-cuoi-7d7dd51ba4f8-1600.webp",
-      "tags": [],
-      "hidden": false,
-      "isVietnameseSkin": false,
-      "updatedAt": "2026-10-05T11:10:37.239Z",
-      "expanded": {
-        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/pho-mai-con-bo-cuoi-9a9c088250a546c5.jpg",
-        "width": 2752,
-        "height": 1536,
-        "bytes": 518344,
-        "mimeType": "image/jpeg",
-        "sha256": "9a9c088250a546c512fe5ba051f621cdb1ad587681f63ca3046afa44de6d65ac"
-      },
-      "variants": {
-        "640": {
-          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/pho-mai-con-bo-cuoi-7d7dd51ba4f8-640.webp",
-          "width": 640,
-          "height": 357,
-          "bytes": 26008,
-          "mimeType": "image/webp"
-        },
-        "960": {
-          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/pho-mai-con-bo-cuoi-7d7dd51ba4f8-960.webp",
-          "width": 960,
-          "height": 536,
-          "bytes": 48528,
-          "mimeType": "image/webp"
-        },
-        "1600": {
-          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/pho-mai-con-bo-cuoi-7d7dd51ba4f8-1600.webp",
-          "width": 1600,
-          "height": 893,
-          "bytes": 101670,
-          "mimeType": "image/webp"
-        }
       }
     },
     {
