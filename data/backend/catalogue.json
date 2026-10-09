@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-09T12:56:54.875Z",
+  "generatedAt": "2026-10-09T12:57:18.129Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -12253,7 +12253,7 @@
     },
     {
       "id": "luu-quanh-uoc-vu",
-      "name": "Lưu Quanh Ước Vũ",
+      "name": "Lưu Quang Ước Vũ",
       "description": "",
       "category": "Krixi",
       "rank": "SS+",
@@ -12262,18 +12262,6 @@
       "universes": [],
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/luu-quanh-uoc-vu-5164020b21e7-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/luu-quanh-uoc-vu-5164020b21e7-1600.webp",
-      "tags": [],
-      "hidden": false,
-      "isVietnameseSkin": false,
-      "updatedAt": "2026-10-08T15:37:45.598Z",
-      "expanded": {
-        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/luu-quanh-uoc-vu-404a1c44def80986.jpg",
-        "width": 2752,
-        "height": 1536,
-        "bytes": 657571,
-        "mimeType": "image/jpeg",
-        "sha256": "404a1c44def80986b2166651698ee6f30f409c97041cc124d5b795bc7b1da7a3"
-      },
       "variants": {
         "640": {
           "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/luu-quanh-uoc-vu-5164020b21e7-640.webp",
@@ -12296,7 +12284,19 @@
           "bytes": 137768,
           "mimeType": "image/webp"
         }
-      }
+      },
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/luu-quanh-uoc-vu-404a1c44def80986.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 657571,
+        "mimeType": "image/jpeg",
+        "sha256": "404a1c44def80986b2166651698ee6f30f409c97041cc124d5b795bc7b1da7a3"
+      },
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-09T12:57:02.017Z"
     },
     {
       "id": "sieu-viet-12",
