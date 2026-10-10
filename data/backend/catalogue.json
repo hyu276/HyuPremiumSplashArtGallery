@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-09T19:25:25.429Z",
+  "generatedAt": "2026-10-10T04:32:10.249Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -3470,6 +3470,53 @@
         "bytes": 875382,
         "mimeType": "image/jpeg",
         "sha256": "bffaab8d89e5b670ddadc74fb434cfe1f111f3e70cc2f4a953ce68351c47404f"
+      }
+    },
+    {
+      "id": "chocolate-ngot-ngao",
+      "name": "Chocolate ngọt ngào",
+      "description": "",
+      "category": "Azzen'ka",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Raphena",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/chocolate-ngot-ngao-a31bb8b13ae5-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/chocolate-ngot-ngao-a31bb8b13ae5-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-10T04:29:42.330Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/chocolate-ngot-ngao-10ffd81f5577249d.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 687524,
+        "mimeType": "image/jpeg",
+        "sha256": "10ffd81f5577249dca7c758a5d51d64105ffb0e2dda6fc672e5dc0f60fba484c"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/chocolate-ngot-ngao-a31bb8b13ae5-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 38324,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/chocolate-ngot-ngao-a31bb8b13ae5-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 70104,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/chocolate-ngot-ngao-a31bb8b13ae5-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 148446,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -13343,6 +13390,100 @@
       }
     },
     {
+      "id": "tiec-lau-ai-cat",
+      "name": "Tiệc lâu đài cát",
+      "description": "",
+      "category": "Liliana",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Nhie",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-lau-ai-cat-68643d869876-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-lau-ai-cat-68643d869876-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-10T04:30:00.459Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/tiec-lau-ai-cat-e564089139819549.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 469989,
+        "mimeType": "image/jpeg",
+        "sha256": "e564089139819549c688d1a344c892fc6e82a19d656a401e34969560478f6b16"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-lau-ai-cat-68643d869876-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 24854,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-lau-ai-cat-68643d869876-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 44912,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-lau-ai-cat-68643d869876-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 93016,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "vua-au-bep",
+      "name": "Vua đầu bếp",
+      "description": "",
+      "category": "Liliana",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Nhie",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/vua-au-bep-383bde5dbd3f-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/vua-au-bep-383bde5dbd3f-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-10T04:30:13.614Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/vua-au-bep-5a44595125b03699.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 580175,
+        "mimeType": "image/jpeg",
+        "sha256": "5a44595125b0369914180fdebf8926ca462a212b0d42e01952b874f88cb457ae"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/vua-au-bep-383bde5dbd3f-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 33288,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/vua-au-bep-383bde5dbd3f-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 60344,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/vua-au-bep-383bde5dbd3f-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 123640,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "hac-mieu",
       "name": "Hắc Miêu",
       "description": "",
@@ -16372,6 +16513,53 @@
         "bytes": 729531,
         "mimeType": "image/jpeg",
         "sha256": "d013196a7b308f95a822b0a21b96ed7651514f7e3dd3303bfccc6a338e22cf2d"
+      }
+    },
+    {
+      "id": "chu-tiem-banh",
+      "name": "Chủ tiệm bánh",
+      "description": "",
+      "category": "Natalya",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Huy Khánh",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/chu-tiem-banh-550d34646e89-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/chu-tiem-banh-550d34646e89-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-10T04:29:55.861Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/chu-tiem-banh-b18f8e2c3103458d.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 582915,
+        "mimeType": "image/jpeg",
+        "sha256": "b18f8e2c3103458d5e2193f6fc858a494699191afc46e92125377f90681a0614"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/chu-tiem-banh-550d34646e89-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 31658,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/chu-tiem-banh-550d34646e89-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 59702,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/chu-tiem-banh-550d34646e89-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 122780,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -24423,6 +24611,54 @@
         "bytes": 752098,
         "mimeType": "image/jpeg",
         "sha256": "7d1532677edd63e7d1e2b4b6a34ac714e25f9d78285a24e9958998f43cf5c1d0"
+      }
+    },
+    {
+      "id": "tien-hac-am-2",
+      "name": "Tiên hắc ám",
+      "description": "",
+      "category": "Yena",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Long",
+      "skinline": "Tiên hắc ám",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tien-hac-am-2-ea8f6b3b273d-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tien-hac-am-2-ea8f6b3b273d-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-10T04:26:40.587Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/tien-hac-am-2-bde2241af3585ab0.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 395044,
+        "mimeType": "image/jpeg",
+        "sha256": "bde2241af3585ab0baf2f3628a72bc70f433761c53b6bc8208cec61e5c97baa1"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tien-hac-am-2-ea8f6b3b273d-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 17012,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tien-hac-am-2-ea8f6b3b273d-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 32532,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tien-hac-am-2-ea8f6b3b273d-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 72992,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
