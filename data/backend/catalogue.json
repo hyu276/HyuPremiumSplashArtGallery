@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-10T14:09:40.508Z",
+  "generatedAt": "2026-10-10T18:59:51.883Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -1003,6 +1003,53 @@
       }
     },
     {
+      "id": "ai-minh-tinh",
+      "name": "Đại minh tinh",
+      "description": "",
+      "category": "Amily",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Sol",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ai-minh-tinh-28cd6d557b5e-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ai-minh-tinh-28cd6d557b5e-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-10T18:58:31.958Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/ai-minh-tinh-d814d93e08c339ad.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 495827,
+        "mimeType": "image/jpeg",
+        "sha256": "d814d93e08c339ad4758721c485b3546a4c807ea73fb7b6a15f950237a57fc24"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ai-minh-tinh-28cd6d557b5e-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 24940,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ai-minh-tinh-28cd6d557b5e-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 47296,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ai-minh-tinh-28cd6d557b5e-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 95486,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "sieu-pham-girl-pho-4",
       "name": "Siêu phẩm Girl Phố",
       "description": "",
@@ -1241,6 +1288,53 @@
         "bytes": 2388968,
         "mimeType": "image/png",
         "sha256": "809c49161d587c3a95f59e72ec52f1937ddb24a745222218bfa55008d15ae92d"
+      }
+    },
+    {
+      "id": "moc-long-chi-hoa",
+      "name": "Mộc Long Chi Hoa",
+      "description": "",
+      "category": "Annette",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Sol",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/moc-long-chi-hoa-8a2f470ed084-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/moc-long-chi-hoa-8a2f470ed084-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-10T18:56:29.313Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/moc-long-chi-hoa-d1a08aadfd95e2e4.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 652940,
+        "mimeType": "image/jpeg",
+        "sha256": "d1a08aadfd95e2e4072b4d16d1d01f9d25945f37c06b5b77c3a95d32edd36290"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/moc-long-chi-hoa-8a2f470ed084-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 30520,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/moc-long-chi-hoa-8a2f470ed084-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 57920,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/moc-long-chi-hoa-8a2f470ed084-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 119012,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -11440,6 +11534,53 @@
       }
     },
     {
+      "id": "thuy-long-bo-tat",
+      "name": "Thuỷ Long Bồ tát",
+      "description": "",
+      "category": "Ilumia",
+      "rank": "SS+",
+      "rankOrder": 4,
+      "credit": "Tâm",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thuy-long-bo-tat-95df9fd24a0c-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thuy-long-bo-tat-95df9fd24a0c-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-10T18:55:11.233Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/thuy-long-bo-tat-299ec75a21619075.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 425631,
+        "mimeType": "image/jpeg",
+        "sha256": "299ec75a21619075c0b7cdcc54905e125ed4241253ea7df78ed47a7550277d44"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thuy-long-bo-tat-95df9fd24a0c-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 19964,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thuy-long-bo-tat-95df9fd24a0c-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 36346,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thuy-long-bo-tat-95df9fd24a0c-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 74330,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "van-co-inh-oat",
       "name": "Ván cờ định đoạt",
       "description": "",
@@ -14140,6 +14281,53 @@
         "bytes": 730601,
         "mimeType": "image/jpeg",
         "sha256": "63d795debca841ff6edb426ed6800bb6cd311c8feb3921ccae0f57f6b7a03f46"
+      }
+    },
+    {
+      "id": "huong-bua-an-truc",
+      "name": "Hưởng bữa ăn trực",
+      "description": "",
+      "category": "Liliana",
+      "rank": "SSS",
+      "rankOrder": 5,
+      "credit": "Bee",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huong-bua-an-truc-bfb96719edf9-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huong-bua-an-truc-bfb96719edf9-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-10T18:56:00.713Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/huong-bua-an-truc-67974f78d2363f07.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 565669,
+        "mimeType": "image/jpeg",
+        "sha256": "67974f78d2363f07f6703c66578033fa59b566e957df09390c5e34fa8f95b5e6"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huong-bua-an-truc-bfb96719edf9-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 27852,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huong-bua-an-truc-bfb96719edf9-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 51654,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huong-bua-an-truc-bfb96719edf9-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 108180,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -22161,6 +22349,53 @@
       }
     },
     {
+      "id": "u-linh-hai-nguu",
+      "name": "U linh hải ngưu",
+      "description": "",
+      "category": "Toro",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Vin",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/u-linh-hai-nguu-6ae96532263e-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/u-linh-hai-nguu-6ae96532263e-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-10T18:59:18.143Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/u-linh-hai-nguu-a04eb6d0ae990f84.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 593460,
+        "mimeType": "image/jpeg",
+        "sha256": "a04eb6d0ae990f84af827d7be7a264556356f83388ee7ddab54c1aff193de8fc"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/u-linh-hai-nguu-6ae96532263e-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 26128,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/u-linh-hai-nguu-6ae96532263e-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 50912,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/u-linh-hai-nguu-6ae96532263e-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 109258,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "cho-cao-bang-bo-pc",
       "name": "Chó cao bằng bộ PC",
       "description": "",
@@ -22205,6 +22440,53 @@
         "bytes": 2393944,
         "mimeType": "image/png",
         "sha256": "4558edb8db153252b490d65aa43db6c026ef79e9fd34047151de8a8818f62148"
+      }
+    },
+    {
+      "id": "cuc-thien-han-nguu",
+      "name": "Cực thiên hàn ngưu",
+      "description": "",
+      "category": "Toro",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Nhie",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/cuc-thien-han-nguu-c67fac6ab12a-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/cuc-thien-han-nguu-c67fac6ab12a-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-10T18:58:10.059Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/cuc-thien-han-nguu-b4624db852c9c705.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 698357,
+        "mimeType": "image/jpeg",
+        "sha256": "b4624db852c9c705d9a7ea48268a44552661d501d0ccf3b8a1b856e339cf9ed0"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/cuc-thien-han-nguu-c67fac6ab12a-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 26144,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/cuc-thien-han-nguu-c67fac6ab12a-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 48996,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/cuc-thien-han-nguu-c67fac6ab12a-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 103884,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -22439,6 +22721,53 @@
           "width": 1600,
           "height": 893,
           "bytes": 93170,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "triet-gia-thong-thai",
+      "name": "Triết gia thông thái",
+      "description": "",
+      "category": "Toro",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Nhie",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/triet-gia-thong-thai-e6dfcaef979f-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/triet-gia-thong-thai-e6dfcaef979f-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-10T18:56:57.362Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/triet-gia-thong-thai-34c4021f9f08347e.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 692168,
+        "mimeType": "image/jpeg",
+        "sha256": "34c4021f9f08347ebd5472b5921cc949f71da12a9a5425a0fcc9ef2d78c632b6"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/triet-gia-thong-thai-e6dfcaef979f-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 28060,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/triet-gia-thong-thai-e6dfcaef979f-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 55814,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/triet-gia-thong-thai-e6dfcaef979f-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 129990,
           "mimeType": "image/webp"
         }
       }
