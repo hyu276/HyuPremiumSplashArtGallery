@@ -13,7 +13,7 @@ const TRANSIENT_STATUS=new Set([408,425,429,500,502,503,504]);
 
 type GitHubUser={login?:string};
 type GitHubRepo={permissions?:{push?:boolean;admin?:boolean}};
-type GitHubContent={content?:string;encoding?:string};
+type GitHubContent={content?:string;encoding?:string;sha?:string;size?:number};
 type OwnerOptions={categories?:string[];ranks?:string[];credits?:string[]};
 type UniverseDef={name:string;skinlines:string[]};
 type TaxonomyRepresentatives={skinlines:Record<string,string>;universes:Record<string,string>};
@@ -47,7 +47,19 @@ async function verify(token:string){
 }
 
 function decodeBase64(content:string){return Buffer.from(content.replace(/\s/g,''),'base64').toString('utf8')}
-async function readJson<T>(token:string,file:string,branch=dataBranch()):Promise<T>{const result=await gh<GitHubContent>(token,`/repos/${REPO}/contents/${file}?ref=${encodeURIComponent(branch)}`);if(!result.content)throw new Error(`Không đọc được ${file} từ GitHub.`);return JSON.parse(result.encoding==='base64'?decodeBase64(result.content):result.content) as T}
+async function readJson<T>(token:string,file:string,branch=dataBranch()):Promise<T>{
+  const result=await gh<GitHubContent>(token,`/repos/${REPO}/contents/${file}?ref=${encodeURIComponent(branch)}`);
+  // GitHub Contents API deliberately omits content for files over 1 MiB.
+  // Its response still includes the blob SHA; the Git Blobs API handles files up to 100 MiB.
+  const source=result.content?result:result.sha
+    ?await gh<GitHubContent>(token,`/repos/${REPO}/git/blobs/${encodeURIComponent(result.sha)}`)
+    :null;
+  if(!source?.content)throw new Error(`GitHub không trả nội dung ${file} (size=${result.size||'unknown'}, sha=${result.sha||'missing'}).`);
+  if(source.encoding!=='base64'&&source.encoding!=='utf-8')throw new Error(`GitHub trả về encoding không được hỗ trợ cho ${file}.`);
+  const decoded=source.encoding==='base64'?decodeBase64(source.content):source.content;
+  try{return JSON.parse(decoded) as T}
+  catch{throw new Error(`Metadata ${file} không phải JSON hợp lệ. Không cập nhật để tránh ghi đè dữ liệu.`)}
+}
 function alpha(a:string,b:string){return String(a).localeCompare(String(b),undefined,{sensitivity:'base',numeric:true})}
 function unique(values:string[]){return [...new Set(values.map(String).map(x=>x.trim()).filter(Boolean))].sort(alpha)}
 function orderedUnique(values:string[]){const out:string[]=[];for(const raw of values){const name=String(raw).trim();if(name&&!out.some(value=>value.toLowerCase()===name.toLowerCase()))out.push(name)}return out}
