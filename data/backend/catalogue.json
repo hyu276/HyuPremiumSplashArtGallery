@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-10T06:07:12.397Z",
+  "generatedAt": "2026-10-10T06:56:50.307Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -12916,7 +12916,7 @@
     },
     {
       "id": "chanh-vang-lenh-lang",
-      "name": "Chanh vàng lênh láng",
+      "name": "Chanh vàng trong làng",
       "description": "",
       "category": "Laville",
       "rank": "S+",
@@ -12925,18 +12925,6 @@
       "universes": [],
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/chanh-vang-lenh-lang-4d588f21a87c-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/chanh-vang-lenh-lang-4d588f21a87c-1600.webp",
-      "tags": [],
-      "hidden": false,
-      "isVietnameseSkin": false,
-      "updatedAt": "2026-10-09T15:09:57.915Z",
-      "expanded": {
-        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/chanh-vang-lenh-lang-d910ee5a3e865815.jpg",
-        "width": 2752,
-        "height": 1536,
-        "bytes": 557571,
-        "mimeType": "image/jpeg",
-        "sha256": "d910ee5a3e865815bae4d064fddb242b6459d84d7648e43e8e7fbd65de602f80"
-      },
       "variants": {
         "640": {
           "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/chanh-vang-lenh-lang-4d588f21a87c-640.webp",
@@ -12959,7 +12947,19 @@
           "bytes": 121432,
           "mimeType": "image/webp"
         }
-      }
+      },
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/chanh-vang-lenh-lang-d910ee5a3e865815.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 557571,
+        "mimeType": "image/jpeg",
+        "sha256": "d910ee5a3e865815bae4d064fddb242b6459d84d7648e43e8e7fbd65de602f80"
+      },
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-10T06:55:17.034Z"
     },
     {
       "id": "soai-ca-say-hi-3",
