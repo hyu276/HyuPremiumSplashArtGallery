@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-10T04:39:00.853Z",
+  "generatedAt": "2026-10-10T06:07:12.397Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -5892,22 +5892,10 @@
       "category": "Capheny",
       "rank": "S+",
       "rankOrder": 2,
-      "credit": "Cehynz",
+      "credit": "Chưa có credit",
       "universes": [],
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nova-citrus-cd4c12009270-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nova-citrus-cd4c12009270-1600.webp",
-      "tags": [],
-      "hidden": false,
-      "isVietnameseSkin": false,
-      "updatedAt": "2026-10-04T14:56:56.561Z",
-      "expanded": {
-        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/nova-citrus-4fff63e9013b3f16.jpg",
-        "width": 2752,
-        "height": 1536,
-        "bytes": 582086,
-        "mimeType": "image/jpeg",
-        "sha256": "4fff63e9013b3f164743a284e56f8f72fc847e7f8a643119c822e8e5209cd2ec"
-      },
       "variants": {
         "640": {
           "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nova-citrus-cd4c12009270-640.webp",
@@ -5930,7 +5918,19 @@
           "bytes": 113992,
           "mimeType": "image/webp"
         }
-      }
+      },
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/nova-citrus-4fff63e9013b3f16.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 582086,
+        "mimeType": "image/jpeg",
+        "sha256": "4fff63e9013b3f164743a284e56f8f72fc847e7f8a643119c822e8e5209cd2ec"
+      },
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-10T06:04:36.720Z"
     },
     {
       "id": "tiec-tung-ngot-ngao-2",
@@ -12067,16 +12067,13 @@
       "id": "ao-mieu",
       "name": "Miêu Linh Đào mộng",
       "description": "",
-      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ao-mieu-422d9dd69147-1600.webp",
-      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ao-mieu-422d9dd69147-1600.webp",
-      "tags": [],
-      "hidden": false,
       "category": "Keera",
       "rank": "SS",
       "rankOrder": 3,
-      "credit": "Cehynz",
-      "isVietnameseSkin": false,
-      "updatedAt": "2026-08-25T16:22:24.138711+00:00",
+      "credit": "Chưa có credit",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ao-mieu-422d9dd69147-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ao-mieu-422d9dd69147-1600.webp",
       "variants": {
         "640": {
           "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ao-mieu-422d9dd69147-640.webp",
@@ -12100,7 +12097,6 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": [],
       "expanded": {
         "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/ao-mieu-143bfd13524c8f7d.jpg",
         "width": 2752,
@@ -12108,7 +12104,11 @@
         "bytes": 540436,
         "mimeType": "image/jpeg",
         "sha256": "143bfd13524c8f7df3d4876c40a1a3af2c74a86b5073fe26a5d95e2d9d6b8e49"
-      }
+      },
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-10T06:04:41.881Z"
     },
     {
       "id": "u-minh-linh-nu",
@@ -13065,13 +13065,11 @@
       "category": "Liliana",
       "rank": "S",
       "rankOrder": 1,
-      "credit": "Cehynz",
+      "credit": "Chưa có credit",
+      "skinline": "Mị ảnh",
+      "universes": [],
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thoi-xuan-mi-anh-bc39fcb0f297-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thoi-xuan-mi-anh-bc39fcb0f297-1600.webp",
-      "tags": [],
-      "hidden": false,
-      "isVietnameseSkin": false,
-      "updatedAt": "2026-09-03T13:45:25.118Z",
       "variants": {
         "640": {
           "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thoi-xuan-mi-anh-bc39fcb0f297-640.webp",
@@ -13095,8 +13093,6 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": [],
-      "skinline": "Mị ảnh",
       "expanded": {
         "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/thoi-xuan-mi-anh-0f98c00e411fc54d.jpg",
         "width": 2752,
@@ -13104,7 +13100,11 @@
         "bytes": 450206,
         "mimeType": "image/jpeg",
         "sha256": "0f98c00e411fc54da6f85f775c3b832a448be45429baf681280612ee289ae886"
-      }
+      },
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-10T06:04:47.199Z"
     },
     {
       "id": "ao-nguyet",
@@ -20219,13 +20219,10 @@
       "category": "Taara",
       "rank": "SSS",
       "rankOrder": 5,
-      "credit": "Cehynz",
+      "credit": "Chưa có credit",
+      "universes": [],
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/lang-kinh-hong-quang-79f6206524cb-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/lang-kinh-hong-quang-79f6206524cb-1600.webp",
-      "tags": [],
-      "hidden": true,
-      "isVietnameseSkin": false,
-      "updatedAt": "2026-09-12T11:53:46.354Z",
       "variants": {
         "640": {
           "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/lang-kinh-hong-quang-79f6206524cb-640.webp",
@@ -20249,7 +20246,6 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": [],
       "expanded": {
         "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/lang-kinh-hong-quang-b4efa2f65a4cf747.jpg",
         "width": 2752,
@@ -20257,7 +20253,11 @@
         "bytes": 615358,
         "mimeType": "image/jpeg",
         "sha256": "b4efa2f65a4cf7473298bcc5c2531bf33bed7daff3e1f038cc3fa3e59c35be67"
-      }
+      },
+      "tags": [],
+      "hidden": true,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-10T06:05:26.615Z"
     },
     {
       "id": "lang-tu-hoa-hong",
@@ -20835,13 +20835,13 @@
       "category": "Tel'Annas",
       "rank": "A",
       "rankOrder": 0,
-      "credit": "Cehynz",
+      "credit": "Chưa có credit",
+      "skinline": "Dân chơi",
+      "universes": [
+        "Flexer"
+      ],
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/playgirl-o-thi-f384b6a1de8a-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/playgirl-o-thi-f384b6a1de8a-1600.webp",
-      "tags": [],
-      "hidden": false,
-      "isVietnameseSkin": false,
-      "updatedAt": "2026-09-03T13:29:21.609Z",
       "variants": {
         "640": {
           "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/playgirl-o-thi-f384b6a1de8a-640.webp",
@@ -20865,10 +20865,6 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": [
-        "Flexer"
-      ],
-      "skinline": "Dân chơi",
       "expanded": {
         "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/playgirl-o-thi-b6fd1eddf18e8e0d.jpg",
         "width": 2752,
@@ -20876,7 +20872,11 @@
         "bytes": 378438,
         "mimeType": "image/jpeg",
         "sha256": "b6fd1eddf18e8e0d4dec7972a950799c211d3fe89a915399cb63298f6c993841"
-      }
+      },
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-10T06:04:52.232Z"
     },
     {
       "id": "linh-vu-tien",
@@ -26905,7 +26905,6 @@
   ],
   "credits": [
     "Bee",
-    "Cehynz",
     "Chưa có credit",
     "Hie Lee",
     "Hiemaru",
@@ -27042,7 +27041,6 @@
     ],
     "credits": [
       "Bee",
-      "Cehynz",
       "Chưa có credit",
       "Hie Lee",
       "Hiemaru",
