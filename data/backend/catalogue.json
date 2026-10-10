@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-10T18:59:51.883Z",
+  "generatedAt": "2026-10-10T19:02:47.332Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -1239,6 +1239,54 @@
           "width": 1600,
           "height": 893,
           "bytes": 116242,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "u-minh-phu-su",
+      "name": "U Minh Phù Sư",
+      "description": "",
+      "category": "Annette",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Vin",
+      "skinline": "U Linh Mệnh",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/u-minh-phu-su-c4227c7169b4-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/u-minh-phu-su-c4227c7169b4-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-10T19:02:37.555Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/u-minh-phu-su-9f3e5e5289edd238.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 786065,
+        "mimeType": "image/jpeg",
+        "sha256": "9f3e5e5289edd2382b83ae6b9255f7c3193717a7634d03705402faaeddc29ba8"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/u-minh-phu-su-c4227c7169b4-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 31094,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/u-minh-phu-su-c4227c7169b4-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 59188,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/u-minh-phu-su-c4227c7169b4-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 124092,
           "mimeType": "image/webp"
         }
       }
@@ -2949,7 +2997,8 @@
           "bytes": 109042,
           "mimeType": "image/webp"
         }
-      }
+      },
+      "skinline": "U Linh Mệnh"
     },
     {
       "id": "vu-ieu-samba",
@@ -22393,7 +22442,8 @@
           "bytes": 109258,
           "mimeType": "image/webp"
         }
-      }
+      },
+      "skinline": "U Linh Mệnh"
     },
     {
       "id": "cho-cao-bang-bo-pc",
@@ -28058,7 +28108,8 @@
     "DJ Đa Sắc",
     "Tỷ muội thiên hoa",
     "Bế Nguyệt Tu Hoa",
-    "Tiệc tùng ngọt ngào"
+    "Tiệc tùng ngọt ngào",
+    "U Linh Mệnh"
   ],
   "universes": [
     {
