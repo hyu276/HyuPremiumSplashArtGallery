@@ -32,8 +32,10 @@ The admin currently crosses service boundaries, so CORS is a production contract
 
 ## 4. Authentication rules
 
-- GitHub fine-grained PATs must remain in memory for the active tab only.
-- Never store PATs in repository files, localStorage, sessionStorage, analytics, logs, URLs, or query parameters.
+- GitHub fine-grained PATs must never be saved in cleartext in repository files, localStorage, sessionStorage, analytics, logs, URLs, or query parameters.
+- At the owner's explicit request, trusted-device session persistence may store only an AES-GCM encrypted PAT in IndexedDB, protected by a non-extractable WebCrypto key stored in IndexedDB. Save only after successful GitHub permission verification; explicit logout must clear stored credential and key.
+- Encrypted browser storage does **not** protect against malicious JavaScript executing under the same origin. Keep all GitHub Pages scripts trusted and protect against XSS; restrict fine-grained PAT to the single repository and least permissions.
+- On temporary metadata/transport failure, preserve the encrypted session and provide a retry path. Revoked/expired PATs cannot grant continued access.
 - Never print authorization headers or token fragments.
 - Worker admin writes must independently verify owner identity and repository write permission.
 - A Cloudflare Access bypass for the media Worker does not replace Worker-level GitHub PAT authentication.

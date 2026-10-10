@@ -1,0 +1,49 @@
+name: Build admin bundle
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'components/GitHubAdminDashboard.tsx'
+      - 'components/AdminTaxonomyManager.tsx'
+      - 'components/AdminCompactPicker.tsx'
+      - 'lib/admin-persistent-session.ts'
+      - 'admin-src/entry.tsx'
+      - 'package.json'
+      - 'tsconfig.json'
+      - '.github/workflows/admin-build.yml'
+permissions:
+  contents: write
+concurrency:
+  group: admin-bundle-main
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install dependencies
+        run: npm install --no-save --no-package-lock --no-audit --no-fund
+      - name: Typecheck
+        run: npm run typecheck
+      - name: Build GitHub Pages admin JavaScript
+        run: npm run admin:build
+      - name: Commit updated browser bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- assets/js/admin-github.bundle.js; then
+            echo 'Admin bundle is up to date.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/js/admin-github.bundle.js
+          git commit -m "build(admin): regenerate GitHub Pages dashboard bundle"
+          git pull --rebase origin main
+          git push origin HEAD:main
