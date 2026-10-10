@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-10T19:02:47.332Z",
+  "generatedAt": "2026-10-10T19:08:11.749Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -22017,6 +22017,53 @@
         "bytes": 499616,
         "mimeType": "image/jpeg",
         "sha256": "582e95254be4ffaf86bb4a4f1574f87d7d9ea271ec02fe4d9e63f0b1f0c9bb20"
+      }
+    },
+    {
+      "id": "ieu-mua-chan-ong",
+      "name": "Điệu múa chấn động",
+      "description": "",
+      "category": "Toro",
+      "rank": "A",
+      "rankOrder": 0,
+      "credit": "Kerrie",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ieu-mua-chan-ong-502a48f1bc53-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ieu-mua-chan-ong-502a48f1bc53-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-10T19:08:03.703Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/ieu-mua-chan-ong-9f8105dde8fb6a16.jpg",
+        "width": 1280,
+        "height": 714,
+        "bytes": 121943,
+        "mimeType": "image/jpeg",
+        "sha256": "9f8105dde8fb6a16d276307f1eac9e59aa3f8ff2b00e93db2b5b85d9664f0a47"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ieu-mua-chan-ong-502a48f1bc53-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 19656,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ieu-mua-chan-ong-502a48f1bc53-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 34980,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ieu-mua-chan-ong-502a48f1bc53-1600.webp",
+          "width": 1280,
+          "height": 714,
+          "bytes": 53962,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
