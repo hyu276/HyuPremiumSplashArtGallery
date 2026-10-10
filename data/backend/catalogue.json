@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-10T11:26:31.805Z",
+  "generatedAt": "2026-10-10T11:32:16.148Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -1395,22 +1395,10 @@
       "category": "Aoi",
       "rank": "S+",
       "rankOrder": 2,
-      "credit": "Bee",
+      "credit": "Sol",
       "universes": [],
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thu-linh-ca-map-8f63c0140789-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thu-linh-ca-map-8f63c0140789-1600.webp",
-      "tags": [],
-      "hidden": false,
-      "isVietnameseSkin": false,
-      "updatedAt": "2026-10-10T11:24:25.187Z",
-      "expanded": {
-        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/thu-linh-ca-map-3f7a438132c19a6b.jpg",
-        "width": 2752,
-        "height": 1536,
-        "bytes": 608269,
-        "mimeType": "image/jpeg",
-        "sha256": "3f7a438132c19a6bb3a2fdb3d4b66c83fc43530cd5e270f8726f89c08e812ab5"
-      },
       "variants": {
         "640": {
           "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thu-linh-ca-map-8f63c0140789-640.webp",
@@ -1433,7 +1421,19 @@
           "bytes": 135768,
           "mimeType": "image/webp"
         }
-      }
+      },
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/thu-linh-ca-map-3f7a438132c19a6b.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 608269,
+        "mimeType": "image/jpeg",
+        "sha256": "3f7a438132c19a6bb3a2fdb3d4b66c83fc43530cd5e270f8726f89c08e812ab5"
+      },
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-10T11:29:20.041Z"
     },
     {
       "id": "vu-ieu-to",
@@ -11393,6 +11393,53 @@
       }
     },
     {
+      "id": "phuong-hoang-thanh-mau",
+      "name": "Phượng Hoàng Thánh Mẫu",
+      "description": "",
+      "category": "Ilumia",
+      "rank": "SS+",
+      "rankOrder": 4,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/phuong-hoang-thanh-mau-c8cb541cfa6d-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/phuong-hoang-thanh-mau-c8cb541cfa6d-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-10T11:29:58.399Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/phuong-hoang-thanh-mau-d59be6398a810bd6.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 630873,
+        "mimeType": "image/jpeg",
+        "sha256": "d59be6398a810bd60c6cc3bb0e2371490243fadb9e8708758c45196822919410"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/phuong-hoang-thanh-mau-c8cb541cfa6d-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 35876,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/phuong-hoang-thanh-mau-c8cb541cfa6d-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 67194,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/phuong-hoang-thanh-mau-c8cb541cfa6d-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 140928,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "van-co-inh-oat",
       "name": "Ván cờ định đoạt",
       "description": "",
@@ -12530,6 +12577,53 @@
           "width": 1600,
           "height": 893,
           "bytes": 107408,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "samurai-huyen-long",
+      "name": "Samurai Huyền Long",
+      "description": "",
+      "category": "Krixi",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/samurai-huyen-long-ca6be11b508e-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/samurai-huyen-long-ca6be11b508e-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-10T11:30:19.177Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/samurai-huyen-long-bd470d481842bd31.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 687792,
+        "mimeType": "image/jpeg",
+        "sha256": "bd470d481842bd312242f5b5df0b55753e66a82fc8a1b9868ef9c715c6cb306d"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/samurai-huyen-long-ca6be11b508e-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 38534,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/samurai-huyen-long-ca6be11b508e-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 74116,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/samurai-huyen-long-ca6be11b508e-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 155004,
           "mimeType": "image/webp"
         }
       }
@@ -22065,6 +22159,53 @@
         "bytes": 736534,
         "mimeType": "image/jpeg",
         "sha256": "1aac05468df1f08f5a08b1fee2af103514dbde4e4981b0f0634427ce7876a0a0"
+      }
+    },
+    {
+      "id": "ong-bo-noel",
+      "name": "Ông bò Noel",
+      "description": "",
+      "category": "Toro",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Nhie",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ong-bo-noel-6a6d15deb968-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ong-bo-noel-6a6d15deb968-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-10T11:29:38.065Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/ong-bo-noel-7f43752519a3e828.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 466848,
+        "mimeType": "image/jpeg",
+        "sha256": "7f43752519a3e828046d9a181ec3e0a990902f5d13baa8345561727d3cf5262f"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ong-bo-noel-6a6d15deb968-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 24300,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ong-bo-noel-6a6d15deb968-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 45058,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ong-bo-noel-6a6d15deb968-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 93170,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
