@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-10T11:33:48.501Z",
+  "generatedAt": "2026-10-10T13:56:24.054Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -11487,6 +11487,53 @@
       }
     },
     {
+      "id": "bach-sac-nu-vuong",
+      "name": "Bạch sắc nữ vương",
+      "description": "",
+      "category": "Ilumia",
+      "rank": "SSS",
+      "rankOrder": 5,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bach-sac-nu-vuong-778a2e3b1d47-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bach-sac-nu-vuong-778a2e3b1d47-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-10T13:54:22.350Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/bach-sac-nu-vuong-ea925beb3f7c20a4.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 546000,
+        "mimeType": "image/jpeg",
+        "sha256": "ea925beb3f7c20a4efd926628f2d5f3be9e4e285722c891a5a08e6297949a55a"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bach-sac-nu-vuong-778a2e3b1d47-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 29904,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bach-sac-nu-vuong-778a2e3b1d47-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 54796,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bach-sac-nu-vuong-778a2e3b1d47-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 110644,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "thanh-long-nguyet-tang",
       "name": "Thanh Long Nguyệt Táng",
       "description": "",
@@ -15673,6 +15720,53 @@
         "bytes": 758219,
         "mimeType": "image/jpeg",
         "sha256": "b73397de11af9dcc74161d85887a35d812a46c543a69fb9c769c59c2caf08bbc"
+      }
+    },
+    {
+      "id": "huyet-nguyet-nu-e",
+      "name": "Huyết nguyệt nữ đế",
+      "description": "",
+      "category": "Marja",
+      "rank": "SSS+",
+      "rankOrder": 6,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyet-nguyet-nu-e-1ea963818169-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyet-nguyet-nu-e-1ea963818169-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-10T13:53:51.575Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/huyet-nguyet-nu-e-3293f3543a4d1e88.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 452502,
+        "mimeType": "image/jpeg",
+        "sha256": "3293f3543a4d1e8854cb98a9d95067aa40701b6e2d19fecf8246afd6f71d5b55"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyet-nguyet-nu-e-1ea963818169-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 23260,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyet-nguyet-nu-e-1ea963818169-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 44572,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyet-nguyet-nu-e-1ea963818169-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 94410,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -22206,6 +22300,53 @@
         "bytes": 736534,
         "mimeType": "image/jpeg",
         "sha256": "1aac05468df1f08f5a08b1fee2af103514dbde4e4981b0f0634427ce7876a0a0"
+      }
+    },
+    {
+      "id": "nguoi-tinh-cua-nang",
+      "name": "Người tình của nắng",
+      "description": "",
+      "category": "Toro",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Tâm",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nguoi-tinh-cua-nang-610d00befffe-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nguoi-tinh-cua-nang-610d00befffe-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-10T13:53:23.755Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/nguoi-tinh-cua-nang-cde0b8f7e4bae106.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 740103,
+        "mimeType": "image/jpeg",
+        "sha256": "cde0b8f7e4bae1069f65391936c7f0fa028b480d52455b8f7d64e54f93d6c5f6"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nguoi-tinh-cua-nang-610d00befffe-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 21216,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nguoi-tinh-cua-nang-610d00befffe-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 37412,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nguoi-tinh-cua-nang-610d00befffe-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 77802,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
