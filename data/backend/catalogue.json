@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-11T02:12:26.227Z",
+  "generatedAt": "2026-10-11T04:28:02.250Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -10538,53 +10538,6 @@
         "bytes": 822802,
         "mimeType": "image/jpeg",
         "sha256": "983a46bf81643cd38d47d5ad56471faa7d43831056b43abb195f6dd103eb262a"
-      }
-    },
-    {
-      "id": "hac-nhi-canh-bao",
-      "name": "Hắc Nhi Canh Bảo",
-      "description": "",
-      "category": "Helen",
-      "rank": "SSS",
-      "rankOrder": 5,
-      "credit": "Tâm",
-      "universes": [],
-      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hac-nhi-canh-bao-6c4cc42943df-1600.webp",
-      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hac-nhi-canh-bao-6c4cc42943df-1600.webp",
-      "tags": [],
-      "hidden": false,
-      "isVietnameseSkin": false,
-      "updatedAt": "2026-10-11T02:12:16.245Z",
-      "expanded": {
-        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/hac-nhi-canh-bao-520db5a964f32aa4.jpg",
-        "width": 2752,
-        "height": 1536,
-        "bytes": 453659,
-        "mimeType": "image/jpeg",
-        "sha256": "520db5a964f32aa42d0f4704b5843cb09d4fba1fc822cd5bfa646eba43fe5441"
-      },
-      "variants": {
-        "640": {
-          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hac-nhi-canh-bao-6c4cc42943df-640.webp",
-          "width": 640,
-          "height": 357,
-          "bytes": 14530,
-          "mimeType": "image/webp"
-        },
-        "960": {
-          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hac-nhi-canh-bao-6c4cc42943df-960.webp",
-          "width": 960,
-          "height": 536,
-          "bytes": 27036,
-          "mimeType": "image/webp"
-        },
-        "1600": {
-          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hac-nhi-canh-bao-6c4cc42943df-1600.webp",
-          "width": 1600,
-          "height": 893,
-          "bytes": 57174,
-          "mimeType": "image/webp"
-        }
       }
     },
     {
@@ -23824,6 +23777,53 @@
       }
     },
     {
+      "id": "haloween-quai-di",
+      "name": "Haloween Quái dị",
+      "description": "",
+      "category": "Veera",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Nhie",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/haloween-quai-di-01ebd89ef11e-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/haloween-quai-di-01ebd89ef11e-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-11T04:27:40.491Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/haloween-quai-di-9b7df8c80b41566e.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 643214,
+        "mimeType": "image/jpeg",
+        "sha256": "9b7df8c80b41566e0db32485cf3db1e332d5f2873550e59460c930354e813fe0"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/haloween-quai-di-01ebd89ef11e-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 24650,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/haloween-quai-di-01ebd89ef11e-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 45194,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/haloween-quai-di-01ebd89ef11e-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 92452,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "hong-lien-yeu-co",
       "name": "Hồng Liên Yêu Cơ",
       "description": "",
@@ -23965,6 +23965,54 @@
         "bytes": 325031,
         "mimeType": "image/jpeg",
         "sha256": "3072f5afc98264c8157027eb327cddc25b9de26ade2def04f5b5a29390f146ea"
+      }
+    },
+    {
+      "id": "u-linh-oan-nu",
+      "name": "U Linh Oán nữ",
+      "description": "",
+      "category": "Veera",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Long",
+      "skinline": "U Linh Mệnh",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/u-linh-oan-nu-1e02cffc05e2-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/u-linh-oan-nu-1e02cffc05e2-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-11T04:27:04.423Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/u-linh-oan-nu-7e63a4fedc030336.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 539097,
+        "mimeType": "image/jpeg",
+        "sha256": "7e63a4fedc030336777b7c8331f7104b9d9b6aaa7c9db6d8e2fc5d07f31e3006"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/u-linh-oan-nu-1e02cffc05e2-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 19034,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/u-linh-oan-nu-1e02cffc05e2-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 36074,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/u-linh-oan-nu-1e02cffc05e2-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 75424,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -24155,6 +24203,100 @@
         "bytes": 493263,
         "mimeType": "image/jpeg",
         "sha256": "3fd3090211ad3bf9acdc4c2a813bb31608ab651edfa4911639b5cd906e7bee67"
+      }
+    },
+    {
+      "id": "sieu-viet-14",
+      "name": "Siêu Việt",
+      "description": "",
+      "category": "Veera",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Vin",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-viet-14-2db85e0ac260-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-viet-14-2db85e0ac260-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-11T04:25:33.287Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/sieu-viet-14-4795e00b194d41c9.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 463866,
+        "mimeType": "image/jpeg",
+        "sha256": "4795e00b194d41c9edc992712072f68d7940835ebf068f2ce40b464efb77337c"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-viet-14-2db85e0ac260-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 19614,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-viet-14-2db85e0ac260-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 36924,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-viet-14-2db85e0ac260-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 77448,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "ve-binh-anh-sao",
+      "name": "Vệ binh ánh sao",
+      "description": "",
+      "category": "Veera",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Sol",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ve-binh-anh-sao-ae8f593a59c0-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ve-binh-anh-sao-ae8f593a59c0-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-11T04:26:28.032Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/ve-binh-anh-sao-d0221afbafc2f21c.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 542531,
+        "mimeType": "image/jpeg",
+        "sha256": "d0221afbafc2f21c92bc32b50ed1ca1ce724cc0d047285ff53696e38c9a03ae5"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ve-binh-anh-sao-ae8f593a59c0-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 27098,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ve-binh-anh-sao-ae8f593a59c0-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 49676,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ve-binh-anh-sao-ae8f593a59c0-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 103758,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
