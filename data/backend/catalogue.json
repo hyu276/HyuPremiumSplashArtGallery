@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-11T04:28:02.250Z",
+  "generatedAt": "2026-10-11T04:31:54.008Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -23730,6 +23730,53 @@
       "updatedAt": "2026-10-09T15:10:47.750Z"
     },
     {
+      "id": "ao-chich-ve-tinh",
+      "name": "Đạo chích vệ tinh",
+      "description": "",
+      "category": "Veera",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Nhie",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ao-chich-ve-tinh-e6cca7cb8b48-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ao-chich-ve-tinh-e6cca7cb8b48-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-11T04:31:32.076Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/ao-chich-ve-tinh-db98877b9b4f6642.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 560871,
+        "mimeType": "image/jpeg",
+        "sha256": "db98877b9b4f6642cc5ebf5a7e4fb2fc978115ddd32fcdbdaf79fec3756589d7"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ao-chich-ve-tinh-e6cca7cb8b48-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 19732,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ao-chich-ve-tinh-e6cca7cb8b48-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 36680,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ao-chich-ve-tinh-e6cca7cb8b48-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 78286,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "au-bep-quai-quy",
       "name": "Đầu bếp quái quỷ",
       "description": "",
@@ -24016,6 +24063,53 @@
       }
     },
     {
+      "id": "da-yen-nghenh-xuan",
+      "name": "Dạ Yến Nghênh Xuân",
+      "description": "",
+      "category": "Veera",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Vin",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/da-yen-nghenh-xuan-8c09c50896e6-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/da-yen-nghenh-xuan-8c09c50896e6-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-11T04:29:29.012Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/da-yen-nghenh-xuan-3b1cbc90433b781d.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 632804,
+        "mimeType": "image/jpeg",
+        "sha256": "3b1cbc90433b781df602f7f1dda3181482c5906d6b4d93d396726e2b15173fe9"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/da-yen-nghenh-xuan-8c09c50896e6-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 25278,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/da-yen-nghenh-xuan-8c09c50896e6-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 46526,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/da-yen-nghenh-xuan-8c09c50896e6-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 96266,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "hai-trieu-hu-khong",
       "name": "Hải triều hư không",
       "description": "",
@@ -24060,6 +24154,53 @@
         "bytes": 1974174,
         "mimeType": "image/png",
         "sha256": "463f3c73abd01267c48b5b7697f27ecdb5735b9e048f119a3c13bb727e97cdf6"
+      }
+    },
+    {
+      "id": "ho-anh-ao",
+      "name": "Hồ Anh Đào",
+      "description": "",
+      "category": "Veera",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Nhie",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ho-anh-ao-9ef33434be2e-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ho-anh-ao-9ef33434be2e-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-11T04:29:56.355Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/ho-anh-ao-3e3d42b6e1aeb796.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 844315,
+        "mimeType": "image/jpeg",
+        "sha256": "3e3d42b6e1aeb796c36d6e514e046cfd6aef546f2c6b589613112861a45fa22d"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ho-anh-ao-9ef33434be2e-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 31962,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ho-anh-ao-9ef33434be2e-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 61118,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ho-anh-ao-9ef33434be2e-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 131278,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
