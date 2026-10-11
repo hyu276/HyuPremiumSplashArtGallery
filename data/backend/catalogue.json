@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-11T09:33:59.805Z",
+  "generatedAt": "2026-10-11T10:47:29.415Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -13924,7 +13924,7 @@
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nguyet-anh-huyen-ho-76c509cf36e3-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nguyet-anh-huyen-ho-76c509cf36e3-1600.webp",
       "tags": [],
-      "hidden": false,
+      "hidden": true,
       "category": "Liliana",
       "rank": "S+",
       "rankOrder": 2,
