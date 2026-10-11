@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-11T04:43:31.829Z",
+  "generatedAt": "2026-10-11T05:36:51.448Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -1252,7 +1252,9 @@
       "rankOrder": 2,
       "credit": "Vin",
       "skinline": "U Linh Mệnh",
-      "universes": [],
+      "universes": [
+        "Hắc huyền giới"
+      ],
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/u-minh-phu-su-c4227c7169b4-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/u-minh-phu-su-c4227c7169b4-1600.webp",
       "tags": [],
@@ -2960,7 +2962,9 @@
       "rank": "S+",
       "rankOrder": 2,
       "credit": "Vin",
-      "universes": [],
+      "universes": [
+        "Hắc huyền giới"
+      ],
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/u-linh-tran-phu-1d0a937bd78a-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/u-linh-tran-phu-1d0a937bd78a-1600.webp",
       "tags": [],
@@ -3998,6 +4002,53 @@
         "bytes": 498270,
         "mimeType": "image/jpeg",
         "sha256": "b1ba611a30427e6b9a275bb1b4d9766441a1f9ba3b76f675f09781c3c7244ef9"
+      }
+    },
+    {
+      "id": "khong-tuoc-nu-hoang",
+      "name": "Khổng Tước Nữ Hoàng",
+      "description": "",
+      "category": "Azzen'ka",
+      "rank": "SSS+",
+      "rankOrder": 6,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/khong-tuoc-nu-hoang-505bc7dd439f-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/khong-tuoc-nu-hoang-505bc7dd439f-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-11T05:36:26.084Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/khong-tuoc-nu-hoang-6dfe1ab911a4f112.jpg",
+        "width": 11008,
+        "height": 6144,
+        "bytes": 8445120,
+        "mimeType": "image/jpeg",
+        "sha256": "6dfe1ab911a4f1128657db0a5026084619edcce1a90a667e13feeadb2e6d4da2"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/khong-tuoc-nu-hoang-505bc7dd439f-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 39956,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/khong-tuoc-nu-hoang-505bc7dd439f-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 76428,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/khong-tuoc-nu-hoang-505bc7dd439f-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 167002,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -7746,6 +7797,56 @@
       }
     },
     {
+      "id": "am-duong-su-2",
+      "name": "Âm dương sư",
+      "description": "",
+      "category": "Elando'rr",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Long",
+      "skinline": "Trấn Yểm Yêu Ma",
+      "universes": [
+        "Hắc huyền giới"
+      ],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/am-duong-su-2-ab76f30ff080-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/am-duong-su-2-ab76f30ff080-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-11T05:34:37.064Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/am-duong-su-2-c05db6dc80eab85e.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 635213,
+        "mimeType": "image/jpeg",
+        "sha256": "c05db6dc80eab85e3c5467570ad5d39cc54bab92138510f1c3ebccb4242e42c8"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/am-duong-su-2-ab76f30ff080-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 31208,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/am-duong-su-2-ab76f30ff080-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 59612,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/am-duong-su-2-ab76f30ff080-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 128232,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "hoi-ngo-thanh-xuan",
       "name": "Hội ngộ thanh xuân",
       "description": "",
@@ -10916,6 +11017,56 @@
         "bytes": 470012,
         "mimeType": "image/jpeg",
         "sha256": "66d40160cab621b345b323cf65bd23b101f8bf9fdaa28903f223e8dd78aaa6b3"
+      }
+    },
+    {
+      "id": "am-duong-su",
+      "name": "Âm Dương Sư",
+      "description": "",
+      "category": "Ilumia",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Long",
+      "skinline": "Trấn Yểm Yêu Ma",
+      "universes": [
+        "Hắc huyền giới"
+      ],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/am-duong-su-ecd505dc9590-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/am-duong-su-ecd505dc9590-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-11T05:34:22.594Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/am-duong-su-c05db6dc80eab85e.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 635213,
+        "mimeType": "image/jpeg",
+        "sha256": "c05db6dc80eab85e3c5467570ad5d39cc54bab92138510f1c3ebccb4242e42c8"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/am-duong-su-ecd505dc9590-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 31208,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/am-duong-su-ecd505dc9590-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 59612,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/am-duong-su-ecd505dc9590-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 128232,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -22452,7 +22603,9 @@
       "rank": "S+",
       "rankOrder": 2,
       "credit": "Vin",
-      "universes": [],
+      "universes": [
+        "Hắc huyền giới"
+      ],
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/u-linh-hai-nguu-6ae96532263e-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/u-linh-hai-nguu-6ae96532263e-1600.webp",
       "tags": [],
@@ -24070,7 +24223,9 @@
       "rankOrder": 2,
       "credit": "Long",
       "skinline": "U Linh Mệnh",
-      "universes": [],
+      "universes": [
+        "Hắc huyền giới"
+      ],
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/u-linh-oan-nu-1e02cffc05e2-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/u-linh-oan-nu-1e02cffc05e2-1600.webp",
       "tags": [],
@@ -25886,6 +26041,53 @@
       }
     },
     {
+      "id": "tu-te-ai-duong",
+      "name": "Tư tế đại dương",
+      "description": "",
+      "category": "Xeniel",
+      "rank": "A",
+      "rankOrder": 0,
+      "credit": "Hika",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tu-te-ai-duong-b75869578d18-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tu-te-ai-duong-b75869578d18-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-11T05:35:48.842Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/tu-te-ai-duong-1f4322e5184bb5c0.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 713286,
+        "mimeType": "image/jpeg",
+        "sha256": "1f4322e5184bb5c09bdd0cf6c98b87605f158502079e18376513a4daf57d4be7"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tu-te-ai-duong-b75869578d18-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 27456,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tu-te-ai-duong-b75869578d18-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 52428,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tu-te-ai-duong-b75869578d18-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 110206,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "than-co-thu",
       "name": "Thần cổ thụ",
       "description": "",
@@ -26083,7 +26285,9 @@
       "rankOrder": 2,
       "credit": "Vin",
       "skinline": "U Linh Mệnh",
-      "universes": [],
+      "universes": [
+        "Hắc huyền giới"
+      ],
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/u-moc-linh-ta-dede33179ef5-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/u-moc-linh-ta-dede33179ef5-1600.webp",
       "tags": [],
@@ -28348,6 +28552,7 @@
     "Volkath",
     "Wiro",
     "Wisp",
+    "Xeniel",
     "Y'Bneth",
     "Yena",
     "Yorn",
@@ -28484,6 +28689,7 @@
       "Volkath",
       "Wiro",
       "Wisp",
+      "Xeniel",
       "Y'Bneth",
       "Yena",
       "Yorn",
@@ -28628,7 +28834,8 @@
     "Tỷ muội thiên hoa",
     "Bế Nguyệt Tu Hoa",
     "Tiệc tùng ngọt ngào",
-    "U Linh Mệnh"
+    "U Linh Mệnh",
+    "Trấn Yểm Yêu Ma"
   ],
   "universes": [
     {
@@ -28674,6 +28881,13 @@
         "FMVP SEA Games",
         "FMVP APL",
         "FMVP Đấu Trường Danh Vọng"
+      ]
+    },
+    {
+      "name": "Hắc huyền giới",
+      "skinlines": [
+        "U Linh Mệnh",
+        "Trấn Yểm Yêu Ma"
       ]
     }
   ],
