@@ -99,7 +99,35 @@ export default function GitHubAdminDashboard(){
   const removeChoice=(kind:'category'|'credit'|'rank',row:Choice)=>{if(items.some(x=>x[kind]===row.name))return setStatus({text:`Không thể xóa ${row.name}: vẫn có tác phẩm đang sử dụng.`,type:'err'});if(kind==='category')setCategories(v=>v.filter(x=>x!==row));else if(kind==='credit')setCredits(v=>v.filter(x=>x!==row));else setRanks(v=>v.filter(x=>x!==row));setDirty(true)};
 
   const commitCatalogue=async(working:Artwork[])=>backend('POST',{ownerItems:working,categories:categories.map(x=>x.name),credits:credits.map(x=>x.name),ranks:ranks.map(x=>x.name),skinlines,universes,taxonomyRepresentatives});
-  const publish=async()=>{try{ensureAdmin();const working=items.map(x=>({...x}));for(const [id,p] of pendingUploads.current){setStatus({text:'Đang tải '+p.file.name+' lên Cloudflare R2...'});const imageUrl=await putR2(p.path,p.file);const item=working.find(x=>x.id===id);if(item){item.image=imageUrl;item.thumbnail='';item.variants=undefined;item.media=undefined;item.expanded=undefined}}setStatus({text:'Đang commit metadata lên GitHub...'});const result=await commitCatalogue(working);for(const key of storageDeletes.current)await deleteR2(key);pendingUploads.current.clear();storageDeletes.current.clear();setItems(working);setDirty(false);setStatus({text:'Đã publish metadata lên GitHub ('+String(result.commit||'').slice(0,7)+').',type:'ok'});setTimeout(()=>loadAll().catch(()=>{}),1200)}catch(error:any){setStatus({text:error.message||'Xuất bản thất bại.',type:'err'})}};
+  const publish=async()=>{
+    try{
+      ensureAdmin();
+      const working=items.map(x=>({...x}));
+      for(const [id,p] of pendingUploads.current){
+        setStatus({text:'Đang tải '+p.file.name+' lên Cloudflare R2...'});
+        const imageUrl=await putR2(p.path,p.file);
+        const item=working.find(x=>x.id===id);
+        if(item){item.image=imageUrl;item.thumbnail='';item.variants=undefined;item.media=undefined;item.expanded=undefined}
+      }
+      setStatus({text:'Đang lưu metadata lên GitHub...'});
+      const result=await commitCatalogue(working);
+      setStatus({text:'Đã ghi GitHub. Đang kiểm tra lại credit và metadata đã lưu...',type:'warn'});
+      const verified=await backend('GET') as BackendResponse;
+      const persisted=new Map((verified.catalogue.items||[]).map(item=>[item.id,item]));
+      const mismatches=working.filter(item=>persisted.get(item.id)?.credit!==item.credit);
+      if(mismatches.length||result.branch!=='main'){
+        throw new Error(result.branch!=='main'
+          ?'Metadata được lưu ở nhánh '+result.branch+', nhưng gallery công khai đọc main. Cần đồng bộ nhánh dữ liệu trước khi xác nhận.'
+          :`GitHub chưa xác nhận credit của ${mismatches.length} artwork. Giữ nguyên bản nháp; hãy tải lại kiểm tra trước khi xuất bản lại.`);
+      }
+      for(const key of storageDeletes.current)await deleteR2(key);
+      pendingUploads.current.clear();storageDeletes.current.clear();
+      setItems(working);setDirty(false);
+      setStatus({text:'Đã xác minh '+working.length+' artwork trên GitHub ('+String(result.commit||'').slice(0,7)+'). Gallery sẽ cập nhật từ metadata mới qua cache.',type:'ok'});
+    }catch(error:any){
+      setStatus({text:(error.message||'Không thể xác minh thay đổi.')+' Bản nháp vẫn được giữ nguyên.',type:'err'});
+    }
+  };
 
   const visibleItems=useMemo(()=>{const q=search.trim().toLowerCase();return items.filter(x=>!q||[x.name,x.description,x.category,x.credit,x.rank,x.skinline||'',...(x.universes||[]),x.hidden?'hidden':'visible',x.isVietnameseSkin?'viet nam vietnam skin':''].join(' ').toLowerCase().includes(q))},[items,search]);
   const toggleSelect=(id:string)=>setSelectedIds(prev=>{const next=new Set(prev);next.has(id)?next.delete(id):next.add(id);return next});
@@ -116,7 +144,7 @@ export default function GitHubAdminDashboard(){
     setForm(current=>current.editingId&&selectedIds.has(current.editingId)?{...current,credit}:current);
     setDirty(true);
     setSelectedIds(new Set());
-    setStatus({text:`Đã áp dụng credit “${credit}” cho ${count} artwork trong bản nháp. Hãy bấm Xuất bản thay đổi để lưu lên GitHub.`,type:'ok'});
+    setStatus({text:`CHỈ LƯU BẢN NHÁP: ${count} artwork đã được chọn credit “${credit}”. BẮT BUỘC bấm “Xuất bản thay đổi” phía trên để lưu GitHub.`,type:'warn'});
   };
   const batchAssignSkinline=()=>{const skinline=skinlines.find(line=>sameName(line,batchSkinline));const count=selectedIds.size;if(!count)return setTaxonomyStatus({text:'Hãy tick ít nhất một artwork trước.',type:'warn'});if(!skinline)return setTaxonomyStatus({text:'Hãy chọn skinline cho batch action.',type:'warn'});const inherited=deriveUniverses(skinline);setItems(rows=>rows.map(item=>selectedIds.has(item.id)?{...item,skinline,universes:[...inherited]}:item));setDirty(true);setSelectedIds(new Set());setTaxonomyStatus({text:'Đã gán '+count+' artwork vào “'+skinline+'” trong bản nháp.',type:'ok'});setStatus({text:'Đã batch add '+count+' artwork vào skinline “'+skinline+'”. Hãy bấm Xuất bản thay đổi để lưu lên GitHub.',type:'ok'})};
   const addSkinline=(name:string)=>{const clean=name.trim();if(!clean)return;if(skinlines.some(line=>sameName(line,clean)))return setTaxonomyStatus({text:'Skinline “'+clean+'” đã tồn tại.',type:'warn'});setSkinlines(current=>[...current,clean]);setDirty(true);setTaxonomyStatus({text:'Đã tạo skinline “'+clean+'” trong bản nháp.',type:'ok'})};
