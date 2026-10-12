@@ -1,0 +1,43 @@
+name: Prepare batch credit admin bundle
+on:
+  push:
+    branches:
+      - feat/batch-edit-artwork-credit
+permissions:
+  contents: write
+jobs:
+  build-admin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/batch-edit-artwork-credit
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install dependencies
+        run: npm install --no-save --no-package-lock --no-audit --no-fund
+      - name: Typecheck
+        run: npm run typecheck
+      - name: Build admin bundle
+        run: npm run admin:build
+      - name: Validate generated bundle
+        run: |
+          test -s assets/js/admin-github.bundle.js
+          node --check assets/js/admin-github.bundle.js
+          grep -Fq 'Áp dụng credit' assets/js/admin-github.bundle.js
+      - name: Commit generated bundle to feature branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- assets/js/admin-github.bundle.js; then
+            echo 'No bundle changes.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/js/admin-github.bundle.js
+          git commit -m "build(admin): regenerate bundle for batch credit"
+          git pull --rebase origin feat/batch-edit-artwork-credit
+          git push origin HEAD:feat/batch-edit-artwork-credit
