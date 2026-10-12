@@ -198,6 +198,10 @@ for(const item of catalogue.items||[]){
   if(item.rank&&!ranks.has(String(item.rank).trim()))failures.push(`${item.id}: rank ${item.rank} is not present in catalogue taxonomy`);
 }
 
+const catalogueLoader=await readFile(join(ROOT,'lib/catalogue.ts'),'utf8');
+if(catalogueLoader.includes("import backendCatalogue from '@/data/backend/catalogue.json'"))failures.push('public catalogue must not be pinned to a deployment-time JSON import');
+if(!catalogueLoader.includes('getCatalogueRevision()')||!catalogueLoader.includes('/commits?path=')||!catalogueLoader.includes('raw.githubusercontent.com/'))failures.push('public gallery must resolve the latest GitHub catalogue commit and its immutable metadata');
+if(!catalogueLoader.includes("tags:['catalogue']"))failures.push('live GitHub catalogue fetch must be invalidated when admin publishes changes');
 const freshnessGuard=await readFile(join(ROOT,'components/CatalogueFreshnessGuard.tsx'),'utf8');
 if(!freshnessGuard.includes("fetch('/api/catalogue-revision'"))failures.push('catalogue freshness guard must use the tiny revision endpoint');
 if(!freshnessGuard.includes('router.refresh()'))failures.push('catalogue freshness guard must refresh only when the deployed revision changes');
@@ -206,6 +210,8 @@ if(freshnessGuard.includes('setInterval('))failures.push('catalogue freshness gu
 
 const revisionRoute=await readFile(join(ROOT,'app/api/catalogue-revision/route.ts'),'utf8');
 if(!revisionRoute.includes('s-maxage=15'))failures.push('catalogue revision endpoint must use short CDN caching');
+if(!revisionRoute.includes('getCatalogueRevision()'))failures.push('public revision endpoint must read the same live GitHub revision as the gallery');
+if(!revisionRoute.includes('Access-Control-Allow-Origin'))failures.push('GitHub Pages admin must be able to verify public revision via CORS');
 if(/publicMediaUrl|MEDIA_BASE_URL|artworkPreview|\.image\b/.test(revisionRoute))failures.push('catalogue revision endpoint must remain metadata-only and never expose/fetch media');
 
 const adminBackend=await readFile(join(ROOT,'app/api/admin-backend/route.ts'),'utf8');
