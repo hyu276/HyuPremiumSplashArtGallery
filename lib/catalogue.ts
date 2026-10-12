@@ -1,5 +1,4 @@
 import { publicMediaUrl, toAbsoluteSiteUrl } from '@/lib/media';
-import backendCatalogue from '@/data/backend/catalogue.json';
 
 export type MediaVariant = {
   url: string;
@@ -64,6 +63,11 @@ type BackendCatalogue = {
 };
 
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://hyupremium.vercel.app').replace(/\/$/, '');
+const CATALOGUE_REPOSITORY='hyu276/HyuPremiumSplashArtGallery';
+const CATALOGUE_FILE='data/backend/catalogue.json';
+const CATALOGUE_REVISION_TTL_SECONDS=120;
+const CATALOGUE_SOURCE_TTL_SECONDS=86400;
+const CATALOGUE_REVISION_URL=`https://api.github.com/repos/${CATALOGUE_REPOSITORY}/commits?path=${encodeURIComponent(CATALOGUE_FILE)}&per_page=1`;
 export const siteUrl = SITE_URL;
 
 export function slug(value: string) {
@@ -122,8 +126,7 @@ function normalizedChampionThumbnails(value:any){
   return result;
 }
 
-function authoritativeCatalogue(): Catalogue {
-  const source = backendCatalogue as BackendCatalogue;
+function authoritativeCatalogue(source:BackendCatalogue,revision:string): Catalogue {
   if (source.ready !== true || !Array.isArray(source.items)) {
     throw new Error('GitHub backend catalogue is not ready. Revert the migration or restore data/backend/catalogue.json.');
   }
@@ -154,7 +157,7 @@ function authoritativeCatalogue(): Catalogue {
     .sort((a,b)=>alpha(a.category,b.category)||a.rankOrder-b.rankOrder||alpha(a.name,b.name));
 
   return {
-    revision: String(source.generatedAt || ''),
+    revision,
     items,
     categories: uniqueSorted((source.categories || []).map(String)),
     ranks: (source.ranks || []).map(String),
@@ -164,7 +167,30 @@ function authoritativeCatalogue(): Catalogue {
   };
 }
 
-export async function getCatalogue(): Promise<Catalogue> { return authoritativeCatalogue(); }
+// The public catalogue is GitHub metadata, not a JSON snapshot embedded at build time.
+// The tiny revision request is shared in Next's data cache and is invalidated after admin publish.
+export async function getCatalogueRevision():Promise<string>{
+  const response=await fetch(CATALOGUE_REVISION_URL,{
+    headers:{Accept:'application/vnd.github+json'},
+    next:{revalidate:CATALOGUE_REVISION_TTL_SECONDS,tags:['catalogue']}
+  });
+  if(!response.ok)throw new Error(`GitHub catalogue revision unavailable (${response.status}).`);
+  const commits=await response.json() as Array<{sha?:string}>;
+  const revision=String(commits?.[0]?.sha||'');
+  if(!/^[a-f0-9]{40}$/.test(revision))throw new Error('GitHub catalogue revision is invalid.');
+  return revision;
+}
+
+export async function getCatalogue(): Promise<Catalogue> {
+  const revision=await getCatalogueRevision();
+  const url=`https://raw.githubusercontent.com/${CATALOGUE_REPOSITORY}/${revision}/${CATALOGUE_FILE}`;
+  const response=await fetch(url,{
+    next:{revalidate:CATALOGUE_SOURCE_TTL_SECONDS,tags:['catalogue']}
+  });
+  if(!response.ok)throw new Error(`GitHub catalogue snapshot unavailable (${response.status}).`);
+  const source=await response.json() as BackendCatalogue;
+  return authoritativeCatalogue(source,revision);
+}
 
 function fallbackTaxonomyRepresentative(items:Artwork[]){return [...items].sort((a,b)=>b.rankOrder-a.rankOrder||alpha(a.id,b.id))[0];}
 
