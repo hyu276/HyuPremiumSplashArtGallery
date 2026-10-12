@@ -1,10 +1,10 @@
-import backendCatalogue from '@/data/backend/catalogue.json';
+import { getCatalogue } from '@/lib/catalogue';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 export async function GET() {
-  const revision = String((backendCatalogue as { generatedAt?: unknown }).generatedAt || '');
+  const { revision } = await getCatalogue();
   return Response.json(
     { revision },
     {
