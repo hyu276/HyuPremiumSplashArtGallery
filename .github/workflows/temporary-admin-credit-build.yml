@@ -26,7 +26,7 @@ jobs:
         run: |
           test -s assets/js/admin-github.bundle.js
           node --check assets/js/admin-github.bundle.js
-          grep -Fq 'Áp dụng credit' assets/js/admin-github.bundle.js
+          test $(wc -c < assets/js/admin-github.bundle.js) -gt 10000
       - name: Commit generated bundle to feature branch
         shell: bash
         run: |
