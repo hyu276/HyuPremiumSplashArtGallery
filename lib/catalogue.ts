@@ -1,5 +1,6 @@
 import { publicMediaUrl, toAbsoluteSiteUrl } from '@/lib/media';
-import backendCatalogue from '@/data/backend/catalogue.json';
+const CATALOGUE_SOURCE='https://raw.githubusercontent.com/hyu276/HyuPremiumSplashArtGallery/main/data/backend/catalogue.json';
+const CATALOGUE_CACHE_SECONDS=60;
 
 export type MediaVariant = {
   url: string;
@@ -122,8 +123,7 @@ function normalizedChampionThumbnails(value:any){
   return result;
 }
 
-function authoritativeCatalogue(): Catalogue {
-  const source = backendCatalogue as BackendCatalogue;
+function authoritativeCatalogue(source: BackendCatalogue): Catalogue {
   if (source.ready !== true || !Array.isArray(source.items)) {
     throw new Error('GitHub backend catalogue is not ready. Revert the migration or restore data/backend/catalogue.json.');
   }
@@ -164,7 +164,12 @@ function authoritativeCatalogue(): Catalogue {
   };
 }
 
-export async function getCatalogue(): Promise<Catalogue> { return authoritativeCatalogue(); }
+export async function getCatalogue(): Promise<Catalogue> {
+  const response=await fetch(CATALOGUE_SOURCE,{next:{revalidate:CATALOGUE_CACHE_SECONDS,tags:['catalogue']}});
+  if(!response.ok)throw new Error(`Không thể tải catalogue mới từ GitHub (HTTP ${response.status}).`);
+  const source=await response.json() as BackendCatalogue;
+  return authoritativeCatalogue(source);
+}
 
 function fallbackTaxonomyRepresentative(items:Artwork[]){return [...items].sort((a,b)=>b.rankOrder-a.rankOrder||alpha(a.id,b.id))[0];}
 
