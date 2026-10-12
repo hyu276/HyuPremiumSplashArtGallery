@@ -22,6 +22,27 @@ const KEEP_NAME_KEY='hyu_admin_keep_name';
 const EMPTY_FORM:ArtworkForm={editingId:'',name:'',description:'',category:'',rank:'',credit:'',skinline:'',image:'',isVietnameseSkin:false};
 const EMPTY_TEAM:TeamForm={id:'',name:'',order:'0',hidden:false,image:'',facebook:'',facebookHidden:false,tiktok:'',tiktokHidden:false,instagram:'',instagramHidden:false,x:'',xHidden:false,linkedin:'',linkedinHidden:false};
 const ADMIN_BACKEND=typeof window!=='undefined'&&window.location.hostname==='hyu276.github.io'?'https://hyupremium.vercel.app/api/admin-backend':'/api/admin-backend';
+const PUBLIC_CATALOGUE_REVISION=ADMIN_BACKEND.replace(/\/api\/admin-backend$/, '/api/catalogue-revision');
+const PUBLIC_SYNC_ATTEMPTS=4;
+const PUBLIC_SYNC_DELAY_MS=5000;
+async function confirmPublicCatalogueRevision(expected:string){
+  if(!/^[a-f0-9]{40}$/.test(expected))return false;
+  for(let attempt=0;attempt<PUBLIC_SYNC_ATTEMPTS;attempt++){
+    if(attempt>0)await new Promise(resolve=>setTimeout(resolve,PUBLIC_SYNC_DELAY_MS));
+    try{
+      const controller=new AbortController();
+      const timeout=setTimeout(()=>controller.abort(),6000);
+      try{
+        const response=await fetch(PUBLIC_CATALOGUE_REVISION,{headers:{Accept:'application/json'},cache:'no-store',signal:controller.signal});
+        if(response.ok){
+          const data=await response.json() as {revision?:string};
+          if(data.revision===expected)return true;
+        }
+      }finally{clearTimeout(timeout)}
+    }catch{/* Transient error: keep warning until a later successful verification. */}
+  }
+  return false;
+}
 
 function slug(value:string){return String(value||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}
 function fileExt(file:File){return ({'image/jpeg':'jpg','image/png':'png','image/webp':'webp','image/gif':'gif'} as Record<string,string>)[file.type]||'jpg'}
@@ -39,7 +60,7 @@ export default function GitHubAdminDashboard(){
   const [items,setItems]=useState<Artwork[]>([]);const [categories,setCategories]=useState<Choice[]>([]);const [credits,setCredits]=useState<Choice[]>([]);const [ranks,setRanks]=useState<Choice[]>([]);const [skinlines,setSkinlines]=useState<string[]>([]);const [universes,setUniverses]=useState<AdminUniverse[]>([]);const [taxonomyRepresentatives,setTaxonomyRepresentatives]=useState<AdminTaxonomyRepresentatives>({skinlines:{},universes:{}});const [taxonomyStatus,setTaxonomyStatus]=useState<Status>({text:'Đăng nhập để quản lý Skinline và Skin Universe.'});const [dirty,setDirty]=useState(false);const [form,setForm]=useState<ArtworkForm>(EMPTY_FORM);const [selectedFile,setSelectedFile]=useState<File|null>(null);const [selectedPreview,setSelectedPreview]=useState('');const [keepName,setKeepName]=useState(false);
   const pendingUploads=useRef(new Map<string,PendingUpload>());const storageDeletes=useRef(new Set<string>());
   const [search,setSearch]=useState('');const [selectedIds,setSelectedIds]=useState(new Set<string>());const [batchSkinline,setBatchSkinline]=useState('');const [batchCredit,setBatchCredit]=useState('');const [optimizer,setOptimizer]=useState<Status>({text:'Đăng nhập để kiểm tra tình trạng thumbnail.'});const [optimizing,setOptimizing]=useState(false);const stopOptimize=useRef(false);
-  const [team,setTeam]=useState<TeamMember[]>([]);const [teamForm,setTeamForm]=useState<TeamForm>(EMPTY_TEAM);const [teamFile,setTeamFile]=useState<File|null>(null);const [teamPreview,setTeamPreview]=useState('');const [teamStatus,setTeamStatus]=useState<Status>({text:'Đăng nhập để quản lý mục Đội ngũ.'});const dragIndex=useRef<number|null>(null);
+  const [publishing,setPublishing]=useState(false);const publishInProgress=useRef(false);const [team,setTeam]=useState<TeamMember[]>([]);const [teamForm,setTeamForm]=useState<TeamForm>(EMPTY_TEAM);const [teamFile,setTeamFile]=useState<File|null>(null);const [teamPreview,setTeamPreview]=useState('');const [teamStatus,setTeamStatus]=useState<Status>({text:'Đăng nhập để quản lý mục Đội ngũ.'});const dragIndex=useRef<number|null>(null);
 
   const authHeaders=useCallback((pat=token)=>({Authorization:`Bearer ${pat}`}),[token]);
   const backend=useCallback(async(method:'GET'|'POST',body?:any,pat=token)=>{const response=await fetch(ADMIN_BACKEND,{method,headers:{...authHeaders(pat),...(body?{'Content-Type':'application/json'}:{})},body:body?JSON.stringify(body):undefined,cache:'no-store'});const payload=await response.json().catch(()=>({}));if(!response.ok)throw new Error(payload.error||`Backend ${response.status}`);return payload},[authHeaders,token]);
@@ -99,7 +120,40 @@ export default function GitHubAdminDashboard(){
   const removeChoice=(kind:'category'|'credit'|'rank',row:Choice)=>{if(items.some(x=>x[kind]===row.name))return setStatus({text:`Không thể xóa ${row.name}: vẫn có tác phẩm đang sử dụng.`,type:'err'});if(kind==='category')setCategories(v=>v.filter(x=>x!==row));else if(kind==='credit')setCredits(v=>v.filter(x=>x!==row));else setRanks(v=>v.filter(x=>x!==row));setDirty(true)};
 
   const commitCatalogue=async(working:Artwork[])=>backend('POST',{ownerItems:working,categories:categories.map(x=>x.name),credits:credits.map(x=>x.name),ranks:ranks.map(x=>x.name),skinlines,universes,taxonomyRepresentatives});
-  const publish=async()=>{try{ensureAdmin();const working=items.map(x=>({...x}));for(const [id,p] of pendingUploads.current){setStatus({text:'Đang tải '+p.file.name+' lên Cloudflare R2...'});const imageUrl=await putR2(p.path,p.file);const item=working.find(x=>x.id===id);if(item){item.image=imageUrl;item.thumbnail='';item.variants=undefined;item.media=undefined;item.expanded=undefined}}setStatus({text:'Đang commit metadata lên GitHub...'});const result=await commitCatalogue(working);for(const key of storageDeletes.current)await deleteR2(key);pendingUploads.current.clear();storageDeletes.current.clear();setItems(working);setDirty(false);setStatus({text:'Đã publish metadata lên GitHub ('+String(result.commit||'').slice(0,7)+').',type:'ok'});setTimeout(()=>loadAll().catch(()=>{}),1200)}catch(error:any){setStatus({text:error.message||'Xuất bản thất bại.',type:'err'})}};
+  const publish=async()=>{
+    if(publishInProgress.current)return;
+    publishInProgress.current=true;
+    setPublishing(true);
+    try{
+      ensureAdmin();
+      const working=items.map(item=>({...item}));
+      for(const [id,p] of pendingUploads.current){
+        setStatus({text:'Đang tải '+p.file.name+' lên Cloudflare R2...'});
+        const imageUrl=await putR2(p.path,p.file);
+        const item=working.find(row=>row.id===id);
+        if(item){item.image=imageUrl;item.thumbnail='';item.variants=undefined;item.media=undefined;item.expanded=undefined}
+      }
+      setStatus({text:'Đang lưu metadata lên GitHub...'});
+      const result=await commitCatalogue(working) as {commit?:string;noop?:boolean};
+      for(const key of storageDeletes.current)await deleteR2(key);
+      pendingUploads.current.clear();
+      storageDeletes.current.clear();
+      setItems(working);
+      setDirty(false);
+      const commit=String(result.commit||'');
+      setStatus({text:'Đã lưu GitHub ('+commit.slice(0,7)+'). Đang kiểm tra dữ liệu hiển thị trên website...',type:'warn'});
+      const synced=!result.noop&&await confirmPublicCatalogueRevision(commit);
+      try{await loadAll()}catch{return}
+      if(synced)setStatus({text:'Đã lưu GitHub ('+commit.slice(0,7)+') và xác nhận website sử dụng đúng revision mới.',type:'ok'});
+      else if(result.noop)setStatus({text:'GitHub không có thay đổi metadata mới. Kiểm tra lại credit trước khi xuất bản.',type:'warn'});
+      else setStatus({text:'Đã lưu GitHub ('+commit.slice(0,7)+') nhưng CHƯA xác nhận gallery đã cập nhật. Hãy kiểm tra lại trạng thái đồng bộ trước khi coi như hoàn tất.',type:'warn'});
+    }catch(error:any){
+      setStatus({text:error.message||'Xuất bản thất bại.',type:'err'});
+    }finally{
+      publishInProgress.current=false;
+      setPublishing(false);
+    }
+  };
 
   const visibleItems=useMemo(()=>{const q=search.trim().toLowerCase();return items.filter(x=>!q||[x.name,x.description,x.category,x.credit,x.rank,x.skinline||'',...(x.universes||[]),x.hidden?'hidden':'visible',x.isVietnameseSkin?'viet nam vietnam skin':''].join(' ').toLowerCase().includes(q))},[items,search]);
   const toggleSelect=(id:string)=>setSelectedIds(prev=>{const next=new Set(prev);next.has(id)?next.delete(id):next.add(id);return next});
@@ -145,7 +199,7 @@ export default function GitHubAdminDashboard(){
     <div className="admin-top"><div><div className="admin-brand">HYU <b>PREMIUM</b> / QUẢN TRỊ</div><div className="admin-muted">GitHub Pages · GitHub metadata · Cloudflare R2 · Vercel API</div></div><div className="admin-actions"><span className={`admin-pill${user?' ok':''}`}>{user?`Đã đăng nhập: @${user}${branch?` · ${branch}`:''}`:'Chưa đăng nhập'}</span><a className="admin-btn ghost" href="https://hyupremium.vercel.app/character/" target="_blank" rel="noopener noreferrer">Mở thư viện</a></div></div>
     <div className="admin-security"><strong>Bảo mật quản trị:</strong> Token được mã hóa AES-GCM trong IndexedDB bằng khóa WebCrypto không xuất được; không lưu token dạng rõ vào localStorage/sessionStorage/repository. Chỉ dùng trên thiết bị tin cậy. Bấm Đăng xuất để xóa phiên đã lưu. API xác minh token thuộc <code>@hyu276</code> và có quyền <code>Contents: Read and write</code>.</div>
     <div className="admin-grid"><aside>
-      <section className="admin-panel"><h2>Đăng nhập bằng GitHub fine-grained token</h2><div className="admin-field"><label>GitHub token</label><input className="admin-input" value={token} onChange={e=>setToken(e.target.value.trim())} type="password" autoComplete="off" placeholder="github_pat_..." spellCheck={false}/><div className="admin-note">Chỉ cấp token cho repository này, quyền Contents: Read and write. Không cần quyền tài khoản hoặc organization khác.</div></div><div className="admin-actions"><button className="admin-btn" onClick={signIn} disabled={restoringSession}>{restoringSession?'Đang khôi phục phiên...':'Đăng nhập'}</button><button className="admin-btn" onClick={signOut} disabled={!user&&!token}>Đăng xuất</button><button className="admin-btn" onClick={()=>loadAll().catch(()=>{})} disabled={!user}>Tải lại</button><button className="admin-btn primary" onClick={publish} disabled={!user||!dirty}>Xuất bản thay đổi</button></div><div className={`admin-status ${status.type||''}`}>{status.text}</div></section>
+      <section className="admin-panel"><h2>Đăng nhập bằng GitHub fine-grained token</h2><div className="admin-field"><label>GitHub token</label><input className="admin-input" value={token} onChange={e=>setToken(e.target.value.trim())} type="password" autoComplete="off" placeholder="github_pat_..." spellCheck={false}/><div className="admin-note">Chỉ cấp token cho repository này, quyền Contents: Read and write. Không cần quyền tài khoản hoặc organization khác.</div></div><div className="admin-actions"><button className="admin-btn" onClick={signIn} disabled={restoringSession}>{restoringSession?'Đang khôi phục phiên...':'Đăng nhập'}</button><button className="admin-btn" onClick={signOut} disabled={!user&&!token}>Đăng xuất</button><button className="admin-btn" onClick={()=>loadAll().catch(()=>{})} disabled={!user}>Tải lại</button><button className="admin-btn primary" onClick={publish} disabled={!user||!dirty||publishing}>{publishing?'Đang xuất bản...':'Xuất bản thay đổi'}</button></div><div className={`admin-status ${status.type||''}`}>{status.text}</div></section>
       <section className="admin-panel"><h2>{form.editingId?'Chỉnh sửa tác phẩm':'Thêm tác phẩm'}</h2>{previewSrc?<img className="admin-preview" src={previewSrc} alt="Xem trước tác phẩm"/>:<div className="admin-preview"/>}<div className="admin-field"><label>Tên</label><input className="admin-input" value={form.name} onChange={e=>setForm(v=>({...v,name:e.target.value}))}/><label className="admin-check"><input type="checkbox" checked={keepName} onChange={e=>{setKeepName(e.target.checked);try{sessionStorage.setItem(KEEP_NAME_KEY,e.target.checked?'1':'0')}catch{}}}/> Giữ tên cho tác phẩm tiếp theo</label></div><div className="admin-field"><label>Mô tả <span>hiển thị khi mở rộng</span></label><textarea className="admin-textarea" value={form.description} onChange={e=>setForm(v=>({...v,description:e.target.value}))}/></div><div className="admin-field"><label>Danh mục</label><input className="admin-input" list="admin-categories" value={form.category} onChange={e=>setForm(v=>({...v,category:e.target.value}))}/><datalist id="admin-categories">{categories.map(x=><option key={x.name} value={x.name}/>)}</datalist></div><div className="admin-field"><label>Skinline <span>Trang phục theo bộ</span></label><select className="admin-select" value={form.skinline} onChange={e=>setForm(v=>({...v,skinline:e.target.value}))}><option value="">Chưa gán skinline</option>{skinlines.map(name=><option key={name} value={name}>{name}</option>)}</select><div className="admin-note">Mỗi skin thuộc tối đa một skinline. Tạo và quản lý skinline ở phần bên dưới.</div></div><div className="admin-row"><div className="admin-field"><label>Hạng skin</label><select className="admin-select" value={form.rank} onChange={e=>setForm(v=>({...v,rank:e.target.value}))}><option value="">Chọn hạng</option>{ranks.map(x=><option key={x.name}>{x.name}</option>)}</select></div><div className="admin-field"><label>Credit ảnh</label><input className="admin-input" list="admin-credits" value={form.credit} onChange={e=>setForm(v=>({...v,credit:e.target.value}))}/><datalist id="admin-credits">{credits.map(x=><option key={x.name} value={x.name}/>)}</datalist></div></div><label className="admin-check"><input type="checkbox" checked={form.isVietnameseSkin} onChange={e=>setForm(v=>({...v,isVietnameseSkin:e.target.checked}))}/><strong>Đây là skin Việt Nam</strong></label><div className="admin-field"><label>URL ảnh <span>không bắt buộc nếu tải tệp lên</span></label><input className="admin-input" value={form.image} onChange={e=>{setForm(v=>({...v,image:e.target.value}));if(!selectedFile)setSelectedPreview(e.target.value)}}/></div><div className="admin-filebox"><input type="file" accept="image/jpeg,image/png,image/webp,image/gif" onChange={e=>onArtworkFile(e.target.files?.[0]||null)}/><div className="admin-note">JPG, PNG, WebP hoặc GIF · tối đa 10 MB · ảnh mới được tải lên Cloudflare R2.</div></div><div className="admin-actions" style={{marginTop:10}}><button className="admin-btn primary" onClick={applyForm}>{form.editingId?'Cập nhật tác phẩm':'Thêm tác phẩm'}</button><button className="admin-btn ghost" onClick={()=>resetArtworkForm(false)}>Xóa form</button></div></section>
       <ChoicePanel categories={categories} credits={credits} ranks={ranks} onAdd={addChoice} onRename={renameChoice} onRemove={removeChoice}/>
       <section className="admin-panel"><h2>Tối ưu ảnh tác phẩm</h2><div className="admin-note">Backend tạo tự động derivative WebP 640/960/1600 trên R2; client chỉ upload original một lần.</div><div className="admin-actions" style={{marginTop:10}}><button className="admin-btn primary" onClick={optimizeMissing} disabled={!user||optimizing}>Kiểm tra / tái tạo derivative</button><button className="admin-btn" onClick={()=>{const n=items.filter(completeArtworkVariants).length;setOptimizer({text:`${n}/${items.length} tác phẩm có đủ derivative 640/960/1600${n<items.length?` · còn ${items.length-n}`:''}.`})}} disabled={!user}>Làm mới trạng thái</button><button className="admin-btn danger" onClick={()=>{stopOptimize.current=true}} disabled={!optimizing}>Dừng</button></div><div className={`admin-status ${optimizer.type||''}`}>{optimizer.text}</div></section>
