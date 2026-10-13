@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-13T11:02:34.915Z",
+  "generatedAt": "2026-10-13T11:03:58.771Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -12249,6 +12249,53 @@
         "bytes": 576541,
         "mimeType": "image/jpeg",
         "sha256": "01db6249393bc5be1882861bdd7341e99c80e88afd2550cfe704b8580f093e09"
+      }
+    },
+    {
+      "id": "canh-ao-nghenh-xuan-3",
+      "name": "Cành đào nghênh xuân",
+      "description": "",
+      "category": "Kahlii",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/canh-ao-nghenh-xuan-3-a72d4576bd28-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/canh-ao-nghenh-xuan-3-a72d4576bd28-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-13T11:02:14.984Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/canh-ao-nghenh-xuan-3-90876625bcf78145.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 619622,
+        "mimeType": "image/jpeg",
+        "sha256": "90876625bcf7814578ffcda94a15f3c6ee3d6607764390fbdd7acd1f5742c7ec"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/canh-ao-nghenh-xuan-3-a72d4576bd28-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 34366,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/canh-ao-nghenh-xuan-3-a72d4576bd28-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 64524,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/canh-ao-nghenh-xuan-3-a72d4576bd28-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 134718,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
