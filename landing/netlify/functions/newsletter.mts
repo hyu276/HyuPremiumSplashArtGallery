@@ -29,24 +29,31 @@ async function findContact(email: string, key: string): Promise<BrevoContact | n
   if (!response.ok) throw new Error("brevo-contact-" + response.status);
   return response.json() as Promise<BrevoContact>;
 }
-async function requestDOI(email: string, settings: NonNullable<ReturnType<typeof getConfig>>) {
+async function requestDOI(email: string, settings: NonNullable<ReturnType<typeof getConfig>>, returnOrigin: string) {
   const response = await fetch("https://api.brevo.com/v3/contacts/doubleOptinConfirmation", {
     method: "POST",
     headers: { "api-key": settings.apiKey, "content-type": "application/json", accept: "application/json" },
     body: JSON.stringify({
       email, includeListIds: [settings.listId], templateId: settings.templateId,
-      redirectionUrl: new URL("/?newsletter=confirmed", settings.landing).toString(),
+      redirectionUrl: new URL("/?newsletter=confirmed", returnOrigin).toString(),
       contactPixelTrackingConsent: false,
     }),
     signal: AbortSignal.timeout(API_TIMEOUT_MS),
   });
   if (!response.ok) throw new Error("brevo-doi-" + response.status);
 }
+function approvedRequestOrigin(request: Request, productionOrigin: string) {
+  const requestOrigin = new URL(request.url).origin;
+  const previewHost = /^https:\/\/(?:deploy-preview-[0-9]+|[a-f0-9]{24})--hyupremium\.netlify\.app$/;
+  const approved = requestOrigin === productionOrigin || previewHost.test(requestOrigin);
+  return approved && request.headers.get("origin") === requestOrigin ? requestOrigin : null;
+}
 export default async function handler(request: Request) {
   if (request.method !== "POST") return reply("Method not allowed", 405);
   const settings = getConfig();
   if (!settings) return reply("Đăng ký bản tin chưa được cấu hình. Vui lòng quay lại sau.", 503);
-  if (request.headers.get("origin") !== settings.landing.origin) return reply("Origin not permitted", 403);
+  const approvedOrigin = approvedRequestOrigin(request, settings.landing.origin);
+  if (!approvedOrigin) return reply("Origin not permitted", 403);
   if (!request.headers.get("content-type")?.startsWith("application/json")) return reply("Unsupported content type", 415);
   if (Number(request.headers.get("content-length") || 0) > MAX_REQUEST_BYTES) return reply("Request too large", 413);
   try {
@@ -63,7 +70,7 @@ export default async function handler(request: Request) {
     if (contact?.emailBlacklisted || contact?.listUnsubscribed?.length || contact?.listIds?.includes(settings.listId)) {
       return reply("Nếu địa chỉ hợp lệ, hãy kiểm tra hộp thư để xác nhận.");
     }
-    await requestDOI(normalized, settings);
+    await requestDOI(normalized, settings, approvedOrigin);
     return reply("Kiểm tra hộp thư và bấm liên kết xác nhận để hoàn tất đăng ký.");
   } catch (error) {
     console.error(JSON.stringify({
