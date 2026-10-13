@@ -4,13 +4,16 @@ const closer = document.getElementById('close-signup');
 const form = document.getElementById('signup-form');
 const message = document.getElementById('form-message');
 const submit = form.querySelector('button[type="submit"]');
-trigger.addEventListener('click', () => { dialog.showModal(); form.email.focus(); });
+function openSignup() { dialog.showModal(); form.email.focus(); }
+trigger.addEventListener('click', openSignup);
+document.querySelector('.hero-ebook-trigger')?.addEventListener('click', openSignup);
 closer.addEventListener('click', () => dialog.close());
 dialog.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
 function setStatus(text, error = false) { message.textContent = text; message.classList.toggle('error', error); }
 form.addEventListener('submit', async event => {
   event.preventDefault();
   if (!form.reportValidity()) return;
+  if (!form.marketing.checked) { setStatus('Bạn cần tự nguyện xác nhận đăng ký nhận bản tin và email marketing để nhận ebook.', true); return; }
   submit.disabled = true;
   setStatus('Đang xử lý đăng ký…');
   try {
