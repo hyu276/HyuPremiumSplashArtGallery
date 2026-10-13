@@ -4,7 +4,7 @@
     "hero": {
       "src": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nhung-ngoi-sao-xa-xoi-71e2805b8a66-1600.webp",
       "desktop": {
-        "x": 50,
+        "x": 0,
         "y": 35
       },
       "mobile": {
@@ -17,7 +17,7 @@
     "ebook-cta": {
       "src": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoa-si-mong-mi-9f38efc7d322-960.webp",
       "desktop": {
-        "x": 50,
+        "x": 0,
         "y": 50
       },
       "mobile": {
@@ -28,9 +28,9 @@
       "dim": 0.05
     },
     "gallery-cta": {
-      "src": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/xich-diem-han-trieu-7b5bc2746a3e-960.webp",
+      "src": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nhat-nguyet-oan-duyen-2-14311208dbce-960.webp",
       "desktop": {
-        "x": 50,
+        "x": 0,
         "y": 50
       },
       "mobile": {
@@ -51,7 +51,7 @@
         "y": 50
       },
       "zoom": 1.04,
-      "dim": 0.85
+      "dim": 0.65
     },
     "about-idea": {
       "src": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoa-si-mong-mi-9f38efc7d322-960.webp",
@@ -93,7 +93,7 @@
       "dim": 0.24
     },
     "concepts-background": {
-      "src": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nang-tien-dua-hau-6647aa24312b-1600.webp",
+      "src": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thai-so-chi-mau-e09df529b532-1600.webp",
       "desktop": {
         "x": 50,
         "y": 50
@@ -103,7 +103,7 @@
         "y": 50
       },
       "zoom": 1.04,
-      "dim": 0.9
+      "dim": 0.65
     },
     "concept-mythic": {
       "src": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/phuong-tinh-uyen-ton-04c41dcec96e-960.webp",
@@ -132,9 +132,9 @@
       "dim": 0
     },
     "concept-cosmic": {
-      "src": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nhung-ngoi-sao-xa-xoi-71e2805b8a66-960.webp",
+      "src": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tan-than-thien-ha-hang-hieu-c213bdd006ac-960.webp",
       "desktop": {
-        "x": 50,
+        "x": 59,
         "y": 50
       },
       "mobile": {
@@ -145,9 +145,9 @@
       "dim": 0
     },
     "concept-fantasy": {
-      "src": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nang-tien-dua-hau-6647aa24312b-960.webp",
+      "src": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/wave-2a1d5d568fc6-960.webp",
       "desktop": {
-        "x": 50,
+        "x": 5,
         "y": 50
       },
       "mobile": {
@@ -158,22 +158,22 @@
       "dim": 0
     },
     "works-background": {
-      "src": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/wave-2a1d5d568fc6-1600.webp",
+      "src": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/khong-tuoc-nu-hoang-505bc7dd439f-1600.webp",
       "desktop": {
-        "x": 50,
-        "y": 50
+        "x": 26,
+        "y": 100
       },
       "mobile": {
         "x": 50,
         "y": 50
       },
       "zoom": 1.04,
-      "dim": 0.89
+      "dim": 0.65
     },
     "work-1": {
-      "src": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/lang-van-khai-tue-quan-4dd6245dc3fe-960.webp",
+      "src": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/girl-nao-loan-bb885e1224dc-960.webp",
       "desktop": {
-        "x": 50,
+        "x": 59,
         "y": 50
       },
       "mobile": {
@@ -210,7 +210,7 @@
       "dim": 0
     },
     "process-background": {
-      "src": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/xich-diem-han-trieu-7b5bc2746a3e-1600.webp",
+      "src": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ong-hoa-tay-dieu-f3fce1f0e844-1600.webp",
       "desktop": {
         "x": 50,
         "y": 50
@@ -220,7 +220,7 @@
         "y": 50
       },
       "zoom": 1.04,
-      "dim": 0.86
+      "dim": 0.65
     }
   }
 }
