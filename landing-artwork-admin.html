@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex,nofollow,noarchive">
   <meta name="referrer" content="no-referrer">
   <title>Artwork landing — Hyu Premium Admin</title>
-  <link rel="stylesheet" href="./assets/css/landing-artwork-admin.css?v=20261013-1">
+  <link rel="stylesheet" href="./assets/css/landing-artwork-admin.css?v=20261013-2">
 </head>
 <body>
   <div class="admin-shell">
@@ -33,18 +33,26 @@
           <aside class="slot-sidebar"><label for="slotSearch">Vị trí ảnh</label><input id="slotSearch" type="search" placeholder="Tìm section hoặc vị trí…"><div id="slotList" class="slot-list" role="group" aria-label="Các vị trí artwork"></div></aside>
           <section class="work-panel" aria-labelledby="slotTitle">
             <div class="panel-heading"><div><p class="eyebrow" id="slotGroup"></p><h2 id="slotTitle"></h2></div><div class="preview-mode" aria-label="Kiểu xem trước"><button type="button" data-mode="desktop" aria-pressed="true">Desktop</button><button type="button" data-mode="mobile" aria-pressed="false">Mobile</button></div></div>
-            <div class="preview" id="preview"><img id="previewImage" alt="Xem trước crop artwork"><div class="preview-dim" id="previewDim"></div><span class="preview-label" id="previewLabel"></span></div>
+            <div class="preview" id="preview" aria-label="Kéo ảnh để căn vùng hiển thị"><img id="previewImage" alt="Xem trước crop artwork" draggable="false"><div class="preview-dim" id="previewDim"></div><span class="preview-label" id="previewLabel"></span></div>
+            <p class="drag-hint">Kéo ảnh để căn khung. Dùng thanh X/Y để chỉnh chính xác; tăng Phóng ảnh nếu ảnh chưa có phần dư để kéo.</p>
             <div class="source-row"><label for="imageUrl">URL derivative R2</label><input id="imageUrl" type="url" spellcheck="false"><button class="quiet" id="openPicker" type="button">Chọn từ gallery</button></div>
             <div class="controls"><fieldset><legend>Crop desktop</legend><label>X <output id="desktopXValue"></output><input id="desktopX" type="range" min="0" max="100" step="1"></label><label>Y <output id="desktopYValue"></output><input id="desktopY" type="range" min="0" max="100" step="1"></label></fieldset><fieldset><legend>Crop mobile</legend><label>X <output id="mobileXValue"></output><input id="mobileX" type="range" min="0" max="100" step="1"></label><label>Y <output id="mobileYValue"></output><input id="mobileY" type="range" min="0" max="100" step="1"></label></fieldset><fieldset><legend>Hiệu ứng</legend><label>Phóng ảnh <output id="zoomValue"></output><input id="zoom" type="range" min="1" max="1.5" step="0.01"></label><label>Lớp phủ xanh đậm <output id="dimValue"></output><input id="dim" type="range" min="0" max="1" step="0.01"></label></fieldset></div>
             <div class="publish-bar"><p id="dirtyLabel">Chưa có thay đổi.</p><div><button class="quiet" id="saveDraft" type="button">Lưu bản nháp</button><button class="primary" id="publishButton" type="button" disabled>Xuất bản lên landing</button></div></div>
             <p class="admin-note">Xuất bản ghi một commit vào nhánh nội dung riêng. Website Netlify đọc cấu hình khi khách mở trang; bộ đệm GitHub có thể cần vài phút để cập nhật.</p>
           </section>
+          <aside class="live-panel" aria-labelledby="liveTitle">
+            <div class="live-heading"><div><p class="eyebrow">BẢN NHÁP TRỰC TIẾP</p><h2 id="liveTitle">Trên landing</h2></div><span class="live-dot" aria-hidden="true"></span></div>
+            <p>Hiển thị bản nháp trong bố cục landing thật. Chọn vị trí ảnh để tự cuộn tới section tương ứng.</p>
+            <div class="live-toolbar"><div class="preview-mode" aria-label="Kích thước landing"><button type="button" data-live-mode="desktop" aria-pressed="true">Desktop</button><button type="button" data-live-mode="mobile" aria-pressed="false">Mobile</button></div><a href="https://hyupremium.netlify.app/" target="_blank" rel="noopener noreferrer">Trang đã xuất bản ↗</a></div>
+            <div class="live-stage" id="liveStage"><div class="live-viewport" id="liveViewport"><iframe id="liveFrame" title="Bản xem trước landing với artwork chưa xuất bản" src="https://hyupremium.netlify.app/?artwork-preview=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div></div>
+            <p class="live-note" id="liveStatus" role="status">Đang mở bản xem trước…</p>
+          </aside>
         </div>
       </div>
       <section class="picker" id="picker" hidden aria-labelledby="pickerTitle"><div class="picker-head"><h2 id="pickerTitle">Chọn artwork từ gallery</h2><button class="quiet" id="closePicker" type="button">Đóng</button></div><label for="gallerySearch">Tìm theo tên hoặc nhân vật</label><input id="gallerySearch" type="search" placeholder="Ví dụ: Aya, Thần thoại…"><div class="picker-results" id="pickerResults"></div></section>
       <p class="status" id="status" role="status" aria-live="polite"></p>
     </main>
   </div>
-  <script src="./assets/js/landing-artwork-admin.js?v=20261013-1" defer></script>
+  <script src="./assets/js/landing-artwork-admin.js?v=20261013-2" defer></script>
 </body>
 </html>

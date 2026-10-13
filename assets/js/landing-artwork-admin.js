@@ -23,6 +23,11 @@
   let selected = slots[0][0];
   let mode = 'desktop';
   let catalogue = null;
+  const landingOrigin = 'https://hyupremium.netlify.app';
+  let liveMode = 'desktop';
+  let liveReady = false;
+  let previewFrame = 0;
+  let drag = null;
 
   function status(message, error = false) {
     byId('status').textContent = message;
@@ -83,7 +88,7 @@
       button.type='button'; button.setAttribute('aria-current',id === selected ? 'true' : 'false');
       button.textContent=label;
       const caption=document.createElement('small'); caption.textContent=group; button.append(caption);
-      button.addEventListener('click', () => { selected=id; renderSlots(); renderEditor(); });
+      button.addEventListener('click', () => { selected=id; renderSlots(); renderEditor(); queueLivePreview(); });
       list.append(button);
     }
   }
@@ -105,6 +110,7 @@
     const image=byId('previewImage');
     if (derivativePattern.test(item.src) && image.src !== item.src) image.src=item.src;
     image.style.objectPosition=`${crop.x}% ${crop.y}%`;
+    image.style.transformOrigin=`${crop.x}% ${crop.y}%`;
     image.style.transform=`scale(${item.zoom})`;
     byId('previewDim').style.opacity=String(item.dim);
     byId('preview').classList.toggle('mobile',mode === 'mobile');
@@ -113,7 +119,52 @@
     const key=event.target.id, value=Number(event.target.value), item=working.slots[selected];
     if (key === 'zoom' || key === 'dim') item[key]=value;
     else item[key.startsWith('desktop') ? 'desktop' : 'mobile'][key.at(-1).toLowerCase()]=value;
-    renderEditor(); refreshDirty();
+    renderEditor(); refreshDirty(); queueLivePreview();
+  }
+  function queueLivePreview() {
+    if (!working || !liveReady || previewFrame) return;
+    previewFrame=requestAnimationFrame(() => {
+      previewFrame=0;
+      byId('liveFrame').contentWindow?.postMessage({type:'hyu-artwork-preview',version:1,config:working,slot:selected},landingOrigin);
+    });
+  }
+  function resizeLivePreview() {
+    const stage=byId('liveStage'), viewport=byId('liveViewport');
+    const width=liveMode==='desktop'?1280:390, height=liveMode==='desktop'?850:844;
+    const scale=Math.min(1,(stage.clientWidth-2)/width);
+    viewport.style.width=`${width}px`; viewport.style.height=`${height}px`;
+    viewport.style.transform=`scale(${scale})`;
+    stage.style.height=`${Math.round(height*scale)+2}px`;
+  }
+  function setViewportMode(next) {
+    mode=next;liveMode=next;
+    document.querySelectorAll('.preview-mode button').forEach(button=>button.setAttribute('aria-pressed',String((button.dataset.mode||button.dataset.liveMode)===next)));
+    renderPreview();resizeLivePreview();queueLivePreview();
+  }
+  function dragPreview(event) {
+    if (event.button !== 0 || !working) return;
+    const image=byId('previewImage'), box=byId('preview');
+    if (!image.naturalWidth || !image.naturalHeight) return;
+    const crop=working.slots[selected][mode];
+    drag={pointer:event.pointerId,x:event.clientX,y:event.clientY,cropX:crop.x,cropY:crop.y,slot:selected,mode};
+    box.setPointerCapture(event.pointerId);box.classList.add('is-dragging');event.preventDefault();
+  }
+  function movePreview(event) {
+    if (!drag || event.pointerId!==drag.pointer || selected!==drag.slot || mode!==drag.mode) return;
+    const box=byId('preview'),image=byId('previewImage'),item=working.slots[selected];
+    const width=box.clientWidth,height=box.clientHeight;
+    const cover=Math.max(width/image.naturalWidth,height/image.naturalHeight);
+    const overflowX=item.zoom*image.naturalWidth*cover-width;
+    const overflowY=item.zoom*image.naturalHeight*cover-height;
+    const clamp=value=>Math.round(Math.max(0,Math.min(100,value)));
+    const crop=item[mode];
+    if (overflowX>1) crop.x=clamp(drag.cropX-(event.clientX-drag.x)*100/overflowX);
+    if (overflowY>1) crop.y=clamp(drag.cropY-(event.clientY-drag.y)*100/overflowY);
+    renderEditor();refreshDirty();queueLivePreview();
+  }
+  function endPreview(event) {
+    if (!drag || event.pointerId!==drag.pointer) return;
+    byId('preview').classList.remove('is-dragging');drag=null;
   }
   function saveDraft() {
     try {
@@ -143,6 +194,7 @@
       byId('tokenInput').value=''; byId('loginPanel').hidden=true; byId('editor').hidden=false;
       byId('accountLabel').textContent=`Đã đăng nhập: @${user}`;
       restoreDraft(); renderSlots(); renderEditor(); refreshDirty();
+      resizeLivePreview();queueLivePreview();
       if (!changed()) status('Đã tải cấu hình artwork từ GitHub.');
     } catch (error) { token=''; status(error.message || 'Không thể đăng nhập.',true); }
   }
@@ -199,7 +251,7 @@
       const caption=document.createElement('span');caption.textContent=item.name;
       const category=document.createElement('small');category.textContent=item.category;caption.append(category);
       button.append(thumb,caption);
-      button.addEventListener('click',()=>{working.slots[selected].src=image;renderEditor();refreshDirty();byId('picker').hidden=true;status(`Đã chọn ${item.name}. Bấm Xuất bản để cập nhật Netlify.`);});
+      button.addEventListener('click',()=>{working.slots[selected].src=image;renderEditor();refreshDirty();queueLivePreview();byId('picker').hidden=true;status(`Đã chọn ${item.name}. Bấm Xuất bản để cập nhật Netlify.`);});
       results.append(button);shown++;
     }
     if (!shown) results.textContent='Không có artwork phù hợp.';
@@ -213,8 +265,15 @@
   byId('closePicker').addEventListener('click',()=>{byId('picker').hidden=true;});
   byId('saveDraft').addEventListener('click',saveDraft);
   byId('publishButton').addEventListener('click',publish);
-  byId('imageUrl').addEventListener('change',event=>{const src=event.target.value.trim();if(!derivativePattern.test(src))return status('Chỉ dùng URL derivative WebP 640/960/1600 trên R2. Chọn từ gallery để lấy URL hợp lệ.',true);working.slots[selected].src=src;renderPreview();refreshDirty();});
+  byId('imageUrl').addEventListener('change',event=>{const src=event.target.value.trim();if(!derivativePattern.test(src))return status('Chỉ dùng URL derivative WebP 640/960/1600 trên R2. Chọn từ gallery để lấy URL hợp lệ.',true);working.slots[selected].src=src;renderPreview();refreshDirty();queueLivePreview();});
   document.querySelectorAll('.controls input').forEach(input=>input.addEventListener('input',updateRange));
-  document.querySelectorAll('.preview-mode button').forEach(button=>button.addEventListener('click',()=>{mode=button.dataset.mode;document.querySelectorAll('.preview-mode button').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));renderPreview();}));
+  document.querySelectorAll('[data-mode], [data-live-mode]').forEach(button=>button.addEventListener('click',()=>setViewportMode(button.dataset.mode||button.dataset.liveMode)));
+  byId('preview').addEventListener('pointerdown',dragPreview);
+  byId('preview').addEventListener('pointermove',movePreview);
+  byId('preview').addEventListener('pointerup',endPreview);
+  byId('preview').addEventListener('pointercancel',endPreview);
+  byId('liveFrame').addEventListener('load',()=>{setTimeout(()=>{if(!liveReady)byId('liveStatus').textContent='Không thể mở preview. Kiểm tra bản deploy Netlify và tải lại trang.';},5000);});
+  window.addEventListener('message',event=>{if(event.origin===landingOrigin && event.source===byId('liveFrame').contentWindow && event.data?.type==='hyu-artwork-preview-ready'){liveReady=true;byId('liveStatus').textContent='Bản nháp trong bố cục landing · chưa xuất bản';queueLivePreview();}});
+  new ResizeObserver(resizeLivePreview).observe(byId('liveStage'));
   window.addEventListener('beforeunload',event=>{if(working&&changed()){event.preventDefault();event.returnValue='';}});
 })();
