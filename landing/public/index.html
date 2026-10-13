@@ -25,7 +25,7 @@
     <p class="hero-overline">FROM IMAGINATION TO ICONIC SKINS</p>
     <h1 id="hero-title">DESIGN<br><em>BEYOND</em><br>THE GAME<span class="period">.</span></h1>
     <div class="hero-bottom"><p>Không chỉ tạo ra một bộ skin đẹp. Hãy học cách xây dựng một thế giới, kể câu chuyện bằng thị giác và biến concept thành splash art giàu cá tính.</p>
-      <div class="hero-actions"><a class="btn btn-primary" href="#ebook">NHẬN EBOOK MIỄN PHÍ <span>↗</span></a><a class="btn btn-outline" href="https://hyupremium.vercel.app/" target="_blank" rel="noopener noreferrer">KHÁM PHÁ GALLERY <span>↗</span></a></div>
+      <div class="hero-actions"><button class="btn btn-primary hero-ebook-trigger" type="button">NHẬN EBOOK MIỄN PHÍ <span>↗</span></button><a class="btn btn-outline" href="https://hyupremium.vercel.app/" target="_blank" rel="noopener noreferrer">KHÁM PHÁ GALLERY <span>↗</span></a></div>
     </div>
   </div>
   <div class="hero-side">IDEAS HAVE NO LIMITS <span>●</span> CONCEPT ART / 2026</div>
@@ -53,17 +53,17 @@
   <div class="section-label"><span>03 — FREE CREATOR'S GUIDE</span><span>EDITION 01 / DIGITAL GUIDE</span></div>
   <div class="ebook-grid"><div class="book-side"><div class="book-mock" aria-hidden="true"><div class="book-top">HYU PREMIUM <span>CREATOR'S EDITION  /  01</span></div><div class="book-center"><small>THE ART OF</small><strong>SKIN<br>DESIGN</strong><em>FROM CONCEPT TO STORY</em></div><div class="book-bottom">A FIELD GUIDE FOR CREATIVE MINDS <span>↗</span></div></div><div class="book-glow"></div></div>
   <div class="ebook-copy"><span class="chip">FREE DIGITAL EBOOK · COMING SOON</span><h2 id="ebook-title">YOUR NEXT<br>GREAT SKIN<br><em>STARTS HERE.</em></h2><p>Hướng dẫn tư duy xây dựng skin concept, lựa chọn ngôn ngữ hình ảnh và phát triển splash art. Ebook đang được hoàn thiện và sẽ được gửi qua email khi sẵn sàng.</p>
-  <button class="btn btn-primary ebook-trigger" type="button" id="open-signup">ĐĂNG KÝ NHẬN EBOOK <span>↗</span></button><p class="ebook-note">Miễn phí. Chỉ gửi ebook và các thông tin bạn chủ động đăng ký nhận.</p></div></div>
+  <button class="btn btn-primary ebook-trigger" type="button" id="open-signup">ĐĂNG KÝ NHẬN EBOOK <span>↗</span></button><p class="ebook-note">Ebook dành cho người đăng ký bản tin sáng tạo Hyu Premium. Bạn cần đồng ý nhận email marketing và xác nhận email để nhận ebook. Có thể hủy đăng ký về sau.</p></div></div>
 </section>
 <section class="final-cta"><span>GO FURTHER THAN THE CONCEPT</span><h2>ENTER THE<br><em>HYU UNIVERSE.</em></h2><a class="btn btn-primary" href="https://hyupremium.vercel.app/" target="_blank" rel="noopener noreferrer">GHÉ THĂM HYU PREMIUM <span>↗</span></a></section>
 </main>
 <footer><a class="brand" href="/"><img src="/mark.svg" alt="" width="28" height="28"><span>HYU <strong>PREMIUM</strong></span></a><span>© HYU PREMIUM · CREATIVE CONCEPT STUDIO</span><a href="https://hyupremium.vercel.app/" target="_blank" rel="noopener noreferrer">VISIT MAIN WEBSITE ↗</a></footer>
 <dialog id="signup-dialog" aria-labelledby="signup-heading">
   <div class="modal-top"><span>HYU PREMIUM / DIGITAL DELIVERY</span><button id="close-signup" class="close" type="button" aria-label="Đóng biểu mẫu">✕</button></div>
-  <div class="modal-body"><div class="modal-kicker">CREATOR'S GUIDE · 01</div><h2 id="signup-heading">GET THE<br><em>CREATOR'S GUIDE.</em></h2><p>Để nhận ebook khi phát hành, hãy nhập email và xác nhận quyền sở hữu qua thư chúng tôi gửi. Tùy chọn nhận nội dung marketing hoàn toàn riêng biệt.</p>
+  <div class="modal-body"><div class="modal-kicker">CREATOR'S GUIDE · 01</div><h2 id="signup-heading">GET THE<br><em>CREATOR'S GUIDE.</em></h2><p>Ebook được tặng cho người đăng ký bản tin Hyu Premium. Để nhận ebook, bạn cần chủ động đồng ý nhận các email hướng dẫn, cập nhật và quảng bá từ Hyu Premium, sau đó xác nhận địa chỉ email. Bạn có thể hủy đăng ký bất cứ lúc nào.</p>
   <form id="signup-form" novalidate>
     <label for="email">EMAIL ADDRESS</label><input id="email" name="email" type="email" required maxlength="254" placeholder="you@example.com" autocomplete="email">
-    <label class="consent"><input id="marketing" name="marketing" type="checkbox"><span>Tôi đồng ý nhận email về hướng dẫn sáng tạo, skin concepts, cập nhật nội dung và ưu đãi từ Hyu Premium. Tôi có thể hủy bất cứ lúc nào. <strong>Không bắt buộc để nhận ebook.</strong></span></label>
+    <label class="consent"><input id="marketing" name="marketing" type="checkbox" required aria-required="true"><span><strong>Tôi đồng ý đăng ký nhận bản tin và các email marketing của Hyu Premium</strong> về hướng dẫn sáng tạo, skin concepts, cập nhật và ưu đãi. Tôi hiểu đây là điều kiện để nhận ebook miễn phí và tôi có thể hủy đăng ký bất cứ lúc nào.</span></label>
     <label class="privacy"><input id="privacy" type="checkbox" required><span>Tôi đồng ý để Hyu Premium xử lý email nhằm xác nhận đăng ký và gửi ebook. Xem <a href="/privacy.html" target="_blank" rel="noopener">chính sách quyền riêng tư</a>.</span></label>
     <div class="trap" aria-hidden="true"><label for="company">Leave blank</label><input id="company" name="company" tabindex="-1" autocomplete="off"></div>
     <button class="btn btn-primary modal-submit" type="submit">GỬI EMAIL XÁC NHẬN <span>→</span></button>
