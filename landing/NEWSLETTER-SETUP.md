@@ -23,3 +23,9 @@ The landing popup uses the **official Brevo Form Builder iframe** supplied by th
 ## Testing
 
 Open the Netlify deploy preview, click the Ebook CTA, check layout at 360/390/768/1280 px and keyboard navigation, confirm CSP does not block Brevo, submit only with a controlled test address, verify that it receives the PDF link in the Brevo confirmation email, and verify expected Brevo list membership. Verify other gallery, artwork and external links remain unchanged.
+
+## Approved mobile UX and ebook template (2026-10-14)
+
+The user approved the interactive mobile-first demo. This release makes the existing Netlify Brevo iframe dialog full-height on mobile (one scroll surface within the large iframe) and uses a compact header with an always accessible 44px close target. On desktop it remains a centered modal. Cross-origin Brevo form interior styling stays owned by Brevo Form Builder and cannot be restyled by parent Netlify CSS. The iframe now has a 640px fallback height and grows to the dialog's available space. Keyboard Escape and previous-focus restoration remain in app.js.
+
+Brevo transactional template **#13** `HYU PREMIUM | Ebook Delivery | Navy Cyan | 2026` was created active with the approved navy/cyan HTML, subject `Ebook hướng dẫn thiết kế skin của bạn đã sẵn sàng`, and the existing Google Docs ebook URL. **The operator must select template #13 as the Simple confirmation email in Brevo's Form Builder**. The Brevo integration does not expose a form-update action, and creating a template does not attach it to the live form. Do not delete the old confirmation template or change the four list selections without operator approval. Verify the Google Docs sharing permission for recipients.
