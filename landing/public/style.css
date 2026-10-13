@@ -236,6 +236,15 @@
     .work figcaption { z-index:1; }
 .nav-links{font-size:15px}.nav-cta,.button{font-size:14px}.footer-note,.footer-links,.work figcaption{font-size:14px}.footer-bottom,.demo-note,.form-message{font-size:13px}.modal p,.consent{font-size:14px}
 
-/* Secondary legal notice beneath the sole affirmative checkbox. */
-.modal .privacy-notice { margin: -8px 0 20px; color: #b9c9df; font-size: 12px; line-height: 1.6; }
-.modal .privacy-notice a { color: #dce8fa; text-underline-offset: 2px; }
+/* Brevo native iframe: preserve the site's navy/cyan modal chrome. */
+.modal { max-height: calc(100dvh - 32px); overflow-y: auto; overscroll-behavior: contain; }
+.brevo-form-shell[hidden] { display: none; }
+.brevo-signup-frame { width: 100%; min-height: 305px; border: 0; background: #fff; display: block; }
+.modal .brevo-form-help { margin: 10px 0 0; color: #c3d5e7; font-size: 12px; line-height: 1.5; }
+.modal .brevo-form-help a { color: #6cf7f2; text-decoration: underline; text-underline-offset: 2px; }
+#legacyEbookConfirmation .button { margin-top: 14px; }
+@media (max-width: 480px) {
+  .brevo-signup-frame { min-height: 370px; }
+  .modal { padding: 24px 18px; }
+  .modal h2 { font-size: clamp(25px, 7vw, 34px); }
+}
