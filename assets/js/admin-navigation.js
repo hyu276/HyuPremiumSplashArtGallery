@@ -55,7 +55,8 @@
       <a href="#admin-skinlines">Skinline</a>
       <a href="#admin-universes">Skin Universe</a>
       <a href="#admin-team">Đội ngũ</a>
-      <a href="#champion-thumb-panel">Thumbnail trang Tướng</a>`;
+      <a href="#champion-thumb-panel">Thumbnail trang Tướng</a>
+      <a href="./landing-artwork-admin.html">Artwork Netlify ↗</a>`;
 
     const top=wrap.querySelector('.admin-top');
     if(top)top.insertAdjacentElement('afterend',nav);else wrap.prepend(nav);
