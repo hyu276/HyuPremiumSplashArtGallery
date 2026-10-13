@@ -12,7 +12,7 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
-    Content-Security-Policy = "default-src 'none'; img-src 'self' https://hyu-premium-media.csquocnguyen.workers.dev data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self'; connect-src 'self' https://raw.githubusercontent.com; font-src 'self' https://fonts.gstatic.com; base-uri 'none'; form-action 'self'; frame-ancestors https://hyu276.github.io"
+    Content-Security-Policy = "default-src 'none'; img-src 'self' https://hyu-premium-media.csquocnguyen.workers.dev data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self'; connect-src 'self' https://raw.githubusercontent.com; font-src 'self' https://fonts.gstatic.com; base-uri 'none'; form-action 'self'; frame-src https://5ba93be9.sibforms.com; frame-ancestors https://hyu276.github.io"
 
 [[headers]]
   for = "/assets/*"
