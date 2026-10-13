@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-13T11:18:47.421Z",
+  "generatedAt": "2026-10-13T11:25:38.913Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -12106,6 +12106,53 @@
           "width": 1600,
           "height": 893,
           "bytes": 110644,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "nu-than-sac-ep",
+      "name": "Nữ thần sắc đẹp",
+      "description": "",
+      "category": "Ilumia",
+      "rank": "SSS+",
+      "rankOrder": 6,
+      "credit": "Sol",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nu-than-sac-ep-01a076993cd1-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nu-than-sac-ep-01a076993cd1-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-13T11:23:39.389Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/nu-than-sac-ep-397c09221728f5b3.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 537456,
+        "mimeType": "image/jpeg",
+        "sha256": "397c09221728f5b38b31763c373132b4bd4939bcf91b6d0a5ace8e9b10eb5467"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nu-than-sac-ep-01a076993cd1-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 29370,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nu-than-sac-ep-01a076993cd1-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 54890,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nu-than-sac-ep-01a076993cd1-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 111508,
           "mimeType": "image/webp"
         }
       }
