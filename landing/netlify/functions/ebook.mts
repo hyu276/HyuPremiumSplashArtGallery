@@ -5,8 +5,8 @@ type Signup = { action: "request"; email: string; marketing: boolean; privacy: b
 type Confirmation = { action: "confirm"; token: string };
 type Payload = { email: string; marketing: boolean; created: number; version: string };
 const TOKEN_TTL_MS = 24 * 60 * 60 * 1000;
-const CONSENT_VERSION = "ebook-optin-v1-2026-10";
-const EMAIL_PATTERN = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
+const CONSENT_VERSION = "ebook-newsletter-required-v2-2026-10";
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const required = (key: string) => Netlify.env.get(key)?.trim() || "";
 const json = (message: string, status = 200) => Response.json({ message }, { status, headers: { "cache-control": "no-store", "x-content-type-options": "nosniff" } });
 const fingerprint = (value: string) => createHash("sha256").update(value).digest("hex");
@@ -47,7 +47,7 @@ async function postApi(url: string, apiKey: string, body: Record<string, unknown
 function sender() { return "Hyu Premium <" + required("RESEND_FROM_EMAIL") + ">"; }
 async function sendConfirmation(email: string, token: string) {
   const base = required("PUBLIC_LANDING_URL");
-  const confirmUrl = new URL(base || "https://hyu-premium-ebook.netlify.app");
+  const confirmUrl = new URL(base || "https://hyupremium.netlify.app");
   confirmUrl.searchParams.set("confirm", token);
   const link = confirmUrl.toString();
   const text = "Bạn đã yêu cầu ebook Hyu Premium. Xác nhận email tại: " + link + "\nLiên kết có hiệu lực trong 24 giờ. Nếu không phải bạn đăng ký, hãy bỏ qua thư này.";
@@ -64,7 +64,7 @@ async function deliverEbook(email: string, token: string) {
 async function syncConsent(data: Payload) {
   const consentAt = new Date(data.created).toISOString();
   await postApi("https://api.brevo.com/v3/contacts", required("BREVO_API_KEY"), { email: data.email, listIds: [Number(required("BREVO_LIST_ID"))], updateEnabled: true }, "brevo");
-  await postApi("https://api.resend.com/contacts", required("RESEND_API_KEY"), { email: data.email, unsubscribed: false, segment_ids: [required("RESEND_SEGMENT_ID")], properties: { hyu_optin_at: consentAt, hyu_optin_source: "netlify-ebook-landing-double-optin", hyu_optin_version: CONSENT_VERSION } }, "resend");
+  await postApi("https://api.resend.com/contacts", required("RESEND_API_KEY"), { email: data.email, segment_ids: [required("RESEND_SEGMENT_ID")], properties: { hyu_optin_at: consentAt, hyu_optin_source: "netlify-ebook-landing-double-optin", hyu_optin_version: CONSENT_VERSION } }, "resend");
 }
 function isAllowedOrigin(request: Request) {
   const expected = required("PUBLIC_LANDING_URL");
@@ -74,7 +74,8 @@ function isAllowedOrigin(request: Request) {
 }
 async function requestSignup(data: Signup) {
   if (data.company) return json("Nếu email hợp lệ, bạn sẽ nhận hướng dẫn xác nhận.");
-  if (!data.privacy || !EMAIL_PATTERN.test(data.email) || data.email.length > 254 || typeof data.marketing !== "boolean") return json("Kiểm tra email và điều khoản xử lý dữ liệu.", 400);
+  if (data.marketing !== true) return json("Bạn cần chủ động đồng ý nhận bản tin và email marketing để tham gia chương trình ebook.", 400);
+  if (!data.privacy || !EMAIL_PATTERN.test(data.email.trim()) || data.email.trim().length > 254) return json("Kiểm tra email và điều khoản xử lý dữ liệu.", 400);
   const email = data.email.trim().toLowerCase();
   const token = encrypt({ email, marketing: data.marketing, created: Date.now(), version: CONSENT_VERSION });
   await sendConfirmation(email, token);
@@ -83,12 +84,13 @@ async function requestSignup(data: Signup) {
 async function confirmSignup(data: Confirmation) {
   let payload: Payload;
   try { payload = decrypt(data.token); } catch { return json("Liên kết không hợp lệ hoặc đã hết hạn. Hãy đăng ký lại.", 400); }
+  if (payload.marketing !== true) return json("Bạn chưa đồng ý nhận marketing nên chưa đủ điều kiện nhận ebook. Vui lòng đăng ký lại.", 403);
   await deliverEbook(payload.email, data.token);
   if (payload.marketing) {
     try { await syncConsent(payload); }
     catch { return json("Ebook đã được gửi. Chưa thể hoàn tất đăng ký nhận tin marketing; vui lòng liên hệ hỗ trợ.", 502); }
   }
-  return json(payload.marketing ? "Đã gửi ebook và ghi nhận lựa chọn marketing của bạn." : "Đã gửi ebook đến email của bạn. Bạn không được đăng ký nhận marketing.");
+  return json("Đã gửi ebook và ghi nhận đăng ký nhận bản tin của bạn. Bạn có thể hủy đăng ký bất kỳ lúc nào.");
 }
 export default async function handler(request: Request) {
   if (request.method !== "POST") return json("Method not allowed", 405);
