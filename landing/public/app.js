@@ -126,17 +126,30 @@ const CONTENT_URL = 'https://raw.githubusercontent.com/hyu276/HyuPremiumSplashAr
       submit.disabled = true;
       formMessage.textContent = 'Đang xử lý đăng ký…';
       try {
-        const response = await fetch('/.netlify/functions/ebook', {
+        const response = await fetch('/.netlify/functions/newsletter', {
           method:'POST', headers:{'content-type':'application/json'},
-          body:JSON.stringify({action:'request',email:signupForm.elements.namedItem('email').value.trim(),marketing:signupForm.elements.namedItem('marketing').checked,privacy:signupForm.elements.namedItem('privacy').checked,company:signupForm.elements.namedItem('company').value})
+          body:JSON.stringify({
+            email:signupForm.elements.namedItem('email').value.trim(),
+            consent:signupForm.elements.namedItem('consent').checked,
+            company:signupForm.elements.namedItem('company').value
+          })
         });
         const data = await response.json();
-        if (!response.ok) throw new Error(data.message || 'Không thể gửi yêu cầu.');
+        if (!response.ok) throw new Error(data.message || 'Không thể đăng ký lúc này.');
         formMessage.textContent = data.message;
         signupForm.reset();
-      } catch (error) { formMessage.textContent = error.message || 'Lỗi kết nối. Vui lòng thử lại.'; }
-      finally { submit.disabled = false; }
+      } catch (error) {
+        formMessage.textContent = error.message || 'Lỗi kết nối. Vui lòng thử lại.';
+      } finally { submit.disabled = false; }
     });
+    if (new URLSearchParams(location.search).get('newsletter') === 'confirmed') {
+      history.replaceState({}, '', location.pathname + location.hash);
+      modal.classList.add('open'); modal.setAttribute('aria-hidden','false');
+      document.body.classList.add('modal-open');
+      signupForm.hidden = true;
+      formMessage.textContent = 'Đăng ký đã được xác nhận. Cảm ơn bạn đã tham gia bản tin Hyu Premium.';
+      modal.querySelector('.modal-close').focus();
+    }
     const confirmationToken = new URLSearchParams(location.search).get('confirm');
     if (confirmationToken) {
       history.replaceState({}, '', location.pathname + location.hash);
