@@ -235,3 +235,7 @@
     .concept-media::after, .work::after { content:""; position:absolute; inset:0; background:rgba(4,18,43,var(--image-dim,0)); pointer-events:none; }
     .work figcaption { z-index:1; }
 .nav-links{font-size:15px}.nav-cta,.button{font-size:14px}.footer-note,.footer-links,.work figcaption{font-size:14px}.footer-bottom,.demo-note,.form-message{font-size:13px}.modal p,.consent{font-size:14px}
+
+/* Secondary legal notice beneath the sole affirmative checkbox. */
+.modal .privacy-notice { margin: -8px 0 20px; color: #b9c9df; font-size: 12px; line-height: 1.6; }
+.modal .privacy-notice a { color: #dce8fa; text-underline-offset: 2px; }
