@@ -7,31 +7,31 @@ This is an isolated Netlify project within the HyuPremiumSplashArtGallery reposi
 1. The **existing** Netlify site `hyupremium` is linked to `hyu276/HyuPremiumSplashArtGallery` and deploys the `feat/netlify-ebook-landing` branch. Keep the landing release separate from the Vercel `main` boundary.
 2. Set **Base directory:** `landing`; **Build command:** `npm run build`; **Publish directory:** `public`. Use `landing/netlify.toml`, with functions under `landing/netlify/functions`. Do not publish the repository root.
 3. Production origin: `https://hyupremium.netlify.app`. Confirm the new deploy's commit SHA and state in Netlify after pushing the landing branch.
-4. Netlify **Environment variables** (Functions runtime, production):
-   - `PUBLIC_LANDING_URL=https://hyupremium.netlify.app` (the exact deployed public origin; no path)
-   - `RESEND_API_KEY`: restricted sending key from your Resend account.
-   - `RESEND_FROM_EMAIL`: a sender email on a verified **custom sending domain**. The Vercel/Netlify provided subdomains cannot be used to control SPF/DKIM.
-   - `EBOOK_URL`: HTTPS URL of the final PDF (not yet provided).
-   - `EBOOK_TOKEN_KEY`: 32 cryptographically random bytes encoded in Base64 (generate offline with `openssl rand -base64 32`).
-   - `BREVO_API_KEY`: server-side Brevo API key.
-   - `BREVO_LIST_ID`: **dedicated, new, confirmed-consent marketing list**. Never use a preexisting mixed-consent list.
-   - `RESEND_SEGMENT_ID`: dedicated confirmed-consent Resend segment (already created; ID available in Resend account).
-5. Configure SPF/DKIM/DMARC and a working sender/reply contact. Verify a test recipient and check each provider's logs. Do not open enrollment without confirmed signup/unsubscribe behavior, reliable consent evidence and a reviewed privacy notice.
+4. Configure Netlify environment variables for Functions / Production:
+   - `PUBLIC_LANDING_URL=https://hyupremium.netlify.app`
+   - `BREVO_API_KEY`: Brevo v3 API key (never commit to the repository).
+   - `BREVO_SENDER_ID`: verified/active Brevo sender ID (existing account currently lists sender 1; test transactional delivery).
+   - `BREVO_LIST_ID`: a **separate, newly created** ebook newsletter contact list ID. Do not point to existing mixed-consent Canva lists.
+   - `EBOOK_URL`: final HTTPS PDF URL (not provided yet).
+   - `EBOOK_TOKEN_KEY`: 32 cryptographically random bytes encoded as Base64 (generate locally using `openssl rand -base64 32`).
+   - `EBOOK_LAUNCH_ENABLED`: `false` by default. Set to `true` **only after all prerequisites and end-to-end tests are complete**.
+5. Set a consistent Reply-To mailbox and verify Brevo will actually send transactional email through its fallback domain on this account. Brevo's fallback sender is provider-controlled, not a user-owned `@brevo.com` mailbox. Stop if delivery is rejected.
+6. Test new signup and confirmation with a controlled test address. Do not run marketing campaigns until reliable consent logs, suppression, and unsubscribe flows are tested. Redeploy Netlify after updating runtime variables.
 
 ## Conditional ebook / marketing disclosure
 
 Participation in this ebook program requires an *affirmative, unchecked-by-default* newsletter/marketing consent and double confirmation. The form states this condition plainly and offers a link to the privacy notice. **This commercial condition may not constitute freely given consent in every jurisdiction (especially where the GDPR applies)**; obtain a jurisdiction-specific legal review and consider offering a non-marketing ebook path if required. Unsubscribing must remain possible independently of the ebook delivery. Do not characterize conditioned consent as automatically valid solely because the checkbox is ticked.
 
-## API behavior
+## API behavior (Brevo-only)
 
-- GET requests are rejected; only same-origin JSON POST requests are allowed. The public site triggers `/.netlify/functions/ebook`.
-- On request: required privacy acknowledgment, unchecked-by-default **required** marketing newsletter consent checkbox, validation and honeypot, encrypted time-limited confirmation token, and a transactional verification email.
-- On confirmation click: the API verifies that consent is true; Resend then sends the ebook and attempts to register the confirmed opt-in in the **dedicated Brevo list** and **Resend segment**. Requests without explicit marketing consent are rejected in the client and server; this is advertised as a newsletter-subscriber ebook benefit, not as an unconditional giveaway.
-- Both API keys exist only on the server; the confirmation token uses AES-256-GCM. Netlify rate limit is an additional anti-abuse control.
-- This is a starter implementation. Production launch also needs: persistent double-opt-in audit (proof of checkbox choice, source, timestamps, confirmation event and consent version); replay-safe confirmation tracking; consistent **two-way unsubscribe/suppression sync** between Brevo and Resend; automatic reconciliation if one provider succeeds and another fails; proper deletion/retention procedures; abuse protection beyond the simple rate limit. Until these are implemented, **do not send marketing campaigns from both providers**.
-- Landing artwork uses existing Cloudflare R2 WebP derivatives. The public page does not fetch full-resolution archival originals.
-- The API deliberately returns HTTP 503 until all required credentials and the ebook URL are configured. It does not pretend to have issued a real ebook before the file exists.
-- Privacy policy text is a prelaunch draft. Add the valid operator contact, the operative privacy/data processing details, and jurisdiction-specific notices prior to public signup.
+- The public frontend posts same-origin requests to `/.netlify/functions/ebook`. The function always returns HTTP 503 unless `EBOOK_LAUNCH_ENABLED=true` and every required configuration variable is present.
+- The user explicitly opts into marketing (checkbox unchecked by default) and acknowledges privacy, then receives an email confirmation from Brevo's `/v3/smtp/email` transactional API.
+- After verifying the token, the function checks existing Brevo contact suppression information before adding the confirmed subscriber to `BREVO_LIST_ID`. It **does not** set `updateEnabled:true` and refuses to automatically re-enable blacklisted/unsubscribed contacts.
+- Brevo then sends the ebook link. Brevo also handles later marketing campaigns. **Resend is not used by this landing page**, no Resend credentials or segments are required.
+- Confirmation token expiry is 24 hours; encryption is AES-256-GCM. There is an IP-based function rate limit. Email is validated server-side.
+- **Prelaunch blockers:** persistent double-opt-in proof (consent source/version/verification timestamp), replay prevention, proper idempotence if the contact add succeeds but email delivery fails, working marketing unsubscribe/suppression flow, monitored delivery logs, completed privacy notice with actual operator contact, and real end-to-end tests. The current token is not single-use; keep the launch gate false until those are resolved.
+- The ebook PDF has not been provided. Do not promise delivery until the valid HTTPS URL exists. The Brevo fallback domain behavior has not been verified for actual transactional delivery.
+- All credentials must remain Netlify server-side environment variables and must never appear in frontend code or GitHub commits.
 
 ## Validation
 
