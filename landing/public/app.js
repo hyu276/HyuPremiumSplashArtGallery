@@ -102,68 +102,61 @@ const CONTENT_URL = 'https://raw.githubusercontent.com/hyu276/HyuPremiumSplashAr
 
     const modal = document.querySelector('#ebookModal');
     const closeModal = document.querySelector('.modal-close');
-    const emailInput = document.querySelector('#email');
+    const frame = document.querySelector('#brevoSignupFrame');
+    const formShell = document.querySelector('#brevoFormShell');
+    const legacyConfirmation = document.querySelector('#legacyEbookConfirmation');
     let previousFocus = null;
-    function openModal(event) { event.preventDefault(); previousFocus = event.currentTarget; modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); document.body.classList.add('modal-open'); setTimeout(() => emailInput.focus(), 0); }
-    function hideModal() { modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); document.body.classList.remove('modal-open'); previousFocus?.focus(); }
+    function loadBrevoForm() {
+      if (!frame.getAttribute('src')) frame.setAttribute('src', frame.dataset.src);
+    }
+    function openModal(event) {
+      event.preventDefault();
+      previousFocus = event.currentTarget;
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-open');
+      loadBrevoForm();
+      closeModal.focus();
+    }
+    function hideModal() {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('modal-open');
+      previousFocus?.focus();
+    }
     document.querySelectorAll('[data-open-ebook]').forEach(button => button.addEventListener('click', openModal));
     closeModal.addEventListener('click', hideModal);
     modal.addEventListener('click', event => { if (event.target === modal) hideModal(); });
     document.addEventListener('keydown', event => { if (event.key === 'Escape' && modal.classList.contains('open')) hideModal(); });
     modal.addEventListener('keydown', event => {
       if (event.key !== 'Tab') return;
-      const focusable = [...modal.querySelectorAll('a[href], button:not([disabled]), input:not([disabled])')];
+      const focusable = [...modal.querySelectorAll('a[href], button:not([disabled]), iframe:not([hidden]), input:not([disabled])')];
       const first = focusable[0], last = focusable[focusable.length - 1];
+      if (!first || !last) return;
       if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
       else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
     });
-    const signupForm = document.querySelector('#signupForm');
-    const formMessage = document.querySelector('#formMessage');
-    signupForm.addEventListener('submit', async event => {
-      event.preventDefault();
-      if (!signupForm.reportValidity()) return;
-      const submit = signupForm.querySelector('[type="submit"]');
-      submit.disabled = true;
-      formMessage.textContent = 'Đang xử lý đăng ký…';
-      try {
-        const response = await fetch('/.netlify/functions/newsletter', {
-          method:'POST', headers:{'content-type':'application/json'},
-          body:JSON.stringify({
-            email:signupForm.elements.namedItem('email').value.trim(),
-            consent:signupForm.elements.namedItem('consent').checked,
-            company:signupForm.elements.namedItem('company').value
-          })
-        });
-        const data = await response.json();
-        if (!response.ok) throw new Error(data.message || 'Không thể đăng ký lúc này.');
-        formMessage.textContent = data.message;
-        signupForm.reset();
-      } catch (error) {
-        formMessage.textContent = error.message || 'Lỗi kết nối. Vui lòng thử lại.';
-      } finally { submit.disabled = false; }
-    });
-    if (new URLSearchParams(location.search).get('newsletter') === 'confirmed') {
-      history.replaceState({}, '', location.pathname + location.hash);
-      modal.classList.add('open'); modal.setAttribute('aria-hidden','false');
-      document.body.classList.add('modal-open');
-      signupForm.hidden = true;
-      formMessage.textContent = 'Đăng ký đã được xác nhận. Cảm ơn bạn đã tham gia bản tin Hyu Premium.';
-      modal.querySelector('.modal-close').focus();
-    }
     const confirmationToken = new URLSearchParams(location.search).get('confirm');
     if (confirmationToken) {
       history.replaceState({}, '', location.pathname + location.hash);
-      modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); document.body.classList.add('modal-open');
-      signupForm.hidden = true;
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-open');
+      formShell.hidden = true;
+      const note = modal.querySelector('.demo-note');
+      if (note) note.hidden = true;
+      legacyConfirmation.hidden = false;
       const confirmButton = document.createElement('button');
       confirmButton.type = 'button'; confirmButton.className = 'button';
       confirmButton.textContent = 'XÁC NHẬN EMAIL →';
       const confirmStatus = document.createElement('div');
-      confirmStatus.className = 'form-message'; confirmStatus.setAttribute('role','status');
-      signupForm.after(confirmButton, confirmStatus);
+      confirmStatus.className = 'form-message';
+      confirmStatus.setAttribute('role', 'status');
+      legacyConfirmation.append(confirmButton, confirmStatus);
       confirmButton.focus();
       confirmButton.addEventListener('click', async () => {
-        confirmButton.disabled = true; confirmStatus.textContent = 'Đang xác nhận…';
+        confirmButton.disabled = true;
+        confirmStatus.textContent = 'Đang xác nhận…';
         try {
           const response = await fetch('/.netlify/functions/ebook', {method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({action:'confirm',token:confirmationToken})});
           const data = await response.json();
