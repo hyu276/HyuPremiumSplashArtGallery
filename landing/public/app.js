@@ -1,54 +1,138 @@
-const dialog = document.getElementById('signup-dialog');
-const trigger = document.getElementById('open-signup');
-const closer = document.getElementById('close-signup');
-const form = document.getElementById('signup-form');
-const message = document.getElementById('form-message');
-const submit = form.querySelector('button[type="submit"]');
-function openSignup() { dialog.showModal(); form.email.focus(); }
-trigger.addEventListener('click', openSignup);
-document.querySelector('.hero-ebook-trigger')?.addEventListener('click', openSignup);
-closer.addEventListener('click', () => dialog.close());
-dialog.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
-function setStatus(text, error = false) { message.textContent = text; message.classList.toggle('error', error); }
-form.addEventListener('submit', async event => {
-  event.preventDefault();
-  if (!form.reportValidity()) return;
-  if (!form.marketing.checked) { setStatus('Bạn cần tự nguyện xác nhận đăng ký nhận bản tin và email marketing để nhận ebook.', true); return; }
-  submit.disabled = true;
-  setStatus('Đang xử lý đăng ký…');
-  try {
-    const response = await fetch('/.netlify/functions/ebook', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ action: 'request', email: form.email.value.trim(), marketing: form.marketing.checked, privacy: form.privacy.checked, company: form.company.value }) });
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.message || 'Không thể xử lý yêu cầu.');
-    setStatus(data.message);
-    form.reset();
-  } catch (error) { setStatus(error.message || 'Đã xảy ra lỗi. Vui lòng thử lại.', true); }
-  finally { submit.disabled = false; }
-});
-const token = new URLSearchParams(window.location.search).get('confirm');
-if (token) {
-  history.replaceState({}, '', window.location.pathname + window.location.hash);
-  dialog.showModal();
-  form.hidden = true;
-  const box = document.createElement('div');
-  box.className = 'confirm-box';
-  const heading = document.createElement('p');
-  heading.textContent = 'Bạn đang xác nhận yêu cầu nhận ebook. Vui lòng bấm nút bên dưới để hoàn tất.';
-  const button = document.createElement('button');
-  button.type = 'button'; button.className = 'btn btn-primary';
-  button.textContent = 'XÁC NHẬN EMAIL →';
-  const result = document.createElement('div');
-  result.className = 'form-message'; result.setAttribute('role', 'status');
-  box.append(heading, button, result);
-  form.parentNode.appendChild(box);
-  button.addEventListener('click', async () => {
-    button.disabled = true; result.textContent = 'Đang xác nhận…';
-    try {
-      const response = await fetch('/.netlify/functions/ebook', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ action: 'confirm', token }) });
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.message || 'Không thể xác nhận.');
-      result.textContent = data.message;
-      button.hidden = true;
-    } catch (error) { result.textContent = error.message || 'Lỗi kết nối'; button.disabled = false; }
-  });
-}
+const CONTENT_URL = 'https://raw.githubusercontent.com/hyu276/HyuPremiumSplashArtGallery/refs/heads/content/landing-artwork/landing/content/artworks.json';
+    const DERIVATIVE_URL = /^https:\/\/hyu-premium-media\.csquocnguyen\.workers\.dev\/media\/artworks\/variants\/[a-z0-9-]+-(?:640|960|1600)\.webp$/;
+    const mobileCrop = matchMedia('(max-width: 780px)');
+    let artworkConfig = {slots:{}};
+    function validSlot(settings) {
+      const point = value => value && Number.isFinite(value.x) && Number.isFinite(value.y) && value.x >= 0 && value.x <= 100 && value.y >= 0 && value.y <= 100;
+      return settings && DERIVATIVE_URL.test(settings.src) && point(settings.desktop) && point(settings.mobile)
+        && Number.isFinite(settings.zoom) && settings.zoom >= 1 && settings.zoom <= 1.5
+        && Number.isFinite(settings.dim) && settings.dim >= 0 && settings.dim <= 1;
+    }
+    function applyArtwork(image) {
+      const settings = artworkConfig.slots[image.dataset.imageSlot];
+      if (!validSlot(settings)) return;
+      if (image.src !== settings.src) image.src = settings.src;
+      const crop = mobileCrop.matches ? settings.mobile : settings.desktop;
+      image.style.setProperty('--image-position', `${crop.x}% ${crop.y}%`);
+      image.style.setProperty('--image-scale', settings.zoom);
+      image.parentElement.style.setProperty('--image-dim', settings.dim);
+    }
+    function applyAllArtwork() { document.querySelectorAll('[data-image-slot]').forEach(applyArtwork); }
+    async function fetchArtwork(url, timeoutMs) {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), timeoutMs);
+      try {
+        const response = await fetch(url, {cache:'no-store', signal:controller.signal});
+        if (!response.ok) throw new Error('Artwork configuration unavailable');
+        const data = await response.json();
+        if (data.version !== 1 || !data.slots || typeof data.slots !== 'object') throw new Error('Invalid artwork configuration');
+        return data;
+      } finally { clearTimeout(timeout); }
+    }
+    async function loadArtwork() {
+      try { artworkConfig = await fetchArtwork('/artwork-defaults.json', 4000); applyAllArtwork(); } catch { /* HTML image sources remain visible. */ }
+      try {
+        const published = await fetchArtwork(CONTENT_URL, 5000);
+        artworkConfig = {slots:{...artworkConfig.slots, ...published.slots}};
+        applyAllArtwork();
+      } catch { /* Keep the bundled, reviewed default. */ }
+    }
+    void loadArtwork();
+    mobileCrop.addEventListener('change', applyAllArtwork);
+    const menuButton = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('#navLinks');
+    menuButton.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuButton.setAttribute('aria-expanded', String(isOpen));
+      menuButton.setAttribute('aria-label', isOpen ? 'Đóng menu' : 'Mở menu');
+    });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navLinks.classList.remove('open'); menuButton.setAttribute('aria-expanded', 'false');
+    }));
+
+    const tabs = [...document.querySelectorAll('.concept-tab')];
+    const panel = document.querySelector('#conceptPanel');
+    const conceptTitle = document.querySelector('#conceptTitle');
+    const conceptCopy = document.querySelector('#conceptCopy');
+    const conceptImage = document.querySelector('#conceptImage');
+    function selectTab(tab) {
+      tabs.forEach(item => { const selected = item === tab; item.setAttribute('aria-selected', String(selected)); item.tabIndex = selected ? 0 : -1; });
+      panel.setAttribute('aria-labelledby', tab.id);
+      conceptTitle.textContent = tab.dataset.title;
+      conceptCopy.textContent = tab.dataset.copy;
+      conceptImage.dataset.imageSlot = tab.dataset.slot;
+      applyArtwork(conceptImage);
+      panel.classList.remove('is-changing');
+      void panel.offsetWidth;
+      panel.classList.add('is-changing');
+      conceptImage.alt = `Artwork concept ${tab.dataset.title} — Hyu Premium`;
+    }
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => selectTab(tab));
+      tab.addEventListener('keydown', event => {
+        if (!['ArrowDown','ArrowUp','ArrowRight','ArrowLeft','Home','End'].includes(event.key)) return;
+        event.preventDefault();
+        const next = event.key === 'Home' ? 0 : event.key === 'End' ? tabs.length - 1 : (index + (['ArrowDown','ArrowRight'].includes(event.key) ? 1 : -1) + tabs.length) % tabs.length;
+        tabs[next].focus(); selectTab(tabs[next]);
+      });
+    });
+
+    const modal = document.querySelector('#ebookModal');
+    const closeModal = document.querySelector('.modal-close');
+    const emailInput = document.querySelector('#email');
+    let previousFocus = null;
+    function openModal(event) { event.preventDefault(); previousFocus = event.currentTarget; modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); document.body.classList.add('modal-open'); setTimeout(() => emailInput.focus(), 0); }
+    function hideModal() { modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); document.body.classList.remove('modal-open'); previousFocus?.focus(); }
+    document.querySelectorAll('[data-open-ebook]').forEach(button => button.addEventListener('click', openModal));
+    closeModal.addEventListener('click', hideModal);
+    modal.addEventListener('click', event => { if (event.target === modal) hideModal(); });
+    document.addEventListener('keydown', event => { if (event.key === 'Escape' && modal.classList.contains('open')) hideModal(); });
+    modal.addEventListener('keydown', event => {
+      if (event.key !== 'Tab') return;
+      const focusable = [...modal.querySelectorAll('a[href], button:not([disabled]), input:not([disabled])')];
+      const first = focusable[0], last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    });
+    const signupForm = document.querySelector('#signupForm');
+    const formMessage = document.querySelector('#formMessage');
+    signupForm.addEventListener('submit', async event => {
+      event.preventDefault();
+      if (!signupForm.reportValidity()) return;
+      const submit = signupForm.querySelector('[type="submit"]');
+      submit.disabled = true;
+      formMessage.textContent = 'Đang xử lý đăng ký…';
+      try {
+        const response = await fetch('/.netlify/functions/ebook', {
+          method:'POST', headers:{'content-type':'application/json'},
+          body:JSON.stringify({action:'request',email:signupForm.elements.namedItem('email').value.trim(),marketing:signupForm.elements.namedItem('marketing').checked,privacy:signupForm.elements.namedItem('privacy').checked,company:signupForm.elements.namedItem('company').value})
+        });
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.message || 'Không thể gửi yêu cầu.');
+        formMessage.textContent = data.message;
+        signupForm.reset();
+      } catch (error) { formMessage.textContent = error.message || 'Lỗi kết nối. Vui lòng thử lại.'; }
+      finally { submit.disabled = false; }
+    });
+    const confirmationToken = new URLSearchParams(location.search).get('confirm');
+    if (confirmationToken) {
+      history.replaceState({}, '', location.pathname + location.hash);
+      modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); document.body.classList.add('modal-open');
+      signupForm.hidden = true;
+      const confirmButton = document.createElement('button');
+      confirmButton.type = 'button'; confirmButton.className = 'button';
+      confirmButton.textContent = 'XÁC NHẬN EMAIL →';
+      const confirmStatus = document.createElement('div');
+      confirmStatus.className = 'form-message'; confirmStatus.setAttribute('role','status');
+      signupForm.after(confirmButton, confirmStatus);
+      confirmButton.focus();
+      confirmButton.addEventListener('click', async () => {
+        confirmButton.disabled = true; confirmStatus.textContent = 'Đang xác nhận…';
+        try {
+          const response = await fetch('/.netlify/functions/ebook', {method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({action:'confirm',token:confirmationToken})});
+          const data = await response.json();
+          if (!response.ok) throw new Error(data.message || 'Không thể xác nhận.');
+          confirmStatus.textContent = data.message; confirmButton.hidden = true;
+        } catch (error) { confirmStatus.textContent = error.message || 'Lỗi kết nối.'; confirmButton.disabled = false; }
+      });
+    }

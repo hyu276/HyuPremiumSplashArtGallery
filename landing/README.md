@@ -1,12 +1,12 @@
 # HYU PREMIUM — Ebook landing (Netlify only)
 
-This is an isolated Netlify project within the HyuPremiumSplashArtGallery repository. The Next.js/Vercel gallery, GitHub Pages admin, catalogue and Cloudflare media infrastructure must stay unchanged.
+This is an isolated Netlify project within the HyuPremiumSplashArtGallery repository. The Next.js gallery stays on Vercel; the editorial admin stays on GitHub Pages.
 
 ## Deploy/import
 
-1. For the **existing** site `hyupremium`, go to its Netlify dashboard and connect **GitHub → `hyu276/HyuPremiumSplashArtGallery`**. Set the Netlify production branch to `feat/netlify-ebook-landing` to keep Vercel's `main` release boundary untouched (until a separate, reviewed landing branch is chosen).
+1. The **existing** Netlify site `hyupremium` is linked to `hyu276/HyuPremiumSplashArtGallery` and deploys the `feat/netlify-ebook-landing` branch. Keep the landing release separate from the Vercel `main` boundary.
 2. Set **Base directory:** `landing`; **Build command:** `npm run build`; **Publish directory:** `public`. Use `landing/netlify.toml`, with functions under `landing/netlify/functions`. Do not publish the repository root.
-3. Set the site name `hyupremium` and confirm the production origin `https://hyupremium.netlify.app`. Existing empty Netlify project: `hyupremium` (reserved public hostname `hyupremium.netlify.app`) (a Git link or deployment must still be configured).
+3. Production origin: `https://hyupremium.netlify.app`. Confirm the new deploy's commit SHA and state in Netlify after pushing the landing branch.
 4. Netlify **Environment variables** (Functions runtime, production):
    - `PUBLIC_LANDING_URL=https://hyupremium.netlify.app` (the exact deployed public origin; no path)
    - `RESEND_API_KEY`: restricted sending key from your Resend account.
@@ -29,13 +29,23 @@ Participation in this ebook program requires an *affirmative, unchecked-by-defau
 - On confirmation click: the API verifies that consent is true; Resend then sends the ebook and attempts to register the confirmed opt-in in the **dedicated Brevo list** and **Resend segment**. Requests without explicit marketing consent are rejected in the client and server; this is advertised as a newsletter-subscriber ebook benefit, not as an unconditional giveaway.
 - Both API keys exist only on the server; the confirmation token uses AES-256-GCM. Netlify rate limit is an additional anti-abuse control.
 - This is a starter implementation. Production launch also needs: persistent double-opt-in audit (proof of checkbox choice, source, timestamps, confirmation event and consent version); replay-safe confirmation tracking; consistent **two-way unsubscribe/suppression sync** between Brevo and Resend; automatic reconciliation if one provider succeeds and another fails; proper deletion/retention procedures; abuse protection beyond the simple rate limit. Until these are implemented, **do not send marketing campaigns from both providers**.
-- Existing gallery artwork previews are only fetched from the existing public repository URL; Netlify never ingests admin code or full-resolution archival originals.
+- Landing artwork uses existing Cloudflare R2 WebP derivatives. The public page does not fetch full-resolution archival originals.
 - The API deliberately returns HTTP 503 until all required credentials and the ebook URL are configured. It does not pretend to have issued a real ebook before the file exists.
 - Privacy policy text is a prelaunch draft. Add the valid operator contact, the operative privacy/data processing details, and jurisdiction-specific notices prior to public signup.
 
 ## Validation
 
 `npm install && npm run build`. Use `netlify dev` for live serverless function checks and verify UI at mobile widths 360/390/768 and desktop 1280/1920. The gallery's existing `npm run egress:check`, `npm run typecheck` and `npm run build` must be run in the repository root prior to merge.
+
+## Landing artwork editing
+
+The GitHub Pages admin has a separate **Artwork Netlify** navigation item at `landing-artwork-admin.html`. Sign in there using an owner-scoped fine-grained GitHub PAT with Contents read/write permission. The PAT stays in memory for that tab; public artwork drafts may be saved locally without the token.
+
+- `landing/public/artwork-defaults.json` and the HTML image URLs are the reviewed fallback included in a Netlify deployment.
+- The published configuration is `landing/content/artworks.json` on the dedicated `content/landing-artwork` branch. Admin **Save Draft** writes only on the trusted device. **Publish** makes one SHA-guarded GitHub commit; the UI reads the file back to verify it. A conflict retains the draft and requires review.
+- The landing page fetches the public raw GitHub configuration once per page load. GitHub's cache can delay visibility by a few minutes; there is no polling or per-edit Netlify/Vercel build. If this fetch fails, the included defaults stay visible.
+- All 17 slots support selecting an existing gallery derivative, manually entering an approved R2 derivative URL, desktop/mobile X/Y crop, zoom and navy overlay. The gallery picker loads catalogue metadata only when opened.
+- No new admin write service, browser-stored cleartext token, media origin, or Vercel branch deployment was added.
 
 ## Governance
 
