@@ -4,11 +4,11 @@ This is an isolated Netlify project within the HyuPremiumSplashArtGallery reposi
 
 ## Deploy/import
 
-1. Netlify → **Add new project → Import existing project → GitHub** → select `hyu276/HyuPremiumSplashArtGallery`.
+1. For the **existing** site `hyupremium`, go to its Netlify dashboard and connect **GitHub → `hyu276/HyuPremiumSplashArtGallery`**. Set the Netlify production branch to `feat/netlify-ebook-landing` to keep Vercel's `main` release boundary untouched (until a separate, reviewed landing branch is chosen).
 2. Set **Base directory:** `landing`; **Build command:** `npm run build`; **Publish directory:** `public`. Use `landing/netlify.toml`, with functions under `landing/netlify/functions`. Do not publish the repository root.
-3. Set custom domain and confirm the expected production origin. Existing empty Netlify project: `hyu-premium-ebook` (a Git link or deployment must still be configured).
+3. Set the site name `hyupremium` and confirm the production origin `https://hyupremium.netlify.app`. Existing empty Netlify project: `hyupremium` (reserved public hostname `hyupremium.netlify.app`) (a Git link or deployment must still be configured).
 4. Netlify **Environment variables** (Functions runtime, production):
-   - `PUBLIC_LANDING_URL=https://your-site.netlify.app` (the exact deployed public origin; no path)
+   - `PUBLIC_LANDING_URL=https://hyupremium.netlify.app` (the exact deployed public origin; no path)
    - `RESEND_API_KEY`: restricted sending key from your Resend account.
    - `RESEND_FROM_EMAIL`: a sender email on a verified **custom sending domain**. The Vercel/Netlify provided subdomains cannot be used to control SPF/DKIM.
    - `EBOOK_URL`: HTTPS URL of the final PDF (not yet provided).
@@ -18,11 +18,15 @@ This is an isolated Netlify project within the HyuPremiumSplashArtGallery reposi
    - `RESEND_SEGMENT_ID`: dedicated confirmed-consent Resend segment (already created; ID available in Resend account).
 5. Configure SPF/DKIM/DMARC and a working sender/reply contact. Verify a test recipient and check each provider's logs. Do not open enrollment without confirmed signup/unsubscribe behavior, reliable consent evidence and a reviewed privacy notice.
 
+## Conditional ebook / marketing disclosure
+
+Participation in this ebook program requires an *affirmative, unchecked-by-default* newsletter/marketing consent and double confirmation. The form states this condition plainly and offers a link to the privacy notice. **This commercial condition may not constitute freely given consent in every jurisdiction (especially where the GDPR applies)**; obtain a jurisdiction-specific legal review and consider offering a non-marketing ebook path if required. Unsubscribing must remain possible independently of the ebook delivery. Do not characterize conditioned consent as automatically valid solely because the checkbox is ticked.
+
 ## API behavior
 
 - GET requests are rejected; only same-origin JSON POST requests are allowed. The public site triggers `/.netlify/functions/ebook`.
-- On request: required privacy acknowledgment, unchecked-by-default optional marketing checkbox, validation and honeypot, encrypted time-limited confirmation token, and a transactional verification email.
-- On confirmation click: **Resend sends the ebook**. Only when marketing is expressly selected does the API send contact data to the dedicated **Brevo list** and **Resend segment**. A person requesting only the ebook must not be added to either marketing audience.
+- On request: required privacy acknowledgment, unchecked-by-default **required** marketing newsletter consent checkbox, validation and honeypot, encrypted time-limited confirmation token, and a transactional verification email.
+- On confirmation click: the API verifies that consent is true; Resend then sends the ebook and attempts to register the confirmed opt-in in the **dedicated Brevo list** and **Resend segment**. Requests without explicit marketing consent are rejected in the client and server; this is advertised as a newsletter-subscriber ebook benefit, not as an unconditional giveaway.
 - Both API keys exist only on the server; the confirmation token uses AES-256-GCM. Netlify rate limit is an additional anti-abuse control.
 - This is a starter implementation. Production launch also needs: persistent double-opt-in audit (proof of checkbox choice, source, timestamps, confirmation event and consent version); replay-safe confirmation tracking; consistent **two-way unsubscribe/suppression sync** between Brevo and Resend; automatic reconciliation if one provider succeeds and another fails; proper deletion/retention procedures; abuse protection beyond the simple rate limit. Until these are implemented, **do not send marketing campaigns from both providers**.
 - Existing gallery artwork previews are only fetched from the existing public repository URL; Netlify never ingests admin code or full-resolution archival originals.
