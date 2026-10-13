@@ -2,6 +2,9 @@ const CONTENT_URL = 'https://raw.githubusercontent.com/hyu276/HyuPremiumSplashAr
     const DERIVATIVE_URL = /^https:\/\/hyu-premium-media\.csquocnguyen\.workers\.dev\/media\/artworks\/variants\/[a-z0-9-]+-(?:640|960|1600)\.webp$/;
     const mobileCrop = matchMedia('(max-width: 780px)');
     let artworkConfig = {slots:{}};
+    const previewMode = new URLSearchParams(location.search).get('artwork-preview') === '1' && window.parent !== window;
+    let draftReceived = false;
+    let lastPreviewSlot = null;
     function validSlot(settings) {
       const point = value => value && Number.isFinite(value.x) && Number.isFinite(value.y) && value.x >= 0 && value.x <= 100 && value.y >= 0 && value.y <= 100;
       return settings && DERIVATIVE_URL.test(settings.src) && point(settings.desktop) && point(settings.mobile)
@@ -30,14 +33,34 @@ const CONTENT_URL = 'https://raw.githubusercontent.com/hyu276/HyuPremiumSplashAr
       } finally { clearTimeout(timeout); }
     }
     async function loadArtwork() {
-      try { artworkConfig = await fetchArtwork('/artwork-defaults.json', 4000); applyAllArtwork(); } catch { /* HTML image sources remain visible. */ }
+      try { const defaults = await fetchArtwork('/artwork-defaults.json', 4000); if (!draftReceived) { artworkConfig = defaults; applyAllArtwork(); } } catch { /* HTML image sources remain visible. */ }
       try {
         const published = await fetchArtwork(CONTENT_URL, 5000);
-        artworkConfig = {slots:{...artworkConfig.slots, ...published.slots}};
-        applyAllArtwork();
+        if (!draftReceived) { artworkConfig = {slots:{...artworkConfig.slots, ...published.slots}}; applyAllArtwork(); }
       } catch { /* Keep the bundled, reviewed default. */ }
     }
     void loadArtwork();
+    if (previewMode) {
+      document.body.classList.add('artwork-preview-mode');
+      window.addEventListener('message', event => {
+        if (event.origin !== 'https://hyu276.github.io' || event.source !== window.parent || event.data?.type !== 'hyu-artwork-preview' || event.data.version !== 1) return;
+        const draft = event.data.config;
+        const expectedSlots = [...document.querySelectorAll('[data-image-slot], .concept-tab[data-slot]')].map(node => node.dataset.imageSlot || node.dataset.slot);
+        if (draft?.version !== 1 || !draft.slots || typeof draft.slots !== 'object' || expectedSlots.some(id => !validSlot(draft.slots[id]))) return;
+        draftReceived = true;
+        artworkConfig = draft;
+        const slot = event.data.slot;
+        const tab = [...document.querySelectorAll('.concept-tab')].find(item => item.dataset.slot === slot);
+        if (tab) selectTab(tab);
+        applyAllArtwork();
+        const image = [...document.querySelectorAll('[data-image-slot]')].find(item => item.dataset.imageSlot === slot);
+        const section = image?.closest('.concept-panel, section, article, figure') || image;
+        if (section && lastPreviewSlot !== slot) { section.scrollIntoView({block:'center',behavior:'auto'}); lastPreviewSlot=slot; }
+      });
+      document.addEventListener('click', event => { if (event.target.closest('a, [data-open-ebook]')) { event.preventDefault(); event.stopImmediatePropagation(); } }, true);
+      document.addEventListener('submit', event => { event.preventDefault(); event.stopImmediatePropagation(); }, true);
+      window.parent.postMessage({type:'hyu-artwork-preview-ready'},'https://hyu276.github.io');
+    }
     mobileCrop.addEventListener('change', applyAllArtwork);
     const menuButton = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('#navLinks');

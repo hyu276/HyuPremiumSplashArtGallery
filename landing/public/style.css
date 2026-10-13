@@ -155,7 +155,7 @@
     }
 
     /* One image slot maps to one editable asset, focal point, zoom and dim level. */
-    [data-image-slot] { object-position: var(--image-position, center); transform: scale(var(--image-scale, 1)); }
+    [data-image-slot] { object-position: var(--image-position, center); transform-origin: var(--image-position, center); transform: scale(var(--image-scale, 1)); }
     .art-section { position: relative; isolation: isolate; overflow: hidden; }
     .section-content { position: relative; z-index: 1; }
     .section-backdrop { position: absolute; z-index: 0; inset: 0; overflow: hidden; pointer-events: none; background: var(--navy); }
