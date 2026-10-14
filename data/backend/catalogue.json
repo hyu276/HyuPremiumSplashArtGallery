@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-14T06:09:21.865Z",
+  "generatedAt": "2026-10-14T14:16:27.434Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -11595,7 +11595,7 @@
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoa-van-viem-e-c61451180cd5-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoa-van-viem-e-c61451180cd5-1600.webp",
       "tags": [],
-      "hidden": false,
+      "hidden": true,
       "category": "Ilumia",
       "rank": "SS",
       "rankOrder": 3,
