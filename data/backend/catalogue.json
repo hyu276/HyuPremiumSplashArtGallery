@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-14T15:08:16.850Z",
+  "generatedAt": "2026-10-15T13:58:33.672Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -100,16 +100,13 @@
       "id": "nang-tien-dua-hau",
       "name": "Nàng tiên dưa hấu",
       "description": "",
-      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nang-tien-dua-hau-6647aa24312b-1600.webp",
-      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nang-tien-dua-hau-6647aa24312b-1600.webp",
-      "tags": [],
-      "hidden": false,
       "category": "Alice",
       "rank": "S+",
       "rankOrder": 2,
-      "credit": "Triều",
-      "isVietnameseSkin": false,
-      "updatedAt": "2026-08-25T16:22:24.138711+00:00",
+      "credit": "Chưa có credit",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nang-tien-dua-hau-6647aa24312b-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nang-tien-dua-hau-6647aa24312b-1600.webp",
       "variants": {
         "640": {
           "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nang-tien-dua-hau-6647aa24312b-640.webp",
@@ -133,7 +130,6 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": [],
       "expanded": {
         "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/nang-tien-dua-hau-de2d73f17dbd9167.jpg",
         "width": 2752,
@@ -141,7 +137,11 @@
         "bytes": 468331,
         "mimeType": "image/jpeg",
         "sha256": "de2d73f17dbd916777b2fecb1d05adbbd177146c868c36a6aca8b45307532c3f"
-      }
+      },
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-15T13:58:05.543Z"
     },
     {
       "id": "tiec-bai-bien-8",
