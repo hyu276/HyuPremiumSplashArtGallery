@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-15T13:58:33.672Z",
+  "generatedAt": "2026-10-15T15:20:07.128Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -11636,6 +11636,53 @@
       }
     },
     {
+      "id": "bach-le-tien-tu",
+      "name": "Bạch Lê Tiên Tử",
+      "description": "",
+      "category": "Ilumia",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bach-le-tien-tu-8dced1266944-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bach-le-tien-tu-8dced1266944-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-15T15:15:15.195Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/bach-le-tien-tu-c5b863e428841e3e.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 587271,
+        "mimeType": "image/jpeg",
+        "sha256": "c5b863e428841e3ed292e7e9783b38d96ae3eb12f1ab90e3388cca13fe359cc1"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bach-le-tien-tu-8dced1266944-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 33100,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bach-le-tien-tu-8dced1266944-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 61146,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bach-le-tien-tu-8dced1266944-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 125578,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "hoa-van-viem-e",
       "name": "Hoà vân viêm đế",
       "description": "",
@@ -11914,6 +11961,53 @@
           "width": 1600,
           "height": 893,
           "bytes": 126408,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "u-minh-mong-diem",
+      "name": "U minh mộng diễm",
+      "description": "",
+      "category": "Ilumia",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/u-minh-mong-diem-7d852d956b15-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/u-minh-mong-diem-7d852d956b15-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-15T15:15:00.742Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/u-minh-mong-diem-b123e406d8a85c14.png",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 4540163,
+        "mimeType": "image/png",
+        "sha256": "b123e406d8a85c14cc965f04554df9b82dd1aaf961a83a3d2cf568b7cc1053b3"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/u-minh-mong-diem-7d852d956b15-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 25824,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/u-minh-mong-diem-7d852d956b15-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 47496,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/u-minh-mong-diem-7d852d956b15-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 98842,
           "mimeType": "image/webp"
         }
       }
@@ -23302,6 +23396,53 @@
       }
     },
     {
+      "id": "tra-a-bai-via",
+      "name": "Trà đá bãi vỉa",
+      "description": "",
+      "category": "Toro",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Vin",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tra-a-bai-via-bb9c52d94091-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tra-a-bai-via-bb9c52d94091-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-15T15:16:11.675Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/tra-a-bai-via-23c970ffc55e6b35.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 478924,
+        "mimeType": "image/jpeg",
+        "sha256": "23c970ffc55e6b35ed0648bee85937a9c0ea8ce2db87a20635219abc0b523ca0"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tra-a-bai-via-bb9c52d94091-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 26376,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tra-a-bai-via-bb9c52d94091-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 47014,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tra-a-bai-via-bb9c52d94091-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 93824,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "tuyet-son-thanh-ve",
       "name": "Tuyết sơn thánh vệ",
       "description": "",
@@ -26487,6 +26628,53 @@
       }
     },
     {
+      "id": "hoc-vien-anh-hung",
+      "name": "Học viện anh hùng",
+      "description": "",
+      "category": "Volkath",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Sol",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoc-vien-anh-hung-770ab8a10ec3-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoc-vien-anh-hung-770ab8a10ec3-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-15T15:16:39.923Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/hoc-vien-anh-hung-5e50964312378404.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 526553,
+        "mimeType": "image/jpeg",
+        "sha256": "5e509643123784048324e8ac7923f00b56ba33e034c9dd906873ffdc4e3a80f7"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoc-vien-anh-hung-770ab8a10ec3-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 25474,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoc-vien-anh-hung-770ab8a10ec3-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 48784,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoc-vien-anh-hung-770ab8a10ec3-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 105746,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "giang-ho-boy-pho",
       "name": "Giang hồ boy phố",
       "description": "",
@@ -27503,6 +27691,53 @@
         "bytes": 202085,
         "mimeType": "image/jpeg",
         "sha256": "f1ec5ce1d27dd193d5909f46afce66f2efa972cea950a5afce5e8d50705581e5"
+      }
+    },
+    {
+      "id": "huyen-tuyen-vu-anh",
+      "name": "Huyễn Tuyền Vu Ảnh",
+      "description": "",
+      "category": "Yena",
+      "rank": "SSS+",
+      "rankOrder": 6,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyen-tuyen-vu-anh-374aad9c4179-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyen-tuyen-vu-anh-374aad9c4179-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-15T15:15:41.290Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/huyen-tuyen-vu-anh-97197a45d986e1d8.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 526822,
+        "mimeType": "image/jpeg",
+        "sha256": "97197a45d986e1d8cc664dcf105d13e1f428f30dfba002edb4a8ee6adf7f7c55"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyen-tuyen-vu-anh-374aad9c4179-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 29778,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyen-tuyen-vu-anh-374aad9c4179-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 55384,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyen-tuyen-vu-anh-374aad9c4179-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 111894,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
