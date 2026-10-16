@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-16T13:30:19.767Z",
+  "generatedAt": "2026-10-16T16:23:28.144Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -200,7 +200,7 @@
       "category": "Alice",
       "rank": "SS",
       "rankOrder": 3,
-      "credit": "Vương Hiếu",
+      "credit": "Chưa có credit",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thu-nguyet-anh-42d8c8c7e0d9-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thu-nguyet-anh-42d8c8c7e0d9-1600.webp",
       "tags": [],
@@ -428,6 +428,53 @@
         "bytes": 792003,
         "mimeType": "image/jpeg",
         "sha256": "219698e715c093f420e663d05bf49f69fbf80bf0fddfaa5a9fafb41a1b8c3b73"
+      }
+    },
+    {
+      "id": "hoa-si-lap-di",
+      "name": "Họa sĩ lập dị",
+      "description": "",
+      "category": "Allain",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Sol",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoa-si-lap-di-b99758417403-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoa-si-lap-di-b99758417403-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-16T16:19:35.465Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/hoa-si-lap-di-d31fd5f199517e54.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 484690,
+        "mimeType": "image/jpeg",
+        "sha256": "d31fd5f199517e5458f9029cf69459601b39800ae74fbb27c35c8b54c4f102c4"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoa-si-lap-di-b99758417403-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 24328,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoa-si-lap-di-b99758417403-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 45576,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoa-si-lap-di-b99758417403-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 95456,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -2482,7 +2529,7 @@
       "category": "Aya",
       "rank": "S+",
       "rankOrder": 2,
-      "credit": "Vương Hiếu",
+      "credit": "Chưa có credit",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/le-hoi-nhat-ban-00ec32c3afeb-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/le-hoi-nhat-ban-00ec32c3afeb-1600.webp",
       "tags": [],
@@ -2530,7 +2577,7 @@
       "category": "Aya",
       "rank": "S+",
       "rankOrder": 2,
-      "credit": "Vương Hiếu",
+      "credit": "Chưa có credit",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/liet-hoa-ho-ly-d676568be04e-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/liet-hoa-ho-ly-d676568be04e-1600.webp",
       "tags": [],
@@ -2577,7 +2624,7 @@
       "category": "Aya",
       "rank": "S+",
       "rankOrder": 2,
-      "credit": "Vương Hiếu",
+      "credit": "Chưa có credit",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nu-sinh-tinh-nghich-7bded4bfc9d3-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nu-sinh-tinh-nghich-7bded4bfc9d3-1600.webp",
       "tags": [],
@@ -5841,6 +5888,54 @@
         "bytes": 469581,
         "mimeType": "image/jpeg",
         "sha256": "26c2f58536577ea7d5c436854b4e33b42b323a056f1e605f8c2487dcdd97bf9b"
+      }
+    },
+    {
+      "id": "sieu-viet-15",
+      "name": "Siêu Việt",
+      "description": "",
+      "category": "Bolt Baron",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Nhie",
+      "skinline": "Siêu Việt",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-viet-15-81c18443e7e5-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-viet-15-81c18443e7e5-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-16T16:17:11.083Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/sieu-viet-15-da7b619bfb78b722.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 511049,
+        "mimeType": "image/jpeg",
+        "sha256": "da7b619bfb78b722f52899f0fe297ec71f0613a0860876109f91a78214f9fb01"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-viet-15-81c18443e7e5-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 24330,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-viet-15-81c18443e7e5-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 45174,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-viet-15-81c18443e7e5-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 101504,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -10007,6 +10102,53 @@
         "sha256": "61071541318c341af8cec086a4edd74a9303c7716017cd2de8dff878f7dad315"
       },
       "skinline": "Tiệc bể bơi"
+    },
+    {
+      "id": "wibu-ut-can",
+      "name": "Wibu đụt cận",
+      "description": "",
+      "category": "Florentino",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Nhie",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/wibu-ut-can-11e54b709da3-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/wibu-ut-can-11e54b709da3-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-16T16:19:48.336Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/wibu-ut-can-51a674e1c7f683dc.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 459240,
+        "mimeType": "image/jpeg",
+        "sha256": "51a674e1c7f683dc1776420cd764e1f9dbba677200c179d8e8697b1f2c175496"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/wibu-ut-can-11e54b709da3-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 22264,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/wibu-ut-can-11e54b709da3-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 41074,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/wibu-ut-can-11e54b709da3-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 86364,
+          "mimeType": "image/webp"
+        }
+      }
     },
     {
       "id": "sieu-hung-cuu-the",
@@ -14908,6 +15050,56 @@
       }
     },
     {
+      "id": "dj-tiec-bai-bien-11",
+      "name": "DJ Tiệc bãi biển",
+      "description": "",
+      "category": "Liliana",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Sol",
+      "skinline": "DJ Bãi biển",
+      "universes": [
+        "Bãi biển"
+      ],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-tiec-bai-bien-11-dd327bc05a23-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-tiec-bai-bien-11-dd327bc05a23-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-16T16:15:05.490Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/dj-tiec-bai-bien-11-033708531dc243ae.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 589747,
+        "mimeType": "image/jpeg",
+        "sha256": "033708531dc243ae027cbbaedf977dc2c34d4117c41e9da0215e2574b3da408a"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-tiec-bai-bien-11-dd327bc05a23-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 34162,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-tiec-bai-bien-11-dd327bc05a23-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 63152,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-tiec-bai-bien-11-dd327bc05a23-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 132890,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "hac-mieu",
       "name": "Hắc Miêu",
       "description": "",
@@ -19282,7 +19474,7 @@
       "category": "Qi",
       "rank": "S+",
       "rankOrder": 2,
-      "credit": "Vương Hiếu",
+      "credit": "Chưa có credit",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-bai-bien-5-bc6950364309-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-bai-bien-5-bc6950364309-1600.webp",
       "tags": [],
@@ -22786,7 +22978,7 @@
       "category": "Tel'Annas",
       "rank": "SSS",
       "rankOrder": 5,
-      "credit": "Vương Hiếu",
+      "credit": "Chưa có credit",
       "isVietnameseSkin": false,
       "updatedAt": "2026-08-25T16:22:24.138711+00:00",
       "variants": {
@@ -26581,6 +26773,53 @@
       }
     },
     {
+      "id": "merry-chrismas-3",
+      "name": "Merry Chrismas",
+      "description": "",
+      "category": "Violet",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Kerrie",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/merry-chrismas-3-f91d811b2ec6-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/merry-chrismas-3-f91d811b2ec6-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-16T16:17:19.596Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/merry-chrismas-3-550b2be4d1e53c70.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 645542,
+        "mimeType": "image/jpeg",
+        "sha256": "550b2be4d1e53c7056f91fcf2aa9ae76bb43db69417182671c4db29e7b7171ce"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/merry-chrismas-3-f91d811b2ec6-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 35788,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/merry-chrismas-3-f91d811b2ec6-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 67874,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/merry-chrismas-3-f91d811b2ec6-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 142086,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "quy-co-radar",
       "name": "quý cô radar",
       "description": "",
@@ -28934,7 +29173,7 @@
       "category": "Yue",
       "rank": "SS+",
       "rankOrder": 4,
-      "credit": "Vương Hiếu",
+      "credit": "Chưa có credit",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/mac-anh-tien-son-8b5e1e9c80bc-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/mac-anh-tien-son-8b5e1e9c80bc-1600.webp",
       "tags": [],
@@ -29813,7 +30052,6 @@
     "Thắng",
     "Tom",
     "Vin",
-    "Vương Hiếu",
     "Yokyn"
   ],
   "ready": true,
@@ -29949,7 +30187,6 @@
       "Thắng",
       "Tom",
       "Vin",
-      "Vương Hiếu",
       "Yokyn"
     ]
   },
