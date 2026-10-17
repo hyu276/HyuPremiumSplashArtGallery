@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-16T16:26:06.676Z",
+  "generatedAt": "2026-10-17T04:19:15.971Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -9422,6 +9422,53 @@
           "width": 1600,
           "height": 893,
           "bytes": 114898,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "nu-quai-noi-loan",
+      "name": "Nữ quái nổi loạn",
+      "description": "",
+      "category": "Evita",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Kerrie",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nu-quai-noi-loan-d209ec6c92ea-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nu-quai-noi-loan-d209ec6c92ea-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-17T04:18:51.407Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/nu-quai-noi-loan-f98a11511eae937d.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 698442,
+        "mimeType": "image/jpeg",
+        "sha256": "f98a11511eae937d679eafc93f468e6e3706150b700ea2ce09e25b4c1d6e8a89"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nu-quai-noi-loan-d209ec6c92ea-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 31926,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nu-quai-noi-loan-d209ec6c92ea-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 62196,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nu-quai-noi-loan-d209ec6c92ea-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 131960,
           "mimeType": "image/webp"
         }
       }
