@@ -22,7 +22,7 @@ const RANK_GRADIENTS:Record<string,string>={
 
 type TaxonomyMode='skinlines'|'universes';
 
-function formatArtworkMetadata(value:string){const lowered=String(value||'').trim().toLocaleLowerCase('vi');return lowered.replace(/^\p{L}/u,initial=>initial.toLocaleUpperCase('vi'))}
+function formatArtworkMetadata(value:string){const lowered=String(value||'').trim().toLocaleLowerCase('vi');return lowered?lowered.charAt(0).toLocaleUpperCase('vi')+lowered.slice(1):''}
 
 function titleFitBucket(value:string){const length=Array.from(String(value||'').trim()).length;return length>=52?'xxlong':length>=38?'xlong':length>=28?'long':length>=19?'medium':'short';}
 
