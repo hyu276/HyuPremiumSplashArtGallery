@@ -152,7 +152,7 @@ const ExpandedArtwork=memo(function ExpandedArtwork({src,onReady}:{src:string;on
   />;
 });
 
-function formatArtworkMetadata(value:string){const lowered=String(value||'').trim().toLocaleLowerCase('vi');return lowered.replace(/^\p{L}/u,initial=>initial.toLocaleUpperCase('vi'))}
+function formatArtworkMetadata(value:string){const lowered=String(value||'').trim().toLocaleLowerCase('vi');return lowered?lowered.charAt(0).toLocaleUpperCase('vi')+lowered.slice(1):''}
 
 const ArtworkCard = memo(function ArtworkCard({item,index,expanded,pending,onToggle,onOriginalReady}:{item:Artwork;index:number;expanded:boolean;pending:boolean;onToggle:(item:Artwork)=>void;onOriginalReady:(itemId:string)=>void}){
   const cardNode=useRef<HTMLButtonElement>(null);
