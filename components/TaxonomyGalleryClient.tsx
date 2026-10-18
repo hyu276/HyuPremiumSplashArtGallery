@@ -36,7 +36,7 @@ const ArtworkCard=memo(function ArtworkCard({item,index,onExpand}:{item:Artwork;
     <span className="card-number">{String(index+1).padStart(2,'0')}</span>
     <span className="tier" style={{background:RANK_GRADIENTS[item.rank]||'var(--brand)'}}>{item.rank||'—'}</span>
     <span className="expand-mark" aria-hidden="true">+</span>
-    <span className="card-copy"><span className="card-meta-line"><span className="card-meta">{formatArtworkMetadata(item.category)}</span><span className="card-meta-divider" aria-hidden="true">|</span><span className="card-credit" title={`Credit: ${item.credit}`}>CREDIT: {formatArtworkMetadata(item.credit)}</span></span><strong className="card-title" data-title-fit={titleFitBucket(item.name)}>{item.name}</strong></span>
+    <span className="card-copy"><span className="card-meta">{item.category}</span><strong className="card-title" data-title-fit={titleFitBucket(item.name)}>{item.name}</strong><span className="card-bottom"><span>CREDIT ẢNH · {item.credit}</span></span></span>
   </button>;
 });
 
