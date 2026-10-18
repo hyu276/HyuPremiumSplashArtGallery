@@ -1,5 +1,7 @@
 'use client';
 
+import { formatArtworkMetadata } from '@/lib/gallery-labels';
+
 import { memo, useRef, useState, type CSSProperties } from 'react';
 import ArtworkTitleFitter from '@/components/ArtworkTitleFitter';
 import TaxonomyMobileTextFitter from '@/components/TaxonomyMobileTextFitter';
@@ -22,7 +24,7 @@ const RANK_GRADIENTS:Record<string,string>={
 
 type TaxonomyMode='skinlines'|'universes';
 
-function formatArtworkMetadata(value:string){const lowered=String(value||'').trim().toLocaleLowerCase('vi');return lowered?lowered.charAt(0).toLocaleUpperCase('vi')+lowered.slice(1):''}
+
 
 function titleFitBucket(value:string){const length=Array.from(String(value||'').trim()).length;return length>=52?'xxlong':length>=38?'xlong':length>=28?'long':length>=19?'medium':'short';}
 
@@ -34,7 +36,7 @@ const ArtworkCard=memo(function ArtworkCard({item,index,onExpand}:{item:Artwork;
     <span className="card-number">{String(index+1).padStart(2,'0')}</span>
     <span className="tier" style={{background:RANK_GRADIENTS[item.rank]||'var(--brand)'}}>{item.rank||'—'}</span>
     <span className="expand-mark" aria-hidden="true">+</span>
-    <span className="card-copy"><span className="card-meta-line"><span className="card-meta">{formatArtworkMetadata(item.category)}</span><span className="card-meta-divider" aria-hidden="true">|</span><span className="card-credit" title={`Credit: ${item.credit}`}>Credit: {formatArtworkMetadata(item.credit)}</span></span><strong className="card-title" data-title-fit={titleFitBucket(item.name)}>{item.name}</strong></span>
+    <span className="card-copy"><span className="card-meta-line"><span className="card-meta">{formatArtworkMetadata(item.category)}</span><span className="card-meta-divider" aria-hidden="true">|</span><span className="card-credit" title={`Credit: ${item.credit}`}>CREDIT: {formatArtworkMetadata(item.credit)}</span></span><strong className="card-title" data-title-fit={titleFitBucket(item.name)}>{item.name}</strong></span>
   </button>;
 });
 
@@ -44,7 +46,7 @@ function ExpandedStage({item,onClose}:{item:Artwork;onClose:()=>void}){
     <span className="taxonomy-expanded-shade" aria-hidden="true"/>
     <span className="tier taxonomy-expanded-tier" style={{background:RANK_GRADIENTS[item.rank]||'var(--brand)'}}>{item.rank||'—'}</span>
     <span className="taxonomy-expanded-copy">
-      <span className="card-meta-line"><span className="card-meta">{formatArtworkMetadata(item.category)}</span><span className="card-meta-divider" aria-hidden="true">|</span><span className="card-credit" title={`Credit: ${item.credit}`}>Credit: {formatArtworkMetadata(item.credit)}</span></span>
+      <span className="card-meta-line"><span className="card-meta">{formatArtworkMetadata(item.category)}</span><span className="card-meta-divider" aria-hidden="true">|</span><span className="card-credit" title={`Credit: ${item.credit}`}>CREDIT: {formatArtworkMetadata(item.credit)}</span></span>
       <strong className="taxonomy-expanded-title">{item.name}</strong>
       {item.description?<span className="taxonomy-expanded-description">{item.description}</span>:null}
     </span>
