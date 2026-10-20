@@ -340,3 +340,23 @@
   .modal h2 { font-size: 24px; }
   .modal #modalDescription { font-size: 12px; }
 }
+
+/* Keep the mobile close button outside the Brevo iframe's hit-test layer. */
+@media (max-width:640px) {
+  .modal-backdrop.open { z-index: 10000; }
+  .modal { isolation: isolate; }
+  .modal .modal-close {
+    position: absolute;
+    top: max(12px, env(safe-area-inset-top, 0px));
+    right: max(12px, env(safe-area-inset-right, 0px));
+    z-index: 100;
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    touch-action: manipulation;
+    pointer-events: auto;
+  }
+  .modal .brevo-form-shell { position: relative; z-index: 0; }
+}

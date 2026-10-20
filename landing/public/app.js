@@ -106,6 +106,10 @@ const CONTENT_URL = 'https://raw.githubusercontent.com/hyu276/HyuPremiumSplashAr
     const formShell = document.querySelector('#brevoFormShell');
     const legacyConfirmation = document.querySelector('#legacyEbookConfirmation');
     let previousFocus = null;
+    // Start closed even after mobile browser page restoration.
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
     function loadBrevoForm() {
       if (!frame.getAttribute('src')) frame.setAttribute('src', frame.dataset.src);
     }
@@ -122,10 +126,14 @@ const CONTENT_URL = 'https://raw.githubusercontent.com/hyu276/HyuPremiumSplashAr
       modal.classList.remove('open');
       modal.setAttribute('aria-hidden', 'true');
       document.body.classList.remove('modal-open');
-      previousFocus?.focus();
+      if (previousFocus?.isConnected) previousFocus.focus({preventScroll:true});
     }
     document.querySelectorAll('[data-open-ebook]').forEach(button => button.addEventListener('click', openModal));
-    closeModal.addEventListener('click', hideModal);
+    closeModal.addEventListener('click', event => { event.preventDefault(); event.stopPropagation(); hideModal(); });
+    closeModal.addEventListener('touchend', event => { event.preventDefault(); hideModal(); }, {passive:false});
+    window.addEventListener('pageshow', event => {
+      if (event.persisted && !new URLSearchParams(location.search).has('confirm')) hideModal();
+    });
     modal.addEventListener('click', event => { if (event.target === modal) hideModal(); });
     document.addEventListener('keydown', event => { if (event.key === 'Escape' && modal.classList.contains('open')) hideModal(); });
     modal.addEventListener('keydown', event => {
