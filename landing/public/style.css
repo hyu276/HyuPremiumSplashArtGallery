@@ -302,12 +302,14 @@
 }
 .modal .demo-note { flex: 0 0 auto; margin: 7px 0 0; }
 @media (max-width: 640px) {
-  .modal-backdrop,
-  .modal-backdrop.open {
+  .modal-backdrop {
     inset: 0;
     padding: 0;
-    display: grid;
+    display: none;
     place-items: stretch;
+  }
+  .modal-backdrop.open {
+    display: grid;
   }
   .modal {
     width: 100%;
