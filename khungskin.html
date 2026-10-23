@@ -132,7 +132,7 @@
   }
   function clampPan(){const bounds=imageOffsets();state.panX=Math.max(-bounds.maxX,Math.min(bounds.maxX,state.panX));state.panY=Math.max(-bounds.maxY,Math.min(bounds.maxY,state.panY));}
   function drawBadge(ctx){
-    const x=335,y=99,w=185,h=75;
+    const x=335,y=45,w=185,h=75;
     if(state.badge){const img=state.badge;const scale=Math.min(w/img.naturalWidth,h/img.naturalHeight);ctx.drawImage(img,x+(w-img.naturalWidth*scale)/2,y+(h-img.naturalHeight*scale)/2,img.naturalWidth*scale,img.naturalHeight*scale);return;}
     ctx.save();ctx.shadowBlur=9;ctx.shadowColor='rgba(8,239,255,.3)';ctx.beginPath();ctx.moveTo(x+18,y+2);ctx.lineTo(x+w-18,y+2);ctx.lineTo(x+w,y+h/2);ctx.lineTo(x+w-18,y+h-2);ctx.lineTo(x+18,y+h-2);ctx.lineTo(x,y+h/2);ctx.closePath();
     const bg=ctx.createLinearGradient(x,y,x+w,y+h);bg.addColorStop(0,'#16858b');bg.addColorStop(.55,'#063b51');bg.addColorStop(1,'#0d778c');ctx.fillStyle=bg;ctx.fill();ctx.lineWidth=4;ctx.strokeStyle='#7ef8fa';ctx.stroke();ctx.shadowBlur=0;
