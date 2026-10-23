@@ -54,3 +54,12 @@ For normal engineering work, use a branch, validate locally, batch related chang
 If a task would create more than one production deployment, the agent must stop and determine whether the work can be batched before proceeding.
 
 If the agent cannot determine whether an action will trigger Vercel, it must assume that it may trigger Vercel and consult the deployment rules first.
+
+## Khung Skin: GitHub Pages only
+
+- The standalone card creator lives at repository-root `khungskin.html` and its canonical production URL is `https://hyu276.github.io/HyuPremiumSplashArtGallery/khungskin.html`.
+- This application MUST be published exclusively through GitHub Pages. NEVER add a Next.js route, copy it into Next.js `public/`, import it into the Vercel bundle, create a Vercel deployment/project for it, or redirect its public URL to Vercel.
+- Changes exclusive to this GitHub Pages application MUST NOT produce a new Vercel production build. Preserve and verify the `vercel.json` Ignored Build Step allowlist, which skips a release touching only `khungskin.html`, `AGENTS.md`, and `vercel.json` when `khungskin.html` is present in the change set. Any change to actual gallery runtime code MUST continue to build normally.
+- The browser card creator may READ the public artwork catalogue and Cloudflare R2 derivative URLs; it MUST NOT retrieve archival originals from Google Drive or depend on Supabase. Custom image uploads are local to the browser and must not be published without the user's explicit authenticated admin action.
+- Official badge assets must be managed by the existing GitHub Pages admin/control plane, using the existing authenticated publication boundary. Do not introduce unauthenticated uploads or per-edit Vercel deployments.
+- Prepare changes on a feature branch, test desktop/mobile editing and PNG export, and merge as one coherent release only after verifying that the Vercel skip guard excludes Pages-only commits.
