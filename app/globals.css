@@ -131,7 +131,7 @@
 .taxonomy-expanded-stage .taxonomy-expanded-copy .taxonomy-expanded-title {
   -webkit-text-stroke: min(0.075em, 50pt) #000;
   paint-order: stroke fill;
-  text-shadow: 0 2px 5px rgba(0,0,0,.62);
+  text-shadow: none;
 }
 .art-card.expanded .card-copy .card-meta-line,
 .art-card.expanded .card-copy .card-meta-line *,
@@ -141,5 +141,5 @@
 .taxonomy-expanded-stage .taxonomy-expanded-copy .taxonomy-expanded-description {
   -webkit-text-stroke: min(0.08em, 50pt) #000;
   paint-order: stroke fill;
-  text-shadow: 0 1px 3px rgba(0,0,0,.65);
+  text-shadow: none;
 }
