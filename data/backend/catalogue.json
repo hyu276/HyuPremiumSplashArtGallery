@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-24T16:52:47.265Z",
+  "generatedAt": "2026-10-24T16:57:03.399Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -2048,6 +2048,53 @@
         "bytes": 529875,
         "mimeType": "image/jpeg",
         "sha256": "ebbde3f7ea3ff1e083e38046d4c192a93e7788769937329644d3cdc1431562d8"
+      }
+    },
+    {
+      "id": "hoa-mieu",
+      "name": "Hoả Miếu",
+      "description": "",
+      "category": "Astrid",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoa-mieu-a1e6430497fa-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoa-mieu-a1e6430497fa-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-24T16:54:57.574Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/hoa-mieu-f0b588f0be491792.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 680458,
+        "mimeType": "image/jpeg",
+        "sha256": "f0b588f0be4917922a8b9c7b4138ffbe5c485d2b55246ed9f5ff94e6be5886ae"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoa-mieu-a1e6430497fa-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 27580,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoa-mieu-a1e6430497fa-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 49980,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoa-mieu-a1e6430497fa-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 104272,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -12107,6 +12154,53 @@
       }
     },
     {
+      "id": "huyet-phu-su",
+      "name": "Huyết phù sư",
+      "description": "",
+      "category": "Ilumia",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Sol",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyet-phu-su-d13abbf597d0-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyet-phu-su-d13abbf597d0-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-24T16:54:30.701Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/huyet-phu-su-77fa1f605d122757.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 749499,
+        "mimeType": "image/jpeg",
+        "sha256": "77fa1f605d12275732a0b7db80216dfeb1e28461081999cf25f22f9319e2135b"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyet-phu-su-d13abbf597d0-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 24822,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyet-phu-su-d13abbf597d0-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 49008,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyet-phu-su-d13abbf597d0-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 109476,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "khue-nghi-co-giap-2",
       "name": "Khuê Nghi Cơ Giáp",
       "description": "",
@@ -16430,6 +16524,53 @@
       }
     },
     {
+      "id": "bich-ngoc-xuan-hoa",
+      "name": "Bích Ngọc Xuân Hoa",
+      "description": "",
+      "category": "Marja",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bich-ngoc-xuan-hoa-523c2ed1f0a4-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bich-ngoc-xuan-hoa-523c2ed1f0a4-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-24T16:53:51.186Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/bich-ngoc-xuan-hoa-20da53d420f5ead0.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 774274,
+        "mimeType": "image/jpeg",
+        "sha256": "20da53d420f5ead0cc8617298223bd2e3ebeb3640cad6c611c793b3d7e342b11"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bich-ngoc-xuan-hoa-523c2ed1f0a4-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 29474,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bich-ngoc-xuan-hoa-523c2ed1f0a4-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 56072,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bich-ngoc-xuan-hoa-523c2ed1f0a4-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 120218,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "chi-ai-cua-pho",
       "name": "Chị đại của phố",
       "description": "",
@@ -16754,6 +16895,53 @@
           "width": 1600,
           "height": 893,
           "bytes": 74348,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "ac-quy-trong-guong",
+      "name": "Ác quỷ trong gương",
+      "description": "",
+      "category": "Marja",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ac-quy-trong-guong-6cf93cbefe5e-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ac-quy-trong-guong-6cf93cbefe5e-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-24T16:55:51.189Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/ac-quy-trong-guong-fceee704b8495bb7.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 556870,
+        "mimeType": "image/jpeg",
+        "sha256": "fceee704b8495bb7cf99277007e11b9ec322f3fefe049cfec44727c999cd64bf"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ac-quy-trong-guong-6cf93cbefe5e-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 20250,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ac-quy-trong-guong-6cf93cbefe5e-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 41114,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ac-quy-trong-guong-6cf93cbefe5e-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 92662,
           "mimeType": "image/webp"
         }
       }
