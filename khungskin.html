@@ -274,8 +274,22 @@ function createGifEncoder(width, height) {
     return {maxX:(width-IMAGE_BOX.width)/2,maxY:(height-IMAGE_BOX.height)/2,width,height};
   }
   function clampPan(){const bounds=imageOffsets();state.panX=Math.max(-bounds.maxX,Math.min(bounds.maxX,state.panX));state.panY=Math.max(-bounds.maxY,Math.min(bounds.maxY,state.panY));}
+  const BADGE_SCALE = 2;
+  const BADGE_BASE_WIDTH = 185;
+  const BADGE_BASE_HEIGHT = 75;
+  const BADGE_RIGHT_INSET = 80;
+  const BADGE_TOP_INSET = 45;
   function drawBadge(ctx){
-    const x=335,y=45,w=185,h=75;
+    const width = BADGE_BASE_WIDTH * BADGE_SCALE;
+    const left = CANVAS_WIDTH - BADGE_RIGHT_INSET - width;
+    ctx.save();
+    ctx.translate(left,BADGE_TOP_INSET);
+    ctx.scale(BADGE_SCALE,BADGE_SCALE);
+    drawBadgeContent(ctx);
+    ctx.restore();
+  }
+  function drawBadgeContent(ctx){
+    const x=0,y=0,w=BADGE_BASE_WIDTH,h=BADGE_BASE_HEIGHT;
     if(state.badge){const img=state.badge;const scale=Math.min(w/img.naturalWidth,h/img.naturalHeight);ctx.drawImage(img,x+(w-img.naturalWidth*scale)/2,y+(h-img.naturalHeight*scale)/2,img.naturalWidth*scale,img.naturalHeight*scale);return;}
     ctx.save();ctx.shadowBlur=9;ctx.shadowColor='rgba(8,239,255,.3)';ctx.beginPath();ctx.moveTo(x+18,y+2);ctx.lineTo(x+w-18,y+2);ctx.lineTo(x+w,y+h/2);ctx.lineTo(x+w-18,y+h-2);ctx.lineTo(x+18,y+h-2);ctx.lineTo(x,y+h/2);ctx.closePath();
     const bg=ctx.createLinearGradient(x,y,x+w,y+h);bg.addColorStop(0,'#16858b');bg.addColorStop(.55,'#063b51');bg.addColorStop(1,'#0d778c');ctx.fillStyle=bg;ctx.fill();ctx.lineWidth=4;ctx.strokeStyle='#7ef8fa';ctx.stroke();ctx.shadowBlur=0;
