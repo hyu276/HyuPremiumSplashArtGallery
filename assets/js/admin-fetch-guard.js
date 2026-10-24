@@ -100,9 +100,13 @@
   function networkError(error, target, method, attempts) {
     const timedOut = error?.name === 'AbortError' || error?.name === 'TimeoutError';
     const offline = typeof navigator !== 'undefined' && navigator.onLine === false;
-    const reason = offline ? 'thiết bị đang offline' : timedOut ? 'quá thời gian chờ' : 'kết nối tới Worker bị ngắt trước khi nhận được phản hồi CORS/HTTP';
+    const reason = offline ? 'thiết bị đang offline' : timedOut ? 'quá thời gian chờ' : 'không nhận được phản hồi HTTP (có thể do mạng, CORS hoặc lớp bảo vệ truy cập)';
     const retryText = attempts > 1 ? ` sau ${attempts} lần thử` : '';
-    return new Error(`Không thể kết nối tới ${target}${retryText}: ${reason}. Bản nháp trong tab vẫn được giữ nguyên; hãy giữ tab này mở và thử lại thao tác ${method}.`);
+    const ambiguousPublish = target === 'Vercel Admin API' && method === 'POST';
+    const nextStep = ambiguousPublish
+      ? ' Trạng thái ghi dữ liệu chưa được xác nhận. Kiểm tra commit GitHub trước khi bấm Xuất bản lần nữa; yêu cầu POST không được tự động gửi lại.'
+      : ` Giữ nguyên tab và thử lại thao tác ${method} sau khi kiểm tra kết nối.`;
+    return new Error(`Không thể kết nối tới ${target}${retryText}: ${reason}.${nextStep}`);
   }
 
   window.fetch = async function guardedFetch(input, init) {
