@@ -81,6 +81,9 @@
             <p class="helper">Vị trí badge được giữ cố định ở góc trên bên phải. Bạn có thể thử PNG nền trong suốt ngay tại đây.</p>
             <label class="upload-badge" for="badge-upload"><span class="upload-mark">+</span><span><strong id="badge-filename">Tải badge mẫu lên</strong><small>PNG, JPG hoặc WebP. Ảnh chỉ dùng cho thẻ hiện tại. Không lưu trên máy chủ.</small></span></label><input id="badge-upload" class="visually-hidden" type="file" accept="image/png,image/jpeg,image/webp">
             <button id="clear-badge" type="button" class="text-action" hidden>Trở về badge minh họa</button>
+            <div class="range-title"><label for="badge-size">Kích thước badge</label><output id="badge-size-value" for="badge-size">100%</output></div>
+            <input id="badge-size" type="range" min="70" max="200" step="5" value="100" aria-describedby="badge-size-help">
+            <p id="badge-size-help" class="helper">Mặc định 100% theo tỷ lệ ảnh tham chiếu. Có thể chỉnh riêng nếu asset có khoảng trong suốt.</p>
           </div>
         </section>
 
@@ -255,8 +258,8 @@ function createGifEncoder(width, height) {
   const CATALOGUE_URL = 'https://raw.githubusercontent.com/hyu276/HyuPremiumSplashArtGallery/main/data/backend/catalogue.json';
   const CANVAS = document.getElementById('card-canvas');
   const CONTEXT = CANVAS.getContext('2d');
-  const elements = Object.fromEntries(['artwork-search','artwork-select','catalogue-status','reload','artwork-upload','source-indicator','restore-gallery-title','zoom','zoom-value','reset-position','card-title','ownership','badge-upload','badge-filename','clear-badge','download','download-gif','export-status'].map(id => [id,document.getElementById(id)]));
-  const state = { image:null,badge:null,artworks:[],visibleArtworks:[],name:'Nữ hoàng thể thao',ownership:'Đã sở hữu',zoom:DEFAULT_ZOOM/100,panX:0,panY:0,loadingImage:false,activePointers:new Map(),gesture:null,objectUrls:[],source:'sample',galleryName:'',mediaKind:'still',gifFile:null,video:null,animationFrame:0,exportBusy:false,gifPreviewFrames:[],gifPreviewDuration:0,gifPreviewStart:0 };
+  const elements = Object.fromEntries(['artwork-search','artwork-select','catalogue-status','reload','artwork-upload','source-indicator','restore-gallery-title','zoom','zoom-value','reset-position','card-title','ownership','badge-upload','badge-filename','clear-badge','badge-size','badge-size-value','download','download-gif','export-status'].map(id => [id,document.getElementById(id)]));
+  const state = { image:null,badge:null,badgeScale:1,artworks:[],visibleArtworks:[],name:'Nữ hoàng thể thao',ownership:'Đã sở hữu',zoom:DEFAULT_ZOOM/100,panX:0,panY:0,loadingImage:false,activePointers:new Map(),gesture:null,objectUrls:[],source:'sample',galleryName:'',mediaKind:'still',gifFile:null,video:null,animationFrame:0,exportBusy:false,gifPreviewFrames:[],gifPreviewDuration:0,gifPreviewStart:0 };
   let requestId = 0;
   let titleEditVersion = 0;
 
@@ -274,17 +277,16 @@ function createGifEncoder(width, height) {
     return {maxX:(width-IMAGE_BOX.width)/2,maxY:(height-IMAGE_BOX.height)/2,width,height};
   }
   function clampPan(){const bounds=imageOffsets();state.panX=Math.max(-bounds.maxX,Math.min(bounds.maxX,state.panX));state.panY=Math.max(-bounds.maxY,Math.min(bounds.maxY,state.panY));}
-  const BADGE_SCALE = 2;
   const BADGE_BASE_WIDTH = 185;
   const BADGE_BASE_HEIGHT = 75;
   const BADGE_RIGHT_INSET = 80;
   const BADGE_TOP_INSET = 45;
   function drawBadge(ctx){
-    const width = BADGE_BASE_WIDTH * BADGE_SCALE;
+    const width = BADGE_BASE_WIDTH * state.badgeScale;
     const left = CANVAS_WIDTH - BADGE_RIGHT_INSET - width;
     ctx.save();
     ctx.translate(left,BADGE_TOP_INSET);
-    ctx.scale(BADGE_SCALE,BADGE_SCALE);
+    ctx.scale(state.badgeScale,state.badgeScale);
     drawBadgeContent(ctx);
     ctx.restore();
   }
@@ -780,6 +782,11 @@ function* decodedGifFrames(buffer) {
   });
   elements['badge-upload'].addEventListener('change',event=>{const file=event.target.files[0];useLocalFile(file,img=>{state.badge=img;elements['badge-filename'].textContent=file.name;elements['clear-badge'].hidden=false;drawCard();status('Badge thử nghiệm đã được áp dụng. Tệp chưa được lưu lên admin.');});});
   elements['clear-badge'].addEventListener('click',()=>{state.badge=null;elements['badge-filename'].textContent='Tải badge mẫu lên';elements['clear-badge'].hidden=true;elements['badge-upload'].value='';drawCard();});
+  elements['badge-size'].addEventListener('input',()=>{
+    state.badgeScale=Number(elements['badge-size'].value)/100;
+    elements['badge-size-value'].textContent=`${Math.round(state.badgeScale*100)}%`;
+    drawCard();
+  });
   elements.download.addEventListener('click',download);
   elements['download-gif'].addEventListener('click',downloadGif);
   window.addEventListener('pagehide',()=>{stopAnimatedMedia();state.objectUrls.forEach(url=>URL.revokeObjectURL(url));});
