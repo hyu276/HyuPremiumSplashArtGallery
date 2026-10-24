@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-24T17:04:46.962Z",
+  "generatedAt": "2026-10-24T17:06:35.040Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -191,6 +191,53 @@
         "bytes": 2345357,
         "mimeType": "image/jpeg",
         "sha256": "e685ee3b7c2809d2251e564a5fe34e2e96cc8fb9fdce62b96dab094ed380700a"
+      }
+    },
+    {
+      "id": "tiec-banh-keo",
+      "name": "Tiệc bánh kẹo",
+      "description": "",
+      "category": "Alice",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Sol",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-banh-keo-2bf274fe0446-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-banh-keo-2bf274fe0446-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-24T17:05:19.516Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/tiec-banh-keo-6443ba1b98c5959e.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 691535,
+        "mimeType": "image/jpeg",
+        "sha256": "6443ba1b98c5959e4bfb5424becc35179e39cb870b808f8b27508fec08156765"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-banh-keo-2bf274fe0446-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 28612,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-banh-keo-2bf274fe0446-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 52014,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-banh-keo-2bf274fe0446-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 104686,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -12107,53 +12154,6 @@
       }
     },
     {
-      "id": "tiec-banh-keo",
-      "name": "Tiệc bánh kẹo",
-      "description": "",
-      "category": "Ilumia",
-      "rank": "S+",
-      "rankOrder": 2,
-      "credit": "Sol",
-      "universes": [],
-      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-banh-keo-2bf274fe0446-1600.webp",
-      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-banh-keo-2bf274fe0446-1600.webp",
-      "tags": [],
-      "hidden": false,
-      "isVietnameseSkin": false,
-      "updatedAt": "2026-10-24T17:03:51.698Z",
-      "expanded": {
-        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/tiec-banh-keo-6443ba1b98c5959e.jpg",
-        "width": 2752,
-        "height": 1536,
-        "bytes": 691535,
-        "mimeType": "image/jpeg",
-        "sha256": "6443ba1b98c5959e4bfb5424becc35179e39cb870b808f8b27508fec08156765"
-      },
-      "variants": {
-        "640": {
-          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-banh-keo-2bf274fe0446-640.webp",
-          "width": 640,
-          "height": 357,
-          "bytes": 28612,
-          "mimeType": "image/webp"
-        },
-        "960": {
-          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-banh-keo-2bf274fe0446-960.webp",
-          "width": 960,
-          "height": 536,
-          "bytes": 52014,
-          "mimeType": "image/webp"
-        },
-        "1600": {
-          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-banh-keo-2bf274fe0446-1600.webp",
-          "width": 1600,
-          "height": 893,
-          "bytes": 104686,
-          "mimeType": "image/webp"
-        }
-      }
-    },
-    {
       "id": "van-cuu-thien",
       "name": "Vân cửu thiên",
       "description": "",
@@ -21697,6 +21697,53 @@
         "bytes": 582412,
         "mimeType": "image/jpeg",
         "sha256": "f7725d4ee16cdfe2b60a6e8e771ae506d2d5e6bf04ad630266a2156218324568"
+      }
+    },
+    {
+      "id": "tiec-banh-keo-2",
+      "name": "Tiệc bánh kẹo",
+      "description": "",
+      "category": "Sinestrea",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Sol",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-banh-keo-2-4a0045292e86-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-banh-keo-2-4a0045292e86-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-24T17:05:38.874Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/tiec-banh-keo-2-1b150457ebde71dc.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 627318,
+        "mimeType": "image/jpeg",
+        "sha256": "1b150457ebde71dc7836f2263a265743b43dd3dcb3ea4e1fea75e344d765ca3c"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-banh-keo-2-4a0045292e86-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 23162,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-banh-keo-2-4a0045292e86-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 41472,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-banh-keo-2-4a0045292e86-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 82816,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
