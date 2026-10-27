@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-24T17:06:35.040Z",
+  "generatedAt": "2026-10-27T03:52:32.203Z",
   "items": [
     {
       "id": "than-thoi-gian",
@@ -7559,46 +7559,46 @@
       "rank": "SS",
       "rankOrder": 3,
       "credit": "Hyu",
-      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/playgirl-thu-gian-0b7b596a1dbd-1600.webp",
-      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/playgirl-thu-gian-0b7b596a1dbd-1600.webp",
-      "tags": [],
-      "hidden": false,
-      "isVietnameseSkin": false,
-      "updatedAt": "2026-09-06T10:47:09.313Z",
-      "variants": {
-        "640": {
-          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/playgirl-thu-gian-0b7b596a1dbd-640.webp",
-          "width": 640,
-          "height": 357,
-          "bytes": 19882,
-          "mimeType": "image/webp"
-        },
-        "960": {
-          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/playgirl-thu-gian-0b7b596a1dbd-960.webp",
-          "width": 960,
-          "height": 536,
-          "bytes": 37092,
-          "mimeType": "image/webp"
-        },
-        "1600": {
-          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/playgirl-thu-gian-0b7b596a1dbd-1600.webp",
-          "width": 1600,
-          "height": 893,
-          "bytes": 80258,
-          "mimeType": "image/webp"
-        }
-      },
+      "skinline": "Dân chơi",
       "universes": [
         "Flexer"
       ],
-      "skinline": "Dân chơi",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/playgirl-thu-gian-34020b3e6145-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/playgirl-thu-gian-34020b3e6145-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-27T03:52:15.760Z",
       "expanded": {
-        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/playgirl-thu-gian-5664e0ec79f8b362.jpg",
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/playgirl-thu-gian-4911af58a946b4d6.jpg",
         "width": 2752,
         "height": 1536,
-        "bytes": 443172,
+        "bytes": 501814,
         "mimeType": "image/jpeg",
-        "sha256": "5664e0ec79f8b36224dcfdb0162c0394e6b9c0d659be949a84d9d8891a5bbbef"
+        "sha256": "4911af58a946b4d683cdb9bcbe4fa004a9de7644dd01c68ac1c3e250b741e04c"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/playgirl-thu-gian-34020b3e6145-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 22270,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/playgirl-thu-gian-34020b3e6145-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 41500,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/playgirl-thu-gian-34020b3e6145-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 89982,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
