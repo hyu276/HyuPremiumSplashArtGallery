@@ -1,7 +1,54 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-29T14:08:28.037Z",
+  "generatedAt": "2026-10-29T14:13:06.379Z",
   "items": [
+    {
+      "id": "herzlove-2",
+      "name": "HerzLove",
+      "description": "",
+      "category": "Airi",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/herzlove-2-f08e21885224-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/herzlove-2-f08e21885224-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-29T14:11:59.679Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/herzlove-2-1914211f8fb35453.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 728347,
+        "mimeType": "image/jpeg",
+        "sha256": "1914211f8fb35453a0f6d2a802f22bd89a591f00202e798bbce36c69f77c1bf1"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/herzlove-2-f08e21885224-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 29440,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/herzlove-2-f08e21885224-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 55268,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/herzlove-2-f08e21885224-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 115244,
+          "mimeType": "image/webp"
+        }
+      }
+    },
     {
       "id": "than-thoi-gian",
       "name": "Thần thời gian",
@@ -15852,6 +15899,53 @@
       }
     },
     {
+      "id": "herzlove",
+      "name": "HerzLove",
+      "description": "",
+      "category": "Liliana",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/herzlove-a2674bdd0445-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/herzlove-a2674bdd0445-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-29T14:11:41.240Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/herzlove-7f05a1ecf95ccb09.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 873717,
+        "mimeType": "image/jpeg",
+        "sha256": "7f05a1ecf95ccb09c1d3a2f5b7de7d3d548c2de8267c96d4527415f4cde971ab"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/herzlove-a2674bdd0445-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 36608,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/herzlove-a2674bdd0445-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 69136,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/herzlove-a2674bdd0445-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 148896,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "an-chinh-tien-ao",
       "name": "Hỏa Dung Mị Hồ",
       "description": "",
@@ -19693,6 +19787,53 @@
         "bytes": 485459,
         "mimeType": "image/jpeg",
         "sha256": "8a02813f4e96b494568ab3d0b23ad6c150c75b5cda89eed5b6c2c34ccfac51e8"
+      }
+    },
+    {
+      "id": "mac-anh-son-trang",
+      "name": "Mặc Ảnh sơn trang",
+      "description": "",
+      "category": "Natalya",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/mac-anh-son-trang-3029b942dc58-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/mac-anh-son-trang-3029b942dc58-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-10-29T14:11:18.602Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/mac-anh-son-trang-bb64d4e5b97d0d25.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 723541,
+        "mimeType": "image/jpeg",
+        "sha256": "bb64d4e5b97d0d254f766e7f19f39a112bb23e32d7f38aca88ad26eeb872c800"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/mac-anh-son-trang-3029b942dc58-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 27708,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/mac-anh-son-trang-3029b942dc58-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 52474,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/mac-anh-son-trang-3029b942dc58-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 110930,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -31050,6 +31191,7 @@
     }
   ],
   "categories": [
+    "Airi",
     "Aleister",
     "Alice",
     "Allain",
@@ -31187,6 +31329,7 @@
   "ready": true,
   "ownerOptions": {
     "categories": [
+      "Airi",
       "Aleister",
       "Alice",
       "Allain",
