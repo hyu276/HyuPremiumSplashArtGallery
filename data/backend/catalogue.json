@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-10-31T04:58:54.051Z",
+  "generatedAt": "2026-11-03T18:10:53.689Z",
   "items": [
     {
       "id": "herzlove-2",
@@ -2283,6 +2283,56 @@
         "bytes": 587898,
         "mimeType": "image/jpeg",
         "sha256": "7449aa1b0dece256e2be84ad90517f410ca15be3558496fc618413408dc6ba1c"
+      }
+    },
+    {
+      "id": "wave-17",
+      "name": "WAVE",
+      "description": "",
+      "category": "Astrid",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "skinline": "WAVE",
+      "universes": [
+        "Vũ trụ âm nhạc"
+      ],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/wave-17-5fb940732cd9-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/wave-17-5fb940732cd9-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-03T18:09:29.056Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/wave-17-04af270c97099fd6.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 487241,
+        "mimeType": "image/jpeg",
+        "sha256": "04af270c97099fd67238fdc38ec2226aca5889c6293606593633fc2a480f491e"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/wave-17-5fb940732cd9-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 19496,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/wave-17-5fb940732cd9-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 38026,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/wave-17-5fb940732cd9-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 87434,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -8360,6 +8410,53 @@
       }
     },
     {
+      "id": "nem-dua-hau",
+      "name": "Ném dưa hấu",
+      "description": "",
+      "category": "Edras",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nem-dua-hau-231054b9941b-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nem-dua-hau-231054b9941b-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-03T18:10:18.171Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/nem-dua-hau-770fa8fb3b9c0e5f.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 465041,
+        "mimeType": "image/jpeg",
+        "sha256": "770fa8fb3b9c0e5f49188df2388516ca04b78edae554b4ed4241f1d60ef7c755"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nem-dua-hau-231054b9941b-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 23272,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nem-dua-hau-231054b9941b-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 42948,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nem-dua-hau-231054b9941b-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 91278,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "playboy-thong-chu",
       "name": "Playboy Thống chủ",
       "description": "",
@@ -11187,6 +11284,53 @@
           "width": 1600,
           "height": 893,
           "bytes": 82126,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "thien-menh-giang-the",
+      "name": "Thiên mệnh giáng thể",
+      "description": "",
+      "category": "Hayate",
+      "rank": "SSS",
+      "rankOrder": 5,
+      "credit": "Hyu",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thien-menh-giang-the-21017de005ed-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thien-menh-giang-the-21017de005ed-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-03T18:10:01.550Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/thien-menh-giang-the-3047d80a43b24681.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 618058,
+        "mimeType": "image/jpeg",
+        "sha256": "3047d80a43b24681c47fa05ceee6614dc0775ee55cab7f4913932ea35d4edc55"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thien-menh-giang-the-21017de005ed-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 26358,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thien-menh-giang-the-21017de005ed-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 52754,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thien-menh-giang-the-21017de005ed-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 123808,
           "mimeType": "image/webp"
         }
       }
@@ -24140,6 +24284,56 @@
         "bytes": 626552,
         "mimeType": "image/jpeg",
         "sha256": "b7a5f332a2ea1a3058ba4525e6cb359ac57964885a6046f675bbf363b3f7b187"
+      }
+    },
+    {
+      "id": "wave-16",
+      "name": "WAVE",
+      "description": "",
+      "category": "Tel'Annas",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "skinline": "WAVE",
+      "universes": [
+        "Vũ trụ âm nhạc"
+      ],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/wave-16-6de397e409f7-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/wave-16-6de397e409f7-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-03T18:09:17.438Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/wave-16-e117d79cb4b4986d.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 492808,
+        "mimeType": "image/jpeg",
+        "sha256": "e117d79cb4b4986db6d3a452df26c0cd52aef5faa405fede28dfe20f97e31edb"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/wave-16-6de397e409f7-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 22500,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/wave-16-6de397e409f7-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 43354,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/wave-16-6de397e409f7-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 93536,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
