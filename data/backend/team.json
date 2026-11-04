@@ -233,7 +233,7 @@
   {
     "id": 8,
     "name": "Kerrie",
-    "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/variants/8-68ba1bfc803c-640.webp",
+    "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/variants/8-36f4f55298db-640.webp",
     "sort_order": 5,
     "hidden": false,
     "facebook_url": "",
@@ -248,14 +248,14 @@
     "linkedin_hidden": true,
     "variants": {
       "320": {
-        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/variants/8-68ba1bfc803c-320.webp",
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/variants/8-36f4f55298db-320.webp",
         "width": 320,
         "height": 320,
         "bytes": 4892,
         "mimeType": "image/webp"
       },
       "640": {
-        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/variants/8-68ba1bfc803c-640.webp",
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/variants/8-36f4f55298db-640.webp",
         "width": 640,
         "height": 640,
         "bytes": 17716,
