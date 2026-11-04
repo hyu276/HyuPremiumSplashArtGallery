@@ -295,5 +295,38 @@
         "mimeType": "image/webp"
       }
     }
+  },
+  {
+    "id": 10,
+    "name": "Hyu",
+    "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/variants/10-7fdcb9d650e9-640.webp",
+    "sort_order": 1,
+    "hidden": false,
+    "facebook_url": "https://www.facebook.com/share/1EC5vCA34F/?mibextid=wwXIfr",
+    "facebook_hidden": false,
+    "tiktok_url": "https://www.tiktok.com/@hyu_fanartaov?_r=1&_t=ZS-9B7sJ8U3R8a",
+    "tiktok_hidden": false,
+    "instagram_url": "https://www.instagram.com/nghyu276?mdxt=aDhvdDFnaTFvd2Zh&utm_source=qr",
+    "instagram_hidden": false,
+    "x_url": "https://x.com/hyu_fanartaov?s=11",
+    "x_hidden": false,
+    "linkedin_url": "",
+    "linkedin_hidden": false,
+    "variants": {
+      "320": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/variants/10-7fdcb9d650e9-320.webp",
+        "width": 320,
+        "height": 320,
+        "bytes": 6514,
+        "mimeType": "image/webp"
+      },
+      "640": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/variants/10-7fdcb9d650e9-640.webp",
+        "width": 448,
+        "height": 448,
+        "bytes": 12198,
+        "mimeType": "image/webp"
+      }
+    }
   }
 ]
