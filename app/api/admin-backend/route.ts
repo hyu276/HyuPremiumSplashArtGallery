@@ -313,7 +313,7 @@ export async function POST(request:Request){
     if(!result.noop){
       const paths=new Set<string>();
       if(catalogueRequested){revalidateTag('catalogue');for(const path of ['/','/character/','/artworks/','/champions/','/skinlines/','/universes/','/sitemap.xml','/image-sitemap.xml'])paths.add(path)}
-      if(teamRequested)paths.add('/about/');
+      if(teamRequested){revalidateTag('team');paths.add('/about/');}
       if(seoRequested)for(const path of ['/','/character/','/artworks/','/about/','/sitemap.xml','/image-sitemap.xml'])paths.add(path);
       for(const path of paths)revalidatePath(path);
     }

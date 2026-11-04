@@ -7,7 +7,7 @@ import './about.css';
 export const revalidate=300;
 export async function generateMetadata():Promise<Metadata>{return metadataForPath('/about/',{title:'Giới thiệu',description:'Giới thiệu HYU PREMIUM và thư viện splash art kỹ thuật số được tuyển chọn, quản lý thủ công.',alternates:{canonical:'https://hyupremium.vercel.app/about/'}})}
 
-const SOCIALS=[['facebook','Facebook'],['tiktok','TikTok'],['instagram','Instagram'],['x','X'],['linkedin','LinkedIn']] as const;
+const SOCIALS=[['facebook','Facebook'],['tiktok','TikTok'],['instagram','Instagram'],['x','X'],['linkedin','LinkedIn'],['pinterest','Pinterest'],['artstation','ArtStation'],['deviantart','DeviantArt']] as const;
 type SocialKey=(typeof SOCIALS)[number][0];
 
 function SocialIcon({social}:{social:SocialKey}){
@@ -16,6 +16,9 @@ function SocialIcon({social}:{social:SocialKey}){
   if(social==='tiktok')return <svg {...props}><path d="M19.59 6.69a4.8 4.8 0 0 1-3.77-4.25V2h-3.45v13.67a2.9 2.9 0 1 1-2-2.76V9.4a6.33 6.33 0 1 0 5.45 6.27V8.69a8.2 8.2 0 0 0 4.77 1.53V6.79c-.34 0-.67-.04-1-.1Z"/></svg>;
   if(social==='instagram')return <svg {...props} fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>;
   if(social==='x')return <svg {...props}><path d="M18.24 2.25h3.31l-7.23 8.26 8.51 11.24h-6.66l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23 5.45-6.23Zm-1.16 17.52h1.83L7.08 4.13H5.12l11.96 15.64Z"/></svg>;
+  if(social==='pinterest')return <svg {...props}><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z"/></svg>;
+  if(social==='artstation')return <svg {...props}><path d="M0 17.723l2.027 3.505h.001a2.424 2.424 0 0 0 2.164 1.333h13.457l-2.792-4.838H0zm24 .025c0-.484-.143-.935-.388-1.314L15.728 2.728a2.424 2.424 0 0 0-2.142-1.289H9.419L21.598 22.54l1.92-3.325c.378-.637.482-.919.482-1.467zm-11.129-3.462L7.428 4.858l-5.444 9.428h10.887z"/></svg>;
+  if(social==='deviantart')return <svg {...props}><path d="M19.207 4.794l.23-.43V0H15.07l-.436.44-2.058 3.925-.646.436H4.58v5.993h4.04l.36.436-4.175 7.98-.24.43V24H8.93l.436-.44 2.07-3.925.644-.436h7.35v-5.993h-4.05l-.36-.438 4.186-7.977z"/></svg>;
   return <svg {...props}><circle cx="5" cy="5" r="2"/><rect x="3" y="9" width="4" height="12" rx="1"/><path d="M10 9h3.8v1.65c.95-1.25 2.2-2 4.15-2 3.1 0 4.55 2 4.55 5.7V21h-4v-5.85c0-1.9-.55-3.15-2.25-3.15-1.85 0-2.25 1.4-2.25 3.15V21h-4V9Z"/></svg>;
 }
 

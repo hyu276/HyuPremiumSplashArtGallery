@@ -19,6 +19,12 @@ export type TeamMember = {
   x_hidden: boolean;
   linkedin_url: string;
   linkedin_hidden: boolean;
+  pinterest_url: string;
+  pinterest_hidden: boolean;
+  artstation_url: string;
+  artstation_hidden: boolean;
+  deviantart_url: string;
+  deviantart_hidden: boolean;
 };
 
 function variant(value:any):TeamMediaVariant|undefined{
@@ -26,9 +32,27 @@ function variant(value:any):TeamMediaVariant|undefined{
   return {url:String(value.url),width:Number(value.width)||0,height:Number(value.height)||0,bytes:Number(value.bytes)||undefined,mimeType:value.mimeType?String(value.mimeType):undefined};
 }
 
+type RawTeamMember=Partial<TeamMember>&{hidden?:boolean};
+
+async function getLiveTeamRows():Promise<RawTeamMember[]>{
+  const configuredBranch=String(process.env.GITHUB_DATA_BRANCH||'').trim();
+  const branch=configuredBranch||String(process.env.VERCEL_GIT_COMMIT_REF||'').trim()||'main';
+  const ref=branch.split('/').map(encodeURIComponent).join('/');
+  try{
+    const response=await fetch(`https://raw.githubusercontent.com/hyu276/HyuPremiumSplashArtGallery/${ref}/data/backend/team.json`,{next:{revalidate:300,tags:['team']}});
+    if(!response.ok)throw new Error(`GitHub team metadata HTTP ${response.status}`);
+    const rows:unknown=await response.json();
+    if(!Array.isArray(rows)||rows.some(row=>!row||typeof row!=='object'||Array.isArray(row)))throw new Error('Invalid team metadata structure');
+    return rows as RawTeamMember[];
+  }catch(error){
+    console.warn('[team] Live GitHub read failed, using bundled metadata.',error instanceof Error?error.message:'unknown error');
+    return backendTeam as RawTeamMember[];
+  }
+}
+
 export async function getTeamMembers(): Promise<TeamMember[]> {
   if ((backendCatalogue as any).ready !== true) throw new Error('GitHub backend team metadata is not ready.');
-  return (backendTeam as any[])
+  return (await getLiveTeamRows())
     .filter(row=>!row?.hidden)
     .map(row=>{
       const variants:Record<string,TeamMediaVariant>={};
@@ -50,7 +74,13 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
         x_url:String(row.x_url||''),
         x_hidden:Boolean(row.x_hidden),
         linkedin_url:String(row.linkedin_url||''),
-        linkedin_hidden:Boolean(row.linkedin_hidden)
+        linkedin_hidden:Boolean(row.linkedin_hidden),
+        pinterest_url:String(row.pinterest_url||''),
+        pinterest_hidden:Boolean(row.pinterest_hidden),
+        artstation_url:String(row.artstation_url||''),
+        artstation_hidden:Boolean(row.artstation_hidden),
+        deviantart_url:String(row.deviantart_url||''),
+        deviantart_hidden:Boolean(row.deviantart_hidden)
       };
     })
     .sort((a,b)=>a.sort_order-b.sort_order||a.id-b.id);
