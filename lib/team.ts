@@ -19,6 +19,12 @@ export type TeamMember = {
   x_hidden: boolean;
   linkedin_url: string;
   linkedin_hidden: boolean;
+  pinterest_url: string;
+  pinterest_hidden: boolean;
+  artstation_url: string;
+  artstation_hidden: boolean;
+  deviantart_url: string;
+  deviantart_hidden: boolean;
 };
 
 function variant(value:any):TeamMediaVariant|undefined{
@@ -50,7 +56,13 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
         x_url:String(row.x_url||''),
         x_hidden:Boolean(row.x_hidden),
         linkedin_url:String(row.linkedin_url||''),
-        linkedin_hidden:Boolean(row.linkedin_hidden)
+        linkedin_hidden:Boolean(row.linkedin_hidden),
+        pinterest_url:String(row.pinterest_url||''),
+        pinterest_hidden:Boolean(row.pinterest_hidden),
+        artstation_url:String(row.artstation_url||''),
+        artstation_hidden:Boolean(row.artstation_hidden),
+        deviantart_url:String(row.deviantart_url||''),
+        deviantart_hidden:Boolean(row.deviantart_hidden)
       };
     })
     .sort((a,b)=>a.sort_order-b.sort_order||a.id-b.id);

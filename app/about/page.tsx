@@ -7,7 +7,7 @@ import './about.css';
 export const revalidate=300;
 export async function generateMetadata():Promise<Metadata>{return metadataForPath('/about/',{title:'Giới thiệu',description:'Giới thiệu HYU PREMIUM và thư viện splash art kỹ thuật số được tuyển chọn, quản lý thủ công.',alternates:{canonical:'https://hyupremium.vercel.app/about/'}})}
 
-const SOCIALS=[['facebook','Facebook'],['tiktok','TikTok'],['instagram','Instagram'],['x','X'],['linkedin','LinkedIn']] as const;
+const SOCIALS=[['facebook','Facebook'],['tiktok','TikTok'],['instagram','Instagram'],['x','X'],['linkedin','LinkedIn'],['pinterest','Pinterest'],['artstation','ArtStation'],['deviantart','DeviantArt']] as const;
 type SocialKey=(typeof SOCIALS)[number][0];
 
 function SocialIcon({social}:{social:SocialKey}){
@@ -16,6 +16,9 @@ function SocialIcon({social}:{social:SocialKey}){
   if(social==='tiktok')return <svg {...props}><path d="M19.59 6.69a4.8 4.8 0 0 1-3.77-4.25V2h-3.45v13.67a2.9 2.9 0 1 1-2-2.76V9.4a6.33 6.33 0 1 0 5.45 6.27V8.69a8.2 8.2 0 0 0 4.77 1.53V6.79c-.34 0-.67-.04-1-.1Z"/></svg>;
   if(social==='instagram')return <svg {...props} fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>;
   if(social==='x')return <svg {...props}><path d="M18.24 2.25h3.31l-7.23 8.26 8.51 11.24h-6.66l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23 5.45-6.23Zm-1.16 17.52h1.83L7.08 4.13H5.12l11.96 15.64Z"/></svg>;
+  if(social==='pinterest')return <svg {...props}><path d="M12 1a11 11 0 0 0-3.97 21.26c-.04-.88-.01-1.99.22-2.94l1.41-5.98s-.35-.7-.35-1.73c0-1.62.94-2.83 2.11-2.83 1 0 1.48.75 1.48 1.65 0 1-.64 2.5-.97 3.89-.28 1.16.58 2.11 1.73 2.11 2.08 0 3.68-2.19 3.68-5.35 0-2.8-2.01-4.75-4.89-4.75-3.33 0-5.28 2.49-5.28 5.08 0 1 .39 2.08.87 2.67.1.12.11.22.08.34l-.32 1.33c-.05.21-.17.26-.39.16-1.47-.69-2.39-2.83-2.39-4.54 0-3.71 2.7-7.11 7.76-7.11 4.08 0 7.24 2.91 7.24 6.79 0 4.05-2.55 7.3-6.09 7.3-1.19 0-2.31-.62-2.69-1.35l-.73 2.79c-.27 1.02-.99 2.29-1.46 3.16A11 11 0 1 0 12 1Z"/></svg>;
+  if(social==='artstation')return <svg {...props}><path d="M8.2 2h5.15L22 17.2V22L10.9 2H8.2ZM5.9 6.15l4.12 7.1H2l3.9-7.1ZM2.1 15.35h9.12L15.1 22H6.05L2.1 15.35Z"/></svg>;
+  if(social==='deviantart')return <svg {...props}><path d="M15.1 2 12.7 6.2H7.1v5h2.7l-5.2 8.7V22h5.3l2.4-4.2h5.6v-5h-2.7l5.2-8.7V2h-5.3Zm-.5 9.2-1 1.6h-3l1-1.6h3Z"/></svg>;
   return <svg {...props}><circle cx="5" cy="5" r="2"/><rect x="3" y="9" width="4" height="12" rx="1"/><path d="M10 9h3.8v1.65c.95-1.25 2.2-2 4.15-2 3.1 0 4.55 2 4.55 5.7V21h-4v-5.85c0-1.9-.55-3.15-2.25-3.15-1.85 0-2.25 1.4-2.25 3.15V21h-4V9Z"/></svg>;
 }
 
