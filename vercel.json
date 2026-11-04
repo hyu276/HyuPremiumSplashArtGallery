@@ -2,7 +2,7 @@
   "framework": "nextjs",
   "buildCommand": "npm run egress:check && npm run build",
   "outputDirectory": ".next",
-  "ignoreCommand": "[ \"$VERCEL_GIT_COMMIT_REF\" != main ] && exit 0; a=\"$(git diff --name-only HEAD^ HEAD)\" || exit 1; [ \"$a\" = assets/js/admin-github.bundle.js ] && exit 0; echo \"$a\" | grep -qx khungskin.html || exit 1; echo \"$a\" | grep -Eqv \"^(khungskin[.]html|AGENTS[.]md|vercel[.]json)$\" && exit 1; exit 0",
+  "ignoreCommand": "sh scripts/vercel-ignore.sh",
   "git": {
     "deploymentEnabled": {
       "main": true,
