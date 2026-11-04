@@ -229,5 +229,38 @@
         "mimeType": "image/webp"
       }
     }
+  },
+  {
+    "id": 8,
+    "name": "Kerrie",
+    "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/variants/8-68ba1bfc803c-640.webp",
+    "sort_order": 5,
+    "hidden": false,
+    "facebook_url": "",
+    "facebook_hidden": true,
+    "tiktok_url": "https://www.tiktok.com/@giu_never?_r=1&_t=ZS-9B7rzIDOSnq",
+    "tiktok_hidden": false,
+    "instagram_url": "",
+    "instagram_hidden": true,
+    "x_url": "",
+    "x_hidden": true,
+    "linkedin_url": "",
+    "linkedin_hidden": true,
+    "variants": {
+      "320": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/variants/8-68ba1bfc803c-320.webp",
+        "width": 320,
+        "height": 320,
+        "bytes": 4892,
+        "mimeType": "image/webp"
+      },
+      "640": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/variants/8-68ba1bfc803c-640.webp",
+        "width": 640,
+        "height": 640,
+        "bytes": 17716,
+        "mimeType": "image/webp"
+      }
+    }
   }
 ]
