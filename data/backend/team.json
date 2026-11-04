@@ -1,38 +1,5 @@
 [
   {
-    "id": 1,
-    "name": "Hyu",
-    "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/variants/1-d30e087dc0b6-640.webp",
-    "sort_order": 1,
-    "hidden": true,
-    "facebook_url": "",
-    "facebook_hidden": false,
-    "tiktok_url": "https://www.tiktok.com/@hyu_fanartaov?_r=1&_t=ZS-9947liChkHM",
-    "tiktok_hidden": false,
-    "instagram_url": "https://www.instagram.com/hyu_fanartaov?igsi=NDFoZTNsd2hzYnRl",
-    "instagram_hidden": false,
-    "x_url": "https://x.com/hyu_fanartaov?s=21",
-    "x_hidden": false,
-    "linkedin_url": "",
-    "linkedin_hidden": false,
-    "variants": {
-      "320": {
-        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/variants/1-d30e087dc0b6-320.webp",
-        "width": 320,
-        "height": 320,
-        "bytes": 15636,
-        "mimeType": "image/webp"
-      },
-      "640": {
-        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/variants/1-d30e087dc0b6-640.webp",
-        "width": 640,
-        "height": 640,
-        "bytes": 46334,
-        "mimeType": "image/webp"
-      }
-    }
-  },
-  {
     "id": 7,
     "name": "Nihilus",
     "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/variants/7-2165711aa7c3-640.webp",
@@ -231,10 +198,43 @@
     }
   },
   {
+    "id": 10,
+    "name": "Hyu",
+    "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/variants/10-7fdcb9d650e9-640.webp",
+    "sort_order": 8,
+    "hidden": false,
+    "facebook_url": "https://www.facebook.com/share/1EC5vCA34F/?mibextid=wwXIfr",
+    "facebook_hidden": false,
+    "tiktok_url": "https://www.tiktok.com/@hyu_fanartaov?_r=1&_t=ZS-9B7sJ8U3R8a",
+    "tiktok_hidden": false,
+    "instagram_url": "https://www.instagram.com/nghyu276?mdxt=aDhvdDFnaTFvd2Zh&utm_source=qr",
+    "instagram_hidden": false,
+    "x_url": "https://x.com/hyu_fanartaov?s=11",
+    "x_hidden": false,
+    "linkedin_url": "",
+    "linkedin_hidden": false,
+    "variants": {
+      "320": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/variants/10-7fdcb9d650e9-320.webp",
+        "width": 320,
+        "height": 320,
+        "bytes": 6514,
+        "mimeType": "image/webp"
+      },
+      "640": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/variants/10-7fdcb9d650e9-640.webp",
+        "width": 448,
+        "height": 448,
+        "bytes": 12198,
+        "mimeType": "image/webp"
+      }
+    }
+  },
+  {
     "id": 8,
     "name": "Kerrie",
     "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/variants/8-36f4f55298db-640.webp",
-    "sort_order": 5,
+    "sort_order": 9,
     "hidden": false,
     "facebook_url": "",
     "facebook_hidden": true,
@@ -267,7 +267,7 @@
     "id": 9,
     "name": "Yokyn",
     "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/variants/9-2f7332418296-640.webp",
-    "sort_order": 4,
+    "sort_order": 10,
     "hidden": false,
     "facebook_url": "",
     "facebook_hidden": true,
@@ -292,39 +292,6 @@
         "width": 640,
         "height": 640,
         "bytes": 11322,
-        "mimeType": "image/webp"
-      }
-    }
-  },
-  {
-    "id": 10,
-    "name": "Hyu",
-    "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/variants/10-7fdcb9d650e9-640.webp",
-    "sort_order": 1,
-    "hidden": false,
-    "facebook_url": "https://www.facebook.com/share/1EC5vCA34F/?mibextid=wwXIfr",
-    "facebook_hidden": false,
-    "tiktok_url": "https://www.tiktok.com/@hyu_fanartaov?_r=1&_t=ZS-9B7sJ8U3R8a",
-    "tiktok_hidden": false,
-    "instagram_url": "https://www.instagram.com/nghyu276?mdxt=aDhvdDFnaTFvd2Zh&utm_source=qr",
-    "instagram_hidden": false,
-    "x_url": "https://x.com/hyu_fanartaov?s=11",
-    "x_hidden": false,
-    "linkedin_url": "",
-    "linkedin_hidden": false,
-    "variants": {
-      "320": {
-        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/variants/10-7fdcb9d650e9-320.webp",
-        "width": 320,
-        "height": 320,
-        "bytes": 6514,
-        "mimeType": "image/webp"
-      },
-      "640": {
-        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/variants/10-7fdcb9d650e9-640.webp",
-        "width": 448,
-        "height": 448,
-        "bytes": 12198,
         "mimeType": "image/webp"
       }
     }
