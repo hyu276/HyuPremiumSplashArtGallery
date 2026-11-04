@@ -262,5 +262,38 @@
         "mimeType": "image/webp"
       }
     }
+  },
+  {
+    "id": 9,
+    "name": "Yokyn",
+    "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/variants/9-2f7332418296-640.webp",
+    "sort_order": 4,
+    "hidden": false,
+    "facebook_url": "",
+    "facebook_hidden": true,
+    "tiktok_url": "https://www.tiktok.com/@yokyn21?_r=1&_t=ZS-9B7s5aApNWk",
+    "tiktok_hidden": false,
+    "instagram_url": "",
+    "instagram_hidden": true,
+    "x_url": "",
+    "x_hidden": true,
+    "linkedin_url": "",
+    "linkedin_hidden": true,
+    "variants": {
+      "320": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/variants/9-2f7332418296-320.webp",
+        "width": 320,
+        "height": 320,
+        "bytes": 4548,
+        "mimeType": "image/webp"
+      },
+      "640": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/team/variants/9-2f7332418296-640.webp",
+        "width": 640,
+        "height": 640,
+        "bytes": 11322,
+        "mimeType": "image/webp"
+      }
+    }
   }
 ]
