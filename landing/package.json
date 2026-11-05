@@ -1,0 +1,13 @@
+{
+  "name": "hyu-premium-ebook-landing",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "node -e \"console.log('Static landing; Netlify bundles functions')\""
+  },
+  "devDependencies": {
+    "@netlify/functions": "^4.2.0",
+    "typescript": "^5.9.0"
+  }
+}
