@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import CatalogueFreshnessGuard from '@/components/CatalogueFreshnessGuard';
 import GalleryClient from '@/components/GalleryClient';
 import { SiteFooter, SiteHeader } from '@/components/SiteChrome';
@@ -22,8 +23,12 @@ function seoForArtwork(item:Artwork){
 }
 function routePath(segments:string[],category:string|null,artwork:Artwork|null){if(artwork)return artworkPath(artwork);if(category)return `/character/${segments[0]}/`;return '/character/'}
 
+function assertValidGalleryPath(segments:string[],category:string|null,artwork:Artwork|null){
+  if(segments.length>2 || (segments.length>=1&&!category) || (segments.length===2&&!artwork))notFound();
+}
+
 export async function generateMetadata({params}:PageProps):Promise<Metadata>{
-  const {segments=[]}=await params;const catalogue=await getCatalogue();const {category,artwork}=findArtwork(catalogue.items,segments[0],segments[1]);const path=routePath(segments,category,artwork);const [global,override]=await Promise.all([getSeoGlobalSettings(),getSeoOverride(path)]);let base:Metadata;
+  const {segments=[]}=await params;const catalogue=await getCatalogue();const {category,artwork}=findArtwork(catalogue.items,segments[0],segments[1]);assertValidGalleryPath(segments,category,artwork);const path=routePath(segments,category,artwork);const [global,override]=await Promise.all([getSeoGlobalSettings(),getSeoOverride(path)]);let base:Metadata;
   if(artwork){const url=`${siteUrl}${artworkPath(artwork)}`,seo=seoForArtwork(artwork),social=artworkSocialImage(artwork);base={title:{absolute:seo.title},description:seo.description,keywords:seo.keywords,alternates:localizedAlternates(url),robots:{index:true,follow:true,googleBot:{index:true,follow:true,'max-image-preview':'large','max-snippet':-1,'max-video-preview':-1}},openGraph:{title:seo.title,description:seo.description,url,type:'article',locale:'vi_VN',images:[{url:social,alt:seo.alt}]},twitter:{card:'summary_large_image',title:seo.title,description:seo.description,images:[{url:social,alt:seo.alt}]}}}
   else if(category){const url=`${siteUrl}/character/${segments[0]}/`,title=`${category} — Thư viện Splash Art`,description=`Khám phá các splash art ${category} trong HYU PREMIUM, có thể lọc theo hạng skin và credit ảnh.`;base={title,description,alternates:localizedAlternates(url),openGraph:{title,description,url,type:'website',locale:'vi_VN'}}}
   else{const rootUrl=`${siteUrl}/character/`;base={title:{absolute:'HYU PREMIUM — Thư viện Splash Art Game'},description:'Thư viện splash art game được tuyển chọn, có thể tìm kiếm và lọc theo nhân vật, danh mục, hạng skin và credit ảnh.',alternates:localizedAlternates(rootUrl),openGraph:{url:rootUrl,type:'website',locale:'vi_VN'}}}
@@ -31,7 +36,7 @@ export async function generateMetadata({params}:PageProps):Promise<Metadata>{
 }
 
 export default async function CharacterGalleryPage({params}:PageProps){
-  const {segments=[]}=await params;const catalogue=await getCatalogue();const route=findArtwork(catalogue.items,segments[0],segments[1]);const artwork=route.artwork;const path=routePath(segments,route.category,artwork);const [override,globalSeo]=await Promise.all([getSeoOverride(path),getSeoGlobalSettings()]);const routeItems=route.category?catalogue.items.filter(item=>item.category===route.category):catalogue.items;
+  const {segments=[]}=await params;const catalogue=await getCatalogue();const route=findArtwork(catalogue.items,segments[0],segments[1]);assertValidGalleryPath(segments,route.category,route.artwork);const artwork=route.artwork;const path=routePath(segments,route.category,artwork);const [override,globalSeo]=await Promise.all([getSeoOverride(path),getSeoGlobalSettings()]);const routeItems=route.category?catalogue.items.filter(item=>item.category===route.category):catalogue.items;
   const itemList={'@context':'https://schema.org','@type':'CollectionPage',name:route.category?`${route.category} — Thư viện Splash Art`:'HYU PREMIUM — Thư viện Splash Art Game',url:`${siteUrl}${route.category?`/character/${segments[0]}/`:'/character/'}`,mainEntity:{'@type':'ItemList',numberOfItems:routeItems.length,itemListElement:routeItems.map((item,index)=>({'@type':'ListItem',position:index+1,url:`${siteUrl}${artworkPath(item)}`,name:item.name,image:artworkPreview(item,960)}))}};
   const seo=artwork?seoForArtwork(artwork):null;const pageUrl=artwork?`${siteUrl}${artworkPath(artwork)}`:'';const crawlerImage=artwork?.variants?.['1600'];
   const artworkJsonLd=artwork&&seo?{'@context':'https://schema.org','@graph':[
