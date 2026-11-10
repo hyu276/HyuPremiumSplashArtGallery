@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-11-10T11:03:17.427Z",
+  "generatedAt": "2026-11-10T11:04:28.920Z",
   "items": [
     {
       "id": "herzlove-2",
@@ -14996,6 +14996,53 @@
       "hidden": false,
       "isVietnameseSkin": false,
       "updatedAt": "2026-10-09T12:57:02.017Z"
+    },
+    {
+      "id": "hoa-mong-tien-chu",
+      "name": "Hoa mộng tiên chu",
+      "description": "",
+      "category": "Krixi",
+      "rank": "SSS",
+      "rankOrder": 5,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoa-mong-tien-chu-f4cefe05ab2d-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoa-mong-tien-chu-f4cefe05ab2d-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-10T11:03:53.192Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/hoa-mong-tien-chu-8f97dcd7cc2244df.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 516669,
+        "mimeType": "image/jpeg",
+        "sha256": "8f97dcd7cc2244df7e5833bdf2934c1c2efbc6451392ac024c5c3e8f55a97a3f"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoa-mong-tien-chu-f4cefe05ab2d-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 26220,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoa-mong-tien-chu-f4cefe05ab2d-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 49342,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoa-mong-tien-chu-f4cefe05ab2d-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 104036,
+          "mimeType": "image/webp"
+        }
+      }
     },
     {
       "id": "sieu-viet-12",
