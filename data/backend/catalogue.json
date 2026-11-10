@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-11-10T11:04:28.920Z",
+  "generatedAt": "2026-11-10T11:07:35.159Z",
   "items": [
     {
       "id": "herzlove-2",
@@ -7886,6 +7886,53 @@
       }
     },
     {
+      "id": "da-vu-huyen-nha",
+      "name": "Dạ vũ huyền nha",
+      "description": "",
+      "category": "Dolia",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/da-vu-huyen-nha-3db6893f70f7-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/da-vu-huyen-nha-3db6893f70f7-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-10T11:06:15.843Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/da-vu-huyen-nha-b71e589929addb1a.png",
+        "width": 1888,
+        "height": 1056,
+        "bytes": 2028798,
+        "mimeType": "image/png",
+        "sha256": "b71e589929addb1a63f684e73352b9ea223fbb78c40096a432ad80fac0a25095"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/da-vu-huyen-nha-3db6893f70f7-640.webp",
+          "width": 640,
+          "height": 358,
+          "bytes": 19156,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/da-vu-huyen-nha-3db6893f70f7-960.webp",
+          "width": 960,
+          "height": 537,
+          "bytes": 35760,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/da-vu-huyen-nha-3db6893f70f7-1600.webp",
+          "width": 1600,
+          "height": 895,
+          "bytes": 74290,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "playgirl-thu-gian",
       "name": "Playgirl Thư giãn",
       "description": "",
@@ -11287,6 +11334,53 @@
         "bytes": 2053518,
         "mimeType": "image/jpeg",
         "sha256": "92d3954b3346c4e2050da45e59013b996491c55f280dcbcb066444883486efdf"
+      }
+    },
+    {
+      "id": "luc-da-tang-hoa",
+      "name": "Lục dạ tang hoa",
+      "description": "",
+      "category": "Goverra",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/luc-da-tang-hoa-a82ac49fcfef-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/luc-da-tang-hoa-a82ac49fcfef-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-10T11:05:52.597Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/luc-da-tang-hoa-73e5ab425e913886.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 452731,
+        "mimeType": "image/jpeg",
+        "sha256": "73e5ab425e91388621ad7b283fd09abeac94fcd5c6ea8211d029fddb836a5424"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/luc-da-tang-hoa-a82ac49fcfef-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 18832,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/luc-da-tang-hoa-a82ac49fcfef-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 37256,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/luc-da-tang-hoa-a82ac49fcfef-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 85754,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -15990,6 +16084,53 @@
         "bytes": 544097,
         "mimeType": "image/jpeg",
         "sha256": "f29a16fb136eb0cbdd64ca5db98e71474492ec35ccfa9a4887352b1e639130ff"
+      }
+    },
+    {
+      "id": "nguyet-da-ho-ca",
+      "name": "Nguyệt dạ hồ ca",
+      "description": "",
+      "category": "Liliana",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nguyet-da-ho-ca-9612081106e0-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nguyet-da-ho-ca-9612081106e0-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-10T11:05:26.457Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/nguyet-da-ho-ca-3d2f914f6fa38442.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 439309,
+        "mimeType": "image/jpeg",
+        "sha256": "3d2f914f6fa384426d4c6f07c0360db0f42f29077ffc8190731f3b34b54108fc"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nguyet-da-ho-ca-9612081106e0-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 17460,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nguyet-da-ho-ca-9612081106e0-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 33962,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nguyet-da-ho-ca-9612081106e0-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 76072,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -22645,6 +22786,53 @@
       }
     },
     {
+      "id": "tu-nguyet",
+      "name": "Tử nguyệt",
+      "description": "",
+      "category": "Sinestrea",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tu-nguyet-74035469e61e-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tu-nguyet-74035469e61e-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-10T11:06:03.503Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/tu-nguyet-feacc3fd36970011.png",
+        "width": 1888,
+        "height": 1056,
+        "bytes": 2009641,
+        "mimeType": "image/png",
+        "sha256": "feacc3fd36970011ff25ed3e15d068f22e68bbf01ff9ba5b97bea913a7df63a4"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tu-nguyet-74035469e61e-640.webp",
+          "width": 640,
+          "height": 358,
+          "bytes": 19184,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tu-nguyet-74035469e61e-960.webp",
+          "width": 960,
+          "height": 537,
+          "bytes": 35374,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tu-nguyet-74035469e61e-1600.webp",
+          "width": 1600,
+          "height": 895,
+          "bytes": 74054,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "gau-trang-bong-tuyet",
       "name": "Gấu Trắng Bông Tuyết",
       "description": "",
@@ -28559,6 +28747,53 @@
           "width": 1600,
           "height": 893,
           "bytes": 129876,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "thu-linh-sa-hai",
+      "name": "Thủ lĩnh sa hải",
+      "description": "",
+      "category": "Violet",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thu-linh-sa-hai-aeabec37e81b-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thu-linh-sa-hai-aeabec37e81b-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-10T11:06:40.932Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/thu-linh-sa-hai-fc17f0238fd0196d.png",
+        "width": 1888,
+        "height": 1056,
+        "bytes": 2152565,
+        "mimeType": "image/png",
+        "sha256": "fc17f0238fd0196d3ef5ecd01775c6e1b40759f2a872521bf7b58ff55deafe2d"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thu-linh-sa-hai-aeabec37e81b-640.webp",
+          "width": 640,
+          "height": 358,
+          "bytes": 25370,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thu-linh-sa-hai-aeabec37e81b-960.webp",
+          "width": 960,
+          "height": 537,
+          "bytes": 45742,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thu-linh-sa-hai-aeabec37e81b-1600.webp",
+          "width": 1600,
+          "height": 895,
+          "bytes": 92176,
           "mimeType": "image/webp"
         }
       }
