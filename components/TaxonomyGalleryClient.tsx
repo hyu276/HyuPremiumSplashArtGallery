@@ -31,10 +31,10 @@ function titleFitBucket(value:string){const length=Array.from(String(value||'').
 const ArtworkCard=memo(function ArtworkCard({item,index,onExpand}:{item:Artwork;index:number;onExpand:()=>void}){
   const motionStyle={'--art-motion-delay':`${Math.min(index,12)*18}ms`} as CSSProperties;
   return <button type="button" style={motionStyle} className="art-card taxonomy-art-card" aria-label={`Mở rộng ${item.name}`} onClick={onExpand}>
-    <span className="art-image-layer"><img className="preview" src={artworkPreview(item,640)} srcSet={artworkSrcSet(item)||undefined} sizes="(max-width:760px) 50vw,(max-width:1180px) 33vw,20vw" alt={`${item.name} — ${item.category}, splash art game, hạng skin ${item.rank}`} loading={index<INITIAL_EAGER_COUNT?'eager':'lazy'} decoding="async" fetchPriority={index<INITIAL_EAGER_COUNT?'high':'low'}/></span>
+    <span className="art-image-layer"><img className="preview" src={artworkPreview(item,640)} srcSet={artworkSrcSet(item)||undefined} sizes="(max-width:760px) 50vw,(max-width:1180px) 33vw,20vw" alt={`${item.name} - ${item.category}, splash art game, hạng skin ${item.rank}`} loading={index<INITIAL_EAGER_COUNT?'eager':'lazy'} decoding="async" fetchPriority={index<INITIAL_EAGER_COUNT?'high':'low'}/></span>
     <span className="shade" aria-hidden="true"/>
     <span className="card-number">{String(index+1).padStart(2,'0')}</span>
-    <span className="tier" style={{background:RANK_GRADIENTS[item.rank]||'var(--brand)'}}>{item.rank||'—'}</span>
+    <span className="tier" style={{background:RANK_GRADIENTS[item.rank]||'var(--brand)'}}>{item.rank||'-'}</span>
     <span className="expand-mark" aria-hidden="true">+</span>
     <span className="card-copy"><span className="card-meta">{item.category}</span><strong className="card-title" data-title-fit={titleFitBucket(item.name)}>{item.name}</strong><span className="card-bottom"><span>CREDIT ẢNH · {item.credit}</span></span></span>
   </button>;
@@ -42,9 +42,9 @@ const ArtworkCard=memo(function ArtworkCard({item,index,onExpand}:{item:Artwork;
 
 function ExpandedStage({item,onClose}:{item:Artwork;onClose:()=>void}){
   return <button type="button" className="taxonomy-expanded-stage" aria-label={`Thu gọn ${item.name}`} onClick={onClose}>
-    <img src={artworkExpandedUrl(item)} alt={`${item.name} — ${item.category}`} loading="eager" decoding="async" fetchPriority="high"/>
+    <img src={artworkExpandedUrl(item)} alt={`${item.name} - ${item.category}`} loading="eager" decoding="async" fetchPriority="high"/>
     <span className="taxonomy-expanded-shade" aria-hidden="true"/>
-    <span className="tier taxonomy-expanded-tier" style={{background:RANK_GRADIENTS[item.rank]||'var(--brand)'}}>{item.rank||'—'}</span>
+    <span className="tier taxonomy-expanded-tier" style={{background:RANK_GRADIENTS[item.rank]||'var(--brand)'}}>{item.rank||'-'}</span>
     <span className="taxonomy-expanded-copy">
       <span className="card-meta-line"><span className="card-meta">{formatArtworkMetadata(item.category)}</span><span className="card-meta-divider" aria-hidden="true">|</span><span className="card-credit" title={`Credit: ${item.credit}`}>CREDIT: {formatArtworkMetadata(item.credit)}</span></span>
       <strong className="taxonomy-expanded-title">{item.name}</strong>

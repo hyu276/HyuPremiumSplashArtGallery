@@ -32,11 +32,11 @@
       const category=clean(item.category)||'Uncategorized';
       const rank=clean(item.rank)||'Unranked';
       const credit=clean(item.credit)||'Uncredited';
-      const alt=`${name} — ${category} gaming splash art, skin rank ${rank}`;
+      const alt=`${name} - ${category} gaming splash art, skin rank ${rank}`;
       const img=card.querySelector('img');
       if(img){
         img.alt=alt;
-        img.title=`${name} — ${category}; skin rank ${rank}; image credit ${credit}`;
+        img.title=`${name} - ${category}; skin rank ${rank}; image credit ${credit}`;
         if(index<2)img.fetchPriority='high';
         else if(!img.getAttribute('loading'))img.loading='lazy';
         if(!img.getAttribute('decoding'))img.decoding='async';

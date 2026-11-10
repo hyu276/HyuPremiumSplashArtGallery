@@ -7,10 +7,10 @@ import { artworkTaxonomyGroups, getCatalogue, siteUrl } from '@/lib/catalogue';
 export const revalidate=300;
 
 export const metadata:Metadata={
-  title:'Dòng trang phục — HYU PREMIUM',
+  title:'Dòng trang phục - HYU PREMIUM',
   description:'Khám phá splash art HYU PREMIUM theo từng dòng trang phục với gallery tương tác.',
   alternates:{canonical:`${siteUrl}/universes/`},
-  openGraph:{title:'Dòng trang phục — HYU PREMIUM',description:'Khám phá splash art HYU PREMIUM theo từng dòng trang phục.',url:`${siteUrl}/universes/`,type:'website',locale:'vi_VN'}
+  openGraph:{title:'Dòng trang phục - HYU PREMIUM',description:'Khám phá splash art HYU PREMIUM theo từng dòng trang phục.',url:`${siteUrl}/universes/`,type:'website',locale:'vi_VN'}
 };
 
 export default async function UniversesPage(){

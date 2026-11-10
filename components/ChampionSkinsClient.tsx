@@ -46,7 +46,7 @@ export default function ChampionSkinsClient({ category, items }: { category: str
       <div className="champion-media-viewport">
         <img
           src={expandedSrc}
-          alt={`${active.name} — ${category}, splash art hạng ${active.rank}`}
+          alt={`${active.name} - ${category}, splash art hạng ${active.rank}`}
           loading="eager"
           decoding="async"
           fetchPriority="high"

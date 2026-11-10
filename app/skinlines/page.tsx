@@ -7,10 +7,10 @@ import { artworkTaxonomyGroups, getCatalogue, siteUrl } from '@/lib/catalogue';
 export const revalidate=300;
 
 export const metadata:Metadata={
-  title:'Trang phục theo bộ — HYU PREMIUM',
+  title:'Trang phục theo bộ - HYU PREMIUM',
   description:'Khám phá splash art HYU PREMIUM theo từng bộ trang phục với gallery tương tác.',
   alternates:{canonical:`${siteUrl}/skinlines/`},
-  openGraph:{title:'Trang phục theo bộ — HYU PREMIUM',description:'Khám phá splash art HYU PREMIUM theo từng bộ trang phục.',url:`${siteUrl}/skinlines/`,type:'website',locale:'vi_VN'}
+  openGraph:{title:'Trang phục theo bộ - HYU PREMIUM',description:'Khám phá splash art HYU PREMIUM theo từng bộ trang phục.',url:`${siteUrl}/skinlines/`,type:'website',locale:'vi_VN'}
 };
 
 export default async function SkinlinesPage(){

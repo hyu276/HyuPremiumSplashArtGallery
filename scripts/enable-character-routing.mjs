@@ -44,8 +44,8 @@ async function collectRoutes() {
     const category = categoryRaw || 'Uncategorized';
     const name = matchText(html, /<h1 class="title">([\s\S]*?)<\/h1>/i, dir.name);
     const image = matchText(html, /<figure><img src="([^"]+)"/i);
-    const title = matchText(html, /<title>([\s\S]*?)<\/title>/i, `${name} — ${category} Splash Art | HYU PREMIUM`);
-    const description = matchText(html, /<meta name="description" content="([^"]*)"/i, `${name} — ${category} gaming splash artwork.`);
+    const title = matchText(html, /<title>([\s\S]*?)<\/title>/i, `${name} - ${category} Splash Art | HYU PREMIUM`);
+    const description = matchText(html, /<meta name="description" content="([^"]*)"/i, `${name} - ${category} gaming splash artwork.`);
     const jsonLd = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/i)?.[1] || '';
     const characterSlug = safeSegment(category);
     const artworkSlug = safeSegment(dir.name);
@@ -148,11 +148,11 @@ function routeLayerScript() {
       const route = routeFromLocation();
       if (route.artwork) {
         const item = state.items.find(entry => String(entry.id) === String(route.artwork));
-        if (item) document.title = (item.name || route.artwork) + ' — ' + (item.category || 'Character') + ' Splash Art | HYU PREMIUM';
+        if (item) document.title = (item.name || route.artwork) + ' - ' + (item.category || 'Character') + ' Splash Art | HYU PREMIUM';
       } else if (route.category !== 'all') {
         document.title = route.category + ' Splash Art Archive | HYU PREMIUM';
       } else {
-        document.title = 'HYU PREMIUM — Gaming Splash Art Archive';
+        document.title = 'HYU PREMIUM - Gaming Splash Art Archive';
       }
     } catch {}
   };
@@ -288,7 +288,7 @@ function makeCharacterAppHtml(source, routes, selectedCategory = '', artworkRout
   html = replaceMeta(html, /<link rel="canonical" href="[^"]+">/i, `<link rel="canonical" href="${canonical}">`);
   html = replaceMeta(html, /<meta property="og:url" content="[^"]+">/i, `<meta property="og:url" content="${canonical}">`);
 
-  let title = 'HYU PREMIUM — Gaming Splash Art Archive';
+  let title = 'HYU PREMIUM - Gaming Splash Art Archive';
   let description = 'A curated searchable archive of gaming splash art organized by character/category, skin rank and image credit.';
   let image = routes.find(route => route.image)?.image || '';
   let jsonLd = JSON.stringify(collectionJsonLd(
@@ -312,7 +312,7 @@ function makeCharacterAppHtml(source, routes, selectedCategory = '', artworkRout
   }
 
   if (artworkRoute) {
-    title = artworkRoute.title || `${artworkRoute.name} — ${artworkRoute.category} Splash Art | HYU PREMIUM`;
+    title = artworkRoute.title || `${artworkRoute.name} - ${artworkRoute.category} Splash Art | HYU PREMIUM`;
     description = artworkRoute.description;
     image = artworkRoute.image || image;
     jsonLd = migratedArtworkJsonLd(artworkRoute, routes) || jsonLd;
