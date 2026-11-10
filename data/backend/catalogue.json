@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-11-09T15:24:22.865Z",
+  "generatedAt": "2026-11-10T11:03:17.427Z",
   "items": [
     {
       "id": "herzlove-2",
@@ -7030,6 +7030,100 @@
         "bytes": 449643,
         "mimeType": "image/jpeg",
         "sha256": "5bf65940302d6696bc83c1e192233751ed021aeb82bb40c3d41061fecd27f31f"
+      }
+    },
+    {
+      "id": "au-bep-hoang-gia",
+      "name": "Đầu bếp hoàng gia",
+      "description": "",
+      "category": "D'Arcy",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Kerrie",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/au-bep-hoang-gia-5782f011a54c-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/au-bep-hoang-gia-5782f011a54c-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-10T11:02:01.987Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/au-bep-hoang-gia-178e05ddd04b4ac9.jpg",
+        "width": 2560,
+        "height": 1428,
+        "bytes": 421256,
+        "mimeType": "image/jpeg",
+        "sha256": "178e05ddd04b4ac925cbee66b9bc61c24d2c0ac5d7e3a815cf86ff575e92d388"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/au-bep-hoang-gia-5782f011a54c-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 28106,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/au-bep-hoang-gia-5782f011a54c-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 51104,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/au-bep-hoang-gia-5782f011a54c-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 108326,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "trai-ep-bai-bien",
+      "name": "Trai đẹp bãi biển",
+      "description": "",
+      "category": "D'Arcy",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Kerrie",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/trai-ep-bai-bien-57655fb1b74e-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/trai-ep-bai-bien-57655fb1b74e-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-10T11:02:17.071Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/trai-ep-bai-bien-5b3f888c86767d16.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 557060,
+        "mimeType": "image/jpeg",
+        "sha256": "5b3f888c86767d165e988e7f0b3a24d43de3c3babc434a031d6df233d7712ba5"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/trai-ep-bai-bien-57655fb1b74e-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 29306,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/trai-ep-bai-bien-57655fb1b74e-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 54700,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/trai-ep-bai-bien-57655fb1b74e-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 113274,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -16512,6 +16606,53 @@
         "bytes": 730601,
         "mimeType": "image/jpeg",
         "sha256": "63d795debca841ff6edb426ed6800bb6cd311c8feb3921ccae0f57f6b7a03f46"
+      }
+    },
+    {
+      "id": "suoi-nuoc-nong-3",
+      "name": "Suối nước nóng",
+      "description": "",
+      "category": "Liliana",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Sol",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/suoi-nuoc-nong-3-1417b6347b1f-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/suoi-nuoc-nong-3-1417b6347b1f-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-10T11:02:39.004Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/suoi-nuoc-nong-3-a08a51d697cb580c.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 465515,
+        "mimeType": "image/jpeg",
+        "sha256": "a08a51d697cb580c95153cab755978b011336ab39dd2d213a06d76b54a9fb6a2"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/suoi-nuoc-nong-3-1417b6347b1f-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 27520,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/suoi-nuoc-nong-3-1417b6347b1f-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 48914,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/suoi-nuoc-nong-3-1417b6347b1f-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 96282,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -31690,6 +31831,7 @@
     "Butterfly",
     "Capheny",
     "Charlotte",
+    "D'Arcy",
     "Dextra",
     "Điêu Thuyền",
     "Dolia",
@@ -31828,6 +31970,7 @@
       "Butterfly",
       "Capheny",
       "Charlotte",
+      "D'Arcy",
       "Dextra",
       "Điêu Thuyền",
       "Dolia",
