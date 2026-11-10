@@ -159,7 +159,7 @@ const ExpandedArtwork=memo(function ExpandedArtwork({src,onReady}:{src:string;on
 const ArtworkCard = memo(function ArtworkCard({item,index,expanded,pending,onToggle,onOriginalReady}:{item:Artwork;index:number;expanded:boolean;pending:boolean;onToggle:(item:Artwork)=>void;onOriginalReady:(itemId:string)=>void}){
   const cardNode=useRef<HTMLButtonElement>(null);
   const [previewHold,setPreviewHold]=useState<PreviewHold|null>(null);
-  const imageAlt=`${item.name} — ${item.category}, splash art game, hạng skin ${item.rank}`;
+  const imageAlt=`${item.name} - ${item.category}, splash art game, hạng skin ${item.rank}`;
   const motionStyle={'--art-motion-delay':`${Math.min(index,12)*18}ms`} as CSSProperties;
   // Keep the already-rendered listing preview mounted as a same-size visual hold.
   // Expanded views use an exact-fidelity R2 display copy when available; 1600px remains the safe fallback during backfill.
@@ -183,7 +183,7 @@ const ArtworkCard = memo(function ArtworkCard({item,index,expanded,pending,onTog
     </span>
     <span className="shade" aria-hidden="true"></span>
     <span className="card-number">{String(index+1).padStart(2,'0')}</span>
-    <span className="tier" style={{background:RANK_GRADIENTS[item.rank]||'var(--brand)'}}>{item.rank||'—'}</span>
+    <span className="tier" style={{background:RANK_GRADIENTS[item.rank]||'var(--brand)'}}>{item.rank||'-'}</span>
     <span className="expand-mark" aria-hidden="true">{pending?'…':expanded?'−':'+'}</span>
     <span className="card-copy">
       {expanded ? <>

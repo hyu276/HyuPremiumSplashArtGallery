@@ -46,7 +46,7 @@ export default function AdminCompactPicker({value,options,placeholder,ariaLabel,
       <span>{selected?.label||placeholder}</span><span aria-hidden="true">▾</span>
     </button>
     {open?<div className="admin-compact-picker-menu" role="listbox" id={listId} aria-label={ariaLabel}>
-      {searchable?<input className="admin-compact-picker-search" type="search" value={query} onChange={event=>setQuery(event.target.value)} placeholder={searchPlaceholder} aria-label={`${ariaLabel} — tìm kiếm`} autoFocus/>:null}
+      {searchable?<input className="admin-compact-picker-search" type="search" value={query} onChange={event=>setQuery(event.target.value)} placeholder={searchPlaceholder} aria-label={`${ariaLabel} - tìm kiếm`} autoFocus/>:null}
       <div className="admin-compact-picker-list">
         {filtered.length?filtered.map(option=><button type="button" role="option" aria-selected={value===option.value} className={`admin-compact-picker-option${value===option.value?' active':''}`} key={option.value} onClick={()=>choose(option.value)}>{option.label}</button>):<div className="admin-compact-picker-empty">Không có kết quả phù hợp.</div>}
       </div>

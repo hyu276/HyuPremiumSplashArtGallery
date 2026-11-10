@@ -19,7 +19,7 @@ export async function GET(){
     ...(priority.length?priority.map(page=>`- ${new URL(page.path,`${settings.site_url.replace(/\/$/,'')}/`).href}: ${page.ai_summary}`):['- No custom AI page notes have been published yet.']),
     '',
     '## Artwork examples',
-    ...catalogue.items.slice(0,30).map(item=>`- ${item.category} — ${item.name}: ${siteUrl}${artworkPath(item)}`),
+    ...catalogue.items.slice(0,30).map(item=>`- ${item.category} - ${item.name}: ${siteUrl}${artworkPath(item)}`),
     '',
     '## Sitemaps',
     `- ${settings.site_url.replace(/\/$/,'')}/sitemap.xml`,

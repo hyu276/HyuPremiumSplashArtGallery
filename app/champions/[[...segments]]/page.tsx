@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!segments[0]) {
     const path = '/champions/';
-    const title = 'Tướng — HYU PREMIUM';
+    const title = 'Tướng - HYU PREMIUM';
     const description = 'Khám phá tất cả nhân vật có splash art trong HYU PREMIUM và xem toàn bộ trang phục hiện có của từng tướng.';
     return { title, description, alternates: canonical(path), openGraph: { title, description, url: `${siteUrl}${path}`, type: 'website', locale: 'vi_VN' } };
   }
@@ -46,7 +46,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const category = catalogue.categories.find(value => slug(value) === segments[0]);
   if (!category) return {};
   const path = `/champions/${slug(category)}/`;
-  const title = `${category} — Trang phục hiện có`;
+  const title = `${category} - Trang phục hiện có`;
   const description = `Xem toàn bộ splash art và trang phục hiện có của ${category} trong HYU PREMIUM.`;
   return { title, description, alternates: canonical(path), openGraph: { title, description, url: `${siteUrl}${path}`, type: 'website', locale: 'vi_VN' } };
 }
@@ -117,7 +117,7 @@ export default async function ChampionsPage({ params, searchParams }: PageProps)
               <span className="champion-card-media">
                 <img
                   src={cardImage}
-                  alt={`${category} — nhân vật trong HYU PREMIUM`}
+                  alt={`${category} - nhân vật trong HYU PREMIUM`}
                   loading={index < 4 ? 'eager' : 'lazy'}
                   decoding="async"
                   fetchPriority={index === 0 ? 'high' : 'low'}
