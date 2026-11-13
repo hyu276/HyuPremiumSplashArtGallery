@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-11-13T08:35:10.921Z",
+  "generatedAt": "2026-11-13T08:43:16.375Z",
   "items": [
     {
       "id": "herzlove-2",
@@ -6691,6 +6691,53 @@
           "width": 1600,
           "height": 893,
           "bytes": 116922,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "ve-binh-anh-sao-3",
+      "name": "Vệ binh ánh sao",
+      "description": "",
+      "category": "Butterfly",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Sol",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ve-binh-anh-sao-3-b88ff9ba4001-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ve-binh-anh-sao-3-b88ff9ba4001-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-13T08:39:36.778Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/ve-binh-anh-sao-3-823d46dad1d8c5f9.jpg",
+        "width": 2560,
+        "height": 1428,
+        "bytes": 436603,
+        "mimeType": "image/jpeg",
+        "sha256": "823d46dad1d8c5f93b511f46a430643c2c458b736cef14b9ad55dd451eb0c059"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ve-binh-anh-sao-3-b88ff9ba4001-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 27198,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ve-binh-anh-sao-3-b88ff9ba4001-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 49608,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ve-binh-anh-sao-3-b88ff9ba4001-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 102812,
           "mimeType": "image/webp"
         }
       }
@@ -21401,6 +21448,53 @@
           "width": 1600,
           "height": 893,
           "bytes": 80294,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "manh-ho",
+      "name": "Mãnh hổ",
+      "description": "",
+      "category": "Qi",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Sol",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/manh-ho-b00cbb8f51a6-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/manh-ho-b00cbb8f51a6-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-13T08:39:50.918Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/manh-ho-30478d043514ec1e.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 604782,
+        "mimeType": "image/jpeg",
+        "sha256": "30478d043514ec1e967dc5d828d410410f6544b06d717040100659df6ae91914"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/manh-ho-b00cbb8f51a6-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 29896,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/manh-ho-b00cbb8f51a6-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 56704,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/manh-ho-b00cbb8f51a6-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 120492,
           "mimeType": "image/webp"
         }
       }
