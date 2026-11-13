@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-11-13T14:05:17.285Z",
+  "generatedAt": "2026-11-13T14:08:00.240Z",
   "items": [
     {
       "id": "herzlove-2",
@@ -6691,6 +6691,53 @@
           "width": 1600,
           "height": 893,
           "bytes": 116922,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "xich-diem-long-kiem",
+      "name": "Xích diễm long kiếm",
+      "description": "",
+      "category": "Butterfly",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Sol",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/xich-diem-long-kiem-c42a7db72f1f-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/xich-diem-long-kiem-c42a7db72f1f-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-13T14:07:14.751Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/xich-diem-long-kiem-3c18cc9f7314fa1a.jpg",
+        "width": 2048,
+        "height": 1143,
+        "bytes": 341227,
+        "mimeType": "image/jpeg",
+        "sha256": "3c18cc9f7314fa1a8cd4348c418b1b2e24040682c17c1b63e5d7ee18cc423cc7"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/xich-diem-long-kiem-c42a7db72f1f-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 28942,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/xich-diem-long-kiem-c42a7db72f1f-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 54674,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/xich-diem-long-kiem-c42a7db72f1f-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 119400,
           "mimeType": "image/webp"
         }
       }
