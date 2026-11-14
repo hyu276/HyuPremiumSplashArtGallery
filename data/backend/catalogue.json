@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-11-14T11:18:24.368Z",
+  "generatedAt": "2026-11-14T11:25:21.240Z",
   "items": [
     {
       "id": "herzlove-2",
@@ -6790,6 +6790,100 @@
       }
     },
     {
+      "id": "yokynslayder",
+      "name": "YokynSlayder",
+      "description": "",
+      "category": "Butterfly",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/yokynslayder-907665ec23a7-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/yokynslayder-907665ec23a7-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-14T11:19:13.447Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/yokynslayder-e61d71be0f8c8029.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 617189,
+        "mimeType": "image/jpeg",
+        "sha256": "e61d71be0f8c8029e193b03bdabdfb77f8c02b5a46f024502c427c638ec5dc9f"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/yokynslayder-907665ec23a7-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 30020,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/yokynslayder-907665ec23a7-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 58772,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/yokynslayder-907665ec23a7-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 128712,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "herzlove-3",
+      "name": "Herzlove",
+      "description": "",
+      "category": "Butterfly",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/herzlove-3-cc2f47e8ce20-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/herzlove-3-cc2f47e8ce20-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-14T11:22:51.711Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/herzlove-3-29bf23d944c1562f.jpg",
+        "width": 1888,
+        "height": 1056,
+        "bytes": 239492,
+        "mimeType": "image/jpeg",
+        "sha256": "29bf23d944c1562f19226be5f370ab35489f222cf7386dce2b89c4c61bb15213"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/herzlove-3-cc2f47e8ce20-640.webp",
+          "width": 640,
+          "height": 358,
+          "bytes": 29744,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/herzlove-3-cc2f47e8ce20-960.webp",
+          "width": 960,
+          "height": 537,
+          "bytes": 54092,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/herzlove-3-cc2f47e8ce20-1600.webp",
+          "width": 1600,
+          "height": 895,
+          "bytes": 107844,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "ve-binh-anh-sao-3",
       "name": "Vệ binh ánh sao",
       "description": "",
@@ -7603,6 +7697,53 @@
       }
     },
     {
+      "id": "nhat-quang-thanh-vu",
+      "name": "Nhật quang thánh vũ",
+      "description": "",
+      "category": "Điêu Thuyền",
+      "rank": "S",
+      "rankOrder": 1,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nhat-quang-thanh-vu-641a39f209ce-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nhat-quang-thanh-vu-641a39f209ce-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-14T11:20:03.042Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/nhat-quang-thanh-vu-26b9602db328e48f.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 595315,
+        "mimeType": "image/jpeg",
+        "sha256": "26b9602db328e48f4885733550802c588d8dc9e5e84e94a6ceaa6ea3340f820c"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nhat-quang-thanh-vu-641a39f209ce-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 32204,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nhat-quang-thanh-vu-641a39f209ce-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 60484,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nhat-quang-thanh-vu-641a39f209ce-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 126392,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "boi-uoc-3",
       "name": "Bội ước",
       "description": "",
@@ -7833,6 +7974,53 @@
           "width": 1600,
           "height": 893,
           "bytes": 95296,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "an-thanh-ngoc-lien",
+      "name": "Đan Thanh - Ngọc Liên",
+      "description": "",
+      "category": "Điêu Thuyền",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/an-thanh-ngoc-lien-704e3893fcc0-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/an-thanh-ngoc-lien-704e3893fcc0-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-14T11:22:41.420Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/an-thanh-ngoc-lien-5be589236ffa14ea.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 519843,
+        "mimeType": "image/jpeg",
+        "sha256": "5be589236ffa14ea255484a70b05a6055e3ffe5f1ce3f3bf4405625e5b71c327"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/an-thanh-ngoc-lien-704e3893fcc0-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 26466,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/an-thanh-ngoc-lien-704e3893fcc0-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 48720,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/an-thanh-ngoc-lien-704e3893fcc0-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 102980,
           "mimeType": "image/webp"
         }
       }
@@ -12001,6 +12189,53 @@
       }
     },
     {
+      "id": "tien-hac-am-4",
+      "name": "Tiên hắc ám",
+      "description": "",
+      "category": "Goverra",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tien-hac-am-4-b3277eba0d4e-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tien-hac-am-4-b3277eba0d4e-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-14T11:18:55.355Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/tien-hac-am-4-89f67993dcb07fd2.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 530848,
+        "mimeType": "image/jpeg",
+        "sha256": "89f67993dcb07fd2bc88305a1d1072c9d891dc165123bedee47cb2723344c18b"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tien-hac-am-4-b3277eba0d4e-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 23300,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tien-hac-am-4-b3277eba0d4e-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 45944,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tien-hac-am-4-b3277eba0d4e-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 103700,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "vu-nu-kagura",
       "name": "Vu Nữ Kagura",
       "description": "",
@@ -12574,6 +12809,53 @@
         "bytes": 704509,
         "mimeType": "image/jpeg",
         "sha256": "a163af2e89db62ddd8e7ffb04bb4873f706b8eea09eb811f79e4b9240479433f"
+      }
+    },
+    {
+      "id": "tinh-van-mong-anh",
+      "name": "Tinh vân mộng ảnh",
+      "description": "",
+      "category": "Helen",
+      "rank": "S",
+      "rankOrder": 1,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tinh-van-mong-anh-139d4059b8fa-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tinh-van-mong-anh-139d4059b8fa-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-14T11:19:47.538Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/tinh-van-mong-anh-982bca36703cd29c.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 565284,
+        "mimeType": "image/jpeg",
+        "sha256": "982bca36703cd29c17b1d26be6fec0a0fe9f81646b9b96d14ffcf598d476bcd5"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tinh-van-mong-anh-139d4059b8fa-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 25010,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tinh-van-mong-anh-139d4059b8fa-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 48390,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tinh-van-mong-anh-139d4059b8fa-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 106118,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -13241,6 +13523,53 @@
           "width": 1600,
           "height": 893,
           "bytes": 115382,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "huyet-nguyet-quy-dien",
+      "name": "Huyết nguyệt quỷ diện",
+      "description": "",
+      "category": "Ilumia",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyet-nguyet-quy-dien-42be004076db-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyet-nguyet-quy-dien-42be004076db-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-14T11:21:49.275Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/huyet-nguyet-quy-dien-532615c3f27f3997.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 459091,
+        "mimeType": "image/jpeg",
+        "sha256": "532615c3f27f3997df67a0b6fa89aecfc84d930650f6cdf317c8e05328245614"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyet-nguyet-quy-dien-42be004076db-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 23688,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyet-nguyet-quy-dien-42be004076db-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 43762,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyet-nguyet-quy-dien-42be004076db-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 91086,
           "mimeType": "image/webp"
         }
       }
@@ -14332,6 +14661,53 @@
       }
     },
     {
+      "id": "kim-ngoc-man-uong-2",
+      "name": "Kim Ngọc - Mãn Đường",
+      "description": "",
+      "category": "Ilumia",
+      "rank": "SSS",
+      "rankOrder": 5,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/kim-ngoc-man-uong-2-ab4cf08f6c0a-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/kim-ngoc-man-uong-2-ab4cf08f6c0a-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-14T11:20:47.176Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/kim-ngoc-man-uong-2-3e7b0d2c0c0f404c.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 564268,
+        "mimeType": "image/jpeg",
+        "sha256": "3e7b0d2c0c0f404c28cf7adbeb72784dd9a4933fb608f85d1e1fbffcaa866408"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/kim-ngoc-man-uong-2-ab4cf08f6c0a-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 30092,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/kim-ngoc-man-uong-2-ab4cf08f6c0a-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 57036,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/kim-ngoc-man-uong-2-ab4cf08f6c0a-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 118186,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "thuong-van-huyen-mong",
       "name": "Thương Vân Huyễn Mộng",
       "description": "",
@@ -14515,6 +14891,53 @@
           "width": 1600,
           "height": 893,
           "bytes": 118452,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "van-dien-huyen-nghe",
+      "name": "Vạn diện huyễn nghệ",
+      "description": "",
+      "category": "Ilumia",
+      "rank": "SSS+ Tối thượng",
+      "rankOrder": 7,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/van-dien-huyen-nghe-9d2914f19de1-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/van-dien-huyen-nghe-9d2914f19de1-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-14T11:22:07.779Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/van-dien-huyen-nghe-d1aa4512d0d1e192.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 680291,
+        "mimeType": "image/jpeg",
+        "sha256": "d1aa4512d0d1e19241973c007ead6bbbd8bcdc770cd42293797e0ca8bc5c7c74"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/van-dien-huyen-nghe-9d2914f19de1-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 30864,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/van-dien-huyen-nghe-9d2914f19de1-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 61272,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/van-dien-huyen-nghe-9d2914f19de1-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 133710,
           "mimeType": "image/webp"
         }
       }
@@ -15518,6 +15941,53 @@
         "bytes": 617713,
         "mimeType": "image/jpeg",
         "sha256": "57e1239d18fa4f70f86678699887fa45b61eaec8392f2699c862a00d697e5700"
+      }
+    },
+    {
+      "id": "tuoi-hong-tho-ngay",
+      "name": "Tuổi hồng thơ ngây",
+      "description": "",
+      "category": "Krixi",
+      "rank": "S",
+      "rankOrder": 1,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tuoi-hong-tho-ngay-df2e42a62c1c-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tuoi-hong-tho-ngay-df2e42a62c1c-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-14T11:19:32.544Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/tuoi-hong-tho-ngay-55c9b05007dfcb45.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 552360,
+        "mimeType": "image/jpeg",
+        "sha256": "55c9b05007dfcb45f4ae7850e8d243909a602acade86c2f4816dcd4dc47b3946"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tuoi-hong-tho-ngay-df2e42a62c1c-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 26986,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tuoi-hong-tho-ngay-df2e42a62c1c-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 50376,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tuoi-hong-tho-ngay-df2e42a62c1c-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 107638,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -23403,6 +23873,53 @@
       }
     },
     {
+      "id": "kim-ngoc-man-uong-3",
+      "name": "Kim Ngọc - Mãn Đường",
+      "description": "",
+      "category": "Sephera",
+      "rank": "SSS",
+      "rankOrder": 5,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/kim-ngoc-man-uong-3-11df23f3fe0f-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/kim-ngoc-man-uong-3-11df23f3fe0f-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-14T11:21:11.389Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/kim-ngoc-man-uong-3-5343d942d014dc17.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 601743,
+        "mimeType": "image/jpeg",
+        "sha256": "5343d942d014dc1788bd0cae0b9a4b0327e9c9516adfc14e61d014ce6f362e90"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/kim-ngoc-man-uong-3-11df23f3fe0f-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 34022,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/kim-ngoc-man-uong-3-11df23f3fe0f-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 62358,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/kim-ngoc-man-uong-3-11df23f3fe0f-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 131966,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "minh-ha-o-gia",
       "name": "Minh Hà Độ Giả",
       "description": "",
@@ -29983,6 +30500,53 @@
       }
     },
     {
+      "id": "yokynslayder-2",
+      "name": "YokynSlayder",
+      "description": "",
+      "category": "Violet",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/yokynslayder-2-af47908a81aa-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/yokynslayder-2-af47908a81aa-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-14T11:22:25.909Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/yokynslayder-2-979ddcf5fdd65ee5.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 545565,
+        "mimeType": "image/jpeg",
+        "sha256": "979ddcf5fdd65ee53392e99ce361e8ae1b116681de4f361a4ff402a0327e6e3d"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/yokynslayder-2-af47908a81aa-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 29526,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/yokynslayder-2-af47908a81aa-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 54942,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/yokynslayder-2-af47908a81aa-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 113588,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "hoc-vien-anh-hung",
       "name": "Học viện anh hùng",
       "description": "",
@@ -33081,6 +33645,53 @@
         "bytes": 2121231,
         "mimeType": "image/png",
         "sha256": "c07859d88ea19598fad82e423a8f0570541d1e99b0253990372bd725262fd785"
+      }
+    },
+    {
+      "id": "loc-choc-loi-choi",
+      "name": "Lóc chóc loi choi",
+      "description": "",
+      "category": "Zip",
+      "rank": "SSS",
+      "rankOrder": 5,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/loc-choc-loi-choi-fb695080b7fe-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/loc-choc-loi-choi-fb695080b7fe-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-14T11:20:17.654Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/loc-choc-loi-choi-c2fec2a60bd9abe5.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 601100,
+        "mimeType": "image/jpeg",
+        "sha256": "c2fec2a60bd9abe5444c4c81d27f57e1e02fea3e37a3213ce2db2a27b9498ebe"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/loc-choc-loi-choi-fb695080b7fe-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 29984,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/loc-choc-loi-choi-fb695080b7fe-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 56870,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/loc-choc-loi-choi-fb695080b7fe-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 119902,
+          "mimeType": "image/webp"
+        }
       }
     }
   ],
