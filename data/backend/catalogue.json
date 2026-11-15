@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-11-15T14:17:40.837Z",
+  "generatedAt": "2026-11-15T16:19:20.231Z",
   "items": [
     {
       "id": "herzlove-2",
@@ -1335,53 +1335,6 @@
         "bytes": 521465,
         "mimeType": "image/jpeg",
         "sha256": "cbfb27544de68fa69012d660b2c6ceead6dc0697324ffbe3dc7de4abde914b85"
-      }
-    },
-    {
-      "id": "tien-hac-am-5",
-      "name": "Tiên Hắc Ám",
-      "description": "",
-      "category": "Annette",
-      "rank": "A",
-      "rankOrder": 0,
-      "credit": "Yokyn",
-      "universes": [],
-      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tien-hac-am-5-563308a67f85-1600.webp",
-      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tien-hac-am-5-563308a67f85-1600.webp",
-      "tags": [],
-      "hidden": false,
-      "isVietnameseSkin": false,
-      "updatedAt": "2026-11-15T14:17:11.127Z",
-      "expanded": {
-        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/tien-hac-am-5-26f04b026a33b9c2.jpg",
-        "width": 2752,
-        "height": 1536,
-        "bytes": 380373,
-        "mimeType": "image/jpeg",
-        "sha256": "26f04b026a33b9c24d0a642cf80897abb84fdaa08e1a6c548e0801d6593bf81b"
-      },
-      "variants": {
-        "640": {
-          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tien-hac-am-5-563308a67f85-640.webp",
-          "width": 640,
-          "height": 357,
-          "bytes": 17432,
-          "mimeType": "image/webp"
-        },
-        "960": {
-          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tien-hac-am-5-563308a67f85-960.webp",
-          "width": 960,
-          "height": 536,
-          "bytes": 32542,
-          "mimeType": "image/webp"
-        },
-        "1600": {
-          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tien-hac-am-5-563308a67f85-1600.webp",
-          "width": 1600,
-          "height": 893,
-          "bytes": 69486,
-          "mimeType": "image/webp"
-        }
       }
     },
     {
