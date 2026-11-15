@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-11-15T16:46:36.972Z",
+  "generatedAt": "2026-11-15T16:57:34.402Z",
   "items": [
     {
       "id": "herzlove-2",
@@ -9591,6 +9591,53 @@
           "width": 1600,
           "height": 893,
           "bytes": 216356,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "van-tam-ve-than-hang-hieu",
+      "name": "Vấn tâm vệ thần: Hàng hiệu",
+      "description": "",
+      "category": "Edras",
+      "rank": "SSS+ Tối thượng",
+      "rankOrder": 7,
+      "credit": "Hyu",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/van-tam-ve-than-hang-hieu-828a34733b3f-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/van-tam-ve-than-hang-hieu-828a34733b3f-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-15T16:56:43.833Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/van-tam-ve-than-hang-hieu-cfe3cabd39974c27.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 1057095,
+        "mimeType": "image/jpeg",
+        "sha256": "cfe3cabd39974c27b01f619450ee090fa56910271ee733b910874633a8b80a03"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/van-tam-ve-than-hang-hieu-828a34733b3f-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 46448,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/van-tam-ve-than-hang-hieu-828a34733b3f-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 91890,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/van-tam-ve-than-hang-hieu-828a34733b3f-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 220368,
           "mimeType": "image/webp"
         }
       }
