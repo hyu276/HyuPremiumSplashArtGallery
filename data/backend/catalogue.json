@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-11-17T16:31:35.206Z",
+  "generatedAt": "2026-11-17T16:32:29.578Z",
   "items": [
     {
       "id": "herzlove-2",
@@ -30824,6 +30824,53 @@
           "width": 1600,
           "height": 893,
           "bytes": 105746,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "chien-than-vo-song",
+      "name": "Chiến thần vô song",
+      "description": "",
+      "category": "Volkath",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/chien-than-vo-song-41ae019e3021-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/chien-than-vo-song-41ae019e3021-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-17T16:31:38.880Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/chien-than-vo-song-a32ef71bd6106877.jpg",
+        "width": 1888,
+        "height": 1056,
+        "bytes": 269732,
+        "mimeType": "image/jpeg",
+        "sha256": "a32ef71bd6106877b082c9650b4979e5937ee205b4f6915160fd0a4b875752ca"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/chien-than-vo-song-41ae019e3021-640.webp",
+          "width": 640,
+          "height": 358,
+          "bytes": 28770,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/chien-than-vo-song-41ae019e3021-960.webp",
+          "width": 960,
+          "height": 537,
+          "bytes": 54140,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/chien-than-vo-song-41ae019e3021-1600.webp",
+          "width": 1600,
+          "height": 895,
+          "bytes": 109764,
           "mimeType": "image/webp"
         }
       }
