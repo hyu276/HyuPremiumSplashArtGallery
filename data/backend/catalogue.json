@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-11-17T15:35:29.601Z",
+  "generatedAt": "2026-11-17T16:31:35.206Z",
   "items": [
     {
       "id": "herzlove-2",
@@ -26932,6 +26932,53 @@
           "width": 1600,
           "height": 893,
           "bytes": 62902,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "hau-gai",
+      "name": "Hầu gái",
+      "description": "",
+      "category": "Toro",
+      "rank": "A",
+      "rankOrder": 0,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hau-gai-97c97589734f-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hau-gai-97c97589734f-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-17T16:30:51.325Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/hau-gai-cb65d03baebb2a7b.jpg",
+        "width": 1888,
+        "height": 1056,
+        "bytes": 291781,
+        "mimeType": "image/jpeg",
+        "sha256": "cb65d03baebb2a7b2ebfeacba35fcebce4d6503d483b5092c5d7e9cc208560b6"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hau-gai-97c97589734f-640.webp",
+          "width": 640,
+          "height": 358,
+          "bytes": 23760,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hau-gai-97c97589734f-960.webp",
+          "width": 960,
+          "height": 537,
+          "bytes": 43894,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hau-gai-97c97589734f-1600.webp",
+          "width": 1600,
+          "height": 895,
+          "bytes": 90354,
           "mimeType": "image/webp"
         }
       }
