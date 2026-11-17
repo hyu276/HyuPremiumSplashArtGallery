@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-11-17T16:32:29.578Z",
+  "generatedAt": "2026-11-17T16:34:31.307Z",
   "items": [
     {
       "id": "herzlove-2",
@@ -764,6 +764,53 @@
         "bytes": 2517931,
         "mimeType": "image/jpeg",
         "sha256": "96913175018b6b7e43f3269774ed7a07dbbd8b08d2db96e208666f4df6bf3ee7"
+      }
+    },
+    {
+      "id": "ta-ao-dai",
+      "name": "Tà áo dài",
+      "description": "",
+      "category": "Amily",
+      "rank": "A",
+      "rankOrder": 0,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ta-ao-dai-c2b070881a19-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ta-ao-dai-c2b070881a19-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": true,
+      "updatedAt": "2026-11-17T16:33:27.468Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/ta-ao-dai-bd417ff82789d2f1.jpg",
+        "width": 1888,
+        "height": 1056,
+        "bytes": 181284,
+        "mimeType": "image/jpeg",
+        "sha256": "bd417ff82789d2f196a92d995c6ec78ca9b9983034054aa395255a210650c47c"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ta-ao-dai-c2b070881a19-640.webp",
+          "width": 640,
+          "height": 358,
+          "bytes": 17496,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ta-ao-dai-c2b070881a19-960.webp",
+          "width": 960,
+          "height": 537,
+          "bytes": 32880,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ta-ao-dai-c2b070881a19-1600.webp",
+          "width": 1600,
+          "height": 895,
+          "bytes": 66840,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
