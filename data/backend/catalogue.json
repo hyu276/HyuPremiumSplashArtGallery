@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-11-17T17:11:07.967Z",
+  "generatedAt": "2026-11-17T17:32:00.093Z",
   "items": [
     {
       "id": "herzlove-2",
@@ -6154,6 +6154,53 @@
         "bytes": 329528,
         "mimeType": "image/jpeg",
         "sha256": "3ab452e70750b194b58416a5a8241abf78a0984c3a9ee12e0676a720902b0c62"
+      }
+    },
+    {
+      "id": "loi-quan-ai-tuong",
+      "name": "Lôi quân đại tướng",
+      "description": "",
+      "category": "Bolt Baron",
+      "rank": "A",
+      "rankOrder": 0,
+      "credit": "Hyu",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/loi-quan-ai-tuong-36957af18c05-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/loi-quan-ai-tuong-36957af18c05-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-17T17:29:06.685Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/loi-quan-ai-tuong-7a07a7e82dffa159.jpg",
+        "width": 2560,
+        "height": 1429,
+        "bytes": 479245,
+        "mimeType": "image/jpeg",
+        "sha256": "7a07a7e82dffa1596fb2154853648de49b3772e06eb55e77a0f8236af3034ab8"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/loi-quan-ai-tuong-36957af18c05-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 27278,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/loi-quan-ai-tuong-36957af18c05-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 50876,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/loi-quan-ai-tuong-36957af18c05-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 101628,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
