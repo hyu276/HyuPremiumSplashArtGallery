@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-11-17T16:34:31.307Z",
+  "generatedAt": "2026-11-17T16:37:27.003Z",
   "items": [
     {
       "id": "herzlove-2",
@@ -6691,6 +6691,53 @@
           "width": 1600,
           "height": 893,
           "bytes": 87558,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "kim-xuan-van-truong-2",
+      "name": "Kim xuân vạn trượng",
+      "description": "",
+      "category": "Butterfly",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/kim-xuan-van-truong-2-76da93a28a0d-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/kim-xuan-van-truong-2-76da93a28a0d-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-17T16:35:46.652Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/kim-xuan-van-truong-2-ee4126ec29e29a33.jpg",
+        "width": 1888,
+        "height": 1056,
+        "bytes": 189234,
+        "mimeType": "image/jpeg",
+        "sha256": "ee4126ec29e29a3324567afd70b13aa67c2ffb245db88abaa7c650925eb868c8"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/kim-xuan-van-truong-2-76da93a28a0d-640.webp",
+          "width": 640,
+          "height": 358,
+          "bytes": 19388,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/kim-xuan-van-truong-2-76da93a28a0d-960.webp",
+          "width": 960,
+          "height": 537,
+          "bytes": 35094,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/kim-xuan-van-truong-2-76da93a28a0d-1600.webp",
+          "width": 1600,
+          "height": 895,
+          "bytes": 70560,
           "mimeType": "image/webp"
         }
       }
@@ -14045,6 +14092,53 @@
       }
     },
     {
+      "id": "hac-xa-bach-xa",
+      "name": "Hắc xà bạch xà",
+      "description": "",
+      "category": "Ilumia",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hac-xa-bach-xa-f7e3271137e9-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hac-xa-bach-xa-f7e3271137e9-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-17T16:35:12.810Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/hac-xa-bach-xa-beb0cbb65eabb6b9.jpg",
+        "width": 1888,
+        "height": 1056,
+        "bytes": 192484,
+        "mimeType": "image/jpeg",
+        "sha256": "beb0cbb65eabb6b9852b4e31f1018bfc96a0967a5f022dfe636eb7ae2b02ad16"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hac-xa-bach-xa-f7e3271137e9-640.webp",
+          "width": 640,
+          "height": 358,
+          "bytes": 17648,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hac-xa-bach-xa-f7e3271137e9-960.webp",
+          "width": 960,
+          "height": 537,
+          "bytes": 34004,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hac-xa-bach-xa-f7e3271137e9-1600.webp",
+          "width": 1600,
+          "height": 895,
+          "bytes": 71732,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "hoa-van-viem-e",
       "name": "Hoà vân viêm đế",
       "description": "",
@@ -20119,6 +20213,53 @@
         "bytes": 758219,
         "mimeType": "image/jpeg",
         "sha256": "b73397de11af9dcc74161d85887a35d812a46c543a69fb9c769c59c2caf08bbc"
+      }
+    },
+    {
+      "id": "su-ki-vo-tac-thien",
+      "name": "Sử Ki - Võ Tắc Thiên",
+      "description": "",
+      "category": "Marja",
+      "rank": "SSS",
+      "rankOrder": 5,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/su-ki-vo-tac-thien-59aab4562fae-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/su-ki-vo-tac-thien-59aab4562fae-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-17T16:34:37.803Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/su-ki-vo-tac-thien-3de14048368404b5.jpg",
+        "width": 1280,
+        "height": 720,
+        "bytes": 153847,
+        "mimeType": "image/jpeg",
+        "sha256": "3de14048368404b5d8ee04673d10751bcfb4b28c48aed6685cd18f0b05c09871"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/su-ki-vo-tac-thien-59aab4562fae-640.webp",
+          "width": 640,
+          "height": 360,
+          "bytes": 29252,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/su-ki-vo-tac-thien-59aab4562fae-960.webp",
+          "width": 960,
+          "height": 540,
+          "bytes": 54826,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/su-ki-vo-tac-thien-59aab4562fae-1600.webp",
+          "width": 1280,
+          "height": 720,
+          "bytes": 84822,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
