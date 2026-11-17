@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-11-17T16:49:04.302Z",
+  "generatedAt": "2026-11-17T16:51:07.436Z",
   "items": [
     {
       "id": "herzlove-2",
@@ -4185,6 +4185,53 @@
         "bytes": 875382,
         "mimeType": "image/jpeg",
         "sha256": "bffaab8d89e5b670ddadc74fb434cfe1f111f3e70cc2f4a953ce68351c47404f"
+      }
+    },
+    {
+      "id": "bach-khue-chien-giap",
+      "name": "Bạch khuê chiến giáp",
+      "description": "",
+      "category": "Azzen'ka",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bach-khue-chien-giap-d6cdce6e654a-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bach-khue-chien-giap-d6cdce6e654a-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-17T16:49:48.072Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/bach-khue-chien-giap-3c8b4ce2e0c48b43.jpg",
+        "width": 1888,
+        "height": 1056,
+        "bytes": 248574,
+        "mimeType": "image/jpeg",
+        "sha256": "3c8b4ce2e0c48b435ee9a74959e838c39980bddeac585303cbb4220f36414d1b"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bach-khue-chien-giap-d6cdce6e654a-640.webp",
+          "width": 640,
+          "height": 358,
+          "bytes": 25466,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bach-khue-chien-giap-d6cdce6e654a-960.webp",
+          "width": 960,
+          "height": 537,
+          "bytes": 47766,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bach-khue-chien-giap-d6cdce6e654a-1600.webp",
+          "width": 1600,
+          "height": 895,
+          "bytes": 93726,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
