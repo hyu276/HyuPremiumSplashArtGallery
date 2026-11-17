@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-11-17T16:37:27.003Z",
+  "generatedAt": "2026-11-17T16:40:35.862Z",
   "items": [
     {
       "id": "herzlove-2",
@@ -7979,6 +7979,53 @@
       }
     },
     {
+      "id": "linh-ca-dieu-khuc",
+      "name": "Linh ca diệu khúc",
+      "description": "",
+      "category": "Điêu Thuyền",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/linh-ca-dieu-khuc-6ec09064e481-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/linh-ca-dieu-khuc-6ec09064e481-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-17T16:38:47.750Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/linh-ca-dieu-khuc-493180c675e0c426.jpg",
+        "width": 1888,
+        "height": 1056,
+        "bytes": 240396,
+        "mimeType": "image/jpeg",
+        "sha256": "493180c675e0c42603d1ba991f57de70117a11dd7996c6d886f81c60edfe29a3"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/linh-ca-dieu-khuc-6ec09064e481-640.webp",
+          "width": 640,
+          "height": 358,
+          "bytes": 26620,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/linh-ca-dieu-khuc-6ec09064e481-960.webp",
+          "width": 960,
+          "height": 537,
+          "bytes": 47400,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/linh-ca-dieu-khuc-6ec09064e481-1600.webp",
+          "width": 1600,
+          "height": 895,
+          "bytes": 93018,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "mat-ma-thi-nghiem",
       "name": "Mật mã thí nghiệm",
       "description": "",
@@ -10792,6 +10839,53 @@
         "bytes": 439997,
         "mimeType": "image/jpeg",
         "sha256": "b2dc2d820fe4d76ff9134b56e66801858064901d6837e8cba64a1e231907de76"
+      }
+    },
+    {
+      "id": "huyen-mong-ho-co",
+      "name": "Huyền mộng hồ cơ",
+      "description": "",
+      "category": "Erin",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyen-mong-ho-co-6e09297cb911-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyen-mong-ho-co-6e09297cb911-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-17T16:37:50.864Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/huyen-mong-ho-co-1adc7adac0903e5d.jpg",
+        "width": 1888,
+        "height": 1056,
+        "bytes": 236634,
+        "mimeType": "image/jpeg",
+        "sha256": "1adc7adac0903e5d7f281b1aa60f3497f3b6d812467a6c1f8e78287a9d4e0332"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyen-mong-ho-co-6e09297cb911-640.webp",
+          "width": 640,
+          "height": 358,
+          "bytes": 25880,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyen-mong-ho-co-6e09297cb911-960.webp",
+          "width": 960,
+          "height": 537,
+          "bytes": 45848,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/huyen-mong-ho-co-6e09297cb911-1600.webp",
+          "width": 1600,
+          "height": 895,
+          "bytes": 90366,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -15896,6 +15990,53 @@
       }
     },
     {
+      "id": "tieu-cuong-thi",
+      "name": "Tiểu cương thi",
+      "description": "",
+      "category": "Keera",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tieu-cuong-thi-548d726e2cbf-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tieu-cuong-thi-548d726e2cbf-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-17T16:39:13.801Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/tieu-cuong-thi-e02bc6ffa28c71f5.jpg",
+        "width": 1888,
+        "height": 1056,
+        "bytes": 245656,
+        "mimeType": "image/jpeg",
+        "sha256": "e02bc6ffa28c71f5a98010dc8718484f1b35da1a2c1bc3bdf3c6b4fd66e44369"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tieu-cuong-thi-548d726e2cbf-640.webp",
+          "width": 640,
+          "height": 358,
+          "bytes": 28524,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tieu-cuong-thi-548d726e2cbf-960.webp",
+          "width": 960,
+          "height": 537,
+          "bytes": 51078,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tieu-cuong-thi-548d726e2cbf-1600.webp",
+          "width": 1600,
+          "height": 895,
+          "bytes": 101978,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "ao-mieu",
       "name": "Miêu Linh Đào mộng",
       "description": "",
@@ -16696,6 +16837,53 @@
         "sha256": "eda1284aa641a8d5e1bf4dce557bfa06143d230037012bc7e58b42d12d76c224"
       },
       "skinline": "Thịt và đồng loại"
+    },
+    {
+      "id": "buc-tu",
+      "name": "Bức tử",
+      "description": "",
+      "category": "Lauriel",
+      "rank": "S",
+      "rankOrder": 1,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/buc-tu-6d3fe165afa9-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/buc-tu-6d3fe165afa9-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-17T16:37:13.736Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/buc-tu-caa391c7af86f633.jpg",
+        "width": 1888,
+        "height": 1056,
+        "bytes": 195604,
+        "mimeType": "image/jpeg",
+        "sha256": "caa391c7af86f6334c005719b0aa9e65a8cd09ae3817287523143936251443d6"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/buc-tu-6d3fe165afa9-640.webp",
+          "width": 640,
+          "height": 358,
+          "bytes": 16780,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/buc-tu-6d3fe165afa9-960.webp",
+          "width": 960,
+          "height": 537,
+          "bytes": 32932,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/buc-tu-6d3fe165afa9-1600.webp",
+          "width": 1600,
+          "height": 895,
+          "bytes": 69642,
+          "mimeType": "image/webp"
+        }
+      }
     },
     {
       "id": "loi-nguyen-huyet-tam",
@@ -29304,6 +29492,53 @@
         "bytes": 558137,
         "mimeType": "image/jpeg",
         "sha256": "15e7aca5dec50964184c548fe95a18e912da22756e31b6d1fb42542c14b4164b"
+      }
+    },
+    {
+      "id": "sieu-cuop-giat",
+      "name": "Siêu cướp giật",
+      "description": "",
+      "category": "Veera",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-cuop-giat-2c2a42f76b8d-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-cuop-giat-2c2a42f76b8d-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-17T16:38:15.647Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/sieu-cuop-giat-680bb8efc133fdb8.jpg",
+        "width": 1888,
+        "height": 1056,
+        "bytes": 218948,
+        "mimeType": "image/jpeg",
+        "sha256": "680bb8efc133fdb8d81886c71d5b35ae64b3199bae9686836b7b8f67fd458e55"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-cuop-giat-2c2a42f76b8d-640.webp",
+          "width": 640,
+          "height": 358,
+          "bytes": 22758,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-cuop-giat-2c2a42f76b8d-960.webp",
+          "width": 960,
+          "height": 537,
+          "bytes": 41768,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/sieu-cuop-giat-2c2a42f76b8d-1600.webp",
+          "width": 1600,
+          "height": 895,
+          "bytes": 83214,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
