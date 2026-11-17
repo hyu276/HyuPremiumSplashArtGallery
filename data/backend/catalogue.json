@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-11-17T16:51:07.436Z",
+  "generatedAt": "2026-11-17T16:54:41.278Z",
   "items": [
     {
       "id": "herzlove-2",
@@ -7209,6 +7209,53 @@
           "width": 1600,
           "height": 893,
           "bytes": 128108,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "hoc-vien-anh-hung-2",
+      "name": "Học viện anh hùng",
+      "description": "",
+      "category": "Capheny",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Yokyn",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoc-vien-anh-hung-2-87a03b76bf13-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoc-vien-anh-hung-2-87a03b76bf13-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-17T16:53:14.230Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/hoc-vien-anh-hung-2-db367063e6069c2c.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 573007,
+        "mimeType": "image/jpeg",
+        "sha256": "db367063e6069c2c18a069e778485e6617794d627e7398deb6ebedbc69a43b78"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoc-vien-anh-hung-2-87a03b76bf13-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 32242,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoc-vien-anh-hung-2-87a03b76bf13-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 60156,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoc-vien-anh-hung-2-87a03b76bf13-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 122666,
           "mimeType": "image/webp"
         }
       }
