@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-11-18T06:28:37.943Z",
+  "generatedAt": "2026-11-18T10:46:10.053Z",
   "items": [
     {
       "id": "herzlove-2",
@@ -6783,6 +6783,53 @@
           "width": 1600,
           "height": 893,
           "bytes": 121824,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "nha-bep-bua-bai",
+      "name": "Nhà bếp bừa bãi",
+      "description": "",
+      "category": "Bolt Baron",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hyu",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nha-bep-bua-bai-b84c311fb070-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nha-bep-bua-bai-b84c311fb070-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-18T10:43:15.644Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/nha-bep-bua-bai-8cc70fa1005bef3e.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 704021,
+        "mimeType": "image/jpeg",
+        "sha256": "8cc70fa1005bef3ed6eca30e952dc99a4d45ec9cf6cda9ea7a71646aa65b2e58"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nha-bep-bua-bai-b84c311fb070-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 34098,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nha-bep-bua-bai-b84c311fb070-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 62328,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nha-bep-bua-bai-b84c311fb070-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 130060,
           "mimeType": "image/webp"
         }
       }
