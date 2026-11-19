@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-11-19T12:00:16.773Z",
+  "generatedAt": "2026-11-19T13:28:01.047Z",
   "items": [
     {
       "id": "herzlove-2",
@@ -7117,6 +7117,53 @@
       }
     },
     {
+      "id": "hoang-hon-thuong-nguon",
+      "name": "Hoàng hôn thượng nguồn",
+      "description": "",
+      "category": "Bolt Baron",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoang-hon-thuong-nguon-37649ef85406-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoang-hon-thuong-nguon-37649ef85406-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-19T13:26:58.977Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/hoang-hon-thuong-nguon-74189909304a21ec.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 526908,
+        "mimeType": "image/jpeg",
+        "sha256": "74189909304a21ecfd19e9614d404077c0db6c9494e2a7fa8ede4e2833355179"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoang-hon-thuong-nguon-37649ef85406-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 26152,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoang-hon-thuong-nguon-37649ef85406-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 49130,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hoang-hon-thuong-nguon-37649ef85406-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 106552,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "sieu-viet-15",
       "name": "Siêu Việt",
       "description": "",
@@ -7348,6 +7395,53 @@
           "width": 1600,
           "height": 893,
           "bytes": 124902,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "long-ao-ai-hiep",
+      "name": "Long đao đại hiệp",
+      "description": "",
+      "category": "Bolt Baron",
+      "rank": "SSS+",
+      "rankOrder": 6,
+      "credit": "Hyu",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/long-ao-ai-hiep-b9d74284ecb0-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/long-ao-ai-hiep-b9d74284ecb0-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-19T13:26:28.764Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/long-ao-ai-hiep-f6cbc68c1344e0f5.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 944636,
+        "mimeType": "image/jpeg",
+        "sha256": "f6cbc68c1344e0f549ec4ef3ae5c21ea72f7289c4295d58cdb1e42d45c0ebb09"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/long-ao-ai-hiep-b9d74284ecb0-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 44976,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/long-ao-ai-hiep-b9d74284ecb0-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 89790,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/long-ao-ai-hiep-b9d74284ecb0-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 206370,
           "mimeType": "image/webp"
         }
       }
