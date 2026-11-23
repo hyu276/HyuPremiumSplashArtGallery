@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-11-23T12:56:46.327Z",
+  "generatedAt": "2026-11-23T13:03:32.081Z",
   "items": [
     {
       "id": "herzlove-2",
@@ -24404,6 +24404,100 @@
         "bytes": 486543,
         "mimeType": "image/jpeg",
         "sha256": "59e1c744cc32f0b8625ec0b96b50d664f56c95e9940e940c21ebcc4318bfdd85"
+      }
+    },
+    {
+      "id": "echo-3",
+      "name": "ECHO",
+      "description": "",
+      "category": "Natalya",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Vin",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/echo-3-554d23aab095-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/echo-3-554d23aab095-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-23T13:02:37.509Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/echo-3-d176d73fa35acd44.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 790686,
+        "mimeType": "image/jpeg",
+        "sha256": "d176d73fa35acd449622bb88172518e43f7f1ce5299d169173d29da162eee5d7"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/echo-3-554d23aab095-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 37250,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/echo-3-554d23aab095-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 74146,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/echo-3-554d23aab095-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 169944,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "echo-2027",
+      "name": "ECHO: 2027",
+      "description": "",
+      "category": "Natalya",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Vin",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/echo-2027-e5b9cbc63b9c-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/echo-2027-e5b9cbc63b9c-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-23T13:02:47.041Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/echo-2027-af3ae0ac6a068216.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 775036,
+        "mimeType": "image/jpeg",
+        "sha256": "af3ae0ac6a068216dcc99ece51a1ba80743827db1bd81535833b43acf7923cda"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/echo-2027-e5b9cbc63b9c-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 35214,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/echo-2027-e5b9cbc63b9c-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 69640,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/echo-2027-e5b9cbc63b9c-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 160462,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
