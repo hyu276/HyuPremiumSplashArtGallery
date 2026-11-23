@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-11-23T06:19:33.062Z",
+  "generatedAt": "2026-11-23T06:22:50.416Z",
   "items": [
     {
       "id": "herzlove-2",
@@ -16061,6 +16061,53 @@
           "width": 1600,
           "height": 893,
           "bytes": 125578,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "diva",
+      "name": "Diva",
+      "description": "",
+      "category": "Ilumia",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Sol",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/diva-83ef89c0dfa2-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/diva-83ef89c0dfa2-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-23T06:21:37.178Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/diva-de08131e83e90902.jpg",
+        "width": 1888,
+        "height": 1056,
+        "bytes": 210393,
+        "mimeType": "image/jpeg",
+        "sha256": "de08131e83e9090271a4dd7dad001b0f45d8bef8778a8c27d3e798708ff5d3d7"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/diva-83ef89c0dfa2-640.webp",
+          "width": 640,
+          "height": 358,
+          "bytes": 24996,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/diva-83ef89c0dfa2-960.webp",
+          "width": 960,
+          "height": 537,
+          "bytes": 45682,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/diva-83ef89c0dfa2-1600.webp",
+          "width": 1600,
+          "height": 895,
+          "bytes": 96918,
           "mimeType": "image/webp"
         }
       }
