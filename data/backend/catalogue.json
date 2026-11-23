@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-11-23T12:02:52.030Z",
+  "generatedAt": "2026-11-23T12:56:46.327Z",
   "items": [
     {
       "id": "herzlove-2",
@@ -2820,7 +2820,7 @@
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giai-ieu-cam-ngot-ba58c4d4b212-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giai-ieu-cam-ngot-ba58c4d4b212-1600.webp",
       "tags": [],
-      "hidden": false,
+      "hidden": true,
       "isVietnameseSkin": false,
       "updatedAt": "2026-09-24T13:54:24.192Z",
       "expanded": {
@@ -27652,7 +27652,7 @@
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-bai-bien-9-1ab049d99bc3-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tiec-bai-bien-9-1ab049d99bc3-1600.webp",
       "tags": [],
-      "hidden": false,
+      "hidden": true,
       "isVietnameseSkin": false,
       "updatedAt": "2026-09-16T10:18:32.273Z",
       "variants": {
