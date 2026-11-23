@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-11-23T10:26:57.419Z",
+  "generatedAt": "2026-11-23T10:34:37.260Z",
   "items": [
     {
       "id": "herzlove-2",
@@ -18966,7 +18966,7 @@
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nguyet-hoa-linh-vu-ca22fda94488-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/nguyet-hoa-linh-vu-ca22fda94488-1600.webp",
       "tags": [],
-      "hidden": false,
+      "hidden": true,
       "isVietnameseSkin": false,
       "updatedAt": "2026-09-22T12:57:23.681Z",
       "expanded": {
@@ -19056,7 +19056,7 @@
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bach-hac-hoa-tien-9abfc06bb050-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bach-hac-hoa-tien-9abfc06bb050-1600.webp",
       "tags": [],
-      "hidden": false,
+      "hidden": true,
       "category": "Lauriel",
       "rank": "SS+",
       "rankOrder": 4,
@@ -19792,7 +19792,7 @@
         }
       },
       "tags": [],
-      "hidden": false,
+      "hidden": true,
       "isVietnameseSkin": false,
       "updatedAt": "2026-09-19T10:57:35.745Z",
       "universes": [],
@@ -25940,7 +25940,7 @@
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/lu-khach-ngoai-gioi-cfa8949baf97-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/lu-khach-ngoai-gioi-cfa8949baf97-1600.webp",
       "tags": [],
-      "hidden": false,
+      "hidden": true,
       "isVietnameseSkin": false,
       "updatedAt": "2026-09-24T16:36:47.521Z",
       "expanded": {
@@ -26372,7 +26372,7 @@
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tien-canh-nguyet-hoa-1b0d6eef3b79-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tien-canh-nguyet-hoa-1b0d6eef3b79-1600.webp",
       "tags": [],
-      "hidden": false,
+      "hidden": true,
       "isVietnameseSkin": false,
       "updatedAt": "2026-09-22T12:57:46.543Z",
       "expanded": {
@@ -32097,7 +32097,7 @@
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/linh-phu-mi-anh-e282c10d4ec9-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/linh-phu-mi-anh-e282c10d4ec9-1600.webp",
       "tags": [],
-      "hidden": false,
+      "hidden": true,
       "isVietnameseSkin": false,
       "updatedAt": "2026-09-02T04:34:21.393Z",
       "variants": {
@@ -35439,7 +35439,7 @@
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ao-nguyet-mong-hoa-a6f0e10efcbc-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ao-nguyet-mong-hoa-a6f0e10efcbc-1600.webp",
       "tags": [],
-      "hidden": false,
+      "hidden": true,
       "isVietnameseSkin": false,
       "updatedAt": "2026-09-06T13:57:44.034Z",
       "variants": {
