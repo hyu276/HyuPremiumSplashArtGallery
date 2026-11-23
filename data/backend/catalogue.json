@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-11-23T06:18:04.694Z",
+  "generatedAt": "2026-11-23T06:19:33.062Z",
   "items": [
     {
       "id": "herzlove-2",
@@ -14163,6 +14163,53 @@
       }
     },
     {
+      "id": "dj-toi-thuong",
+      "name": "DJ Tối thượng",
+      "description": "",
+      "category": "Goverra",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Sol",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-toi-thuong-fea02c9b757d-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-toi-thuong-fea02c9b757d-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-23T06:18:04.561Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/dj-toi-thuong-5125e62114d38b33.jpg",
+        "width": 1888,
+        "height": 1056,
+        "bytes": 219686,
+        "mimeType": "image/jpeg",
+        "sha256": "5125e62114d38b33802dbe0cee9777eb91833cbb8c7ddfa90777c40ce7c59545"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-toi-thuong-fea02c9b757d-640.webp",
+          "width": 640,
+          "height": 358,
+          "bytes": 26354,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-toi-thuong-fea02c9b757d-960.webp",
+          "width": 960,
+          "height": 537,
+          "bytes": 48634,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-toi-thuong-fea02c9b757d-1600.webp",
+          "width": 1600,
+          "height": 895,
+          "bytes": 99874,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "luc-da-tang-hoa",
       "name": "Lục dạ tang hoa",
       "description": "",
@@ -15402,6 +15449,53 @@
           "width": 1600,
           "height": 893,
           "bytes": 128232,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "dj-toi-thuong-2",
+      "name": "DJ Tối thượng",
+      "description": "",
+      "category": "Ilumia",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Sol",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-toi-thuong-2-695593f0bc38-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-toi-thuong-2-695593f0bc38-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-23T06:18:16.908Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/dj-toi-thuong-2-20839da42c71fec0.jpg",
+        "width": 1888,
+        "height": 1056,
+        "bytes": 222639,
+        "mimeType": "image/jpeg",
+        "sha256": "20839da42c71fec0d2d39457b9e0a422cc1f7341b816171bbf7ad1db92960b6f"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-toi-thuong-2-695593f0bc38-640.webp",
+          "width": 640,
+          "height": 358,
+          "bytes": 26766,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-toi-thuong-2-695593f0bc38-960.webp",
+          "width": 960,
+          "height": 537,
+          "bytes": 49266,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dj-toi-thuong-2-695593f0bc38-1600.webp",
+          "width": 1600,
+          "height": 895,
+          "bytes": 101090,
           "mimeType": "image/webp"
         }
       }
