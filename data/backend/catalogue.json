@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-11-23T10:34:37.260Z",
+  "generatedAt": "2026-11-23T11:21:06.768Z",
   "items": [
     {
       "id": "herzlove-2",
@@ -2387,7 +2387,7 @@
       "category": "Astrid",
       "rank": "SS",
       "rankOrder": 3,
-      "credit": "Hyu",
+      "credit": "Nihilus",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/kiem-si-pha-le-317efef3c9e9-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/kiem-si-pha-le-317efef3c9e9-1600.webp",
       "variants": {
@@ -17923,7 +17923,7 @@
       "category": "Keera",
       "rank": "S+",
       "rankOrder": 2,
-      "credit": "Hyu",
+      "credit": "Nihilus",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/mieu-than-b1435b90a518-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/mieu-than-b1435b90a518-1600.webp",
       "variants": {
@@ -23930,7 +23930,7 @@
       "category": "Natalya",
       "rank": "S+",
       "rankOrder": 2,
-      "credit": "Hyu",
+      "credit": "Nihilus",
       "universes": [],
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/chu-tiem-banh-550d34646e89-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/chu-tiem-banh-550d34646e89-1600.webp",
@@ -27364,7 +27364,7 @@
       "category": "Skud",
       "rank": "SS",
       "rankOrder": 3,
-      "credit": "Hyu",
+      "credit": "Nihilus",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ga-he-ma-quai-a7b5fef8fd53-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ga-he-ma-quai-a7b5fef8fd53-1600.webp",
       "variants": {
@@ -29098,7 +29098,7 @@
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/linh-xuan-noi-loan-219ddaeea522-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/linh-xuan-noi-loan-219ddaeea522-1600.webp",
       "tags": [],
-      "hidden": false,
+      "hidden": true,
       "category": "Tel'Annas",
       "rank": "SSS",
       "rankOrder": 5,
@@ -29859,7 +29859,7 @@
       "category": "Toro",
       "rank": "S+",
       "rankOrder": 2,
-      "credit": "Hyu",
+      "credit": "Nihilus",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tuyet-son-thanh-ve-e6db05eebf9b-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tuyet-son-thanh-ve-e6db05eebf9b-1600.webp",
       "variants": {
@@ -30097,7 +30097,7 @@
       "category": "Toro",
       "rank": "SS",
       "rankOrder": 3,
-      "credit": "Hyu",
+      "credit": "Nihilus",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dzu-teh-yeti-72c38653dc2f-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dzu-teh-yeti-72c38653dc2f-1600.webp",
       "variants": {
@@ -32473,7 +32473,7 @@
       "category": "Veres",
       "rank": "S+",
       "rankOrder": 2,
-      "credit": "Hyu",
+      "credit": "Nihilus",
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tien-hac-am-5d69f7bce429-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tien-hac-am-5d69f7bce429-1600.webp",
       "tags": [],
