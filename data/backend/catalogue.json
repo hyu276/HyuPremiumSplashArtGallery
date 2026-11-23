@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-11-19T15:34:08.377Z",
+  "generatedAt": "2026-11-23T06:06:14.356Z",
   "items": [
     {
       "id": "herzlove-2",
@@ -6256,6 +6256,100 @@
       }
     },
     {
+      "id": "thanh-co-hac-am",
+      "name": "Thành cổ hắc ám",
+      "description": "",
+      "category": "Bolt Baron",
+      "rank": "A",
+      "rankOrder": 0,
+      "credit": "Hyu",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thanh-co-hac-am-06a2683cbff9-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thanh-co-hac-am-06a2683cbff9-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-23T06:03:37.555Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/thanh-co-hac-am-18c1893269f69d5a.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 414219,
+        "mimeType": "image/jpeg",
+        "sha256": "18c1893269f69d5a75e401c8f5ffc92f4a177d6aeff298b208d6d0a045e6ccb3"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thanh-co-hac-am-06a2683cbff9-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 17340,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thanh-co-hac-am-06a2683cbff9-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 34002,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thanh-co-hac-am-06a2683cbff9-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 75316,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "cao-boi",
+      "name": "Cao bồi",
+      "description": "",
+      "category": "Bolt Baron",
+      "rank": "S",
+      "rankOrder": 1,
+      "credit": "Hyu",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/cao-boi-5532eeea1965-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/cao-boi-5532eeea1965-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-23T06:04:37.524Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/cao-boi-99149fb6c98e365a.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 560833,
+        "mimeType": "image/jpeg",
+        "sha256": "99149fb6c98e365afd9d7d0e87b4c7499af7fd8c0543e6d483aa16ab4aadf8c3"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/cao-boi-5532eeea1965-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 24858,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/cao-boi-5532eeea1965-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 46756,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/cao-boi-5532eeea1965-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 101372,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "celestial-bloom",
       "name": "Celestial Bloom",
       "rank": "S",
@@ -6305,6 +6399,53 @@
         "bytes": 460542,
         "mimeType": "image/jpeg",
         "sha256": "d42fa7078bb4f66de5d295b2564139927fca438893f119851afd4956e95ce49d"
+      }
+    },
+    {
+      "id": "ac-vu-xu-lanh",
+      "name": "Đặc vụ xứ lạnh",
+      "description": "",
+      "category": "Bolt Baron",
+      "rank": "S",
+      "rankOrder": 1,
+      "credit": "Hyu",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ac-vu-xu-lanh-c8aaf3eda1df-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ac-vu-xu-lanh-c8aaf3eda1df-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-23T06:04:22.972Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/ac-vu-xu-lanh-4c402f27cb35a92e.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 430882,
+        "mimeType": "image/jpeg",
+        "sha256": "4c402f27cb35a92e8fccc08cf8bd4960755fb83096bd4bbe6c3becc21eacdb8b"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ac-vu-xu-lanh-c8aaf3eda1df-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 19672,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ac-vu-xu-lanh-c8aaf3eda1df-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 37676,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ac-vu-xu-lanh-c8aaf3eda1df-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 80910,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -6404,6 +6545,100 @@
         "bytes": 293239,
         "mimeType": "image/jpeg",
         "sha256": "55d7168cfc4c1f44292f0a0652c3811427305b5ffd80c6878d473a4f4e42615d"
+      }
+    },
+    {
+      "id": "tien-tuyen-vien-chinh",
+      "name": "Tiền tuyến viễn chinh",
+      "description": "",
+      "category": "Bolt Baron",
+      "rank": "S",
+      "rankOrder": 1,
+      "credit": "Hyu",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tien-tuyen-vien-chinh-0a02e6aa2ad2-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tien-tuyen-vien-chinh-0a02e6aa2ad2-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-23T06:03:03.284Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/tien-tuyen-vien-chinh-3d8e653f00fc6ede.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 474207,
+        "mimeType": "image/jpeg",
+        "sha256": "3d8e653f00fc6ede2c00117e64f5d56d3d2236b02cee66de1dba0fcddf8d4f29"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tien-tuyen-vien-chinh-0a02e6aa2ad2-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 23330,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tien-tuyen-vien-chinh-0a02e6aa2ad2-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 43056,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tien-tuyen-vien-chinh-0a02e6aa2ad2-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 93202,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "tuyet-am",
+      "name": "Tuyết âm",
+      "description": "",
+      "category": "Bolt Baron",
+      "rank": "S",
+      "rankOrder": 1,
+      "credit": "Hyu",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tuyet-am-4bd15ac46916-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tuyet-am-4bd15ac46916-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-23T06:04:10.281Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/tuyet-am-ae72d47cd3a203b5.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 462938,
+        "mimeType": "image/jpeg",
+        "sha256": "ae72d47cd3a203b5cc08d51a06227543473f586d3d9e79829b8838b40efbdabc"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tuyet-am-4bd15ac46916-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 20916,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tuyet-am-4bd15ac46916-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 38992,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tuyet-am-4bd15ac46916-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 85576,
+          "mimeType": "image/webp"
+        }
       }
     },
     {
@@ -6548,6 +6783,53 @@
           "width": 1600,
           "height": 893,
           "bytes": 132794,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "dung-gia-anh-hung",
+      "name": "Dũng giả anh hùng",
+      "description": "",
+      "category": "Bolt Baron",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hyu",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dung-gia-anh-hung-4688427e58e3-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dung-gia-anh-hung-4688427e58e3-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-23T06:03:15.818Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/dung-gia-anh-hung-a77fcde9f03c5336.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 517144,
+        "mimeType": "image/jpeg",
+        "sha256": "a77fcde9f03c5336314227080d0dd21ca457ff646772a5757f4338e514046dfa"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dung-gia-anh-hung-4688427e58e3-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 26602,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dung-gia-anh-hung-4688427e58e3-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 49344,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/dung-gia-anh-hung-4688427e58e3-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 105766,
           "mimeType": "image/webp"
         }
       }
@@ -6788,6 +7070,53 @@
       }
     },
     {
+      "id": "ngu-phong-mac-anh",
+      "name": "Ngự Phong Mặc Ảnh",
+      "description": "",
+      "category": "Bolt Baron",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hyu",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ngu-phong-mac-anh-47c338f19695-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ngu-phong-mac-anh-47c338f19695-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-23T06:02:37.557Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/ngu-phong-mac-anh-f4d669822852073d.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 912590,
+        "mimeType": "image/jpeg",
+        "sha256": "f4d669822852073d72b3b7f3ff11c186346910468a5852c48ffc876fed67a093"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ngu-phong-mac-anh-47c338f19695-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 40206,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ngu-phong-mac-anh-47c338f19695-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 79788,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ngu-phong-mac-anh-47c338f19695-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 193082,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "nha-bep-bua-bai",
       "name": "Nhà bếp bừa bãi",
       "description": "",
@@ -7023,6 +7352,53 @@
       }
     },
     {
+      "id": "tre-trau-nghich-lua",
+      "name": "Trẻ trâu nghịch lửa",
+      "description": "",
+      "category": "Bolt Baron",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Hyu",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tre-trau-nghich-lua-d5eded0384d5-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tre-trau-nghich-lua-d5eded0384d5-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-23T06:02:48.350Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/tre-trau-nghich-lua-599dd3e6dd32d6f1.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 582667,
+        "mimeType": "image/jpeg",
+        "sha256": "599dd3e6dd32d6f1943a5997eb6367ec27a038956825e1435a5735597e7a8ced"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tre-trau-nghich-lua-d5eded0384d5-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 33220,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tre-trau-nghich-lua-d5eded0384d5-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 60258,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tre-trau-nghich-lua-d5eded0384d5-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 123386,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "ang-rua-toi",
       "name": "Đấng rửa tội",
       "description": "",
@@ -7206,6 +7582,53 @@
           "width": 1600,
           "height": 893,
           "bytes": 94112,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "oan-niem-hu-long",
+      "name": "Oán niệm hư long",
+      "description": "",
+      "category": "Bolt Baron",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Hyu",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/oan-niem-hu-long-f74087af5627-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/oan-niem-hu-long-f74087af5627-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-23T06:05:05.007Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/oan-niem-hu-long-8e8a16c6441f3f83.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 468681,
+        "mimeType": "image/jpeg",
+        "sha256": "8e8a16c6441f3f8348c960f69aed87c9d30b5ee10e521c1a244471039ad66ae6"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/oan-niem-hu-long-f74087af5627-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 22894,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/oan-niem-hu-long-f74087af5627-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 42642,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/oan-niem-hu-long-f74087af5627-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 93792,
           "mimeType": "image/webp"
         }
       }
