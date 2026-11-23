@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-11-23T06:12:11.503Z",
+  "generatedAt": "2026-11-23T06:18:04.694Z",
   "items": [
     {
       "id": "herzlove-2",
@@ -9907,6 +9907,53 @@
       }
     },
     {
+      "id": "khong-tuoc-nu-vuong",
+      "name": "Khổng tước nữ vương",
+      "description": "",
+      "category": "Điêu Thuyền",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Sol",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/khong-tuoc-nu-vuong-86c5c1c02366-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/khong-tuoc-nu-vuong-86c5c1c02366-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-23T06:14:37.818Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/khong-tuoc-nu-vuong-512e02c7914387f0.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 514264,
+        "mimeType": "image/jpeg",
+        "sha256": "512e02c7914387f0e176db8c69ef4b17d9cc30d2325cee83f308e1f088f7b23e"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/khong-tuoc-nu-vuong-86c5c1c02366-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 28300,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/khong-tuoc-nu-vuong-86c5c1c02366-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 53084,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/khong-tuoc-nu-vuong-86c5c1c02366-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 111130,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "ngo-kien-giai-nhan",
       "name": "Ngộ kiến giai nhân",
       "description": "",
@@ -15784,6 +15831,53 @@
       }
     },
     {
+      "id": "tien-hac-am-5",
+      "name": "Tiên hắc ám",
+      "description": "",
+      "category": "Ilumia",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Sol",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tien-hac-am-5-453c969066d2-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tien-hac-am-5-453c969066d2-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-23T06:16:51.962Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/tien-hac-am-5-995336543cba4a4d.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 399181,
+        "mimeType": "image/jpeg",
+        "sha256": "995336543cba4a4d728d87b9218035a29526b8895bfff60aa0d2f83bb1db1b03"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tien-hac-am-5-453c969066d2-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 16704,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tien-hac-am-5-453c969066d2-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 31522,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tien-hac-am-5-453c969066d2-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 68702,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
       "id": "van-cuu-thien",
       "name": "Vân cửu thiên",
       "description": "",
@@ -16771,6 +16865,53 @@
           "width": 1600,
           "height": 893,
           "bytes": 130052,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "tu-diep-lien-hoa",
+      "name": "Tử diệp liên hoa",
+      "description": "",
+      "category": "Ilumia",
+      "rank": "SSS",
+      "rankOrder": 5,
+      "credit": "Sol",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tu-diep-lien-hoa-d70ae1f277f6-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tu-diep-lien-hoa-d70ae1f277f6-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-23T06:15:42.032Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/tu-diep-lien-hoa-8286be6b188d8a70.jpg",
+        "width": 2752,
+        "height": 1536,
+        "bytes": 421633,
+        "mimeType": "image/jpeg",
+        "sha256": "8286be6b188d8a70c21e91926be3a05852eac425d2ca36318ce0ed6055bec891"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tu-diep-lien-hoa-d70ae1f277f6-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 24774,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tu-diep-lien-hoa-d70ae1f277f6-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 44604,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/tu-diep-lien-hoa-d70ae1f277f6-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 90232,
           "mimeType": "image/webp"
         }
       }
@@ -20182,6 +20323,53 @@
           "width": 1600,
           "height": 893,
           "bytes": 115150,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "ngo-kien-giai-nhan-3",
+      "name": "Ngộ kiến giai nhân",
+      "description": "",
+      "category": "Liliana",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Kerrie",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ngo-kien-giai-nhan-3-a9e13fb2b2ac-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ngo-kien-giai-nhan-3-a9e13fb2b2ac-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-23T06:14:12.960Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/ngo-kien-giai-nhan-3-952fcaa000c361c9.jpg",
+        "width": 2560,
+        "height": 1428,
+        "bytes": 288719,
+        "mimeType": "image/jpeg",
+        "sha256": "952fcaa000c361c98215db6fb5798603326af19e39d625b77d2e423cf7e937be"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ngo-kien-giai-nhan-3-a9e13fb2b2ac-640.webp",
+          "width": 640,
+          "height": 357,
+          "bytes": 18194,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ngo-kien-giai-nhan-3-a9e13fb2b2ac-960.webp",
+          "width": 960,
+          "height": 536,
+          "bytes": 33130,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/ngo-kien-giai-nhan-3-a9e13fb2b2ac-1600.webp",
+          "width": 1600,
+          "height": 893,
+          "bytes": 68074,
           "mimeType": "image/webp"
         }
       }
@@ -34619,6 +34807,53 @@
           "width": 1600,
           "height": 893,
           "bytes": 136644,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "giang-sinh-an-lanh-3",
+      "name": "Giáng sinh an lành",
+      "description": "",
+      "category": "Yue",
+      "rank": "S+",
+      "rankOrder": 2,
+      "credit": "Kerrie",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giang-sinh-an-lanh-3-60d97969ac1e-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giang-sinh-an-lanh-3-60d97969ac1e-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-23T06:12:14.898Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/giang-sinh-an-lanh-3-4b02e421caf07ed7.jpg",
+        "width": 1888,
+        "height": 1056,
+        "bytes": 217339,
+        "mimeType": "image/jpeg",
+        "sha256": "4b02e421caf07ed7e284614a7279524062a6d8d98ebd2c5369b00d327e91e12b"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giang-sinh-an-lanh-3-60d97969ac1e-640.webp",
+          "width": 640,
+          "height": 358,
+          "bytes": 28476,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giang-sinh-an-lanh-3-60d97969ac1e-960.webp",
+          "width": 960,
+          "height": 537,
+          "bytes": 51434,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/giang-sinh-an-lanh-3-60d97969ac1e-1600.webp",
+          "width": 1600,
+          "height": 895,
+          "bytes": 101988,
           "mimeType": "image/webp"
         }
       }
