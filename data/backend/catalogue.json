@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-11-23T06:22:50.416Z",
+  "generatedAt": "2026-11-23T10:12:28.629Z",
   "items": [
     {
       "id": "herzlove-2",
@@ -341,13 +341,11 @@
       "category": "Alice",
       "rank": "SSS",
       "rankOrder": 5,
-      "credit": "Hyu",
+      "credit": "Toturo",
+      "skinline": "Thứ Nguyên Vệ Thần",
+      "universes": [],
       "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thu-nguyen-ve-than-6-df5b2170436a-1600.webp",
       "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thu-nguyen-ve-than-6-df5b2170436a-1600.webp",
-      "tags": [],
-      "hidden": false,
-      "isVietnameseSkin": false,
-      "updatedAt": "2026-09-01T13:36:07.684Z",
       "variants": {
         "640": {
           "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/thu-nguyen-ve-than-6-df5b2170436a-640.webp",
@@ -371,8 +369,6 @@
           "mimeType": "image/webp"
         }
       },
-      "universes": [],
-      "skinline": "Thứ Nguyên Vệ Thần",
       "expanded": {
         "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/thu-nguyen-ve-than-6-afe7e201a963a60c.jpg",
         "width": 2730,
@@ -380,7 +376,11 @@
         "bytes": 617252,
         "mimeType": "image/jpeg",
         "sha256": "afe7e201a963a60cbd9247035509c010a295680db0f1ff8d27b74c928770db36"
-      }
+      },
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-23T10:11:44.135Z"
     },
     {
       "id": "huyen-quang-luan-mau",
