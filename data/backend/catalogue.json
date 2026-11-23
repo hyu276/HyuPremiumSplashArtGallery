@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-11-23T06:06:14.356Z",
+  "generatedAt": "2026-11-23T06:12:11.503Z",
   "items": [
     {
       "id": "herzlove-2",
@@ -10137,6 +10137,53 @@
           "width": 1600,
           "height": 893,
           "bytes": 118312,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "u-anh-luu-ly",
+      "name": "U ảnh lưu ly",
+      "description": "",
+      "category": "Điêu Thuyền",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Laicute",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/u-anh-luu-ly-45f4510fa964-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/u-anh-luu-ly-45f4510fa964-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-23T06:10:58.773Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/u-anh-luu-ly-e7ab89a707ee2b17.jpg",
+        "width": 1888,
+        "height": 1056,
+        "bytes": 177986,
+        "mimeType": "image/jpeg",
+        "sha256": "e7ab89a707ee2b17b6ab3cb0f180366dd3fb18805f6e91978d8ff42754a521d6"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/u-anh-luu-ly-45f4510fa964-640.webp",
+          "width": 640,
+          "height": 358,
+          "bytes": 19014,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/u-anh-luu-ly-45f4510fa964-960.webp",
+          "width": 960,
+          "height": 537,
+          "bytes": 36406,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/u-anh-luu-ly-45f4510fa964-1600.webp",
+          "width": 1600,
+          "height": 895,
+          "bytes": 78094,
           "mimeType": "image/webp"
         }
       }
@@ -21512,6 +21559,53 @@
           "width": 1600,
           "height": 893,
           "bytes": 92662,
+          "mimeType": "image/webp"
+        }
+      }
+    },
+    {
+      "id": "bich-ngoc-huyen-ca",
+      "name": "Bích ngọc huyền ca",
+      "description": "",
+      "category": "Marja",
+      "rank": "SS",
+      "rankOrder": 3,
+      "credit": "Laicute",
+      "universes": [],
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bich-ngoc-huyen-ca-7101cf8d4651-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bich-ngoc-huyen-ca-7101cf8d4651-1600.webp",
+      "tags": [],
+      "hidden": false,
+      "isVietnameseSkin": false,
+      "updatedAt": "2026-11-23T06:11:13.864Z",
+      "expanded": {
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/bich-ngoc-huyen-ca-47f7b8020ba1cdfc.jpg",
+        "width": 1888,
+        "height": 1056,
+        "bytes": 218478,
+        "mimeType": "image/jpeg",
+        "sha256": "47f7b8020ba1cdfc59e7aefee5164b5ecc06aeedfd8be9d852773746ef518747"
+      },
+      "variants": {
+        "640": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bich-ngoc-huyen-ca-7101cf8d4651-640.webp",
+          "width": 640,
+          "height": 358,
+          "bytes": 26434,
+          "mimeType": "image/webp"
+        },
+        "960": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bich-ngoc-huyen-ca-7101cf8d4651-960.webp",
+          "width": 960,
+          "height": 537,
+          "bytes": 48190,
+          "mimeType": "image/webp"
+        },
+        "1600": {
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/bich-ngoc-huyen-ca-7101cf8d4651-1600.webp",
+          "width": 1600,
+          "height": 895,
+          "bytes": 98316,
           "mimeType": "image/webp"
         }
       }
