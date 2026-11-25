@@ -181,10 +181,11 @@
   min-height:0;
   padding:0;
 }
-/* The expanded badge retains 3x width, but has natural height (no square letterboxing). */
+/* Expanded badge area is reduced by ~25%, scaling both axes to sqrt(0.75).
+   The content-aware image stays pinned to the top-right, without cropping or letterboxing. */
 .art-card.expanded .tier.tier-image,
 .taxonomy-expanded-stage .tier.tier-image{
-  width:clamp(132px,18.75%,264px);
+  width:clamp(114.3px,16.24%,228.6px);
   height:auto;
   top:2px;
   right:2px;
