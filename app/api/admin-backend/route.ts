@@ -19,8 +19,8 @@ type UniverseDef={name:string;skinlines:string[]};
 type TaxonomyRepresentatives={skinlines:Record<string,string>;universes:Record<string,string>};
 type MediaVariant={url:string;width:number;height:number;bytes:number;mimeType:string};
 type ChampionThumbnailChoice={mode:'artwork'|'custom';artworkId?:string;image?:string;thumbnail?:string;variant?:MediaVariant;media?:{original?:MediaVariant};updatedAt?:string};
-type Catalogue={schemaVersion?:number;generatedAt?:string;items:any[];categories:string[];ranks:string[];credits:string[];skinlines?:string[];universes?:UniverseDef[];taxonomyRepresentatives?:Partial<TaxonomyRepresentatives>;ownerOptions?:OwnerOptions;championThumbnails?:Record<string,ChampionThumbnailChoice>};
-type AdminPayload={ownerItems?:any[];categories?:string[];ranks?:string[];credits?:string[];skinlines?:string[];universes?:UniverseDef[];taxonomyRepresentatives?:Partial<TaxonomyRepresentatives>;championThumbnails?:Record<string,ChampionThumbnailChoice>;team?:any[];seo?:any};
+type Catalogue={schemaVersion?:number;generatedAt?:string;items:any[];categories:string[];ranks:string[];credits:string[];skinlines?:string[];universes?:UniverseDef[];taxonomyRepresentatives?:Partial<TaxonomyRepresentatives>;ownerOptions?:OwnerOptions;championThumbnails?:Record<string,ChampionThumbnailChoice>;rankBadges?:Record<string,string>};
+type AdminPayload={ownerItems?:any[];categories?:string[];ranks?:string[];credits?:string[];skinlines?:string[];universes?:UniverseDef[];taxonomyRepresentatives?:Partial<TaxonomyRepresentatives>;championThumbnails?:Record<string,ChampionThumbnailChoice>;rankBadges?:Record<string,string>;team?:any[];seo?:any};
 type CommitResult={sha:string;noop:boolean};
 
 const ADMIN_ORIGIN='https://hyu276.github.io';
@@ -70,6 +70,21 @@ function canonicalItem(item:any){const {source:_source,sourceId:_sourceId,source
 function sameArtworkMediaLineage(next:any,current:any){if(!current||String(next?.image||'')!==String(current?.image||''))return false;return VARIANT_WIDTHS.every(width=>{const key=String(width);const nextUrl=String(next?.variants?.[key]?.url||'');const currentUrl=String(current?.variants?.[key]?.url||'');return !nextUrl||nextUrl===currentUrl})}
 function preserveArtworkMedia(item:any,currentById:Map<string,any>){const next=canonicalItem(item);const prior=currentById.get(String(next.id||''));if(!prior||!sameArtworkMediaLineage(next,prior))return next;if(!next.expanded&&prior.expanded)next.expanded=prior.expanded;if(!completeVariants(next)&&completeVariants(prior))next.variants=prior.variants;return next}
 function taxonomyItem(item:any,skinlines:string[],universes:UniverseDef[]){const next=canonicalItem(item);const requested=itemSkinline(next);const skinline=requested?(skinlines.find(line=>line.toLowerCase()===requested.toLowerCase())||requested):'';delete next.skinlines;if(skinline)next.skinline=skinline;else delete next.skinline;next.universes=skinline?universes.filter(universe=>universe.skinlines.some(line=>line.toLowerCase()===skinline.toLowerCase())).map(universe=>universe.name):[];return next}
+function normalizeRankBadges(value:unknown,ranks:string[],base:string):Record<string,string>{
+  if(value===undefined)return {};
+  if(value===null||typeof value!=='object'||Array.isArray(value))throw new Error('Payload rankBadges không hợp lệ.');
+  const result:Record<string,string>={};
+  const choices=value as Record<string,unknown>;
+  for(const [rank,url] of Object.entries(choices)){
+    if(!ranks.includes(rank))throw new Error('Payload rankBadges không hợp lệ: hạng skin không tồn tại.');
+    if(typeof url!=='string'||!url.trim())throw new Error('Payload rankBadges không hợp lệ: URL badge phải là chuỗi không rỗng.');
+    const parsed=new URL(url);
+    const root=new URL(base);
+    if(parsed.origin!==root.origin||!parsed.pathname.startsWith('/media/rank-badges/')||parsed.search||parsed.hash||!/^https:$/.test(parsed.protocol))throw new Error('Payload rankBadges không hợp lệ: badge phải là ảnh Cloudflare R2 thuộc rank-badges.');
+    result[rank]=parsed.href;
+  }
+  return result;
+}
 function optionsFor(catalogue:Catalogue){return {categories:catalogue.ownerOptions?.categories||catalogue.categories||[],ranks:catalogue.ownerOptions?.ranks||catalogue.ranks||[],credits:catalogue.ownerOptions?.credits||catalogue.credits||[]}}
 function mediaKey(id:string,source:string,width:number){const safe=String(id||'art').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'art';const hash=createHash('sha1').update(source).digest('hex').slice(0,12);return `artworks/variants/${safe}-${hash}-${width}.webp`}
 function teamMediaKey(id:string|number,source:string,width:number){const safe=String(id||'member').toLowerCase().replace(/[^a-z0-9]+/g,'-')||'member';const hash=createHash('sha1').update(source).digest('hex').slice(0,12);return `team/variants/${safe}-${hash}-${width}.webp`}
@@ -249,7 +264,7 @@ export async function POST(request:Request){
   const requestId=randomUUID().slice(0,12);
   try{
     const token=tokenFrom(request);const admin=await verify(token);const payload=await request.json() as AdminPayload;const branch=dataBranch();
-    const catalogueRequested=payload.ownerItems!==undefined||payload.categories!==undefined||payload.ranks!==undefined||payload.credits!==undefined||payload.skinlines!==undefined||payload.universes!==undefined||payload.taxonomyRepresentatives!==undefined||payload.championThumbnails!==undefined;
+    const catalogueRequested=payload.ownerItems!==undefined||payload.categories!==undefined||payload.ranks!==undefined||payload.credits!==undefined||payload.skinlines!==undefined||payload.universes!==undefined||payload.taxonomyRepresentatives!==undefined||payload.championThumbnails!==undefined||payload.rankBadges!==undefined;
     const teamRequested=payload.team!==undefined;
     const seoRequested=payload.seo!==undefined;
     if(teamRequested&&!Array.isArray(payload.team))throw new Error('Payload team không hợp lệ.');
@@ -289,7 +304,8 @@ export async function POST(request:Request){
       }
       const championThumbnails:Record<string,ChampionThumbnailChoice>={};
       for(const category of categories){const choice=requestedChampionThumbnails[category];if(choice)championThumbnails[category]=await enrichChampionThumbnail(category,choice,items,storageBase,token)}
-      const catalogue:Catalogue={...current,schemaVersion:4,generatedAt:new Date().toISOString(),items,categories,ranks,credits,skinlines:preferredSkinlines,universes:preferredUniverses,taxonomyRepresentatives:preferredRepresentatives,ownerOptions,championThumbnails};
+      const rankBadges=normalizeRankBadges(payload.rankBadges!==undefined?payload.rankBadges:current.rankBadges,ranks,storageBase);
+      const catalogue:Catalogue={...current,schemaVersion:4,generatedAt:new Date().toISOString(),items,categories,ranks,credits,skinlines:preferredSkinlines,universes:preferredUniverses,taxonomyRepresentatives:preferredRepresentatives,ownerOptions,championThumbnails,rankBadges};
       const path=`${DATA_ROOT}/catalogue.json`;files[path]=catalogue;baselines[path]=current;
     }
 

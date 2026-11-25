@@ -3,22 +3,11 @@
 import { formatArtworkMetadata } from '@/lib/gallery-labels';
 
 import { memo, useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
+import SkinRankBadge from '@/components/SkinRankBadge';
 import type { Artwork, Catalogue } from '@/lib/catalogue';
 import { artworkExpandedUrl, artworkPath, artworkPreview, artworkSrcSet, slug } from '@/lib/catalogue';
 
 const INITIAL_EAGER_COUNT=6;
-
-const RANK_GRADIENTS: Record<string,string> = {
-  A:'linear-gradient(180deg,#035365 0%,#045C6C 48%,#08929C 100%)',
-  S:'linear-gradient(180deg,#60179E 0%,#4D128A 48%,#9244C0 100%)',
-  'S+':'linear-gradient(180deg,#E07A38 0%,#D06331 45%,#C15429 100%)',
-  SS:'linear-gradient(180deg,#D88D31 0%,#9E5F0F 48%,#EED76A 100%)',
-  'SS+':'linear-gradient(180deg,#E6AF38 0%,#C48211 46%,#A86518 72%,#E06A27 100%)',
-  SSS:'linear-gradient(180deg,#D82B22 0%,#941004 30%,#7E1008 62%,#F16132 100%)',
-  'SSS+':'linear-gradient(120deg,#150F24 0%,#3A2289 18%,#4C30A7 34%,#6046B2 48%,#8069E0 63%,#A98FF1 75%,#C8B9F0 87%,#F9F8FB 100%)',
-  'SSS+ Ultimate':'linear-gradient(120deg,#281141 0%,#624476 20%,#9F67B0 38%,#B282DE 52%,#F18DC0 67%,#F3AC9A 82%,#F9EFF8 100%)',
-  'SSS+ Tối thượng':'linear-gradient(120deg,#281141 0%,#624476 20%,#9F67B0 38%,#B282DE 52%,#F18DC0 67%,#F3AC9A 82%,#F9EFF8 100%)'
-};
 
 type SearchToken={text:string;quoted:boolean};
 type FilterOption={value:string;label:string};
@@ -183,7 +172,7 @@ const ArtworkCard = memo(function ArtworkCard({item,index,expanded,pending,onTog
     </span>
     <span className="shade" aria-hidden="true"></span>
     <span className="card-number">{String(index+1).padStart(2,'0')}</span>
-    <span className="tier" style={{background:RANK_GRADIENTS[item.rank]||'var(--brand)'}}>{item.rank||'-'}</span>
+    <SkinRankBadge rank={item.rank} imageUrl={item.rankBadge}/>
     <span className="expand-mark" aria-hidden="true">{pending?'…':expanded?'−':'+'}</span>
     <span className="card-copy">
       {expanded ? <>
