@@ -144,14 +144,40 @@
   text-shadow: 0 1px 3px rgba(0,0,0,.65);
 }
 
-/* Custom skin-rank artwork replaces the text chip without changing its anchor. */
-.tier.tier-image{width:40px;height:40px;min-width:0;min-height:0;max-width:none;padding:0;border-radius:0;background:transparent;display:grid;place-items:center}
-.tier.tier-image img{display:block;width:100%;height:100%;object-fit:contain;filter:none;transform:none}
-.art-card.expanded .tier.tier-image,.taxonomy-expanded-tier.tier-image{width:clamp(48px,5vw,72px);height:clamp(48px,5vw,72px)}
-@media(max-width:760px){.art-card:not(.expanded) .tier.tier-image{width:30px;height:30px;min-width:0;min-height:0;padding:0}}
 
-/* Rank badge art replaces the text chip while preserving its screen position. */
-.tier.tier-image{width:40px;height:40px;min-width:0;min-height:0;max-width:none;padding:0;border-radius:0;background:transparent;display:grid;place-items:center}
-.tier.tier-image img{display:block;width:100%;height:100%;object-fit:contain;filter:none;transform:none}
-.art-card.expanded .tier.tier-image,.taxonomy-expanded-tier.tier-image{width:clamp(48px,5vw,72px);height:clamp(48px,5vw,72px)}
-@media(max-width:760px){.art-card:not(.expanded) .tier.tier-image{width:30px;height:30px;min-width:0;min-height:0;padding:0}}
+/* Content-normalized rank art scales with its card width, not viewport width. */
+.tier.tier-image{
+  width:clamp(28px,11.25%,56px);
+  aspect-ratio:1;
+  height:auto;
+  min-width:0;
+  min-height:0;
+  max-width:none;
+  padding:0;
+  border-radius:0;
+  background:transparent;
+  display:grid;
+  place-items:center;
+}
+.tier.tier-image img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  filter:none;
+  transform:none;
+}
+.art-card.expanded .tier.tier-image,
+.taxonomy-expanded-tier.tier-image{
+  width:clamp(44px,6.25%,88px);
+  height:auto;
+}
+@media(max-width:760px){
+  .art-card:not(.expanded) .tier.tier-image{
+    width:clamp(28px,11.25%,56px);
+    height:auto;
+    min-width:0;
+    min-height:0;
+    padding:0;
+  }
+}
