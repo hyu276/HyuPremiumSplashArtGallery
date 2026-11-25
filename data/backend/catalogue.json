@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-11-24T13:14:13.085Z",
+  "generatedAt": "2026-11-25T04:26:51.895Z",
   "items": [
     {
       "id": "herzlove-2",
@@ -37291,5 +37291,13 @@
       "Thịt và đồng loại": "bit-tet-hao-hang"
     },
     "universes": {}
+  },
+  "rankBadges": {
+    "A": "https://hyu-premium-media.csquocnguyen.workers.dev/media/rank-badges/a-428657a3-59ea-4fd3-89fa-0fceda36ab3a.png",
+    "S": "https://hyu-premium-media.csquocnguyen.workers.dev/media/rank-badges/s-ca7aa770-808b-4c57-bcf3-e82b954f26d5.png",
+    "S+": "https://hyu-premium-media.csquocnguyen.workers.dev/media/rank-badges/s-0ad0c934-3943-411c-9bca-baac3209255e.png",
+    "SS": "https://hyu-premium-media.csquocnguyen.workers.dev/media/rank-badges/ss-4ab7461e-ea27-42e7-a463-edac28b47514.png",
+    "SS+": "https://hyu-premium-media.csquocnguyen.workers.dev/media/rank-badges/ss-09900a39-4304-44ad-94f5-c35f7761fabb.png",
+    "SSS": "https://hyu-premium-media.csquocnguyen.workers.dev/media/rank-badges/sss-796ede2d-3cd7-4bcb-9297-b64faa7c5ae2.png"
   }
 }
