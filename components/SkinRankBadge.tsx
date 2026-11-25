@@ -59,7 +59,7 @@ export default function SkinRankBadge({rank,imageUrl,className=''}:Props){
   const [failedUrl,setFailedUrl]=useState('');
   const [alphaResult,setAlphaResult]=useState<{url:string;edge:BadgeEdge|null}|null>(null);
   const inspectable=Boolean(imageUrl&&!/\.(?:gif|webp)(?:$|[?#])/i.test(imageUrl));
-  const edge=inspectable&&alphaResult?.url===imageUrl?alphaResult.edge:null;
+  const edge=inspectable&&alphaResult&&alphaResult.url===imageUrl?alphaResult.edge:null;
   const imageTransform=edge?'scale('+edge.scale+') translate('+edge.right+'%, -'+edge.top+'%)':undefined;
   const showImage=Boolean(imageUrl&&imageUrl!==failedUrl);
   return <span
