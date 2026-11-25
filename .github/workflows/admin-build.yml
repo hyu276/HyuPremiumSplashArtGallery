@@ -7,6 +7,7 @@ on:
       - 'components/AdminTaxonomyManager.tsx'
       - 'components/AdminCompactPicker.tsx'
       - 'lib/admin-persistent-session.ts'
+      - 'lib/skin-rank-badge-image.ts'
       - 'admin-src/entry.tsx'
       - 'package.json'
       - 'tsconfig.json'
