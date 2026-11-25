@@ -23,6 +23,7 @@ export type Artwork = {
   tags: string[];
   category: string;
   rank: string;
+  rankBadge?: string;
   rankOrder: number;
   credit: string;
   isVietnameseSkin: boolean;
@@ -60,6 +61,7 @@ type BackendCatalogue = {
   categories?: string[];
   ranks?: string[];
   credits?: string[];
+  rankBadges?: Record<string, string>;
   championThumbnails?: Record<string, any>;
   taxonomyRepresentatives?: { skinlines?: Record<string,unknown>; universes?: Record<string,unknown> };
 };
@@ -123,10 +125,20 @@ function normalizedChampionThumbnails(value:any){
   return result;
 }
 
+function normalizedRankBadges(value:BackendCatalogue['rankBadges']):Record<string,string>{
+  const badges:Record<string,string>={};
+  if(!value||typeof value!=='object'||Array.isArray(value))return badges;
+  for(const [rank,url] of Object.entries(value)){
+    if(typeof url==='string'&&url.trim())badges[rank]=publicMediaUrl(url);
+  }
+  return badges;
+}
+
 function authoritativeCatalogue(source: BackendCatalogue): Catalogue {
   if (source.ready !== true || !Array.isArray(source.items)) {
     throw new Error('GitHub backend catalogue is not ready. Revert the migration or restore data/backend/catalogue.json.');
   }
+  const rankBadges=normalizedRankBadges(source.rankBadges);
   const items: Artwork[] = source.items
     .filter(row => !row?.hidden)
     .map(row => {
@@ -143,6 +155,7 @@ function authoritativeCatalogue(source: BackendCatalogue): Catalogue {
         tags: Array.isArray(row.tags) ? row.tags.map(String) : [],
         category: String(row.category || 'Chưa phân loại'),
         rank: String(row.rank || 'Chưa xếp hạng'),
+        rankBadge: rankBadges[String(row.rank || 'Chưa xếp hạng')],
         rankOrder: Number(row.rankOrder) || 0,
         credit: localizeCredit(String(row.credit || 'Chưa có credit')),
         isVietnameseSkin: Boolean(row.isVietnameseSkin),
