@@ -5,22 +5,11 @@ import { formatArtworkMetadata } from '@/lib/gallery-labels';
 import { memo, useRef, useState, type CSSProperties } from 'react';
 import ArtworkTitleFitter from '@/components/ArtworkTitleFitter';
 import TaxonomyMobileTextFitter from '@/components/TaxonomyMobileTextFitter';
+import SkinRankBadge from '@/components/SkinRankBadge';
 import type { Artwork, ArtworkTaxonomyGroup } from '@/lib/catalogue';
 import { artworkExpandedUrl, artworkPreview, artworkSrcSet } from '@/lib/catalogue';
 
 const INITIAL_EAGER_COUNT=5;
-
-const RANK_GRADIENTS:Record<string,string>={
-  A:'linear-gradient(180deg,#035365 0%,#045C6C 48%,#08929C 100%)',
-  S:'linear-gradient(180deg,#60179E 0%,#4D128A 48%,#9244C0 100%)',
-  'S+':'linear-gradient(180deg,#E07A38 0%,#D06331 45%,#C15429 100%)',
-  SS:'linear-gradient(180deg,#D88D31 0%,#9E5F0F 48%,#EED76A 100%)',
-  'SS+':'linear-gradient(180deg,#E6AF38 0%,#C48211 46%,#A86518 72%,#E06A27 100%)',
-  SSS:'linear-gradient(180deg,#D82B22 0%,#941004 30%,#7E1008 62%,#F16132 100%)',
-  'SSS+':'linear-gradient(120deg,#150F24 0%,#3A2289 18%,#4C30A7 34%,#6046B2 48%,#8069E0 63%,#A98FF1 75%,#C8B9F0 87%,#F9F8FB 100%)',
-  'SSS+ Ultimate':'linear-gradient(120deg,#281141 0%,#624476 20%,#9F67B0 38%,#B282DE 52%,#F18DC0 67%,#F3AC9A 82%,#F9EFF8 100%)',
-  'SSS+ Tối thượng':'linear-gradient(120deg,#281141 0%,#624476 20%,#9F67B0 38%,#B282DE 52%,#F18DC0 67%,#F3AC9A 82%,#F9EFF8 100%)'
-};
 
 type TaxonomyMode='skinlines'|'universes';
 
@@ -34,7 +23,7 @@ const ArtworkCard=memo(function ArtworkCard({item,index,onExpand}:{item:Artwork;
     <span className="art-image-layer"><img className="preview" src={artworkPreview(item,640)} srcSet={artworkSrcSet(item)||undefined} sizes="(max-width:760px) 50vw,(max-width:1180px) 33vw,20vw" alt={`${item.name} - ${item.category}, splash art game, hạng skin ${item.rank}`} loading={index<INITIAL_EAGER_COUNT?'eager':'lazy'} decoding="async" fetchPriority={index<INITIAL_EAGER_COUNT?'high':'low'}/></span>
     <span className="shade" aria-hidden="true"/>
     <span className="card-number">{String(index+1).padStart(2,'0')}</span>
-    <span className="tier" style={{background:RANK_GRADIENTS[item.rank]||'var(--brand)'}}>{item.rank||'-'}</span>
+    <SkinRankBadge rank={item.rank} imageUrl={item.rankBadge}/>
     <span className="expand-mark" aria-hidden="true">+</span>
     <span className="card-copy"><span className="card-meta">{item.category}</span><strong className="card-title" data-title-fit={titleFitBucket(item.name)}>{item.name}</strong><span className="card-bottom"><span>CREDIT ẢNH · {item.credit}</span></span></span>
   </button>;
@@ -44,7 +33,7 @@ function ExpandedStage({item,onClose}:{item:Artwork;onClose:()=>void}){
   return <button type="button" className="taxonomy-expanded-stage" aria-label={`Thu gọn ${item.name}`} onClick={onClose}>
     <img src={artworkExpandedUrl(item)} alt={`${item.name} - ${item.category}`} loading="eager" decoding="async" fetchPriority="high"/>
     <span className="taxonomy-expanded-shade" aria-hidden="true"/>
-    <span className="tier taxonomy-expanded-tier" style={{background:RANK_GRADIENTS[item.rank]||'var(--brand)'}}>{item.rank||'-'}</span>
+    <SkinRankBadge rank={item.rank} imageUrl={item.rankBadge} className="taxonomy-expanded-tier"/>
     <span className="taxonomy-expanded-copy">
       <span className="card-meta-line"><span className="card-meta">{formatArtworkMetadata(item.category)}</span><span className="card-meta-divider" aria-hidden="true">|</span><span className="card-credit" title={`Credit: ${item.credit}`}>CREDIT: {formatArtworkMetadata(item.credit)}</span></span>
       <strong className="taxonomy-expanded-title">{item.name}</strong>
