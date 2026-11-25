@@ -71,6 +71,7 @@ function sameArtworkMediaLineage(next:any,current:any){if(!current||String(next?
 function preserveArtworkMedia(item:any,currentById:Map<string,any>){const next=canonicalItem(item);const prior=currentById.get(String(next.id||''));if(!prior||!sameArtworkMediaLineage(next,prior))return next;if(!next.expanded&&prior.expanded)next.expanded=prior.expanded;if(!completeVariants(next)&&completeVariants(prior))next.variants=prior.variants;return next}
 function taxonomyItem(item:any,skinlines:string[],universes:UniverseDef[]){const next=canonicalItem(item);const requested=itemSkinline(next);const skinline=requested?(skinlines.find(line=>line.toLowerCase()===requested.toLowerCase())||requested):'';delete next.skinlines;if(skinline)next.skinline=skinline;else delete next.skinline;next.universes=skinline?universes.filter(universe=>universe.skinlines.some(line=>line.toLowerCase()===skinline.toLowerCase())).map(universe=>universe.name):[];return next}
 function normalizeRankBadges(value:unknown,ranks:string[],base:string):Record<string,string>{
+  if(value===undefined)return {};
   if(value===null||typeof value!=='object'||Array.isArray(value))throw new Error('Payload rankBadges không hợp lệ.');
   const result:Record<string,string>={};
   const choices=value as Record<string,unknown>;
