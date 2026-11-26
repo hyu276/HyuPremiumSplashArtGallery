@@ -1,6 +1,6 @@
 {
   "schemaVersion": 4,
-  "generatedAt": "2026-11-26T04:12:44.454Z",
+  "generatedAt": "2026-11-26T04:51:57.497Z",
   "items": [
     {
       "id": "herzlove-2",
@@ -6984,40 +6984,40 @@
       "rankOrder": 2,
       "credit": "Hyu",
       "universes": [],
-      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hacker-mieu-tac-2705bf7a5629-1600.webp",
-      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hacker-mieu-tac-2705bf7a5629-1600.webp",
+      "image": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hacker-mieu-tac-5c969ed0d363-1600.webp",
+      "thumbnail": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hacker-mieu-tac-5c969ed0d363-1600.webp",
       "tags": [],
       "hidden": false,
       "isVietnameseSkin": false,
-      "updatedAt": "2026-11-18T06:07:12.253Z",
+      "updatedAt": "2026-11-26T04:51:10.041Z",
       "expanded": {
-        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/hacker-mieu-tac-3aede8c6029a1d54.jpg",
-        "width": 2752,
-        "height": 1536,
-        "bytes": 670822,
+        "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/expanded/hacker-mieu-tac-c8d0ed945b54f076.jpg",
+        "width": 2560,
+        "height": 1429,
+        "bytes": 528068,
         "mimeType": "image/jpeg",
-        "sha256": "3aede8c6029a1d544dd48e378188ec9021a0f78f0ef7279b87e00a8a3fe62e6e"
+        "sha256": "c8d0ed945b54f076d0953b1e96bcfc41f6002411316b3b2ac9ef1bf69a566bb4"
       },
       "variants": {
         "640": {
-          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hacker-mieu-tac-2705bf7a5629-640.webp",
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hacker-mieu-tac-5c969ed0d363-640.webp",
           "width": 640,
           "height": 357,
-          "bytes": 33682,
+          "bytes": 32952,
           "mimeType": "image/webp"
         },
         "960": {
-          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hacker-mieu-tac-2705bf7a5629-960.webp",
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hacker-mieu-tac-5c969ed0d363-960.webp",
           "width": 960,
           "height": 536,
-          "bytes": 65112,
+          "bytes": 61890,
           "mimeType": "image/webp"
         },
         "1600": {
-          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hacker-mieu-tac-2705bf7a5629-1600.webp",
+          "url": "https://hyu-premium-media.csquocnguyen.workers.dev/media/artworks/variants/hacker-mieu-tac-5c969ed0d363-1600.webp",
           "width": 1600,
           "height": 893,
-          "bytes": 143062,
+          "bytes": 128940,
           "mimeType": "image/webp"
         }
       }
