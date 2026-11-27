@@ -6,6 +6,17 @@ type BadgeEdge={top:number;right:number;scale:number};
 const badgeAlphaCache=new Map<string,Promise<BadgeEdge|null>>();
 const MAX_BADGE_ANALYSIS_PIXELS=1500000;
 
+// Optical compensation for wide, winged rank art. Both thumbnail and expanded
+// badges share the same factor, without changing the card's top-right anchor.
+const RANK_VISUAL_SCALE:Readonly<Record<string,number>>={
+  'sss+':1.25,
+  'sss+ ultimate':1.4,
+  'sss+ tối thượng':1.4
+};
+function visualScaleForRank(rank:string):number{
+  return RANK_VISUAL_SCALE[rank.trim().toLocaleLowerCase('vi')]??1;
+}
+
 // Analyze alpha only once per public R2 URL, using the already loaded image bytes.
 function inspectBadgeAlpha(image:HTMLImageElement):BadgeEdge|null{
   const width=image.naturalWidth,height=image.naturalHeight;
@@ -58,9 +69,17 @@ type Props={rank:string;imageUrl?:string;className?:string};
 export default function SkinRankBadge({rank,imageUrl,className=''}:Props){
   const [failedUrl,setFailedUrl]=useState('');
   const [alphaResult,setAlphaResult]=useState<{url:string;edge:BadgeEdge|null}|null>(null);
-  const inspectable=Boolean(imageUrl&&!/\.(?:gif|webp)(?:$|[?#])/i.test(imageUrl));
+  // Static WebP supports the same alpha-bounds measurement as PNG. GIF is
+  // excluded to avoid moving an animated badge based on just its first frame.
+  const inspectable=Boolean(imageUrl&&!/\.gif(?:$|[?#])/i.test(imageUrl));
   const edge=inspectable&&alphaResult&&alphaResult.url===imageUrl?alphaResult.edge:null;
-  const imageTransform=edge?'scale('+edge.scale+') translate('+edge.right+'%, -'+edge.top+'%)':undefined;
+  const opticalScale=visualScaleForRank(rank);
+  const scale=opticalScale*(edge?.scale??1);
+  // Apply both corrections to the actual image, not the wrapper, so the badge
+  // remains pinned to the corner even with wide or transparent artwork.
+  const imageTransform=edge||opticalScale!==1
+    ?'scale('+scale+') translate('+(edge?.right??0)+'%, -'+(edge?.top??0)+'%)'
+    :undefined;
   const showImage=Boolean(imageUrl&&imageUrl!==failedUrl);
   return <span
     className={['tier',showImage?'tier-image':'',className].filter(Boolean).join(' ')}
@@ -73,7 +92,7 @@ export default function SkinRankBadge({rank,imageUrl,className=''}:Props){
       alt={'Hạng skin '+rank}
       loading="lazy"
       decoding="async"
-      style={edge?{transform:imageTransform,transformOrigin:'top right'}:undefined}
+      style={imageTransform?{transform:imageTransform,transformOrigin:'top right'}:undefined}
       onLoad={event=>{
         if(!inspectable)return;
         const url=imageUrl||'';
